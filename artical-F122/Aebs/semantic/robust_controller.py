@@ -14,6 +14,13 @@ from stable_baselines3 import PPO
 
 from Aebs.semantic.conformal import StateConditionalErrorContract
 from Aebs.system.env import AebsEnv
+from Aebs.system.outcomes import (
+    EPISODE_OUTCOMES,
+    SUCCESS,
+    TIMEOUT,
+    UNSAFE,
+    classify_terminal_outcome,
+)
 
 
 def set_seed(seed: int) -> None:
@@ -73,8 +80,25 @@ class PerceptionNoiseEnv(AebsEnv):
 
 
 def action(model: PPO, distance_norm: float, speed: float) -> float:
-    prediction, _ = model.predict(np.array([distance_norm, speed], dtype=np.float32), deterministic=True)
+    prediction, _ = model.predict(
+        np.array([distance_norm, speed], dtype=np.float32), deterministic=True
+    )
     return float(np.clip(np.asarray(prediction).reshape(-1)[0], -3.0, 3.0))
+
+
+def action_with_diagnostics(model, distance_norm: float, speed: float):
+    observation = np.array([distance_norm, speed], dtype=np.float32)
+    if hasattr(model, "predict_with_diagnostics"):
+        prediction, diagnostics = model.predict_with_diagnostics(observation, deterministic=True)
+        scalar_diagnostics = {
+            key: float(np.asarray(value).reshape(-1)[0])
+            for key, value in diagnostics.items()
+        }
+    else:
+        prediction, _ = model.predict(observation, deterministic=True)
+        scalar_diagnostics = {}
+    chosen_action = float(np.clip(np.asarray(prediction).reshape(-1)[0], -3.0, 3.0))
+    return chosen_action, scalar_diagnostics
 
 
 def evaluate(
@@ -84,62 +108,116 @@ def evaluate(
     mode: str,
     episodes: int,
     seed: int,
-) -> Dict[str, float]:
+) -> Dict[str, object]:
     rng = np.random.default_rng(seed)
-    successes, unsafe_episodes, returns, lengths = 0, 0, [], []
+    outcome_counts = {name: 0 for name in EPISODE_OUTCOMES}
+    returns, lengths, minimum_distances, success_lengths = [], [], [], []
+    intervention_steps = 0
+    filter_steps = 0
+    extra_braking_sum = 0.0
+    used_radius_sum = 0.0
+    overshoot_cap_steps = 0
     for _ in range(episodes):
         distance_m = float(rng.uniform(15.0, 16.0))
         speed = float(rng.uniform(2.5, 3.0))
         episode_return = 0.0
-        unsafe = False
-        success = False
+        minimum_distance = distance_m
+        outcome = TIMEOUT
         for step in range(400):
             distance_norm = distance_m / distance_scale
             radius = float(contract.radius(np.array([distance_m]))[0])
             if mode == "exact":
-                chosen_action = action(model, distance_norm, speed)
+                observed_distance_norm = distance_norm
             elif mode == "uniform":
-                chosen_action = action(model, distance_norm + rng.uniform(-radius, radius), speed)
+                observed_distance_norm = distance_norm + rng.uniform(-radius, radius)
             elif mode == "random_boundary":
-                chosen_action = action(model, distance_norm + radius * rng.choice((-1.0, 1.0)), speed)
+                observed_distance_norm = distance_norm + radius * rng.choice((-1.0, 1.0))
             elif mode == "worst_endpoint":
                 # Positive action is braking in these dynamics; the smaller endpoint action is safety-worst.
-                chosen_action = min(
-                    action(model, distance_norm - radius, speed),
-                    action(model, distance_norm + radius, speed),
-                )
+                endpoint_actions = []
+                endpoint_diagnostics = []
+                for endpoint in (distance_norm - radius, distance_norm + radius):
+                    clipped_endpoint = float(
+                        np.clip(endpoint, 5.0 / distance_scale, 16.0 / distance_scale)
+                    )
+                    candidate_action, candidate_diagnostics = action_with_diagnostics(
+                        model, clipped_endpoint, speed
+                    )
+                    endpoint_actions.append(candidate_action)
+                    endpoint_diagnostics.append(candidate_diagnostics)
+                worst_index = int(np.argmin(endpoint_actions))
+                chosen_action = endpoint_actions[worst_index]
+                diagnostics = endpoint_diagnostics[worst_index]
             else:
                 raise ValueError(f"unknown evaluation mode: {mode}")
+
+            if mode != "worst_endpoint":
+                observed_distance_norm = float(
+                    np.clip(
+                        observed_distance_norm,
+                        5.0 / distance_scale,
+                        16.0 / distance_scale,
+                    )
+                )
+                chosen_action, diagnostics = action_with_diagnostics(
+                    model, observed_distance_norm, speed
+                )
+
+            if diagnostics:
+                filter_steps += 1
+                intervention_steps += int(diagnostics["intervened"] > 0.5)
+                extra_braking_sum += diagnostics["extra_braking"]
+                used_radius_sum += diagnostics["perception_radius_m"]
+                overshoot_cap_steps += int(diagnostics.get("overshoot_cap_active", 0.0) > 0.5)
 
             next_distance = distance_m - speed * 0.05
             next_speed = float(np.clip(speed - chosen_action * 0.05, 0.0, 3.0))
             progress = distance_m - next_distance
             reward = 2.0 * progress - 0.001
-            if next_distance <= 6.0:
-                if next_speed <= 0.5:
-                    reward += 2.0
-                    success = True
-                else:
-                    reward -= (next_speed - 0.5) * 3.0
-            if 5.0 <= next_distance <= 6.0 and next_speed >= 0.5:
-                unsafe = True
+            terminal_outcome = classify_terminal_outcome(next_distance, next_speed)
+            if terminal_outcome == SUCCESS:
+                reward += 2.0
+            elif terminal_outcome == UNSAFE:
+                reward -= (next_speed - 0.5) * 3.0
             episode_return += reward
             distance_m, speed = next_distance, next_speed
-            if next_distance >= 16.0 or next_distance <= 5.0 or next_speed <= 0.0:
+            minimum_distance = min(minimum_distance, distance_m)
+            if terminal_outcome is not None:
+                outcome = terminal_outcome
                 lengths.append(step + 1)
+                if outcome == SUCCESS:
+                    success_lengths.append(step + 1)
                 break
         else:
             lengths.append(400)
-        successes += int(success and not unsafe)
-        unsafe_episodes += int(unsafe)
+        outcome_counts[outcome] += 1
         returns.append(episode_return)
+        minimum_distances.append(minimum_distance)
+    outcome_rates = {
+        name: outcome_counts[name] / episodes for name in EPISODE_OUTCOMES
+    }
     return {
         "episodes": episodes,
-        "success_rate": successes / episodes,
-        "unsafe_rate": unsafe_episodes / episodes,
+        "evaluation_semantics": "mutually_exclusive_terminal_outcomes_v2",
+        "outcome_counts": outcome_counts,
+        "outcome_rates": outcome_rates,
+        "success_rate": outcome_rates[SUCCESS],
+        "unsafe_rate": outcome_rates[UNSAFE],
+        "stopped_safe_outside_goal_rate": outcome_rates["stopped_safe_outside_goal"],
+        "out_of_domain_rate": outcome_rates["out_of_domain"],
+        "timeout_rate": outcome_rates[TIMEOUT],
         "mean_return": float(np.mean(returns)),
         "return_std": float(np.std(returns)),
         "mean_steps": float(np.mean(lengths)),
+        "mean_time_to_success_seconds": (
+            float(np.mean(success_lengths) * 0.05) if success_lengths else None
+        ),
+        "mean_minimum_distance_m": float(np.mean(minimum_distances)),
+        "minimum_distance_m": float(np.min(minimum_distances)),
+        "intervention_rate": intervention_steps / filter_steps if filter_steps else None,
+        "mean_extra_braking": extra_braking_sum / filter_steps if filter_steps else None,
+        "mean_perception_radius_m": used_radius_sum / filter_steps if filter_steps else None,
+        "overshoot_cap_rate": overshoot_cap_steps / filter_steps if filter_steps else None,
     }
 
 

@@ -5,6 +5,8 @@ import gymnasium as gym
 from gymnasium import spaces
 from typing import List, Tuple
 
+from Aebs.system.outcomes import SUCCESS, TIMEOUT, UNSAFE, classify_terminal_outcome
+
 # ----------------------
 # Dynamics Model
 # ----------------------
@@ -19,10 +21,12 @@ def next_state_vec(d, v, acc, dt=0.05):
 # PPO Reinforcement Learning Environment Definition
 # -----------------------
 class AebsEnv(gym.Env):
-    def __init__(self, std1):
+    def __init__(self, std1, max_episode_steps=400):
         super(AebsEnv, self).__init__()
         self.std1 = std1
         self.dt = 0.05  # time step
+        self.max_episode_steps = int(max_episode_steps)
+        self.elapsed_steps = 0
 
         # ===== Observation space: normalized distance and speed =====
         d_min_norm = 5.0 / std1
@@ -56,6 +60,7 @@ class AebsEnv(gym.Env):
 
         # Set initial state [d_norm, v]
         self.state = np.array([d_init_norm, v_init], dtype=np.float32)
+        self.elapsed_steps = 0
 
         # Must return: (observation, info)
         return self.state, {}  # info can be an empty dict
@@ -89,28 +94,25 @@ class AebsEnv(gym.Env):
         # B. Time penalty (encourages faster completion)
         reward -= 0.001
 
-        # C. Termination conditions
-        done = False
-        truncated = False  # for non-task-related truncation (unused here)
-
-        # Case 1: entering the safety distance
-        if d_next <= SAFETY_DIST:
-            if v_next <= SAFETY_SPEED:
-                # Success: close and slow → bonus reward
-                reward += 2
-            else:
-                # Inside safety zone but too fast → penalty
-                reward -= (v_next - SAFETY_SPEED) * 3
-
-        # Case 2: leave distance range [5.0, 16.0], or stop → terminate
-        if d_next >= 16.0 or d_next <= 5.0 or v_next <= 0.0:
-            done = True
+        # C. Mutually exclusive task outcomes.  Success and unsafe entry end
+        # the episode immediately, so the success bonus cannot repeat.
+        self.elapsed_steps += 1
+        outcome = classify_terminal_outcome(d_next, v_next)
+        if outcome == SUCCESS:
+            reward += 2.0
+        elif outcome == UNSAFE:
+            reward -= (v_next - SAFETY_SPEED) * 3.0
+        terminated = outcome is not None
+        truncated = False
+        if not terminated and self.elapsed_steps >= self.max_episode_steps:
+            truncated = True
+            outcome = TIMEOUT
 
         # Update internal state
         self.state = next_state
 
-        # Must return: (observation, reward, terminated, truncated, info)
-        return next_state, reward, done, truncated, {}
+        info = {"outcome": outcome} if outcome is not None else {}
+        return next_state, reward, terminated, truncated, info
     
 
 class Box:

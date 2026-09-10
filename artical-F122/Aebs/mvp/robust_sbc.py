@@ -125,11 +125,10 @@ def region_grid_states(
 def discrete_stopping_distance(
     speed: np.ndarray, target_speed: float, max_braking: float, dt: float = 0.05
 ) -> np.ndarray:
-    """Distance travelled until next-state speed is strictly below target."""
+    """Distance travelled until next-state speed is at or below target."""
     speed = np.asarray(speed, dtype=np.float64)
-    steps = np.zeros_like(speed, dtype=np.int64)
-    active = speed >= target_speed
-    steps[active] = np.floor((speed[active] - target_speed) / (max_braking * dt)).astype(np.int64) + 1
+    speed_gap = np.maximum(speed - target_speed, 0.0)
+    steps = np.ceil(speed_gap / (max_braking * dt) - 1e-12).astype(np.int64)
     n = steps.astype(np.float64)
     distance = dt * (n * speed - max_braking * dt * n * (n - 1.0) / 2.0)
     return np.maximum(distance, 0.0)
@@ -152,10 +151,10 @@ def certificate_masks(
     unsafe = (
         (distance_m >= unsafe_distance_low_m)
         & (distance_m <= unsafe_distance_high_m)
-        & (speed >= unsafe_speed)
+        & (speed > unsafe_speed)
     )
     stopped = speed <= terminal_speed_threshold
-    goal = (distance_m <= goal_distance_m) & (speed < goal_speed)
+    goal = (distance_m <= goal_distance_m) & (speed <= goal_speed)
     terminal = (stopped | goal) & ~unsafe
     operational = ~(terminal | unsafe)
     stopping_distance = discrete_stopping_distance(speed, unsafe_speed, max_braking)
