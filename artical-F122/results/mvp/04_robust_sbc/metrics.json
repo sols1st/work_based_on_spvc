@@ -1,0 +1,69 @@
+{
+  "experiment": "robust_sbc_mvp",
+  "seed": 7,
+  "controller": "Aebs/controller/best_model/best_model.zip",
+  "epochs": 150,
+  "train_states": 4096,
+  "batch_size": 512,
+  "learning_rate": 0.001,
+  "epsilon": 0.01,
+  "runtime_seconds": 369.20509791374207,
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 9.121724247932434,
+      "train_robust_decrease_violation_rate": 0.3447265625
+    },
+    {
+      "epoch": 25,
+      "loss": 7.152904391288757,
+      "train_robust_decrease_violation_rate": 0.564453125
+    },
+    {
+      "epoch": 50,
+      "loss": 4.248927056789398,
+      "train_robust_decrease_violation_rate": 0.627197265625
+    },
+    {
+      "epoch": 75,
+      "loss": 1.8952050507068634,
+      "train_robust_decrease_violation_rate": 0.616943359375
+    },
+    {
+      "epoch": 100,
+      "loss": 0.2897379882633686,
+      "train_robust_decrease_violation_rate": 0.59814453125
+    },
+    {
+      "epoch": 125,
+      "loss": 0.23905584402382374,
+      "train_robust_decrease_violation_rate": 0.560546875
+    },
+    {
+      "epoch": 150,
+      "loss": 0.19870406948029995,
+      "train_robust_decrease_violation_rate": 0.494140625
+    }
+  ],
+  "verification": {
+    "status": "violated",
+    "grid_size": 80,
+    "checked_states": 6400,
+    "violation_count": 4170,
+    "min_margin": -0.529670238494873,
+    "mean_margin": 0.04243366792798042,
+    "worst_case": {
+      "margin": -0.529670238494873,
+      "state": [
+        4.195916652679443,
+        3.0
+      ],
+      "state_units": [
+        "normalized_distance",
+        "m_per_s"
+      ],
+      "distance_m": 13.354430623002145,
+      "speed": 3.0
+    }
+  }
+}

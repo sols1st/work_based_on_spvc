@@ -1,0 +1,34 @@
+{
+  "seed": 7,
+  "data": "Aebs/data/Downsampled.h5",
+  "baseline_controller": "Aebs/controller/best_model/best_model.zip",
+  "semantic_source_dir": "results/semantic_stage1_alpha05/seed7",
+  "output_dir": "results/mvp",
+  "controller": {
+    "timesteps": 20000,
+    "learning_rate": 3e-05,
+    "eval_episodes": 200,
+    "distill_epochs": 2,
+    "distill_learning_rate": 1e-05,
+    "distill_batch_size": 256
+  },
+  "uncertainty": {
+    "bins": 4,
+    "states_per_cell": 256,
+    "errors_per_state": 16,
+    "alpha": 0.05
+  },
+  "robust_sbc": {
+    "controller": "baseline",
+    "epochs": 150,
+    "train_states": 4096,
+    "batch_size": 512,
+    "learning_rate": 0.001,
+    "epsilon": 0.01,
+    "grid_size": 80,
+    "decrease_weight": 100.0,
+    "init_weight": 1.0,
+    "unsafe_weight": 1.0,
+    "output_name": "04_robust_sbc_weight100"
+  }
+}

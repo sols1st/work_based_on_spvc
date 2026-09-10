@@ -1,0 +1,112 @@
+{
+  "experiment": "robust_controller_stage2",
+  "seed": 7,
+  "timesteps": 20000,
+  "training_seconds": 931.9525473117828,
+  "observation_mixture": {
+    "exact": 0.5,
+    "uniform_inside_contract": 0.25,
+    "endpoint": 0.25
+  },
+  "distillation": {
+    "epochs": 2,
+    "grid_size": 4096,
+    "final_action_mse": 0.30493980646133423,
+    "mean_action_mse": 0.30566807882860303
+  },
+  "contract": {
+    "alpha": 0.05,
+    "bin_edges": [
+      5.0,
+      7.75,
+      10.5,
+      13.25,
+      16.0
+    ],
+    "radii": [
+      0.0261991024017334,
+      0.8721076250076294,
+      0.05182218551635742,
+      0.1307048797607422
+    ],
+    "calibration_sizes": [
+      24,
+      22,
+      19,
+      15
+    ]
+  },
+  "baseline": {
+    "exact": {
+      "episodes": 200,
+      "success_rate": 1.0,
+      "unsafe_rate": 0.0,
+      "mean_return": 405.81687840110783,
+      "return_std": 1.1551409540951112,
+      "mean_steps": 279.34
+    },
+    "uniform": {
+      "episodes": 200,
+      "success_rate": 0.99,
+      "unsafe_rate": 0.01,
+      "mean_return": 405.4848861417283,
+      "return_std": 6.499204728571146,
+      "mean_steps": 281.015
+    },
+    "random_boundary": {
+      "episodes": 200,
+      "success_rate": 0.83,
+      "unsafe_rate": 0.17,
+      "mean_return": 400.650555864393,
+      "return_std": 14.000618295089094,
+      "mean_steps": 279.32
+    },
+    "worst_endpoint": {
+      "episodes": 200,
+      "success_rate": 0.0,
+      "unsafe_rate": 1.0,
+      "mean_return": 241.77480995504197,
+      "return_std": 4.70543879103116,
+      "mean_steps": 190.99
+    }
+  },
+  "robust": {
+    "exact": {
+      "episodes": 200,
+      "success_rate": 1.0,
+      "unsafe_rate": 0.0,
+      "mean_return": 282.81406995668675,
+      "return_std": 0.6415145908339428,
+      "mean_steps": 213.83
+    },
+    "uniform": {
+      "episodes": 200,
+      "success_rate": 0.785,
+      "unsafe_rate": 0.215,
+      "mean_return": 280.7079837292084,
+      "return_std": 7.765244006266303,
+      "mean_steps": 214.46
+    },
+    "random_boundary": {
+      "episodes": 200,
+      "success_rate": 0.72,
+      "unsafe_rate": 0.28,
+      "mean_return": 278.52251941752917,
+      "return_std": 11.631983040019804,
+      "mean_steps": 216.645
+    },
+    "worst_endpoint": {
+      "episodes": 200,
+      "success_rate": 0.0,
+      "unsafe_rate": 1.0,
+      "mean_return": 165.36390103688944,
+      "return_std": 4.075969361052805,
+      "mean_steps": 154.13
+    }
+  },
+  "policy_drift": {
+    "action_mae": 0.05754177272319794,
+    "action_rmse": 0.07226001471281052,
+    "action_max_abs": 0.2019444704055786
+  }
+}
