@@ -30,6 +30,30 @@ DISTURBANCE_LABELS = (
 SEMANTIC_MULTIPLIERS = (-1.0, 0.0, 1.0)
 
 
+class BarrierMLP(MLP):
+    """MLP with an explicit output transform for nonnegative barriers."""
+
+    def __init__(self, output_transform: str):
+        super().__init__([2, 16, 8, 1], activation="tanh", square_output=False)
+        if output_transform not in ("linear", "softplus", "softplus_square"):
+            raise ValueError(f"unsupported barrier output transform: {output_transform}")
+        self.output_transform = output_transform
+
+    def forward(self, inputs: torch.Tensor) -> torch.Tensor:
+        raw = super().forward(inputs)
+        if self.output_transform == "linear":
+            return raw
+        positive = F.softplus(raw)
+        if self.output_transform == "softplus_square":
+            return positive.square()
+        return positive
+
+
+def build_barrier(output_transform: str, square_output: bool, device: torch.device) -> BarrierMLP:
+    transform = output_transform or ("softplus" if square_output else "linear")
+    return BarrierMLP(transform).to(device)
+
+
 def set_seed(seed: int) -> None:
     random.seed(seed)
     np.random.seed(seed)
@@ -125,14 +149,14 @@ def certificate_masks(
 ) -> Dict[str, np.ndarray]:
     distance_m = states[:, 0] * distance_scale
     speed = states[:, 1]
-    stopped = speed <= terminal_speed_threshold
-    goal = (distance_m <= goal_distance_m) & (speed < goal_speed)
     unsafe = (
         (distance_m >= unsafe_distance_low_m)
         & (distance_m <= unsafe_distance_high_m)
         & (speed >= unsafe_speed)
     )
-    terminal = stopped | goal
+    stopped = speed <= terminal_speed_threshold
+    goal = (distance_m <= goal_distance_m) & (speed < goal_speed)
+    terminal = (stopped | goal) & ~unsafe
     operational = ~(terminal | unsafe)
     stopping_distance = discrete_stopping_distance(speed, unsafe_speed, max_braking)
     recoverability_margin = distance_m - goal_distance_m - stopping_distance
@@ -152,6 +176,39 @@ def certificate_masks(
 def top_fraction_mean(values: torch.Tensor, fraction: float) -> torch.Tensor:
     count = max(1, int(math.ceil(len(values) * fraction)))
     return torch.topk(values, k=count).values.mean()
+
+
+def successor_barrier_values(
+    barrier: MLP,
+    successors: np.ndarray,
+    distance_scale: float,
+    terminal_speed_threshold: float,
+    goal_distance_m: float,
+    goal_speed: float,
+    unsafe_distance_low_m: float,
+    unsafe_distance_high_m: float,
+    unsafe_speed: float,
+    use_recoverable_domain: bool,
+    max_braking: float,
+    terminal_value: float,
+    device: torch.device,
+) -> torch.Tensor:
+    flat_successors = successors.reshape(-1, 2)
+    values = barrier(torch.from_numpy(flat_successors).to(device)).view(len(successors), -1)
+    masks = certificate_masks(
+        flat_successors,
+        distance_scale,
+        terminal_speed_threshold,
+        goal_distance_m,
+        goal_speed,
+        unsafe_distance_low_m,
+        unsafe_distance_high_m,
+        unsafe_speed,
+        use_recoverable_domain,
+        max_braking,
+    )
+    terminal_mask = torch.from_numpy(masks["terminal"].reshape(values.shape)).to(device)
+    return torch.where(terminal_mask, torch.full_like(values, terminal_value), values)
 
 
 def robust_successors(
@@ -214,6 +271,7 @@ def evaluate_grid(
     use_recoverable_domain: bool,
     max_braking: float,
     enforce_goal_constraint: bool,
+    terminal_value: float,
     device: torch.device,
 ) -> Dict:
     contract, checkpoint_scale = load_contract(semantic_checkpoint)
@@ -248,7 +306,21 @@ def evaluate_grid(
             radii = contract.radius(distance_m).astype(np.float32)
             successors = robust_successors(batch, controller, uncertainty, distance_scale, radii)
             current = barrier(torch.from_numpy(batch).to(device)).view(-1)
-            next_values = barrier(torch.from_numpy(successors.reshape(-1, 2)).to(device)).view(len(batch), -1)
+            next_values = successor_barrier_values(
+                barrier,
+                successors,
+                distance_scale,
+                terminal_speed_threshold,
+                goal_distance_m,
+                goal_speed,
+                unsafe_distance_low_m,
+                unsafe_distance_high_m,
+                unsafe_speed,
+                use_recoverable_domain,
+                max_braking,
+                terminal_value,
+                device,
+            )
             robust_next, robust_index = next_values.max(dim=1)
             margin = (current - robust_next - epsilon).detach().cpu().numpy()
             margins.append(margin)
@@ -400,6 +472,10 @@ def train_barrier(
     use_recoverable_domain: bool,
     max_braking: float,
     enforce_goal_constraint: bool,
+    terminal_value: float,
+    epsilon_warmup_epochs: int,
+    warmup_epsilon: float,
+    barrier_output_transform: str,
 ) -> Dict:
     set_seed(seed)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -411,7 +487,7 @@ def train_barrier(
     controller = load_controller(controller_path)
     uncertainty = StateDependentUncertainty.from_npz(uncertainty_path)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    barrier = MLP([2, 16, 8, 1], activation="tanh", square_output=square_output).to(device)
+    barrier = build_barrier(barrier_output_transform, square_output, device)
     if initial_barrier:
         if not Path(initial_barrier).exists():
             raise FileNotFoundError(f"initial barrier not found: {initial_barrier}")
@@ -482,17 +558,31 @@ def train_barrier(
         epoch_topk_decrease_losses = []
         epoch_violations = []
         active_decrease_weight = warmup_decrease_weight if epoch <= region_warmup_epochs else decrease_weight
+        active_epsilon = warmup_epsilon if epoch <= epsilon_warmup_epochs else epsilon
         for start in range(0, len(states), batch_size):
             batch = states[permutation[start : start + batch_size]]
             distance_m = batch[:, 0] * distance_scale
             radii = contract.radius(distance_m).astype(np.float32)
             successors = robust_successors(batch, controller, uncertainty, distance_scale, radii)
             batch_tensor = torch.from_numpy(batch).to(device)
-            successor_tensor = torch.from_numpy(successors.reshape(-1, 2)).to(device)
             current = barrier(batch_tensor).view(-1)
-            next_values = barrier(successor_tensor).view(len(batch), -1)
+            next_values = successor_barrier_values(
+                barrier,
+                successors,
+                distance_scale,
+                terminal_speed_threshold,
+                goal_distance_m,
+                goal_speed,
+                unsafe_distance_low_m,
+                unsafe_distance_high_m,
+                unsafe_speed,
+                use_recoverable_domain,
+                max_braking,
+                terminal_value,
+                device,
+            )
             robust_next = next_values.max(dim=1).values
-            per_state_decrease = F.relu(robust_next - current + epsilon)
+            per_state_decrease = F.relu(robust_next - current + active_epsilon)
             decrease_loss = per_state_decrease.mean()
             max_decrease_loss = per_state_decrease.max()
             topk_decrease_loss = top_fraction_mean(per_state_decrease, topk_decrease_fraction)
@@ -534,6 +624,7 @@ def train_barrier(
                 "unsafe_loss": float(np.mean(epoch_unsafe_losses)),
                 "goal_loss": float(np.mean(epoch_goal_losses)),
                 "active_decrease_weight": float(active_decrease_weight),
+                "active_epsilon": float(active_epsilon),
                 "train_robust_decrease_violation_rate": float(np.mean(epoch_violations)),
             }
             history.append(record)
@@ -560,7 +651,36 @@ def train_barrier(
         use_recoverable_domain,
         max_braking,
         enforce_goal_constraint,
+        terminal_value,
         device,
+    )
+    zero_epsilon_verification = (
+        evaluate_grid(
+            barrier,
+            controller,
+            uncertainty,
+            semantic_checkpoint,
+            data_path,
+            grid_size,
+            batch_size,
+            0.0,
+            terminal_speed_threshold,
+            init_target,
+            unsafe_target,
+            goal_target,
+            goal_distance_m,
+            goal_speed,
+            unsafe_distance_low_m,
+            unsafe_distance_high_m,
+            unsafe_speed,
+            use_recoverable_domain,
+            max_braking,
+            enforce_goal_constraint,
+            terminal_value,
+            device,
+        )
+        if epsilon > 0.0
+        else verification
     )
     metrics = {
         "experiment": "robust_sbc_mvp",
@@ -579,6 +699,7 @@ def train_barrier(
         "init_weight": init_weight,
         "unsafe_weight": unsafe_weight,
         "square_output": bool(square_output),
+        "barrier_output_transform": barrier.output_transform,
         "region_warmup_epochs": int(region_warmup_epochs),
         "warmup_decrease_weight": float(warmup_decrease_weight),
         "init_target": float(init_target),
@@ -588,6 +709,9 @@ def train_barrier(
         "enforce_goal_constraint": bool(enforce_goal_constraint),
         "use_recoverable_domain": bool(use_recoverable_domain),
         "max_braking": float(max_braking),
+        "terminal_value": float(terminal_value),
+        "epsilon_warmup_epochs": int(epsilon_warmup_epochs),
+        "warmup_epsilon": float(warmup_epsilon),
         "include_verifier_grid_train": bool(include_verifier_grid_train),
         "max_decrease_weight": float(max_decrease_weight),
         "topk_decrease_weight": float(topk_decrease_weight),
@@ -608,6 +732,7 @@ def train_barrier(
         "runtime_seconds": float(time.time() - started),
         "history": history,
         "verification": verification,
+        "zero_epsilon_verification": zero_epsilon_verification,
     }
     with open(output_dir / "metrics.json", "w", encoding="utf-8") as stream:
         json.dump(metrics, stream, indent=2, ensure_ascii=False)
@@ -658,6 +783,14 @@ def main() -> None:
     parser.add_argument("--use-recoverable-domain", action="store_true")
     parser.add_argument("--max-braking", type=float, default=3.0)
     parser.add_argument("--enforce-goal-constraint", action="store_true")
+    parser.add_argument("--terminal-value", type=float, default=0.0)
+    parser.add_argument("--epsilon-warmup-epochs", type=int, default=0)
+    parser.add_argument("--warmup-epsilon", type=float, default=0.0)
+    parser.add_argument(
+        "--barrier-output-transform",
+        choices=("linear", "softplus", "softplus_square"),
+        default=None,
+    )
     args = parser.parse_args()
     metrics = train_barrier(
         args.semantic_checkpoint,
@@ -702,6 +835,10 @@ def main() -> None:
         args.use_recoverable_domain,
         args.max_braking,
         args.enforce_goal_constraint,
+        args.terminal_value,
+        args.epsilon_warmup_epochs,
+        args.warmup_epsilon,
+        args.barrier_output_transform,
     )
     print(json.dumps(metrics, indent=2, ensure_ascii=False))
 
