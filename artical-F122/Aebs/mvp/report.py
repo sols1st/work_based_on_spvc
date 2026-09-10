@@ -45,6 +45,59 @@ def print_safety_filter(metrics: Dict) -> None:
         )
 
 
+def print_filter_fast_comparison(name: str, metrics: Dict) -> None:
+    print(f"\n[Safety filter comparison: {name}]")
+    controllers = metrics.get("controllers", {})
+    for mode in ("exact", "uniform", "random_boundary", "worst_endpoint"):
+        if not any(mode in values for values in controllers.values()):
+            continue
+        print(f"{mode}:")
+        for name in (
+            "baseline",
+            "global_max_filter",
+            "adaptive_observed_bin_filter",
+            "adaptive_anti_stall_filter",
+        ):
+            if name not in controllers or mode not in controllers[name]:
+                continue
+            values = controllers[name][mode]
+            line = (
+                f"  {name}: success={percent(values['success_rate'])}, "
+                f"unsafe={percent(values['unsafe_rate'])}, "
+                f"stopped_safe={percent(values['stopped_safe_outside_goal_rate'])}, "
+                f"out_of_domain={percent(values['out_of_domain_rate'])}, "
+                f"timeout={percent(values['timeout_rate'])}, "
+                f"steps={values['mean_steps']:.1f}"
+            )
+            if values.get("intervention_rate") is not None:
+                line += (
+                    f", intervention={percent(values['intervention_rate'])}, "
+                    f"extra_braking={values['mean_extra_braking']:.3f}"
+                )
+            if values.get("overshoot_cap_rate"):
+                line += f", overshoot_cap={percent(values['overshoot_cap_rate'])}"
+            print(line)
+
+
+def print_grid_certificate_lp(metrics: Dict) -> None:
+    print("\n[Grid certificate LP]")
+    print(f"status: {metrics['status']}")
+    print(
+        f"grid: {metrics['grid_size']}x{metrics['grid_size']}, "
+        f"decrease states: {metrics['decrease_states']}, "
+        f"constraints: {metrics['linear_constraints']}"
+    )
+    if "epsilon_max" in metrics:
+        print(f"epsilon_max: {metrics['epsilon_max']:.9f}")
+        print(
+            "maximum constraint residual: "
+            f"{metrics['maximum_constraint_residual']:.3e}"
+        )
+    else:
+        print(f"solver: {metrics['solver_message']}")
+    print(f"certificate level: {metrics['certificate_level']}")
+
+
 def print_uncertainty(name: str, metrics: Dict) -> None:
     print(f"\n[Uncertainty: {name}]")
     if "source" in metrics:
@@ -187,6 +240,16 @@ def main() -> None:
     safety_filter = root / "02_safety_filter" / "metrics.json"
     if safety_filter.exists():
         print_safety_filter(load_json(safety_filter))
+    for comparison_name in (
+        "02_safety_filter_fast_compare",
+        "02_safety_filter_anti_stall_compare",
+    ):
+        comparison_path = root / comparison_name / "metrics.json"
+        if comparison_path.exists():
+            print_filter_fast_comparison(comparison_name, load_json(comparison_path))
+    grid_lp = root / "04_grid_certificate_lp" / "metrics.json"
+    if grid_lp.exists():
+        print_grid_certificate_lp(load_json(grid_lp))
     for uncertainty in metric_files(root, "03*uncertainty/metrics.json"):
         print_uncertainty(uncertainty.parent.name, load_json(uncertainty))
     domain_analysis = root / "03_domain_analysis" / "metrics.json"

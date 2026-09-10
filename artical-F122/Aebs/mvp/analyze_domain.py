@@ -51,8 +51,8 @@ def analyze(
     recoverability_margin = initial_distance - safety_distance_m - stopping_distance
     discrete_distance = discrete_stopping_distance(initial_speed, unsafe_speed, max_braking, 0.05)
     discrete_margin = initial_distance - safety_distance_m - discrete_distance
-    initially_goal = (initial_distance <= safety_distance_m) & (initial_speed < unsafe_speed)
-    initially_unsafe = (initial_distance <= safety_distance_m) & (initial_speed >= unsafe_speed)
+    initially_goal = (initial_distance <= safety_distance_m) & (initial_speed <= unsafe_speed)
+    initially_unsafe = (initial_distance <= safety_distance_m) & (initial_speed > unsafe_speed)
     stopped_initially = initial_speed <= 0.0
     operational = ~(initially_goal | initially_unsafe | stopped_initially)
     physically_unrecoverable = (recoverability_margin < 0.0) & operational
@@ -79,8 +79,8 @@ def analyze(
         speed[indices] = next_speed
         steps[indices] += 1
 
-        unsafe_now = (next_distance <= safety_distance_m) & (next_speed >= unsafe_speed)
-        goal_now = (next_distance <= safety_distance_m) & (next_speed < unsafe_speed)
+        unsafe_now = (next_distance <= safety_distance_m) & (next_speed > unsafe_speed)
+        goal_now = (next_distance <= safety_distance_m) & (next_speed <= unsafe_speed)
         stopped_now = next_speed <= 0.0
         outside_now = (next_distance <= 5.0) | (next_distance >= 16.0)
         reached_unsafe[indices[unsafe_now]] = True
