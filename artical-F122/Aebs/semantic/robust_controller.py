@@ -46,8 +46,13 @@ class PerceptionNoiseEnv(AebsEnv):
         observation = true_observation.copy()
         distance_m = observation[0] * self.std1
         radius = float(self.contract.radius(np.array([distance_m]))[0])
-        # Boundary sampling trains against the full contract instead of only likely errors.
-        error = radius * (-1.0 if self.rng.random() < 0.5 else 1.0)
+        draw = self.rng.random()
+        if draw < 0.50:
+            error = 0.0
+        elif draw < 0.75:
+            error = self.rng.uniform(-radius, radius)
+        else:
+            error = radius * (-1.0 if self.rng.random() < 0.5 else 1.0)
         observation[0] = np.clip(
             observation[0] + error,
             self.observation_space.low[0],
@@ -138,6 +143,56 @@ def evaluate(
     }
 
 
+def distill_to_baseline(
+    robust: PPO,
+    baseline: PPO,
+    distance_scale: float,
+    output_dir: Path,
+    epochs: int,
+    batch_size: int,
+    learning_rate: float,
+    seed: int,
+) -> Dict[str, float]:
+    if epochs <= 0:
+        return {"epochs": 0}
+    rng = np.random.default_rng(seed)
+    distance = rng.uniform(5.0 / distance_scale, 16.0 / distance_scale, size=4096)
+    speed = rng.uniform(0.0, 3.0, size=4096)
+    observations = np.stack((distance, speed), axis=1).astype(np.float32)
+    target_action, _ = baseline.predict(observations, deterministic=True)
+    target_action = np.asarray(target_action, dtype=np.float32).reshape(-1, 1)
+
+    device = robust.device
+    robust.policy.train()
+    optimizer = torch.optim.Adam(robust.policy.parameters(), lr=learning_rate)
+    obs_tensor = torch.from_numpy(observations).to(device)
+    action_tensor = torch.from_numpy(target_action).to(device)
+    losses = []
+    generator = torch.Generator(device="cpu").manual_seed(seed)
+    for _ in range(epochs):
+        permutation = torch.randperm(len(obs_tensor), generator=generator)
+        for start in range(0, len(obs_tensor), batch_size):
+            batch_idx = permutation[start : start + batch_size].to(device)
+            latent = robust.policy.mlp_extractor.policy_net(obs_tensor[batch_idx])
+            predicted = robust.policy.action_net(latent)
+            loss = torch.nn.functional.mse_loss(predicted, action_tensor[batch_idx])
+            optimizer.zero_grad()
+            loss.backward()
+            torch.nn.utils.clip_grad_norm_(robust.policy.parameters(), 1.0)
+            optimizer.step()
+            losses.append(float(loss.detach().cpu()))
+    robust.policy.eval()
+    metrics = {
+        "epochs": int(epochs),
+        "grid_size": int(len(observations)),
+        "final_action_mse": float(losses[-1]),
+        "mean_action_mse": float(np.mean(losses)),
+    }
+    with open(output_dir / "distillation_metrics.json", "w", encoding="utf-8") as stream:
+        json.dump(metrics, stream, indent=2, ensure_ascii=False)
+    return metrics
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--semantic-checkpoint", required=True)
@@ -148,6 +203,9 @@ def main() -> None:
     parser.add_argument("--timesteps", type=int, default=50000)
     parser.add_argument("--eval-episodes", type=int, default=500)
     parser.add_argument("--learning-rate", type=float, default=1e-4)
+    parser.add_argument("--distill-epochs", type=int, default=2)
+    parser.add_argument("--distill-learning-rate", type=float, default=1e-5)
+    parser.add_argument("--distill-batch-size", type=int, default=256)
     args = parser.parse_args()
     set_seed(args.seed)
     contract, checkpoint_scale = load_contract(args.semantic_checkpoint)
@@ -167,6 +225,16 @@ def main() -> None:
     robust.target_kl = 0.01
     started = time.time()
     robust.learn(total_timesteps=args.timesteps, reset_num_timesteps=False, progress_bar=False)
+    distillation_metrics = distill_to_baseline(
+        robust,
+        baseline,
+        dataset_scale,
+        output_dir,
+        args.distill_epochs,
+        args.distill_batch_size,
+        args.distill_learning_rate,
+        args.seed + 4000,
+    )
     training_seconds = time.time() - started
     robust.save(output_dir / "robust_controller")
 
@@ -176,6 +244,12 @@ def main() -> None:
         "seed": args.seed,
         "timesteps": args.timesteps,
         "training_seconds": training_seconds,
+        "observation_mixture": {
+            "exact": 0.50,
+            "uniform_inside_contract": 0.25,
+            "endpoint": 0.25,
+        },
+        "distillation": distillation_metrics,
         "contract": contract.to_dict(),
         "baseline": {
             mode: evaluate(baseline, contract, dataset_scale, mode, args.eval_episodes, args.seed + 1000)

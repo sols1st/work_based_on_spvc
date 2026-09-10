@@ -1,0 +1,135 @@
+{
+  "experiment": "semantic_stage1",
+  "seed": 7,
+  "alpha": 0.05,
+  "device": "cuda",
+  "sample_counts": {
+    "train": 240,
+    "calibration": 80,
+    "test": 80
+  },
+  "optimization_count": 192,
+  "validation_count": 48,
+  "distance_scale_m": 3.18272066116333,
+  "best_epoch": 226,
+  "runtime_seconds": 8.376733541488647,
+  "legacy_real_image": {
+    "mae_m": 2.8618502616882324,
+    "rmse_m": 3.4540200233459473,
+    "max_abs_error_m": 6.7251386642456055
+  },
+  "semantic_point": {
+    "mae_m": 0.10044634342193604,
+    "rmse_m": 0.1933670938014984,
+    "max_abs_error_m": 1.2678022384643555
+  },
+  "conformal_global": {
+    "alpha": 0.05,
+    "quantile": 0.9446745568968797,
+    "calibration_size": 80,
+    "min_scale": 0.0001,
+    "target_coverage": 0.95,
+    "test_coverage": 0.9125,
+    "mean_width_m": 0.33118417122897625,
+    "median_width_m": 0.21220773374977853,
+    "max_width_m": 1.1386424045049353,
+    "distance_bins": [
+      {
+        "distance_low_m": 5.075376987457275,
+        "distance_high_m": 8.103014945983887,
+        "count": 20,
+        "coverage": 0.95,
+        "mean_width_m": 0.183273771159012
+      },
+      {
+        "distance_low_m": 8.103014945983887,
+        "distance_high_m": 10.286432266235352,
+        "count": 20,
+        "coverage": 1.0,
+        "mean_width_m": 0.19030288438125353
+      },
+      {
+        "distance_low_m": 10.286432266235352,
+        "distance_high_m": 13.143216371536255,
+        "count": 20,
+        "coverage": 0.9,
+        "mean_width_m": 0.27346300652734
+      },
+      {
+        "distance_low_m": 13.143216371536255,
+        "distance_high_m": 15.698492050170898,
+        "count": 20,
+        "coverage": 0.8,
+        "mean_width_m": 0.6776970702745331
+      }
+    ]
+  },
+  "conformal_mondrian": {
+    "alpha": 0.05,
+    "bin_edges": [
+      -Infinity,
+      2.2786351442337036,
+      3.0840792655944824,
+      3.8722779750823975,
+      Infinity
+    ],
+    "quantiles": [
+      27.9974947459388,
+      0.7970376976113136,
+      0.8747550021039023,
+      1.0501253722039783
+    ],
+    "calibration_sizes": [
+      20,
+      20,
+      20,
+      20
+    ],
+    "min_scale": 0.0001,
+    "target_coverage": 0.95,
+    "test_coverage": 0.925,
+    "mean_width_m": 1.2669821127847076,
+    "median_width_m": 0.34372665114705947,
+    "max_width_m": 5.7935308879548995
+  },
+  "state_conditional_contract": {
+    "alpha": 0.05,
+    "bin_edges": [
+      5.0,
+      7.75,
+      10.5,
+      13.25,
+      16.0
+    ],
+    "radii": [
+      0.0261991024017334,
+      0.8721076250076294,
+      0.05182218551635742,
+      0.1307048797607422
+    ],
+    "calibration_sizes": [
+      24,
+      22,
+      19,
+      15
+    ],
+    "units": "normalized_distance",
+    "radii_m": [
+      0.08338442451793071,
+      2.7756749568698638,
+      0.16493554054954984,
+      0.41599712132938294
+    ],
+    "target_coverage": 0.95,
+    "test_coverage": 0.975,
+    "mean_width_m": 2.0524547823757744,
+    "median_width_m": 0.8319942426587659,
+    "max_width_m": 5.5513499137397275
+  },
+  "control_sufficiency": {
+    "action_mae": 0.04429235681891441,
+    "action_rmse": 0.1161607876420021,
+    "action_max_abs_error": 0.9747068881988525
+  },
+  "mvp_status": "reused_existing_seed7_checkpoint"
+}
