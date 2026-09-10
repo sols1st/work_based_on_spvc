@@ -9,10 +9,9 @@ import time
 from pathlib import Path
 from typing import Dict, List
 
-from stable_baselines3 import PPO
-
 from Aebs.mvp.robust_sbc import train_barrier
-from Aebs.uncertainty.collect import collect_uncertainty
+from Aebs.semantic.safety_filter import load_controller
+from Aebs.uncertainty.collect import collect_deterministic_process_uncertainty, collect_uncertainty
 
 
 def load_json(path: Path) -> Dict:
@@ -141,7 +140,8 @@ def run_controller(config: Dict, output_dir: Path, semantic_checkpoint: str) -> 
 
 
 def run_uncertainty(config: Dict, output_dir: Path, semantic_checkpoint: str, controller_checkpoint: str) -> Dict:
-    uncertainty_dir = output_dir / "03_uncertainty"
+    settings = config["uncertainty"]
+    uncertainty_dir = output_dir / settings.get("output_name", "03_uncertainty")
     metrics_path = uncertainty_dir / "metrics.json"
     model_path = uncertainty_dir / "state_dependent_uncertainty.npz"
     if metrics_path.exists() and model_path.exists():
@@ -150,8 +150,23 @@ def run_uncertainty(config: Dict, output_dir: Path, semantic_checkpoint: str, co
             "model": str(model_path),
             "metrics": load_json(metrics_path),
         }
-    settings = config["uncertainty"]
-    controller = PPO.load(controller_checkpoint, device="cpu")
+    source = settings.get("source", "legacy_semantic_action_delta")
+    if source == "deterministic_process_residual":
+        metrics = collect_deterministic_process_uncertainty(
+            config["data"],
+            uncertainty_dir,
+            int(config["seed"]),
+            int(settings["bins"]),
+            int(settings["states_per_cell"]),
+        )
+        return {
+            "status": "done",
+            "model": str(model_path),
+            "metrics": metrics,
+        }
+    if source != "legacy_semantic_action_delta":
+        raise ValueError(f"unknown uncertainty source: {source}")
+    controller = load_controller(controller_checkpoint)
     metrics = collect_uncertainty(
         controller,
         semantic_checkpoint,
@@ -181,7 +196,15 @@ def run_robust_sbc(config: Dict, output_dir: Path, semantic_checkpoint: str, unc
             "checkpoint": str(checkpoint),
             "metrics": load_json(metrics_path),
         }
-    controller_path = config["baseline_controller"] if settings["controller"] == "baseline" else robust_controller
+    controller_name = settings["controller"]
+    if controller_name == "baseline":
+        controller_path = config["baseline_controller"]
+    elif controller_name == "robust":
+        controller_path = robust_controller
+    elif controller_name == "safety_filter":
+        controller_path = config["safety_filter_controller"]
+    else:
+        raise ValueError(f"unknown robust_sbc controller: {controller_name}")
     metrics = train_barrier(
         semantic_checkpoint,
         uncertainty_path,
@@ -204,6 +227,22 @@ def run_robust_sbc(config: Dict, output_dir: Path, semantic_checkpoint: str, unc
         float(settings.get("init_target", 1.0)),
         float(settings.get("unsafe_target", 10.0)),
         bool(settings.get("include_verifier_grid_train", False)),
+        float(settings.get("max_decrease_weight", 25.0)),
+        float(settings.get("topk_decrease_weight", 0.0)),
+        float(settings.get("topk_decrease_fraction", 0.1)),
+        str(settings.get("initial_barrier", "")),
+        float(settings.get("terminal_speed_threshold", 0.0)),
+        int(settings.get("hard_case_count", 2048)),
+        float(settings.get("hard_case_distance_m", 13.35)),
+        float(settings.get("hard_case_speed", 3.0)),
+        float(settings.get("hard_case_distance_radius_m", 0.8)),
+        float(settings.get("hard_case_speed_radius", 0.2)),
+        float(settings.get("region_topk_fraction", 0.1)),
+        float(settings.get("goal_distance_m", 6.0)),
+        float(settings.get("goal_speed", 0.5)),
+        float(settings.get("unsafe_distance_low_m", 5.0)),
+        float(settings.get("unsafe_distance_high_m", 6.0)),
+        float(settings.get("unsafe_speed", 0.5)),
     )
     return {
         "status": "done",
