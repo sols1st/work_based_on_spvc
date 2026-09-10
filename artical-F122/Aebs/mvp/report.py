@@ -88,6 +88,11 @@ def print_sbc(name: str, metrics: Dict) -> None:
             f"unsafe violations={regions['unsafe_violation_count']}/{regions['sample_count']}, "
             f"min={regions['unsafe_min']:.6f} (target >= {regions['unsafe_target_min']:.6f})"
         )
+        if "goal_violation_count" in regions:
+            print(
+                f"goal region: violations={regions['goal_violation_count']}/{regions['sample_count']}, "
+                f"max={regions['goal_max']:.6f} (target <= {regions['goal_target_max']:.6f})"
+            )
     nonnegative = verification.get("nonnegative")
     if nonnegative:
         print(
@@ -102,12 +107,50 @@ def print_sbc(name: str, metrics: Dict) -> None:
             f"topk_decrease_loss={final.get('topk_decrease_loss', float('nan')):.6f}, "
             f"init_loss={final.get('init_loss', float('nan')):.6f}, "
             f"unsafe_loss={final.get('unsafe_loss', float('nan')):.6f}, "
+            f"goal_loss={final.get('goal_loss', float('nan')):.6f}, "
             f"violation={percent(final['train_robust_decrease_violation_rate'])}"
         )
 
 
 def metric_files(root: Path, pattern: str) -> Iterable[Path]:
     return sorted(root.glob(pattern), key=lambda item: str(item))
+
+
+def print_domain_analysis(metrics: Dict) -> None:
+    physical = metrics["physical_recoverability"]
+    discrete = metrics.get("discrete_recoverability")
+    rollout = metrics["worst_endpoint_rollout"]
+    comparison = metrics["comparison"]
+    print("\n[Certificate domain analysis]")
+    print(f"continuous recoverable/unrecoverable: {physical['recoverable_count']}/{physical['unrecoverable_count']}")
+    print(f"initial-region minimum recoverability margin: {physical['initial_region_minimum_margin_m']:.6f} m")
+    if discrete:
+        print(f"discrete recoverable/unrecoverable: {discrete['recoverable_count']}/{discrete['unrecoverable_count']}")
+        print(f"discrete initial-region minimum margin: {discrete['initial_region_minimum_margin_m']:.6f} m")
+    print(
+        f"worst-endpoint rollout: goal={rollout['goal_count']}, "
+        f"stopped_safe={rollout['stopped_safe_count']}, unsafe={rollout['unsafe_count']}, "
+        f"unresolved={rollout['unresolved_count']}"
+    )
+    if "discrete_recoverable_but_rollout_unsafe" in comparison:
+        print(
+            f"continuous recoverable but unsafe={comparison['continuous_recoverable_but_rollout_unsafe']}, "
+            f"discrete recoverable but unsafe={comparison['discrete_recoverable_but_rollout_unsafe']}"
+        )
+        print(
+            f"continuous/discrete conservative exclusions="
+            f"{comparison['continuous_unrecoverable_but_rollout_not_unsafe']}/"
+            f"{comparison['discrete_unrecoverable_but_rollout_not_unsafe']}"
+        )
+        print(
+            "max discrete margin among rollout-unsafe states: "
+            f"{comparison['max_discrete_margin_among_rollout_unsafe_m']}"
+        )
+    else:
+        print(
+            f"recoverable but unsafe={comparison['recoverable_but_rollout_unsafe']}, "
+            f"unrecoverable but not unsafe={comparison['unrecoverable_but_rollout_not_unsafe']}"
+        )
 
 
 def main() -> None:
@@ -136,6 +179,9 @@ def main() -> None:
         print_safety_filter(load_json(safety_filter))
     for uncertainty in metric_files(root, "03*uncertainty/metrics.json"):
         print_uncertainty(uncertainty.parent.name, load_json(uncertainty))
+    domain_analysis = root / "03_domain_analysis" / "metrics.json"
+    if domain_analysis.exists():
+        print_domain_analysis(load_json(domain_analysis))
     for path in metric_files(root, "04_robust_sbc*/metrics.json"):
         print_sbc(path.parent.name, load_json(path))
 
