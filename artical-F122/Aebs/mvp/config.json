@@ -2,6 +2,7 @@
   "seed": 7,
   "data": "Aebs/data/Downsampled.h5",
   "baseline_controller": "Aebs/controller/best_model/best_model.zip",
+  "safety_filter_controller": "results/mvp/02_safety_filter/safety_filter.json",
   "semantic_source_dir": "results/semantic_stage1_alpha05/seed7",
   "output_dir": "results/mvp",
   "controller": {
@@ -13,13 +14,15 @@
     "distill_batch_size": 256
   },
   "uncertainty": {
+    "source": "deterministic_process_residual",
+    "output_name": "03_process_uncertainty",
     "bins": 4,
     "states_per_cell": 256,
     "errors_per_state": 16,
     "alpha": 0.05
   },
   "robust_sbc": {
-    "controller": "baseline",
+    "controller": "safety_filter",
     "epochs": 150,
     "train_states": 4096,
     "batch_size": 512,
@@ -27,14 +30,30 @@
     "epsilon": 0.01,
     "grid_size": 80,
     "decrease_weight": 100.0,
-    "init_weight": 1.0,
-    "unsafe_weight": 1.0,
-    "square_output": false,
+    "init_weight": 10.0,
+    "unsafe_weight": 10.0,
+    "square_output": true,
     "region_warmup_epochs": 25,
     "warmup_decrease_weight": 0.0,
     "init_target": 1.0,
     "unsafe_target": 10.0,
     "include_verifier_grid_train": true,
-    "output_name": "04_robust_sbc_gridtrain_diag"
+    "max_decrease_weight": 0.0,
+    "topk_decrease_weight": 0.0,
+    "topk_decrease_fraction": 0.1,
+    "initial_barrier": "",
+    "terminal_speed_threshold": 0.0,
+    "hard_case_count": 0,
+    "hard_case_distance_m": 13.35,
+    "hard_case_speed": 3.0,
+    "hard_case_distance_radius_m": 0.8,
+    "hard_case_speed_radius": 0.2,
+    "region_topk_fraction": 0.1,
+    "goal_distance_m": 6.0,
+    "goal_speed": 0.5,
+    "unsafe_distance_low_m": 5.0,
+    "unsafe_distance_high_m": 6.0,
+    "unsafe_speed": 0.5,
+    "output_name": "04_robust_sbc_complete_domain"
   }
 }
