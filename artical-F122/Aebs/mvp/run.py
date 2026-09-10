@@ -248,6 +248,10 @@ def run_robust_sbc(config: Dict, output_dir: Path, semantic_checkpoint: str, unc
         bool(settings.get("use_recoverable_domain", False)),
         float(settings.get("max_braking", 3.0)),
         bool(settings.get("enforce_goal_constraint", False)),
+        float(settings.get("terminal_value", 0.0)),
+        int(settings.get("epsilon_warmup_epochs", 0)),
+        float(settings.get("warmup_epsilon", 0.0)),
+        str(settings.get("barrier_output_transform", "")),
     )
     return {
         "status": "done",

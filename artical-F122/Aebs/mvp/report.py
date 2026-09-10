@@ -76,6 +76,12 @@ def print_sbc(name: str, metrics: Dict) -> None:
         print(f"excluded inevitable states: {verification['excluded_inevitable_states']}")
     print(f"min margin: {verification['min_margin']:.6f}")
     print(f"mean margin: {verification['mean_margin']:.6f}")
+    zero_verification = metrics.get("zero_epsilon_verification")
+    if zero_verification is not None and metrics.get("epsilon", 0.0) > 0.0:
+        print(
+            f"epsilon=0 diagnostic: violations={zero_verification['violation_count']}/"
+            f"{zero_verification['checked_states']}, min_margin={zero_verification['min_margin']:.6f}"
+        )
     print(f"worst state: d={worst['distance_m']:.3f} m, v={worst['speed']:.3f} m/s")
     if "semantic_multiplier" in worst:
         print(f"worst semantic multiplier: {worst['semantic_multiplier']}")
@@ -105,6 +111,7 @@ def print_sbc(name: str, metrics: Dict) -> None:
     if final:
         print(
             f"final train: loss={final['loss']:.6f}, "
+            f"epsilon={final.get('active_epsilon', metrics.get('epsilon', float('nan'))):.6f}, "
             f"decrease_loss={final.get('decrease_loss', float('nan')):.6f}, "
             f"max_decrease_loss={final.get('max_decrease_loss', float('nan')):.6f}, "
             f"topk_decrease_loss={final.get('topk_decrease_loss', float('nan')):.6f}, "
