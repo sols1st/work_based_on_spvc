@@ -111,7 +111,7 @@ def certificate_masks(
     distance_m = states[:, 0] * distance_scale
     speed = states[:, 1]
     stopped = speed <= terminal_speed_threshold
-    goal = (distance_m <= goal_distance_m) & (speed < goal_speed)
+    goal = (distance_m <= goal_distance_m) & (speed <= goal_speed)
     unsafe = (
         (distance_m >= unsafe_distance_low_m)
         & (distance_m <= unsafe_distance_high_m)
@@ -182,6 +182,7 @@ def evaluate_grid(
     terminal_speed_threshold: float,
     init_target: float,
     unsafe_target: float,
+    goal_target: float,
     goal_distance_m: float,
     goal_speed: float,
     unsafe_distance_low_m: float,
@@ -273,14 +274,19 @@ def evaluate_grid(
         3.0,
         grid_size,
     )
+    goal_states = region_grid_states(
+        distance_scale, unsafe_distance_low_m, goal_distance_m, 0.0, goal_speed, grid_size
+    )
     with torch.no_grad():
         all_values = barrier(torch.from_numpy(all_states).to(device)).view(-1).cpu().numpy()
         init_values = barrier(torch.from_numpy(init_states).to(device)).view(-1).cpu().numpy()
         unsafe_values = barrier(torch.from_numpy(unsafe_states).to(device)).view(-1).cpu().numpy()
+        goal_values = barrier(torch.from_numpy(goal_states).to(device)).view(-1).cpu().numpy()
     nonnegative_violation_count = int(np.sum(all_values < 0.0))
     init_violation_count = int(np.sum(init_values > init_target))
     unsafe_violation_count = int(np.sum(unsafe_values < unsafe_target))
-    region_verified = init_violation_count == 0 and unsafe_violation_count == 0
+    goal_violation_count = int(np.sum(goal_values > goal_target))
+    region_verified = init_violation_count == 0 and unsafe_violation_count == 0 and goal_violation_count == 0
     status = "verified" if violation_count == 0 and region_verified and nonnegative_violation_count == 0 else "violated"
     return {
         "status": status,
@@ -308,6 +314,9 @@ def evaluate_grid(
             "unsafe_violation_count": unsafe_violation_count,
             "unsafe_min": float(np.min(unsafe_values)),
             "unsafe_target_min": float(unsafe_target),
+            "goal_violation_count": goal_violation_count,
+            "goal_max": float(np.max(goal_values)),
+            "goal_target_max": float(goal_target),
         },
     }
 
@@ -350,6 +359,8 @@ def train_barrier(
     unsafe_distance_low_m: float,
     unsafe_distance_high_m: float,
     unsafe_speed: float,
+    goal_weight: float,
+    goal_target: float,
 ) -> Dict:
     set_seed(seed)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -411,6 +422,9 @@ def train_barrier(
         3.0,
         grid_size,
     )
+    goal_states = region_grid_states(
+        distance_scale, unsafe_distance_low_m, goal_distance_m, 0.0, goal_speed, grid_size
+    )
     history = []
     started = time.time()
     for epoch in range(1, epochs + 1):
@@ -419,6 +433,7 @@ def train_barrier(
         epoch_decrease_losses = []
         epoch_init_losses = []
         epoch_unsafe_losses = []
+        epoch_goal_losses = []
         epoch_max_decrease_losses = []
         epoch_topk_decrease_losses = []
         epoch_violations = []
@@ -439,14 +454,17 @@ def train_barrier(
             topk_decrease_loss = top_fraction_mean(per_state_decrease, topk_decrease_fraction)
             init_value = barrier(torch.from_numpy(init_states).to(device)).view(-1)
             unsafe_value = barrier(torch.from_numpy(unsafe_states).to(device)).view(-1)
+            goal_value = barrier(torch.from_numpy(goal_states).to(device)).view(-1)
             init_loss = top_fraction_mean(F.relu(init_value - init_target), region_topk_fraction)
             unsafe_loss = top_fraction_mean(F.relu(unsafe_target - unsafe_value), region_topk_fraction)
+            goal_loss = top_fraction_mean(F.relu(goal_value - goal_target), region_topk_fraction)
             loss = (
                 active_decrease_weight * decrease_loss
                 + max_decrease_weight * max_decrease_loss
                 + topk_decrease_weight * topk_decrease_loss
                 + init_weight * init_loss
                 + unsafe_weight * unsafe_loss
+                + goal_weight * goal_loss
             )
             optimizer.zero_grad()
             loss.backward()
@@ -456,6 +474,7 @@ def train_barrier(
             epoch_decrease_losses.append(float(decrease_loss.detach().cpu()))
             epoch_init_losses.append(float(init_loss.detach().cpu()))
             epoch_unsafe_losses.append(float(unsafe_loss.detach().cpu()))
+            epoch_goal_losses.append(float(goal_loss.detach().cpu()))
             epoch_max_decrease_losses.append(float(max_decrease_loss.detach().cpu()))
             epoch_topk_decrease_losses.append(float(topk_decrease_loss.detach().cpu()))
             epoch_violations.append(float(torch.mean((per_state_decrease > 0.0).float()).detach().cpu()))
@@ -468,6 +487,7 @@ def train_barrier(
                 "topk_decrease_loss": float(np.mean(epoch_topk_decrease_losses)),
                 "init_loss": float(np.mean(epoch_init_losses)),
                 "unsafe_loss": float(np.mean(epoch_unsafe_losses)),
+                "goal_loss": float(np.mean(epoch_goal_losses)),
                 "active_decrease_weight": float(active_decrease_weight),
                 "train_robust_decrease_violation_rate": float(np.mean(epoch_violations)),
             }
@@ -486,6 +506,7 @@ def train_barrier(
         terminal_speed_threshold,
         init_target,
         unsafe_target,
+        goal_target,
         goal_distance_m,
         goal_speed,
         unsafe_distance_low_m,
@@ -513,6 +534,8 @@ def train_barrier(
         "warmup_decrease_weight": float(warmup_decrease_weight),
         "init_target": float(init_target),
         "unsafe_target": float(unsafe_target),
+        "goal_weight": float(goal_weight),
+        "goal_target": float(goal_target),
         "include_verifier_grid_train": bool(include_verifier_grid_train),
         "max_decrease_weight": float(max_decrease_weight),
         "topk_decrease_weight": float(topk_decrease_weight),
@@ -578,6 +601,8 @@ def main() -> None:
     parser.add_argument("--unsafe-distance-low-m", type=float, default=5.0)
     parser.add_argument("--unsafe-distance-high-m", type=float, default=6.0)
     parser.add_argument("--unsafe-speed", type=float, default=0.5)
+    parser.add_argument("--goal-weight", type=float, default=10.0)
+    parser.add_argument("--goal-target", type=float, default=1.0)
     args = parser.parse_args()
     metrics = train_barrier(
         args.semantic_checkpoint,
@@ -617,6 +642,8 @@ def main() -> None:
         args.unsafe_distance_low_m,
         args.unsafe_distance_high_m,
         args.unsafe_speed,
+        args.goal_weight,
+        args.goal_target,
     )
     print(json.dumps(metrics, indent=2, ensure_ascii=False))
 

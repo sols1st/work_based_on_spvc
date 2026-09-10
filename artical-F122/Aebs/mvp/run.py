@@ -243,6 +243,8 @@ def run_robust_sbc(config: Dict, output_dir: Path, semantic_checkpoint: str, unc
         float(settings.get("unsafe_distance_low_m", 5.0)),
         float(settings.get("unsafe_distance_high_m", 6.0)),
         float(settings.get("unsafe_speed", 0.5)),
+        float(settings.get("goal_weight", 10.0)),
+        float(settings.get("goal_target", 1.0)),
     )
     return {
         "status": "done",
