@@ -72,6 +72,8 @@ def print_sbc(name: str, metrics: Dict) -> None:
         print(f"excluded goal states: {verification['excluded_goal_states']}")
     if "excluded_unsafe_states" in verification:
         print(f"excluded unsafe states: {verification['excluded_unsafe_states']}")
+    if "excluded_inevitable_states" in verification:
+        print(f"excluded inevitable states: {verification['excluded_inevitable_states']}")
     print(f"min margin: {verification['min_margin']:.6f}")
     print(f"mean margin: {verification['mean_margin']:.6f}")
     print(f"worst state: d={worst['distance_m']:.3f} m, v={worst['speed']:.3f} m/s")
@@ -85,12 +87,13 @@ def print_sbc(name: str, metrics: Dict) -> None:
             "regions: "
             f"init violations={regions['init_violation_count']}/{regions['sample_count']}, "
             f"max={regions['init_max']:.6f} (target <= {regions['init_target_max']:.6f}); "
-            f"unsafe violations={regions['unsafe_violation_count']}/{regions['sample_count']}, "
+            f"unsafe violations={regions['unsafe_violation_count']}/{regions.get('unsafe_sample_count', regions['sample_count'])}, "
             f"min={regions['unsafe_min']:.6f} (target >= {regions['unsafe_target_min']:.6f})"
         )
         if "goal_violation_count" in regions:
             print(
-                f"goal region: violations={regions['goal_violation_count']}/{regions['sample_count']}, "
+                f"goal region: enforced={regions.get('goal_enforced', True)}, "
+                f"violations={regions['goal_violation_count']}/{regions['sample_count']}, "
                 f"max={regions['goal_max']:.6f} (target <= {regions['goal_target_max']:.6f})"
             )
     nonnegative = verification.get("nonnegative")

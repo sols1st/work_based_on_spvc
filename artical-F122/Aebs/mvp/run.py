@@ -245,6 +245,9 @@ def run_robust_sbc(config: Dict, output_dir: Path, semantic_checkpoint: str, unc
         float(settings.get("unsafe_speed", 0.5)),
         float(settings.get("goal_weight", 10.0)),
         float(settings.get("goal_target", 1.0)),
+        bool(settings.get("use_recoverable_domain", False)),
+        float(settings.get("max_braking", 3.0)),
+        bool(settings.get("enforce_goal_constraint", False)),
     )
     return {
         "status": "done",

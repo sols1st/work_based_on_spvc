@@ -50,12 +50,15 @@
     "hard_case_speed_radius": 0.2,
     "region_topk_fraction": 0.1,
     "goal_distance_m": 6.0,
-    "goal_speed": 0.45,
+    "goal_speed": 0.5,
     "unsafe_distance_low_m": 5.0,
     "unsafe_distance_high_m": 6.0,
     "unsafe_speed": 0.5,
-    "goal_weight": 10.0,
+    "goal_weight": 0.0,
     "goal_target": 1.0,
-    "output_name": "04_robust_sbc_goal_guided"
+    "use_recoverable_domain": true,
+    "max_braking": 3.0,
+    "enforce_goal_constraint": false,
+    "output_name": "04_robust_sbc_viability_domain"
   }
 }
