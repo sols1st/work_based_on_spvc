@@ -156,6 +156,10 @@ class Loop:
                         max_reach_prob = actual_reach_prob
                         print("[SAVED]")
                     prob = max_reach_prob
+                    # Overwrite a previous "UNSAFE" result once the current
+                    # certificate yields a valid probabilistic lower bound.
+                    self.info["actual_reach_prob"] = float(actual_reach_prob)
+                    self.info["max_reach_prob"] = float(max_reach_prob)
                     print(f"Probability of reaching the target safely is at least {actual_reach_prob*100:0.3f}% (higher is better)")
 
                 # if self.soft_constraint or actual_reach_prob >= self.verifier.reach_prob:
