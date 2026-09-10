@@ -18,6 +18,16 @@ from Aebs.semantic.robust_controller import load_contract
 from Aebs.uncertainty.model import StateDependentUncertainty
 
 
+DISTURBANCE_LABELS = (
+    "mean",
+    "support_low",
+    "support_high",
+    "low_distance_high_speed",
+    "high_distance_low_speed",
+)
+SEMANTIC_MULTIPLIERS = (-1.0, 0.0, 1.0)
+
+
 def set_seed(seed: int) -> None:
     random.seed(seed)
     np.random.seed(seed)
@@ -45,6 +55,13 @@ def sample_box(low: Tuple[float, float], high: Tuple[float, float], count: int, 
     return rng.uniform(low_array, high_array, size=(count, 2)).astype(np.float32)
 
 
+def verifier_grid_states(distance_scale: float, grid_size: int) -> np.ndarray:
+    distances = np.linspace(5.0 / distance_scale, 16.0 / distance_scale, grid_size)
+    speeds = np.linspace(0.0, 3.0, grid_size)
+    mesh_d, mesh_v = np.meshgrid(distances, speeds)
+    return np.stack((mesh_d.reshape(-1), mesh_v.reshape(-1)), axis=1).astype(np.float32)
+
+
 def robust_successors(
     states: np.ndarray,
     controller: PPO,
@@ -53,7 +70,7 @@ def robust_successors(
     semantic_radii: np.ndarray,
 ) -> np.ndarray:
     candidates = []
-    for semantic_multiplier in (-1.0, 0.0, 1.0):
+    for semantic_multiplier in SEMANTIC_MULTIPLIERS:
         semantic_states = states.copy()
         semantic_states[:, 0] = semantic_states[:, 0] + semantic_multiplier * semantic_radii
         semantic_states[:, 0] = np.clip(semantic_states[:, 0], 5.0 / distance_scale, 16.0 / distance_scale)
@@ -75,6 +92,15 @@ def robust_successors(
     return np.stack(candidates, axis=1).astype(np.float32)
 
 
+def candidate_label(index: int) -> Dict[str, object]:
+    semantic_index = index // len(DISTURBANCE_LABELS)
+    disturbance_index = index % len(DISTURBANCE_LABELS)
+    return {
+        "semantic_multiplier": SEMANTIC_MULTIPLIERS[semantic_index],
+        "disturbance": DISTURBANCE_LABELS[disturbance_index],
+    }
+
+
 def evaluate_grid(
     barrier: MLP,
     controller: PPO,
@@ -91,10 +117,7 @@ def evaluate_grid(
         distance_scale = float(np.std(np.asarray(stream["y_train"], dtype=np.float32)))
     if not np.isclose(checkpoint_scale, distance_scale):
         raise ValueError("semantic checkpoint and dataset use different distance scaling")
-    distances = np.linspace(5.0 / distance_scale, 16.0 / distance_scale, grid_size)
-    speeds = np.linspace(0.0, 3.0, grid_size)
-    mesh_d, mesh_v = np.meshgrid(distances, speeds)
-    states = np.stack((mesh_d.reshape(-1), mesh_v.reshape(-1)), axis=1).astype(np.float32)
+    states = verifier_grid_states(distance_scale, grid_size)
     margins = []
     worst = {
         "margin": float("inf"),
@@ -109,17 +132,23 @@ def evaluate_grid(
             successors = robust_successors(batch, controller, uncertainty, distance_scale, radii)
             current = barrier(torch.from_numpy(batch).to(device)).view(-1)
             next_values = barrier(torch.from_numpy(successors.reshape(-1, 2)).to(device)).view(len(batch), -1)
-            robust_next = next_values.max(dim=1).values
+            robust_next, robust_index = next_values.max(dim=1)
             margin = (current - robust_next - epsilon).detach().cpu().numpy()
             margins.append(margin)
             local_index = int(np.argmin(margin))
             if float(margin[local_index]) < worst["margin"]:
+                label = candidate_label(int(robust_index[local_index].detach().cpu()))
                 worst = {
                     "margin": float(margin[local_index]),
                     "state": batch[local_index].astype(float).tolist(),
                     "state_units": ["normalized_distance", "m_per_s"],
                     "distance_m": float(batch[local_index, 0] * distance_scale),
                     "speed": float(batch[local_index, 1]),
+                    "current_barrier": float(current[local_index].detach().cpu()),
+                    "robust_next_barrier": float(robust_next[local_index].detach().cpu()),
+                    "semantic_multiplier": label["semantic_multiplier"],
+                    "disturbance": label["disturbance"],
+                    "successor": successors[local_index, int(robust_index[local_index].detach().cpu())].astype(float).tolist(),
                 }
     margins = np.concatenate(margins)
     violation_count = int(np.sum(margins < 0.0))
@@ -151,6 +180,12 @@ def train_barrier(
     decrease_weight: float,
     init_weight: float,
     unsafe_weight: float,
+    square_output: bool,
+    region_warmup_epochs: int,
+    warmup_decrease_weight: float,
+    init_target: float,
+    unsafe_target: float,
+    include_verifier_grid_train: bool,
 ) -> Dict:
     set_seed(seed)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -162,10 +197,14 @@ def train_barrier(
     controller = PPO.load(controller_path, device="cpu")
     uncertainty = StateDependentUncertainty.from_npz(uncertainty_path)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    barrier = MLP([2, 16, 8, 1], activation="tanh", square_output=True).to(device)
+    barrier = MLP([2, 16, 8, 1], activation="tanh", square_output=square_output).to(device)
     optimizer = torch.optim.Adam(barrier.parameters(), lr=learning_rate)
     rng = np.random.default_rng(seed)
-    states = sample_box((5.0 / distance_scale, 0.0), (16.0 / distance_scale, 3.0), train_states, rng)
+    random_states = sample_box((5.0 / distance_scale, 0.0), (16.0 / distance_scale, 3.0), train_states, rng)
+    if include_verifier_grid_train:
+        states = np.concatenate((random_states, verifier_grid_states(distance_scale, grid_size)), axis=0)
+    else:
+        states = random_states
     init_states = sample_box((15.0 / distance_scale, 2.5), (16.0 / distance_scale, 3.0), max(512, batch_size), rng)
     unsafe_states = sample_box((5.0 / distance_scale, 0.5), (6.0 / distance_scale, 3.0), max(512, batch_size), rng)
     history = []
@@ -173,7 +212,11 @@ def train_barrier(
     for epoch in range(1, epochs + 1):
         permutation = rng.permutation(len(states))
         epoch_losses = []
+        epoch_decrease_losses = []
+        epoch_init_losses = []
+        epoch_unsafe_losses = []
         epoch_violations = []
+        active_decrease_weight = warmup_decrease_weight if epoch <= region_warmup_epochs else decrease_weight
         for start in range(0, len(states), batch_size):
             batch = states[permutation[start : start + batch_size]]
             distance_m = batch[:, 0] * distance_scale
@@ -187,19 +230,26 @@ def train_barrier(
             decrease_loss = F.relu(robust_next - current + epsilon).mean()
             init_value = barrier(torch.from_numpy(init_states).to(device)).view(-1)
             unsafe_value = barrier(torch.from_numpy(unsafe_states).to(device)).view(-1)
-            init_loss = F.relu(init_value - 1.0).mean()
-            unsafe_loss = F.relu(10.0 - unsafe_value).mean()
-            loss = decrease_weight * decrease_loss + init_weight * init_loss + unsafe_weight * unsafe_loss
+            init_loss = F.relu(init_value - init_target).mean()
+            unsafe_loss = F.relu(unsafe_target - unsafe_value).mean()
+            loss = active_decrease_weight * decrease_loss + init_weight * init_loss + unsafe_weight * unsafe_loss
             optimizer.zero_grad()
             loss.backward()
             torch.nn.utils.clip_grad_norm_(barrier.parameters(), 5.0)
             optimizer.step()
             epoch_losses.append(float(loss.detach().cpu()))
+            epoch_decrease_losses.append(float(decrease_loss.detach().cpu()))
+            epoch_init_losses.append(float(init_loss.detach().cpu()))
+            epoch_unsafe_losses.append(float(unsafe_loss.detach().cpu()))
             epoch_violations.append(float(torch.mean((robust_next >= current).float()).detach().cpu()))
         if epoch == 1 or epoch % 25 == 0 or epoch == epochs:
             record = {
                 "epoch": int(epoch),
                 "loss": float(np.mean(epoch_losses)),
+                "decrease_loss": float(np.mean(epoch_decrease_losses)),
+                "init_loss": float(np.mean(epoch_init_losses)),
+                "unsafe_loss": float(np.mean(epoch_unsafe_losses)),
+                "active_decrease_weight": float(active_decrease_weight),
                 "train_robust_decrease_violation_rate": float(np.mean(epoch_violations)),
             }
             history.append(record)
@@ -222,12 +272,19 @@ def train_barrier(
         "controller": controller_path,
         "epochs": epochs,
         "train_states": train_states,
+        "effective_train_states": int(len(states)),
         "batch_size": batch_size,
         "learning_rate": learning_rate,
         "epsilon": epsilon,
         "decrease_weight": decrease_weight,
         "init_weight": init_weight,
         "unsafe_weight": unsafe_weight,
+        "square_output": bool(square_output),
+        "region_warmup_epochs": int(region_warmup_epochs),
+        "warmup_decrease_weight": float(warmup_decrease_weight),
+        "init_target": float(init_target),
+        "unsafe_target": float(unsafe_target),
+        "include_verifier_grid_train": bool(include_verifier_grid_train),
         "runtime_seconds": float(time.time() - started),
         "history": history,
         "verification": verification,
@@ -254,6 +311,12 @@ def main() -> None:
     parser.add_argument("--decrease-weight", type=float, default=100.0)
     parser.add_argument("--init-weight", type=float, default=1.0)
     parser.add_argument("--unsafe-weight", type=float, default=1.0)
+    parser.add_argument("--square-output", action="store_true")
+    parser.add_argument("--region-warmup-epochs", type=int, default=25)
+    parser.add_argument("--warmup-decrease-weight", type=float, default=0.0)
+    parser.add_argument("--init-target", type=float, default=1.0)
+    parser.add_argument("--unsafe-target", type=float, default=10.0)
+    parser.add_argument("--include-verifier-grid-train", action="store_true")
     args = parser.parse_args()
     metrics = train_barrier(
         args.semantic_checkpoint,
@@ -271,6 +334,12 @@ def main() -> None:
         args.decrease_weight,
         args.init_weight,
         args.unsafe_weight,
+        args.square_output,
+        args.region_warmup_epochs,
+        args.warmup_decrease_weight,
+        args.init_target,
+        args.unsafe_target,
+        args.include_verifier_grid_train,
     )
     print(json.dumps(metrics, indent=2, ensure_ascii=False))
 

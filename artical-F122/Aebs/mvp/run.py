@@ -198,6 +198,12 @@ def run_robust_sbc(config: Dict, output_dir: Path, semantic_checkpoint: str, unc
         float(settings.get("decrease_weight", 100.0)),
         float(settings.get("init_weight", 1.0)),
         float(settings.get("unsafe_weight", 1.0)),
+        bool(settings.get("square_output", False)),
+        int(settings.get("region_warmup_epochs", 25)),
+        float(settings.get("warmup_decrease_weight", 0.0)),
+        float(settings.get("init_target", 1.0)),
+        float(settings.get("unsafe_target", 10.0)),
+        bool(settings.get("include_verifier_grid_train", False)),
     )
     return {
         "status": "done",

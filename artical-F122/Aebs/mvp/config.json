@@ -29,6 +29,12 @@
     "decrease_weight": 100.0,
     "init_weight": 1.0,
     "unsafe_weight": 1.0,
-    "output_name": "04_robust_sbc_weight100"
+    "square_output": false,
+    "region_warmup_epochs": 25,
+    "warmup_decrease_weight": 0.0,
+    "init_target": 1.0,
+    "unsafe_target": 10.0,
+    "include_verifier_grid_train": true,
+    "output_name": "04_robust_sbc_gridtrain_diag"
   }
 }
