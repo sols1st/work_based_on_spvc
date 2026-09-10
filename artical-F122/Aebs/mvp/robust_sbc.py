@@ -98,6 +98,19 @@ def region_grid_states(
     return np.stack((mesh_d.reshape(-1), mesh_v.reshape(-1)), axis=1).astype(np.float32)
 
 
+def discrete_stopping_distance(
+    speed: np.ndarray, target_speed: float, max_braking: float, dt: float = 0.05
+) -> np.ndarray:
+    """Distance travelled until next-state speed is strictly below target."""
+    speed = np.asarray(speed, dtype=np.float64)
+    steps = np.zeros_like(speed, dtype=np.int64)
+    active = speed >= target_speed
+    steps[active] = np.floor((speed[active] - target_speed) / (max_braking * dt)).astype(np.int64) + 1
+    n = steps.astype(np.float64)
+    distance = dt * (n * speed - max_braking * dt * n * (n - 1.0) / 2.0)
+    return np.maximum(distance, 0.0)
+
+
 def certificate_masks(
     states: np.ndarray,
     distance_scale: float,
@@ -107,22 +120,32 @@ def certificate_masks(
     unsafe_distance_low_m: float,
     unsafe_distance_high_m: float,
     unsafe_speed: float,
+    use_recoverable_domain: bool,
+    max_braking: float,
 ) -> Dict[str, np.ndarray]:
     distance_m = states[:, 0] * distance_scale
     speed = states[:, 1]
     stopped = speed <= terminal_speed_threshold
-    goal = (distance_m <= goal_distance_m) & (speed <= goal_speed)
+    goal = (distance_m <= goal_distance_m) & (speed < goal_speed)
     unsafe = (
         (distance_m >= unsafe_distance_low_m)
         & (distance_m <= unsafe_distance_high_m)
         & (speed >= unsafe_speed)
     )
     terminal = stopped | goal
+    operational = ~(terminal | unsafe)
+    stopping_distance = discrete_stopping_distance(speed, unsafe_speed, max_braking)
+    recoverability_margin = distance_m - goal_distance_m - stopping_distance
+    inevitable = operational & (recoverability_margin < 0.0) if use_recoverable_domain else np.zeros_like(operational)
+    expanded_unsafe = unsafe | inevitable
     return {
         "terminal": terminal,
         "goal": goal,
-        "unsafe": unsafe,
-        "decrease": ~(terminal | unsafe),
+        "original_unsafe": unsafe,
+        "inevitable": inevitable,
+        "unsafe": expanded_unsafe,
+        "recoverability_margin": recoverability_margin,
+        "decrease": ~(terminal | expanded_unsafe),
     }
 
 
@@ -188,6 +211,9 @@ def evaluate_grid(
     unsafe_distance_low_m: float,
     unsafe_distance_high_m: float,
     unsafe_speed: float,
+    use_recoverable_domain: bool,
+    max_braking: float,
+    enforce_goal_constraint: bool,
     device: torch.device,
 ) -> Dict:
     contract, checkpoint_scale = load_contract(semantic_checkpoint)
@@ -205,6 +231,8 @@ def evaluate_grid(
         unsafe_distance_low_m,
         unsafe_distance_high_m,
         unsafe_speed,
+        use_recoverable_domain,
+        max_braking,
     )
     states = all_states[masks["decrease"]]
     margins = []
@@ -266,7 +294,7 @@ def evaluate_grid(
     init_states = region_grid_states(
         distance_scale, 15.0, 16.0, 2.5, 3.0, grid_size
     )
-    unsafe_states = region_grid_states(
+    original_unsafe_states = region_grid_states(
         distance_scale,
         unsafe_distance_low_m,
         unsafe_distance_high_m,
@@ -274,6 +302,8 @@ def evaluate_grid(
         3.0,
         grid_size,
     )
+    inevitable_states = all_states[masks["inevitable"]]
+    unsafe_states = np.concatenate((original_unsafe_states, inevitable_states), axis=0)
     goal_states = region_grid_states(
         distance_scale, unsafe_distance_low_m, goal_distance_m, 0.0, goal_speed, grid_size
     )
@@ -286,7 +316,8 @@ def evaluate_grid(
     init_violation_count = int(np.sum(init_values > init_target))
     unsafe_violation_count = int(np.sum(unsafe_values < unsafe_target))
     goal_violation_count = int(np.sum(goal_values > goal_target))
-    region_verified = init_violation_count == 0 and unsafe_violation_count == 0 and goal_violation_count == 0
+    goal_verified = goal_violation_count == 0 if enforce_goal_constraint else True
+    region_verified = init_violation_count == 0 and unsafe_violation_count == 0 and goal_verified
     status = "verified" if violation_count == 0 and region_verified and nonnegative_violation_count == 0 else "violated"
     return {
         "status": status,
@@ -295,6 +326,8 @@ def evaluate_grid(
         "excluded_terminal_states": int(np.sum(masks["terminal"])),
         "excluded_goal_states": int(np.sum(masks["goal"])),
         "excluded_unsafe_states": int(np.sum(masks["unsafe"])),
+        "excluded_original_unsafe_states": int(np.sum(masks["original_unsafe"])),
+        "excluded_inevitable_states": int(np.sum(masks["inevitable"])),
         "terminal_speed_threshold": float(terminal_speed_threshold),
         "violation_count": violation_count,
         "min_margin": float(np.min(margins)),
@@ -312,11 +345,14 @@ def evaluate_grid(
             "init_max": float(np.max(init_values)),
             "init_target_max": float(init_target),
             "unsafe_violation_count": unsafe_violation_count,
+            "unsafe_sample_count": int(len(unsafe_states)),
             "unsafe_min": float(np.min(unsafe_values)),
             "unsafe_target_min": float(unsafe_target),
+            "inevitable_sample_count": int(len(inevitable_states)),
             "goal_violation_count": goal_violation_count,
             "goal_max": float(np.max(goal_values)),
             "goal_target_max": float(goal_target),
+            "goal_enforced": bool(enforce_goal_constraint),
         },
     }
 
@@ -361,6 +397,9 @@ def train_barrier(
     unsafe_speed: float,
     goal_weight: float,
     goal_target: float,
+    use_recoverable_domain: bool,
+    max_braking: float,
+    enforce_goal_constraint: bool,
 ) -> Dict:
     set_seed(seed)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -409,12 +448,16 @@ def train_barrier(
         unsafe_distance_low_m,
         unsafe_distance_high_m,
         unsafe_speed,
+        use_recoverable_domain,
+        max_braking,
     )
     excluded_train_terminal_states = int(np.sum(train_masks["terminal"]))
     excluded_train_unsafe_states = int(np.sum(train_masks["unsafe"]))
+    excluded_train_inevitable_states = int(np.sum(train_masks["inevitable"]))
+    inevitable_train_states = states[train_masks["inevitable"]]
     states = states[train_masks["decrease"]]
     init_states = region_grid_states(distance_scale, 15.0, 16.0, 2.5, 3.0, grid_size)
-    unsafe_states = region_grid_states(
+    original_unsafe_states = region_grid_states(
         distance_scale,
         unsafe_distance_low_m,
         unsafe_distance_high_m,
@@ -422,6 +465,7 @@ def train_barrier(
         3.0,
         grid_size,
     )
+    unsafe_states = np.concatenate((original_unsafe_states, inevitable_train_states), axis=0)
     goal_states = region_grid_states(
         distance_scale, unsafe_distance_low_m, goal_distance_m, 0.0, goal_speed, grid_size
     )
@@ -458,13 +502,14 @@ def train_barrier(
             init_loss = top_fraction_mean(F.relu(init_value - init_target), region_topk_fraction)
             unsafe_loss = top_fraction_mean(F.relu(unsafe_target - unsafe_value), region_topk_fraction)
             goal_loss = top_fraction_mean(F.relu(goal_value - goal_target), region_topk_fraction)
+            active_goal_weight = goal_weight if enforce_goal_constraint else 0.0
             loss = (
                 active_decrease_weight * decrease_loss
                 + max_decrease_weight * max_decrease_loss
                 + topk_decrease_weight * topk_decrease_loss
                 + init_weight * init_loss
                 + unsafe_weight * unsafe_loss
-                + goal_weight * goal_loss
+                + active_goal_weight * goal_loss
             )
             optimizer.zero_grad()
             loss.backward()
@@ -512,6 +557,9 @@ def train_barrier(
         unsafe_distance_low_m,
         unsafe_distance_high_m,
         unsafe_speed,
+        use_recoverable_domain,
+        max_braking,
+        enforce_goal_constraint,
         device,
     )
     metrics = {
@@ -523,6 +571,7 @@ def train_barrier(
         "effective_train_states": int(len(states)),
         "excluded_train_terminal_states": excluded_train_terminal_states,
         "excluded_train_unsafe_states": excluded_train_unsafe_states,
+        "excluded_train_inevitable_states": excluded_train_inevitable_states,
         "batch_size": batch_size,
         "learning_rate": learning_rate,
         "epsilon": epsilon,
@@ -536,6 +585,9 @@ def train_barrier(
         "unsafe_target": float(unsafe_target),
         "goal_weight": float(goal_weight),
         "goal_target": float(goal_target),
+        "enforce_goal_constraint": bool(enforce_goal_constraint),
+        "use_recoverable_domain": bool(use_recoverable_domain),
+        "max_braking": float(max_braking),
         "include_verifier_grid_train": bool(include_verifier_grid_train),
         "max_decrease_weight": float(max_decrease_weight),
         "topk_decrease_weight": float(topk_decrease_weight),
@@ -603,6 +655,9 @@ def main() -> None:
     parser.add_argument("--unsafe-speed", type=float, default=0.5)
     parser.add_argument("--goal-weight", type=float, default=10.0)
     parser.add_argument("--goal-target", type=float, default=1.0)
+    parser.add_argument("--use-recoverable-domain", action="store_true")
+    parser.add_argument("--max-braking", type=float, default=3.0)
+    parser.add_argument("--enforce-goal-constraint", action="store_true")
     args = parser.parse_args()
     metrics = train_barrier(
         args.semantic_checkpoint,
@@ -644,6 +699,9 @@ def main() -> None:
         args.unsafe_speed,
         args.goal_weight,
         args.goal_target,
+        args.use_recoverable_domain,
+        args.max_braking,
+        args.enforce_goal_constraint,
     )
     print(json.dumps(metrics, indent=2, ensure_ascii=False))
 

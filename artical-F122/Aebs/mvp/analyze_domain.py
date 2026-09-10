@@ -8,20 +8,9 @@ from typing import Dict
 import h5py
 import numpy as np
 
-from Aebs.mvp.robust_sbc import verifier_grid_states
+from Aebs.mvp.robust_sbc import discrete_stopping_distance, verifier_grid_states
 from Aebs.semantic.robust_controller import load_contract
 from Aebs.semantic.safety_filter import load_controller
-
-
-def discrete_stopping_distance(speed: np.ndarray, target_speed: float, max_braking: float, dt: float) -> np.ndarray:
-    """Distance travelled until the next-state speed is strictly below target."""
-    speed = np.asarray(speed, dtype=np.float64)
-    steps = np.zeros_like(speed, dtype=np.int64)
-    active = speed >= target_speed
-    steps[active] = np.floor((speed[active] - target_speed) / (max_braking * dt)).astype(np.int64) + 1
-    n = steps.astype(np.float64)
-    distance = dt * (n * speed - max_braking * dt * n * (n - 1.0) / 2.0)
-    return np.maximum(distance, 0.0)
 
 
 def worst_endpoint_actions(controller, distance_m, speed, radii, distance_scale):
