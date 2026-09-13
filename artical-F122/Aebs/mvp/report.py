@@ -98,6 +98,24 @@ def print_grid_certificate_lp(metrics: Dict) -> None:
     print(f"certificate level: {metrics['certificate_level']}")
 
 
+def print_standalone_ppo(metrics: Dict) -> None:
+    print("\n[Standalone PPO: no runtime safety filter]")
+    match = metrics["action_match"]
+    print(
+        f"teacher action MAE={match['action_mae']:.6f}, "
+        f"max_abs={match['action_max_abs_error']:.6f}, "
+        f"underbraking={percent(match['underbraking_rate'])}"
+    )
+    for mode in ("exact", "uniform", "random_boundary", "worst_endpoint"):
+        values = metrics["student_evaluation"][mode]
+        print(
+            f"{mode}: success={percent(values['success_rate'])}, "
+            f"unsafe={percent(values['unsafe_rate'])}, "
+            f"timeout={percent(values['timeout_rate'])}, "
+            f"steps={values['mean_steps']:.1f}"
+        )
+
+
 def print_uncertainty(name: str, metrics: Dict) -> None:
     print(f"\n[Uncertainty: {name}]")
     if "source" in metrics:
@@ -247,6 +265,9 @@ def main() -> None:
         comparison_path = root / comparison_name / "metrics.json"
         if comparison_path.exists():
             print_filter_fast_comparison(comparison_name, load_json(comparison_path))
+    standalone_ppo = root / "02_standalone_ppo_distilled" / "metrics.json"
+    if standalone_ppo.exists():
+        print_standalone_ppo(load_json(standalone_ppo))
     grid_lp = root / "04_grid_certificate_lp" / "metrics.json"
     if grid_lp.exists():
         print_grid_certificate_lp(load_json(grid_lp))
