@@ -1,10 +1,12 @@
 import numpy as np
+import torch
 
 from Aebs.semantic.conformal import StateConditionalErrorContract
 from Aebs.mvp.grid_certificate_lp import bilinear_indices_weights
 from Aebs.mvp.robust_sbc import certificate_masks, discrete_stopping_distance
 from Aebs.semantic.robust_controller import evaluate
 from Aebs.semantic.safety_filter import SafetyFilteredController
+from Aebs.semantic.distill_filter_to_ppo import imitation_loss
 from Aebs.system.env import AebsEnv
 from Aebs.system.outcomes import (
     OUT_OF_DOMAIN,
@@ -138,3 +140,11 @@ def test_certificate_speed_boundary_matches_controller_outcome():
     )
     np.testing.assert_array_equal(masks["terminal"], [True, False])
     np.testing.assert_array_equal(masks["unsafe"], [False, True])
+
+
+def test_imitation_loss_penalizes_underbraking_more_than_overbraking():
+    target = torch.tensor([[1.0]])
+    speed = torch.tensor([2.0])
+    under = imitation_loss(torch.tensor([[0.8]]), target, speed, 4.0, 1.0)
+    over = imitation_loss(torch.tensor([[1.2]]), target, speed, 4.0, 1.0)
+    assert float(under) > float(over)
