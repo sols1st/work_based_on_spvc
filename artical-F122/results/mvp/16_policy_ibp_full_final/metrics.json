@@ -1,0 +1,101 @@
+{
+  "experiment": "adaptive_ibp_policy_action_verification",
+  "status": "local_action_condition_verified",
+  "student": "results/mvp/14_standalone_ppo_dual_boundary_repair/standalone_ppo_repaired.zip",
+  "semantic_checkpoint": "results/mvp/01_semantic/semantic_encoder.pt",
+  "verified_property": "For each certified true-state cell and every semantic observation in its contract-induced input box, the clipped PPO action is no smaller than the conservative action threshold for a recoverable successor.",
+  "boundary_action_rule": "clip((v_high - target_speed) / dt, 0, max_braking); exact for the one-step terminal band and equal to max braking above 0.65 m/s",
+  "scope_limit": "This is a local robust action-condition proof, not yet a complete global inductive or trajectory-level probabilistic safety certificate.",
+  "region": {
+    "distance_low_m": 5.0,
+    "distance_high_m": 16.0,
+    "speed_low_m_per_s": 0.5,
+    "speed_high_m_per_s": 3.0,
+    "area": 27.5
+  },
+  "partition": {
+    "initial_distance_cells": 44,
+    "initial_speed_cells": 10,
+    "max_depth": 9,
+    "max_evaluated_cells": 400000,
+    "semantic_splits": 256,
+    "evaluated_cells": 3624,
+    "certified_cells": 2002,
+    "unresolved_cells": 0,
+    "per_depth": {
+      "0": {
+        "evaluated": 440,
+        "certified": 366,
+        "unrecoverable": 56,
+        "split": 18
+      },
+      "1": {
+        "evaluated": 72,
+        "certified": 21,
+        "unrecoverable": 15,
+        "split": 36
+      },
+      "2": {
+        "evaluated": 144,
+        "certified": 41,
+        "unrecoverable": 33,
+        "split": 70
+      },
+      "3": {
+        "evaluated": 280,
+        "certified": 68,
+        "unrecoverable": 74,
+        "split": 138
+      },
+      "4": {
+        "evaluated": 552,
+        "certified": 255,
+        "unrecoverable": 120,
+        "split": 177
+      },
+      "5": {
+        "evaluated": 708,
+        "certified": 445,
+        "unrecoverable": 187,
+        "split": 76
+      },
+      "6": {
+        "evaluated": 304,
+        "certified": 129,
+        "unrecoverable": 83,
+        "split": 92
+      },
+      "7": {
+        "evaluated": 368,
+        "certified": 168,
+        "unrecoverable": 84,
+        "split": 116
+      },
+      "8": {
+        "evaluated": 464,
+        "certified": 289,
+        "unrecoverable": 102,
+        "split": 73
+      },
+      "9": {
+        "evaluated": 292,
+        "certified": 220,
+        "unrecoverable": 72,
+        "split": 0
+      }
+    }
+  },
+  "area": {
+    "certified_box_area": 23.52204132080078,
+    "unrecoverable_box_area": 3.9779586791992188,
+    "unresolved_box_area": 0.0,
+    "certified_fraction_of_region": 0.8553469571200284,
+    "unresolved_fraction_of_region": 0.0
+  },
+  "certified_bound_margin": {
+    "minimum": 0.0,
+    "maximum": 5.259677664534998
+  },
+  "worst_unresolved_cells": [],
+  "runtime_seconds": 20.76935887336731
+}
