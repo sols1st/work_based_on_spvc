@@ -142,6 +142,8 @@ state -> cGAN/视觉代理 -> state estimation -> PPO -> dynamics
 
 ### 屏幕内容
 
+可直接使用已生成的论文风格架构图：`figures/current-architecture-paper.png`。
+
 用一条横向时间线，每个节点只写短语：
 
 ```text
