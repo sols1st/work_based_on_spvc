@@ -1,0 +1,232 @@
+{
+  "experiment": "sampled_teacher_student_certificate_transfer_check",
+  "status": "promising_for_local_formalization",
+  "formal_guarantee": false,
+  "validity_note": "Dense fixed-grid and semantic-input sampling is a go/no-go diagnostic, not a continuous-state proof. A formal result still needs sound neural output bounds between samples and a cell-discretization remainder. The checked property is one-step invariance of the discrete recoverable set; task completion/liveness remains a separate rollout property.",
+  "semantic_checkpoint": "results/mvp/01_semantic/semantic_encoder.pt",
+  "grid_size": 80,
+  "all_grid_states": 6400,
+  "checked_recoverable_operational_states": 4483,
+  "semantic_samples_per_state": 33,
+  "checked_state_observation_pairs": 147939,
+  "tolerance_m": 1e-08,
+  "teacher": {
+    "path": "results/mvp/02_safety_filter_anti_stall_compare/adaptive_anti_stall_filter.json",
+    "pass_count": 4483,
+    "violation_count": 0,
+    "pass_rate": 1.0,
+    "next_recoverability_margin_m": {
+      "minimum": 0.003986985143919375,
+      "p01": 0.09698416049397986,
+      "p05": 0.4394631232607958,
+      "median": 4.650108137504698,
+      "mean": 4.671074905543873,
+      "maximum": 9.946845659481768
+    },
+    "action_surplus_over_required": {
+      "minimum": 0.1328995047972512,
+      "p01": 3.004293934274465,
+      "p05": 3.0147185078822076,
+      "median": 3.255611330270767,
+      "mean": 3.3758944472013033,
+      "maximum": 6.0
+    }
+  },
+  "student": {
+    "path": "results/mvp/02_standalone_ppo_distilled_v2/standalone_ppo.zip",
+    "pass_count": 4483,
+    "violation_count": 0,
+    "pass_rate": 1.0,
+    "next_recoverability_margin_m": {
+      "minimum": 0.003986985143919375,
+      "p01": 0.09559318111767487,
+      "p05": 0.4469106011832908,
+      "median": 4.649885226726378,
+      "mean": 4.67254215208595,
+      "maximum": 9.946827899935597
+    },
+    "action_surplus_over_required": {
+      "minimum": 0.1328995047972512,
+      "p01": 2.676509428024292,
+      "p05": 2.9523950763046742,
+      "median": 3.289033830165863,
+      "mean": 3.4023018103575327,
+      "maximum": 5.9338295459747314
+    }
+  },
+  "transfer": {
+    "pass_count": 4483,
+    "violation_count": 0,
+    "pass_rate": 1.0,
+    "worst_underbraking": {
+      "minimum": -0.8821107745170593,
+      "p01": -0.3751716148853302,
+      "p05": -0.12175906635820864,
+      "median": 0.027477383613586426,
+      "mean": 0.16471624734724025,
+      "maximum": 2.291186571121216
+    },
+    "worst_absolute_action_error": {
+      "minimum": 0.0,
+      "p01": 0.002308701276779175,
+      "p05": 0.008721056580543519,
+      "median": 0.09117316082119942,
+      "mean": 0.4157509243585495,
+      "maximum": 2.291186571121216
+    }
+  },
+  "worst_student_state": {
+    "distance_m": 6.949366769251128,
+    "speed_m_per_s": 2.3544304370880127,
+    "semantic_radius_m": 0.08338442451793071,
+    "minimum_next_recoverability_margin_m": 0.003986985143919375,
+    "minimum_action_surplus": 0.1328995047972512,
+    "maximum_underbraking": 0.0
+  },
+  "cells": [
+    {
+      "distance_bin": 0,
+      "speed_bin": 0,
+      "count": 72,
+      "teacher_pass_rate": 1.0,
+      "student_pass_rate": 1.0,
+      "minimum_student_next_margin_m": 0.048036760385464276,
+      "maximum_underbraking": 1.6902235746383667
+    },
+    {
+      "distance_bin": 0,
+      "speed_bin": 1,
+      "count": 217,
+      "teacher_pass_rate": 1.0,
+      "student_pass_rate": 1.0,
+      "minimum_student_next_margin_m": 0.0052086588696939745,
+      "maximum_underbraking": 1.111156940460205
+    },
+    {
+      "distance_bin": 0,
+      "speed_bin": 2,
+      "count": 159,
+      "teacher_pass_rate": 1.0,
+      "student_pass_rate": 1.0,
+      "minimum_student_next_margin_m": 0.006392194580139399,
+      "maximum_underbraking": 0.27034521102905273
+    },
+    {
+      "distance_bin": 0,
+      "speed_bin": 3,
+      "count": 75,
+      "teacher_pass_rate": 1.0,
+      "student_pass_rate": 1.0,
+      "minimum_student_next_margin_m": 0.003986985143919375,
+      "maximum_underbraking": 0.1503467559814453
+    },
+    {
+      "distance_bin": 1,
+      "speed_bin": 0,
+      "count": 120,
+      "teacher_pass_rate": 1.0,
+      "student_pass_rate": 1.0,
+      "minimum_student_next_margin_m": 1.6835123718476779,
+      "maximum_underbraking": 2.291186571121216
+    },
+    {
+      "distance_bin": 1,
+      "speed_bin": 1,
+      "count": 400,
+      "teacher_pass_rate": 1.0,
+      "student_pass_rate": 1.0,
+      "minimum_student_next_margin_m": 1.3568858981079348,
+      "maximum_underbraking": 1.7803056240081787
+    },
+    {
+      "distance_bin": 1,
+      "speed_bin": 2,
+      "count": 400,
+      "teacher_pass_rate": 1.0,
+      "student_pass_rate": 1.0,
+      "minimum_student_next_margin_m": 0.8564794941193351,
+      "maximum_underbraking": 0.4628891944885254
+    },
+    {
+      "distance_bin": 1,
+      "speed_bin": 3,
+      "count": 400,
+      "teacher_pass_rate": 1.0,
+      "student_pass_rate": 1.0,
+      "minimum_student_next_margin_m": 0.22981110646789116,
+      "maximum_underbraking": 0.4529573917388916
+    },
+    {
+      "distance_bin": 2,
+      "speed_bin": 0,
+      "count": 120,
+      "teacher_pass_rate": 1.0,
+      "student_pass_rate": 1.0,
+      "minimum_student_next_margin_m": 4.468537393731326,
+      "maximum_underbraking": 0.18807075172662735
+    },
+    {
+      "distance_bin": 2,
+      "speed_bin": 1,
+      "count": 400,
+      "teacher_pass_rate": 1.0,
+      "student_pass_rate": 1.0,
+      "minimum_student_next_margin_m": 4.140464451906532,
+      "maximum_underbraking": 0.24197307229042053
+    },
+    {
+      "distance_bin": 2,
+      "speed_bin": 2,
+      "count": 400,
+      "teacher_pass_rate": 1.0,
+      "student_pass_rate": 1.0,
+      "minimum_student_next_margin_m": 3.633733920526952,
+      "maximum_underbraking": 0.41333842277526855
+    },
+    {
+      "distance_bin": 2,
+      "speed_bin": 3,
+      "count": 400,
+      "teacher_pass_rate": 1.0,
+      "student_pass_rate": 1.0,
+      "minimum_student_next_margin_m": 2.968826781881303,
+      "maximum_underbraking": 0.44585347175598145
+    },
+    {
+      "distance_bin": 3,
+      "speed_bin": 0,
+      "count": 120,
+      "teacher_pass_rate": 1.0,
+      "student_pass_rate": 1.0,
+      "minimum_student_next_margin_m": 7.253948208506944,
+      "maximum_underbraking": 0.060707676224410534
+    },
+    {
+      "distance_bin": 3,
+      "speed_bin": 1,
+      "count": 400,
+      "teacher_pass_rate": 1.0,
+      "student_pass_rate": 1.0,
+      "minimum_student_next_margin_m": 6.921896179899368,
+      "maximum_underbraking": 0.08662337996065617
+    },
+    {
+      "distance_bin": 3,
+      "speed_bin": 2,
+      "count": 400,
+      "teacher_pass_rate": 1.0,
+      "student_pass_rate": 1.0,
+      "minimum_student_next_margin_m": 6.403399187870118,
+      "maximum_underbraking": 0.06703262031078339
+    },
+    {
+      "distance_bin": 3,
+      "speed_bin": 3,
+      "count": 400,
+      "teacher_pass_rate": 1.0,
+      "student_pass_rate": 1.0,
+      "minimum_student_next_margin_m": 5.699995737321469,
+      "maximum_underbraking": 0.02479928731918335
+    }
+  ]
+}

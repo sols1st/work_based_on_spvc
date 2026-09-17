@@ -1,0 +1,354 @@
+{
+  "experiment": "dense_local_teacher_student_transfer_refinement",
+  "status": "dense_sampled_pass_ready_for_nn_bounds",
+  "formal_guarantee": false,
+  "validity_note": "This is a dense local sampling refinement. It does not bound the student network between semantic samples or states between grid points.",
+  "semantic_checkpoint": "results/mvp/01_semantic/semantic_encoder.pt",
+  "region": {
+    "distance_low_m": 6.0,
+    "distance_high_m": 8.0,
+    "speed_low_m_per_s": 2.0,
+    "speed_high_m_per_s": 3.0
+  },
+  "resolution": {
+    "distance_points": 201,
+    "speed_points": 201,
+    "distance_spacing_m": 0.01,
+    "speed_spacing_m_per_s": 0.005,
+    "semantic_samples_per_state": 129
+  },
+  "region_grid_states": 40401,
+  "checked_recoverable_operational_states": 18646,
+  "checked_state_observation_pairs": 2405334,
+  "teacher": {
+    "path": "results/mvp/02_safety_filter_anti_stall_compare/adaptive_anti_stall_filter.json",
+    "pass_count": 18646,
+    "violation_count": 0,
+    "pass_rate": 1.0,
+    "next_recoverability_margin_m": {
+      "minimum": 5.272668235356548e-08,
+      "p01": 0.009000258194719479,
+      "p05": 0.04606265714344898,
+      "median": 0.42176882988718073,
+      "mean": 0.45871020837992776,
+      "maximum": 1.2483852259632844
+    },
+    "action_surplus_over_required": {
+      "minimum": 2.8990143619012088e-12,
+      "p01": 0.21734301456888833,
+      "p05": 1.1428577707324052,
+      "median": 4.537425458431244,
+      "mean": 4.215256628461836,
+      "maximum": 6.0
+    }
+  },
+  "student": {
+    "path": "results/mvp/08_standalone_ppo_saturation_repair/standalone_ppo_repaired.zip",
+    "pass_count": 18646,
+    "violation_count": 0,
+    "pass_rate": 1.0,
+    "next_recoverability_margin_m": {
+      "minimum": 5.272668235356548e-08,
+      "p01": 0.009000258194719479,
+      "p05": 0.04606265714344898,
+      "median": 0.4412529384223335,
+      "mean": 0.47285693350656954,
+      "maximum": 1.2533062107679145
+    },
+    "next_margin_reserve_rates": {
+      "0.000": {
+        "count": 18646,
+        "rate": 1.0
+      },
+      "0.001": {
+        "count": 18627,
+        "rate": 0.9989810146948407
+      },
+      "0.005": {
+        "count": 18540,
+        "rate": 0.9943151346133219
+      },
+      "0.010": {
+        "count": 18442,
+        "rate": 0.9890593156709214
+      },
+      "0.050": {
+        "count": 17635,
+        "rate": 0.9457792556044192
+      },
+      "0.100": {
+        "count": 16623,
+        "rate": 0.8915048804033037
+      }
+    },
+    "action_surplus_over_required": {
+      "minimum": 2.8990143619012088e-12,
+      "p01": 0.21734301456888833,
+      "p05": 1.1428577707324052,
+      "median": 5.15178120136261,
+      "mean": 4.562878640815132,
+      "maximum": 6.0
+    }
+  },
+  "transfer": {
+    "worst_underbraking": {
+      "minimum": -0.6892355680465698,
+      "p01": -0.5108922064304352,
+      "p05": -0.3544422388076782,
+      "median": 0.028268098831176758,
+      "mean": 0.07836382069468024,
+      "maximum": 0.4297652244567871
+    },
+    "worst_absolute_action_error": {
+      "minimum": 0.0,
+      "p01": 0.0,
+      "p05": 0.0,
+      "median": 0.3670058250427246,
+      "mean": 0.47910778459901143,
+      "maximum": 1.4719637632369995
+    }
+  },
+  "worst_states": [
+    {
+      "distance_m": 7.320000129020627,
+      "speed_m_per_s": 2.7750000953674316,
+      "semantic_radius_m": 0.08338442451793071,
+      "worst_semantic_multiplier": -1.0,
+      "required_action": 2.9999985939551834,
+      "student_action": 3.0,
+      "teacher_action": 3.0,
+      "student_action_margin": 1.4060448165764683e-06,
+      "student_next_margin_m": 5.272668235356548e-08,
+      "teacher_next_margin_m": 5.272668235356548e-08
+    },
+    {
+      "distance_m": 7.380000005681495,
+      "speed_m_per_s": 2.8499999046325684,
+      "semantic_radius_m": 0.08338442451793071,
+      "worst_semantic_multiplier": -1.0,
+      "required_action": 2.9999978139883297,
+      "student_action": 3.0,
+      "teacher_action": 3.0,
+      "student_action_margin": 2.1860116703464882e-06,
+      "student_next_margin_m": 8.197544043575533e-08,
+      "teacher_next_margin_m": 8.197544043575533e-08
+    },
+    {
+      "distance_m": 7.400000217508364,
+      "speed_m_per_s": 2.875,
+      "semantic_radius_m": 0.08338442451793071,
+      "worst_semantic_multiplier": -1.0,
+      "required_action": 2.9999941997770634,
+      "student_action": 3.0,
+      "teacher_action": 3.0,
+      "student_action_margin": 5.8002229366138636e-06,
+      "student_next_margin_m": 2.17508363986596e-07,
+      "teacher_next_margin_m": 2.17508363986596e-07
+    },
+    {
+      "distance_m": 6.870000295244381,
+      "speed_m_per_s": 2.2750000953674316,
+      "semantic_radius_m": 0.08338442451793071,
+      "worst_semantic_multiplier": -1.0,
+      "required_action": 2.999991344584714,
+      "student_action": 3.0,
+      "teacher_action": 3.0,
+      "student_action_margin": 8.655415285829804e-06,
+      "student_next_margin_m": 2.3802392168370545e-07,
+      "teacher_next_margin_m": 2.3802392168370545e-07
+    },
+    {
+      "distance_m": 7.2600002523597595,
+      "speed_m_per_s": 2.7300000190734863,
+      "semantic_radius_m": 0.08338442451793071,
+      "worst_semantic_multiplier": -1.0,
+      "required_action": 2.9999931984387445,
+      "student_action": 3.0,
+      "teacher_action": 3.0,
+      "student_action_margin": 6.801561255542765e-06,
+      "student_next_margin_m": 2.380546451075105e-07,
+      "teacher_next_margin_m": 2.380546451075105e-07
+    },
+    {
+      "distance_m": 7.120000287211155,
+      "speed_m_per_s": 2.575000047683716,
+      "semantic_radius_m": 0.08338442451793071,
+      "worst_semantic_multiplier": -1.0,
+      "required_action": 2.9999921897676245,
+      "student_action": 3.0,
+      "teacher_action": 3.0,
+      "student_action_margin": 7.810232375504711e-06,
+      "student_next_margin_m": 2.5383255453093057e-07,
+      "teacher_next_margin_m": 2.5383255453093057e-07
+    },
+    {
+      "distance_m": 7.230000314029326,
+      "speed_m_per_s": 2.690000057220459,
+      "semantic_radius_m": 0.08338442451793071,
+      "worst_semantic_multiplier": -1.0,
+      "required_action": 2.999992253886319,
+      "student_action": 3.0,
+      "teacher_action": 3.0,
+      "student_action_margin": 7.746113681150746e-06,
+      "student_next_margin_m": 2.711139821531816e-07,
+      "teacher_next_margin_m": 2.711139821531816e-07
+    },
+    {
+      "distance_m": 7.200000375698892,
+      "speed_m_per_s": 2.6500000953674316,
+      "semantic_radius_m": 0.08338442451793071,
+      "worst_semantic_multiplier": -1.0,
+      "required_action": 2.9999913093338932,
+      "student_action": 3.0,
+      "teacher_action": 3.0,
+      "student_action_margin": 8.690666106758727e-06,
+      "student_next_margin_m": 3.041733180886297e-07,
+      "teacher_next_margin_m": 3.041733180886297e-07
+    },
+    {
+      "distance_m": 7.340000340847496,
+      "speed_m_per_s": 2.799999952316284,
+      "semantic_radius_m": 0.08338442451793071,
+      "worst_semantic_multiplier": -1.0,
+      "required_action": 2.9999898934808584,
+      "student_action": 3.0,
+      "teacher_action": 3.0,
+      "student_action_margin": 1.010651914157279e-05,
+      "student_next_margin_m": 3.789944684751134e-07,
+      "teacher_next_margin_m": 3.789944684751134e-07
+    },
+    {
+      "distance_m": 6.840000356913947,
+      "speed_m_per_s": 2.2249999046325684,
+      "semantic_radius_m": 0.08338442451793071,
+      "worst_semantic_multiplier": -1.0,
+      "required_action": 2.999984940567174,
+      "student_action": 3.0,
+      "teacher_action": 3.0,
+      "student_action_margin": 1.5059432826092234e-05,
+      "student_next_margin_m": 4.141344058794516e-07,
+      "teacher_next_margin_m": 4.141344058794516e-07
+    },
+    {
+      "distance_m": 6.919999686581946,
+      "speed_m_per_s": 2.315000057220459,
+      "semantic_radius_m": 0.08338442451793071,
+      "worst_semantic_multiplier": -1.0,
+      "required_action": 2.9916783537118476,
+      "student_action": 3.0,
+      "teacher_action": 3.0,
+      "student_action_margin": 0.008321646288152351,
+      "student_next_margin_m": 0.000249649388647466,
+      "teacher_next_margin_m": 0.000249649388647466
+    },
+    {
+      "distance_m": 6.740000056599342,
+      "speed_m_per_s": 2.0950000286102295,
+      "semantic_radius_m": 0.08338442451793071,
+      "worst_semantic_multiplier": -1.0,
+      "required_action": 2.98999836545147,
+      "student_action": 3.0,
+      "teacher_action": 3.0,
+      "student_action_margin": 0.010001634548530092,
+      "student_next_margin_m": 0.000250040863715717,
+      "teacher_next_margin_m": 0.000250040863715717
+    },
+    {
+      "distance_m": 7.109999801887852,
+      "speed_m_per_s": 2.559999942779541,
+      "semantic_radius_m": 0.08338442451793071,
+      "worst_semantic_multiplier": -1.0,
+      "required_action": 2.984620247933208,
+      "student_action": 3.0,
+      "teacher_action": 3.0,
+      "student_action_margin": 0.015379752066792207,
+      "student_next_margin_m": 0.0004998419421737843,
+      "teacher_next_margin_m": 0.0004998419421737843
+    },
+    {
+      "distance_m": 6.710000118268908,
+      "speed_m_per_s": 2.0399999618530273,
+      "semantic_radius_m": 0.08338442451793071,
+      "worst_semantic_multiplier": -1.0,
+      "required_action": 2.979994430010322,
+      "student_action": 3.0,
+      "teacher_action": 3.0,
+      "student_action_margin": 0.02000556998967795,
+      "student_next_margin_m": 0.0005001392497433477,
+      "teacher_next_margin_m": 0.0005001392497433477
+    },
+    {
+      "distance_m": 7.040000198723419,
+      "speed_m_per_s": 2.4600000381469727,
+      "semantic_radius_m": 0.08338442451793071,
+      "worst_semantic_multiplier": -1.0,
+      "required_action": 2.9846100916758473,
+      "student_action": 3.0,
+      "teacher_action": 3.0,
+      "student_action_margin": 0.015389908324152657,
+      "student_next_margin_m": 0.0005001720205384252,
+      "teacher_next_margin_m": 0.0005001720205384252
+    },
+    {
+      "distance_m": 6.930000171905249,
+      "speed_m_per_s": 2.3299999237060547,
+      "semantic_radius_m": 0.08338442451793071,
+      "worst_semantic_multiplier": -1.0,
+      "required_action": 2.9833259501229463,
+      "student_action": 3.0,
+      "teacher_action": 3.0,
+      "student_action_margin": 0.016674049877053676,
+      "student_next_margin_m": 0.0005002214963135687,
+      "teacher_next_margin_m": 0.0005002214963135687
+    },
+    {
+      "distance_m": 6.939999898408814,
+      "speed_m_per_s": 2.3450000286102295,
+      "semantic_radius_m": 0.08338442451793071,
+      "worst_semantic_multiplier": -1.0,
+      "required_action": 2.9750040062612015,
+      "student_action": 3.0,
+      "teacher_action": 3.0,
+      "student_action_margin": 0.02499599373879846,
+      "student_next_margin_m": 0.0007498798121653438,
+      "teacher_next_margin_m": 0.0007498798121653438
+    },
+    {
+      "distance_m": 7.450000367665666,
+      "speed_m_per_s": 2.9049999713897705,
+      "semantic_radius_m": 0.08338442451793071,
+      "worst_semantic_multiplier": -1.0,
+      "required_action": 2.9812402003910847,
+      "student_action": 3.0,
+      "teacher_action": 3.0,
+      "student_action_margin": 0.018759799608915273,
+      "student_next_margin_m": 0.0007503919843614426,
+      "teacher_next_margin_m": 0.0007503919843614426
+    },
+    {
+      "distance_m": 6.94999962491238,
+      "speed_m_per_s": 2.359999895095825,
+      "semantic_radius_m": 0.08338442451793071,
+      "worst_semantic_multiplier": -1.0,
+      "required_action": 2.966676896663671,
+      "student_action": 3.0,
+      "teacher_action": 3.0,
+      "student_action_margin": 0.03332310333632904,
+      "student_next_margin_m": 0.0009996931000928466,
+      "teacher_next_margin_m": 0.0009996931000928466
+    },
+    {
+      "distance_m": 7.100000075384287,
+      "speed_m_per_s": 2.5450000762939453,
+      "semantic_radius_m": 0.08338442451793071,
+      "worst_semantic_multiplier": -1.0,
+      "required_action": 2.969230092968587,
+      "student_action": 3.0,
+      "teacher_action": 3.0,
+      "student_action_margin": 0.030769907031412913,
+      "student_next_margin_m": 0.001000021978525223,
+      "teacher_next_margin_m": 0.001000021978525223
+    }
+  ],
+  "runtime_seconds": 22.95944333076477
+}

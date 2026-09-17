@@ -16,7 +16,6 @@ import numpy as np
 
 from Aebs.mvp.robust_sbc import (
     certificate_masks,
-    region_grid_states,
     robust_successors,
     verifier_grid_states,
 )
@@ -145,7 +144,15 @@ def solve_grid_certificate(
     successor_terminal = certificate_masks(
         flat_successors, distance_scale, **mask_arguments()
     )["terminal"]
+    successor_unsafe = certificate_masks(
+        flat_successors, distance_scale, **mask_arguments()
+    )["unsafe"]
     candidate_count = successors.shape[1]
+    unsafe_successor_matrix = successor_unsafe.reshape(len(decrease_states), candidate_count)
+    unsafe_successor_count = int(np.sum(unsafe_successor_matrix))
+    states_with_unsafe_successor_count = int(
+        np.sum(np.any(unsafe_successor_matrix, axis=1))
+    )
     for local_state_index, grid_index in enumerate(decrease_indices):
         for candidate_index in range(candidate_count):
             flat_index = local_state_index * candidate_count + candidate_index
@@ -156,23 +163,25 @@ def solve_grid_certificate(
                 values.extend(successor_weights[flat_index].tolist())
             add_row(columns, values, 0.0)
 
-    # Check initial and unsafe regions through the same bilinear table rather
-    # than only at the main verifier-grid points.
-    init_states = region_grid_states(distance_scale, 15.0, 16.0, 2.5, 3.0, grid_size)
-    init_indices, init_weights = bilinear_indices_weights(
-        init_states, distance_scale, grid_size
+    # This is a fixed-grid certificate, so region constraints must be imposed
+    # on the same grid nodes.  Interpolating a point just above v=0.5 onto the
+    # main grid mixes it with a terminal node just below v=0.5; demanding that
+    # interpolation be >=10 conflicts with the terminal value B=0 and makes
+    # the LP infeasible by construction.
+    distance_m = states[:, 0] * distance_scale
+    speed = states[:, 1]
+    init_mask = (
+        (distance_m >= 15.0)
+        & (distance_m <= 16.0)
+        & (speed >= 2.5)
+        & (speed <= 3.0)
     )
-    for indices, weights in zip(init_indices, init_weights):
-        add_row(indices, weights, 1.0)
+    init_indices = np.flatnonzero(init_mask)
+    for grid_index in init_indices:
+        add_row([grid_index], [1.0], 1.0)
 
-    unsafe_states = region_grid_states(
-        distance_scale, 5.0, 6.0, 0.5 + 1e-6, 3.0, grid_size
-    )
-    unsafe_indices, unsafe_weights = bilinear_indices_weights(
-        unsafe_states, distance_scale, grid_size
-    )
-    for indices, weights in zip(unsafe_indices, unsafe_weights):
-        add_row(indices, -weights, -10.0)
+    # Unsafe grid nodes are already fixed to B=10 by variable_bounds below.
+    # No extra off-grid unsafe interpolation constraints are added.
 
     matrix = coo_matrix(
         (coefficients, (row_indices, column_indices)),
@@ -222,10 +231,15 @@ def solve_grid_certificate(
         "state_variables": int(state_variable_count),
         "decrease_states": int(len(decrease_states)),
         "successor_candidates_per_state": int(candidate_count),
+        "unsafe_successor_count": unsafe_successor_count,
+        "states_with_unsafe_successor_count": states_with_unsafe_successor_count,
         "linear_constraints": int(row_count),
         "excluded_terminal_states": int(np.sum(masks["terminal"])),
         "excluded_unsafe_states": int(np.sum(masks["unsafe"])),
         "excluded_inevitable_states": int(np.sum(masks["inevitable"])),
+        "initial_grid_nodes": int(len(init_indices)),
+        "unsafe_grid_nodes": int(np.sum(masks["unsafe"])),
+        "region_constraint_mode": "main_grid_nodes",
         "runtime_seconds": float(time.time() - started),
         "interpretation": (
             "A feasible result proves only the stated strengthened conditions on the "
@@ -252,6 +266,10 @@ def solve_grid_certificate(
     print(f"status: {status}")
     print(f"states: {state_variable_count}, decrease states: {len(decrease_states)}")
     print(f"constraints: {row_count}")
+    print(
+        "states with one-step unsafe robust successor: "
+        f"{states_with_unsafe_successor_count}"
+    )
     if result.success:
         print(f"epsilon_max: {metrics['epsilon_max']:.9f}")
         print(f"maximum constraint residual: {metrics['maximum_constraint_residual']:.3e}")
@@ -265,10 +283,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--controller",
-        default=(
-            "results/mvp/02_safety_filter_anti_stall_compare/"
-            "adaptive_anti_stall_filter.json"
-        ),
+        default="results/mvp/02_standalone_ppo_distilled_v2/standalone_ppo.zip",
     )
     parser.add_argument(
         "--semantic-checkpoint",
@@ -283,7 +298,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--output-dir",
-        default="results/mvp/04_grid_certificate_lp",
+        default="results/mvp/04_grid_certificate_lp_standalone_ppo_v2",
     )
     parser.add_argument("--grid-size", type=int, default=80)
     parser.add_argument("--solver-time-limit-seconds", type=float, default=600.0)

@@ -735,6 +735,27 @@ def train_barrier(
     }
     with open(output_dir / "metrics.json", "w", encoding="utf-8") as stream:
         json.dump(metrics, stream, indent=2, ensure_ascii=False)
+    worst = verification["worst_case"]
+    print(f"\n[SBC: {output_dir.name}]")
+    print(f"status: {verification['status']}")
+    print(
+        f"violations: {verification['violation_count']} / "
+        f"{verification['checked_states']}"
+    )
+    print(f"min margin: {verification['min_margin']:.6f}")
+    print(f"mean margin: {verification['mean_margin']:.6f}")
+    print(
+        f"worst state: d={worst['distance_m']:.3f} m, "
+        f"v={worst['speed']:.3f} m/s"
+    )
+    regions = verification.get("regions", {})
+    if regions:
+        print(
+            f"regions: init violations={regions['init_violation_count']}, "
+            f"unsafe violations={regions['unsafe_violation_count']}"
+        )
+    print(f"checkpoint: {output_dir / 'barrier.pt'}")
+    print(f"metrics: {output_dir / 'metrics.json'}")
     return metrics
 
 

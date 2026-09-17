@@ -1,0 +1,76 @@
+{
+  "experiment": "adaptive_ibp_policy_action_verification",
+  "status": "local_action_condition_verified",
+  "student": "results/mvp/08_standalone_ppo_saturation_repair/standalone_ppo_repaired.zip",
+  "semantic_checkpoint": "results/mvp/01_semantic/semantic_encoder.pt",
+  "verified_property": "For each certified true-state cell and every semantic observation in its contract-induced input box, the clipped PPO action is no smaller than the conservative action threshold for a recoverable successor.",
+  "scope_limit": "This is a local robust action-condition proof, not yet a complete global inductive or trajectory-level probabilistic safety certificate.",
+  "region": {
+    "distance_low_m": 6.0,
+    "distance_high_m": 8.0,
+    "speed_low_m_per_s": 2.0,
+    "speed_high_m_per_s": 3.0,
+    "area": 2.0
+  },
+  "partition": {
+    "initial_distance_cells": 16,
+    "initial_speed_cells": 8,
+    "max_depth": 7,
+    "max_evaluated_cells": 200000,
+    "semantic_splits": 16,
+    "evaluated_cells": 1924,
+    "certified_cells": 1001,
+    "unresolved_cells": 0,
+    "per_depth": {
+      "0": {
+        "evaluated": 128,
+        "certified": 50,
+        "unrecoverable": 62,
+        "split": 16
+      },
+      "1": {
+        "evaluated": 64,
+        "certified": 20,
+        "unrecoverable": 12,
+        "split": 32
+      },
+      "2": {
+        "evaluated": 128,
+        "certified": 29,
+        "unrecoverable": 34,
+        "split": 65
+      },
+      "3": {
+        "evaluated": 260,
+        "certified": 79,
+        "unrecoverable": 55,
+        "split": 126
+      },
+      "4": {
+        "evaluated": 504,
+        "certified": 171,
+        "unrecoverable": 123,
+        "split": 210
+      },
+      "5": {
+        "evaluated": 840,
+        "certified": 652,
+        "unrecoverable": 188,
+        "split": 0
+      }
+    }
+  },
+  "area": {
+    "certified_box_area": 0.9273681640625,
+    "unrecoverable_box_area": 1.0726318359375,
+    "unresolved_box_area": 0.0,
+    "certified_fraction_of_region": 0.46368408203125,
+    "unresolved_fraction_of_region": 0.0
+  },
+  "certified_bound_margin": {
+    "minimum": 0.0,
+    "maximum": 4.825525373918651
+  },
+  "worst_unresolved_cells": [],
+  "runtime_seconds": 1.6172220706939697
+}
