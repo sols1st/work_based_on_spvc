@@ -30,7 +30,16 @@ def main() -> None:
         device,
     )
     barrier.load_state_dict(torch.load(args.checkpoint, map_location=device))
-    controller = load_controller(config["safety_filter_controller"])
+    controller_name = settings["controller"]
+    controller_paths = {
+        "baseline": config.get("baseline_controller"),
+        "safety_filter": config.get("safety_filter_controller"),
+        "standalone": config.get("standalone_controller"),
+    }
+    controller_path = controller_paths.get(controller_name)
+    if not controller_path:
+        raise ValueError(f"cannot resolve controller '{controller_name}' for verification")
+    controller = load_controller(controller_path)
     uncertainty_path = (
         Path(config["output_dir"])
         / config["uncertainty"].get("output_name", "03_uncertainty")

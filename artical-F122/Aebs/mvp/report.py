@@ -87,6 +87,11 @@ def print_grid_certificate_lp(metrics: Dict) -> None:
         f"decrease states: {metrics['decrease_states']}, "
         f"constraints: {metrics['linear_constraints']}"
     )
+    if "states_with_unsafe_successor_count" in metrics:
+        print(
+            "states with one-step unsafe robust successor: "
+            f"{metrics['states_with_unsafe_successor_count']}"
+        )
     if "epsilon_max" in metrics:
         print(f"epsilon_max: {metrics['epsilon_max']:.9f}")
         print(
@@ -265,11 +270,11 @@ def main() -> None:
         comparison_path = root / comparison_name / "metrics.json"
         if comparison_path.exists():
             print_filter_fast_comparison(comparison_name, load_json(comparison_path))
-    standalone_ppo = root / "02_standalone_ppo_distilled" / "metrics.json"
-    if standalone_ppo.exists():
+    for standalone_ppo in metric_files(root, "02_standalone_ppo_distilled*/metrics.json"):
+        print(f"\nresult directory: {standalone_ppo.parent.name}")
         print_standalone_ppo(load_json(standalone_ppo))
-    grid_lp = root / "04_grid_certificate_lp" / "metrics.json"
-    if grid_lp.exists():
+    for grid_lp in metric_files(root, "04_grid_certificate_lp*/metrics.json"):
+        print(f"\nresult directory: {grid_lp.parent.name}")
         print_grid_certificate_lp(load_json(grid_lp))
     for uncertainty in metric_files(root, "03*uncertainty/metrics.json"):
         print_uncertainty(uncertainty.parent.name, load_json(uncertainty))

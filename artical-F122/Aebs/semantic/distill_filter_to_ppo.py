@@ -34,11 +34,16 @@ def set_seed(seed: int) -> None:
 
 def observation_grid(distance_scale: float, grid_size: int) -> np.ndarray:
     distance = np.linspace(5.0 / distance_scale, 16.0 / distance_scale, grid_size)
-    speed = np.linspace(0.0, 3.0, grid_size)
-    mesh_distance, mesh_speed = np.meshgrid(distance, speed)
-    return np.stack(
-        (mesh_distance.reshape(-1), mesh_speed.reshape(-1)), axis=1
-    ).astype(np.float32)
+    # Cover the full domain, then add the narrow 0.3--0.7 m/s band where a
+    # small positive braking error can strand the vehicle outside the goal.
+    speed_sets = (np.linspace(0.0, 3.0, grid_size), np.linspace(0.3, 0.7, grid_size))
+    grids = []
+    for speed in speed_sets:
+        mesh_distance, mesh_speed = np.meshgrid(distance, speed)
+        grids.append(
+            np.stack((mesh_distance.reshape(-1), mesh_speed.reshape(-1)), axis=1)
+        )
+    return np.concatenate(grids, axis=0).astype(np.float32)
 
 
 def actor_output(policy, observations: torch.Tensor) -> torch.Tensor:
@@ -55,15 +60,33 @@ def imitation_loss(
 ) -> torch.Tensor:
     squared_error = (predicted - target).square()
     underbraking = F.relu(target - predicted).square()
-    sample_weight = torch.where(
-        speed <= 0.6,
-        torch.full_like(speed, low_speed_weight),
-        torch.ones_like(speed),
+    overbraking = F.relu(predicted - target).square()
+    low_speed = speed <= 0.7
+    # At normal speed, insufficient braking is the dangerous approximation.
+    # Near the stop/goal boundary the opposite is true: excess braking causes
+    # the observed 400-step stall, so penalize that error asymmetrically.
+    asymmetric = torch.where(
+        low_speed,
+        low_speed_weight * overbraking.squeeze(1),
+        underbraking_weight * underbraking.squeeze(1),
     )
-    return (
-        sample_weight
-        * (squared_error.squeeze(1) + underbraking_weight * underbraking.squeeze(1))
-    ).mean()
+    return (squared_error.squeeze(1) + asymmetric).mean()
+
+
+def add_low_speed_recovery_targets(
+    observations: np.ndarray,
+    teacher_actions: np.ndarray,
+    target_speed: float,
+    dt: float,
+    max_action: float = 3.0,
+) -> np.ndarray:
+    """Teach the PPO to recover if approximation error drops speed below target."""
+    targets = np.asarray(teacher_actions, dtype=np.float32).reshape(-1, 1).copy()
+    speed = observations[:, 1]
+    below_target = speed < target_speed
+    recovery_action = np.clip((speed - target_speed) / dt, -max_action, 0.0)
+    targets[below_target, 0] = recovery_action[below_target]
+    return targets
 
 
 def policy_action_metrics(predicted: np.ndarray, target: np.ndarray) -> Dict[str, float]:
@@ -96,12 +119,16 @@ def train_standalone_ppo(
     output_dir.mkdir(parents=True, exist_ok=True)
     contract, distance_scale = load_contract(semantic_checkpoint)
     teacher = load_controller(teacher_path)
-    baseline = PPO.load(baseline_path, device="cpu")
     student = PPO.load(baseline_path, device=device_name)
 
     observations = observation_grid(distance_scale, grid_size)
     teacher_actions, _ = teacher.predict(observations, deterministic=True)
-    teacher_actions = np.asarray(teacher_actions, dtype=np.float32).reshape(-1, 1)
+    teacher_actions = add_low_speed_recovery_targets(
+        observations,
+        teacher_actions,
+        target_speed=float(teacher.target_speed),
+        dt=float(teacher.dt),
+    )
     observation_tensor = torch.from_numpy(observations).to(student.device)
     target_tensor = torch.from_numpy(teacher_actions).to(student.device)
     speed_tensor = observation_tensor[:, 1]
@@ -172,26 +199,33 @@ def train_standalone_ppo(
         "teacher_evaluation": {},
         "student_evaluation": {},
     }
+    print("training complete; starting standalone PPO rollout evaluation", flush=True)
     for mode in MODES:
-        metrics["baseline_evaluation"][mode] = evaluate(
-            baseline, contract, distance_scale, mode, eval_episodes, seed
-        )
-        metrics["teacher_evaluation"][mode] = evaluate(
-            teacher, contract, distance_scale, mode, eval_episodes, seed
-        )
-        # This call is deliberately made on the PPO object, not the teacher.
+        print(f"evaluating student: mode={mode}, episodes={eval_episodes}", flush=True)
+        # Deliberately evaluate only the PPO object. Baseline and teacher
+        # results already exist in the comparison experiment, so rerunning
+        # them would triple the wait without adding information.
         metrics["student_evaluation"][mode] = evaluate(
             student, contract, distance_scale, mode, eval_episodes, seed
+        )
+        values = metrics["student_evaluation"][mode]
+        print(
+            f"finished {mode}: success={100.0 * values['success_rate']:.2f}% "
+            f"unsafe={100.0 * values['unsafe_rate']:.2f}% "
+            f"timeout={100.0 * values['timeout_rate']:.2f}%",
+            flush=True,
         )
 
     metrics_path = output_dir / "metrics.json"
     with open(metrics_path, "w", encoding="utf-8") as stream:
         json.dump(metrics, stream, indent=2, ensure_ascii=False)
 
-    print("\n[Standalone PPO distilled from safety-filter teacher]")
+    print(f"\nresult directory: {output_dir.name}")
+    print("\n[Standalone PPO: no runtime safety filter]")
     print(
-        f"action MAE={action_metrics['action_mae']:.6f}, "
-        f"max error={action_metrics['action_max_abs_error']:.6f}"
+        f"teacher action MAE={action_metrics['action_mae']:.6f}, "
+        f"max_abs={action_metrics['action_max_abs_error']:.6f}, "
+        f"underbraking={100.0 * action_metrics['underbraking_rate']:.2f}%"
     )
     for mode in MODES:
         values = metrics["student_evaluation"][mode]
@@ -225,15 +259,15 @@ def main() -> None:
     )
     parser.add_argument(
         "--output-dir",
-        default="results/mvp/02_standalone_ppo_distilled",
+        default="results/mvp/02_standalone_ppo_distilled_v2",
     )
     parser.add_argument("--seed", type=int, default=7)
     parser.add_argument("--grid-size", type=int, default=128)
-    parser.add_argument("--epochs", type=int, default=80)
+    parser.add_argument("--epochs", type=int, default=300)
     parser.add_argument("--batch-size", type=int, default=512)
     parser.add_argument("--learning-rate", type=float, default=3e-4)
-    parser.add_argument("--underbraking-weight", type=float, default=4.0)
-    parser.add_argument("--low-speed-weight", type=float, default=4.0)
+    parser.add_argument("--underbraking-weight", type=float, default=2.0)
+    parser.add_argument("--low-speed-weight", type=float, default=20.0)
     parser.add_argument("--eval-episodes", type=int, default=200)
     parser.add_argument("--device", default="auto")
     args = parser.parse_args()

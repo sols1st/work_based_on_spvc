@@ -1,0 +1,199 @@
+{
+  "experiment": "local_certificate_margin_repair",
+  "deployment_controller": "standalone_ppo_without_runtime_filter",
+  "seed": 7,
+  "source_student": "results/mvp/07_standalone_ppo_local_repair/standalone_ppo_repaired.zip",
+  "teacher": "results/mvp/02_safety_filter_anti_stall_compare/adaptive_anti_stall_filter.json",
+  "diagnostics": "results/mvp/07_standalone_ppo_local_repair/local_refinement/state_diagnostics.npz",
+  "checkpoint": "results/mvp/08_standalone_ppo_saturation_repair/standalone_ppo_repaired.zip",
+  "selected_state_count": 89,
+  "local_training_observation_count": 5785,
+  "retention_observation_count": 32768,
+  "selection_margin": 0.1,
+  "target_margin": 0.02,
+  "raw_target_headroom": 0.05,
+  "semantic_samples": 65,
+  "epochs": 15,
+  "batch_size": 512,
+  "learning_rate": 5e-06,
+  "local_weight": 10.0,
+  "underbraking_weight": 10.0,
+  "training_seconds": 4.251851320266724,
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 0.003924590268166196,
+      "local_violation_count": 0,
+      "minimum_local_action_margin": 0.0,
+      "retention_action_mae": 0.005444783717393875
+    },
+    {
+      "epoch": 5,
+      "loss": 0.0008504234023061336,
+      "local_violation_count": 0,
+      "minimum_local_action_margin": 0.0,
+      "retention_action_mae": 0.006000047083944082
+    },
+    {
+      "epoch": 10,
+      "loss": 0.0007456478043949526,
+      "local_violation_count": 0,
+      "minimum_local_action_margin": 0.0,
+      "retention_action_mae": 0.006702695041894913
+    },
+    {
+      "epoch": 15,
+      "loss": 0.0007273202057771606,
+      "local_violation_count": 0,
+      "minimum_local_action_margin": 0.0,
+      "retention_action_mae": 0.0073852334171533585
+    }
+  ],
+  "retention_action_match": {
+    "action_mae": 0.005444783717393875,
+    "action_rmse": 0.010454680770635605,
+    "action_max_abs_error": 0.07310891151428223,
+    "underbraking_rate": 0.0,
+    "overbraking_rate": 0.00933837890625
+  },
+  "student_evaluation": {
+    "exact": {
+      "episodes": 200,
+      "evaluation_semantics": "mutually_exclusive_terminal_outcomes_v2",
+      "outcome_counts": {
+        "success": 200,
+        "unsafe": 0,
+        "stopped_safe_outside_goal": 0,
+        "out_of_domain": 0,
+        "timeout": 0
+      },
+      "outcome_rates": {
+        "success": 1.0,
+        "unsafe": 0.0,
+        "stopped_safe_outside_goal": 0.0,
+        "out_of_domain": 0.0,
+        "timeout": 0.0
+      },
+      "success_rate": 1.0,
+      "unsafe_rate": 0.0,
+      "stopped_safe_outside_goal_rate": 0.0,
+      "out_of_domain_rate": 0.0,
+      "timeout_rate": 0.0,
+      "mean_return": 20.824876965784032,
+      "return_std": 0.5893191426239853,
+      "mean_steps": 190.96,
+      "mean_time_to_success_seconds": 9.548,
+      "mean_minimum_distance_m": 5.989168370752486,
+      "minimum_distance_m": 5.977492152596775,
+      "intervention_rate": null,
+      "mean_extra_braking": null,
+      "mean_perception_radius_m": null,
+      "overshoot_cap_rate": null
+    },
+    "uniform": {
+      "episodes": 200,
+      "evaluation_semantics": "mutually_exclusive_terminal_outcomes_v2",
+      "outcome_counts": {
+        "success": 200,
+        "unsafe": 0,
+        "stopped_safe_outside_goal": 0,
+        "out_of_domain": 0,
+        "timeout": 0
+      },
+      "outcome_rates": {
+        "success": 1.0,
+        "unsafe": 0.0,
+        "stopped_safe_outside_goal": 0.0,
+        "out_of_domain": 0.0,
+        "timeout": 0.0
+      },
+      "success_rate": 1.0,
+      "unsafe_rate": 0.0,
+      "stopped_safe_outside_goal_rate": 0.0,
+      "out_of_domain_rate": 0.0,
+      "timeout_rate": 0.0,
+      "mean_return": 20.746005209476838,
+      "return_std": 0.5889079619703724,
+      "mean_steps": 189.97,
+      "mean_time_to_success_seconds": 9.4985,
+      "mean_minimum_distance_m": 5.988298531947146,
+      "minimum_distance_m": 5.97748026157873,
+      "intervention_rate": null,
+      "mean_extra_braking": null,
+      "mean_perception_radius_m": null,
+      "overshoot_cap_rate": null
+    },
+    "random_boundary": {
+      "episodes": 200,
+      "evaluation_semantics": "mutually_exclusive_terminal_outcomes_v2",
+      "outcome_counts": {
+        "success": 200,
+        "unsafe": 0,
+        "stopped_safe_outside_goal": 0,
+        "out_of_domain": 0,
+        "timeout": 0
+      },
+      "outcome_rates": {
+        "success": 1.0,
+        "unsafe": 0.0,
+        "stopped_safe_outside_goal": 0.0,
+        "out_of_domain": 0.0,
+        "timeout": 0.0
+      },
+      "success_rate": 1.0,
+      "unsafe_rate": 0.0,
+      "stopped_safe_outside_goal_rate": 0.0,
+      "out_of_domain_rate": 0.0,
+      "timeout_rate": 0.0,
+      "mean_return": 20.90651826510932,
+      "return_std": 0.5643435418103964,
+      "mean_steps": 184.705,
+      "mean_time_to_success_seconds": 9.23525,
+      "mean_minimum_distance_m": 5.989616830797948,
+      "minimum_distance_m": 5.977591598292781,
+      "intervention_rate": null,
+      "mean_extra_braking": null,
+      "mean_perception_radius_m": null,
+      "overshoot_cap_rate": null
+    },
+    "worst_endpoint": {
+      "episodes": 200,
+      "evaluation_semantics": "mutually_exclusive_terminal_outcomes_v2",
+      "outcome_counts": {
+        "success": 200,
+        "unsafe": 0,
+        "stopped_safe_outside_goal": 0,
+        "out_of_domain": 0,
+        "timeout": 0
+      },
+      "outcome_rates": {
+        "success": 1.0,
+        "unsafe": 0.0,
+        "stopped_safe_outside_goal": 0.0,
+        "out_of_domain": 0.0,
+        "timeout": 0.0
+      },
+      "success_rate": 1.0,
+      "unsafe_rate": 0.0,
+      "stopped_safe_outside_goal_rate": 0.0,
+      "out_of_domain_rate": 0.0,
+      "timeout_rate": 0.0,
+      "mean_return": 20.892004668938295,
+      "return_std": 0.5895752189136745,
+      "mean_steps": 125.03,
+      "mean_time_to_success_seconds": 6.2515,
+      "mean_minimum_distance_m": 5.98856951917534,
+      "minimum_distance_m": 5.977529027774608,
+      "intervention_rate": null,
+      "mean_extra_braking": null,
+      "mean_perception_radius_m": null,
+      "overshoot_cap_rate": null
+    }
+  },
+  "local_refinement": {
+    "status": "dense_sampled_pass_ready_for_nn_bounds",
+    "student_violation_count": 0,
+    "minimum_next_margin_m": 5.272668235356548e-08,
+    "minimum_action_surplus": 2.8990143619012088e-12
+  }
+}

@@ -3,6 +3,7 @@
   "data": "Aebs/data/Downsampled.h5",
   "baseline_controller": "Aebs/controller/best_model/best_model.zip",
   "safety_filter_controller": "results/mvp/02_safety_filter/safety_filter.json",
+  "standalone_controller": "results/mvp/02_standalone_ppo_distilled_v2/standalone_ppo.zip",
   "semantic_source_dir": "results/semantic_stage1_alpha05/seed7",
   "output_dir": "results/mvp",
   "controller": {
@@ -22,17 +23,17 @@
     "alpha": 0.05
   },
   "robust_sbc": {
-    "controller": "safety_filter",
+    "controller": "standalone",
     "epochs": 300,
     "train_states": 4096,
     "batch_size": 512,
     "learning_rate": 0.001,
-    "epsilon": 0.001,
+    "epsilon": 0.0,
     "grid_size": 80,
     "decrease_weight": 100.0,
     "init_weight": 10.0,
     "unsafe_weight": 10.0,
-    "square_output": true,
+    "square_output": false,
     "region_warmup_epochs": 25,
     "warmup_decrease_weight": 0.0,
     "init_target": 1.0,
@@ -62,7 +63,7 @@
     "terminal_value": 0.0,
     "epsilon_warmup_epochs": 100,
     "warmup_epsilon": 0.0,
-    "barrier_output_transform": "softplus_square",
-    "output_name": "04_robust_sbc_softplus_square"
+    "barrier_output_transform": "softplus",
+    "output_name": "04_robust_sbc_standalone_ppo"
   }
 }

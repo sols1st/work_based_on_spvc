@@ -6,7 +6,10 @@ from Aebs.mvp.grid_certificate_lp import bilinear_indices_weights
 from Aebs.mvp.robust_sbc import certificate_masks, discrete_stopping_distance
 from Aebs.semantic.robust_controller import evaluate
 from Aebs.semantic.safety_filter import SafetyFilteredController
-from Aebs.semantic.distill_filter_to_ppo import imitation_loss
+from Aebs.semantic.distill_filter_to_ppo import (
+    add_low_speed_recovery_targets,
+    imitation_loss,
+)
 from Aebs.system.env import AebsEnv
 from Aebs.system.outcomes import (
     OUT_OF_DOMAIN,
@@ -148,3 +151,10 @@ def test_imitation_loss_penalizes_underbraking_more_than_overbraking():
     under = imitation_loss(torch.tensor([[0.8]]), target, speed, 4.0, 1.0)
     over = imitation_loss(torch.tensor([[1.2]]), target, speed, 4.0, 1.0)
     assert float(under) > float(over)
+
+
+def test_low_speed_recovery_target_accelerates_instead_of_stalling():
+    observations = np.array([[2.0, 0.3], [2.0, 0.45], [2.0, 1.0]], dtype=np.float32)
+    teacher = np.zeros((3, 1), dtype=np.float32)
+    targets = add_low_speed_recovery_targets(observations, teacher, 0.45, 0.05)
+    np.testing.assert_allclose(targets[:, 0], [-3.0, 0.0, 0.0], atol=1e-6)

@@ -203,6 +203,8 @@ def run_robust_sbc(config: Dict, output_dir: Path, semantic_checkpoint: str, unc
         controller_path = robust_controller
     elif controller_name == "safety_filter":
         controller_path = config["safety_filter_controller"]
+    elif controller_name == "standalone":
+        controller_path = config["standalone_controller"]
     else:
         raise ValueError(f"unknown robust_sbc controller: {controller_name}")
     metrics = train_barrier(
@@ -313,6 +315,20 @@ def main() -> None:
     summary["runtime_seconds"] = float(time.time() - started)
     save_json(output_dir / "summary.json", summary)
     print(json.dumps(summary, indent=2, ensure_ascii=False))
+    verification = robust_sbc["metrics"]["verification"]
+    worst = verification["worst_case"]
+    print(f"\n[SBC: {config['robust_sbc'].get('output_name', '04_robust_sbc')}]")
+    print(f"status: {verification['status']}")
+    print(
+        f"violations: {verification['violation_count']} / "
+        f"{verification['checked_states']}"
+    )
+    print(f"min margin: {verification['min_margin']:.6f}")
+    print(f"mean margin: {verification['mean_margin']:.6f}")
+    print(
+        f"worst state: d={worst['distance_m']:.3f} m, "
+        f"v={worst['speed']:.3f} m/s"
+    )
 
 
 if __name__ == "__main__":
