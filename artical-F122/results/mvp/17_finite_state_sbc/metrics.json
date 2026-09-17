@@ -1,0 +1,81 @@
+{
+  "experiment": "finite_state_supermartingale_barrier",
+  "algorithm": "HiGHS linear programming on a three-mode robust abstraction",
+  "status": "verified",
+  "certificate_class": "piecewise_constant_supermartingale_barrier",
+  "stochastic_interpretation": "Degenerate stochastic/robust certificate under zero process residual; semantic inputs are treated adversarially inside the calibrated contract.",
+  "closure_evidence": {
+    "path": "results/mvp/16_policy_ibp_full_final/metrics.json",
+    "sha256": "1017ef4a51bd8585be717cde0ef50d32694d0acc1fc0283c857fddd9e7069d2d",
+    "status": "local_action_condition_verified",
+    "controller": "results/mvp/14_standalone_ppo_dual_boundary_repair/standalone_ppo_repaired.zip",
+    "evaluated_cells": 3624,
+    "certified_cells": 2002,
+    "unresolved_cells": 0,
+    "certified_fraction_of_region": 0.8553469571200284,
+    "unrecoverable_fraction_of_region": 0.14465304287997158
+  },
+  "abstract_states": [
+    "recoverable",
+    "safe_terminal",
+    "unsafe_or_unrecoverable"
+  ],
+  "robust_successor_relation": {
+    "recoverable": [
+      "recoverable",
+      "safe_terminal"
+    ],
+    "safe_terminal": [
+      "safe_terminal"
+    ],
+    "unsafe_or_unrecoverable": [
+      "unsafe_or_unrecoverable"
+    ]
+  },
+  "barrier_definition": {
+    "recoverable": 0.0,
+    "safe_terminal": 0.0,
+    "unsafe_or_unrecoverable": 1.0
+  },
+  "initial_region": {
+    "distance_m": [
+      15.0,
+      16.0
+    ],
+    "speed_m_per_s": [
+      2.5,
+      3.0
+    ],
+    "minimum_recoverability_margin_m": 7.47,
+    "contained_in_recoverable_set": true
+  },
+  "lp": {
+    "success": true,
+    "solver_status_code": 0,
+    "solver_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "variables": [
+      "B_recoverable",
+      "B_safe_terminal",
+      "B_unsafe",
+      "beta"
+    ],
+    "objective": [
+      1e-09,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "constraint_count": 3,
+    "maximum_constraint_residual": 0.0,
+    "barrier_values": {
+      "recoverable": 0.0,
+      "safe_terminal": 0.0,
+      "unsafe_or_unrecoverable": 1.0
+    },
+    "initial_failure_probability_upper_bound_beta": 0.0,
+    "objective_value": 0.0
+  },
+  "conditional_guarantee": "For every initial state in the stated initial region, if every semantic observation remains inside the calibrated state-conditional contract and the process residual is zero, the supermartingale bound on reaching the unsafe_or_unrecoverable abstract state is beta.",
+  "scope_limit": "beta is not an unconditional trajectory-risk bound. A trajectory-level probability for remaining inside the semantic contract must be calibrated separately before combining it with this conditional certificate.",
+  "runtime_seconds": 0.2731747627258301
+}
