@@ -1,0 +1,509 @@
+Provably Probabilistic Safe Controller Synthesis for Vision-Based
+              Neural Network Control Systems
+                                                         Anonymous Author(s)
+Abstract                                                                     However, conventional NN verification methods exhibit notable
+The prevalence of nonlinear systems in safety-critical domains calls     limitations when applied to this field. For instance, reachability-
+for controllers with safety guarantees, while vision-based control re-   based frameworks that combine cGANs with system analysis [20]
+lies on high-dimensional images complicates both decision-making         tend to produce large over-approximation errors, leading to overly
+and formal safety analysis under uncertainty. This paper proposes        conservative verification results, high computational costs, and
+a provably safe controller synthesis method for vision-based neural      frequent false alarms in multi-step temporal reasoning. Addition-
+network control systems. We first employ a conditional genera-           ally, these approaches usually provide only qualitative safety as-
+tive adversarial network (cGAN) to approximate the mapping from          sessments and fail to yield quantitative safety guarantees under
+system states to visual observations and combine it with RL-based        environmental perturbations. In contrast, deductive verification
+pretraining to build a verifiable closed-loop structure. A data-driven   methods based on barrier certificates (BCs [23]) can offer formal
+model quantifies uncertainties from environmental perturbations,         safety guarantees over infinite time horizons. Recent advances in
+while martingale theory guides the learning of a stochastic barrier      neural BCs have significantly improved computational efficiency
+certificate (SBC) to provide rigorous probabilistic safety bounds.       and scalability [9, 36], yet their extension to vision-based verifica-
+Furthermore, counterexamples from verification are used to alter-        tion remains largely unexplored. Although some attempts [10, 32]
+nately refine both the controller and certificate networks, ultimately   combine safety synthesis for vision-based controllers with con-
+yielding a controller with formally provable probabilistic safety        trol barrier function (CBF [2]), these methods rely on online opti-
+guarantees. Experimental results on widely studied benchmarks            mization during execution, introducing substantial computational
+demonstrate the efficiency and effectiveness of our approach.            overhead and still lacking formal global safety guarantees. In addi-
+                                                                         tion, the supervised learning paradigm often suffers from limited
+                                                                         expressiveness and unstable loss convergence.
+Keywords                                                                     To address these challenges, this paper proposes a provably prob-
+vision-based neural network control system, formal verification,         abilistic safety controller synthesis framework for vision-based
+martingales, stochastic barrier certificate, reinforcement learning      NNCSs and establishes a formally computable lower bound on
+                                                                         safety probability. The framework uses a cGAN-based visual ob-
+                                                                         servation model to approximate system states from raw observa-
+                                                                         tions. These estimated states are then used to pre-train a high-
+1   Introduction                                                         performance controller with reinforcement learning. Subsequently,
+Neural network control systems (NNCSs) [12, 28] with strong non-         state disturbances caused by environmental perturbations are mod-
+linear approximation are widely used in safety-critical fields like      eled from data, and their evolution is tracked throughout policy
+autonomous driving, robotics, and UAVs [6, 18]. However, NNs             updates. This leads to a verifiable closed-loop system that sup-
+are inherently vulnerable to perturbations [3, 4], raising safety        ports formal safety analysis under uncertainty. Building on this,
+and reliability concerns. Vision-based NNCSs, which depend on            we integrate martingale theory [5, 13] with stochastic barrier cer-
+high-dimensional images captured by sensors [15, 22], introduce          tificates (SBC) to verify the probabilistic safety of systems over
+significant complexity, rendering the synthesis and formal verifica-     infinite-horizon time and derive rigorous safety lower bounds. For
+tion of safe controllers substantially more challenging.                 computational efficiency, neural certificate networks are used to
+   Despite significant advances in formal verification of NNCSs [7,      construct and train the SBC, while counterexamples generated
+19, 31, 35], the verification of vision-based NNCSs remains at an        during verification iteratively refine both the controller network
+early stage. The main challenge arises from the complexity of vi-        and certificate candidates, ultimately producing a valid SBC and a
+sual perception networks, which typically employ convolutional           controller provably safe with respect to it.
+or transformer-based architectures, and the theoretical difficulty           To the best of our knowledge, our method is the first to jointly
+of reasoning about all possible high-dimensional visual inputs. A        leverage RL and SBC to synthesize high-performance vision-based
+key strategy to address this challenge is the approximation of the       controllers while providing formal safety guarantees of probabilis-
+visual observation model, enabling vision-based controllers to map       tic safety bounds over unbounded steps. The proposed approach
+states to image observations and determine control actions from          achieves both strong control performance and high-probability
+these observations. Existing approaches often utilize conditional        safety, demonstrating its effectiveness and practicality for safe con-
+generative adversarial networks (cGANs [21]) to approximate the          troller synthesis in vision-based NNCSs. The main contributions of
+perception system and integrate the cGAN with the controller into        this paper can be summarized as follows:
+a unified network. This results in a manageable mapping from the
+explicitly defined low-dimensional state space and latent variables          • We propose a provably probabilistic safe controller synthesis
+to control actions, facilitating the direct application of existing NN         framework for vision-based neural network control systems,
+verification techniques to assess the safety of vision-based NNCSs.            providing formal probabilistic safety guarantees.
+DAC ’26, July 26–29, 2026, Long Beach, CA                                                                                                  Anon.
+
+
+     • We develop a learnable stochastic barrier certificate which           Based on the above assumptions, we consider a stochastic discrete-
+       leverages martingale theory and data-driven disturbance to         time system
+       enable probabilistic verification with formally certified lower                            𝑠𝑡 +1 = 𝐹˜ (𝑠𝑡 , 𝑧 0, Δ𝑠)
+       bounds on safety.
+                                                                          with a Borel-measurable state space 𝑆 ⊆ R𝑚 , initial set 𝑆 0 ⊆ 𝑆, and
+     • We synthesize provably safe controllers under the guidance
+                                                                          disturbance space ΩΔ ⊆ R𝑚 . We assume that 𝑆 is compact and
+       of stochastic barrier certificates and iteratively refine both
+                                                                          that 𝐹˜ is Lipschitz continuous, which ensures that the system evo-
+       the certificate and controller networks using counterexam-
+                                                                          lution is well-defined under stochastic disturbances Δ𝑠. A system
+       ples, improving efficiency and practicality.
+                                                                          trajectory is defined as the sequence (𝑠𝑡 , Δ𝑠)𝑡 ∈N0 , which induces
+                                                                          a discrete-time Markov process [25] with probability measure P𝑠0
+2    Preliminaries                                                        and expectation operator E𝑠0 for any initial state 𝑠 0 ∈ 𝑆 0 . Then, the
+We consider a discrete-time dynamical system:                             probabilistic safety problem can be defined as follows:
+            𝑠𝑡 +1 = 𝑓 (𝑠𝑡 , 𝑢𝑡 ),   𝑜𝑡 = 𝑔(𝑠𝑡 , 𝑧𝑡 ),   𝑢𝑡 = 𝜋 (𝑜𝑡 )
+                                                                             Definition 2.1 (Probabilistic Safety). Let 𝑋𝑢 ⊆ 𝑆 be a Borel mea-
+with initial state 𝑠 0 ∈ 𝑆 0 . Here 𝑓 : 𝑆 × 𝑈 → 𝑆 denotes the system      surable unsafe set in the state space 𝑆 ⊆ R𝑚 . Let 𝑝 ∈ [0, 1) denote
+dynamics, where 𝑆 ⊆ R𝑚 represents the continuous state space and          a probability threshold. The goal is to learn a control policy 𝜋 such
+𝑈 ⊆ R𝑛 the control action space. The variables 𝑠𝑡 and 𝑢𝑡 denote the       that, for any initial state 𝑠 0 ∈ 𝑆 0 , the system avoids entering the
+system state and control input at time step 𝑡, respectively. The map-     unsafe set 𝑋𝑢 with probability at least 𝑝. Formally, we want to find
+ping 𝑔 : 𝑆 × 𝑍 → 𝑂 characterizes the observation process, where           a control policy 𝜋 satisfying
+𝑧𝑡 ∈ 𝑍 captures unobserved environmental perturbations, 𝑍 ⊆ R𝑝                                                     
+                                                                                                   P𝑠0 Safe(𝑋𝑢 ) ≥ 𝑝,
+denotes the perturbation space, 𝑜𝑡 ∈ 𝑂 denotes the corresponding
+visual observation, and 𝑂 ⊆ R𝐻 ×𝑊 represents the observation              where Safe(𝑋𝑢 ) = {(𝑠𝑡 , Δ𝑠)𝑡 ∈N0 | ∀𝑡 ∈ N0, 𝑠𝑡 ∉ 𝑋𝑢 } is the set of
+space consisting of 𝐻 ×𝑊 grayscale images. The policy 𝜋 : 𝑂 → 𝑈           all trajectories that never enter the unsafe set 𝑋𝑢 . Here, P𝑠0 is the
+represents a vision-based control mechanism that maps observa-            probability measure induced by the initial state 𝑠 0 and the stochastic
+tions 𝑜𝑡 to the actions 𝑢𝑡 . In this formulation, 𝑚, 𝑛, 𝑝 ∈ N denote      disturbances Δ𝑠, ensuring that the system remains in the safe region
+the dimensions of the respective spaces, and 𝐻,𝑊 ∈ N denote the           𝑆 \ 𝑋𝑢 with at least probability 𝑝 over time 𝑡.
+height and width of the image observations.
+                                                                             To formally characterize such safety guarantees, we introduce
+   In this setting, the system dynamics 𝑓 are assumed to be known,
+                                                                          a stochastic barrier certificate (SBC [24]) that captures the rela-
+while both the observation function 𝑔 and the control policy 𝜋 are
+                                                                          tionship among system states, disturbances, and safety constraints.
+unknown. To obtain a tractable surrogate for the observation pro-
+                                                                          Serving as a Lyapunov-like certificate, SBC ensures that the synthe-
+cess, we approximate 𝑔 using a conditional generative adversarial
+                                                                          sized control policy satisfies the desired safety probability bound
+network (cGAN) that learns a mapping from pairs (𝑠, 𝑧) of system
+                                                                          throughout the closed-loop evolution.
+state 𝑠 and latent variable 𝑧 to visual observations 𝑜 [16], where
+the generator is trained on datasets of images annotated with their          Theorem 2.2. Let 𝑆 be the state space, 𝑆 0 ⊆ 𝑆 the initial set, and
+associated system states within a conditional adversarial learning        𝑋𝑢 ⊆ 𝑆 the unsafe set. Let 𝑝 ∈ [0, 1) denote the probability threshold.
+framework [14, 21]. The stochasticity of the system arises from the       A continuous function 𝐵 : 𝑆 → R is said to satisfy the SBC with
+unobserved environmental variable 𝑧𝑡 , which affects the visual ob-       respect to 𝑆 0 , 𝑋𝑢 , and 𝑝 if it satisfies:
+servation 𝑜𝑡 , propagates through the policy 𝜋 (𝑜𝑡 ), and ultimately          (i) 𝐵(𝑠) ≥ 0 for each 𝑠 ∈ 𝑆,
+affects the closed-loop state evolution. To facilitate uncertainty            (ii) 𝐵(𝑠) ≤ 1 for each 𝑠 ∈ 𝑆 0 ,
+analysis, we introduce the following assumption.                                              1
+                                                                              (iii) 𝐵(𝑠) ≥         for each 𝑠 ∈ 𝑋𝑢 ,
+   Assumption 1. Let 𝑧 0 denote a reference environmental condition.                       1−𝑝
+                                                                              (iv) There exists 𝜖 > 0 such that for each 𝑠 ∈ 𝑆 \ 𝑋𝑢 at which
+There exists a mapping 𝐹 : 𝑆 × 𝑍 → 𝑆 determined by the system                              1
+                                                                                                , we have 𝐵(𝑠) ≥ EΔ𝑠∼𝜇 𝐵( 𝐹˜ (𝑠, 𝑧 0, Δ𝑠)) + 𝜖.
+                                                                                                                                         
+dynamics 𝑓 , the observation function 𝑔, and the control policy 𝜋, such           𝐵(𝑠) ≤
+                                                                                         1−𝑝
+that for a given state 𝑠 ∈ 𝑆 and environmental condition 𝑧 ∈ 𝑍 , the
+                                                                          If an SBC is found, the probability of entering the unsafe region can
+next state is
+                                                                          be guaranteed to be less than 1-p, which means that the probability
+                              𝑠 ′ = 𝐹 (𝑠, 𝑧).
+                                                                          of system safety can be guaranteed to be at least 𝑝.
+Define the deviation in the system state due to environmental varia-
+tions relative to the reference 𝑧 0 as
+                                                                          3    The Framework of Provably Probabilistic Safe
+                   Δ𝑠 = 𝐹 (𝑠, 𝑧) − 𝐹 (𝑠, 𝑧 0 ) ∈ ΩΔ ⊂ R𝑚 ,
+                                                                               Controller Synthesis
+where Δ𝑠 is a random variable with Borel probability measure
+                                                                          In this section, we present a closed-loop framework named SafePVC
+                           Δ𝑠 ∼ 𝜇,      𝜇 ∈ P (ΩΔ ),                      for synthesizing provably probabilistic safe controllers for vision-
+independent of the current state 𝑠. The closed-loop dynamics can then     based neural network control systems. As illustrated in Fig. 1, the
+be written as                                                             framework consists of two core components: an observation approx-
+                                                                          imator and a controller generator. The observation approximator
+                  𝑠 ′ = 𝐹˜ (𝑠, 𝑧 0, Δ𝑠) = 𝐹 (𝑠, 𝑧 0 ) + Δ𝑠,               provides an explicit, analytically tractable visual input model and
+where Δ𝑠 is sampled from the fixed distribution 𝜇.                        pretrains well-performance controller policies using RL, while the
+Provably Probabilistic Safe Controller Synthesis for Vision-Based Neural Network Control Systems                                 DAC ’26, July 26–29, 2026, Long Beach, CA
+
+
+
+
+         cGAN                                                       reward
+                                                                              RL        Safety Verification                Alternating NNs Training
+     s                distill
+                                   MLP
+     z                                                                                State Discretization                    Controller Network                   π
+                                                                     action
+                                                                                                                   cex                                        &
+         downsample             data-drivn perturbation
+                                                                                              SBC                                                                  SBC
+                                                                                                                                 SBC Network
+                                                     environment                            Conditions     false
+                    ×N
+
+          DATASET
+                                         Verifiable Closed-loop System                             True
+
+Figure 1: The pipeline of SafePVC. The left block presents the observation approximator, which uses a cGAN-based state–image
+mapping and RL-based pretraining to construct a verifiable closed-loop system (VCLS) with an initial controller 𝜋 0 . After
+obtaining 𝜋0 , the VCLS executes under environmental perturbations to obtain a data-driven state disturbance distribution. This
+distribution, together with the full VCLS, is then passed to the controller generator in the right block. The pretrained controller
+is evaluated by synthesizing an SBC that certifies probabilistic safety under disturbance Δ𝑠 derived from discretized states ˜𝑠. If
+the SBC violates posterior feasibility, counterexamples (cex) are extracted to alternately refine both the controller and SBC
+networks. The refined controller is reinserted into the VCLS to update the disturbance distribution, and this loop continues
+until both a valid SBC and a controller 𝜋 with provable probabilistic safety are obtained.
+
+
+controller generator employs neural SBCs to assess the probabilis-                       the following distillation loss:
+tic safety of these policies under environmental perceptions and
+                                                                                                           Ldistill = ∥G(𝑠, 𝑧) − 𝑔(𝑠, 𝑧)∥ 22 + 𝜆lip Llip,
+uses counterexamples identified during verification to refine the
+controller network. This iterative process continues until yields a                      where the squared ℓ2 -norm term ∥G(𝑠, 𝑧) −𝑔(𝑠, 𝑧)∥ 22 enforces output
+vision-based DNN controller equipped with a valid SBC providing                          consistency, and Llip is the spectral Lipschitz loss controlling the
+formal provable probabilistic safety guarantees.                                         global Lipschitz constant of 𝑔, which ensures the distilled percep-
+                                                                                         tion model retains the expressiveness of the cGAN while offering
+3.1       Verifiable Closed-loop System Construction                                     verifiability through bounded Lipschitz continuity.
+In this subsection, we construct an end-to-end verifiable closed-loop                       In details, the loss Llip is computed by estimating the spectral
+control system that transforms the otherwise intractable vision-                         norm of each linear layer via power iteration and combining it with
+based NNCS into a form amenable to formal analysis. The system                           the Lipschitz factors of activation and BatchNorm layers, where
+maps the state 𝑠 and latent variable 𝑧 to a vision-based control policy                  the latter contribute through their scaling coefficients. This yields
+together with a quantitative estimation of environmental perturba-                       a principled approximation of the global Lipschitz constant of the
+tions. As illustrated in the left block of Fig. 1, the procedure consists                neural network.
+of three tightly coupled steps: i) a conditional generative model for                       [Vision-Based Controller Training with PPO]. We train a
+perception, ii) a distillation process that produces a verification-                     vision-based controller 𝜋𝜃 (𝑎|𝑜) using Proximal Policy Optimiza-
+friendly MLP model, and iii) a reinforcement learning module for                         tion (PPO) [29], where the policy makes decisions based on state
+pre-training a robust control policy network.                                            estimates 𝑠ˆ derived from perceptual observations 𝑜 = 𝑔(𝑠, 𝑧). The
+   [cGAN-based Perception Model]. We employ a cGAN where                                 PPO clipped surrogate objective is
+generator G(𝑠, 𝑧) produces observations conditioned on state 𝑠 and
+                                                                                                           h                                           i
+                                                                                                𝐿(𝜃 ) = Ê𝑡 min 𝑟𝑡 (𝜃 )𝐴ˆ𝑡 , clip 𝑟𝑡 (𝜃 ), 1 − 𝜖, 1 + 𝜖 𝐴ˆ𝑡 ,
+environmental perturbation 𝑧, while discriminator D distinguishes
+real from generated observations. The model is pre-trained with                          where Ê𝑡 denotes the empirical expectation over timesteps, 𝑟𝑡 (𝜃 ) =
+orthogonal initialization using the objective:                                            𝜋𝜃 (𝑎𝑡 |𝑜𝑡 )
+                                                                                         𝜋    (𝑎 |𝑜 ) is the probability ratio with 𝜃 old denoting the policy
+                                                                                           𝜃 old   𝑡   𝑡
+min max E (𝑜,𝑠 )∼𝑝 data [log 𝐷 (𝑜, 𝑠)]+E𝑠∼𝑝𝑠 ,𝑧∼𝑝𝑧 [log(1−𝐷 (G(𝑠, 𝑧), 𝑠))],              parameters from the previous update, and 𝐴ˆ𝑡 is the advantage
+ G       D
+                                                                                         estimator. We pretrained a controller 𝜋0 using these state estimates
+where 𝑝 data is the joint distribution of real state-observation pairs,                  via a third-party RL framework [26].
+𝑝𝑠 the state distribution, and 𝑝𝑧 the environmental perturbation
+distribution. The discriminator maximizes the objective by clas-                            Remark 1 (Data-Driven Disturbance Estimation). After con-
+sifying real and generated samples correctly, while the generator                        structing the closed-loop system, a data-driven approach is employed
+minimizes it by fooling the discriminator.                                               to quantitatively characterize the disturbance term Δ𝑠, capturing how
+   [MLP Distillation with Lipschitz Regularization]. To im-                              environmental perturbations affect system dynamics.
+prove verification efficiency, the trained cGAN generator is distilled                      For a given set of states S = {𝑠 1, . . . , 𝑠 𝑁S }, we generate 𝑁 pertur-
+                                                                                         bation samples for each 𝑠𝑖 , compute the next-step states 𝑠𝑖,𝑧     ′ under
+into a compact MLP model 𝑔(𝑠, 𝑧). Given paired samples produced                                                                                              0
+by the teacher model G, the student MLP is optimized to minimize                                                   ′
+                                                                                         baseline control 𝑧 0 and 𝑠𝑖,𝑧 under perturbed control 𝑧, and define the
+DAC ’26, July 26–29, 2026, Long Beach, CA                                                                                                                   Anon.
+
+
+disturbance as Δ𝑠𝑖 = 𝑠𝑖,𝑧
+                        ′ − 𝑠 ′ . By statistically analyzing the distri-
+                              𝑖,𝑧 0                                               Proof. Let 𝑠 ∈ 𝑆 satisfy ∥𝑠 − 𝑠˜ ∥ 2 ≤ 𝜏. By the Lipschitz continuity
+bution of Δ𝑠 across all states and perturbation samples, we obtain the         of 𝐵 with constant 𝐿𝐵 , we have
+corresponding state disturbance distribution, which serves as the basis                       𝐵(𝑠) ≥ 𝐵( ˜𝑠) − 𝐿𝐵 ∥𝑠 − 𝑠˜ ∥ 2 ≥ 𝐵( ˜𝑠) − 𝜏𝐿𝐵 .                      (1)
+for subsequent system verification.
+                                                                                  For the expectation term, using the Lipschitz properties of 𝐵, 𝑓 ,
+3.2     SBC-Guided Provably Probabilistic Safe                                 𝜋, and 𝑔 with constants 𝐿𝐵 , 𝐿 𝑓 , 𝐿𝜋 , and 𝐿𝑔 , respectively, we have
+        Controller Synthesis                                                       EΔ𝑠∼𝜇 [𝐵( 𝐹˜ (𝑠, 𝑧 0, Δ𝑠))] = EΔ𝑠∼𝜇 [𝐵(𝑓 (𝑠, 𝜋 (𝑔(𝑠, 𝑧 0 ))) + Δ𝑠)]
+In this section, as shown in the right block of Fig. 1, we first employ             ≤ EΔ𝑠∼𝜇 [𝐵(𝑓 ( ˜𝑠, 𝜋 (𝑔( ˜𝑠, 𝑧 0 ))) + Δ𝑠)]
+the stochastic barrier certificate conditions from Theorem 2.2 to rig-
+                                                                                      + 𝐿𝐵 ∥𝑓 (𝑠, 𝜋 (𝑔(𝑠, 𝑧 0 ))) − 𝑓 ( ˜𝑠, 𝜋 (𝑔( ˜𝑠, 𝑧 0 )))∥ 2
+orously verify the probabilistic safety of the visual-based control 𝜋0
+previously obtained through reinforcement learning. And then, vio-                  ≤ EΔ𝑠∼𝜇 [𝐵( 𝐹˜ ( ˜𝑠, 𝑧 0, Δ𝑠))]
+lations identified during verification trigger counterexample-guided                          √︃
+refinement, iteratively improving the policy until SBC-guaranteed                     + 𝐿𝐵 𝐿 𝑓 ∥𝑠 − 𝑠˜ ∥ 22 + ∥𝜋 (𝑔(𝑠, 𝑧 0 )) − 𝜋 (𝑔( ˜𝑠, 𝑧 0 ))∥ 22
+probabilistic safety is achieved.                                                                                            √︃
+                                                                                    ≤ EΔ𝑠∼𝜇 [𝐵( 𝐹˜ ( ˜𝑠, 𝑧 0, Δ𝑠))] + 𝜏𝐿𝐵 𝐿 𝑓 1 + (𝐿𝜋 𝐿𝑔 ) 2 .                     (2)
+3.2.1 Neural SBC Synthesis. We adopt a learning-and-verification
+paradigm to construct a neural SBC, building on prior evidence that              Combining (1) and (2), we obtain
+neural certificate construction yields effective [9, 36]. A neural net-          𝐵(𝑠) − EΔ𝑠∼𝜇 [𝐵( 𝐹˜ (𝑠, 𝑧 0, Δ𝑠))]
+work 𝐵(s) is used as a proxy to approximate a candidate stochastic                                                                            √︃
+                                                                                  ≥ 𝐵( ˜𝑠) − EΔ𝑠∼𝜇 [𝐵( 𝐹˜ ( ˜𝑠, 𝑧 0, Δ𝑠))] − 𝜏𝐿𝐵 1 + 𝐿 𝑓
+                                                                                                                                                               
+barrier function by minimizing a composite loss function                                                                                        1 + (𝐿𝜋 𝐿𝑔 ) 2
+                 L𝐿 = Ldec_L + 𝜆𝑅 Lregion + 𝜆𝐿 Llip_L,                            = 𝐵( ˜𝑠) − EΔ𝑠∼𝜇 [𝐵( 𝐹˜ ( ˜𝑠, 𝑧 0, Δ𝑠))] − 𝐾 .                                   (3)
+designed to penalize violations of the four key structural conditions            By assumption, 𝐵( ˜𝑠) − EΔ𝑠∼𝜇 [𝐵( 𝐹˜ ( ˜𝑠, 𝑧 0, Δ𝑠))] − 𝐾 ≥ 𝜖, hence
+stated in Theorem 2.2.
+[Expected Decrease Condition (Ldec_L )]. The dominant term                                        𝐵(𝑠) − EΔ𝑠∼𝜇 [𝐵( 𝐹˜ (𝑠, 𝑧 0, Δ𝑠))] ≥ 𝜖.
+Ldec_L implements the martingale-based Expected Decrease Condi-                                                                                                     □
+tion [17], which encourages the conditional expectation of the SBC
+value at the next state to lie strictly below a scaled current value:          3.2.2 SBC-guided Controller Policy Synthesis. The policy 𝜋 is op-
+                                                                               timized to aggressively satisfy the expected decrease condition
+                     h                                      i
+       Ldec_L = Es𝑡 max 0, E[𝐵(s𝑡 +1 ) | s𝑡 ] − 𝛾𝐵(s𝑡 ) + 𝜖 ,                  relative to the current candidate SBC 𝐵(s), while adhering to ro-
+                                                                               bustness and behavioral constraints. The controller’s loss function
+where 𝛾 ∈ (0, 1] and 𝜖 > 0 impose a strict decrease margin.                    L𝑃 is defined as:
+The inner expectation is typically estimated via Monte-Carlo sam-
+pling [30] over next states s𝑡 +1 drawn from the system dynamics                                 L𝑃 = Ldec_P + 𝜆𝑃 Llip_P + 𝜆𝑀 Lmse .
+conditioned on s𝑡 .                                                            [Decrease Maximization (Ldec_P )]. The term Ldec_P shares the
+[Region Constraints (Lregion )]. To satisfy the initial-state and              same martingale loss structure as Ldec_L . When verification fails,
+safety requirements, Lregion penalizes violations of the boundary              the policy 𝜋 collects counterexamples generated during the verifica-
+conditions on samples from the initial set 𝑆 0 and unsafe set 𝑆𝑢 .             tion process and computes this loss accordingly. The policy is then
+   By the way, a regularization term Llip_L is incorporated into the           updated to minimize the loss, thereby encouraging the selection of
+loss function of 𝐵(𝑠) to constrain its Lipschitz ℓ2 constant, thereby          actions that lead to a greater expected decrease in the SBC value.
+facilitating the next verification process outlined in Theorem 3.1.            [Lipschitz Regularization (Llip_P )]. The term Llip_P constrains
+   To formally check the validity of learned SBC candidates, each              the controller network’s local Lipschitz ℓ2 constant with respect to
+condition of the SBC in Theorem 2.2 must be rigorously verified.               its inputs. This regularization enhances smoothness and improves
+Condition (i) can be satisfied by appropriately designing the neural           the policy’s robustness against input disturbances, in accordance
+network architecture, while conditions (ii) and (iii) are verified via         with the requirements of Theorem 3.1.
+interval propagation techniques [11, 33]. Specifically, we leverage                To balance safety and performance, we introduce a behavioral
+the state-of-the-art neural network verification tool 𝛼-𝛽-Crown [34]           similarity constraint Lmse that penalizes deviations from the pre-
+and determine satisfaction based on the computed interval bounds.              trained baseline 𝜋0 :
+For condition (iv), we establish the following theorem:                                                                         
+                                                                                                  Lmse = E𝑜 ∥𝜋 (𝑜) − 𝜋 0 (𝑜) ∥ 22 .
+    Theorem 3.1. Let 𝐹˜ (𝑠, 𝑧 0, Δ𝑠) = 𝑓 (𝑠, 𝜋 (𝑔(𝑠, 𝑧 0 ))) + Δ𝑠, and 𝐵 :
+                                                                                  Remark 2 (Alternating Optimization). To improve the train-
+𝑆 → R be a Lipschitz continuous function with constant 𝐿𝐵 . Suppose
+                                                                               ing efficiency and convergence of both the controller network and the
+𝑓 , 𝜋, and 𝑔 have Lipschitz constants 𝐿 𝑓 , 𝐿𝜋 , and 𝐿𝑔 , respectively,
+                                                                               SBC network, the synthesis process adopts an alternating optimization
+and let 𝜏 > √︃0 bound ∥𝑠 − 𝑠˜ ∥ 2 ≤ 𝜏 for 𝑠, 𝑠˜ ∈ 𝑆. Define 𝐾 = 𝜏 ·
+                                                                              scheme. Specifically, the procedure iterates between two steps:
+𝐿𝐵 · 1 + 𝐿 𝑓 1 + (𝐿𝜋 𝐿𝑔 ) 2 , if there exists 𝑠˜ ∈ 𝑆 such that 𝐵( ˜𝑠) −
+                                                                                   • SBC Update (fixed 𝜋): The SBC parameters are optimized to
+EΔ𝑠∼𝜇 𝐵( 𝐹˜ ( ˜𝑠, 𝑧 0, Δ𝑠)) −𝐾 ≥ 𝜖, then for any 𝑠 ∈ 𝑆 with ∥𝑠 − 𝑠˜ ∥ 2 ≤ 𝜏,
+                          
+                                                                                     minimize L𝐿 , yielding tighter probabilistic safety bounds for
+we have 𝐵(𝑠) − EΔ𝑠∼𝜇 𝐵( 𝐹˜ (𝑠, 𝑧 0, Δ𝑠)) ≥ 𝜖.
+                                         
+                                                                                     the current policy.
+Provably Probabilistic Safe Controller Synthesis for Vision-Based Neural Network Control Systems                             DAC ’26, July 26–29, 2026, Long Beach, CA
+
+
+      • Policy Update (fixed 𝐵): The policy parameters are optimized                     closed-loop systems are first constructed via the proposed MLP
+        to minimize L𝑃 , guiding the controller to produce actions that                  distillation with Lipschitz regularization technique based on cGAN.
+        satisfy the probabilistic safety constraints established by the                  Subsequently, two ablation studies are conducted to assess the ef-
+        current SBC.                                                                     fectiveness of SBC-based verification-guided controller training,
+   This alternating scheme establishes a symbiotic relationship: the                     as well as the algorithm robustness of the certified probabilistic
+SBC certifies the safety of the policy, while the policy is refined to sat-              safety lower bounds of the controllers under varying disturbance
+isfy increasingly stringent safety conditions. Compared with methods                     intensities. All experiments were conducted on a Windows 11 ma-
+that jointly train controllers and barrier functions using supervised                    chine equipped with 32-GB RAM and an AMD Ryzen 7 5800H CPU
+learning (e.g., CBF-based approaches [1, 32]), this approach achieves                    running at 3.2 GHz. The source code and more experimental details
+improved training efficiency and faster convergence.                                     are available at https://anonymous.4open.science/r/artical-F122.
+
+3.3     Overall Algorithm                                                                4.1       Experiment Setup
+In this section, we present Algorithm 1 to summarize the proce-                          [X-Plane11 Trajectory Tracking]. It evaluates aircraft taxiing
+dure called SafePVC of synthesizing a provably probabilistic safe                        along a predefined path, requiring the controller to maintain sta-
+controller for a vision-based neural network control system.                             bility and accurately follow trajectory constraints. The system dy-
+                                                                                         namics are governed by the following discrete-time equations:
+                                                                                                                                          𝑣
+Algorithm 1 SafePVC                                                                               𝑝𝑘+1 = 𝑝𝑘 + 𝑣Δ𝑡 sin 𝜃𝑘 , 𝜃𝑘+1 = 𝜃𝑘 + Δ𝑡 tan 𝜙𝑘
+                                                                                                                                          𝐿
+Require: dataset 𝐷 = {(𝑠𝑖 , 𝑜𝑖 )}, system dynamics 𝑓 , latent variable
+                                                                                         where the aircraft state is defined by its lateral deviation 𝑝 ∈
+    𝑧 ∼ 𝑈 [−1, 1], discrete system state space 𝑆
+                                                                                         [−11, 11] m and heading angle deviation 𝜃 ∈ [−30, 30] ◦ . The pa-
+Ensure: stochastic barrier certificate SBC, controller network 𝜋
+                                                                                         rameters 𝑣 = 5 m/s, Δ𝑡 = 0.05 s, and 𝐿 = 5 m represent the taxiing
+ 1: G, D ← cGAN(𝐷, 𝑧)
+                                                                                         speed, controller update frequency, and wheelbase, respectively.
+ 2: 𝑔 ← Distill(G)
+                                                                                         [CARLA Emergency Braking]. It requires the vehicle to ap-
+ 3: 𝜋 0 ← InitController()
+                                                                                         proach a target point as rapidly as possible while guaranteeing that
+ 4: 𝜋 0 ← PPO(𝜋 0 , 𝑓 , 𝑆), 𝜋 ← 𝜋 0
+                                                                                         its speed is reduced below a safe threshold before reaching a speci-
+ 5: VCLS ← Concat(𝑔, 𝜋 0 )
+                                                                                         fied distance. The system dynamics are governed by the following
+ 6: SBC ← InitSBC()
+                                                                                         discrete-time equations:
+ 7: Δ𝑠 ← Distribution_Estimation(VCLS, 𝑓 , 𝑧 0 , 𝑧, 𝑆)
+ 8: iters ← 0                                                                                           𝑑𝑘+1 = 𝑑𝑘 − 𝑣𝑘 Δ𝑡,     𝑣𝑘+1 = 𝑣𝑘 − 𝑎𝑘 Δ𝑡
+ 9: while (SBC, VCLS, 𝑧 0 , Δ𝑠, 𝑆) not satisfied theorem2.2 do
+                                                                                         where the vehicle’s state is defined by its distance to the destination
+10:    Collect 𝐶𝑒𝑥𝑠 encountered during the verification process
+                                                                                         𝑑 ∈ [5, 16] m and its current velocity 𝑣 ∈ [0, 3] m/s. The parameter
+11:    SBC ← UpdateSBC (SBC, LossSBC (𝐶𝑒𝑥𝑠))
+                                                                                         Δ𝑡 = 0.05 s denotes the controller’s update frequency.
+12:    if iters mod 10 == 0 then
+                                                                                            Furthermore, the control signals 𝜙𝑘 (for the aircraft) and 𝑎𝑘 (for
+13:       𝜋 ← Update𝜋 (𝜋, LossVCLS (𝐶𝑒𝑥𝑠))
+                                                                                         the vehicle) are generated by an image-based controller. This con-
+14:       Δ𝑠 ← Distribution_Estimation(VCLS, 𝑓 , 𝑧 0, 𝑧, 𝑆)
+                                                                                         troller first estimates the system state from images provided by
+15:    end if
+                                                                                         a perception module, which approximates the actual system, and
+16:    iters ← iters + 1
+                                                                                         then computes the corresponding control actions via a DNN. Dur-
+17: end while
+                                                                                         ing the pre-training phase of our experiment, the DNN controller
+18: return SBC, 𝜋
+                                                                                         was trained using the PPO reinforcement learning algorithm. The
+                                                                                         hyperparameters were set as: learning rate = 3 × 10 −4 , batch size =
+   In Algorithm 1, Lines 1–2 correspond to the training and distilla-                    64, and training steps = 200k.
+tion of the observation model. Lines 3–4 describe the pretraining of
+the controller using the PPO algorithm. Line 5 integrates the obser-                     4.2       Training of the Perception Model
+vation model and the controller network to construct the complete                        We adopt the method introduced in Section 3.1. In the X-Plane11 and
+verifiable closed-loop system (VCLS). Line 7 computes the state                          CARLA simulation environments, the latent variable 𝑧 ∼ 𝑈 [−1, 1]
+disturbance distribution under the current VCLS structure and en-                        is set to have dimensions of 2 and 4, respectively. Accordingly, the
+vironmental perturbations. Line 9 determines whether the current                         model generates grayscale images with resolutions of 8 × 16 and
+VCLS and the SBC satisfy the predefined safety constraints. Finally,                     32 × 32. To enable the cGAN to learn environmental perception, we
+lines 10–15 describe the counterexample-guided alternating train-                        collected 10000 and 400 state-image data pairs from the X-Plane11
+ing process between the SBC and the controller network, which                            and Carla environments, respectively, during specified time inter-
+iteratively refines both safety verification and control performance.                    vals, followed by down-sampling. During our experiments, we ob-
+                                                                                         served that training a cGAN with a small-scale dataset led to mode
+4     Experiments                                                                        collapse. Under such conditions, supervised fine-tuning of an MLP
+In this section, we evaluate the proposed tool SafePVC in two sim-                       yielded superior results. As illustrated in Fig. 2, the proposed obser-
+ulated environments: the X-Plane 11 [27] flight simulator and the                        vation model effectively learns the mapping from system states to
+CARLA [8] driving simulator. For both benchmarks, verifiable                             environmental perception.
+DAC ’26, July 26–29, 2026, Long Beach, CA                                                                                                                     Anon.
+
+
+              d = -9.23m   d = -10.29m   d = 0.69m
+                                                       d = 6.26m     d = 10m     d = 14.52m    demonstrate that alternating updates effectively leverage counterex-
+              θ = 27.18°    θ = -8.99°   θ = -16.55°
+                                                                                               amples to improve the learned SBC, yielding more reliable safety
+      Raw
+                                                                                               guarantees than both fixed and joint-update strategies.
+
+
+
+DownSample
+
+
+
+
+  Generated
+
+
+
+
+Figure 2: Comparison of Perception model approximations
+in the X-Plane11 (left) and CARLA (right) simulation envi-                                     Figure 3: Visualization of the synthesized SBCs in
+ronments. Each group displays the raw input, downsampled                                       verification-Guided training for X-Plane11 Trajectory
+image, and generated grayscale image. The corresponding                                        Tracking (left) and CARLA Emergency Braking (right).
+state parameters, distance 𝑑 (m) and heading angle 𝜃 (◦ ), are
+shown above.
+
+4.3     Performance Evaluation of SafePVC
+The existing baseline methods typically measure controller safety
+over a limited time horizon, and are unable to ensure reliable safety
+for stochastic systems over infinite or long-term horizons. This
+part assesses the practical effectiveness of our approach in such
+extended scenarios.
+                                                                                               Figure 4: Maximum verifiable safety probability vs. training
+    Table 1: Verifiable Probabilistic Safety Lower Bounds                                      steps under different disturbances for X-Plane11 Trajectory
+                                                                                               Tracking (left) and CARLA Emergency Braking (right).
+                                                                    Verification-Guided
+              Benchmark                           Fixed                                           Subsequently, we conducted a detailed analysis of the controller’s
+                                                                   Joint       Alternating     safety guarantees under varying state disturbances. It is important
+  X-Plane11 Trajectory Tracking            84.9%(40 iters.)         OT     92.1%(35 iters.)    to note that these state disturbances are not derived from real-
+   CARLA Emergency Braking                 72.6%(100 iters.)        OT     94.2%(100 iters.)   world environmental perturbations via system-level network anal-
+                                                                                               ysis. Instead, they are directly modeled as uniformly distributed
+   Specifically, we first evaluate the safety assurance efficacy of the                        within manually specified bounds to approximate potential extreme
+verification-guided training methodology through an ablation study.                            and adverse conditions. We compute the controller’s safety prob-
+Within a framework where the perception model parameters are                                   ability under multiple disturbance magnitudes—corresponding to
+frozen and the DNN policy network is pre-trained, we compare the                               percentages of the span in each dimension of the state space—to
+effect of SBC synthesis under two conditions: i) using verification                            approximately evaluate the algorithm’s robustness across different
+counter-examples during post-training, and ii) fixing the policy                               disturbance strengths.
+network parameters. For condition i), we benchmark our approach
+against the method proposed in previous work [37]. The method                                  5   Conclusion
+in [37] employs a joint loss function to achieve the synchronous                               This paper presented a framework for synthesizing provably prob-
+update of both the barrier function and the learning network. In                               abilistic safe controllers for vision-based neural network control
+contrast, our verification-guided training employs an alternating                              systems. It employed a cGAN-based visual observation model and
+optimization strategy: specifically, we perform 1 round of policy                              reinforcement learning to pretrain high-performance policies while
+network parameter updates after every 10 rounds of barrier function                            capturing state disturbances induced by environmental perturba-
+training. The learning rates for the barrier function and the policy                           tions. Stochastic barrier certificates guided by martingale theory
+network are set to 1 × 10 −3 and 5 × 10 −3 , respectively. The results                         provided formal probabilistic safety guarantees over unbounded
+are recorded in Table 1, and the visualization of the synthesized                              time horizons, and counterexample-guided refinement improved
+SBC is illustrated in Fig. 3.                                                                  both the controller and certificate networks. Experiments on bench-
+   Table 1 shows that the fixed controller provides moderate safety                            mark tasks demonstrated the effectiveness, scalability, and robust-
+guarantees, while the joint update scheme failed to converge within                            ness of the proposed approach.
+100 iterations (denoted as “OT"), indicating potential instability                                In future work, we plan to explore higher-resolution image gen-
+when updating both networks simultaneously. In contrast, our                                   eration techniques to capture more complex environmental latent
+verification-guided alternating optimization consistently achieves                             variables, enabling the verification of more diverse vision-based
+higher verifiable safety bounds with fewer iterations. These results                           NNCS properties and the synthesis of controllers.
+Provably Probabilistic Safe Controller Synthesis for Vision-Based Neural Network Control Systems                                         DAC ’26, July 26–29, 2026, Long Beach, CA
+
+
+References                                                                                   [26] Antonin Raffin, Ashley Hill, Adam Gleave, Anssi Kanervisto, Maximilian Ernestus,
+ [1] Hossein Abdi, Golnaz Raja, and Reza Ghabcheloo. 2023. Safe control using                     and Noah Dormann. 2021. Stable-baselines3: Reliable reinforcement learning
+     vision-based control barrier function (V-CBF). In IEEE International Conference              implementations. Journal of machine learning research 22, 268 (2021), 1–8.
+     on Robotics and Automation. IEEE, 782–788.                                              [27] Laminar Research. 2017. X-Plane Flight Simulator. https://www.x-plane.com
+ [2] Aaron D Ames, Samuel Coogan, Magnus Egerstedt, Gennaro Notomista, Koushil               [28] Jagannathan Sarangapani. 2018. Neural network control of nonlinear discrete-time
+     Sreenath, and Paulo Tabuada. 2019. Control barrier functions: Theory and                     systems. CRC press.
+     applications. In 2019 18th European control conference (ECC). Ieee, 3420–3431.          [29] John Schulman, Filip Wolski, Prafulla Dhariwal, Alec Radford, and Oleg Klimov.
+ [3] Adith Boloor, Karthik Garimella, Xin He, Christopher Gill, Yevgeniy Vorobey-                 2017. Proximal Policy Optimization Algorithms. arXiv:1707.06347 [cs.LG] https:
+     chik, and Xuan Zhang. 2020. Attacking vision-based perception in end-to-end                  //arxiv.org/abs/1707.06347
+     autonomous driving models. Journal of Systems Architecture 110 (2020), 101766.          [30] Alexander Shapiro. 2003. Monte Carlo sampling methods. Handbooks in operations
+ [4] Feiyang Cai, Jiani Li, and Xenofon Koutsoukos. 2020. Detecting adversarial exam-             research and management science 10 (2003), 353–425.
+     ples in learning-enabled cyber-physical systems using variational autoencoder           [31] Xinyu Wang, Liqian Chen, Zengyu Liu, Minghao Li, and Banghu Yin. 2025. Veri-
+     for regression. In 2020 IEEE Security and Privacy Workshops (SPW). IEEE, 208–214.            fying Neural Network Controlled Systems by Combining Forward and Backward
+ [5] Aleksandar Chakarov and Sriram Sankaranarayanan. 2013. Probabilistic pro-                    Reachability Analysis. In 2025 25th International Conference on Software Quality,
+     gram analysis with martingales. In International Conference on Computer Aided                Reliability and Security (QRS). IEEE, 315–326.
+     Verification. Springer, 511–526.                                                        [32] Wei Xiao, Tsun-Hsuan Wang, Makram Chahine, Alexander Amini, Ramin Hasani,
+ [6] Chenyi Chen, Ari Seff, Alain Kornhauser, and Jianxiong Xiao. 2015. Deepdriving:              and Daniela Rus. 2022. Differentiable control barrier functions for vision-based
+     Learning affordance for direct perception in autonomous driving. In Proceedings              end-to-end autonomous driving. arXiv preprint arXiv:2203.02401 (2022).
+     of the IEEE international conference on computer vision. 2722–2730.                     [33] Kaidi Xu, Zhouxing Shi, Huan Zhang, Yihan Wang, Kai-Wei Chang, Minlie Huang,
+ [7] Liqian Chen, Yuan Zhou, and Ji Wang. 2025. Verifying Neural Network Controlled               Bhavya Kailkhura, Xue Lin, and Cho-Jui Hsieh. 2020. Automatic perturbation
+     Systems by Combining Taylor Models. In Engineering of Complex Computer                       analysis for scalable certified robustness and beyond. Advances in Neural Infor-
+     Systems: 29th International Conference, ICECCS 2025, Hangzhou, China, July 2–4,              mation Processing Systems 33 (2020), 1129–1141.
+     2025, Proceedings. Springer Nature, 358.                                                [34] Huan Zhang, Shiqi Wang, Kaidi Xu, Linyi Li, Bo Li, Suman Jana, Cho-Jui Hsieh,
+ [8] Alexey Dosovitskiy, German Ros, Felipe Codevilla, Antonio Lopez, and Vladlen                 and J Zico Kolter. 2022. General cutting planes for bound-propagation-based
+     Koltun. 2017. CARLA: An open urban driving simulator. In Conference on robot                 neural network verification. Advances in neural information processing systems
+     learning. PMLR, 1–16.                                                                        35 (2022), 1656–1670.
+ [9] Alec Edwards, Andrea Peruffo, and Alessandro Abate. 2024. Fossil 2.0: Formal            [35] Huan Zhang, Tsui-Wei Weng, Pin-Yu Chen, Cho-Jui Hsieh, and Luca Daniel.
+     certificate synthesis for the verification and control of dynamical models. In Pro-          2018. Efficient neural network robustness certification with general activation
+     ceedings of the 27th ACM International Conference on Hybrid Systems: Computation             functions. Advances in neural information processing systems 31 (2018).
+     and Control. 1–10.                                                                      [36] Hanrui Zhao, Niuniu Qi, Lydia Dehbi, Xia Zeng, and Zhengfeng Yang. 2023.
+[10] Yousef Emam, Gennaro Notomista, Paul Glotfelter, Zsolt Kira, and Magnus Egerst-              Formal synthesis of neural barrier certificates for continuous systems via coun-
+     edt. 2022. Safe reinforcement learning using robust control barrier functions.               terexample guided learning. ACM Transactions on Embedded Computing Systems
+     IEEE Robotics and Automation Letters (2022).                                                 22, 5s (2023), 1–21.
+[11] Sven Gowal, Krishnamurthy Dvijotham, Robert Stanforth, Rudy Bunel, Chongli              [37] Ðorđe Žikelić, Mathias Lechner, Thomas A Henzinger, and Krishnendu Chat-
+     Qin, Jonathan Uesato, Relja Arandjelovic, Timothy Mann, and Pushmeet Kohli.                  terjee. 2023. Learning control policies for stochastic systems with reach-avoid
+     2018. On the effectiveness of interval bound propagation for training verifiably             guarantees. In Proceedings of the AAAI Conference on Artificial Intelligence, Vol. 37.
+     robust models. arXiv preprint arXiv:1810.12715 (2018).                                       11926–11935.
+[12] Martin T Hagan, Howard B Demuth, and Orlando De Jesús. 2002. An introduction
+     to the use of neural networks in control systems. International Journal of Robust
+     and Nonlinear Control: IFAC-Affiliated Journal 12, 11 (2002), 959–985.
+[13] Wassily Hoeffding. 1963. Probability inequalities for sums of bounded random
+     variables. Journal of the American statistical association 58, 301 (1963), 13–30.
+[14] Phillip Isola, Jun-Yan Zhu, Tinghui Zhou, and Alexei A Efros. 2017. Image-to-
+     image translation with conditional adversarial networks. In Proceedings of the
+     IEEE conference on computer vision and pattern recognition. 1125–1134.
+[15] Ismet Burak Kadron, Divya Gopinath, Corina S Păsăreanu, and Huafeng Yu. 2021.
+     Case study: Analysis of autonomous center line tracking neural networks. In
+     International Workshop on Numerical Software Verification. Springer, 104–121.
+[16] Sydney M Katz, Anthony L Corso, Christopher A Strong, and Mykel J Kochender-
+     fer. 2022. Verification of image-based neural network controllers using generative
+     models. Journal of Aerospace Information Systems 19, 9 (2022), 574–584.
+[17] Mathias Lechner, Krishnendu Chatterjee, and Thomas A Henzinger. 2022. Stabil-
+     ity verification in stochastic control systems via neural network supermartingales.
+     In Proceedings of the aaai conference on artificial intelligence, Vol. 36. 7326–7336.
+[18] Sergey Levine, Peter Pastor, Alex Krizhevsky, Julian Ibarz, and Deirdre Quillen.
+     2018. Learning hand-eye coordination for robotic grasping with deep learning
+     and large-scale data collection. The International journal of robotics research 37,
+     4-5 (2018), 421–436.
+[19] Diego Manzanas Lopez, Sung Woo Choi, Hoang-Dung Tran, and Taylor T Johnson.
+     2023. NNV 2.0: The neural network verification tool. In International Conference
+     on Computer Aided Verification. Springer, 397–412.
+[20] Xinhang Ma, Junlin Wu, Hussein Sibai, Yiannis Kantaros, and Yevgeniy Vorob-
+     eychik. 2025. Learning Vision-Based Neural Network Controllers with Semi-
+     Probabilistic Safety Guarantees. arXiv preprint arXiv:2503.00191 (2025).
+[21] Mehdi Mirza and Simon Osindero. 2014. Conditional generative adversarial nets.
+     arXiv preprint arXiv:1411.1784 (2014).
+[22] Jose Maurıcio ST Motta, Guilherme C De Carvalho, and RS McMaster. 2001. Robot
+     calibration using a 3D vision-based measurement system with a single camera.
+     Robotics and Computer-Integrated Manufacturing 17, 6 (2001), 487–497.
+[23] Stephen Prajna and Ali Jadbabaie. 2004. Safety verification of hybrid systems us-
+     ing barrier certificates. In International Workshop on Hybrid Systems: Computation
+     and Control. Springer, 477–492.
+[24] Stephen Prajna, Ali Jadbabaie, and George J Pappas. 2004. Stochastic safety
+     verification using barrier certificates. In 2004 43rd IEEE conference on decision and
+     control (CDC)(IEEE Cat. No. 04CH37601), Vol. 1. IEEE, 929–934.
+[25] Martin L Puterman. 2014. Markov decision processes: discrete stochastic dynamic
+     programming. John Wiley & Sons.
+

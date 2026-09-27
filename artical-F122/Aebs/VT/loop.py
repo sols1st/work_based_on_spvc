@@ -16,7 +16,9 @@ class Loop:
         verifier,
         env,
         jitter_grid,
-        soft_constraint
+        soft_constraint,
+        max_iteration_index=100,
+        stop_on_zero_violation=False,
     ):
         # Environment definition
         self.env = env
@@ -28,6 +30,8 @@ class Loop:
         self.soft_constraint = soft_constraint
         # Custom grid partition
         self.jitter_grid = jitter_grid
+        self.max_iteration_index = max_iteration_index
+        self.stop_on_zero_violation = stop_on_zero_violation
 
         # Initial discretization interval
         self.prefill_delta = 0
@@ -98,8 +102,8 @@ class Loop:
                 break  # changed to break so mean values can be computed afterward
 
             # NEW: iteration limit check
-            if self.iter > 100:
-                print("Iteration limit reached (100). Stop.")
+            if self.iter > self.max_iteration_index:
+                print(f"Iteration limit reached ({self.max_iteration_index}). Stop.")
                 break
 
             print(f"\n#### Iteration {self.iter} ({runtime // 60:0.0f}:{runtime % 60:02.0f} elapsed) #####")
@@ -167,6 +171,16 @@ class Loop:
             
             prob_list.append(prob)
             sys.stdout.flush()
+            if (
+                self.stop_on_zero_violation
+                and sat
+                and bound_correct
+                and int(hard_violations) == 0
+                and actual_reach_prob >= self.verifier.reach_prob
+            ):
+                self.info["checkpoint_matches_verification"] = True
+                print("Zero-violation target-probability checkpoint found. Stop before the next PPO update.")
+                break
             self.train('p', 1)
             self.iter += 1
         

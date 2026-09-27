@@ -1,0 +1,66 @@
+{
+  "experiment": "semantic_spvc_qp_q1",
+  "level": "sampled_grid_diagnostic_not_a_certificate",
+  "checkpoint_dir": "results/semantic_spvc_my_run",
+  "samples": 29,
+  "scope": "original-verifier",
+  "full_original_verifier_region_count": 29,
+  "noise_midpoint_bins_per_dimension": 10,
+  "ibp_noise_bins_per_dimension": 10,
+  "margin": 0.0,
+  "slack_weight": 100.0,
+  "device": "cuda",
+  "nominal_action": {
+    "min": -3.7159035205841064,
+    "mean": -2.0558054447174072,
+    "max": 0.7960829138755798
+  },
+  "qp_action": {
+    "min": -3.0,
+    "mean": -1.8838961124420166,
+    "max": 0.7960829138755798
+  },
+  "absolute_action_change": {
+    "min": 0.0,
+    "mean": 0.20542003214359283,
+    "max": 0.7159035205841064
+  },
+  "intervention_rate": 0.7241379310344828,
+  "slack": {
+    "min": 0.0,
+    "mean": 0.01134064607322216,
+    "max": 0.07546276599168777
+  },
+  "positive_slack_rate": 0.2413793103448276,
+  "qp_solver_failures": 0,
+  "flat_slope_rate": 0.0,
+  "affine_linear_residual_max": 0.0,
+  "linearization_error": {
+    "min": -3.814697265625e-06,
+    "mean": 5.6386765209026635e-05,
+    "max": 0.0006210282444953918
+  },
+  "midpoint": {
+    "nominal_positive_residual_count": 7,
+    "qp_positive_residual_count": 7,
+    "qp_residual": {
+      "min": -9.779191017150879,
+      "mean": -4.712283611297607,
+      "max": 0.0757598876953125
+    }
+  },
+  "original_verifier_ibp_upper": {
+    "nominal_positive_residual_count": 0,
+    "qp_positive_residual_count": 0,
+    "qp_residual": {
+      "min": -8.057640075683594,
+      "mean": -3.5384116172790527,
+      "max": -0.08951950073242188
+    }
+  },
+  "gradient_probe": {
+    "nominal_to_qp_action": 0.009900989942252636,
+    "finite": true
+  },
+  "runtime_seconds": 1.822378158569336
+}

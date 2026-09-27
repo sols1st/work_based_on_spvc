@@ -1,0 +1,1182 @@
+                                           Proceedings of Machine Learning Research vol 283:1–19, 2025
+
+
+
+
+                                               Opt-ODENet: A Neural ODE Framework with Differentiable QP
+                                                 Layers for Safe and Stable Control Design (longer version)
+
+                                           Keyan Miao1                                                                    keyan.miao@eng.ox.ac.uk
+                                           Liqun Zhao1                                                                     liqun.zhao@eng.ox.ac.uk
+                                           Han Wang1                                                                        han.wang@eng.ox.ac.uk
+                                           Konstantinos Gatsis2,3                                                konstantinos.gatsis@villanova.edu
+                                           Antonis Papachristodoulou1                                                         antonis@eng.ox.ac.uk
+
+
+
+
+arXiv:2504.17139v1 [eess.SY] 23 Apr 2025
+                                           1 Department of Engineering, University of Oxford, UK
+                                           2 Department of Electrical and Computer Engineering, Villanova University, USA
+                                           3 School of Electronics and Computer Science, University of Southampton, UK
+
+
+
+
+                                                                                                   Abstract
+                                                Designing controllers that achieve task objectives while ensuring safety is a key challenge in con-
+                                                trol systems. This work introduces Opt-ODENet, a Neural ODE framework with a differentiable
+                                                Quadratic Programming (QP) optimization layer to enforce constraints as hard requirements. Elimi-
+                                                nating the reliance on nominal controllers or large datasets, our framework solves the optimal control
+                                                problem directly using Neural ODEs. Stability and convergence are ensured through Control Lya-
+                                                punov Functions (CLFs) in the loss function, while Control Barrier Functions (CBFs) embedded
+                                                in the QP layer enforce real-time safety. By integrating the differentiable QP layer with Neural
+                                                ODEs, we demonstrate compatibility with the adjoint method for gradient computation, enabling
+                                                the learning of the CBF class-K function and control network parameters. Experiments validate its
+                                                effectiveness in balancing safety and performance.
+                                                Keywords: Neural ODEs, differentiable optimization layer, CLF, CBF, safe control
+
+
+                                           1. Introduction
+                                           Designing safe and efficient control systems is crucial in automation and control. Controllers must ac-
+                                           complish tasks while ensuring safety in environments under strict constraints. While learning-based
+                                           control has shown promise in complementing traditional methods, integrating safety guarantees with
+                                           task performance remains challenging. In this work, we propose a learning-based control frame-
+                                           work that combines Neural Ordinary Differential Equations (Neural ODEs) with Control Barrier
+                                           Functions (CBFs) and Control Lyapunov Functions (CLFs) to address this challenge.
+                                           Neural ODEs (Chen et al., 2018), provide a natural framework for modeling and optimizing
+                                           continuous-time dynamic behaviors by treating networks as systems governed by differential equa-
+                                           tions. They offer adaptability, flexibility, and smooth gradient computation, making them well-suited
+                                           for applications such as trajectory planning, state observer design, and system identification (Liang
+                                           et al., 2021; Miao and Gatsis, 2023; Djeumou et al., 2022; Böttcher et al., 2022). However, ensuring
+                                           task completion and safety in real-world applications requires additional mechanisms.
+                                           CBFs (Ames et al., 2019, 2016) and CLFs (Ames et al., 2014) are widely used in control theory to
+                                           enforce safety constraints and ensure stability by defining safe sets and guaranteeing convergence
+                                           to target states, respectively. Recently, CBFs and CLFs have been incorporated into learning-based
+                                           frameworks, where they are often used as soft constraints to guide control design (Jin et al., 2020;
+
+                                           © 2025 K. Miao, L. Zhao, H. Wang, K. Gatsis & A. Papachristodoulou.
+                            Miao Zhao Wang Gatsis Papachristodoulou
+
+
+
+
+Zhao et al., 2023, 2025) or to improve performance in machine learning tasks such as image clas-
+sification (Miao and Gatsis, 2024). Furthermore, the co-design of controllers with these functions
+has enabled adaptive and robust control in dynamic environments (Wang et al., 2023, 2024; Dawson
+et al., 2022).
+To enforce constraints as hard requirements, we incorporate Quadratic Programming (QP) into a
+learning framework with differentiable optimization layer (Amos and Kolter, 2017). QP embeds
+CBFs to enforce real-time safety constraints, while CLFs are incorporated into the loss function to
+ensure stability and task performance without conflicting with hard constraints. Its differentiability
+enables gradient-based optimization, allowing learning parameters of class K function for CBF
+constraints and preceding network parameters.
+Several works closely related to learning-based control with safety considerations have been pro-
+posed, yet they exhibit certain limitations. Some rely on soft constraints to handle safety, which
+may fail in critical scenarios or only consider stability properties (Sandoval et al., 2023; Ip et al.,
+2024). Others utilize fixed CBF parameters, limiting their adaptability to varying environments
+(Pereira et al., 2021). Certain approaches depend on a nominal controller to guide control (Taylor
+et al., 2020), with some adopting supervised learning that relies on nominal safe controllers or ref-
+erence trajectories and require large sampled datasets (Xiao et al., 2023b,a; Bachhuber et al., 2023).
+Furthermore, some works focus primarily on motion planning, adjusting abstract signals to satisfy
+constraints rather than directly controlling physical input signals (Nawaz et al., 2024).
+The main contributions of this work are as follows: 1) We propose Opt-ODENet, a Neural ODE
+framework integrating differentiable QP layers for safe and stable control, eliminating the need
+for a nominal controller and reducing reliance on pre-designed policies or large datasets. 2) We
+incorporate CLFs into the loss function for stability and convergence, and embed CBFs as hard con-
+straints into a differentiable QP layer, demonstrating compatibility with Neural ODEs and gradient
+computation via the adjoint method. 3) The framework adaptively learns the class-K function for
+CBF, enabling a flexible balance between safety and task performance. 4) Through experiments, we
+validate the proposed framework and show the applicability of higher-order CBFs (HOCBFs) within
+our framework, extending its capabilities to more complex systems.
+
+2. Preliminaries
+2.1. Neural ODEs with input
+Residual Networks (ResNet) (He et al., 2016), a milestone in deep learning, introduced skip connec-
+tions that inspired viewing layers as discrete-time dynamical systems. Extending this idea, Neural
+ODEs (Chen et al., 2018) model dynamics in continuous time, described as:
+
+Definition 1 (Neural ODE with input) A Neural ODE with input is a system of the form
+                         
+                           𝑥¤ (𝑡) = F (𝑡, 𝑥 (𝑡) , 𝑢 (𝑡) , 𝜃) , 𝑡 ∈ S
+                                                                                                   (1)
+                           𝑥 (𝑡0 ) = 𝑥 0
+
+where S := 𝑡0 , 𝑡 𝑓 (𝑡0 , 𝑡 𝑓 ∈ R+ ) is the depth domain and F is a neural network referred to as
+                  
+
+ODENet with parameter 𝜃; 𝑢(𝑡) is the input at time 𝑡.
+
+The terminal state 𝑥(𝑡 𝑓 ), obtained by solving the initial value problem (IVP), represents the evolved
+system state. In Neural ODEs, depth corresponds to continuous progression along the time domain,
+
+                                                  2
+                                  Safe and Stable Neural ODE Control
+
+
+
+
+with ResNet interpreted as a discretization using the Euler method.
+In applications like image classification, Neural ODEs map an initial state∫ 𝑥(𝑡0 ) to a terminal state
+                                                                                       𝑡
+𝑥(𝑡 𝑓 ), e.g., a class label, by solving the initial value problem: 𝑥(𝑡 𝑓 ) = 𝑥(𝑡0 )+ 𝑡 𝑓 F (𝑡, 𝑥(𝑡), 𝑢(𝑡), 𝜃) 𝑑𝑡.
+                                                                                       0
+Training typically involves minimizing a loss that depends only on the terminal state 𝑥(𝑡 𝑓 ), such
+as cross-entropy, which corresponds to a Mayer-type optimal control          ∫ 𝑡 problem. More generally, a
+loss can be defined along the entire trajectory: ℓ := Φ(𝑥(𝑡 𝑓 )) + 𝑡 𝑓 L (𝑥(𝑡), 𝑢(𝑡), 𝜃) 𝑑𝑡, where Φ
+                                                                               0
+is a terminal cost and L is a running cost. This defines a Bolza-type problem (Pontryagin, 1987),
+which generalizes Mayer by including path-dependent penalties (e.g., regularization). Training then
+corresponds to solving this Bolza objective via gradient-based optimization.
+
+                                          min      ℓ
+                                          𝜃 ∈𝑈
+                                   𝑠.𝑡.     ¤𝑥(𝑡) = F (𝑡, 𝑥(𝑡), 𝑢(𝑡), 𝜃), 𝑡 ∈ S,                              (2)
+                                            𝑥(𝑡0 ) = 𝑥 0 ,
+
+2.2. CLF and CBF
+Consider the dynamical system
+                                                 ¤𝑥(𝑡) = F (𝑥(𝑡), 𝑢(𝑡)),                                      (3)
+where F (𝑥(𝑡), 𝑢(𝑡)) : X × U → R𝑑𝑥 is a locally Lipschitz continuous function and X ⊆ R𝑑𝑥 and
+U ⊆ R𝑑𝑢 are compact sets. The controller 𝑢(𝑡) is designed for two objectives, namely ensuring
+stability and safety. The concept of safety involves an additional set B ⊆ X which interprets
+certain physical requirements, such as collision avoidance for robots, lane keeping for vehicles, etc.
+Mathematically speaking, we say dynamical system (3) is safe if there exists a locally Lipschitz
+continuous controller 𝜏(𝑥(𝑡)) : X → U with 𝑢(𝑡) = 𝜏(𝑥(𝑡)), such that 𝑥(𝑡) ∈ B for any 𝑥(0) ∈ B
+and 𝑡 ≥ 0. One prevalent way to design a controller that ensures stability and safety relies on
+certificate functions. For stability, a Control Lyapunov Function (CLF) is defined as follows.
+
+Definition 2 (Control Lyapunov Function (Sontag, 1989)) Consider system (3). A locally posi-
+tive definite and differentiable function 𝑉 (·) : X → R is called a Control Lyapunov Function if there
+exists a locally Lipschitz continuous controller 𝜏(𝑥(𝑡)) : X → U, such that
+
+                                 𝜕𝑉 (𝑥)
+                                        F (𝑥, 𝜏(𝑥)) + 𝛾(𝑉 (𝑥)) ≤ 0, ∀𝑥 ∈ X,                                   (4)
+                                  𝜕𝑥
+where the function 𝛾(·) : R+ → R is of class-K, i.e. 𝛾(0) = 0 and 𝛾(·) is strictly increasing.
+
+For safety, a Control Barrier Function (CBF) is defined as follows.
+
+Definition 3 (Control Barrier Function (Ames et al., 2019)) Consider system (3) and the safe set
+B. A differentiable function 𝐵(𝑥) : X → R is called a Control Barrier Function (CBF) if B := {𝑥 ∈
+X : 𝐵(𝑥) ≥ 0}, and there exists a locally Lipschitz continuous controller 𝜏(𝑥(𝑡)) : X → U, such
+that
+                             𝜕𝐵(𝑥)
+                                    F (𝑥, 𝜏(𝑥)) + 𝛼(𝐵(𝑥)) ≥ 0, ∀𝑥 ∈ B.                        (5)
+                              𝜕𝑥
+The function 𝛼(·) : R → R is of extended class-K.
+
+                                                             3
+                               Miao Zhao Wang Gatsis Papachristodoulou
+
+
+
+
+2.3. Differentiable Optimization Layer
+A differentiable optimization problem refers to a class of optimization problems whose solutions
+can be differentiated through backpropagation. This feature allows such optimization problems
+to function as layers within deep learning architectures, enabling the encoding of constraints and
+complex dependencies that traditional convolutional and fully connected layers typically cannot
+capture. In this work, we incorporate the differentiable optimization layer OptNet proposed by
+Amos and Kolter (2017) to implement the CBF-QP layer to incorporate the safety constraint.
+OptNet defined a neural network layer based on quadratic programming problem:
+                                              1
+                               𝑧 𝑖+1 = arg min 𝑧 ⊤ 𝑄(𝑧 𝑖 )𝑧 + 𝑞(𝑧 𝑖 )𝑧 ⊤
+                                            𝑧 2                                                 (6)
+                               𝑠.𝑡. 𝐴(𝑧 𝑖 )𝑧 = 𝑏(𝑧 𝑖 ), 𝐺 (𝑧 𝑖 )𝑧 ≤ ℎ(𝑧 𝑖 )
+where 𝑄 ∈ R𝑛×𝑛 , 𝑞 ∈ R𝑛 , 𝐴 ∈ R𝑚×𝑛 , 𝑏 ∈ R𝑚 , 𝐺 ∈ R 𝑝×𝑛 , ℎ ∈ R 𝑝 and 𝑄 ≥ 0. 𝑧 𝑖 is the output of the
+previous layer, 𝑧 𝑖+1 is the output of the optimization layer.
+The forward pass of the layer consists of formulating and solving the optimization problem. More
+critically, the backward pass requires computing the derivatives of the QP solution with respect to its
+input parameters, which are obtained by differentiating the Karush-Kuhn-Tucker (KKT) conditions.
+
+3. Problem Formulation
+Consider a control-affine system
+                                              𝑥¤ = 𝑓 (𝑥) + 𝑔(𝑥)𝑢                                      (7)
+where 𝑥 is the state, 𝑢 is the control input, and the locally Lipschitz continuous functions 𝑓 (𝑥), 𝑔(𝑥)
+are known. Furthermore, we assume a CBF 𝐵(𝑥) that defines the safe set B := {𝑥 : 𝐵(𝑥) ≥ 0}
+is known a priori. This is a reasonable assumption since 𝑓 (𝑥) and 𝑔(𝑥) are both known and time-
+invariant. Our goal is to design a state-feedback control policy 𝑢(𝑡) = 𝜏(𝑥(𝑡), 𝜃 1 , 𝜃 2 ), parameterized
+by 𝜃 1 and 𝜃 2 , that satisfies the following requirements:
+   (1) Task achievement: Stabilizes the system (7) around a desired terminal state 𝑥ˆ from an arbitrary
+       initial point 𝑥 0 .
+   (2) Constraint satisfaction: Ensures safety (CBF constraints) of the closed-loop system 𝑥¤ =
+        𝑓 (𝑥) + 𝑔(𝑥)𝜏(𝑥, 𝜃 1 , 𝜃 2 ).
+   (3) Performance and Safety trade-off: Optimizes task performance while tuning the strength of
+       the CBF safety constraint via function 𝛼(𝜃 2 ), enabling trade-offs along the trajectory.
+By achieving a minimum safety margin, we mean that the system should avoid aggressively ap-
+proaching the boundary of the safe set B to optimize the control performance, such as minimizing
+stabilization time.
+Motivated by the requirements, we propose the following safety-constrained optimal control problem:
+                                                            ∫ 𝑡𝑓
+                                                      
+                           min           ℓ = Φ 𝑥 𝑡 𝑓 , 𝑥ˆ +      L (𝑥 (𝑡) , 𝑢 (𝑡) , 𝜃) 𝑑𝑡
+                    𝜃=( 𝜃1 , 𝜃2 ) ∈𝑈                             𝑡0
+                               s.t.    𝑥¤ (𝑡) = F (𝑥, 𝑢) = 𝑓 (𝑥) + 𝑔(𝑥)𝑢, 𝑡 ∈ S
+                                        ¤
+                                       𝐵(𝑥(𝑡))   + 𝛼(𝜃 2 )𝐵(𝑥(𝑡)) ≥ 0, 𝑡 ∈ S                          (8)
+                                       𝑥 (𝑡0 ) = 𝑥 0 ,   𝑢(𝑡) = 𝜏(𝑥, 𝜃 1 , 𝜃 2 )
+Here, 𝜃 = (𝜃 1 , 𝜃 2 ) represents the parameters of the problem, with 𝜃 1 parameterizing the control
+network and 𝜃 2 characterizing the class-K function 𝛼(·) for the CBF constraints.
+
+                                                         4
+                                Safe and Stable Neural ODE Control
+
+
+
+
+4. Proposed Approach
+Solving problem (8) is challenging not only because of the optimal control nature, but also due to the
+hard safety constraints. To address these difficulties, we propose a learning-based control framework
+that effectively leverages Neural ODEs and differentiable optimization layers. The framework
+consists of the following components:
+    • Neural ODE Dynamics: The system dynamics and the control policy are parameterized using
+      a Neural ODE 𝑥¤ = F (𝑥, 𝜏(𝑥, 𝜃 1 , 𝜃 2 )) to allow for continuous-time modeling.
+    • Differentiable CBF-QP Layer: Safety constraints are enforced through a CBF, embedded
+      within a differentiable QP layer.
+                                                              1 ⊤
+                               𝑢 𝑠𝑎 𝑓 𝑒 = arg min𝑢              𝑢 𝑄(𝑢 𝑛𝑛 )𝑢 + 𝑞(𝑢 𝑛𝑛 ) ⊤ 𝑢
+                                                              2
+                                               s.t.           𝐴𝑢 = 𝑏, 𝐺𝑢 ≤ ℎ                               (9)
+                                                                                                 𝑥)
+      where in our problem, 𝑄 = 𝐼, 𝑞 = −𝑢 𝑛𝑛 , 𝐴 and 𝑏 are absent, 𝐺 = − 𝜕𝐵(                   𝜕𝑥 𝑔(𝑥) and ℎ =
+      𝜕𝐵( 𝑥 )
+        𝜕𝑥 𝑓 (𝑥) + 𝛼(𝐵(𝑥), 𝜃 2 ). 𝑢 𝑛𝑛 = 𝜋(𝑥, 𝜃 1 ) where 𝜋 represents the controller neural network
+      with parameter 𝜃 1 , and 𝑢 𝑠𝑎 𝑓 𝑒 = 𝜏(𝑢 𝑛𝑛 , 𝜃 2 ) = 𝜏(𝑥, 𝜃 1 , 𝜃 2 ) represents the output of the CBF-QP
+      layer (9) with the parameter 𝜃 2 . This allows real-time satisfaction of the safety requirements
+      by dynamically modulating the control input. Additionally, the QP layer enables learning of
+      the function 𝛼(·), providing greater flexibility in enforcing safety constraints.
+    • Training Objective: The control policy 𝜏(𝑥, 𝜃 1 , 𝜃 2 ) is trained to minimize ℓ as in (8), which
+      incorporates a CLF-based loss to stabilize the system while embedding CBFs as hard con-
+      straints in the QP layer to enforce safety. The differentiable framework enables gradient-based
+      optimization while maintaining compliance with safety constraints.
+The proposed framework is illustrated in Figure 1, which outlines the Neural ODE-based control
+architecture integrating a differentiable CBF-QP layer for safety enforcement.
+Opt-ODENet: Gradients Computation In the following, we show how to use the adjoint method
+to train the proposed framework in a memory efficient way.
+Proposition 4 Consider the Neural ODE-based framework 1 and the loss function ℓ. Let 𝜃 1 be the
+parameter of the controller neural network 𝜏(·), and 𝜃 2 the parameter of the differentiable CBF-QP
+layer. Define 𝜇1 (𝑡0 ) and 𝜇2 (𝑡0 ) by the gradient of loss ℓ to 𝜃 1 and 𝜃 2 :
+                                    𝜇1 (𝑡0 ) := ∇ 𝜃1 ℓ,       𝜇2 (𝑡0 ) := ∇ 𝜃2 ℓ.                         (10)
+Then, the gradients 𝜇1 and 𝜇2 can be updated by the following differential equations with boundary
+conditions where 𝑝 is a Lagrange multiplier:
+                               ¤𝑥(𝑡) = F (𝑥(𝑡), 𝜏(𝑥, 𝜃 1 , 𝜃 2 )), 𝑥(𝑡0 ) = 𝑥 0 ,
+                                            𝜕F 𝜕L                       𝜕Φ
+                                𝑝(𝑡) = −𝑝
+                                ¤                −     , 𝑝(𝑡 𝑓 ) =              ,
+                                            𝜕𝑥      𝜕𝑥                𝜕𝑥(𝑡 𝑓 )
+                                             𝜕F      𝜕L
+                               𝜇¤ 1 (𝑡) = −𝑝      −       , 𝜇1 (𝑡 𝑓 ) = 𝟘𝑛 𝜃1 ,                           (11)
+                                             𝜕𝜃 1 𝜕𝜃 1
+                                             𝜕F      𝜕L
+                               𝜇¤ 2 (𝑡) = −𝑝      −       , 𝜇2 (𝑡 𝑓 ) = 𝟘𝑛 𝜃2 ,
+                                             𝜕𝜃 2 𝜕𝜃 2
+
+                                                          5
+                                    Miao Zhao Wang Gatsis Papachristodoulou
+
+
+
+                                                      Opt-ODENet for Safety
+                                         function 𝛼(·) Network    single parameter
+
+
+                                𝑥 (𝑡 )                       or
+                                                                                                          ODE Solve
+                   Controller
+                    Network
+                                              general case            linear case              ( 𝑥 (𝑡0 ), 𝑓 , 𝑔, [𝑡0 , ... , 𝑡 𝑓 ] )
+
+Initial                                                                   𝜅
+                                                                                                       Plant Dynamics
+ state
+                                             𝑢 𝑛𝑛                                   𝑢 𝑠𝑎 𝑓 𝑒
+                                                         Differentiable
+   𝑥(𝑡 0 )                                                                                        𝑥¤ = 𝑓 ( 𝑥 ) + 𝑔 ( 𝑥 )𝑢𝑠𝑎 𝑓 𝑒        𝑥(𝑡 𝑓 )
+                                                          CBF-QP Layer
+
+
+
+
+Figure 1: Schematics of the Neural ODE-based controller with a differentiable CBF-QP layer en-
+          forcing safety constraints
+
+
+The differential equations (11) are derived by applying the adjoint method to an optimal control
+problem. In the following proof, we demonstrate the gradient computation for Neural ODEs with an
+embedded differentiable QP layer, leveraging the interconnected structure of the controller network.
+Due to space limitations, more details of the proof can be found in the 7.
+Proof Consider (7); we have that
+                                    𝜕F   𝜕 𝑓 𝜕𝑔                      𝜕𝜏(𝑥, 𝜃 1 , 𝜃 2 )
+                                       =    +   𝜏(𝑥, 𝜃 1 , 𝜃 2 ) + 𝑔                   .                                               (12)
+                                    𝜕𝑥   𝜕𝑥 𝜕𝑥                           𝜕𝑥
+Using chain rule, 𝜕𝜏 ( 𝑥,𝜕𝑥𝜃1 , 𝜃2 ) is equal to
+                                         𝜕𝜏(𝑥, 𝜃 1 , 𝜃 2 ) 𝜕𝜏(𝑥, 𝜃 1 , 𝜃 2 ) 𝜕𝜋(𝑥, 𝜃 1 )
+                                                          =                              ,                                             (13)
+                                             𝜕𝑥             𝜕𝜋(𝑥, 𝜃 1 )        𝜕𝑥
+where 𝜕 𝜋 (𝜕𝑥
+            𝑥, 𝜃1 )
+                    can be calculated by Automatic Differentiation (AD). We then calculate the first term
+by considering the first-order optimality condition of the differentiable CBF-QP layer (9). Consider
+the general case of QP problem where all components 𝐴, 𝑏, 𝐺, ℎ, 𝑄, and 𝑞 are present, and 𝑄 is
+positive definite, 𝐴 and 𝐺 have full rank . The Lagrangian of (9) is given by
+                                   1
+                      𝐿 (𝑢, 𝜈, 𝜆) = 𝑢 ⊤ 𝑄𝑢 + 𝑞 ⊤ 𝑢 + 𝜈 ⊤ ( 𝐴𝑢 − 𝑏) + 𝜆⊤ (𝐺𝑢 − ℎ)              (14)
+                                   2
+where 𝜈 are the dual variables on the equality constraints and 𝜆 ≥ 0 are the dual variables on the
+inequality constraints. The KKT conditions for stationary, primal feasibility, and complementary
+slackness are
+                                    𝑄𝑢 ∗ + 𝑞 + 𝐴⊤ 𝜈 ∗ + 𝐺 ⊤ 𝜆∗ = 0
+                                                                          𝐴𝑢 ∗ − 𝑏 = 0                                                 (15)
+                                                                  ∗           ∗
+                                                          𝐷 (𝜆 ) (𝐺𝑢 − ℎ) = 0,
+where 𝐷 (·) is a diagonal matrix with entries those of the vector argument, and 𝑢 ∗ , 𝜈 ∗ and 𝜆∗ are the
+optimal primal and dual variables. Taking the differentials of these conditions gives the equations
+                 𝑄
+                               𝐴⊤    𝐺⊤      𝑑𝑢 
+                                              
+                                                          𝑑𝑄𝑢 ∗ + 𝑑𝑞 + 𝑑𝐺 ⊤ 𝜆∗ + 𝑑𝐴⊤ 𝜈 ∗ 
+                                                                                         
+                 𝐴
+                               0      0       𝑑𝜈  = − 
+                                                                𝑑𝐴𝑢 ∗ − 𝑑𝑏            
+                                                                                                                                      (16)
+                 𝐷 (𝜆∗ )𝐺              ∗
+                                0 𝐷 (𝐺𝑢 − ℎ)   𝑑𝜆              ∗     ∗        ∗
+                                                           𝐷 (𝜆 )𝑑𝐺𝑢 − 𝐷 (𝜆 )𝑑ℎ 
+                                                                                      
+                
+
+                                                                      6
+                                   Safe and Stable Neural ODE Control
+
+
+
+
+First, according to (15), we can have an implicit function 𝐹 (Dontchev and Rockafellar, 2009):
+
+                                              𝑄𝑢 ∗ + 𝑞 + 𝐴⊤ 𝜈 ∗ + 𝐺 ⊤ 𝜆∗ 
+                                                                         
+                                 𝐹 (𝑋, 𝑌 ) =          𝐴𝑢 ∗ − 𝑏           =0
+                                                                                                             (17)
+                                                  𝐷 (𝜆 ∗ ) (𝐺𝑢 ∗ − ℎ)    
+                                                                         
+where 𝑋 = [𝑄; 𝑞; 𝐴; 𝑏; 𝐺; ℎ], 𝑌 = [𝑢; 𝜈; 𝜆]. Hence, the Jacobian with respect to 𝑌 is:
+                                                         
+                             𝐽𝐹,𝑌 = 𝐽𝐹,𝑢 𝐽𝐹,𝜈 𝐽𝐹,𝜆
+                                    
+                                         𝑄      𝐴⊤         𝐺⊤      
+                                                                                                             (18)
+                                  =      𝐴      0          0      
+                                                                    
+                                     𝐷 (𝜆∗ )𝐺 0 𝐷 (𝐺𝑢 ∗ − ℎ) 
+                                                                   
+note that all the vectors are column vectors. Next, we calculate the Jacobian with respect to 𝑋 (note
+that all the matrices and vectors are operated as column vectors):
+                                                                     
+                   𝐽𝐹,𝑋 = 𝐽𝐹,𝑄 𝐽𝐹,𝑞 𝐽𝐹, 𝐴 𝐽𝐹,𝑏 𝐽𝐹,𝐺 𝐽𝐹,ℎ
+                            𝐼 ⊗ 𝑢 ∗⊤ 𝐼 𝜈 ∗⊤ ⊗ 𝐼 0          𝜆∗⊤ ⊗ 𝐼          0    
+                                              ∗⊤
+                                                                                                (19)
+                        =      0     0 𝐼 ⊗𝑢       −𝐼         0             0    
+                                                                                  
+                           
+                                0     0     0       0 𝐷 (𝜆∗ )𝐼 ⊗ 𝑢 ∗⊤ −𝐷 (𝜆∗ ) 
+
+where ⊗ represents Kronecker product. The Jacobian of 𝑌 with respect to 𝑋 is then given by
+
+                                            𝐽𝑌 ,𝑋 = −[𝐽𝐹,𝑌 ] −1 [𝐽𝐹,𝑋 ],                                      (20)
+
+where 𝐽𝐹,𝑌 is given in (18), and 𝐽𝐹,𝑋 is given in (19). Note in our problem, 𝐴 is not present rather
+than being set to 0. This does not affect the invertibility of 𝐽𝐹,𝑌 . 𝜕𝜏𝜕 (𝜋𝑥,( 𝑥,𝜃1𝜃,1𝜃)2 ) can be obtained via
+𝜕𝜏 ( 𝑥, 𝜃1 , 𝜃2 )                               𝜕F
+      𝜕𝑞          from 𝐽𝑌 ,𝑋 . We then consider 𝜕𝜃2
+                                                    ; we have that
+
+              𝜕F       𝜕F            𝜕𝜏(𝑥, 𝜃 1 , 𝜃 2 )       𝜕F           𝜕𝜏(𝑥, 𝜃 1 , 𝜃 2 ) 𝜕ℎ(𝑥, 𝜃 2 )
+                  =                                    =                                                      (21)
+              𝜕𝜃 2 𝜕𝜏(𝑥, 𝜃 1 , 𝜃 2 )     𝜕𝜃 2            𝜕𝜏(𝑥, 𝜃 1 , 𝜃 2 ) 𝜕ℎ(𝑥, 𝜃 2 )        𝜕𝜃 2
+                                                         | {z } | {z } | {z }
+                                                                 𝐴𝐷               (20)           𝐴𝐷
+
+               𝜕F
+Similarly, for 𝜕𝜃1
+                   , it holds that
+
+             𝜕F       𝜕F            𝜕𝜏(𝑥, 𝜃 1 , 𝜃 2 )       𝜕F           𝜕𝜏(𝑥 1 , 𝜃 1 , 𝜃 2 ) 𝜕𝜋(𝑥, 𝜃 1 )
+                 =                                    =                                                   .   (22)
+             𝜕𝜃 1 𝜕𝜏(𝑥, 𝜃 1 , 𝜃 2 )     𝜕𝜃 1            𝜕𝜏(𝑥, 𝜃 1 , 𝜃 2 ) 𝜕𝜋(𝑥, 𝜃 1 )           𝜕𝜃 1
+                                                        | {z } |              {z           } | {z }
+                                                                𝐴𝐷               (20)            𝐴𝐷
+
+
+The remaining terms, 𝜕L      𝜕L      𝜕L
+                       𝜕𝑥 , 𝜕𝜃1 and 𝜕𝜃2 can also be efficiently calculated via AD and (20) similarly
+as L is already an explicit function of 𝑥.
+Control Objective: CLF Loss Inspired by LyaNet Rodriguez et al. (2022), for a given target and
+terminal loss Φ, the potential function 𝑉 can be designed as
+
+                                                𝑉𝑥 (·) B Φ (𝑥 (·))                                            (23)
+
+                                                           7
+                              Miao Zhao Wang Gatsis Papachristodoulou
+
+
+
+
+    Algorithm 1: Training Algorithm
+  Input: Sampled initial state 𝑥(𝑡0 ), number of iterations 𝑛 > 0, time steps [𝑡0 , 𝑡1 , · · · , 𝑡 𝑓 ],
+          dynamics 𝑓 and 𝑔, safety requirements
+  Output: A safe and stable controller 𝑢 𝑠𝑎 𝑓 𝑒 and class-K function
+1 Construct CBF and CLF;
+2 while 𝑖 ≤ 𝑛 do
+3    𝑢 𝑛𝑜𝑚 ← 𝑁 𝑁 𝑐𝑜𝑛𝑡𝑟 𝑜𝑙𝑙𝑒𝑟 (𝑥, 𝜃);
+4    𝑢 𝑠𝑎 𝑓 𝑒 ← 𝑄𝑃(𝐶 𝐵𝐹, 𝑢 𝑛𝑜𝑚 );
+5    𝑥 ← 𝑂𝐷𝐸 𝑆𝑜𝑙𝑣𝑒𝑟 (𝑥(𝑡0 ), 𝑓 , 𝑔, 𝑢 𝑠𝑎 𝑓 𝑒 , [𝑡0 , · · · , 𝑡 𝑓 ]) ;
+6    Compute loss ℓ by CLF over the trajectories;
+7    𝜃 1 ← 𝑂 𝑝𝑡𝑖𝑚𝑖𝑧𝑒𝑟 (∇ 𝜃1 ℓ, 𝜃 1 ) ;                  /* Update controller NN parameters */
+8    𝜃 2 ← 𝑂 𝑝𝑡𝑖𝑚𝑖𝑧𝑒𝑟 (∇ 𝜃2 ℓ, 𝜃 2 ) ;                    /* Update function 𝛼(·) parameters */
+9 end
+
+
+
+  Then a point-wise Lyapunov loss can be designed as
+                                                                    
+                                             𝜕𝑉𝑥
+                              V B max 0,         F (𝑥, 𝑢) + 𝛾 𝑉𝑥 (𝑥)                                  (24)
+                                              𝜕𝑥
+  Equation (24) signifies the local violation of the invariance condition specified in (4). When V = 0
+  holds for all data in the time interval, the inference dynamics exhibit exponential convergence towards
+  a prediction that minimizes the loss. The Lyapunov loss for the dynamic system (7) is
+                                                      ∫ 𝑡 𝑓     
+                                                ℓBE          V𝑑𝑡                                     (25)
+                                                      𝑡0
+
+  Remark 5 (Rodriguez et al. (2022)) Consider the Lyapunov loss above. If there exists a parameter
+  𝜃 ∗ of the dynamic system that satisfies ℓ(𝜃 ∗ ) = 0, then:
+      • The potential function 𝑉𝑥 is an exponentially stabilizing Lyapunov function with 𝜃 ∗ ;
+      • For 𝑡 ∈ 𝑡0 , 𝑡 𝑓 , the dynamics satisfy the following convergence expression with respect to the
+                       
+
+        loss Φ:
+                                            Φ (𝑥(𝑡)) ≤ Φ (𝑥(𝑡0 )) 𝑒 −𝜅𝑡                             (26)
+
+  The Lyapunov method provides a guaranteed convergence rate for a broader range of problems and
+  affords us the opportunity to manually select the rate of convergence, as there might be instances
+  where too fast dynamics are not preferred.
+  Algorithm 1 demonstrates how the steps above are integrated in our proposed method.
+
+  5. Case Study
+  In this experiment setup, a unicycle is tasked with reaching the designated location, i.e., the destina-
+  tion, while avoiding collisions with an obstacle. The dynamics of the system are:
+                                                cos 𝜗(𝑡) 0 
+                                                              
+                                      ¤𝑥(𝑡) =  sin 𝜗(𝑡) 0  𝑢(𝑡).                                  (27)
+                                               
+                                                    0    1.0 
+
+                                                      8
+                                                                                                             Safe and Stable Neural ODE Control
+
+
+
+
+                                               1.0                                                                       terminal                                                                                                                  1.0                                                             fixed = 5
+                                                                                                                         clf-10                                                                                                                                                                                    fixed = 10
+                                                                                                                         clf-20                                                                                                                                                                                    learned = 13.38
+                                               0.8                                                                       clf-30                                                                                                                    0.8
+
+
+
+
+                      Distance to the target                                                                                                                                                                              Distance to the target
+                                               0.6                                                                                                                                                                                                 0.6
+
+                                               0.4                                                                                                                                                                                                 0.4
+
+                                               0.2                                                                                                                                                                                                 0.2
+
+                                               0.0                                                                                                                                                                                                 0.0
+                                                 0.0        0.2               0.4                          0.6             0.8                  1.0                                                                                                  0.0               0.2                    0.4                  0.6                0.8         1.0
+                                                                                              t                                                                                                                                                                                                            t
+    Figure 2: Distance over time with varying ℓ                                                                                                                                                   Figure 3: Distance over time with varying 𝜅
+
+                                                                            0.4                                                                                                                         0.4
+
+
+
+                                                                            0.2                                                                                                                         0.2
+
+
+
+                                                                      x2    0.0                                                                                   Target                          x2    0.0                                                                                               Target
+
+
+
+                                                                            0.2                                                                                                                         0.2
+
+
+
+                                                                            0.4                                                                                                                         0.4
+
+                                                                                  0.2         0.0            0.2         0.4        0.6               0.8          1.0           1.2                          0.2                0.0                 0.2         0.4        0.6               0.8          1.0            1.2
+                                                                                                                               x1                                                                                                                                      x1
+
+
+
+                                                                                   (a) without CBF-QP                                                                                        (b) CBF-QP only in Inference
+          0.4                                                                                                                             0.4                                                                                                                                     0.4
+
+
+
+          0.2                                                                                                                             0.2                                                                                                                                     0.2
+
+
+
+     x2   0.0                                                                                       Target                          x2    0.0                                                                                           Target                               x2   0.0                                                                   Target
+
+
+
+          0.2                                                                                                                             0.2                                                                                                                                     0.2
+
+
+
+          0.4                                                                                                                             0.4                                                                                                                                     0.4
+
+                0.2                     0.0          0.2   0.4        0.6               0.8          1.0           1.2                          0.2         0.0            0.2         0.4        0.6               0.8                     1.0            1.2                          0.2         0.0             0.2         0.4        0.6   0.8     1.0     1.2
+                                                                 x1                                                                                                                          x1                                                                                                                                       x1
+
+
+
+      (c) CBF-QP: fixed 𝜅 = 5                                                                                                       (d) CBF-QP: fixed 𝜅 = 10                                                                                                           (e) CBF-QP: learned 𝜅 = 13.38
+
+                                                                 Figure 4: Tested Trajectories under Different CBF-QP Settings
+where 𝑥 = [𝑥 1 , 𝑥2 , 𝜗] ⊤ is the state. The control input is given by 𝑢(𝑡) = 𝜏(𝑥(𝑡); 𝜃 1 , 𝜃 2 ) trained using
+our framework. A point at a distance 𝑙 𝑝 ahead of the unicycle is used to establish safety constraints
+for collision-free navigation, and the function 𝑝 : R3 → R2 is defined as:
+                                                                          
+                                                𝑥 1 (𝑡)           cos 𝜗(𝑡)
+                                   𝑝(𝑥(𝑡)) =               + 𝑙𝑝                .                             (28)
+                                                𝑥 2 (𝑡)           sin 𝜗(𝑡)
+                                                                                 
+In this case, the CBF is defined as ℎ(𝑥(𝑡)) = 12 ( 𝑝(𝑥(𝑡)) − 𝑝 obs ) 2 − 𝛿12 , where 𝑝 obs represents the
+position of the obstacle, and 𝛿1 denotes the minimum safe distance between the unicycle and the
+obstacle. For 𝛼(·), we adopt a linear form where only the linear coefficient        𝜅 is learned, as illustrated
+                                                       1
+in Figure 1. The CLF is defined as 𝑉 (𝑥(𝑡)) = 2 ( 𝑝(𝑥(𝑡)) − 𝑝 tar ) − 𝛿2 , where 𝑝 tar represents the
+                                                                           2     2
+
+position of the target, and 𝛿2 specifies the radius of the target region.
+First, we compared the system’s performance when only a terminal loss was used versus when a
+CLF-based loss was incorporated. The trajectories were evaluated by tracking the evolution of the
+system’s distance to the target over time, as shown in Figure 2. The curve with the CLF (with
+varying 𝛾) converges significantly faster to the target compared to the one with only terminal loss as
+in Böttcher et al. (2022), highlighting the advantage of CLF in accelerating convergence.
+Next, we analyzed the role of the CBF-QP layer in ensuring safety and achieving the task. Several
+
+                                                                                                                                                                                        9
+                                                      Miao Zhao Wang Gatsis Papachristodoulou
+
+
+
+
+                               fixed 𝜅=5               fixed 𝜅 = 10                            learned 𝜅 = 13.38                            No CBF-QP                                CBF-QP only in Inference
+   Mean Error                    0.3623                   0.2544                                    0.2036                                    0.1587                                        0.7088
+    Collision                      No                       No                                        No                                        Yes                                           No
+
+                                     Table 1: Comparison of Performance under Different Settings
+
+                             Episode Loss                                                      Episode Safety Violations                                                     Episode Cumulative Target Reaches
+       6000                                           Mean Loss                                                          Mean Safety Violations                                                                   Mean Reward
+                                                                                                                                                                   120
+                                                                               0.04
+       5000
+                                                                                                                                                                   100
+       4000                                                                    0.02
+
+
+
+                                                                                                                                                  Target Reaches
+                                                                                                                                                                   80
+
+
+                                                                  Violations
+       3000
+Loss                                                                           0.00                                                                                60
+       2000
+                                                                               0.02                                                                                40
+       1000
+                                                                                                                                                                   20
+                                                                               0.04
+         0
+                                                                                                                                                                    0
+              0   50   100   150   200    250   300   350   400                       0   50    100   150   200    250     300     350     400                           0    50   100   150   200    250   300    350    400
+                                   Step                                                                     Step                                                                               Step
+
+
+                                          Figure 5: Training results on Simulated Cars with HOCBF
+
+configurations were tested, including no QP layer as in Ip et al. (2024), applying the QP layer only
+during inference (i.e., without being involved during controller training), and using fixed or learned
+𝛼(·) parameters as in Pereira et al. (2021) (in our case, the parameter is the linear coefficient 𝜅).
+The results, shown in Figure 4, reveal significant differences in performance. Without the QP layer,
+the system fails to avoid obstacles and results in collisions. When the QP layer is applied only
+during inference, safety is maintained (in contrast, the method in Sandoval et al. (2023) using soft
+constraints lacks theoretical safety guarantees), but the system loses its ability to effectively approach
+the target. For fixed 𝜅 = 5 and 𝜅 = 10, the method either leads to overly conservative behaviour,
+preventing task completion, or fails to strike a balance between safety and performance. In contrast,
+learning 𝜅 during training enables the system to adaptively balance safety and task objectives.
+Figure 3 shows the evolution of the distance to the target over time with different coefficient 𝜅. The
+presence of obstacles naturally slow convergence due to safety constraints compared to Figure 2.
+However, learning 𝜅 achieves a better trade-off, ensuring collision-free navigation while maintaining
+effective convergence. Table 1 reports the mean error and the results of collision, showing that
+without the CBF-QP layer, collisions occur, inference-only QP sacrifices performance, and fixed 𝜅
+is either too conservative or fails. The learned 𝜅 achieves minimal error with no collisions.
+We also extend our framework to the High Order CBF (HOCBF) (Xiao and Belta, 2019) case in
+the Simulated Cars environment, with Figure 5 presenting the training results. The results demon-
+strate that the system successfully converges to task objectives while satisfying safety constraints.
+Additional comparisons, analysis and experiments details are shown in the 7.
+
+6. Discussions and Future work
+Future work will focus on several key areas. First, designing more general and effective class-K
+functions for the CBF can improve the framework’s flexibility and performance. Second, optimizing
+the computational efficiency of the QP layer is crucial for enabling real-time applications. Third,
+extending the framework to tackle more complex tasks, such as handling moving obstacles, will
+further validate its robustness. Finally, exploring learning-based methods to directly design the CBF
+could lead to a fully adaptive and scalable control framework.
+
+                                                                                                       10
+                             Safe and Stable Neural ODE Control
+
+
+
+
+Acknowledgments
+The authors would like to express their sincere gratitude for financial support from the Engi-
+neering and Physical Sciences Research Council (EPSRC): Keyan Miao was supported through
+the grant EP/T517811/1, and Antonis Papachristodoulou through the EEBio Programme Grant
+EP/Y014073/1.
+
+
+References
+Aaron D Ames, Kevin Galloway, Koushil Sreenath, and Jessy W Grizzle. Rapidly exponentially
+  stabilizing control lyapunov functions and hybrid zero dynamics. IEEE Transactions on Automatic
+  Control, 59(4):876–891, 2014.
+
+Aaron D Ames, Xiangru Xu, Jessy W Grizzle, and Paulo Tabuada. Control barrier function based
+  quadratic programs for safety critical systems. IEEE Transactions on Automatic Control, 62(8):
+  3861–3876, 2016.
+
+Aaron D Ames, Samuel Coogan, Magnus Egerstedt, Gennaro Notomista, Koushil Sreenath, and
+  Paulo Tabuada. Control barrier functions: Theory and applications. In 2019 18th European
+  control conference (ECC), pages 3420–3431. IEEE, 2019.
+
+Brandon Amos and J Zico Kolter. Optnet: Differentiable optimization as a layer in neural networks.
+  In International conference on machine learning, pages 136–145. PMLR, 2017.
+
+Simon Bachhuber, Ive Weygers, and Thomas Seel. Neural odes for data-driven automatic self-design
+  of finite-time output feedback control for unknown nonlinear dynamics. IEEE Control Systems
+  Letters, 2023.
+
+Lucas Böttcher, Nino Antulov-Fantulin, and Thomas Asikis. Ai pontryagin or how artificial neural
+  networks learn to control dynamical systems. Nature communications, 13(1):333, 2022.
+
+Ricky TQ Chen, Yulia Rubanova, Jesse Bettencourt, and David K Duvenaud. Neural ordinary
+  differential equations. Advances in neural information processing systems, 31, 2018.
+
+Charles Dawson, Zengyi Qin, Sicun Gao, and Chuchu Fan. Safe nonlinear control using robust
+  neural lyapunov-barrier functions. In Conference on Robot Learning, pages 1724–1735. PMLR,
+  2022.
+
+Franck Djeumou, Cyrus Neary, Eric Goubault, Sylvie Putot, and Ufuk Topcu. Neural networks with
+  physics-informed architectures and constraints for dynamical systems modeling. In Learning for
+  Dynamics and Control Conference, pages 263–277. PMLR, 2022.
+
+Asen L Dontchev and R Tyrrell Rockafellar. Implicit functions and solution mappings, volume 543.
+  Springer, 2009.
+
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. Deep residual learning for image
+  recognition. In Proceedings of the IEEE conference on computer vision and pattern recognition,
+  pages 770–778, 2016.
+
+                                               11
+                           Miao Zhao Wang Gatsis Papachristodoulou
+
+
+
+
+Joshua Hang Sai Ip, Georgios Makrygiorgos, and Ali Mesbah. Lyapunov neural ode feedback control
+  policies. arXiv preprint arXiv:2409.00393, 2024.
+
+Wanxin Jin, Zhaoran Wang, Zhuoran Yang, and Shaoshuai Mou. Neural certificates for safe control
+ policies. arXiv preprint arXiv:2006.08465, 2020.
+
+Yuxuan Liang, Kun Ouyang, Hanshu Yan, Yiwei Wang, Zekun Tong, and Roger Zimmermann.
+  Modeling trajectories with neural ordinary differential equations. In IJCAI, pages 1498–1504,
+  2021.
+
+Keyan Miao and Konstantinos Gatsis. Learning robust state observers using neural odes. In Learning
+  for Dynamics and Control Conference, pages 208–219. PMLR, 2023.
+
+Keyan Miao and Konstantinos Gatsis. How deep do we need: Accelerating training and inference
+  of neural ODEs via control perspective. In Proceedings of the 41st International Conference on
+  Machine Learning, volume 235 of Proceedings of Machine Learning Research. PMLR, 21–27
+  Jul 2024.
+
+Farhad Nawaz, Tianyu Li, Nikolai Matni, and Nadia Figueroa. Learning complex motion plans
+  using neural odes with safety and stability guarantees. In 2024 IEEE International Conference on
+  Robotics and Automation (ICRA), pages 17216–17222, 2024. doi: 10.1109/ICRA57147.2024.
+  10611584.
+
+Marcus Pereira, Ziyi Wang, Ioannis Exarchos, and Evangelos Theodorou. Safe optimal control using
+ stochastic barrier functions and deep forward-backward sdes. In Conference on Robot Learning,
+ pages 1783–1801. PMLR, 2021.
+
+LS Pontryagin. Mathematical theory of optimal processes. CRC press, 1987.
+
+Ivan Dario Jimenez Rodriguez, Aaron Ames, and Yisong Yue. Lyanet: A lyapunov framework for
+  training neural odes. In International Conference on Machine Learning, pages 18687–18703.
+  PMLR, 2022.
+
+Ilya Orson Sandoval, Panagiotis Petsagkourakis, and Ehecatl Antonio del Rio-Chanona. Neural odes
+   as feedback policies for nonlinear optimal control. IFAC-PapersOnLine, 56(2):4816–4821, 2023.
+
+Eduardo D Sontag. A ‘universal’construction of artstein’s theorem on nonlinear stabilization. Systems
+  & control letters, 13(2):117–123, 1989.
+
+Andrew Taylor, Andrew Singletary, Yisong Yue, and Aaron Ames. Learning for safety-critical
+  control with control barrier functions. In Learning for Dynamics and Control, pages 708–717.
+  PMLR, 2020.
+
+Han Wang, Kostas Margellos, and Antonis Papachristodoulou. Safety verification and controller
+  synthesis for systems with input constraints. IFAC-PapersOnLine, 56(2):1698–1703, 2023.
+
+Han Wang, Kostas Margellos, Antonis Papachristodoulou, and Claudio De Persis. Convex co-design
+  of control barrier function and safe feedback controller under input constraints. arXiv preprint
+  arXiv:2403.11763, 2024.
+
+                                                 12
+                              Safe and Stable Neural ODE Control
+
+
+
+
+Wei Xiao and Calin Belta. Control barrier functions for systems with high relative degree. In 2019
+ IEEE 58th conference on decision and control (CDC), pages 474–479. IEEE, 2019.
+Wei Xiao, Ross Allen, and Daniela Rus. Safe neural control for non-affine control systems with
+ differentiable control barrier functions. In 2023 62nd IEEE Conference on Decision and Control
+ (CDC), pages 3366–3371. IEEE, 2023a.
+Wei Xiao, Tsun-Hsuan Wang, Ramin Hasani, Makram Chahine, Alexander Amini, Xiao Li, and
+ Daniela Rus. Barriernet: Differentiable control barrier functions for learning of safe robot control.
+ IEEE Transactions on Robotics, 39(3):2289–2307, 2023b.
+Liqun Zhao, Konstantinos Gatsis, and Antonis Papachristodoulou. Stable and safe reinforcement
+  learning via a barrier-lyapunov actor-critic approach. In 2023 62nd IEEE Conference on Decision
+  and Control (CDC), pages 1320–1325. IEEE, 2023.
+Liqun Zhao, Keyan Miao, Hongpeng Cao, Konstantinos Gatsis, and Antonis Papachristodoulou.
+  Nlbac: A neural ode-based algorithm for state-wise stable and safe reinforcement learning.
+  Neurocomputing, page 130041, 2025.
+
+
+7. Appendix
+7.1. Gradients Computation of Opt-ODENet
+7.1.1. Adjoint Method for Back-propagation in Neural ODEs
+A Neural ODE is a system of the form
+
+                                   𝑥¤ (𝑡) = F (𝑡, 𝑥 (𝑡) , 𝜃)   𝑡∈S                               (29)
+
+where S := 𝑡0 , 𝑡 𝑓 (𝑡0 , 𝑡 𝑓 ∈ R+ ) is the depth domain and F is a neural network called ODENet
+                  
+
+which is chosen as part of the machine learning model with parameter 𝜃.
+Loss:                                             ∫ 𝑡𝑓
+                                              
+                                ℓ B Φ 𝑥 𝑡𝑓 +           L (𝑥 (𝑡) , 𝜃, 𝑡) 𝑑𝑡                   (30)
+                                                   𝑡0
+Consider Problem (29)-(30). The gradient of loss ℓ with respect to parameter 𝜃 is
+
+                                             ∇ 𝜃 ℓ = 𝜇 (𝑡0 )                                     (31)
+
+where 𝑥 (𝑡), 𝑝 (𝑡) and 𝜇 (𝑡) satisfy the boundary value problem:
+                            𝑥¤ (𝑡) = F , 𝑥 (𝑡0 ) = 𝑥 0
+                                              𝜕F 𝜕L                  𝜕Φ
+                             𝑝¤ (𝑡) = −𝑝 (𝑡)       −      , 𝑝 𝑡𝑓 =         
+                                               𝜕𝑥      𝜕𝑧           𝜕𝑥 𝑡 𝑓                       (32)
+                                              𝜕F 𝜕L              
+                            𝜇¤ (𝑡) = −𝑝 (𝑡)        −      , 𝜇 𝑡 𝑓 = 𝟘𝑛 𝜃
+                                               𝜕𝜃      𝜕𝜃
+Proof Define the augmented objective function with a Lagrange multiplier 𝑝 as
+                                  ∫ 𝑡𝑓
+                         𝐿=ℓ−          𝑝(𝑡) [ ¤𝑥(𝑡) − F (𝑡, 𝑥(𝑡), 𝜃)] 𝑑𝑡                         (33)
+                                       𝑡0
+
+
+                                                   13
+                                Miao Zhao Wang Gatsis Papachristodoulou
+
+
+
+
+and 𝑥¤ − F = 0 always holds by construction, so 𝑝(𝑡) can be freely assigned while 𝑑𝐿    𝑑ℓ
+                                                                                  𝑑 𝜃 = 𝑑 𝜃 . As to
+the integration part on right hand side of (33), we have
+                   ∫ 𝑡𝑓
+                                                         𝑡
+                           𝑝(𝑡) ( 𝑥¤ − F ) 𝑑𝑡 = 𝑝(𝑡)𝑥(𝑡) 𝑡0𝑓
+                      𝑡0
+                                                ∫ 𝑡𝑓                   ∫ 𝑡𝑓
+                                              −        𝑝(𝑡)𝑥(𝑡)𝑑𝑡 −
+                                                        ¤                   𝑝(𝑡)F 𝑑𝑡
+                                                 𝑡0                     𝑡0
+                                                              
+                                              = 𝑝 𝑡𝑓 𝑥 𝑡𝑓
+                                                                  ∫ 𝑡𝑓
+                                              − 𝑝 (𝑡0 ) 𝑥 (𝑡0 ) −       (¤
+                                                                         𝑝(𝑡)𝑥(𝑡) + 𝑝(𝑡)F ) 𝑑𝑡
+                                                                 𝑡0
+
+Hence,                                                   
+                                 𝐿 = Φ 𝑥 𝑡 𝑓 − 𝑝 𝑡 𝑓 𝑥 𝑡 𝑓 + 𝑝 (𝑡0 ) 𝑥 (𝑡0 )
+                                     ∫ 𝑡𝑓
+                                   +      (¤
+                                           𝑝(𝑡)𝑥(𝑡) + 𝑝(𝑡)F + L) 𝑑𝑡
+                                         𝑡0
+
+Then the gradient of ℓ with respect to 𝜃 can be computed as
+                                                 
+                𝑑ℓ 𝑑𝐿           𝜕Φ                  𝑑𝑥(𝑡 𝑓 )
+                    =     =            − 𝑝(𝑡 𝑓 )
+                𝑑𝜃 𝑑𝜃          𝜕𝑥 𝑡 𝑓                 𝑑𝜃
+                      ∫ 𝑡𝑓                                                                               (34)
+                                  𝑑𝑥(𝑡)             𝜕F 𝜕F 𝑑𝑥           𝜕L 𝜕L 𝑑𝑥
+                    +        ¤
+                             𝑝(𝑡)        + 𝑝(𝑡)         +            +    +         𝑑𝑡
+                       𝑡0          𝑑𝜃               𝜕𝜃       𝜕𝑥 𝑑𝜃     𝜕𝜃   𝜕𝑥 𝑑𝜃
+
+Now if we set this Lagrange multiplier as the adjoint state for the Hamiltonian function
+
+                                              𝐻 (𝑥, 𝑝, 𝜃) = 𝑝F + L                                           (35)
+
+and according to PMP, the optimality conditions requires
+
+                                         𝜕𝐻              𝜕𝐻      𝜕F    𝜕L
+                                  𝑥¤ =      = F , 𝑝¤ = −    = −𝑝     −                                       (36)
+                                         𝜕𝑝              𝜕𝑥      𝜕𝑧𝑥   𝜕𝑥
+
+with initial conditions 𝑥(𝑡0 ) = 𝑥 0 and 𝑝(𝑡 𝑓 ) = 𝜕𝑥𝜕Φ           𝜕Φ
+                                                      (𝑡 𝑓 ) = 𝜕𝑥 ( 𝑡 𝑓 ) . Substituting (36) into (34), it can be
+obtained that                     ∫ 𝑡𝑓                      
+                           𝑑ℓ                  𝜕F 𝜕𝐿
+                                =        𝑝(𝑡)       +          𝑑𝑡
+                           𝑑𝜃       𝑡0          𝜕𝜃     𝜕𝜃
+                                  ∫ 𝑡0                                 ∫ 𝑡0                                 (37)
+                                                 𝜕F 𝜕L                          𝜕𝐻
+                                =        −𝑝(𝑡)       −           𝑑𝑡 =         −     𝑑𝑡
+                                    𝑡𝑓           𝜕𝜃       𝜕𝜃               𝑡𝑓   𝜕𝜃
+proving the result.
+
+
+7.1.2. Gradients Through QP Layer
+For a differentiable CBF-QP layer (9), the gradients of loss with respect to different variables through
+QP layer can be computed as follows.
+
+                                                        14
+                               Safe and Stable Neural ODE Control
+
+
+
+
+Theorem 6 (Implicit Function Theorem) Given three open setx 𝑋 ⊆ R𝑛 , 𝑌 ⊆ R𝑚 and 𝑍 ⊆ R𝑚 , if
+function 𝐹 : 𝑋 × 𝑌 ↦→ 𝑍 is continuously differentiable, and ( ˆ𝑥, 𝑦ˆ ) ∈ R𝑛 × R𝑚 is a point for which
+
+                                              𝐹 ( ˆ𝑥, 𝑦ˆ ) = 𝑧ˆ,                                   (38)
+
+and the Jacobian of 𝐹 with respect to 𝑦 ⊆ 𝑌
+                                                                        
+                                                                  𝜕𝐹𝑖
+                                           𝐽𝐹,𝑦          =                                         (39)
+                                                  𝑖, 𝑗            𝜕𝑦 𝑗
+
+is invertible at ( ˆ𝑥, 𝑦ˆ ), then there exists an open set 𝑊 ∈ R𝑛 with 𝑥 ∈ 𝑊 and a unique continuously
+differentiable function 𝜙 : 𝑊 ↦→ 𝑌 such that 𝑦 = 𝜙(𝑥) and
+
+                                              𝐹 (𝑥, 𝑦) = 𝑧ˆ                                        (40)
+
+holds for 𝑥 ∈ 𝑊.
+In addition, it can be shown that the partial derivatives of 𝜙 and 𝑊 are given by
+                                                      −1       
+                                      𝐽 𝑦, 𝑥 = − 𝐽𝐹,𝑦        𝐽𝐹, 𝑥 .                               (41)
+
+
+The Lagrangian of (9) is given by
+                                   1
+                      𝐿 (𝑢, 𝜈, 𝜆) = 𝑢 ⊤ 𝑄𝑢 + 𝑞 ⊤ 𝑢 + 𝜈 ⊤ ( 𝐴𝑢 − 𝑏) + 𝜆⊤ (𝐺𝑢 − ℎ)                   (42)
+                                   2
+where 𝜈 are the dual variables on the equality constraints and 𝜆 ≥ 0 are the dual variables on the
+inequality constraints. The KKT conditions for stationary, primal feasibility, and complementary
+slacknesss are
+                                  𝑄𝑢 ∗ + 𝑞 + 𝐴⊤ 𝜈 ∗ + 𝐺 ⊤ 𝜆∗ = 0
+                                                              𝐴𝑢 ∗ − 𝑏 = 0                         (43)
+                                                   ∗              ∗
+                                             𝐷 (𝜆 ) (𝐺𝑢 − ℎ) = 0,
+where 𝐷 (·) is a diagonal matrix with entries those of the vector argument, and 𝑢 ∗ , 𝜈 ∗ and 𝜆∗ are the
+optimal primal and dual variables. Taking the differentials of these conditions gives the equations
+                     𝑑𝑄𝑢 ∗ + 𝑄𝑑𝑢 + 𝑑𝑞 + 𝑑𝐴⊤ 𝜈 ∗ + 𝐴⊤ 𝑑𝜈 + 𝑑𝐺 ⊤ 𝜆∗ + 𝐺 ⊤ 𝑑𝜆 = 0
+                                                                         𝑑𝐴𝑢 ∗ + 𝐴𝑑𝑢 − 𝑑𝑏 = 0      (44)
+                                     ∗                        ∗              ∗
+                               𝐷 (𝐺𝑢 − ℎ)𝑑𝜆 + 𝐷 (𝜆 ) (𝑑𝐺𝑢 + 𝐺𝑑𝑢 − 𝑑ℎ) = 0,
+or written more compactly in matrix form
+              𝑄          𝐴⊤    𝐺⊤      𝑑𝑢       𝑑𝑄𝑢 ∗ + 𝑑𝑞 + 𝑑𝐺 ⊤ 𝜆∗ + 𝑑𝐴⊤ 𝜈 ∗ 
+                                                             ∗ − 𝑑𝑏
+                                                                                    
+              𝐴          0      0       𝑑𝜈  = −          𝑑𝐴𝑢                                 (45)
+                                                                               
+              𝐷 (𝜆∗ )𝐺           ∗                         ∗     ∗        ∗
+                          0 𝐷 (𝐺𝑢 − ℎ)   𝑑𝜆       𝐷 (𝜆 )𝑑𝐺𝑢 − 𝐷 (𝜆 )𝑑ℎ 
+                                                                                
+             
+First, according to (43), we can have an implicit function 𝐹 (Dontchev and Rockafellar, 2009):
+                                           𝑄𝑢 ∗ + 𝑞 + 𝐴⊤ 𝜈 ∗ + 𝐺 ⊤ 𝜆∗ 
+                                                                      
+                              𝐹 (𝑋, 𝑌 ) =         𝐴𝑢 ∗ − 𝑏            =0
+                                                                                                  (46)
+                                                   ∗      ∗
+                                                𝐷 (𝜆 ) (𝐺𝑢 − ℎ)        
+                                                                      
+
+                                                         15
+                              Miao Zhao Wang Gatsis Papachristodoulou
+
+
+
+
+where 𝑋 = [𝑄; 𝑞; 𝐴; 𝑏; 𝐺; ℎ], 𝑌 = [𝑢; 𝜈; 𝜆]. Hence, the Jacobian with respect to 𝑌 is:
+                                                         
+                             𝐽𝐹,𝑌 = 𝐽𝐹,𝑢 𝐽𝐹,𝜈 𝐽𝐹,𝜆
+                                    
+                                         𝑄      𝐴⊤         𝐺⊤      
+                                                                                                (47)
+                                  =      𝐴      0          0      
+                                                                    
+                                     𝐷 (𝜆∗ )𝐺 0 𝐷 (𝐺𝑢 ∗ − ℎ) 
+                                                                   
+note that all the vectors are column vectors. Next, we calculate the Jacobian with respect to 𝑋 (note
+that all the matrices and vectors are operated as column vectors):
+                                                                     
+                   𝐽𝐹,𝑋 = 𝐽𝐹,𝑄 𝐽𝐹,𝑞 𝐽𝐹, 𝐴 𝐽𝐹,𝑏 𝐽𝐹,𝐺 𝐽𝐹,ℎ
+                            𝐼 ⊗ 𝑢 ∗𝑇 𝐼 𝜈 ∗𝑇 ⊗ 𝐼 0          𝜆∗𝑇 ⊗ 𝐼         0     
+                                              ∗𝑇
+                                                                                                (48)
+                         =     0     0 𝐼 ⊗𝑢       −𝐼         0            0     
+                                                                                  
+                           
+                                0     0     0       0 𝐷 (𝜆∗ )𝐼 ⊗ 𝑢 ∗𝑇 −𝐷 (𝜆∗ ) 
+where ⊗ represents Kronecker product. According to the Implicit Function Theorem 6, we obtain
+                                 ⊤  ⊤
+                               𝜕𝑙       𝜕𝑙
+                                     =        𝐽𝑌 ,𝑋
+                               𝜕𝑋       𝜕𝑌
+                                          ⊤                                             (49)
+                                          𝜕𝑙            −1       
+                                     =−            𝐽𝐹,𝑌        𝐽𝐹,𝑋
+                                          𝜕𝑌
+Since primal and dual variables ∗      ∗
+      ⊤  ⊤               𝜆 and 𝜈 will not be passed into following layers of networks, we
+       𝜕𝑙         𝜕𝑙
+have 𝜕𝑌     = 𝜕𝑢    ∗  , 0, 0 where 0 on the right hand side are zero vectors with the same size
+                            𝑑𝑢  h      i −1
+                            
+as 𝜈 ∗𝑇 and 𝜆∗𝑇 .                    ⊤
+               We define 𝑑 𝜈  = 𝐽𝐹,𝑌      𝜕𝑙
+                                              𝜕𝑌 . According to the Implicit Function Theorem, we
+                            𝑑𝜆 
+                            
+                    𝑑𝑢 
+       𝜕𝑙
+               ⊤     
+obtain 𝜕𝑋 = 𝐽𝐹,𝑋 𝑑 𝜈  , then
+                    𝑑𝜆 
+                    
+                     𝐼 ⊗ 𝑢 ∗𝑇 𝐼 𝜈 ∗𝑇 ⊗ 𝐼 0                  𝜆∗𝑇 ⊗ 𝐼           0     ⊤  𝑑𝑢 
+              𝜕𝑙                                                                     
+                 =      0     0 𝐼 ⊗ 𝑢 ∗𝑇 −𝐼                     0            0     𝑑 𝜈 
+             𝜕𝑋                                               ∗        ∗𝑇        ∗
+                                                                                      
+                         0     0        0           0 𝐷 (𝜆 )𝐼 ⊗ 𝑢         −𝐷 (𝜆 )   𝑑𝜆 
+                     𝐼 ⊗ 𝑢∗    0                0        
+                                                         
+                     𝐼         0                0                                              (50)
+                     ∗                                     𝑑𝑢 
+                    𝜈 ⊗ 𝐼 𝐼 ⊗ 𝑢∗                0         
+                 =                                       𝑑 𝜈 
+                     0         −𝐼               0         
+                                                           𝑑 
+                       ∗
+                    𝜆 ⊗ 𝐼      0              ∗        ∗
+                                         𝐷 (𝜆 )𝐼 ⊗ 𝑢   𝜆 
+                    
+                     0
+                               0            𝐷 (𝜆∗ ) 
+Now, we can have
+                          𝜕𝑙    1                            𝜕𝑙
+                              =      𝑑𝑢 𝑢 ∗𝑇 + 𝑢 ∗ 𝑑𝑢⊤ ,            = 𝑑𝑢
+                          𝜕𝑄 2                                𝜕𝑞
+                           𝜕𝑙                          𝜕𝑙
+                              = 𝜈 ∗ 𝑑𝑢⊤ + 𝑑 𝜈 𝑢 ∗𝑇 ,        = −𝑑 𝜈                               (51)
+                          𝜕𝐴                           𝜕𝑏
+                          𝜕𝑙                                     𝜕𝑙
+                              = 𝐷 (𝜆∗ )𝑑𝜆 𝑧 ∗𝑇 + 𝜆∗ 𝑑𝑢⊤ ,            = −𝐷 (𝜆∗ )𝑑𝜆
+                          𝜕𝐺                                    𝜕ℎ
+
+                                                     16
+                                Safe and Stable Neural ODE Control
+
+
+
+
+Or more directly, for example, we can obtain
+                                  ⊤  ⊤
+                                  𝜕𝑙         𝜕𝑙
+                                        =           [𝐽𝐹,𝑌 ] −1 [𝐽𝐹,𝑞 ]
+                                  𝜕𝑞         𝜕𝑌
+                                                 ⊤             𝐼                                (52)
+                                              𝜕𝑙              −1  
+                                                                  
+                                        =            [𝐽 𝐹,𝑌 ]    0
+                                             𝜕𝑢 ∗                0
+                                                                  
+If automatic differentiation method is used to compute the entire framework of Neural ODEs with
+QP layer, then Equation (51) represents the gradient of loss with respect to the variables through the
+QP layer.
+
+7.1.3. Gradients Computation of Opt-ODENet (Adjoint Method)
+                                              𝜕L      𝜕L
+The results are shown in Proposition 4. As to 𝜕𝜃1
+                                                  and 𝜕𝜃2
+                                                          , the results are as follows:
+
+                          𝜕L 𝜕L          𝜕𝑥            𝜕𝜏(𝑥, 𝜃 1 , 𝜃 2 )
+                               =
+                          𝜕𝜃 2    𝜕𝑥 𝜕𝜏(𝑥, 𝜃 1 , 𝜃 2 )     𝜕𝜃 2
+                                  𝜕L        𝜕𝑥           𝜕𝜏(𝑥, 𝜃 1 , 𝜃 2 ) 𝜕ℎ(𝑥, 𝜃 2 )              (53)
+                               =
+                                   𝜕𝑥 𝜕𝜏(𝑥, 𝜃 1 , 𝜃 2 ) 𝜕ℎ(𝑥, 𝜃 2 )          𝜕𝜃
+                                 |{z} | {z } | {z } | {z2 }
+                                   𝐴𝐷          𝐴𝐷               (20)           𝐴𝐷
+
+                        𝜕L 𝜕L          𝜕𝑥            𝜕𝜏(𝑥, 𝜃 1 , 𝜃 2 )
+                             =
+                        𝜕𝜃 1    𝜕𝑥 𝜕𝜏(𝑥, 𝜃 1 , 𝜃 2 )     𝜕𝜃 1
+                                𝜕L        𝜕𝑥           𝜕𝜏(𝑥 1 , 𝜃 1 , 𝜃 2 ) 𝜕𝜋(𝑥, 𝜃 1 )             (54)
+                             =                                                          .
+                                 𝜕𝑥 𝜕𝜏(𝑥, 𝜃 1 , 𝜃 2 ) 𝜕𝜋(𝑥, 𝜃 1 )             𝜕𝜃 1
+                               |{z} | {z } |                 {z          } | {z }
+                                  𝐴𝐷          𝐴𝐷               (20)            𝐴𝐷
+
+
+7.2. Experiments
+The source code is available at https://github.com/KYMiao/L4DC-Stable-Safe-NeuralODE-Controller.
+
+7.2.1. Experiments Details of Unicycle
+For the Unicycle environment, the controller network is designed as a two-layer neural network with
+a hidden state dimension of 64. The training is performed with a batch size of 32 over 100 epochs.
+The Neural ODE is solved using the Euler method, with a time interval of [0, 1] and a step size of
+0.01.
+The setting in Equation (28) is also set up to deal with the different relative degrees for (27). Another
+way is modify the dynamics as follows:
+                              𝑥¤   𝑣 cos(𝜃)   0   0  
+                                                         
+                              𝑦¤   𝑣 sin(𝜃   0    0  𝑣
+                              =             +                                                  (55)
+                              𝜃¤       0      1.0 0  𝜔
+                                                     
+                              𝑣¤       0      0 1.0 
+                                                     
+In this case, HOCBF should be used. We show some results to illustrate the importance of the choice
+of class-K function in Figure 7.2.1. In this case, a larger 𝜅 typically delays the system’s response
+
+                                                      17
+                                 Miao Zhao Wang Gatsis Papachristodoulou
+
+
+
+
+                    (a) 𝜅 = {0.1, 0.1}                                                           (b) 𝜅 = {1, 1}
+
+             Figure 6: Test Trajectories under Different HOCBF-QP Settings for Unicycle
+
+to CBF constraints, giving priority to the objective. This often results in the system adhering more
+closely to obstacles, as it adjusts later to safety constraints.
+
+7.2.2. Experiments Details of Simulated Cars
+This environment, simulating a chain of five cars following each other on a straight road. The
+objective is to control the acceleration of the 4𝑡 ℎ car to maintain a desired distance from the 3𝑟 𝑑 car
+while avoiding collisions with other cars. The real dynamics of all cars except the 4𝑡 ℎ one is given
+by:                                                
+                                  𝑣 𝑖 (𝑡)       0
+                      𝑥¤𝑖 (𝑡) =            +            𝑎 𝑖 (𝑡)   ∀𝑖 ∈ {1, 2, 3, 5}.
+                                     0        1 + 𝑑𝑖
+Each state of the system is denoted as 𝑥 𝑖 (𝑡) = [ 𝑝 𝑖 (𝑡), 𝑣 𝑖 (𝑡)] ⊤ , indicating the position 𝑝 𝑖 (𝑡) and
+velocity 𝑣 𝑖 (𝑡) of the 𝑖 𝑡 ℎ car at the time 𝑡, 𝑑𝑖 = 0.1. The time interval used in this experiment is 0.02s.
+The predefined velocity of the 1𝑠𝑡 car is 𝑣 𝑠 − 4 sin(𝑡), where 𝑣 𝑠 = 3.0. Its acceleration is given as
+𝑎 1 (𝑡) = 𝑘 𝑣 (𝑣 𝑠 − 4 sin(𝑡) − 𝑣 1 (𝑡)) where 𝑘 𝑣 = 4.0. Accelerations of Car 2 and 3 are given by:
+                              (
+                               𝑘 𝑣 (𝑣 𝑠 −𝑣 𝑖 (𝑡)) −𝑘 𝑏 ( 𝑝 𝑖−1 (𝑡) − 𝑝 𝑖 (𝑡)) 𝑖 𝑓 | 𝑝 𝑖−1 (𝑡) − 𝑝 𝑖 (𝑡)| < 6.5
+                    𝑎 𝑖 (𝑡) =
+                               𝑘 𝑣 (𝑣 𝑠 −𝑣 𝑖 (𝑡))                          𝑜𝑡ℎ𝑒𝑟𝑤𝑖𝑠𝑒,
+
+where 𝑘 𝑏 = 20.0 and 𝑖 = 2, 3. The acceleration of the 5𝑡 ℎ car is:
+                          (
+                           𝑘 𝑣 (𝑣 𝑠 −𝑣 5 (𝑡)) −𝑘 𝑏 ( 𝑝 3 (𝑡) − 𝑝 5 (𝑡)) 𝑖 𝑓 | 𝑝 3 (𝑡) − 𝑝 5 (𝑡)| < 13.0
+                𝑎 5 (𝑡) =
+                           𝑘 𝑣 (𝑣 𝑠 −𝑣 5 (𝑡))                          𝑜𝑡ℎ𝑒𝑟𝑤𝑖𝑠𝑒.
+
+The model of the 4𝑡 ℎ car is as follows:
+                                                                                  
+                                                        𝑣 4 (𝑡)                 0
+                                        𝑥¤4 (𝑡) =                      +                 𝑢(𝑡),
+                                                           0                   1.0
+where 𝑢(𝑡)) is the acceleration of the 4𝑡 ℎ car, and also the control signal generated by the controller
+at the time 𝑡.
+
+                                                                  18
+                                 Safe and Stable Neural ODE Control
+
+
+
+
+         Figure 7: Training results on Simulated Cars under Different HOCBF-QP Settings
+
+
+𝑑 (𝑡) = 𝑝 3 (𝑡) − 𝑝 4 (𝑡) represents the distance between the 3𝑟 𝑑 and 4𝑡 ℎ car, and the objective is to
+let 𝑑 (𝑡) fall within [5.5, 6.5] as a desired region. Thus, the CLF is determined as ∥𝑑 (𝑡) − 𝑑desired ∥,
+where 𝑑desired = 6. CBFs are defined as ℎ1 (𝑥(𝑡)) = 𝑝 3 (𝑡) − 𝑝 4 (𝑡) −𝛿 and ℎ2 (𝑥(𝑡)) = 𝑝 4 (𝑡) − 𝑝 5 (𝑡) −𝛿,
+with 𝛿 being the minimum required distance between the cars.
+The controller network is designed as a four-layer neural network with hidden state dimensions of
+128, 64, 32 and 12. The training is performed over 400 epochs. The Neural ODE is solved using
+the Euler method, with a time interval of [0, 4] and a step size of 0.02.
+The training results under different HOCBF-QP settings are shown in Figure 7 where the reward
+represents how often 𝑑 (𝑡) falls with desired region. It can be found that when 𝜅 = {2, 1}, the
+whole training seems meaningless, the reason may be that the CBF cannot work normally and the
+car stucks when 𝜅 is too small and therefore contradicts with the whole setting, and CLF cannot
+help the car get out of this circumstance (the fourth car cannot monotonically going further from
+both the third and the fifth car at the same time and therefore certain infeasibility happens, which
+makes the whole training problematic. - however in this case we can consider learning different
+𝜅 for different safety constraints for improvement) When 𝜅 = {60, 900}, the safety constraints are
+valid and the safety violations are 0. For the reward, this case works worse than the case that 𝜅
+is learned as {18.6, 96.04}. Hence, the effect of 𝜅 is not as straightforward as ‘larger 𝜅 equals
+more aggressive behavior.’ While a larger 𝜅 often delays the system’s response to CBF constraints,
+allowing it to prioritize the CLF objective and potentially ‘stick closer’ to obstacles, this does not
+universally translate to faster or more efficient target convergence. The interaction between CBF
+and CLF objectives is context-dependent. For example, when the target lies near an obstacle, a
+larger 𝜅 might help the system avoid detours by adhering closely to the safety boundary. However,
+if the target direction naturally steers the system away from the obstacle, increasing 𝜅 adds little
+value and could even result in suboptimal trajectories due to delayed responses to other constraints.
+Thus, the impact of class-K function is dynamic and contextual, and in some cases it is important to
+learn it rather than fix it to better accommodate different CBF-CLF interactions, especially for hard
+constraints.
+
+
+
+
+                                                     19
+

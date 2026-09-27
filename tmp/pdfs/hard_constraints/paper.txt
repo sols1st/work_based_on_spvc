@@ -1,0 +1,1274 @@
+                                          Accepted to NeuS 2026 1–22
+
+
+
+
+                                                                  Training with Hard Constraints:
+                                                        Learning Neural Certificates and Controllers for SDEs
+
+                                          Chun-Wei Kong                                                           C HUN -W EI .KONG @ COLORADO . EDU
+                                          Sebastian Escobar                                                   S EBASTIAN .E SCOBAR @ COLORADO . EDU
+                                          Ibon Gracia                                                                  I BON .G RACIA @ COLORADO . EDU
+                                          Jay McMahon                                                                JAY.M C M AHON @ COLORADO . EDU
+                                          Morteza Lahijanian                                                 M ORTEZA .L AHIJANIAN @ COLORADO . EDU
+                                          University of Colorado Boulder, Colorado, USA
+
+
+
+
+arXiv:2602.23526v3 [eess.SY] 3 Jun 2026
+                                                                                                  Abstract
+                                               Due to their expressive power, neural networks (NNs) are promising templates for functional op-
+                                               timization problems, particularly for reach-avoid certificate generation for systems governed by
+                                               stochastic differential equations (SDEs). However, ensuring hard-constraint satisfaction remains a
+                                               major challenge. In this work, we propose two constraint-driven training frameworks with guar-
+                                               antees for supermartingale-based neural certificate construction and controller synthesis for SDEs.
+                                               The first approach enforces certificate inequalities via domain discretization and a bound-based
+                                               loss, guaranteeing global validity once the loss reaches zero. We show that this method also en-
+                                               ables joint NN controller-certificate synthesis with hard guarantees. For high-dimensional systems
+                                               where discretization becomes prohibitive, we introduce a partition-free, scenario-based training
+                                               method that provides arbitrarily tight PAC guarantees for certificate constraint satisfaction. Bench-
+                                               marks demonstrate scalability of the bound-based method up to 5D, outperforming the state of the
+                                               art, and scalability of the scenario-based approach to at least 10D with high-confidence guarantees.
+                                               Keywords: stochastic differential equations, reach-avoid certificates, neural network with hard
+                                               constraints, neural controller synthesis.
+
+
+                                          1. Introduction
+                                          Empirical performance alone is insufficient for reach-avoid control of continuous-time stochastic
+                                          systems, particularly in safety-critical applications. In such scenarios, formal guarantees that the
+                                          controlled dynamics satisfy the specification are required. Supermartingale theory frames this ob-
+                                          jective as the search for a certificate function that satisfies a set of inequalities over a continuous
+                                          domain. Constructing such a function leads to a functional optimization problem over a chosen tem-
+                                          plate. Classical approaches, such as sum-of-squares (SoS) programming, yield convex formulations
+                                          but suffer from limited scalability. Neural networks (NNs) provide a flexible and expressive alter-
+                                          native for parameterizing certificates; however, enforcing the required inequalities globally remains
+                                          an open challenge. Existing methods rely on post-training NN verification to ensure constraint sat-
+                                          isfaction, which limits scalability. In this work, we focus on these challenges and aim to answer two
+                                          key questions: (i) How can hard constraints be encoded directly into NN certificate training while
+                                          preserving scalability? and (ii) How can a NN controller and NN certificate be trained jointly?
+                                              Existing approaches for learning NNs with hard constraints provide only partial answers. On
+                                          one end, constraints are enforced softly during training via penalty terms, augmented Lagrangian
+                                          methods, or checks on a finite set of samples (Márquez-Neila et al., 2017; Kotary and Fioretto,
+                                          2024). While these techniques can reduce violations on the training set, they offer no guarantees
+
+                                          © C.-W. Kong, S. Escobar, I. Gracia, J. McMahon & M. Lahijanian.
+                          KONG E SCOBAR G RACIA M C M AHON L AHIJANIAN
+
+
+
+
+over the entire domain. On the other end, learner–verifier frameworks alternate between training
+and formal constraint checking using tools such as SMT solvers, interval analysis, or discretization
+with Lipschitz arguments. Although effective in structured settings (Goyal et al., 2024; Chatterjee
+et al., 2023; Žikelić et al., 2023; Edwards et al., 2025), these methods typically rely on restrictive
+assumptions (e.g., linear or polynomial dynamics, propositional constraints, or discrete-time sys-
+tems) that enable informative verifier feedback. Extending such methods to reach-avoid certificates
+for general continuous-time, continuous-space stochastic systems described by Stochastic Differen-
+tial Equations (SDEs) remains challenging, as the constraints include a differential inequality that
+couples certificate derivatives with state-dependent drift and diffusion over a continuous domain.
+     In this work, we take a different route: we directly encode hard constraints into NN training
+so that constraint satisfaction is guaranteed upon termination. We introduce two complementary
+approaches. Inspired by NN robustness methods, e.g., (Gowal et al., 2018; Xu et al., 2020), our first
+approach is a bound-training framework that constructs a bound-based loss. The method partitions
+the domain, derives parametric bounds for each constraint on every cell, and aggregates worst-case
+violations into a single loss. Minimizing this loss enforces hard constraints: once it becomes non-
+positive, all constraints are guaranteed to hold. To address scalability limitations from discretization,
+we present adaptive refinement and merging strategies to manage the partition effectively. Further-
+more, we extend this framework to joint controller–certificate synthesis by backpropagating through
+a differentiable computation graph derived from the closed-loop SDE dynamics. Our empirical eval-
+uations show that bound-training significantly outperforms existing methods in scalability, though
+it reaches practical limits around 5D systems. To handle higher-dimensional SDEs, we introduce a
+partition-free alternative based on scenario optimization. This approach trains the NN using state
+samples and provides probably approximately correct (PAC) guarantees: with high confidence, the
+constraints are guaranteed to hold everywhere except on a set of small measure under the sampling
+distribution. We show that, by focusing on the last-layer parameters, the resulting problem reduces
+to a linear program, allowing a large number of samples and thus arbitrarily increasing confidence
+while shrinking the un-guaranteed sets. Consequently, this approach scales to high-dimensional sys-
+tems (at least 10D) with arbitrarily-tight PAC guarantees. We provide our code on Github (Escobar
+and Kong, 2026).
+     In short, the main contributions are: (i) a bound-training framework for NN certificates for
+reach-avoid specifications with hard guarantees, (ii) its extension to joint synthesis of NN con-
+trollers and certificates, (iii) a highly scalable scenario-based training method for NN certificates
+with arbitrarily-tight PAC guarantees, and (iv) extensive case studies demonstrating improved veri-
+fication scalability and control synthesis on increasingly challenging systems.
+
+Related Work Neural network training with hard constraints. Hard constraints are commonly
+enforced by construction in discrete-output tasks (e.g., coherent/semantic constraint layers) (Giunchiglia
+et al., 2024; Giunchiglia and Lukasiewicz, 2020; Ahmed et al., 2022), or via post-processing for
+linear constraints in generative models (Stoian et al., 2024). Mixed-integer encodings is another ap-
+proach (Yang et al., 2025), but the resulting problem size (mixed-integer linear program) can grow
+quickly with network width/depth; moreover, common ReLU architectures are not twice continu-
+ously differentiable, making them unsuitable for SDE supermartingale certificates.
+    Certificates for dynamical systems. Learner–verifier frameworks alternate sample-based learn-
+ing with verification. For discrete-time stochastic systems, existing methods (Chatterjee et al., 2023;
+Žikelić et al., 2023) are mostly low-dimensional due to state- (and even noise-) space partitioning.
+
+                                                   2
+                                T RAINING WITH H ARD C ONSTRAINTS
+
+
+
+
+For continuous-time stochastic systems, Neustroev et al. (2025) verifies reach-avoid-stay with a
+fixed controller by checking the bounds over a discretized state space, but examples remain two-
+dimensional and control synthesis is left open.
+    A key design choice in learner–verifier frameworks is the verifier. Some works use Satisfiability
+Modulo-Theories(SMT)-in-the-loop training, e.g., Abate et al. (2020, 2021); Peruffo et al. (2021)
+verify safety/stability constraints for deterministic systems. However, SMT scalability degrades
+with state dimension, and δ-complete solvers (e.g., dReal) may generate spurious counterexam-
+ples that increase training iterations; this issue persists in recent unified reach/avoid/stay synthesis
+frameworks for non-polynomial dynamics (Edwards et al., 2025).
+    Statistical Certificates. Motivated by the scalability limitations of partition-based methods, al-
+ternative approaches employ sampling techniques (Campi et al., 2009) to verify certificates (Anand
+and Zamani, 2023; Salamati et al., 2021; Samari and Lavaei, 2025; Liu et al., 2016). While some
+methods incur sample complexity exponential in the state dimension n (Anand and Zamani, 2023;
+Salamati et al., 2021), PAC-based approaches achieve sample complexity independent of n (Samari
+and Lavaei, 2025). Such methods guarantee, with high confidence, that the certificate conditions
+hold everywhere except on a small region whose volume shrinks with the sample size. No guar-
+antee is provided within this region, though the certificate remains valid if it holds there. Existing
+work primarily focuses on verification of NNs against given constraints. In contrast, we extend these
+ideas to synthesize NN parameters that satisfy the constraints with PAC guarantees. Specifically, we
+formulate a linear scenario optimization problem to train the last-layer weights of the certificate,
+resulting in a highly scalable framework with arbitrarily tight PAC guarantees.
+
+2. Problem Formulation
+We consider continuous-time, continuous-space stochastic systems given as SDEs, i.e.,
+                                               
+                          dx(t) = f x(t), u(t) dt + g(x(t)) dw(t),                                   (1)
+
+where x(t) ∈ Rn is the state at time t ∈ R≥0 , u(t) ∈ U is the control, U ⊂ Rnu is compact,
+f : Rn × U → Rn is the drift, g : Rn → Rn×m is the diffusion, and w is Rnw -valued Brownian
+motion. A controller (policy) is a function π : Rn → U that maps states to control inputs. We let Π
+be the set of all controllers that satisfy the following assumption:
+
+Assumption 1 (Regular Dynamics and Control) The drift and diffusion terms f and g, as well
+as every π ∈ Π are globally L-Lipschitz continuous, with L > 0.
+
+    Given a controller π ∈ Π and an initial state x0 ∈ Rn , SDE (1) has a unique strong solution
+xx0 , which is a random process whose unique law we denote by Prπx0 (Esfahani et al., 2016). In this
+ π
+
+work, we are interested in the reach-avoid probability of System (1).
+
+Definition 1 (Reach-Avoid Probability) Consider System (1), a compact set X ⊂ Rn of interest,
+a compact safe set Xs ⊂ int(X), where int(X) is the interior of X, a compact initial set X0 ⊆
+int(Xs ), and a compact goal set Xg ⊆ int(Xs ), and let Xu = X \ int(Xs ) be the unsafe set. Given
+a controller π ∈ Π, the reach-avoid probability is defined as
+
+    PπRA (X0 , Xu , Xg ) = inf Prπx0 (∃ t ≥ 0, xπx0 (t) ∈ Xg and ∀t′ ∈ [0, t], xπx0 (t′ ) ̸∈ Xu ).   (2)
+                          x0 ∈X0
+
+
+                                                   3
+                             KONG E SCOBAR G RACIA M C M AHON L AHIJANIAN
+
+
+
+
+    Direct computation of this probability is difficult, as it requires solving SDE (1) and propagating
+the trajectory over time. Instead, using a Lyapunov-like function called certificate, we can guarantee
+a lower bound on PπRA via the following theorem, adapted from (Neustroev et al., 2025, Theorem 1).
+Theorem 1 (Reach-Avoid Certificate (Neustroev et al., 2025)) Consider System (1) under con-
+troller π ∈ Π, the corresponding infinitesimal generator
+                       n                                 n n
+                       X                ∂             1 XX                ∂2
+                                                             g(x)g(x)⊤ ij
+                                                                      
+         G[ · ](x) ≜         fi x, π(x)     [ · ](x) +                            [ · ](x),          (3)
+                                        ∂xi            2                  ∂xi ∂xj
+                       i=1                              i=1 j=1
+
+and the sets X, X0 , Xg , and Xu in Definition 1. If there exists a twice continuously differentiable
+function V : X → R and scalar β > 0 such that
+       V (x) ≥ 0,      ∀x ∈ X,         (4a)         V (x) ≥ β,         ∀x ∈ Xu ,                    (4c)
+       V (x) ≤ 1,      ∀x ∈ X0 ,       (4b)         G[V ](x) < 0,      ∀x ∈ X \ int(Xu ∪ Xg ),      (4d)
+then V is called a reach-avoid certificate, and it holds that PπRA (X0 , Xu , Xg ) ≥ 1 − β1 .
+    Intuitively, V (x) is a non-negative function over X with (desirably) large values on Xu (β in
+Condition (4c)) relative to X0 (Condition (4b)). Condition (4d) (G[V ](x) < 0) enforces a strict
+expected decrease of V (x) along the trajectories of System (1). Hence, a larger lower bound β of
+V (x) on Xu increases the likelihood that trajectories initialized in X0 reach Xg before visiting Xu .
+Constructing such a function, however, is non-trivial.
+    The first goal of this work is to leverage the expressive power of neural networks (NNs) as
+universal function approximators to learn a valid V that certifies a given controller.
+Problem 1 (Neural Certificate) Given System (1) with domain X, initial set X0 , unsafe set Xu ,
+and goal set Xg as in Definition 1, a controller π ∈ Π, and threshold probability pRA ∈ (0, 1), learn
+a NN Vθ (x) that certifies a reach-avoid probability of at least pRA , i.e., PπRA (X0 , Xu , Xg ) ≥ pRA .
+     Often, existing controllers, especially deep policies, fail to ensure high reach-avoid probabili-
+ties, resulting in repeatedly re-training the controller and re-attempting certification without a clear
+guidance for how the controller should improve. The second objective of this work is to address this
+issue by jointly training a NN controller and a NN certificate, enabling the certificate constraints to
+directly guide controller updates during training. This coupling reduces trial-and-error and steers
+learning toward controllers that are both effective and certifiable.
+Problem 2 (Joint Neural Controller-Certificate Synthesis) Given System (1) with domain X,
+initial set X0 , unsafe set Xu , and goal set Xg as in Definition 1, and threshold probability pRA ∈
+(0, 1), jointly learn NNs πθπ (x) and Vθ (x), respectively parameterized by θπ and θ, that guarantee
+a reach-void probability of at least pRA , i.e., PπRA (X0 , Xu , Xg ) ≥ pRA .
+    Challenges & Approach Overview. The main challenge in Problems 1 & 2 is not training NNs to
+maximize the lower bound on PπRA , but ensuring that they satisfy the constraints in (4). Our approach
+therefore focuses on constraint satisfaction: we (i) enforce Eq. (4) via bound-training that relies on
+partioning X (Sec. 3.1) and (ii) complement it with a scenario-based approach that provides PAC
+guarantees (Sec. 3.2) when partition-based certification becomes costly in higher dimensions.
+Remark 1 The proposed training methods extend beyond Probs. 1 & 2, providing a general frame-
+work for training (sufficiently smooth) NNs under arbitrary hard constraints of the form in Eq. (4).
+
+                                                    4
+                                  T RAINING WITH H ARD C ONSTRAINTS
+
+
+
+
+3. Training with Hard Constraints
+We present two approaches for training with hard constraints: (i) bound-training with hard guaran-
+tees and (ii) sampling-based scenario optimization with PAC guarantees. We begin with former.
+
+3.1. Bound-Training for Hard Guarantees
+Consider a twice continuously-differentiable NN Vθ : X → R with learnable parameters θ. It is
+well established that, using interval arithmetic (Sunaga, 1958), bounds of Vθ can be derived over a
+given compact set q ⊂ X. Let V θ , V θ , : 2X → R be functions that provide these bounds, i.e.,
+                               V θ (q) ≤ Vθ (x) ≤ V θ (q)           ∀x ∈ q.                              (5)
+Note that these bounds can be obtained in analytical forms (parameterized with θ) using existing
+tools (e.g., auto-LiRPA (Xu et al., 2020)) for common NNs. Furthermore, the bounds are differen-
+tiable w.r.t. θ, as they are computed recursively by applying the NN activation functions to affine
+combinations of the weights and biases (see (Goyal et al., 2024) and references therein). Using
+V θ , V θ , we derive a bound-based loss function for certificate training of Vθ , as defined below.
+Definition 2 (Bound-based loss function) Let Q = {q1 , . . . , qnQ }, where qi ⊆ X, be a partition
+             nQ
+of X, i.e., ∪i=1 qi = X and qi ∩ qj = ∅ for all i ̸= j ∈ {1, . . . , nQ }, and consider an NN Vθ with its
+bounds V θ and V θ in Eq. (5). Denote by G[Vθ ](qi ) an upper bound of G[Vθ ](x) for all x ∈ qi ∈ Q.
+The bound-training loss for the constraints in Eq. (4) for a given β > 0 is defined as:
+                                 Q              Q
+          LQ                                                  Q                  Q
+           bound (Vθ , β) = w≥0 L≥0 (Vθ ) + w0 L0 (Vθ ) + wu Lu (Vθ , β) + wgen Lgen (Vθ ),              (6)
+where w≥0 , w0 , wu , wgen > 0 are positive weights, and
+                                                                     X
+ LQ
+               X
+  ≥0 (Vθ ) =           ReLU(−V θ (qi )),    (7a)    LQ
+                                                     u (Vθ , β) =           ReLU(β − V θ (qi )),        (7c)
+               qi ∈Q                                           qi ∈Q, qi ∩Xu ̸=∅
+                                                                    X
+ LQ
+               X
+  0 (Vθ ) =          ReLU(V θ (qi ) − 1),   (7b)    LQ
+                                                     gen (Vθ ) =           ReLU(G[Vθ ](qi ) + εgen ),   (7d)
+         qi ∈Q, qi ∩X0 ̸=∅                                    qi ∈Q, qi ∩X̸̄=∅
+
+with ReLU(y) = max{0, y} for y ∈ R, set X̄ = X \ int(Xg ∪ Xu ), and small scalar εgen > 0.
+     Intuitively, the bound-training loss LQbound measures the extent to which Vθ violates the cer-
+tificate constraints in Eq. (4), given the bounds V θ , V θ , and G[Vθ ]. Specifically, the loss terms in
+Eqs. (7a)–(7d) upper-bound the violation of constraints (4a)–(4d), respectively. This yields a key
+guarantee as stated in the following theorem.
+Theorem 2 (Constraint Satisfaction Guarantees) Given System (1) under controller π ∈ Π,
+reach-avoid probability threshold pRA ∈ (0, 1), and partition Q of X, let Vθ be trained according
+to minθ LQ              1             Q                                                       Q
+          bound (Vθ , 1−pRA ), where Lbound is the bound-training loss in Definition 2. If Lbound (Vθ ,
+   1
+1−pRA ) = 0, then Vθ satisfies the constraints in Definition 1, i.e., is a valid reach-avoid certificate,
+and the reach-avoid probability is lower-bounded by PπRA (X0 , Xu , Xg ) ≥ pRA .
+Proof The proof follows by the fact that ReLU(y) = 0 iff y ≤ 0.
+
+    This theorem shows that a bound-training loss LQ bound of zero ensures validity of the certificate.
+The following theorem shows the other way around, i.e., given a strictly satisfying certificate, its
+associated LQbound value becomes zero for sufficiently fine partition.
+
+
+                                                    5
+                          KONG E SCOBAR G RACIA M C M AHON L AHIJANIAN
+
+
+
+
+Theorem 3 Assume that, for a given NN Vθ⋆ and reach-avoid probability threshold pRA ∈ (0, 1),
+there exist parameters θ such that Vθ⋆ satisfies the inequalities in Theorem 1 strictly (i.e., without
+equalities). Let {Q(k) }k∈N,k≥1 be a sequence of partitions of X with mesh diameter diam(Q(k) ) ≜
+maxq∈Q(k) supx,y∈q ∥x − y∥2 and Q(k+1) is obtained from Q(k) by splitting one or more cells such
+                                                                                     (k)
+that diam(Q(k) ) → 0 as k → ∞. Assume the certified bounds used to define LQ
+                                                                           bound are sound and
+                                                (k)
+consistent under refinement, then limk→∞ LQ        ⋆
+                                          bound (Vθ , β) = 0.
+
+    The proof of Thm. 3 is provided in Appendix B.1. Theorems 2 and 3 establish that the proposed
+loss function enables reasoning about the soundness of a certificate provided that the partition is
+sufficiently fine. Based on these results, we design an efficient computational framework. We also
+remark that the proposed bound-training approach does not require samples from X or System (1).
+    Before introducing the bound-raining algorithm, we first present a method of bounding G[Vθ ]
+and a refinement strategy that improves training convergence.
+Bounding G[Vθ ] We derive an analytical expression for the bound G[Vθ ] by recursively applying
+the chain rule through the NN Vθ (see Appendix A for an illustrative example using a fully connected
+sigmoid network). This yields a computation graph Φθ : X → R that ensures Φθ (x) = G[Vθ ](x) for
+all x ∈ X while sharing the same learnable parameters θ. Accordingly, the upper bound G[Vθ ](qi )
+for each qi ∈ Q can be obtained via interval bound propagation through Φθ , making bound-training
+loss in Eq. (6) computable. Reflecting Φθ in the notation of LQ
+                                                              bound , the training objective becomes:
+
+                                       min LQ
+                                            bound Vθ , Φθ , β).                                      (8)
+                                         θ
+
+Adaptive refinement and merging Here, we introduce a refinement procedure to enable efficient
+bound-training based on Theorem 3. Given initial partition Q, we categorize its regions according
+to the constraints, i.e., Q≥0 = Q, Q0 = {qi ∈ Q | qi ∩ X0 ̸= ∅}, Qu = {qi ∈ Q | qi ∩ Xu ̸= ∅}, and
+Qgen = {qi ∈ Q | qi ∩ X \ int Xg ∪ Xu ) ̸= ∅}. For each sub-loss function LQ
+                                               
+                                                                                        j with j ∈ {≥ 0,
+0, u, gen} in Eq. (7), we increasingly tighten the bounds on Vθ and G[Vθ ] by adaptively refining the
+corresponding partition Qj . Specifically, we split each cell q ∈ Qj , whose corresponding ReLU
+evaluation is positive, into smaller regions every krefine epochs.
+      One central issue of this refinement is the exponential growth in the number of cells, especially
+in higher dimensions. Hence, we adopt two strategies: (i) top-K refinement and (ii) merging to
+mitigate this issue. Firstly, rather than refining all q ∈ Qj with positive ReLU values, a top-K
+rule is applied: for each sub-loss LQ  j , we rank the cells q ∈ Qj in descending order of their ReLU
+values and refine only the top-K cells. Secondly, every kmerge epochs, we merge neighboring cells
+q, q ′ ∈ Qj if their corresponding bounds (V θ , V θ , or G[Vθ ]) satisfy the constraints with some
+margins, e.g., adjacent cells q, q ′ ∈ Q≥0 are merged if Vθ (q), Vθ (q ′ ) ≥ αmargin , where αmargin ≫ 0.
+      Our empirical evaluations demonstrate the effectiveness of this refinement method, which en-
+ables scalability to 5D SDEs. We next present a comprehensive and unified algorithm that integrates
+all the aforementioned methods for neural certificate and joint certificate-controller training.
+Hard-SAT Algorithm for Neural Certificate and Controller Synthesis Theorems 2 and 3 es-
+tablish that our bound-training method ensures hard-constraint satisfaction, enabling a simple pro-
+cedure for joint training of neural controller-certificate. Note that the controller only affects the
+infinitesimal generator G (Eq. (3)) in Theorem 1. Let πθπ (x) denote the initialization of the con-
+troller, with parameters θπ . Then, we write the bound-based generator constraint in Eq. (7d) as:
+
+                                                      6
+                                T RAINING WITH H ARD C ONSTRAINTS
+
+
+
+
+LQ
+                P
+ gen (Φθ,θπ ) =   qi ∈Qgen ReLU(Φθ,θπ (qi ) + εgen ), where Φθ,θπ is the analytical generator of Vθ ,
+parameterized by both θ and θπ , inducing the following bound-based loss to jointly update them:
+                                      min LQ
+                                           bound Vθ , Φθ,θπ , β).                                    (9)
+                                      θ,θπ
+
+    Unlike existing joint synthesis approaches (often formulated for deterministic and/or discrete-
+time systems) which employ sample-based losses, the bound-training one in Eq. (9) provides a
+single, certificate-driven, objective for learning both Vθ and πθπ . From a multi-network training
+perspective, optimizing a unified loss often improves the stability of joint training compared to
+balancing multiple objectives. From a certification perspective, our loss explicitly couples controller
+performance with constraint satisfaction. Empirically, this coupling guides the controller not only
+toward task performance but also toward certification throughout training. In Algorithm 1, we
+present a unified pseudocode for neural certificate or joint synthesis with hard constraint satisfaction.
+  Algorithm 1: Hard-SAT for Verification or Control Synthesis
+Input: System (1), sets X, X0 , Xu , Xg , threshold pRA , kmax
+Output: UNSAT or (SAT, Vθ , π)
+                                                           1
+Initialize Vθ , π (π ← πθπ for control synthesis), β ← 1−p   RA
+                                                                , and Q≥0 , Q0 , Qu , Qgen
+Construct computation graph Φθ (or Φθ,θπ )
+while k ≤ kmax do
+     Compute bounds V θ , V θ , and Φθ (or Φθ,θπ )
+     Update θ by Eq. (8) (Verification) or Update (θ, θπ ) by Eq. (9) (Control Synthesis)
+     if LQbound = 0 then return (SAT, Vθ , π);
+     if k = krefine or k = kmerge then
+          if out of memory (OM) then return UNSAT;
+          Do refinement or merging on Q≥0 , Q0 , Qu , Qgen
+     end
+end
+return UNSAT
+    During the initialization of Vθ (and πθπ for control synthesis) in Algorithm 1, one can warm-start
+them by standard techniques (e.g., sample-based training or reinforcement learning). In practice,
+such warm-starting allows appropriate initialization of the networks and could improve the conver-
+gence rate of the bound-training. Furthermore, Algorithm 1 terminates when either LQ      bound = 0 or
+the training epoch reaches the compute limit, returning UNSAT.
+Remark 2 To improve performance, we can adopt an incremental learning strategy. Initialize
+Algorithm 1 with a small threshold p ≤ pRA . If LQ bound = 0, update p ← p + ∆p and rerun
+Algorithm 1. Repeat this procedure until p ≥ pRA .
+Limitations of Hard-SAT Algorithm Despite the adaptive refinement and merging strategies,
+Algorithm 1 still relies on state-space partitioning to obtain sound bounds over the entire domain.
+As a result, the number of partitioned cells can grow exponentially with the state dimension, limiting
+scalability. Below, we introduce an alternative approach to address this limitation.
+
+3.2. Scenario-based Training for PAC Guarantees
+Here, we propose a statistical approach that avoids state-partitioning and relies on randomly sam-
+pling a finite set of states X̂ = {x̂(i) ∈ X}N i=1 . Our method is based on the convex scenario
+
+
+                                                   7
+                              KONG E SCOBAR G RACIA M C M AHON L AHIJANIAN
+
+
+
+
+approach, which relaxes the constraints in Eq. (4) by considering only their evaluation at the sample
+points in X̂. These sampled constraints define the feasible set of a finite-dimensional program, the
+scenario program. Specifically, we construct a convex program on the weights and bias of the last
+layer of Vθ , denoted θL , and on β. If N is large enough, then our approach guarantees that, with
+high confidence, the obtained certificate Vθ (and the associated controller) satisfies the constraints
+in Eq. (4) over most of the state space, except for a small region whose volume shrinks with N .
+    The scenario approach enables better scalability than the bound-training method in Sec. 3.1
+as the sample complexity required to obtain a bound on the volume of the violating region and a
+confidence level is independent from the dimension of the state space, as formalized below.
+
+Theorem 4 Consider System (1) and the pre-trained networks Vθ and πθπ . Let θL ∈ Rdv denote
+the weights and bias of the last layer of Vθ , whose activation function is linear, and define
+
+  h(θL , β, x) := ReLU(−Vθ (x)) + 1X0 (x)ReLU(Vθ (x) − 1)
+                          + 1Xu (x)ReLU(β − Vθ (x)) + 1X\int(Xg ∪Xu ) (x)ReLU(G[Vθ ](x) + εgen ),
+
+where 1X (x) is the indicator function that returns 1 if x ∈ X otherwise 0. Given ϵ > 0, δ ∈ (0, 1),
+and a probability distribution P on X, let X̂ = {x̂(i) ∈ X}N i=1 be a set of random samples from P
+with N ≥ 2(log(1/δ) + dv )/ϵ, and
+               ∗      ∗
+              θL,N , βN ∈ arg min −β              subject to         h(θL , β, x̂(i) ) ≤ 0   ∀x̂(i) ∈ X̂.   (10)
+                                  θL ,β
+
+                                                                                   ∗ , β ∗ , x) >
+Then, the optimization problem in Eq. (10) is a linear program (LP), and P N P [h(θL,N
+                                                                            
+                                                                                       N
+0] ≤ ϵ ≥ 1 − δ, where x ∼ P .
+
+The proof of Theorem 4 is provided in Appendix B.2. Intuitively, Theorem 4 guarantees that the
+synthesized certificate VθN∗ (along with the given controller π(x)) satisfies the constraints in Eq. (4)
+
+for all x ∈ X \ Dϵ , where the measure of the violating set is P (Dϵ ) ≤ ϵ.
+     Based on this result, we propose to solve Problems 1 and 2 with statistical guarantees via a two-
+stage approach: first, warm start both a controller and a certificate using any user-defined method,
+e.g., soft training by encoding sampled constraints in the loss function; then, optimize for θL and
+β via a scenario LP. Note that we only optimize for the weights of the last layer of Vθ , but not the
+remaining ones or controller πθπ ; if those are also made decision variables, h becomes nonlinear,
+making the results in (Campi et al., 2009) inapplicable.
+     We remark that the scalability of our statistical approach comes at the price of providing weaker
+guarantees than the ones provided by bound-training (Hard-SAT) in Section 3.1, as Theorem 4 does
+not rule out existence of a violating set Dϵ . However, we guarantee that Dϵ is very small1 and, if
+the constraints are also satisfied in Dϵ , then reach-avoid probability PπRA ≥ 1 − 1/βN  ∗ . Hence, the
+
+statistical approach must be seen as a principled way to verify the certificate and controller for high
+dimensional systems, albeit allowing a small chance of violation.
+
+4. Experiments
+We demonstrate the effectiveness of our approach on several verification and controller synthesis
+case studies. Specifically, we benchmark neural certificate (Problem 1) on 6 examples and compare
+ 1. If P is uniform, then the volume ratio of Dϵ w.r.t. X is at most ϵ.
+
+
+                                                            8
+                                       T RAINING WITH H ARD C ONSTRAINTS
+
+
+
+Table 1: Verification benchmark, reporting mean runtime (seconds) and mean partition size |Q| over
+5 runs. “OM” indicates out-of-memory termination (max |Q| reported), and “–” denotes skipped
+cases after a lower-dimensional instance hit time/memory limits.
+
+                 Neustroev et al.              Hard-SAT                  (N = 105 ) Scenario-based Training (N = 106 )
+ Systems
+              Time      |Q|      pRA        Time      |Q|         pRA    Time   pRA         ϵ      Time   pRA          ϵ
+ 2D Inv Pen   128.8    49,306   0.95        422.9     9,227       0.95   2.7    0.997     5.6e-4   29.7   0.997      5.6e-5
+ 2D GBM        53.5    92,911   0.95         13.9       607       0.95   9.5    0.99991   1.3e-3   92.2   0.999991   1.3e-4
+ 3D GBM        OM     434,186   OM          640.3     7,319       0.95   9.4    0.99991   1.3e-3   92.7   0.99991    1.3e-4
+ 4D GBM           –         –      –      4,241.4    61,228       0.95   2.8    0.99991   5.6e-4   30.6   0.99991    5.6e-5
+ 5D GBM           –         –      –    114,282.0   342,208       0.95   2.8    0.999     5.6e-4   30.7   0.999      5.6e-5
+ 10D GBM          –         –      –            –         –          –   9.5    0.99994   1.3e-3   94.2   0.999994   1.3e-4
+
+
+to the closest related work (Neustroev et al., 2025). For joint controller-certificate synthesis (Prob-
+lem 2), we consider 4 systems of increasing complexity. Results of the bound-training approach
+were obtained on an AMD Ryzen 9 7950X CPU with 128 GB RAM, and those of our statistical ap-
+proach were run on a single thread of an Intel Core i7 3.6GHz CPU with 32GB of RAM. Below, we
+provide a brief discussion of the results, and defer detailed descriptions of the experimental setup,
+dynamics, plots, and code to the Appendix and Github (Escobar and Kong, 2026).
+Verification We first consider the inverted pendulum with bounded torque control (Appendix C.1)
+under a pre-trained controller from (Neustroev et al., 2025). We then consider n-dimensional Geo-
+metric Brownian Motion (GBM) with linear drift and state-dependent diffusion (Appendix C.2) to
+benchmark scalability, as its state dimension can be increased without altering the SDE structure.
+     Table 1 summarizes the verification benchmark of our methods against the state-of-the-art cer-
+tificate method for SDEs (Neustroev et al., 2025)2 , which performs soft training of Vθ and then
+verifies the constraints in a post-process via partitioning. For the scenario-based approach, we eval-
+uate two dataset sizes (N = 105 and N = 106 ) with confidences 1 − 10−9 (i.e., δ = 10−9 ) to
+examine the trade-off between higher accuracy (smaller ϵ) and computational cost.
+     For the 2D systems, our Hard-SAT method requires significantly fewer partitions than Neustroev
+et al. (2025), with comparable computation times. This efficiency enables bound-training to scale to
+higher-dimensional GBMs (3D-5D), whereas (Neustroev et al., 2025) fails to find a valid certificate.
+     Although outperforming state of the art and providing hard guarantees (i.e., the certificate con-
+straints hold over the entire X), bound-training scalability is still limited to 5D. In contrast, the
+scenario-based approach achieves pRA ≈ 1 across all cases and scales easily to 10D, with the guar-
+antee that, with confidence 1 − 10−9 , all certificate constraints hold over X \ Dϵ . Increasing the
+sample size from N = 105 to 106 reduces ϵ (shrinks Dϵ ) by an order of magnitude, at the cost of a
+corresponding increase in computation time. Finally, to demonstrate the effectiveness of optimizing
+the certificate’s last-layer θL , we attempted to solve the scenario program using the pre-trained Vθ
+without weight optimization. The program was infeasible in every case study, i.e., at least one sam-
+ple in X̂ violated a constraint, indicating that pre-training alone did not result in a valid certificate.
+Joint controller-certificate synthesis We evaluated 4 systems in an increasing level of complex-
+ity. First, a 2D stochastic inverted pendulum with torque limits, where the controller must swing
+up from near-down to near-upright while avoiding high angular rates and full rotations. While
+many learning-based controllers perform well in deterministic settings, few provide guarantees un-
+ 2. For a fair comparison, we modified the code from (Neustroev et al., 2025) to remove stay-related training and checks.
+
+
+                                                              9
+                                    KONG E SCOBAR G RACIA M C M AHON L AHIJANIAN
+
+
+
+
+der stochastic noise. Second, a 2D GBM example with a goal set that excludes the origin, preventing
+the stabilizing drift dynamics from reaching the goal with high probability. Third, a stochastic 3D
+Lorenz system with a reach-avoid task adapted from (Edwards et al., 2025). The deterministic sys-
+tem is already chaotic (Lorenz, 2017); stochastic noise further complicates control and certification.
+Finally, we consider NASA’s XV-15 tilt-rotor aircraft (Ferguson, 1988), focusing on its 3D longi-
+tudinal dynamics with bounded inputs, requiring a safe transition from near-hover to forward flight
+under complex aerodynamics and stochastic disturbances. Experimental details are in Appendix C.
+    Table 2 summarizes the results. In every case study, Table 2: Joint controller-certificate syn-
+we set the reach-avoid probability threshold to pRA = thesis using Hard-SAT Algorithm.
+0.95, and our Hard-SAT algorithm was able to success-            System              Time (s)       |Q|
+fully train neural controllers and corresponding certifi-
+cates. Monte Carlo simulations yielded an empirical              2D Inv. Pend.          290.8     3,944
+                                                                 2D GBM Non-Eq.         341.7     1,681
+reach-avoid probability of 1.0 for all closed-loop systems.
+                                                                 3D Lorenz           14,175.8    68,502
+    We note that a direct comparison with existing meth-         3D XV15             82,071.3 167,411
+ods is not possible, as they fall outside our setting of joint
+synthesis of generic neural controllers for stochastic reach-avoid problems. For instance, the SMT-
+based approach of (Edwards et al., 2025) assumes deterministic dynamics, and its extension to SDEs
+remains an open problem.
+    Figure 1 visualizes the 2D GBM synthesis results; due to page limit, all the other plots are
+provided in Appendix C.6. On the left, the learned certificate rises sharply near Xu and decreases
+toward Xg , while the corresponding generator G[Vθ ] is strictly negative. On the right, five simulated
+rollouts are overlaid on the contour of Vθ , comparing the synthesized controller (pink) against open-
+loop behavior (aquamarine dashed), with the associated control inputs shown alongside. Without
+control, the trajectories spiral toward the origin, while the controlled rollouts head directly to Xg .
+                                           Init
+                                           Goal                                                            V (x1 , x2 )
+                                           Unsafe                                            100                                                            60
+                                                                                                                               Init             72                                      Controlled
+                                                                                                                               Goal                                                     Uncontrolled
+                                                                                              75                               Unsafe           64          40
+                                                                                                                               Controlled
+                                    70                                                        50                               Uncontrolled     56     u1
+                                                                                                                                                            20
+                                    60                                             0
+                                                                                              25                                                48
+                                    50                                             50                                                                        0
+                                                                                  100                                                           40
+                                    40                                                  x2     0                                                    V(x)
+                                                                                  150                                                           32
+                                    30
+                                                                                  200         25                                                24         100
+  100                               20
+                                    10
+                                                                                  250         50                                                16
+                                         100                                      300
+                                                                                                                                                      u2
+                                                                                                                                                            50
+    x1                              0                                                         75                                                8
+                              100                                                 350
+         100 100         x2   Init        x1
+                                                                           99.5                                                                 0            0
+                              Goal                                                           100
+                                                    80                                          100   50        0         50              100                 0.0   0.2   0.4     0.6     0.8
+                              Unsafe                     99.5         x2                                       x1                                                          Time [s]
+
+
+                   (a)                                          (b)                                                                     (c)
+    Figure 1: 2D GBM synthesis: (a) Vθ , (b) G[Vθ ], (c) trajectories (controlled vs. uncontrolled).
+
+5. Conclusion
+We propose two hard-constrained training frameworks. The first, Hard-SAT, trains a neural reach-
+avoid certificate for SDEs by enforcing the certificate inequalities through a bound-based loss ob-
+tained via domain discretization; once the loss reaches zero, the neural certificate is valid. Given a
+controller, Hard-SAT verifies SDEs up to 5D, outperforming state of the art. Hard-SAT also enables
+joint learning of a neural controller and certificate with guaranteed validity upon zero loss. For
+higher-dimensional systems where partitioning becomes prohibitive, we introduce a scenario-based
+training approach that scales to 10D with tight PAC guarantees. Results show pre-training alone
+fails to yield a valid certificate, whereas our scenario-based training achieves valid PAC certificate.
+
+                                                                           10
+                               T RAINING WITH H ARD C ONSTRAINTS
+
+
+
+
+References
+Alessandro Abate, Daniele Ahmed, Mirco Giacobbe, and Andrea Peruffo. Formal synthesis of
+  lyapunov neural networks. IEEE Control Systems Letters, 5(3):773–778, 2020.
+Alessandro Abate, Daniele Ahmed, Alec Edwards, Mirco Giacobbe, and Andrea Peruffo. Fossil: a
+  software tool for the formal synthesis of lyapunov functions and barrier certificates using neural
+  networks. In Proceedings of the 24th international conference on hybrid systems: computation
+  and control, pages 1–11, 2021.
+Kareem Ahmed, Stefano Teso, Kai-Wei Chang, Guy Van den Broeck, and Antonio Vergari. Seman-
+  tic probabilistic layers for neuro-symbolic learning. Advances in Neural Information Processing
+  Systems, 35:29944–29959, 2022.
+Mahathi Anand and Majid Zamani. Formally verified neural network control barrier certificates for
+ unknown systems. IFAC-PapersOnLine, 56(2):2431–2436, 2023.
+Stephen Boyd and Lieven Vandenberghe. Convex optimization. Cambridge university press, 2004.
+Marco C Campi, Simone Garatti, and Maria Prandini. The scenario approach for systems and
+ control design. Annual Reviews in Control, 33(2):149–157, 2009.
+Krishnendu Chatterjee, Thomas A Henzinger, Mathias Lechner, and Dorde Žikelić. A learner-
+  verifier framework for neural network controllers and certificates of stochastic systems. In In-
+  ternational Conference on Tools and Algorithms for the Construction and Analysis of Systems,
+  pages 3–25. Springer, 2023.
+Jason J Choi, Christopher A Strong, Koushil Sreenath, Namhoon Cho, and Claire J Tomlin.
+  Data-driven hamiltonian for direct construction of safe set from trajectory data. arXiv preprint
+  arXiv:2504.03233, 2025.
+Alec Edwards, Andrea Peruffo, and Alessandro Abate. A general framework for verification and
+  control of dynamical models via certificate synthesis. Annual Reviews in Control, 60:101028,
+  2025.
+Sebastian Escobar and Chun-Wei Kong. Certified-reach-avoid-via-neural-synthesis repos-
+  itory.    GitHub repository, 2026.  URL https://github.com/sees9730/
+  Certified-Reach-Avoid-via-Neural-Synthesis. Accessed: 2026-02-16.
+Peyman Mohajerin Esfahani, Debasish Chatterjee, and John Lygeros. The stochastic reach-avoid
+  problem and set characterization for diffusions. Automatica, 70:43–56, 2016.
+Samuel W Ferguson. A mathematical model for real time flight simulation of a generic tilt-rotor
+  aircraft. NASA CR-166536, 1, 1988.
+Eleonora Giunchiglia and Thomas Lukasiewicz. Coherent hierarchical multi-label classification
+  networks. Advances in neural information processing systems, 33:9662–9673, 2020.
+Eleonora Giunchiglia, Alex Tatomir, Mihaela Cătălina Stoian, and Thomas Lukasiewicz. Ccn+: A
+  neuro-symbolic framework for deep learning with requirements. International Journal of Ap-
+  proximate Reasoning, 171:109124, 2024.
+
+                                                11
+                        KONG E SCOBAR G RACIA M C M AHON L AHIJANIAN
+
+
+
+
+Sven Gowal, Krishnamurthy Dvijotham, Robert Stanforth, Rudy Bunel, Chongli Qin, Jonathan
+  Uesato, Relja Arandjelovic, Timothy Mann, and Pushmeet Kohli. On the effectiveness of interval
+  bound propagation for training verifiably robust models. arXiv preprint arXiv:1810.12715, 2018.
+Kshitij Goyal, Sebastijan Dumancic, and Hendrik Blockeel. Deepsade: Learning neural networks
+  that guarantee domain constraint satisfaction. In Proceedings of the AAAI Conference on Artificial
+  Intelligence, volume 38, pages 12199–12207, 2024.
+James Kotary and Ferdinando Fioretto. Learning constrained optimization with deep augmented
+  lagrangian methods. arXiv preprint arXiv:2403.03454, 2024.
+Shenyu Liu, Daniel Liberzon, and Vadim Zharnitsky. On almost lyapunov functions for non-
+  vanishing vector fields. In 2016 IEEE 55th conference on decision and control (CDC), pages
+  5557–5562. IEEE, 2016.
+Edward N Lorenz. Deterministic nonperiodic flow 1. In Universality in Chaos, 2nd edition, pages
+  367–378. Routledge, 2017.
+Pablo Márquez-Neila, Mathieu Salzmann, and Pascal Fua. Imposing hard constraints on deep net-
+  works: Promises and limitations. arXiv preprint arXiv:1706.02025, 2017.
+Grigory Neustroev, Mirco Giacobbe, and Anna Lukina. Neural continuous-time supermartingale
+  certificates. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 39, pages
+  27538–27546, 2025.
+Andrea Peruffo, Daniele Ahmed, and Alessandro Abate. Automated and formal synthesis of neural
+  barrier certificates for dynamical models. In International conference on tools and algorithms for
+  the construction and analysis of systems, pages 370–388. Springer, 2021.
+Ali Salamati, Abolfazl Lavaei, Sadegh Soudjani, and Majid Zamani. Data-driven verification and
+  synthesis of stochastic systems through barrier certificates. arXiv preprint arXiv:2111.10330,
+  2021.
+Behrad Samari and Abolfazl Lavaei. Data-driven dynamic controller synthesis for discrete-time
+  general nonlinear systems. In Proceedings of the 28th ACM International Conference on Hybrid
+  Systems: Computation and Control, pages 1–12, 2025.
+Mihaela Cătălina Stoian, Salijona Dyrmishi, Maxime Cordy, Thomas Lukasiewicz, and Eleonora
+ Giunchiglia. How realistic is your synthetic data? constraining deep generative models for tabular
+ data. arXiv preprint arXiv:2402.04823, 2024.
+Teruo Sunaga. Theory of an interval algebra and its application to numerical analysis. RAAG
+  memoirs, 2:29–46, 1958.
+Kaidi Xu, Zhouxing Shi, Huan Zhang, Yihan Wang, Kai-Wei Chang, Minlie Huang, Bhavya
+  Kailkhura, Xue Lin, and Cho-Jui Hsieh. Automatic perturbation analysis for scalable certified
+  robustness and beyond. Advances in Neural Information Processing Systems, 33, 2020.
+Yujie Yang, Hanjiang Hu, Tianhao Wei, Shengbo Eben Li, and Changliu Liu. Scalable synthesis
+  of formally verified neural value function for hamilton-jacobi reachability analysis. Journal of
+  Artificial Intelligence Research, 83, 2025.
+
+                                                12
+                                 T RAINING WITH H ARD C ONSTRAINTS
+
+
+
+
+Dorde Žikelić, Mathias Lechner, Thomas A Henzinger, and Krishnendu Chatterjee. Learning con-
+  trol policies for stochastic systems with reach-avoid guarantees. In Proceedings of the AAAI
+  Conference on Artificial Intelligence, volume 37, pages 11926–11935, 2023.
+
+
+Appendix A. Derivation of analytical G[V ]
+Let Vθ be a two-hidden layer sigmoid network with explicit input and output scaling:
+                               xnorm = x ⊘ sin ,
+                                 z (1) = W1 xnorm + b1 ,        h(1) = σ(z (1) ),
+                                 z (2) = W2 h(1) + b2 ,       h(2) = σ(z (2) ),
+                              Vθ (x) = sout W3T h(2) ,
+where ⊘ denotes the element-wise division, x ∈ RD , W1 ∈ Rm1 ×D , W2 ∈ Rm2 ×m1 , W3 ∈ Rm2 ,
+b1 ∈ Rm1 , b2 ∈ Rm2 , sin ∈ RD , sout ∈ R, σ(z) = 1/(1 + e−z ) is the sigmoid activation, and
+θ = {W1 , b1 , W2 , b2 , W3 }. To compute the bounds on the infinitesimal generator in Eq. (3), we
+construct a single feedforward network Φ : RD → R that analytically implements the generator
+Φ(x) = G[Vθ ](x). This transforms the problem of bounding derivatives into bounding a standard
+feedforward network. By Eq. (3), it suffices to derive explicit expression of the first and second
+derivatives of Vθ with respect to x, as detailed below.
+    To compute ∂V /∂xi , we apply the chain rule through the network layers. Let d(1) = σ ′ (z (1) )
+and d(2) = σ ′ (z (2) ) denote element-wise first derivatives of the hidden activations, where σ ′ (z) =
+σ(z)(1 − σ(z)). The gradient with respect to normalized coordinates is:
+                                      m
+                                      2                1  m
+                       ∂V            X            (2)
+                                                      X               (1)
+                              = sout    W3 [j] · dj      W2 [j, k] · dk · W1 [k, i],
+                     ∂xnorm,i
+                                      j=1                 k=1
+
+where W [i, j] denotes the i-j entry of the matrices W1 and W2 , and W [k] denotes the k-th element
+of the vector W3 . Applying the input scaling chain rule gives:
+                                           2  m             1         m
+              ∂V     1      ∂V       sout X            (2)
+                                                           X               (1)
+                  =                =         W3 [j] · dj      W2 [j, k] · dk · W1 [k, i]
+              ∂xi   sin,i ∂xnorm,i   sin,i
+                                             j=1                   k=1
+
+     To compute ∂ 2 V /∂x2i , let q (1) = σ ′′ (z (1) ) and q (2) = σ ′′ (z (2) ) denote element-wise second
+derivatives, where σ ′′ (z) = (1 − 2σ(z))σ ′ (z). Define the intermediate quantity Sj,k,i ≜ W2 [j, k] ·
+ (1)
+dk · W1 [k, i], allowing us to write:
+                                             2 m              1       m
+                                 ∂V    sout X            (2)
+                                                             X
+                                     =         W3 [j] · dj      Sj,k,i
+                                 ∂xi   sin,i
+                                               j=1                    k=1
+
+Differentiating with respect to xi using the product rule yields two contributions. First, differentiat-
+                                             (2)          (2)           (2)
+ing the outer layer activation derivative dj gives ∂dj /∂xi = (qj /sin,i ) m
+                                                                            P 1
+                                                                               k=1 Sj,k,i , contributing
+the cross term:                                                         !2
+                                          m2                  m1
+                                   sout X               (2)
+                                                              X
+                                              W3 [j] · qj        Sj,k,i
+                                   s2in,i j=1
+                                                                k=1
+
+
+                                                     13
+                          KONG E SCOBAR G RACIA M C M AHON L AHIJANIAN
+
+
+
+                                                                            (1)                         (1)
+Second, differentiating the inner layer activation derivative dk within Sj,k,i gives ∂dk /∂xi =
+  (1)
+(qk /sin,i )W1 [k, i], contributing the direct term:
+
+                                m2                m1
+                          sout X              (2)
+                                                  X               (1)
+                           2        W3 [j] · dj      W2 [j, k] · qk · W1 [k, i]2
+                          sin,i j=1
+                                                     k=1
+
+
+Summing both contributions yields the total second derivative:
+                                                   !2                                                          
+                m2                   m1                      m2                  m1
+ ∂2V    sout X              (2)
+                                     X                       X               (2)
+                                                                                 X               (1)
+      =            W3 [j] · qj             Sj,k,i        +         W3 [j] · dj      W2 [j, k] · qk · W1 [k, i]2  .
+ ∂x2i   s2in,i j=1                                           j=1
+                                     k=1                                          k=1
+
+
+
+Appendix B. Proof
+B.1. Proof of Theorem 3
+                                                                         1
+Proof Fix a certificate Vθ⋆ satisfying Theorem 1 strictly with β = 1−p     RA
+                                                                              . Let {Q(k) }k≥1 be a
+sequence of partitions of X, where Q(k+1) is obtained from Q(k) by splitting one or more cells such
+that diam(Q(k) ) → 0 as k → ∞.
+    By continuity on compact sets (X, X0 , Xu and X̄) and strict satisfaction, each inequality in
+Theorem 1 holds with a positive margin. Define
+              n                                                                   o
+       ε ≜ min min Vθ⋆ (x), min (1 − Vθ⋆ (x)), min (Vθ⋆ (x) − β), min(−G[Vθ⋆ ](x)) > 0.
+                 x∈X           x∈X0                        x∈Xu                     x∈X̄
+
+
+Then Vθ⋆ ≥ ε on X, Vθ⋆ ≤ 1 − ε on X0 , Vθ⋆ ≥ β + ε on Xu , and G[Vθ⋆ ] ≤ −ε on X̄.
+    By continuity, these strict inequalities extend with margin ε/2 to open neighborhoods of X0 ,
+Xu , and X̄, and since diam(Q(k) ) → 0, for all sufficiently large k, every cell intersecting one of
+these sets is contained in the corresponding neighborhood. By soundness and consistency of the
+                                                                         ⋆
+certified bounds under refinement, together with continuity, V ⋆θ (q), V θ (q), and G[Vθ⋆ ](q) become
+tight as diam(q) → 0. Fix any 0 < εgen < ε/2. Then, for all sufficiently large k and all q ∈ Q(k) ,
+
+                                 ⋆
+               V ⋆θ (q) ≥ 0,   V θ (q) ≤ 1 if q ∩ X0 ̸= ∅,             V ⋆θ (q) ≥ β if q ∩ Xu ̸= ∅,
+
+and
+                                 G[Vθ⋆ ](q) + εgen ≤ 0 if q ∩ X̄ ̸= ∅.
+
+Therefore every ReLU term in (7a)–(7d) is zero for all sufficiently large k, and hence
+
+                                                     (k)
+                                       lim LQ        ⋆
+                                            bound (Vθ , β) = 0.
+                                       k→∞
+
+
+
+
+                                                           14
+                                 T RAINING WITH H ARD C ONSTRAINTS
+
+
+
+
+B.2. Proof of Theorem 4
+                               Pm2 j
+Proof Express VθL (x) =          j=1 θL ϕj (x), where the feature terms ϕj depend on the architec-
+ture of the certificate network and the weights of all but the last layer. Also express G[VθL ](x) =
+Pm2 j
+   j=1 θL ψj (x), where the terms ψj depends on the certificate neural network, its weights besides
+the last layer, as well as the SDE dynamics. Since these expressions are linear in θ, the following
+program
+
+                                    min     − βRA
+                                 θL ,βRA
+                                                                                                   (11)
+                                     s.t.   h(θL , βRA , x) ≤ 0 , ∀x ∈ X,
+is convex. Furthermore, since its feasible set is equivalent to the constraints in Eq. (4), any feasible
+solution to Problem (11) is a valid certificate ensuring a reach-avoid probability 1 − 1/βRA , which
+the problem aims to maximize. Let P be a probability distribution on X and {x̂(i) }N     i=1 be a set of
+N samples from P . Consider the following convex optimization Problem (11)
+
+                           min        − βRA
+                         θL ,βRA
+                                                                                                   (12)
+                             s.t.    h(θL , βRA , x̂(i) ) ≤ 0 , ∀i ∈ {1, . . . , N },
+where the robust constraint in Problem (11) is relaxed to hold only on the set of N samples. Note
+that, by the properties of the ReLU function, the feasible set is equivalent to a set of linear in-
+equalities, thus making the problem linear Boyd and Vandenberghe (2004). Let θL,N  ∗         ∗
+                                                                                       and βRA,N   be
+optimizers to Problem (12). Given ϵ > 0 and δ ∈ (0, 1), the theory of the convex scenario approach
+(Campi et al. (2009)) states that if the number of samples N is bigger than 2(log(1/δ) + d)/ϵ, then
+                      ∗ , β∗
+the probability P [h(θL,N     RA,N , x) > 0] that the optimizers violate the constraint h when x is
+sampled according to P is not higher than ϵ, with confidence at least 1 − δ over the choice of the N
+samples.
+
+
+Appendix C. Experiment Details
+C.1. 2D Stochastic Inverted Pendulum
+The SDE is:                                                
+                                          x2                 0
+                            dx = g          M π(x)−bx2 dt +     dw,
+                                 L sin x1 +    mL2
+                                                             σ
+where x1 is the angle, x2 is the angular velocity, the diffusion is σ = 2, g = 9.81 is the gravity
+constants, L = 0.5 is the pendulum length, m = 0.15 is the ball mass, b = 0.1 is the friction
+coefficient, π : R2 → [−1, 1] outputs the normalized control torque, and M = 6 is the maximum
+torque. For verification, the reach–avoid specification is:
+                                3π 5π
+X = [−2π, 2π] × [−20, 20], X0 = [  , ] × [−1, 1],
+                                 4 4
+       π π                                    3π              3π               
+Xg = [− , ] × [−4, 4], Xs = Inter(X) \ [−2π, − ] × [−20, −10] ∪ [ , 2π] × [10, 20] ,
+       2 2                                      2                 2
+with 95% probability (Neustroev et al., 2025). The controller, given by Neustroev et al. (2025), is a
+multilayer perceptron (MLP) with three hidden layers (64 neurons) and Tanh activation.
+
+                                                      15
+                         KONG E SCOBAR G RACIA M C M AHON L AHIJANIAN
+
+
+
+
+2D Stochastic Inverted Pendulum Control Synthesis           The architecture of the neural controller
+is given in Table 3.
+
+    Layer Connection                           Type          # Neurons       Activation Function
+    Input Layer → Hidden Layer 1         Fully Connected           8                Tanh
+    Hidden Layer 1 → Output Layer        Fully Connected           1                Tanh
+
+                Table 3: Neural controller of the 2D stochastic inverted pendulum.
+
+
+C.2. Geometric Brownian Motion (GBM)
+The SDE of an n-dimensional GBM is:
+
+                                 dx = (Ax + π(x)) dt + g(x) dw,
+
+where A ∈ Rn×n is tri-diagonal:
+                                          
+                                          
+                                          
+                                          −0.5,      i = j,
+                                          
+                                          1,         j = i + 1,
+                                    Aij =
+                                          
+                                          
+                                          −1,        i = j + 1,
+                                          
+                                          0,         otherwise,
+
+and g(x) = 0.2diag(x) is state-dependent diffusion, and π(x) = −x is the given stabilizing con-
+troller for the verification problem.
+2D GBM      The reach–avoid specification is given by:
+
+               X = [−100, 100]2 , X0 = [45, 55] × [−55, −45], Xg = [−25, 25]2 ,
+                                                         
+               Xs = Inter(X) \ [−100, −80] × [−100, 100]
+
+with 95% probability (Neustroev et al., 2025).
+2D GBM Control Synthesis         The architecture of the neural controller is given in Table 4. The
+
+    Layer Connection                           Type          # Neurons       Activation Function
+    Input Layer → Hidden Layer 1         Fully Connected           16               Tanh
+    Hidden Layer 1 → Output Layer        Fully Connected            2               N/A
+
+                            Table 4: Neural controller of the 2D GBM.
+
+reach–avoid specification has a goal set that does not include the origin:
+
+        X = [−100, 100]2 , X0 = [45, 55] × [−55, −45], Xg = [20.0, 40.0] × [−25, 25],
+                                                  
+        Xs = Inter(X) \ [−100, −80] × [−100, 100] .
+
+                                                 16
+                               T RAINING WITH H ARD C ONSTRAINTS
+
+
+
+
+3D GBM       The reach-avoid specification is given by
+
+        X = [−100, 100]3 , X0 = [45, 55] × [−55, −45] × [50, 60],
+                                                                                
+        Xg = [−25, 25]3 , Xs = Inter(X) \ [−100, −80] × [−100, 100] × [−100, −80] ,
+
+with PRA = 0.95.
+
+4D GBM       The reach-avoid specification is given by
+
+       X = [−100, 100]4 , X0 = [45, 55] × [−55, −45] × [50, 60] × [45, 55],
+                                                                                
+       Xg = [−25, 25]4 , Xs = Inter(X) \ [−100, −80] × [−100, 100] × [−100, −80]2 ,
+
+with PRA = 0.95.
+
+5D GBM       The reach-avoid specification is given by
+
+       X = [−100, 100]5 , X0 = [45, 55] × [−55, −45] × [50, 60] × [45, 55]2 ,
+                                                                                
+       Xg = [−25, 25]5 , Xs = Inter(X) \ [−100, −80] × [−100, 100] × [−100, −80]3 ,
+
+with PRA = 0.95.
+
+10D GBM       The reach-avoid specification is given by
+
+      X = [−100, 100]1 0, X0 = [45, 55] × [−55, −45] × [50, 60] × [45, 55]7 ,
+                                                                                
+      Xg = [−25, 25]1 0, Xs = Inter(X) \ [−100, −80] × [−100, 100] × [−100, −80]8 ,
+
+with PRA = 0.95.
+
+
+C.3. 3D Stochastic Lorenz (Lorenz, 2017)
+The SDE is
+                                                       
+                                  −10x1 + 10x2           0.1
+                            dx = x1 (28 − x3 ) − x2 dt + 0.1 dw.
+                                                      
+                                    x1 x2 − 38 x3        0.1
+
+The reach–avoid specification (adapted from Edwards et al. (2025)) is:
+
+                               X = [−6, 6]3 , X0 = [−1, 1]3 ,
+                               Xg = [−0.3, 0.3]3 , Xs = [−5.5, 5.5]3 .
+
+The architecture of the neural controller is a linear feedback, given in Table 5.
+
+                                                  17
+                          KONG E SCOBAR G RACIA M C M AHON L AHIJANIAN
+
+
+
+
+       Layer Connection                        Type          # Neurons      Activation Function
+       Input Layer→ Output Layer        Fully Connected            3                 N/A
+
+          Table 5: Neural (linear feedback) controller of the 3D stochastic Lorenz system.
+
+
+C.4. XV15 Aircraft (Choi et al., 2025)
+We consider the 3D longitudinal dynamics of the XV15 aircraft. The state is x = [v, γ, β], where v
+is the airspeed, γ is the flight path angle and β is the rotor tilt angle. The dynamics is controlled by
+three inputs: u = [T, α, δ], where T ∈ [0, Tmax ] is the rotor thrust, α ∈ [−αmax , αmax ] is the angle
+of attack and δ ∈ [−δmax , δmax ] is the rotor tilting rate. The SDE is:
+                                                                
+                                  1
+                   −g sin γ + m       cos(α + β)T − D(v, α, β)              
+                                                                                 0.5
+                                                                                       
+                                                             
+                                     1 sin(α+β)
+                                                T + L(v,α,β)
+           dx =            cos γ                                    dt + 0.1(π/180) dw,
+                  −g v + m                v             v          
+                                                                             0.1(π/180)
+                                           δ
+
+where L(v, α, β) and D(v, α, β) are the aerodynamic lift and drag, respectively, and m is the aircraft
+mass. The reach–avoid specification is:
+
+                      X = [0.5, 100] × [−20 deg, 20 deg] × [0, 90 deg],
+                      X0 = [28, 32] × [8.5 deg, 10.5 deg] × [58 deg, 62 deg],
+                      Xg = [65, 85] × [−2 deg, 10 deg] × [25 deg, 35 deg],
+                                                                          
+                      Xs = [1, 99.5] × [−19 deg, 19 deg] × [1 deg, 89 deg] .
+
+The architecture of the neural controller is given in Table 6. The output Sigmoid activation is to
+ensure T ∈ [0, Tmax ], and the other Tanh activations ensure α and β respect their output bounds,
+respectively.
+
+    Layer Connection                            Type           # Neurons       Activation Function
+    Input Layer → Hidden Layer 1          Fully Connected           64                Tanh
+    Hidden Layer 1 → Output Layer         Fully Connected            3        [Sigmoid, Tanh, Tanh]
+
+                         Table 6: Neural controller of the 3D XV15 aircraft.
+
+
+C.5. Training and Tuning Procedure
+Throughout the experiments, we use the same architecture for neural certificate function given in
+Table 7 with the number of neurons reported in Table 8.
+   Below, we describe the adaptive refinement strategy used in practice.
+Cell initialization and adaptive refinement. Each region is initialized with a prescribed number
+of cells. If a region’s loss stagnates above zero, this indicates that the current discretization is insuf-
+ficient to certify the constraint. In such cases, we increment the number of cells for that region and
+
+                                                    18
+                              T RAINING WITH H ARD C ONSTRAINTS
+
+
+
+
+   Layer Connection                            Type           # Neurons     Activation Function
+   Input Layer → Hidden Layer 1           Fully Connected         h0                Sigmoid
+   Hidden Layer 1 → Hidden Layer 2        Fully Connected         h1                Sigmoid
+   Hidden Layer 2 → Output Layer          Fully Connected         1                   N/A
+
+                    Table 7: Neural certificate architecture for all experiments.
+
+
+
+
+                              Group     Experiment            (h0 , h1 )
+                              Verification
+                                        2D Inv. Pend.         (64, 16)
+                                        2D GBM                (64, 64)
+                                        3D GBM                (64, 64)
+                                        4D GBM                (64, 16)
+                                        5D GBM                (64, 16)
+                                        10D GBM               (64, 64)
+                              Control Synthesis
+                                        2D GBM Non-Eq.        (64, 64)
+                                        2D Inv. Pend.         (64, 64)
+                                        3D Lorenz             (64, 64)
+                                        3D XV15               (64, 64)
+
+Table 8: Experiment list grouped by task, with the number of neurons (h0 , h1 ) used for the neural
+certificate in each case.
+
+
+
+
+                                                 19
+                             KONG E SCOBAR G RACIA M C M AHON L AHIJANIAN
+
+
+
+
+restart training. During training, adaptive refinement is applied periodically, and its frequency is a
+key tuning parameter. Early in training, refinement occurs less frequently to avoid excessive com-
+putation. As training progresses and region losses approach zero, refinement frequency is increased
+to uncover cells that are already SAT but not yet provably certified. The timing and selection of
+refinement are determined empirically based on monitoring the bound-based loss.
+
+Cell merging. Adjacent cells that satisfy the constraints sufficiently, i.e., with respect to some
+merging margins, are merged. The choice of such merging margin is a critical tuning parameter.
+If the margin is too loose, few or no cells will be merged, and the potential benefits of reduced
+memory usage and faster training are not realized. Conversely, if the margin is too tight, cells
+that were marginally SAT may be merged, drastically altering the loss landscape and effectively
+discarding progress achieved during training. In practice, this margin is selected empirically; A
+good rule of thumb is to start with sufficiently large margins, then reduce them gradually if needed.
+Figure 2 illustrates how adaptive refinement and cell merging alter the cell partition, comparing the
+discretization at the initial and 4,000 epochs.
+
+         100           Epoch: 0 - V(x)                                                100           Epoch: 4000 - V(x)
+                                              Init            64                                                              Init            72
+                                              Unsafe                                                                          Unsafe
+          75                                                                           75
+                                              Goal            56                                                              Goal            64
+                                               RA Contour                                                                      RA Contour
+          50                                  1.0 Contour     48                       50                                     1.0 Contour     56
+          25                                                  40                       25                                                     48
+
+                                                                  V(x1 , x2 )                                                                     V(x1 , x2 )
+    x2     0                                                  32                 x2     0                                                     40
+                                                                                                                                              32
+          25                                                  24                       25
+                                                                                                                                              24
+          50                                                  16                       50
+                                                                                                                                              16
+                                                              8
+          75                                                                           75                                                     8
+                                                              0
+         100100   50         0           50             100                           100100   50           0            50             100   0
+                             x1                                                                             x1
+
+                                 (a)                                                                            (b)
+
+Figure 2: 2D GBM synthesis: (a) Cell partition at the end of warm-start training, before bound
+training; (b) Cell partition after 4000 epochs of bound training, shortly before achieving SAT.
+
+
+Network architecture and scaling. Feedforward networks with two hidden layers of initially
+equal width are used for the neural certificate Vθ . If constraints are satisfied, reducing the width
+of the second hidden layer can accelerate training. Input and output scaling parameters, sin ∈ RD
+and sout ∈ R (seen in Appendix A), affect training via two mechanisms. First, gradients scale as
+∂V /∂x ∝ sout /sin , where larger sout accelerates convergence but may induce instability. Second,
+normalized inputs x/sin control bound tightness: larger sin tightens IBP bounds but may saturate
+activations and vanish gradients. Since sin ∈ RD , we define the effective ratio as sout / max(sin ).
+Through experimentation, we select sout / max(sin ) in the range 0.2–1.0, balancing gradient mag-
+nitude and bound tightness for stable training. In Eq. 6, all loss weights are set to 1.
+
+Scenario-Based Training Setup The state samples are distributed according to a weighted distri-
+bution that samples uniformly from X0 , Xg and Xu each with probability 0.1 and from the rest of
+X with probability 0.7. Conditional to each region, the distribution is uniform. This choice ensures
+
+                                                                                20
+                                                                                          T RAINING WITH H ARD C ONSTRAINTS
+
+
+
+
+that our dataset contains samples from all regions. We note that our approach holds regardless of
+the sampling distribution.
+
+C.6. Control-Certificate Synthesis Visualization
+Here, we present additional visualization for the control synthesis results in Sec. 4. Figure 3 presents
+the stochastic inverted pendulum synthesis results, comparing synthesized-controlled and uncon-
+trolled rollouts in each panel. The left shows angle snapshots, the middle shows the certificate
+contour with both trajectories overlaid, and the right shows the corresponding torque inputs for five
+rollouts. Without control, the pendulum does not swing up and instead stays near the downward
+equilibrium.
+
+                 Physical System                                                 20
+                                                                                                                 V (x 1 , x 2 )                                                              0.75
+                                                                                                                                                                                                                         Control Input History
+                                                                                          Initial Region                                                                108                                                                                      Controlled
+                                                                                          Goal Region
+                                                                                 15       Unsafe Region                                                                 96                   0.50                                                                Uncontrolled
+                                                                                          Controlled Trajectories
+                                                                                 10
+
+
+
+                                                         x2 (angular velocity)
+                                                                                          Uncontrolled Trajectories                                                     84                   0.25
+
+
+
+                                                                                                                                                                              Norm. Torque
+                                                                                  5                                                   1.0                               72                   0.00
+                                                                                  0                                                                                     60
+                                                                                                                                                                                             0.25
+                                                                                                                                                                        48
+                                                                                  5                                                                                                          0.50
+                                                                                                                                                                        36
+                                                                                 10
+                                                                                                                                                                        24                   0.75
+                                                                                 15                                   20.0                                              12                   1.00
+                                                                                 20                                                                                     0
+                                                                                      6        4            2                 0   2          4                 6                                  0.00     0.25   0.50       0.75     1.00     1.25       1.50     1.75     2.00
+                                                                                                                x1 (angle)                                                                                                          Time [s]
+
+Figure 3: Stochastic inverted pendulum synthesis: angle snapshots (left), phase-plane trajectories
+overlaid on Vθ (middle), and torque inputs (right), comparing controlled and uncontrolled rollouts.
+
+    The synthesis results of Lorenz system are shown in Fig. 4, comparing open-loop trajectories
+(aquamarine dashed) with trajectories under the synthesized controller (pink). The left panels plot
+the 3D phase evolution, and the right panels show the corresponding 2D projections overlaid on
+the certificate contours. Without control, trajectories leave the safe set (red boxes); with control,
+they remain safe and are steered into the small goal set containing the origin. Figure 5 showcases
+ Uncontrolled Trajs. (zoom-out)                           Controlled Trajs. (zoom-in)                                             6                                                                  63              6
+     Init                                                      Init                                                                         Init                                                                                                                           72
+     Goal                                                      Goal                                                                         Goal
+     Unsafe
+                                                                                                                                  4         Unsafe                                                   54              4                                                     64
+                                                                                                                                            Controlled
+                                                                                                                                            Uncontrolled                                                                                                                   56
+                                                  30                                                                  4                                                                              45
+                                                                                                                                  2                                                                                  2                                                     48
+                                                  20                                                                  2                                                                              36                                                                    40
+                                                  10
+                                                  x3
+                                                  0
+                                                                                                                      0
+                                                                                                                          x3
+                                                                                                                          x2      0                                                                      V(x)   x3   0                                                      V(x)
+                                                                                                                                                                                                     27                                                                    32
+                                                  10                                                                      2
+                                                  20                                                                              2                                                                                  2                                                     24
+                                                                                                                          4                                                                          18
+20                                               20    3 2                                                            3                                                                                                                                                    16
+     10                                     10                      1 0               1 2                                         4                                                                                  4
+          x1 0    10          10
+                                   0
+                                       x2                           x1 1 2      1 0 x2                                                                                                               9
+                                                                                                                                                                                                                                                                           8
+                       2020                                                33 2
+                                                                                                                                  6                                                                  0               6                                                     0
+                                                                                                                                      6      4             2        0   2         4           6                          6    4       2       0       2     4        6
+                                                                                                                                                                   x1                                                                        x2
+
+
+Figure 4: Lorenz synthesis: 3D trajectories (left) and 2D projections on Vθ contours (right), con-
+trolled vs. uncontrolled.
+
+control synthesis for the XV15 aircraft. We compare three strategies: constant trimmed inputs
+for forward flight, an initialized controller trained by sampling, and the controller synthesized via
+bound-training loss. The left panel shows the 3D paths, while the middle and right panels report the
+longitudinal position and control inputs. Under constant trim, the aircraft quickly becomes unstable
+
+                                                                                                                                          21
+                                                  KONG E SCOBAR G RACIA M C M AHON L AHIJANIAN
+
+
+
+
+(aqua dashed lines). In contrast, the synthesized controller stabilizes the trajectories, which reach
+the goal with smoother inputs than the sample-trained controller (pink vs. navy).
+                                                                            Aircraft Position
+    Init                                                                                        Synthesized             100000
+                                                                  0
+    Goal
+    Unsafe
+                                                                                                Constant Trim
+                                                                                                Pre-trained
+                                                                                                                T [N]
+                                            1.5                 200                                                            0
+                                                                                                                            0.25
+                                          1.0   [rad]
+                                                        z [m]   400                                               [rad]     0.00
+                                          0.5
+                                                                                                                            0.25
+                                          0.0                   600
+                                    0.2                                                                                     0.00
+   20 40                      0.0
+                                    [ra
+                                       d]                       800                                               [rad/s]   0.05
+     v [m 60
+         /s]   80 100   0.2
+
+                                                                      0   1000       2000         3000                             0   5     10       15   20
+                                                                                 x [m]                                                     Time [s]
+
+Figure 5: XV15 aircraft synthesis: phase trajectories (left), longitudinal position (middle), and
+control inputs (right), comparing trim, sample-trained, and synthesized controllers.
+
+
+
+
+                                                                                    22
+
