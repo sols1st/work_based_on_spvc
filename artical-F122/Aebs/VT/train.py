@@ -25,7 +25,8 @@ class VTLearner:
         reach_prob,
         square_l_output=True,
         l_model_path=None,
-        p_model_path=None
+        p_model_path=None,
+        p_net=None,
     ) -> None:
         self.env = env
         self.eps = float(eps)
@@ -45,16 +46,19 @@ class VTLearner:
             self.l_model.load_state_dict(l_model_state_dict)
             print("Lyapunov model loaded successfully!")
 
-        # load End2End
-        gen_net = AebsMLPGenerator(4, 1)
-        gen_net.load_state_dict(torch.load("./Aebs/cGAN/mlp_supervised_ld4/mlp_supervised.pth"))
-        state_layer_sizes = [1024, 256, 64, 1]
-        model = PPO.load('./Aebs/controller/best_model/best_model.zip')
-        policy = model.policy
-        mlp_extractor = policy.mlp_extractor.policy_net
-        action_net = policy.action_net
-        p_net = AebsEnd2EndNet(gen_net, state_layer_sizes, mlp_extractor, action_net)
-        p_net.state_net.load_state_dict(torch.load("./Aebs/controller/state_net_trained.pth"))
+        # Load the original cGAN -> state_net -> PPO policy by default.  An
+        # alternative policy can be injected by a separate experiment entry
+        # point without changing the original learner, losses, or verifier.
+        if p_net is None:
+            gen_net = AebsMLPGenerator(4, 1)
+            gen_net.load_state_dict(torch.load("./Aebs/cGAN/mlp_supervised_ld4/mlp_supervised.pth"))
+            state_layer_sizes = [1024, 256, 64, 1]
+            model = PPO.load('./Aebs/controller/best_model/best_model.zip')
+            policy = model.policy
+            mlp_extractor = policy.mlp_extractor.policy_net
+            action_net = policy.action_net
+            p_net = AebsEnd2EndNet(gen_net, state_layer_sizes, mlp_extractor, action_net)
+            p_net.state_net.load_state_dict(torch.load("./Aebs/controller/state_net_trained.pth"))
         p_net.eval()
         p_net.to(self.device)
         self.net = copy.deepcopy(p_net)
@@ -71,6 +75,23 @@ class VTLearner:
         # Lipschitz target thresholds
         self.l_lip = float(l_lip)
         self.p_lip = float(p_lip)
+
+    @staticmethod
+    def _controller_input(policy_net, z, y):
+        """Return the two-dimensional input seen by the PPO actor.
+
+        The legacy SPVC policy obtains it through cGAN and state_net.  The
+        semantic-only variant exposes ``controller_input`` and receives the
+        semantic state directly.  Keeping this adapter here leaves every SBC
+        loss and verification setting unchanged.
+        """
+        if hasattr(policy_net, "controller_input"):
+            return policy_net.controller_input(z, y)
+        gen_out = policy_net.gen_net(z, y[:, 0].unsqueeze(1))
+        gen_out_flat = gen_out.view(gen_out.size(0), -1)
+        state = policy_net.state_net(gen_out_flat)
+        speed = y[:, 1].unsqueeze(1)
+        return torch.cat([state, speed], dim=1)
 
     def sample_init(self, rng_seed, n):
         num_spaces = len(self.env.init_spaces)
@@ -256,11 +277,7 @@ class VTLearner:
         loss_p = dec_loss_p * 10
 
         # P-Net Lipschitz loss
-        gen_out = self.p_net.gen_net(z, y[:,0].unsqueeze(1)).detach().clone().requires_grad_(True)
-        gen_out_flat = gen_out.view(gen_out.size(0), -1)
-        state = self.p_net.state_net(gen_out_flat)
-        y_col1 = y[:,1].unsqueeze(1).detach().clone().requires_grad_(True)
-        controller_input = torch.cat([state, y_col1], dim=1)
+        controller_input = self._controller_input(self.p_net, z, y).detach().clone().requires_grad_(True)
         acc = self.p_net.controller_net(controller_input)
         acc = acc.sum()
 
@@ -370,17 +387,10 @@ class VTLearner:
         # =====================================================
         # 5. P-Net Lipschitz on controller input
         # =====================================================
-        # Manually construct controller input x = [state_net(img), v]
-        d = y[:, 0].unsqueeze(1)
-        img = self.p_net.gen_net(z.float(), d.float())  # <-- Force float32
-        img_flat = img.view(img.size(0), -1)
-
-        state = self.p_net.state_net(img_flat)  # requires_grad=False
-
-        v = y[:, 1].unsqueeze(1).float()  # <-- Force float32
-
-        # Controller input x
-        x = torch.cat([state, v], dim=1).detach().clone().requires_grad_(True)
+        # Construct the exact two-dimensional input seen by the controller.
+        # This is [state_net(cGAN(...)), v] for legacy SPVC and [semantic, v]
+        # for the semantic-only version.
+        x = self._controller_input(self.p_net, z.float(), y.float()).detach().clone().requires_grad_(True)
 
         phi = self.p_net.controller_net(x).sum()
         p_grad = torch.autograd.grad(phi, x, create_graph=True)[0]

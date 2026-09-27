@@ -1,29 +1,28 @@
 # SafePVC 论文改进项目
 
+> **研究主线更新（2026-09-22）：** 当前主线为“语义转换器 + PPO名义控制器 + SBC约束 + 可微QP安全层”。采用BarrierNet式安全层位置和Opt-ODENet式简化QP，先固定现有网络检查QP可行性，再逐阶段联合学习。详见 [`新方案_语义PPO_SBC可微QP路线.md`](新方案_语义PPO_SBC可微QP路线.md)。旧AEBS实验保留为基线，scenario-LP计划停止。
+
 ## 当前文档
 
 建议按以下顺序阅读：
 
-1. [`完整实验汇报.md`](完整实验汇报.md)：面向导师汇报的完整工作、实验效果、最终证明和局限总结。
-2. [`实验通俗进展.md`](实验通俗进展.md)：从零解释系统、实验模式、感知契约、可恢复集、split-IBP、SBC和所有常用指标。
-3. [`改进实验记录.md`](改进实验记录.md)：实验计划、进度台账、运行命令和逐轮结果记录。
-4. [`可投稿创新方向调研报告.md`](可投稿创新方向调研报告.md)：文献调研、创新性判断和推荐论文路线。
-5. [`论文改进思路.md`](论文改进思路.md)：最初提出的完整改进要求，作为需求来源保留。
-6. [`720_file_Paper.pdf`](720_file_Paper.pdf)：原论文。
+1. [`新方案_语义PPO_SBC可微QP路线.md`](新方案_语义PPO_SBC可微QP路线.md)：**当前唯一主计划**，包含两篇QP论文对比、数学接口、训练阶段、实验和止损条件。
+2. [`完整实验汇报.md`](完整实验汇报.md)：旧路线已完成工作的完整汇报，作为AEBS基线和历史结果。
+3. [`改进实验记录.md`](改进实验记录.md)：旧路线实验命令和逐轮结果记录。
+4. [`实验通俗进展.md`](实验通俗进展.md)：旧实验的通俗术语解释。
+5. [`论文改进思路.md`](论文改进思路.md)：最初的论文改进需求，作为来源保留。
+6. [`720_file_Paper.pdf`](720_file_Paper.pdf)：原SafePVC论文。
+7. [`BarrierNet_Differentiable_Control_Barrier_Functions_for_Learning_of_Safe_Robot_Control.pdf`](BarrierNet_Differentiable_Control_Barrier_Functions_for_Learning_of_Safe_Robot_Control.pdf)：可微HOCBF-QP参考。
+8. [`Opt-ODENet.pdf`](Opt-ODENet.pdf)：简化CBF-QP与轨迹联合训练参考。
 
 ## 代码
 
 - [`artical-F122/`](artical-F122/)：实验代码与 `results/mvp` 结果目录。
-- 新实验进度只更新到 `改进实验记录.md`，不再新建零散计划文档。
+- [`artical-F122/Aebs/semantic_spvc/`](artical-F122/Aebs/semantic_spvc/)：原SPVC的受控最小替换版；只用语义转换器替代 `cGAN + state_net`，原PPO、SBC、噪声、网格、IBP和阈值保持不变。
+- [`artical-F122/Aebs/dqp/`](artical-F122/Aebs/dqp/)：计划新增的SBC-QP实现位置；尚未开始编码。
+- [`external/Certified-Reach-Avoid-via-Neural-Synthesis/`](external/Certified-Reach-Avoid-via-Neural-Synthesis/)：上一阶段参考代码，保留但不作为当前主实现。
 
-## 历史资料
-
-`archive/` 保存仍有参考价值但已经不再代表当前计划的旧材料：
-
-- `改进实验总结.md`：早期导师汇报稿，尚未包含 standalone PPO 和安全转移检查。
-- `后续实验改进方案_深度调查.md`：早期针对 neural SBC/LP 路线的详细调查。
-
-## 当前结论
+## 旧路线已完成结论
 
 - standalone PPO v2 在现有四种测试模式中均达到 100% success、0% unsafe、0% timeout。
 - 多版 neural SBC 尚未证成，不再继续盲目调参。
@@ -38,5 +37,12 @@
 - 64段semantic IBP继续改善：未决cell 248→135，未决面积0.003440%→0.001873%，最差动作界缺口0.061253→0.032828。
 - 最终256段semantic split、max depth 9全域验证已完全通过：`local_action_condition_verified`、3624 evaluated、2002 certified、0 unresolved。
 - 最终面积分解为85.53%可恢复且已证成、14.47%物理不可恢复、0%未决；85.53%不是安全概率。
-- 控制器与确定性条件验证已收口；后续只需整理论文结果和单独补轨迹级概率风险口径。
+- 控制器与确定性条件验证已经收口，这些结果作为新QP路线的基线。
 - 固定网格或语义采样通过只能作为 go/no-go 依据，不能直接写成连续状态空间安全证明。
+
+## 当前新路线状态
+
+- 已完成BarrierNet与Opt-ODENet的QP层对比和适配分析。
+- 已确定正确结构：PPO提供名义动作，SBC并行提供QP约束，QP输出实际动作。
+- 尚未编写QP代码；下一步只完成固定网络下的SBC约束、一维解析QP、可微QP和可行性rollout。
+- QP固定网络验证通过以前，不联合训练PPO/SBC，不进行参数扫描。
