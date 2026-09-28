@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <defs>
+    <marker id="g" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 L10 4 L0 8 Z" fill="#15803d"/></marker>
+    <marker id="r" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 L10 4 L0 8 Z" fill="#b91c1c"/></marker>
+    <style>
+      .t{font-family:Arial,sans-serif;font-size:29px;font-weight:700;fill:#0f172a}.st{font-family:Arial,sans-serif;font-size:17px;fill:#475569}
+      .h{font-family:Arial,sans-serif;font-size:20px;font-weight:700;fill:#0f172a}.s{font-family:Arial,sans-serif;font-size:15px;fill:#334155}
+      .f{font-family:'Times New Roman',serif;font-size:18px;font-style:italic;fill:#0f172a}.box{stroke-width:2;rx:13;ry:13}
+      .gl{fill:none;stroke:#15803d;stroke-width:2.8;marker-end:url(#g)}.rl{fill:none;stroke:#b91c1c;stroke-width:2.8;marker-end:url(#r)}
+    </style>
+  </defs>
+  <rect width="1400" height="900" fill="#fff"/>
+  <text x="700" y="45" text-anchor="middle" class="t">Trajectory-Level Conformal Validation of the Frozen Semantic-SPVC Controller</text>
+  <text x="700" y="73" text-anchor="middle" class="st">CP is an external post-training validation layer; it does not modify runtime actions</text>
+
+  <rect x="45" y="110" width="1310" height="675" rx="20" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <rect x="75" y="155" width="260" height="185" class="box" fill="#ecfdf5" stroke="#16a34a"/>
+  <text x="205" y="192" text-anchor="middle" class="h">1. Pre-register 𝒟</text>
+  <text x="95" y="225" class="s">• initial state distribution</text><text x="95" y="252" class="s">• observation model:</text>
+  <text x="113" y="276" class="s">exact / image replay / stress error</text><text x="95" y="304" class="s">• deterministic dynamics</text><text x="95" y="329" class="s">• horizon H=400, ε, β, seeds</text>
+
+  <rect x="405" y="150" width="380" height="195" class="box" fill="#f1f5f9" stroke="#475569"/>
+  <text x="595" y="188" text-anchor="middle" class="h">2. Freeze controller under test</text>
+  <rect x="438" y="215" width="314" height="55" rx="9" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="595" y="249" text-anchor="middle" class="s">image → semantic encoder → PPO → SBC-QP</text>
+  <text x="595" y="297" text-anchor="middle" class="s">lock model weights and SHA-256 hashes</text><text x="595" y="324" text-anchor="middle" class="s">evaluate PPO and PPO+QP on paired samples</text>
+
+  <rect x="860" y="155" width="435" height="185" class="box" fill="#ecfdf5" stroke="#16a34a"/>
+  <text x="1078" y="192" text-anchor="middle" class="h">3. Run N independent trajectories</text>
+  <text x="1078" y="233" text-anchor="middle" class="f">τ<tspan baseline-shift="sub">i</tspan>={x<tspan baseline-shift="sub">0</tspan>,…,x<tspan baseline-shift="sub">H</tspan>}, i=1,…,N</text>
+  <text x="1078" y="270" text-anchor="middle" class="s">one full trajectory = one IID calibration unit</text><text x="1078" y="300" text-anchor="middle" class="s">do not count 400 correlated time steps as 400 samples</text><text x="1078" y="326" text-anchor="middle" class="s">N=459 for the registered 99% / 99% target</text>
+  <path d="M335 247 L405 247" class="gl"/><path d="M785 247 L860 247" class="gl"/>
+
+  <rect x="165" y="440" width="340" height="135" class="box" fill="#f0fdf4" stroke="#16a34a"/>
+  <text x="335" y="478" text-anchor="middle" class="h">4. One score per trajectory</text>
+  <text x="335" y="515" text-anchor="middle" class="f">q<tspan baseline-shift="sub">i</tspan>=max<tspan baseline-shift="sub">t≤H</tspan>s(x<tspan baseline-shift="sub">t</tspan>)</text>
+  <text x="335" y="546" text-anchor="middle" class="s">q<tspan baseline-shift="sub">i</tspan>&gt;0 iff unsafe was entered; lower is safer</text>
+
+  <rect x="555" y="440" width="340" height="135" class="box" fill="#f0fdf4" stroke="#16a34a"/>
+  <text x="725" y="478" text-anchor="middle" class="h">5. Conformal calibration</text>
+  <text x="725" y="515" text-anchor="middle" class="f">q̂ = ranked score using Beta relation</text>
+  <text x="725" y="546" text-anchor="middle" class="s">confidence ≥1−β; target coverage ≥1−ε</text>
+
+  <rect x="945" y="440" width="290" height="135" class="box" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="1090" y="478" text-anchor="middle" class="h">6. Independent test</text>
+  <text x="1090" y="515" text-anchor="middle" class="s">200 sealed trajectories</text><text x="1090" y="546" text-anchor="middle" class="s">empirical replication, not used to fit q̂</text>
+  <path d="M1078 340 L1078 390 L335 390 L335 440" class="gl"/><path d="M505 508 L555 508" class="gl"/><path d="M895 508 L945 508" class="gl"/>
+
+  <rect x="190" y="655" width="420" height="100" class="box" fill="#dcfce7" stroke="#15803d"/>
+  <text x="400" y="693" text-anchor="middle" class="h">q̂ ≤ 0 — registered target passed</text>
+  <text x="400" y="724" text-anchor="middle" class="s">With confidence ≥1−β, a new IID trajectory is safe</text><text x="400" y="747" text-anchor="middle" class="s">over H steps with probability ≥1−ε.</text>
+  <rect x="790" y="655" width="420" height="100" class="box" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="1000" y="693" text-anchor="middle" class="h">q̂ &gt; 0 — registered target not met</text>
+  <text x="1000" y="724" text-anchor="middle" class="s">Report failure; change the model or distribution only in a</text><text x="1000" y="747" text-anchor="middle" class="s">new experiment with fresh calibration data.</text>
+  <path d="M725 575 L725 615 L400 615 L400 655" class="gl"/><path d="M725 575 L725 615 L1000 615 L1000 655" class="rl"/>
+
+  <rect x="95" y="815" width="1210" height="60" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="700" y="839" text-anchor="middle" class="h">Current effect</text>
+  <text x="700" y="862" text-anchor="middle" class="s">Exact semantics and existing-image replay: passed 99% safety / 99% confidence. Uniform contract-error stress: failed (16/459 unsafe for both; q̂&gt;0).</text>
+</svg>
