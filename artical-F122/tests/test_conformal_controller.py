@@ -6,6 +6,7 @@ from Aebs.conformal.calibrate_controller import (
     select_tolerance_rank,
     trajectory_safety_score,
 )
+from Aebs.semantic_spvc.evaluate_comprehensive import midpoint_initial_grid
 
 
 def test_nearest_semantic_prediction_uses_closest_labeled_frame():
@@ -37,3 +38,10 @@ def test_nonpositive_worst_score_passes():
     assert summary["rank_from_largest_l"] == 1
     assert summary["q_hat"] < 0
     assert summary["passes_q_hat_nonpositive"]
+
+
+def test_comprehensive_grid_uses_cell_midpoints_without_duplicate_edges():
+    states = midpoint_initial_grid(2, 2)
+    assert states.shape == (4, 2)
+    assert np.allclose(np.unique(states[:, 0]), [15.25, 15.75])
+    assert np.allclose(np.unique(states[:, 1]), [2.625, 2.875])

@@ -1,0 +1,27 @@
+{
+  "experiment": "dino_32d_latent_split_conformal",
+  "representation_checkpoint": "results/dino_safety_latent_stage1/dino_safety_latent.pt",
+  "latent_dimension": 32,
+  "nonconformity_score": "L2 norm of z_DINO_projection - q_psi(distance)",
+  "set": "Z_alpha(d) = {z: ||z-q_psi(d)||_2 <= radius}",
+  "alpha": 0.05,
+  "target_marginal_coverage": 0.95,
+  "calibration_count": 80,
+  "finite_sample_rank": 77,
+  "radius": 1.8569676876068115,
+  "calibration_score": {
+    "mean": 1.4040664434432983,
+    "median": 1.3947241306304932,
+    "max": 2.6392385959625244
+  },
+  "independent_test": {
+    "count": 80,
+    "covered": 71,
+    "coverage": 0.8875,
+    "mean_score": 1.4915605783462524,
+    "max_score": 3.793903112411499,
+    "excess_count": 9,
+    "maximum_excess": 1.9369354248046875
+  },
+  "claim_boundary": "Marginal latent coverage under exchangeability of the current image dataset; not conditional coverage, not controller safety, and not a formal closed-loop certificate"
+}

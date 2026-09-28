@@ -1,0 +1,56 @@
+{
+  "experiment": "semantic_spvc_no_cp_comprehensive_empirical_evaluation",
+  "registered_before_rollout": true,
+  "uses_conformal_prediction": false,
+  "claim_level": "empirical_fixed_grid_evaluation_only_not_a_certificate",
+  "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+  "checkpoint_sha256": {
+    "semantic_encoder": "ffd67195092dcb479faf8630aa4b6100a89fe4c25f23a6c9d15e0e910282341b",
+    "semantic_ppo": "6c21819360a73c52eca666eacc1c6e9648b0e5d5d6312b89f4c01556093304e9",
+    "sbc": "c4de7d45345c649a77a7be4075086755a89e7a3af1b2bdbc32e50e9d6fcbc111",
+    "image_dataset": "41cc88359f64d52ffb25a8ec57ea9efddd9b8463d37e63bc972b2854dbed1bf1"
+  },
+  "controllers": [
+    "ppo",
+    "ppo_plus_qp"
+  ],
+  "semantic_modes": [
+    "exact",
+    "dataset_nearest",
+    "uniform_contract",
+    "random_boundary_contract",
+    "worst_endpoint_contract"
+  ],
+  "initial_grid": {
+    "distance_m": [
+      15.0,
+      16.0
+    ],
+    "speed_mps": [
+      2.5,
+      3.0
+    ],
+    "distance_points": 32,
+    "speed_points": 32,
+    "states": 1024,
+    "construction": "cell midpoints"
+  },
+  "horizon": 400,
+  "fixed_seed": 20260928,
+  "seed_policy": "one fixed seed; no multi-seed sweep",
+  "paired_design": "PPO and PPO+QP use identical initial states and identical pre-sampled observation-error sequences within each applicable mode",
+  "semantic_mode_definitions": {
+    "exact": "true simulator distance and speed",
+    "dataset_nearest": "semantic-encoder point estimate from the real dataset frame with nearest labeled distance",
+    "uniform_contract": "independent per-step Uniform(-radius,+radius) distance error",
+    "random_boundary_contract": "independent per-step random choice of -radius or +radius",
+    "worst_endpoint_contract": "at every step choose the contract endpoint yielding the smaller executed braking action for the evaluated controller"
+  },
+  "important_limitations": [
+    "No CP calibration or confidence statement is used.",
+    "The grid is finite and does not prove safety for all continuous initial states.",
+    "Dataset-nearest is finite image replay, not new-camera distribution testing.",
+    "Contract stress modes assume the saved semantic-error radii.",
+    "The original deterministic AEBS dynamics are used without process disturbance."
+  ]
+}

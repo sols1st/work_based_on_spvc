@@ -1,0 +1,28 @@
+{
+  "experiment": "frozen_dino_safety_latent_stage1",
+  "registered_before_training": true,
+  "dino_model": "dinov2_vits14",
+  "dino_frozen": true,
+  "dino_weights_sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+  "feature_dimension": 384,
+  "latent_dimension": 32,
+  "projection": "384 -> 128 -> 32",
+  "deployment_semantics": "controller consumes 32-D latent plus speed; not a 1-D distance estimate",
+  "auxiliary_losses": {
+    "safety_sufficiency": "latent decoder reconstructs normalized distance during training only",
+    "nuisance_invariance": "two brightness/contrast/noise views should share latent",
+    "state_separation": "states separated by >=1m receive a latent-margin loss"
+  },
+  "physical_to_latent": "q_psi(normalized distance) -> 32-D latent",
+  "dataset_limitation": "Current data have distance labels but no repeated CARLA weather/camera-pose groups; appearance augmentations are only a first nuisance proxy",
+  "sample_counts": {
+    "train": 240,
+    "calibration": 80,
+    "test": 80
+  },
+  "optimization_count": 192,
+  "validation_count": 48,
+  "seed": 7,
+  "epochs": 250,
+  "q_epochs": 400
+}

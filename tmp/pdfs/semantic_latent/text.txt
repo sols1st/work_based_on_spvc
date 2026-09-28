@@ -1,0 +1,1618 @@
+                       x, η ⟶ semantic latent z                                                                               ​
+
+
+
+
+直接跳过
+
+                                 x, η → image
+
+这一高维中间过程。
+
+下面详细展开这个过程。
+
+
+
+
+一、首先区分“两条映射”
+整个系统实际上同时存在两条路径。
+
+真实运行路径是
+
+                                             Eϕ                                         πθ
+                            ot                                     zt                                    ut
+                                                   ​                                         ​
+
+
+
+
+                                 ​                         ​            ​                        ​            ​   ​
+
+
+
+
+其中：
+
+                                 ot ∈ RH×W ×C
+                                     ​
+
+
+
+
+是真实摄像头图像，
+
+                                                           Eϕ                   ​
+
+
+
+
+是 DINO-v2 等 semantic encoder，
+
+                                                 z t ∈ R dz
+                                                       ​
+                                                                                         ​
+
+
+
+
+是 semantic latent，
+
+                                                               πθ           ​
+
+
+
+
+是控制器。
+
+而用于形式化分析的是：
+
+                                                  qψ                                     πθ
+                          x t , ηt                                      z^t                                  ut
+                                                               ​                                     ​
+
+
+
+
+                             ​               ​                      ​               ​                    ​            ​   ​
+
+
+
+
+其中：
+
+                                 xt ∈ X ⊆ R n
+                                         ​
+
+
+
+
+是 physical state，
+
+                                                                   ηt   ​
+描述与视觉相关的环境变量，例如：
+
+         η = [lighting, camera pose, weather, texture, occlusion, …].
+
+因此 qψ 的目标不是“随便学习一种 latent”，而是逼近：
+     ​
+
+
+
+
+                           qψ (x, η) ≈ Eϕ (h(x, η))
+                             ​                                   ​                        ​
+
+
+
+
+这里
+
+                                   o = h(x, η)
+
+是真实世界从 physical state 和环境条件生成图像的未知 observation process。
+
+于是我们真正想学习的是复合映射：
+
+                                             h                       Eϕ
+                                 x, η                    o                        z
+                                                                          ​
+
+
+
+
+                                                     ​                        ​       ​
+
+
+
+
+但是不显式学习高维 h，而是直接学习：
+
+                                  qψ ≈ Eϕ ∘ h.
+                                        ​                    ​                    ​
+
+
+
+
+这是整个思路的关键。
+
+
+
+
+二、为什么这比 state-to-image 更合理
+SPVT 和 SafePVC 都要学习
+
+                            G(x, zenv ) ≈ h(x, η),
+                                                 ​
+
+
+
+
+输出是完整图像：
+
+                          G : X × Z → RH×W ×C .
+
+例如即便只是
+
+                                 128 × 128 × 3,
+
+输出维数也有
+
+                                            49 152.
+
+但是对于控制而言，实际上绝大部分像素信息是不重要的。
+
+假设车道保持问题的真实 physical state 是
+
+                                   x = [d, θ, v],
+其中：
+   d：车辆相对车道中心横向偏差；
+   θ：航向误差；
+   v ：速度。
+摄像头可能产生
+
+                                 640 × 480 × 3
+
+图像，但控制器真正需要的只是类似：
+
+lane geometry,   road orientation,       obstacle structure,                 relative spatial rela
+
+
+DINO-v2 latent 已经把大量像素细节压缩成了 semantic representation。
+
+所以不必学
+
+                            x → 921600 pixels,
+
+而可以直接学
+
+                     x → 16 ∼ 64 semantic variables.
+
+这会显著改善 verification scalability。
+
+
+
+
+三、第一步：构造同步的 state-image 数据
+首先建立数据集
+
+                            D = {(xi , ηi , oi )}N
+                                         ​
+
+
+
+
+                                                 i=1 .
+                                                     ​       ​           ​
+
+
+
+
+关键是每一张图像 oi 都必须有同步的 physical state xi 。
+                 ​                                                   ​
+
+
+
+
+在仿真环境中最容易做到。
+
+例如 CARLA 可以同时获得：
+
+                          xi = [di , θi , vi , dobs
+                             ​       ​       ​
+
+
+
+
+                                                i , …]   ​       ​
+
+
+
+
+和摄像机画面
+
+                                         oi .    ​
+
+
+
+
+并且主动改变：
+
+        ηi = [weather, sun angle, camera pitch, brightness, texture].
+          ​
+于是同一个 physical state 可以产生很多不同视觉观测：
+
+                                (x, η1 ) → o1 ,
+                                      ​       ​
+
+
+
+
+                                (x, η2 ) → o2 ,
+                                      ​       ​
+
+
+
+
+                                     ⋯
+
+                               (x, ηM ) → oM .
+                                      ​           ​
+
+
+
+
+这是很重要的，因为我们希望 latent model 学会区分：
+
+                    state-dependent semantic information          ​
+
+
+
+
+和
+
+                         visual nuisance variation.        ​
+
+
+
+
+四、真实机器人也可以获得 physical state
+这并不要求系统部署时能够获得 physical state。
+
+训练阶段可以借助：
+
+motion capture,    GPS/RT K,     LiDAR,           IM U ,       simulatorgroundtruth
+
+
+得到 xt 。
+      ​
+
+
+
+
+也就是说：
+
+          physical state 只是训练和验证阶段的 privileged information                  ​
+
+
+
+
+部署时仍然可以完全是：
+
+                  camera → semanticencoder → controller.
+
+这是需要在论文里讲清楚的，否则审稿人会问：
+
+    既然你知道 x，为什么还需要 vision controller？
+
+答案是：
+
+                                          x
+
+只在 offline training / certification 阶段可用，而 online controller 仍然只观察
+
+                                      ot .​
+五、第二步：使用固定 semantic encoder 得到 ground-
+truth latent
+对于每个图像：
+
+                                                   oi ,
+                                                     ​
+
+
+
+
+通过 DINO-v2：
+
+                                 z~i = EDINO (oi ).
+                                   ​                              ​           ​
+
+
+
+
+第三篇论文正是采用 DINO-v2 作为 zero-shot encoder，利用其预训练视觉表示获得更好
+的空间和语义结构。      2507.13871v1
+
+
+
+
+这里建议：
+
+                              尽量冻结 DINO backbone                                  ​
+
+
+
+
+而不是从头训练整个 encoder。
+
+原因有三个。
+
+第一，冻结 DINO 后 latent space 比较稳定。如果不断 fine-tune encoder：
+
+                                 E ϕ1 → E ϕ2 → ⋯
+                                           ​
+                                               ​
+
+
+                                                          ​
+                                                              ​
+
+
+
+
+那么原来的：
+
+                                 qψ (x) ≈ Eϕ1 (o)
+                                       ​
+
+
+                                                                      ​
+                                                                          ​
+
+
+
+
+会立刻失效。
+
+第二，固定 encoder 更容易建立 conformal calibration。
+
+第三，DINO 本身网络很大，但最终 formal verifier 不需要直接验证 DINO。
+
+这一点非常关键。
+
+
+
+
+六、第三步：不要直接使用全部 DINO feature
+第三篇使用 DINO-v2-small，可得到 384 维 embedding。                                              2507.13871v1
+
+
+
+
+但是：
+
+                                                   384
+维对于 formal verification 仍然偏高。
+
+因此推荐增加一个小型 projection head：
+
+                           Pρ : R384 → Rdz .
+                              ​
+                                                         ​
+
+
+
+
+例如：
+
+                           384 → 128 → 32.
+
+于是定义最终 semantic latent：
+
+                           z = Pρ (EDINO (o))
+                                      ​              ​       ​
+
+
+
+
+其中：
+
+                             dz = 8, 16, 32
+                                  ​
+
+
+
+
+可以根据任务选择。
+
+于是：
+
+           o → 384-D DINO feature → 16 ∼ 32-D safety latent.
+
+这里的 Pρ 很重要，因为我们不是追求通用视觉表征，而是追求：
+       ​
+
+
+
+
+                    safety-relevant semantic latent.             ​
+
+
+
+
+七、什么叫 safety-relevant semantic latent
+这是新方法不能含糊的地方。
+
+普通 DINO latent 的目标是视觉语义表示，并不能保证：
+
+                                  ∥z1 − z2 ∥
+                                          ​      ​
+
+
+
+
+和系统安全状态的差异直接相关。
+
+例如：
+
+一张红色道路、一张灰色道路，DINO feature 可能差别明显；
+
+但从控制安全角度，两张图对应的
+
+                                          d, θ
+
+可能完全一样。
+反过来，两张视觉上很相似的图像可能分别对应：
+
+                                                      d = 0.1m
+
+和
+
+                                                      d = 1.0m,
+
+而后者已经接近 lane boundary。
+
+所以需要进一步把 latent “安全化”。
+
+可以定义一个 safety-relevant state：
+
+                                                      y = c(x).
+
+例如车辆：
+
+                                          y = [d, θ, v, dobs ].                                ​
+
+
+
+
+然后要求 latent 能预测这些 safety variables：
+
+                                                      y^ = Rω (z).
+                                                       ​                       ​
+
+
+
+
+增加损失：
+
+                                Lsafe = ∥Rω (zi ) − c(xi )∥22 .
+                                      ​                            ​       ​                           ​           ​
+
+
+
+
+这相当于告诉 projection head：
+
+    你不需要保留所有视觉信息，但必须保留与安全相关的信息。
+
+
+
+
+八、推荐的 semantic latent 学习目标
+于是从图像得到 semantic latent：
+
+                                    zi = Pρ (EDINO (oi )).
+                                          ​                    ​                       ​           ​
+
+
+
+
+建议训练 Pρ 时使用：
+         ​
+
+
+
+
+             Lsemantic = λs Lsafety + λt Ltemporal + λc Lcontrast + λr Lreg .
+                      ​     ​                 ​            ​                               ​                   ​       ​   ​   ​
+
+
+
+
+最重要的是第一项：
+
+                                Lsafety = ∥Rω (zi ) − c(xi )∥2 .
+                                                  ​                    ​           ​                       ​
+
+
+
+
+时间一致性可以写成：
+                Ltemporal = ∥zt+1 − d(zt , ut )∥2 .
+                               ​                                                           ​                                           ​           ​
+
+
+
+
+这样得到的 latent 同时满足：
+
+                         semantic sufficiency                                                                                                  ​
+
+
+
+
+和
+
+                     dynamic predictability.                                                                                                           ​
+
+
+
+
+也就是既能表达安全信息，又适合 world model。
+
+
+
+
+九、第四步：真正训练 physical-state-to-latent model
+现在我们已经有监督标签：
+
+                               (xi , ηi ) ⟷ zi .
+                                               ​                           ​                                           ​
+
+
+
+
+于是训练：
+
+                                   qψ (x, η) → z.  ​                                                                           ​
+
+
+
+
+最直接的 loss 是：
+
+                                                       N
+                      1
+               Lmap =​  ∑ ∥qψ (xi , ηi ) − zi ∥22 .
+                                       ​                               ​                       ​           ​                       ​                       ​
+
+
+
+
+                      N
+                                               i=1
+
+其中：
+
+                         zi = Pρ (EDINO (oi )).
+                           ​                               ​                                           ​                   ​
+
+
+
+
+所以训练链条实际上是：
+
+                                               (xi , ηi , oi )     ​                   ​           ​
+
+
+
+
+先得到：
+
+                               zi = Pρ (E(oi )),
+                                   ​                                           ​                               ​
+
+
+
+
+再训练：
+
+                               q ψ (x i , η i ) ≈ z i .
+                                           ​                   ​                   ​                               ​
+
+
+
+
+因此：
+
+                         qψ 学习的是 E ∘ h
+                               ​                                                                                                           ​
+而不是 h 本身。
+
+
+
+
+十、与 cGAN 方法的根本区别
+SafePVC/SPVT 相当于：
+                                           G                    π
+                                x, η               ​
+                                                       o^               ​
+                                                                            u.
+
+新方法变成：
+                                       qψ                       π
+                                x, η                   z^
+                                               ​
+
+
+
+
+                                                   ​                    ​
+                                                                            u.
+
+如果真实 controller 本来是：
+                                       E                    π
+                                 o         ​       z                ​   u,
+
+那么 verification surrogate 就是：
+                                       qψ                       π
+                                x, η                   z                    u.
+                                               ​
+
+
+
+
+                                                   ​                    ​
+
+
+
+
+也就是说：
+
+                                G(x, η) ≈ h(x, η)                                ​
+
+
+
+
+被替换成：
+
+                          qψ (x, η) ≈ E(h(x, η)).
+                            ​                                                        ​
+
+
+
+
+后者不需要重建：
+
+        texture, shadow, sky, roadappearance, backgroundobjects
+
+等大量与安全证明关系不大的信息。
+
+
+
+
+十一、推荐不要只用一个确定性 qψ                                                           ​
+
+
+
+
+实际上，同一个 physical state：
+
+                                                   x
+
+在不同视觉环境下可能对应很多 latent：
+
+                            z (1) , z (2) , … , z (M ) .
+
+因此映射真正应该是：
+                                            x → Z(x),
+
+而不是：
+
+                                                        x → z.
+
+最简单的建模方法是：
+
+                                  qψ (x) = μz (x)
+                                            ​                                      ​
+
+
+
+
+作为 nominal semantic latent。
+
+然后定义 residual：
+
+                                  ez = z − μz (x).
+                                    ​                                              ​
+
+
+
+
+即
+
+                         ez = P (E(o)) − qψ (x).
+                              ​                                                                        ​
+
+
+
+
+最终：
+
+                                  z = qψ (x) + ez .            ​                                   ​       ​
+
+
+
+
+这是后续 conformal prediction 最自然的接口。
+
+
+
+
+十二、state-dependent semantic uncertainty
+对于每一个 calibration sample：
+
+                                                        (xi , oi ),​           ​
+
+
+
+
+计算：
+
+                                  zi = P (E(oi )),
+                                        ​                                                  ​
+
+
+
+
+                                    z^i = qψ (xi ), ​                      ​           ​
+
+
+
+
+于是 residual：
+
+                                   ei = zi − z^i .
+                                                ​                      ​                       ​
+
+
+
+
+如果只是取一个全局 bound：
+
+                                                ∥ei ∥ ≤ r, ​
+
+
+
+
+通常会很保守。
+因为有些区域视觉非常稳定：
+
+                                   r(x) ≪ 1,
+
+而有些区域受到：
+
+                 shadow, occlusion, motionblur, lighting
+
+影响很大。
+
+所以应该学习：
+
+                                     σψ (x)       ​
+
+
+
+
+作为 state-dependent scale。
+
+定义 nonconformity score：
+
+                                   ∥zi − qψ (xi )∥
+                            ri =                   .
+                                          ​                               ​   ​
+
+
+
+
+                                    σψ (xi ) + ϵ
+                              ​                                                   ​
+
+
+
+
+                                              ​                       ​
+
+
+
+
+然后通过 calibration set 得到 conformal quantile：
+
+                                     q1−α .                       ​
+
+
+
+
+于是：
+
+                 Zα (x) = {z : ∥z − qψ (x)∥ ≤ q1−α σψ (x)} .
+                    ​                                     ​                           ​       ​   ​
+
+
+
+
+因此不再声称：
+
+                                   z = qψ (x)                 ​
+
+
+
+
+精确成立，而是声称：
+
+                        P (E(o) ∈ Zα (x)) ≥ 1 − α.    ​                                   ​
+
+
+
+
+这才是一个适合形式化安全分析的 physical-state-to-latent abstraction。
+
+
+
+
+十三、如果能够显式观察环境变量 η
+在仿真环境中，可以进一步学习：
+
+                                   qψ (x, η).
+                                      ​
+
+
+
+
+例如：
+                             η = [I, ϕc , θc , w, r],
+                                              ​                   ​
+
+
+
+
+分别表示：
+
+亮度、camera yaw、camera pitch、weather、rain。
+
+那么 residual 会显著减小：
+
+                            ez = E(o) − qψ (x, η).
+                              ​                                           ​
+
+
+
+
+这时 conformal set：
+
+                                    Zα (x, η)
+                                         ​
+
+
+
+
+会比只使用 x 时更紧。
+
+但是在真实运行环境中，不一定能精确获得 η 。
+
+因此更通用的方案还是：
+
+                  qψ (x) + state-dependent uncertainty set.
+                     ​                                                            ​
+
+
+
+
+十四、可以进一步做“semantic decomposition”
+为了让 latent 更容易解释和验证，我更推荐把：
+
+                                             z
+
+分成两部分：
+
+                                  z = [zs , zn ].         ​           ​       ​
+
+
+
+
+其中
+
+                                             zs   ​
+
+
+
+
+为 safety semantic latent，
+
+                                             zn       ​
+
+
+
+
+为 nuisance latent。
+
+希望满足：
+
+                                  zs ≈ ϕs (x)
+                                     ​                        ​
+
+
+
+
+而：
+                                                                zn           ​
+
+
+
+
+主要描述：
+
+                  lighting, texture, weather, background.
+
+Controller 尽可能主要依赖：
+
+                                                                zs .     ​
+
+
+
+
+于是：
+
+                                               u = π(zs ).                                           ​
+
+
+
+
+这会非常有利于 verification。
+
+因为验证问题从：
+
+                                                ∀(zs , zn )          ​                           ​
+
+
+
+
+变成：
+
+                                           ∀zs ∈ Zs (x).​                            ​
+
+
+
+
+十五、如何训练这种解耦 latent
+可以设计：
+
+                 L = Lstate + λinv Linvariant + λdyn Ldynamics .
+                               ​                ​                                                        ​               ​       ​
+
+
+
+
+其中：
+
+                             Lstate = ∥R(zs ) − c(x)∥2 .
+                                   ​                                             ​
+
+
+
+
+要求 zs 能恢复 safety-related physical information。
+      ​
+
+
+
+
+然后，对于相同 x、不同环境：
+
+                       oi = h(x, ηi ),
+                         ​                          ​                            oj = h(x, ηj ),
+                                                                                             ​                               ​
+
+
+
+
+希望：
+
+                                   z s (o i ) ≈ z s (o j ).
+                                           ​                ​                            ​                   ​
+
+
+
+
+因此：
+
+                       Linvariant = ∥zs (oi ) − zs (oj )∥2 .
+                                       ​                         ​                   ​                           ​   ​
+这样会显式鼓励：
+
+                               zs ⊥ η
+                                ​                  approximately           ​
+
+
+
+
+即 semantic latent 对光照、纹理等 nuisance 具有不变性。
+
+这一步其实比普通 DINO latent 更适合安全控制。
+
+
+
+
+十六、还需要保持“不同物理状态可区分”
+不能只要求 nuisance invariance。
+
+否则最极端的解就是：
+
+                                           zs (x) = 0
+                                                   ​
+
+
+
+
+对所有 x。
+
+因此还需要 state separation。
+
+例如：
+
+                                        ∥xi − xj ∥ > δx
+                                               ​           ​           ​
+
+
+
+
+且安全含义不同，那么要求：
+
+                                        ∥zi − zj ∥ > δz .
+                                           ​           ​           ​
+
+
+
+
+可以使用 contrastive loss：
+
+        Lcontrast = yij ∥zi − zj ∥2 + (1 − yij ) max(0, m − ∥zi − zj ∥)2 .
+                ​      ​   ​        ​                          ​               ​       ​
+
+
+
+
+最终希望 latent 满足：
+
+                    same physical semantics ⇒ close latent
+
+以及
+
+              different safety semantics ⇒ separated latent.                       ​
+
+
+
+
+十七、physical state 到 latent 的网络本身应该设计得容易
+验证
+这是和普通 representation learning 最大的区别。
+不建议 qψ 使用大型 Transformer。
+         ​
+
+
+
+
+可以使用一个小型 MLP：
+
+                               x → 64 → 64 → 32 → z.
+
+激活函数选择：
+
+                                          ReLU ,                           tanh
+
+等 verification-friendly activation。
+
+同时做 spectral normalization：
+
+                                              ∥Wl ∥2 ≤ cl .
+                                                       ​               ​           ​
+
+
+
+
+这样可以得到：
+
+                                        Lq ≤ ∏ ∥Wl ∥2 Lσl .
+                                          ​                        ​           ​       ​
+
+
+                                                                                               ​
+                                                                                                   ​
+
+
+
+
+                                                   l
+
+最终：
+
+                       ∥qψ (x1 ) − qψ (x2 )∥ ≤ Lq ∥x1 − x2 ∥.
+                           ​        ​          ​               ​                           ​           ​   ​
+
+
+
+
+这样才能像 SafePVC 的 Theorem 3.1 一样，把有限状态点验证扩展到连续区域。
+SafePVC 本身就专门通过 Lipschitz 正则化和 Lipschitz 常数完成这种扩展。                                                                 720_file_Paperok
+
+
+
+
+十八、最终验证时实际上不需要验证 DINO-v2
+这一点是整个设计的重要优势。
+
+DINO 网络可能有几千万参数，直接验证几乎没有意义。
+
+我们做的是：
+
+训练/校准阶段：
+                                                   DINO
+                                              o                            ​   z.
+
+然后建立：
+
+                                   P [z ∈ Zα (x)] ≥ 1 − α. ​
+
+
+
+
+于是形式化 verifier 只处理：
+
+                    x → Zα (x) → π(z) → f (x, u) → B(x+ )
+                               ​                                                                               ​
+不再展开：
+
+                              x → image → DINO                             ​
+
+
+
+
+这对于 scalability 是非常大的提升。
+
+
+
+
+十九、从 semantic latent 到 physical-state safety
+真正的 closed-loop dynamics 写成：
+
+                                   xt+1 = f (xt , π(zt )),
+                                       ​                       ​       ​
+
+
+
+
+其中
+
+                                       z t ∈ Z α (x t )
+                                               ​           ​       ​
+
+
+
+
+以高概率成立。
+
+那么可以定义：
+
+                    Fα (x) = {f (x, π(z)) : z ∈ Zα (x)} .
+                      ​                                                    ​
+
+
+
+
+于是 verification condition 可以写成：
+
+                      sup B(f (x, π(z))) ≤ B(x) − ϵ.
+                               ​
+
+
+
+
+                    z∈Zα (x)
+                          ​
+
+
+
+
+如果想使用前面提出的 stochastic barrier 形式，则为：
+
+            B(x) ≥ (1 − α) sup B(f (x, π(z))) + αBmax + ϵ.
+                                                   ​
+
+
+
+
+                                   z∈Zα (x)​
+
+
+
+
+这就形成完整链：
+
+physical state → semantic uncertainty set → controller → physical next stat
+
+
+注意最后的安全性质仍然定义在：
+
+                                                       x
+
+空间，而不是 latent 空间。
+
+这是我比较推荐的版本。
+
+
+
+
+二十、举一个 CARLA 的具体例子
+假设：
+
+                              x = [d, θ, v, do ]              ​
+
+
+
+
+分别是：
+
+横向偏差、heading error、速度、前方障碍距离。
+
+实际图像：
+
+                               o = h(x, η).
+
+经过 DINO：
+
+                              384-D feature.
+
+再通过 projection：
+
+                                    384 → 32.
+
+得到：
+
+                                        z ∈ R32 .
+
+现在对数据：
+
+                               {(xi , oi )}N
+                                          ​
+
+
+
+
+                                           i=1​           ​
+
+
+
+
+计算：
+
+                              zi = P (E(oi )).
+                                ​                     ​
+
+
+
+
+然后训练：
+
+                              qψ : R4 → R32 .
+                                    ​
+
+
+
+
+例如：
+
+                           4 → 64 → 64 → 32.
+
+对于：
+
+                          x = [0.2, 0.03, 4.0, 15],
+
+nominal prediction 可能是：
+
+                                    z^ = qψ (x).  ​
+
+
+
+
+在晴天、阴天、黄昏、轻微遮挡下的真实 DINO latent 分别为：
+                              z1 , z2 , z3 , z4 .
+                                   ​          ​       ​
+
+
+
+
+它们围绕：
+
+                                         z^
+
+形成一个局部 uncertainty region：
+
+                                       Zα (x).
+                                          ​
+
+
+
+
+Verifier 不需要知道这些图像是什么样。
+
+它只需要证明：
+
+                              ∀z ∈ Zα (x),    ​
+
+
+
+
+控制器
+
+                                   u = π(z)
+
+产生的下一状态都满足足够的 barrier decrease。
+
+于是：
+
+              百万维视觉变化 → 32维 latent uncertainty            ​
+
+
+
+
+这就是这个方案真正的计算优势。
+
+
+
+
+二十一、进一步建议：最终甚至可以不用直接验证 32 维
+latent
+还可以进一步把 uncertainty 从 latent 投影到 control space。
+
+定义：
+
+                          ˉ(x) = π(qψ (x)).
+                          u                       ​
+
+
+
+
+真实 action：
+
+                             u = π(E(o)).
+
+定义：
+
+                             eu = u − u
+                               ​      ˉ(x).
+
+利用 calibration 直接学习：
+                                            Uα (x)           ​
+
+
+
+
+使得：
+
+                       P [u ∈ u
+                              ˉ(x) ⊕ Uα (x)] ≥ 1 − α.            ​
+
+
+
+
+那么 verification 只需要：
+
+                               ∀eu ∈ Uα (x) :
+                                        ​                            ​
+
+
+
+
+                        B(f (x, u
+                                ˉ(x) + eu )) ≤ B(x).                     ​
+
+
+
+
+这样复杂度从：
+
+                                   dz = 32   ​
+
+
+
+
+进一步降低到 action dimension：
+
+                                  du = 1 ∼ 4.
+                                    ​
+
+
+
+
+因此实际上存在三个 abstraction level：
+
+           Image → Semantic Latent → Control → Next State.                           ​
+
+
+
+
+可以分别做 conformal calibration：
+
+                                        Zα (x),      ​
+
+
+
+
+或：
+
+                                            Uα (x),
+                                                 ​
+
+
+
+
+甚至直接：
+
+                                            Eαx (x)      ​
+
+
+
+
+——即 next-state disturbance set。
+
+
+
+
+二十二、对于最终论文，我推荐哪一种
+最好的方案不是让 final verifier 停留在 semantic latent，而是使用两层结构：
+
+                    semantic latent 用于建模和学习                                  ​
+
+
+
+
+               physical-state disturbance 用于最终证明                                 ​
+
+
+
+
+即：
+                  x → qψ (x) → z → π(z) → u → x+ .
+                              ​
+
+
+
+
+然后直接计算真实数据中的闭环 residual：
+
+                 Δx = f (x, π(E(o))) − f (x, π(qψ (x)))                                                                          ​       ​
+
+
+
+
+并用 conformal prediction 构造：
+
+                                                     Eαx (x).            ​
+
+
+
+
+最终系统变成：
+
+                      xt+1 = f (xt , π(qψ (xt ))) + Δxt ,
+                          ​                      ​                                       ​       ​                                   ​
+
+
+
+
+其中：
+
+                        P [Δxt ∈ Eαx (xt )] ≥ 1 − α.
+                                        ​                            ​               ​
+
+
+
+
+这样从形式化验证角度最干净。
+
+
+
+
+二十三、整个 physical-state → semantic-latent 流程可
+以浓缩为
+                                                (xi , ηi , oi )  ​               ​           ​           ​
+
+
+
+
+首先：
+
+                                                                                                             z~i
+                                                frozen DINO
+                                    oi      ​                                                        ​               ​
+
+
+
+
+然后：
+
+                                  z~i
+                                      safety projection
+                                    ​                   zi .                                                     ​           ​
+
+
+
+
+利用这些监督对：
+
+                                            (xi , ηi ) ↔ zi
+                                                     ​                       ​                               ​
+
+
+
+
+训练：
+
+                                                qψ (x, η).   ​
+
+
+
+
+最终：
+
+                                  z = qψ (x, η) + ez .   ​                                                               ​
+
+
+
+
+再通过 calibration 得到：
+                         P [z ∈ Zα (x)] ≥ 1 − α.
+                                     ​                 ​
+
+
+
+
+于是整个视觉系统就从原来的：
+
+        x → high-dimensional image → CNN /T ransf ormer → u      ​
+
+
+
+
+被抽象成：
+
+                          x → Zα (x) → π → u.
+                                 ​                 ​
+
+
+
+
+我认为这里真正值得作为论文创新点的，不应该只是“用了 DINO latent”，而应该定义一个
+更正式的概念：
+
+              Safety-Preserving Semantic Abstraction       ​
+
+
+
+
+即要求 semantic abstraction 同时满足三件事：
+
+    Safety sufficiency + Environment invariance + Calibrated coverage   ​
+
+
+
+
+其中前两个解决“latent 是否有控制意义”，第三个解决“latent approximation 是否能进入
+formal guarantee”。这一步完成以后，后面的 Conformal Stochastic Barrier
+Certificate 才真正有坚实的理论基础。
+
+      来源
+
+
+
+
+                          ChatGPT 是 AI，可能会犯错。
+
