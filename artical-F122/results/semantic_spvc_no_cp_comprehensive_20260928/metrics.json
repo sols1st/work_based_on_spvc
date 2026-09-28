@@ -1,0 +1,355 @@
+{
+  "experiment": "semantic_spvc_no_cp_comprehensive_empirical_evaluation",
+  "config": {
+    "experiment": "semantic_spvc_no_cp_comprehensive_empirical_evaluation",
+    "registered_before_rollout": true,
+    "uses_conformal_prediction": false,
+    "claim_level": "empirical_fixed_grid_evaluation_only_not_a_certificate",
+    "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+    "checkpoint_sha256": {
+      "semantic_encoder": "ffd67195092dcb479faf8630aa4b6100a89fe4c25f23a6c9d15e0e910282341b",
+      "semantic_ppo": "6c21819360a73c52eca666eacc1c6e9648b0e5d5d6312b89f4c01556093304e9",
+      "sbc": "c4de7d45345c649a77a7be4075086755a89e7a3af1b2bdbc32e50e9d6fcbc111",
+      "image_dataset": "41cc88359f64d52ffb25a8ec57ea9efddd9b8463d37e63bc972b2854dbed1bf1"
+    },
+    "controllers": [
+      "ppo",
+      "ppo_plus_qp"
+    ],
+    "semantic_modes": [
+      "exact",
+      "dataset_nearest",
+      "uniform_contract",
+      "random_boundary_contract",
+      "worst_endpoint_contract"
+    ],
+    "initial_grid": {
+      "distance_m": [
+        15.0,
+        16.0
+      ],
+      "speed_mps": [
+        2.5,
+        3.0
+      ],
+      "distance_points": 32,
+      "speed_points": 32,
+      "states": 1024,
+      "construction": "cell midpoints"
+    },
+    "horizon": 400,
+    "fixed_seed": 20260928,
+    "seed_policy": "one fixed seed; no multi-seed sweep",
+    "paired_design": "PPO and PPO+QP use identical initial states and identical pre-sampled observation-error sequences within each applicable mode",
+    "semantic_mode_definitions": {
+      "exact": "true simulator distance and speed",
+      "dataset_nearest": "semantic-encoder point estimate from the real dataset frame with nearest labeled distance",
+      "uniform_contract": "independent per-step Uniform(-radius,+radius) distance error",
+      "random_boundary_contract": "independent per-step random choice of -radius or +radius",
+      "worst_endpoint_contract": "at every step choose the contract endpoint yielding the smaller executed braking action for the evaluated controller"
+    },
+    "important_limitations": [
+      "No CP calibration or confidence statement is used.",
+      "The grid is finite and does not prove safety for all continuous initial states.",
+      "Dataset-nearest is finite image replay, not new-camera distribution testing.",
+      "Contract stress modes assume the saved semantic-error radii.",
+      "The original deterministic AEBS dynamics are used without process disturbance."
+    ]
+  },
+  "modes": {
+    "exact": {
+      "ppo": {
+        "episodes": 1024,
+        "outcomes": {
+          "success": 1024,
+          "unsafe": 0,
+          "stopped_safe_outside_goal": 0,
+          "out_of_domain": 0,
+          "timeout": 0
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "mean_steps": 87.0498046875,
+        "maximum_trajectory_score": -0.07626466685904365,
+        "median_trajectory_score": -0.08229404993353961,
+        "nonpositive_score_rate": 1.0,
+        "qp_intervention_rate": 0.0,
+        "positive_slack_rate": 0.0,
+        "maximum_slack": 0.0,
+        "mean_absolute_distance_error_m": 0.0,
+        "maximum_absolute_distance_error_m": 0.0
+      },
+      "ppo_plus_qp": {
+        "episodes": 1024,
+        "outcomes": {
+          "success": 1024,
+          "unsafe": 0,
+          "stopped_safe_outside_goal": 0,
+          "out_of_domain": 0,
+          "timeout": 0
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "mean_steps": 86.59765625,
+        "maximum_trajectory_score": -0.07392624709754259,
+        "median_trajectory_score": -0.079566445313388,
+        "nonpositive_score_rate": 1.0,
+        "qp_intervention_rate": 0.04231133564887907,
+        "positive_slack_rate": 0.3502187739636429,
+        "maximum_slack": 5.513032913208008,
+        "mean_absolute_distance_error_m": 0.0,
+        "maximum_absolute_distance_error_m": 0.0
+      },
+      "paired_qp_minus_ppo": {
+        "score_lower_is_safer": true,
+        "mean_score_difference_qp_minus_ppo": 0.002467595112165966,
+        "minimum_score_difference_qp_minus_ppo": -0.004672259092330877,
+        "maximum_score_difference_qp_minus_ppo": 0.00935903647914671,
+        "qp_safer_trajectory_count": 391,
+        "qp_less_safe_trajectory_count": 633,
+        "score_tie_count": 0,
+        "different_outcome_count": 0
+      }
+    },
+    "dataset_nearest": {
+      "ppo": {
+        "episodes": 1024,
+        "outcomes": {
+          "success": 1024,
+          "unsafe": 0,
+          "stopped_safe_outside_goal": 0,
+          "out_of_domain": 0,
+          "timeout": 0
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "mean_steps": 88.474609375,
+        "maximum_trajectory_score": -0.07729789689183181,
+        "median_trajectory_score": -0.0989862062036995,
+        "nonpositive_score_rate": 1.0,
+        "qp_intervention_rate": 0.0,
+        "positive_slack_rate": 0.0,
+        "maximum_slack": 0.0,
+        "mean_absolute_distance_error_m": 0.07842908290641346,
+        "maximum_absolute_distance_error_m": 2.788166367582196
+      },
+      "ppo_plus_qp": {
+        "episodes": 1024,
+        "outcomes": {
+          "success": 1024,
+          "unsafe": 0,
+          "stopped_safe_outside_goal": 0,
+          "out_of_domain": 0,
+          "timeout": 0
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "mean_steps": 88.328125,
+        "maximum_trajectory_score": -0.08344051092863114,
+        "median_trajectory_score": -0.0977276464924115,
+        "nonpositive_score_rate": 1.0,
+        "qp_intervention_rate": 0.04552892269591367,
+        "positive_slack_rate": 0.32092473023173534,
+        "maximum_slack": 5.507994651794434,
+        "mean_absolute_distance_error_m": 0.07916195341084005,
+        "maximum_absolute_distance_error_m": 2.788193025517429
+      },
+      "paired_qp_minus_ppo": {
+        "score_lower_is_safer": true,
+        "mean_score_difference_qp_minus_ppo": -4.718137035087858e-05,
+        "minimum_score_difference_qp_minus_ppo": -0.015299664437771088,
+        "maximum_score_difference_qp_minus_ppo": 0.031419650465249305,
+        "qp_safer_trajectory_count": 676,
+        "qp_less_safe_trajectory_count": 348,
+        "score_tie_count": 0,
+        "different_outcome_count": 0
+      }
+    },
+    "uniform_contract": {
+      "ppo": {
+        "episodes": 1024,
+        "outcomes": {
+          "success": 986,
+          "unsafe": 38,
+          "stopped_safe_outside_goal": 0,
+          "out_of_domain": 0,
+          "timeout": 0
+        },
+        "success_rate": 0.962890625,
+        "unsafe_rate": 0.037109375,
+        "timeout_rate": 0.0,
+        "mean_steps": 88.6396484375,
+        "maximum_trajectory_score": 0.0244727770611739,
+        "median_trajectory_score": -0.08903707922435705,
+        "nonpositive_score_rate": 0.962890625,
+        "qp_intervention_rate": 0.0,
+        "positive_slack_rate": 0.0,
+        "maximum_slack": 0.0,
+        "mean_absolute_distance_error_m": 0.39851868927812145,
+        "maximum_absolute_distance_error_m": 2.775511002738126
+      },
+      "ppo_plus_qp": {
+        "episodes": 1024,
+        "outcomes": {
+          "success": 986,
+          "unsafe": 38,
+          "stopped_safe_outside_goal": 0,
+          "out_of_domain": 0,
+          "timeout": 0
+        },
+        "success_rate": 0.962890625,
+        "unsafe_rate": 0.037109375,
+        "timeout_rate": 0.0,
+        "mean_steps": 88.4970703125,
+        "maximum_trajectory_score": 0.02889954764397551,
+        "median_trajectory_score": -0.08823193174786509,
+        "nonpositive_score_rate": 0.962890625,
+        "qp_intervention_rate": 0.028966795775813552,
+        "positive_slack_rate": 0.3417088754262257,
+        "maximum_slack": 5.513028144836426,
+        "mean_absolute_distance_error_m": 0.39829416042549615,
+        "maximum_absolute_distance_error_m": 2.775511002738126
+      },
+      "paired_qp_minus_ppo": {
+        "score_lower_is_safer": true,
+        "mean_score_difference_qp_minus_ppo": 0.0008697981173361724,
+        "minimum_score_difference_qp_minus_ppo": -0.028141060173521915,
+        "maximum_score_difference_qp_minus_ppo": 0.02298793889582562,
+        "qp_safer_trajectory_count": 474,
+        "qp_less_safe_trajectory_count": 546,
+        "score_tie_count": 4,
+        "different_outcome_count": 6
+      }
+    },
+    "random_boundary_contract": {
+      "ppo": {
+        "episodes": 1024,
+        "outcomes": {
+          "success": 870,
+          "unsafe": 154,
+          "stopped_safe_outside_goal": 0,
+          "out_of_domain": 0,
+          "timeout": 0
+        },
+        "success_rate": 0.849609375,
+        "unsafe_rate": 0.150390625,
+        "timeout_rate": 0.0,
+        "mean_steps": 90.69140625,
+        "maximum_trajectory_score": 0.04436077179388054,
+        "median_trajectory_score": -0.08874815016052695,
+        "nonpositive_score_rate": 0.849609375,
+        "qp_intervention_rate": 0.0,
+        "positive_slack_rate": 0.0,
+        "maximum_slack": 0.0,
+        "mean_absolute_distance_error_m": 0.8077982350251187,
+        "maximum_absolute_distance_error_m": 2.775674956869865
+      },
+      "ppo_plus_qp": {
+        "episodes": 1024,
+        "outcomes": {
+          "success": 869,
+          "unsafe": 155,
+          "stopped_safe_outside_goal": 0,
+          "out_of_domain": 0,
+          "timeout": 0
+        },
+        "success_rate": 0.8486328125,
+        "unsafe_rate": 0.1513671875,
+        "timeout_rate": 0.0,
+        "mean_steps": 90.52734375,
+        "maximum_trajectory_score": 0.03942143097521278,
+        "median_trajectory_score": -0.08707844386808528,
+        "nonpositive_score_rate": 0.8486328125,
+        "qp_intervention_rate": 0.026990291262135924,
+        "positive_slack_rate": 0.33558791801510246,
+        "maximum_slack": 5.513036727905273,
+        "mean_absolute_distance_error_m": 0.8073121454354276,
+        "maximum_absolute_distance_error_m": 2.775674956869865
+      },
+      "paired_qp_minus_ppo": {
+        "score_lower_is_safer": true,
+        "mean_score_difference_qp_minus_ppo": 0.0002632555775194395,
+        "minimum_score_difference_qp_minus_ppo": -0.04423801001160932,
+        "maximum_score_difference_qp_minus_ppo": 0.023115834966303483,
+        "qp_safer_trajectory_count": 453,
+        "qp_less_safe_trajectory_count": 560,
+        "score_tie_count": 11,
+        "different_outcome_count": 7
+      }
+    },
+    "worst_endpoint_contract": {
+      "ppo": {
+        "episodes": 1024,
+        "outcomes": {
+          "success": 0,
+          "unsafe": 1024,
+          "stopped_safe_outside_goal": 0,
+          "out_of_domain": 0,
+          "timeout": 0
+        },
+        "success_rate": 0.0,
+        "unsafe_rate": 1.0,
+        "timeout_rate": 0.0,
+        "mean_steps": 68.4169921875,
+        "maximum_trajectory_score": 0.06269091246651204,
+        "median_trajectory_score": 0.03239638648929022,
+        "nonpositive_score_rate": 0.0,
+        "qp_intervention_rate": 0.0,
+        "positive_slack_rate": 0.0,
+        "maximum_slack": 0.0,
+        "mean_absolute_distance_error_m": 0.9004226948122082,
+        "maximum_absolute_distance_error_m": 2.775674956869865
+      },
+      "ppo_plus_qp": {
+        "episodes": 1024,
+        "outcomes": {
+          "success": 0,
+          "unsafe": 1024,
+          "stopped_safe_outside_goal": 0,
+          "out_of_domain": 0,
+          "timeout": 0
+        },
+        "success_rate": 0.0,
+        "unsafe_rate": 1.0,
+        "timeout_rate": 0.0,
+        "mean_steps": 68.3515625,
+        "maximum_trajectory_score": 0.0629466646909913,
+        "median_trajectory_score": 0.03194419920446245,
+        "nonpositive_score_rate": 0.0,
+        "qp_intervention_rate": 0.06929363355812093,
+        "positive_slack_rate": 0.6474454223339811,
+        "maximum_slack": 5.513029098510742,
+        "mean_absolute_distance_error_m": 0.9012048065408305,
+        "maximum_absolute_distance_error_m": 2.775674956869865
+      },
+      "paired_qp_minus_ppo": {
+        "score_lower_is_safer": true,
+        "mean_score_difference_qp_minus_ppo": -0.00010229096138473018,
+        "minimum_score_difference_qp_minus_ppo": -0.057806275319307154,
+        "maximum_score_difference_qp_minus_ppo": 0.00635716190561908,
+        "qp_safer_trajectory_count": 67,
+        "qp_less_safe_trajectory_count": 957,
+        "score_tie_count": 0,
+        "different_outcome_count": 0
+      }
+    }
+  },
+  "aggregate_descriptive_counts": {
+    "ppo": {
+      "evaluated_trajectories": 5120,
+      "successes": 3904,
+      "unsafe": 1216
+    },
+    "ppo_plus_qp": {
+      "evaluated_trajectories": 5120,
+      "successes": 3903,
+      "unsafe": 1217
+    }
+  },
+  "runtime_seconds": 6.623778343200684,
+  "decision": "comprehensive_empirical_evaluation_complete_no_cp_claim; inspect_each_mode_separately"
+}

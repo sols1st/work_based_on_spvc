@@ -50,7 +50,8 @@
   <path d="M650 690 L575 690 L575 505" class="rd"/><text x="315" y="682" class="s">task loss backpropagates through QP to update θ</text>
   <path d="M840 585 L840 550 L915 550 L915 505" class="rd"/><text x="835" y="572" class="s">SBC losses update φ</text>
 
-  <rect x="120" y="820" width="1160" height="54" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
-  <text x="700" y="844" text-anchor="middle" class="h">Current effect</text>
-  <text x="700" y="865" text-anchor="middle" class="s">PPO and PPO+QP: 20/20 success after low-LR repair; QP changes ≈4.16% of actions, but positive slack ≈35.07% and no added safety benefit is proven.</text>
+  <rect x="120" y="802" width="1160" height="80" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="700" y="829" text-anchor="middle" class="h">Current effect</text>
+  <text x="700" y="854" text-anchor="middle" class="s">1024 starts: exact and image replay both reach 100% success; strong semantic-error modes fail.</text>
+  <text x="700" y="876" text-anchor="middle" class="s">The current PPO+QP does not improve safety over PPO.</text>
 </svg>

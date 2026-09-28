@@ -1,0 +1,151 @@
+{
+  "experiment": "frozen_dino_safety_latent_stage1",
+  "registered_before_training": true,
+  "dino_model": "dinov2_vits14",
+  "dino_frozen": true,
+  "dino_weights_sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+  "feature_dimension": 384,
+  "latent_dimension": 32,
+  "projection": "384 -> 128 -> 32",
+  "deployment_semantics": "controller consumes 32-D latent plus speed; not a 1-D distance estimate",
+  "auxiliary_losses": {
+    "safety_sufficiency": "latent decoder reconstructs normalized distance during training only",
+    "nuisance_invariance": "two brightness/contrast/noise views should share latent",
+    "state_separation": "states separated by >=1m receive a latent-margin loss"
+  },
+  "physical_to_latent": "q_psi(normalized distance) -> 32-D latent",
+  "dataset_limitation": "Current data have distance labels but no repeated CARLA weather/camera-pose groups; appearance augmentations are only a first nuisance proxy",
+  "sample_counts": {
+    "train": 240,
+    "calibration": 80,
+    "test": 80
+  },
+  "optimization_count": 192,
+  "validation_count": 48,
+  "seed": 7,
+  "epochs": 250,
+  "q_epochs": 400,
+  "device": "cuda",
+  "official_dino_parameters": 22056576,
+  "trained_projection_parameters": 53408,
+  "trained_auxiliary_decoder_parameters": 1089,
+  "trained_q_parameters": 6368,
+  "best_projection_epoch": 171,
+  "best_validation_score": 0.10060998087637713,
+  "test_auxiliary_distance": {
+    "mae_m": 0.1950681358575821,
+    "rmse_m": 0.2954277992248535,
+    "max_abs_error_m": 1.645100712776184
+  },
+  "test_nuisance_invariance_mse": 0.023355333134531975,
+  "test_q_latent_rmse_per_coordinate": 0.27191323041915894,
+  "calibration_residual_norm": {
+    "count": 80,
+    "mean": 1.4040663242340088,
+    "median": 1.3947243690490723,
+    "max": 2.6392385959625244
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 9.886377970377604,
+      "safety_loss": 9.862995942433676,
+      "invariance_loss": 0.10119744514425595,
+      "separation_loss": 0.031294884315381445,
+      "validation_rmse_norm": 2.6063170433044434,
+      "validation_invariance_mse": 0.07670193165540695
+    },
+    {
+      "epoch": 25,
+      "loss": 0.011592783344288668,
+      "safety_loss": 0.0030193260172381997,
+      "invariance_loss": 0.04036714509129524,
+      "separation_loss": 0.00036684573569800705,
+      "validation_rmse_norm": 0.11530043184757233,
+      "validation_invariance_mse": 0.04777033254504204
+    },
+    {
+      "epoch": 50,
+      "loss": 0.005276409210637212,
+      "safety_loss": 0.0007857988675823435,
+      "invariance_loss": 0.019914109570284683,
+      "separation_loss": 0.0008889784148777835,
+      "validation_rmse_norm": 0.10381358861923218,
+      "validation_invariance_mse": 0.03405214101076126
+    },
+    {
+      "epoch": 75,
+      "loss": 0.003485719906166196,
+      "safety_loss": 0.0005020675962441601,
+      "invariance_loss": 0.012499297348161539,
+      "separation_loss": 0.0008762846676593957,
+      "validation_rmse_norm": 0.08978093415498734,
+      "validation_invariance_mse": 0.027897773310542107
+    },
+    {
+      "epoch": 100,
+      "loss": 0.002357145848994454,
+      "safety_loss": 0.0001681904323049821,
+      "invariance_loss": 0.008589930832386017,
+      "separation_loss": 0.0009296849408807853,
+      "validation_rmse_norm": 0.0871841162443161,
+      "validation_invariance_mse": 0.024515587836503983
+    },
+    {
+      "epoch": 125,
+      "loss": 0.001935893048842748,
+      "safety_loss": 0.00019122683928192905,
+      "invariance_loss": 0.0064837948108712835,
+      "separation_loss": 0.0008298053386776397,
+      "validation_rmse_norm": 0.08368012309074402,
+      "validation_invariance_mse": 0.022490961477160454
+    },
+    {
+      "epoch": 150,
+      "loss": 0.0016392180890155335,
+      "safety_loss": 0.00021371473364221552,
+      "invariance_loss": 0.004887299068892996,
+      "separation_loss": 0.0009322655823780224,
+      "validation_rmse_norm": 0.08167625218629837,
+      "validation_invariance_mse": 0.021036647260189056
+    },
+    {
+      "epoch": 175,
+      "loss": 0.002037269800590972,
+      "safety_loss": 0.0007977779605425894,
+      "invariance_loss": 0.003992177313193679,
+      "separation_loss": 0.0009313793852925301,
+      "validation_rmse_norm": 0.07566744834184647,
+      "validation_invariance_mse": 0.02060331031680107
+    },
+    {
+      "epoch": 200,
+      "loss": 0.006160624402885635,
+      "safety_loss": 0.0049368966137990355,
+      "invariance_loss": 0.004029069755536814,
+      "separation_loss": 0.0006455140993845513,
+      "validation_rmse_norm": 0.08793946355581284,
+      "validation_invariance_mse": 0.02005038782954216
+    },
+    {
+      "epoch": 225,
+      "loss": 0.009905262772614757,
+      "safety_loss": 0.008282055535043279,
+      "invariance_loss": 0.005660244030877948,
+      "separation_loss": 0.0009826871695016355,
+      "validation_rmse_norm": 0.12380573898553848,
+      "validation_invariance_mse": 0.02286509796977043
+    },
+    {
+      "epoch": 250,
+      "loss": 0.0011652732112755377,
+      "safety_loss": 0.00010202331031905487,
+      "invariance_loss": 0.0031757825054228306,
+      "separation_loss": 0.00040622219967190176,
+      "validation_rmse_norm": 0.07547884434461594,
+      "validation_invariance_mse": 0.020956922322511673
+    }
+  ],
+  "runtime_seconds": 37.358107566833496,
+  "next_gate": "Train/evaluate the new [32-D latent, speed] controller only after checking safety sufficiency, invariance, and q_psi approximation"
+}

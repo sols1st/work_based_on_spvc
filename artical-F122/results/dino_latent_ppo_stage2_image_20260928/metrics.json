@@ -1,0 +1,72 @@
+{
+  "experiment": "dino_latent_ppo_stage2_no_cp",
+  "registered_before_training": true,
+  "seed": 7,
+  "timesteps": 200000,
+  "observation": "[32-D latent, speed]",
+  "train_observation_mode": "image_nearest",
+  "excluded": [
+    "conformal prediction",
+    "SBC",
+    "QP"
+  ],
+  "unchanged_from_original": [
+    "AEBS dynamics",
+    "reward",
+    "action bounds",
+    "terminal conditions",
+    "PPO hyperparameters"
+  ],
+  "evaluation_initial_region": {
+    "distance_m": [
+      15.0,
+      16.0
+    ],
+    "speed_mps": [
+      2.5,
+      3.0
+    ],
+    "grid": [
+      20,
+      20
+    ]
+  },
+  "training_seconds": 198.5140814781189,
+  "evaluation": {
+    "surrogate_latent": {
+      "episodes": 400,
+      "grid": [
+        20,
+        20
+      ],
+      "counts": {
+        "unsafe": 400
+      },
+      "success_rate": 0.0,
+      "unsafe_rate": 1.0,
+      "timeout_rate": 0.0,
+      "stopped_safe_outside_goal_rate": 0.0,
+      "out_of_domain_rate": 0.0,
+      "mean_return": 17.402613715087796,
+      "mean_steps": 81.135
+    },
+    "nearest_real_image_latent": {
+      "episodes": 400,
+      "grid": [
+        20,
+        20
+      ],
+      "counts": {
+        "success": 400
+      },
+      "success_rate": 1.0,
+      "unsafe_rate": 0.0,
+      "timeout_rate": 0.0,
+      "stopped_safe_outside_goal_rate": 0.0,
+      "out_of_domain_rate": 0.0,
+      "mean_return": 20.936119652432225,
+      "mean_steps": 77.925
+    }
+  },
+  "checkpoint": "results/dino_latent_ppo_stage2_image_20260928/latent_ppo.zip"
+}

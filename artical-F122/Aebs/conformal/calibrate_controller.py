@@ -143,6 +143,33 @@ def nearest_semantic_prediction(distance_m, lookup_distance_m, lookup_prediction
     return lookup_prediction_norm[selected]
 
 
+def evaluate_controller_actions(
+    policy, constraint, qp, env, observed_distance_norm, speed_mps, mode, device
+):
+    """Evaluate the frozen PPO, optionally followed by the frozen SBC-QP layer."""
+    states = np.stack([observed_distance_norm, speed_mps], axis=1).astype(np.float32)
+    state_tensor = torch.from_numpy(states).to(device)
+    latent = torch.zeros((len(states), 4), dtype=torch.float32, device=device)
+    with torch.no_grad():
+        nominal = policy(latent, state_tensor)
+    clipped = nominal.clamp(
+        min=float(env.action_space.low[0]), max=float(env.action_space.high[0])
+    )
+    if mode == "qp":
+        affine = constraint.linearize(state_tensor, nominal)
+        solution = qp(nominal, affine.coefficient, affine.right_hand_side)
+        action = solution.action.detach()
+        slack = solution.slack.detach().cpu().numpy().reshape(-1)
+        changed = (action - clipped).abs().detach().cpu().numpy().reshape(-1) > 1e-6
+    elif mode == "baseline":
+        action = clipped
+        slack = np.zeros(len(states), dtype=np.float64)
+        changed = np.zeros(len(states), dtype=bool)
+    else:
+        raise ValueError("unknown controller mode: %s" % mode)
+    return action.cpu().numpy().reshape(-1).astype(np.float64), slack, changed
+
+
 def rollout_batch(
     policy,
     constraint,
@@ -171,20 +198,28 @@ def rollout_batch(
     absolute_distance_error_sum_m = np.zeros(count, dtype=np.float64)
     maximum_absolute_distance_error_m = np.zeros(count, dtype=np.float64)
 
-    if semantic_mode not in ("exact", "uniform_contract", "dataset_nearest"):
+    supported_semantic_modes = (
+        "exact", "uniform_contract", "random_boundary_contract",
+        "worst_endpoint_contract", "dataset_nearest",
+    )
+    if semantic_mode not in supported_semantic_modes:
         raise ValueError("unknown semantic_mode: %s" % semantic_mode)
-    if semantic_mode == "uniform_contract":
+    if semantic_mode in ("uniform_contract", "random_boundary_contract"):
         if semantic_contract is None or semantic_error_multipliers is None:
-            raise ValueError("uniform_contract requires a contract and error multipliers")
+            raise ValueError("%s requires a contract and error multipliers" % semantic_mode)
         if semantic_error_multipliers.shape != (count, horizon):
             raise ValueError("semantic_error_multipliers must have shape [episodes, horizon]")
+    if semantic_mode == "worst_endpoint_contract" and semantic_contract is None:
+        raise ValueError("worst_endpoint_contract requires a contract")
 
     for step in range(1, horizon + 1):
         indices = np.flatnonzero(active)
         if not len(indices):
             break
         true_distance_norm = distance_m[indices] / float(env.std1)
-        if semantic_mode == "uniform_contract":
+        selected_slack = np.zeros(len(indices), dtype=np.float64)
+        selected_changed = np.zeros(len(indices), dtype=bool)
+        if semantic_mode in ("uniform_contract", "random_boundary_contract"):
             radius_norm = semantic_contract.radius(distance_m[indices]).astype(np.float64)
             error_norm = radius_norm * semantic_error_multipliers[indices, step - 1]
             observed_distance_norm = np.clip(
@@ -207,35 +242,44 @@ def rollout_batch(
             realized_error_m = (
                 observed_distance_norm - true_distance_norm
             ) * float(env.std1)
+        elif semantic_mode == "worst_endpoint_contract":
+            radius_norm = semantic_contract.radius(distance_m[indices]).astype(np.float64)
+            candidates = np.stack([
+                np.clip(true_distance_norm - radius_norm, 5.0 / float(env.std1),
+                        16.0 / float(env.std1)),
+                np.clip(true_distance_norm + radius_norm, 5.0 / float(env.std1),
+                        16.0 / float(env.std1)),
+            ], axis=1)
+            candidate_actions, candidate_slack, candidate_changed = evaluate_controller_actions(
+                policy, constraint, qp, env, candidates.reshape(-1),
+                np.repeat(speed_mps[indices], 2), mode, device,
+            )
+            candidate_actions = candidate_actions.reshape(-1, 2)
+            choice = np.argmin(candidate_actions, axis=1)
+            rows = np.arange(len(indices))
+            observed_distance_norm = candidates[rows, choice]
+            acceleration = candidate_actions[rows, choice]
+            selected_slack = candidate_slack.reshape(-1, 2)[rows, choice]
+            selected_changed = candidate_changed.reshape(-1, 2)[rows, choice]
+            realized_error_m = (
+                observed_distance_norm - true_distance_norm
+            ) * float(env.std1)
         else:
             observed_distance_norm = true_distance_norm
             realized_error_m = np.zeros(len(indices), dtype=np.float64)
-        states = np.stack([observed_distance_norm, speed_mps[indices]], axis=1).astype(np.float32)
         semantic_observation_steps[indices] += 1
         absolute_distance_error_sum_m[indices] += np.abs(realized_error_m)
         maximum_absolute_distance_error_m[indices] = np.maximum(
             maximum_absolute_distance_error_m[indices], np.abs(realized_error_m)
         )
-        state_tensor = torch.from_numpy(states).to(device)
-        latent = torch.zeros((len(indices), 4), dtype=torch.float32, device=device)
-        with torch.no_grad():
-            nominal = policy(latent, state_tensor)
-        clipped = nominal.clamp(
-            min=float(env.action_space.low[0]), max=float(env.action_space.high[0])
-        )
-        if mode == "qp":
-            affine = constraint.linearize(state_tensor, nominal)
-            solution = qp(nominal, affine.coefficient, affine.right_hand_side)
-            action = solution.action.detach()
-            slack = solution.slack.detach().cpu().numpy().reshape(-1)
-            changed = (action - clipped).abs().detach().cpu().numpy().reshape(-1) > 1e-6
-            intervention_steps[indices] += changed.astype(np.int64)
-            positive_slack_steps[indices] += (slack > 1e-6).astype(np.int64)
-            maximum_slack[indices] = np.maximum(maximum_slack[indices], slack)
-        else:
-            action = clipped
-
-        acceleration = action.cpu().numpy().reshape(-1).astype(np.float64)
+        if semantic_mode != "worst_endpoint_contract":
+            acceleration, selected_slack, selected_changed = evaluate_controller_actions(
+                policy, constraint, qp, env, observed_distance_norm,
+                speed_mps[indices], mode, device,
+            )
+        intervention_steps[indices] += selected_changed.astype(np.int64)
+        positive_slack_steps[indices] += (selected_slack > 1e-6).astype(np.int64)
+        maximum_slack[indices] = np.maximum(maximum_slack[indices], selected_slack)
         old_speed = speed_mps[indices].copy()
         distance_m[indices] -= old_speed * 0.05
         speed_mps[indices] = np.clip(old_speed - acceleration * 0.05, 0.0, 3.0)
