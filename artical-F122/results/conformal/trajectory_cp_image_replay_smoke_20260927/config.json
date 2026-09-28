@@ -1,0 +1,44 @@
+{
+  "experiment": "trajectory_level_conformal_mvp",
+  "registered_before_rollout": true,
+  "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+  "checkpoint_sha256": {
+    "semantic_encoder": "ffd67195092dcb479faf8630aa4b6100a89fe4c25f23a6c9d15e0e910282341b",
+    "semantic_ppo": "6c21819360a73c52eca666eacc1c6e9648b0e5d5d6312b89f4c01556093304e9",
+    "sbc": "c4de7d45345c649a77a7be4075086755a89e7a3af1b2bdbc32e50e9d6fcbc111",
+    "image_dataset": "41cc88359f64d52ffb25a8ec57ea9efddd9b8463d37e63bc972b2854dbed1bf1"
+  },
+  "controllers": [
+    "ppo",
+    "ppo_plus_qp"
+  ],
+  "calibration_episodes": 59,
+  "test_episodes": 20,
+  "horizon": 400,
+  "target_epsilon": 0.05,
+  "target_beta": 0.05,
+  "calibration_seed": 20260927,
+  "test_seed": 20260928,
+  "initial_distribution": {
+    "distance_m": "Uniform(15,16)",
+    "speed_mps": "Uniform(2.5,3.0)"
+  },
+  "semantics": "exact speed plus semantic-encoder point estimate from the nearest labeled real dataset image",
+  "semantic_mode": "dataset_nearest",
+  "dynamics": "deterministic original AebsEnv dynamics",
+  "trajectory_score": "max_t min((6-d_t)/1m, (v_t-0.5)/1mps)",
+  "score_positive_means": "entered the configured unsafe set during the finite horizon",
+  "not_covered": [
+    "real image-distribution shift",
+    "process disturbance",
+    "distribution shift",
+    "infinite horizon",
+    "worst-endpoint stress mode"
+  ],
+  "semantic_image_replay": {
+    "dataset": "Aebs/data/Downsampled.h5",
+    "selection": "nearest labeled physical distance at each active step",
+    "encoder_output": "point estimate",
+    "important_limitation": "finite 400-image nearest-neighbor replay; not a rendering engine, not new camera data, and not a guarantee under image distribution shift"
+  }
+}

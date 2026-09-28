@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 L10 4 L0 8 Z" fill="#334155"/></marker>
+    <marker id="b" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 L10 4 L0 8 Z" fill="#2563eb"/></marker>
+    <marker id="r" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 L10 4 L0 8 Z" fill="#b91c1c"/></marker>
+    <style>
+      .t{font-family:Arial,sans-serif;font-size:29px;font-weight:700;fill:#0f172a}.st{font-family:Arial,sans-serif;font-size:17px;fill:#475569}
+      .h{font-family:Arial,sans-serif;font-size:20px;font-weight:700;fill:#0f172a}.s{font-family:Arial,sans-serif;font-size:15px;fill:#334155}
+      .f{font-family:'Times New Roman',serif;font-size:18px;font-style:italic;fill:#0f172a}.box{stroke-width:2;rx:13;ry:13}
+      .ln{fill:none;stroke:#334155;stroke-width:2.6;marker-end:url(#a)}.bl{fill:none;stroke:#2563eb;stroke-width:2.8;marker-end:url(#b)}
+      .rd{fill:none;stroke:#b91c1c;stroke-width:2.4;stroke-dasharray:8 7;marker-end:url(#r)}
+    </style>
+  </defs>
+  <rect width="1400" height="900" fill="#fff"/>
+  <text x="700" y="45" text-anchor="middle" class="t">Semantic-SPVC Runtime and Joint Training Framework (without CP)</text>
+  <text x="700" y="72" text-anchor="middle" class="st">The base system learns and executes actions; rollout outcomes remain empirical evidence</text>
+
+  <rect x="38" y="105" width="1324" height="680" rx="20" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <text x="72" y="144" class="h">Perception</text><line x1="72" y1="155" x2="375" y2="155" stroke="#2563eb" stroke-width="3"/>
+  <text x="510" y="144" class="h">Policy and safety condition</text><line x1="510" y1="155" x2="930" y2="155" stroke="#0891b2" stroke-width="3"/>
+  <text x="1040" y="144" class="h">Optimization and plant</text><line x1="1040" y1="155" x2="1325" y2="155" stroke="#ca8a04" stroke-width="3"/>
+
+  <rect x="70" y="215" width="185" height="85" class="box" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="162" y="250" text-anchor="middle" class="h">Camera image</text><text x="162" y="278" text-anchor="middle" class="f">I<tspan baseline-shift="sub">t</tspan></text>
+  <rect x="300" y="200" width="235" height="115" class="box" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="418" y="237" text-anchor="middle" class="h">Semantic encoder</text><text x="418" y="265" text-anchor="middle" class="s">image → distance estimate d̂<tspan baseline-shift="sub">t</tspan></text><text x="418" y="292" text-anchor="middle" class="s">replaces cGAN + legacy state net</text>
+  <rect x="580" y="215" width="205" height="85" class="box" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="682" y="249" text-anchor="middle" class="h">Semantic state</text><text x="682" y="278" text-anchor="middle" class="f">x̂<tspan baseline-shift="sub">t</tspan>=[d̂<tspan baseline-shift="sub">t</tspan>,v<tspan baseline-shift="sub">t</tspan>]</text>
+  <path d="M255 258 L300 258" class="bl"/><path d="M535 258 L580 258" class="bl"/>
+
+  <rect x="480" y="390" width="250" height="115" class="box" fill="#ecfeff" stroke="#0891b2"/>
+  <text x="605" y="428" text-anchor="middle" class="h">PPO controller</text><text x="605" y="460" text-anchor="middle" class="f">a<tspan baseline-shift="sub">nom</tspan>=π<tspan baseline-shift="sub">θ</tspan>(x̂<tspan baseline-shift="sub">t</tspan>)</text><text x="605" y="488" text-anchor="middle" class="s">nominal task action</text>
+  <rect x="790" y="390" width="250" height="115" class="box" fill="#fff7ed" stroke="#ea580c"/>
+  <text x="915" y="428" text-anchor="middle" class="h">SBC network</text><text x="915" y="460" text-anchor="middle" class="f">B<tspan baseline-shift="sub">φ</tspan>(x̂<tspan baseline-shift="sub">t</tspan>)</text><text x="915" y="488" text-anchor="middle" class="s">candidate decrease condition</text>
+  <path d="M682 300 L682 345 L605 345 L605 390" class="ln"/><path d="M682 300 L682 345 L915 345 L915 390" class="ln"/>
+
+  <rect x="650" y="585" width="300" height="155" class="box" fill="#fefce8" stroke="#ca8a04"/>
+  <text x="800" y="620" text-anchor="middle" class="h">Differentiable QP</text>
+  <text x="800" y="652" text-anchor="middle" class="f">min ½(a−a<tspan baseline-shift="sub">nom</tspan>)²+½ρξ²</text>
+  <text x="800" y="683" text-anchor="middle" class="f">c(x̂)a−ξ≤h(x̂)</text>
+  <text x="800" y="709" text-anchor="middle" class="s">−3≤a≤3, ξ≥0; output a<tspan baseline-shift="sub">QP</tspan></text>
+  <path d="M605 505 L605 545 L720 545 L720 585" class="ln"/><text x="620" y="536" class="s">a<tspan baseline-shift="sub">nom</tspan></text>
+  <path d="M915 505 L915 545 L880 545 L880 585" class="ln"/><text x="920" y="536" class="s">SBC constraint</text>
+
+  <rect x="1050" y="603" width="270" height="120" class="box" fill="#f1f5f9" stroke="#64748b"/>
+  <text x="1185" y="642" text-anchor="middle" class="h">AEBS dynamics</text><text x="1185" y="674" text-anchor="middle" class="f">x<tspan baseline-shift="sub">t+1</tspan>=F(x<tspan baseline-shift="sub">t</tspan>,a<tspan baseline-shift="sub">QP</tspan>)</text><text x="1185" y="701" text-anchor="middle" class="s">true state defines success / unsafe</text>
+  <path d="M950 663 L1050 663" class="ln"/><text x="968" y="650" class="s">final action</text>
+  <path d="M1185 723 L1185 758 L75 758 L75 335 L162 335 L162 300" class="bl" stroke-dasharray="9 7"/><text x="92" y="742" class="s">next state → next observation</text>
+
+  <path d="M650 690 L575 690 L575 505" class="rd"/><text x="315" y="682" class="s">task loss backpropagates through QP to update θ</text>
+  <path d="M840 585 L840 550 L915 550 L915 505" class="rd"/><text x="835" y="572" class="s">SBC losses update φ</text>
+
+  <rect x="120" y="820" width="1160" height="54" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="700" y="844" text-anchor="middle" class="h">Current effect</text>
+  <text x="700" y="865" text-anchor="middle" class="s">PPO and PPO+QP: 20/20 success after low-LR repair; QP changes ≈4.16% of actions, but positive slack ≈35.07% and no added safety benefit is proven.</text>
+</svg>

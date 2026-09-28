@@ -1,0 +1,35 @@
+{
+  "experiment": "trajectory_level_conformal_mvp",
+  "registered_before_rollout": true,
+  "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+  "checkpoint_sha256": {
+    "semantic_ppo": "6c21819360a73c52eca666eacc1c6e9648b0e5d5d6312b89f4c01556093304e9",
+    "sbc": "c4de7d45345c649a77a7be4075086755a89e7a3af1b2bdbc32e50e9d6fcbc111"
+  },
+  "controllers": [
+    "ppo",
+    "ppo_plus_qp"
+  ],
+  "calibration_episodes": 459,
+  "test_episodes": 200,
+  "horizon": 400,
+  "target_epsilon": 0.01,
+  "target_beta": 0.01,
+  "calibration_seed": 20260927,
+  "test_seed": 20260928,
+  "initial_distribution": {
+    "distance_m": "Uniform(15,16)",
+    "speed_mps": "Uniform(2.5,3.0)"
+  },
+  "semantics": "exact simulator distance and speed",
+  "dynamics": "deterministic original AebsEnv dynamics",
+  "trajectory_score": "max_t min((6-d_t)/1m, (v_t-0.5)/1mps)",
+  "score_positive_means": "entered the configured unsafe set during the finite horizon",
+  "not_covered": [
+    "image or semantic estimation error",
+    "process disturbance",
+    "distribution shift",
+    "infinite horizon",
+    "worst-endpoint stress mode"
+  ]
+}

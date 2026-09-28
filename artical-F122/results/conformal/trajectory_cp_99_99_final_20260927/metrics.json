@@ -1,0 +1,171 @@
+{
+  "experiment": "trajectory_level_conformal_mvp",
+  "config": {
+    "experiment": "trajectory_level_conformal_mvp",
+    "registered_before_rollout": true,
+    "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+    "checkpoint_sha256": {
+      "semantic_ppo": "6c21819360a73c52eca666eacc1c6e9648b0e5d5d6312b89f4c01556093304e9",
+      "sbc": "c4de7d45345c649a77a7be4075086755a89e7a3af1b2bdbc32e50e9d6fcbc111"
+    },
+    "controllers": [
+      "ppo",
+      "ppo_plus_qp"
+    ],
+    "calibration_episodes": 459,
+    "test_episodes": 200,
+    "horizon": 400,
+    "target_epsilon": 0.01,
+    "target_beta": 0.01,
+    "calibration_seed": 20260927,
+    "test_seed": 20260928,
+    "initial_distribution": {
+      "distance_m": "Uniform(15,16)",
+      "speed_mps": "Uniform(2.5,3.0)"
+    },
+    "semantics": "exact simulator distance and speed",
+    "dynamics": "deterministic original AebsEnv dynamics",
+    "trajectory_score": "max_t min((6-d_t)/1m, (v_t-0.5)/1mps)",
+    "score_positive_means": "entered the configured unsafe set during the finite horizon",
+    "not_covered": [
+      "image or semantic estimation error",
+      "process disturbance",
+      "distribution shift",
+      "infinite horizon",
+      "worst-endpoint stress mode"
+    ]
+  },
+  "controllers": {
+    "ppo": {
+      "conformal": {
+        "sample_count": 459,
+        "target_violation_rate_epsilon": 0.01,
+        "target_confidence_failure_beta": 0.01,
+        "achieved_confidence": 0.9900790257989595,
+        "rank_from_largest_l": 1,
+        "alpha_representative": 0.003260869565217391,
+        "q_hat": -0.07630537347866984,
+        "passes_q_hat_nonpositive": true,
+        "claim_if_passed": "With confidence at least 0.990079, a new IID trajectory has probability at least 0.990000 of score <= q_hat over the configured finite horizon."
+      },
+      "calibration": {
+        "episodes": 459,
+        "outcomes": {
+          "success": 459,
+          "unsafe": 0,
+          "stopped_safe_outside_goal": 0,
+          "out_of_domain": 0,
+          "timeout": 0
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "mean_steps": 87.239651416122,
+        "maximum_trajectory_score": -0.07630537347866984,
+        "median_trajectory_score": -0.08200606135650901,
+        "nonpositive_score_rate": 1.0,
+        "qp_intervention_rate": 0.0,
+        "positive_slack_rate": 0.0,
+        "maximum_slack": 0.0
+      },
+      "independent_test": {
+        "episodes": 200,
+        "outcomes": {
+          "success": 200,
+          "unsafe": 0,
+          "stopped_safe_outside_goal": 0,
+          "out_of_domain": 0,
+          "timeout": 0
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "mean_steps": 87.005,
+        "maximum_trajectory_score": -0.07626625970006123,
+        "median_trajectory_score": -0.08176516445352222,
+        "nonpositive_score_rate": 1.0,
+        "qp_intervention_rate": 0.0,
+        "positive_slack_rate": 0.0,
+        "maximum_slack": 0.0
+      }
+    },
+    "ppo_plus_qp": {
+      "conformal": {
+        "sample_count": 459,
+        "target_violation_rate_epsilon": 0.01,
+        "target_confidence_failure_beta": 0.01,
+        "achieved_confidence": 0.9900790257989595,
+        "rank_from_largest_l": 1,
+        "alpha_representative": 0.003260869565217391,
+        "q_hat": -0.0739264465868475,
+        "passes_q_hat_nonpositive": true,
+        "claim_if_passed": "With confidence at least 0.990079, a new IID trajectory has probability at least 0.990000 of score <= q_hat over the configured finite horizon."
+      },
+      "calibration": {
+        "episodes": 459,
+        "outcomes": {
+          "success": 459,
+          "unsafe": 0,
+          "stopped_safe_outside_goal": 0,
+          "out_of_domain": 0,
+          "timeout": 0
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "mean_steps": 86.77342047930283,
+        "maximum_trajectory_score": -0.0739264465868475,
+        "median_trajectory_score": -0.07938610985875127,
+        "nonpositive_score_rate": 1.0,
+        "qp_intervention_rate": 0.04218032087172663,
+        "positive_slack_rate": 0.3496447312259911,
+        "maximum_slack": 5.513025283813477
+      },
+      "independent_test": {
+        "episodes": 200,
+        "outcomes": {
+          "success": 200,
+          "unsafe": 0,
+          "stopped_safe_outside_goal": 0,
+          "out_of_domain": 0,
+          "timeout": 0
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "mean_steps": 86.535,
+        "maximum_trajectory_score": -0.07393260890616826,
+        "median_trajectory_score": -0.07960147012024768,
+        "nonpositive_score_rate": 1.0,
+        "qp_intervention_rate": 0.04241058531230138,
+        "positive_slack_rate": 0.35037845958282776,
+        "maximum_slack": 5.513009071350098
+      }
+    }
+  },
+  "paired_comparison_qp_minus_ppo": {
+    "calibration": {
+      "score_lower_is_safer": true,
+      "mean_score_difference": 0.002351348789321932,
+      "minimum_score_difference": -0.004669866710902637,
+      "maximum_score_difference": 0.009355810787536,
+      "qp_safer_trajectory_count": 181,
+      "qp_less_safe_trajectory_count": 278,
+      "tie_count": 0
+    },
+    "test": {
+      "score_lower_is_safer": true,
+      "mean_score_difference": 0.0023079130389876993,
+      "minimum_score_difference": -0.004668896645308729,
+      "maximum_score_difference": 0.009356913436201708,
+      "qp_safer_trajectory_count": 75,
+      "qp_less_safe_trajectory_count": 125,
+      "tie_count": 0
+    }
+  },
+  "runtime_seconds": 3.3531928062438965,
+  "decision": {
+    "ppo": "finite_horizon_cp_pass_under_registered_distribution",
+    "ppo_plus_qp": "finite_horizon_cp_pass_under_registered_distribution"
+  }
+}

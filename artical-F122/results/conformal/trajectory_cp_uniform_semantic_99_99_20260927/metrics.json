@@ -1,0 +1,187 @@
+{
+  "experiment": "trajectory_level_conformal_mvp",
+  "config": {
+    "experiment": "trajectory_level_conformal_mvp",
+    "registered_before_rollout": true,
+    "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+    "checkpoint_sha256": {
+      "semantic_encoder": "ffd67195092dcb479faf8630aa4b6100a89fe4c25f23a6c9d15e0e910282341b",
+      "semantic_ppo": "6c21819360a73c52eca666eacc1c6e9648b0e5d5d6312b89f4c01556093304e9",
+      "sbc": "c4de7d45345c649a77a7be4075086755a89e7a3af1b2bdbc32e50e9d6fcbc111"
+    },
+    "controllers": [
+      "ppo",
+      "ppo_plus_qp"
+    ],
+    "calibration_episodes": 459,
+    "test_episodes": 200,
+    "horizon": 400,
+    "target_epsilon": 0.01,
+    "target_beta": 0.01,
+    "calibration_seed": 20260927,
+    "test_seed": 20260928,
+    "initial_distribution": {
+      "distance_m": "Uniform(15,16)",
+      "speed_mps": "Uniform(2.5,3.0)"
+    },
+    "semantics": "exact speed plus independent per-step uniform distance error inside the saved state-conditional semantic contract",
+    "semantic_mode": "uniform_contract",
+    "dynamics": "deterministic original AebsEnv dynamics",
+    "trajectory_score": "max_t min((6-d_t)/1m, (v_t-0.5)/1mps)",
+    "score_positive_means": "entered the configured unsafe set during the finite horizon",
+    "not_covered": [
+      "real image-distribution shift",
+      "process disturbance",
+      "distribution shift",
+      "infinite horizon",
+      "worst-endpoint stress mode"
+    ],
+    "semantic_error_distribution": {
+      "multiplier": "IID Uniform(-1,1) at every active control step",
+      "radius_source": "results/mvp/01_semantic/semantic_encoder.pt",
+      "conditioning": "true physical distance bin",
+      "important_limitation": "synthetic distribution inside the calibrated interval; not the empirical image-error distribution and not a worst-case guarantee"
+    }
+  },
+  "controllers": {
+    "ppo": {
+      "conformal": {
+        "sample_count": 459,
+        "target_violation_rate_epsilon": 0.01,
+        "target_confidence_failure_beta": 0.01,
+        "achieved_confidence": 0.9900790257989595,
+        "rank_from_largest_l": 1,
+        "alpha_representative": 0.003260869565217391,
+        "q_hat": 0.024503191337002406,
+        "passes_q_hat_nonpositive": false,
+        "claim_if_passed": "With confidence at least 0.990079, a new IID trajectory has probability at least 0.990000 of score <= q_hat over the configured finite horizon."
+      },
+      "calibration": {
+        "episodes": 459,
+        "outcomes": {
+          "success": 443,
+          "unsafe": 16,
+          "stopped_safe_outside_goal": 0,
+          "out_of_domain": 0,
+          "timeout": 0
+        },
+        "success_rate": 0.9651416122004357,
+        "unsafe_rate": 0.034858387799564274,
+        "timeout_rate": 0.0,
+        "mean_steps": 89.01742919389979,
+        "maximum_trajectory_score": 0.024503191337002406,
+        "median_trajectory_score": -0.08924604021012678,
+        "nonpositive_score_rate": 0.9651416122004357,
+        "qp_intervention_rate": 0.0,
+        "positive_slack_rate": 0.0,
+        "maximum_slack": 0.0,
+        "mean_absolute_distance_error_m": 0.39955347626671545,
+        "maximum_absolute_distance_error_m": 2.775582308722767
+      },
+      "independent_test": {
+        "episodes": 200,
+        "outcomes": {
+          "success": 194,
+          "unsafe": 6,
+          "stopped_safe_outside_goal": 0,
+          "out_of_domain": 0,
+          "timeout": 0
+        },
+        "success_rate": 0.97,
+        "unsafe_rate": 0.03,
+        "timeout_rate": 0.0,
+        "mean_steps": 89.085,
+        "maximum_trajectory_score": 0.017939557060611122,
+        "median_trajectory_score": -0.08915847111493425,
+        "nonpositive_score_rate": 0.97,
+        "qp_intervention_rate": 0.0,
+        "positive_slack_rate": 0.0,
+        "maximum_slack": 0.0,
+        "mean_absolute_distance_error_m": 0.3955548078120886,
+        "maximum_absolute_distance_error_m": 2.7747155522180496
+      }
+    },
+    "ppo_plus_qp": {
+      "conformal": {
+        "sample_count": 459,
+        "target_violation_rate_epsilon": 0.01,
+        "target_confidence_failure_beta": 0.01,
+        "achieved_confidence": 0.9900790257989595,
+        "rank_from_largest_l": 1,
+        "alpha_representative": 0.003260869565217391,
+        "q_hat": 0.025823198976008932,
+        "passes_q_hat_nonpositive": false,
+        "claim_if_passed": "With confidence at least 0.990079, a new IID trajectory has probability at least 0.990000 of score <= q_hat over the configured finite horizon."
+      },
+      "calibration": {
+        "episodes": 459,
+        "outcomes": {
+          "success": 443,
+          "unsafe": 16,
+          "stopped_safe_outside_goal": 0,
+          "out_of_domain": 0,
+          "timeout": 0
+        },
+        "success_rate": 0.9651416122004357,
+        "unsafe_rate": 0.034858387799564274,
+        "timeout_rate": 0.0,
+        "mean_steps": 88.89760348583879,
+        "maximum_trajectory_score": 0.025823198976008932,
+        "median_trajectory_score": -0.08857312083243407,
+        "nonpositive_score_rate": 0.9651416122004357,
+        "qp_intervention_rate": 0.028551122438976572,
+        "positive_slack_rate": 0.3395255367120871,
+        "maximum_slack": 5.513016700744629,
+        "mean_absolute_distance_error_m": 0.3991646003698628,
+        "maximum_absolute_distance_error_m": 2.775582308722767
+      },
+      "independent_test": {
+        "episodes": 200,
+        "outcomes": {
+          "success": 192,
+          "unsafe": 8,
+          "stopped_safe_outside_goal": 0,
+          "out_of_domain": 0,
+          "timeout": 0
+        },
+        "success_rate": 0.96,
+        "unsafe_rate": 0.04,
+        "timeout_rate": 0.0,
+        "mean_steps": 88.96,
+        "maximum_trajectory_score": 0.018158799335368236,
+        "median_trajectory_score": -0.08967645739204466,
+        "nonpositive_score_rate": 0.96,
+        "qp_intervention_rate": 0.02754046762589928,
+        "positive_slack_rate": 0.3381294964028777,
+        "maximum_slack": 5.5130109786987305,
+        "mean_absolute_distance_error_m": 0.3954446589227647,
+        "maximum_absolute_distance_error_m": 2.7747155522180496
+      }
+    }
+  },
+  "paired_comparison_qp_minus_ppo": {
+    "calibration": {
+      "score_lower_is_safer": true,
+      "mean_score_difference": 0.0008788277630340222,
+      "minimum_score_difference": -0.025344465589140275,
+      "maximum_score_difference": 0.019208311066018113,
+      "qp_safer_trajectory_count": 201,
+      "qp_less_safe_trajectory_count": 257,
+      "tie_count": 1
+    },
+    "test": {
+      "score_lower_is_safer": true,
+      "mean_score_difference": 0.001116498255124901,
+      "minimum_score_difference": -0.008305238783346158,
+      "maximum_score_difference": 0.023953477703049064,
+      "qp_safer_trajectory_count": 86,
+      "qp_less_safe_trajectory_count": 114,
+      "tie_count": 0
+    }
+  },
+  "runtime_seconds": 3.340081214904785,
+  "decision": {
+    "ppo": "finite_horizon_cp_target_not_met",
+    "ppo_plus_qp": "finite_horizon_cp_target_not_met"
+  }
+}

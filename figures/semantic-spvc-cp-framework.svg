@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1040" viewBox="0 0 1600 1040">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#334155"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#15803d"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#b91c1c"/>
+    </marker>
+    <style>
+      .title { font-family: Arial, Helvetica, sans-serif; font-size: 30px; font-weight: 700; fill: #0f172a; }
+      .panel-title { font-family: Arial, Helvetica, sans-serif; font-size: 24px; font-weight: 700; fill: #0f172a; }
+      .label { font-family: Arial, Helvetica, sans-serif; font-size: 18px; font-weight: 700; fill: #0f172a; }
+      .small { font-family: Arial, Helvetica, sans-serif; font-size: 15px; fill: #334155; }
+      .tiny { font-family: Arial, Helvetica, sans-serif; font-size: 13px; fill: #475569; }
+      .formula { font-family: 'Times New Roman', serif; font-size: 17px; font-style: italic; fill: #0f172a; }
+      .box { stroke-width: 2; rx: 12; ry: 12; }
+      .arrow { fill: none; stroke: #334155; stroke-width: 2.5; marker-end: url(#arrow); }
+      .blue-arrow { fill: none; stroke: #2563eb; stroke-width: 2.5; marker-end: url(#arrowBlue); }
+      .green-arrow { fill: none; stroke: #15803d; stroke-width: 2.5; marker-end: url(#arrowGreen); }
+      .red-arrow { fill: none; stroke: #b91c1c; stroke-width: 2.5; marker-end: url(#arrowRed); }
+      .dash { stroke-dasharray: 8 7; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1040" fill="#ffffff"/>
+  <text x="800" y="48" text-anchor="middle" class="title">Semantic-SPVC with Differentiable SBC-QP and Trajectory-Level Conformal Validation</text>
+  <text x="800" y="76" text-anchor="middle" class="small">Runtime control and statistical validation are separate layers</text>
+
+  <!-- Panel A -->
+  <rect x="35" y="105" width="750" height="860" rx="18" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <rect x="35" y="105" width="750" height="58" rx="18" fill="#e2e8f0"/>
+  <text x="60" y="142" class="panel-title">(a) Base closed loop — without CP</text>
+  <text x="410" y="188" text-anchor="middle" class="small">Training and deployment path</text>
+
+  <rect x="80" y="225" width="170" height="78" class="box" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="165" y="256" text-anchor="middle" class="label">Camera image</text>
+  <text x="165" y="282" text-anchor="middle" class="small">I<tspan baseline-shift="sub">t</tspan></text>
+
+  <rect x="305" y="215" width="190" height="98" class="box" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="400" y="251" text-anchor="middle" class="label">Semantic encoder</text>
+  <text x="400" y="278" text-anchor="middle" class="small">distance estimate d̂<tspan baseline-shift="sub">t</tspan></text>
+  <text x="400" y="299" text-anchor="middle" class="tiny">cGAN + legacy state net removed</text>
+
+  <rect x="550" y="225" width="170" height="78" class="box" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="635" y="255" text-anchor="middle" class="label">Semantic state</text>
+  <text x="635" y="281" text-anchor="middle" class="formula">x̂<tspan baseline-shift="sub">t</tspan> = [d̂<tspan baseline-shift="sub">t</tspan>, v<tspan baseline-shift="sub">t</tspan>]</text>
+
+  <path d="M250 264 L305 264" class="blue-arrow"/>
+  <path d="M495 264 L550 264" class="blue-arrow"/>
+
+  <rect x="120" y="385" width="220" height="105" class="box" fill="#ecfeff" stroke="#0891b2"/>
+  <text x="230" y="423" text-anchor="middle" class="label">PPO controller</text>
+  <text x="230" y="451" text-anchor="middle" class="formula">a<tspan baseline-shift="sub">nom</tspan> = π<tspan baseline-shift="sub">θ</tspan>(x̂<tspan baseline-shift="sub">t</tspan>)</text>
+  <text x="230" y="476" text-anchor="middle" class="tiny">nominal task action</text>
+
+  <rect x="480" y="385" width="220" height="105" class="box" fill="#fff7ed" stroke="#ea580c"/>
+  <text x="590" y="423" text-anchor="middle" class="label">SBC network</text>
+  <text x="590" y="451" text-anchor="middle" class="formula">B<tspan baseline-shift="sub">φ</tspan>(x̂<tspan baseline-shift="sub">t</tspan>)</text>
+  <text x="590" y="476" text-anchor="middle" class="tiny">candidate risk certificate</text>
+
+  <path d="M635 303 L635 342 L230 342 L230 385" class="arrow"/>
+  <path d="M635 303 L635 385" class="arrow"/>
+
+  <rect x="270" y="565" width="280" height="132" class="box" fill="#fefce8" stroke="#ca8a04"/>
+  <text x="410" y="604" text-anchor="middle" class="label">Differentiable scalar QP</text>
+  <text x="410" y="633" text-anchor="middle" class="formula">min ½(a−a<tspan baseline-shift="sub">nom</tspan>)² + ½ρξ²</text>
+  <text x="410" y="661" text-anchor="middle" class="formula">s.t.  c(x̂)a − ξ ≤ h(x̂),  −3 ≤ a ≤ 3</text>
+  <text x="410" y="685" text-anchor="middle" class="tiny">executed action a<tspan baseline-shift="sub">QP</tspan>; slack ξ ≥ 0</text>
+
+  <path d="M230 490 L230 530 L350 530 L350 565" class="arrow"/>
+  <text x="233" y="522" class="tiny">nominal action</text>
+  <path d="M590 490 L590 530 L470 530 L470 565" class="arrow"/>
+  <text x="510" y="522" class="tiny">linearized SBC constraint</text>
+
+  <rect x="270" y="770" width="280" height="104" class="box" fill="#f1f5f9" stroke="#64748b"/>
+  <text x="410" y="808" text-anchor="middle" class="label">AEBS dynamics</text>
+  <text x="410" y="836" text-anchor="middle" class="formula">x<tspan baseline-shift="sub">t+1</tspan> = F(x<tspan baseline-shift="sub">t</tspan>, a<tspan baseline-shift="sub">QP</tspan>)</text>
+  <text x="410" y="859" text-anchor="middle" class="tiny">true state determines success / unsafe</text>
+  <path d="M410 697 L410 770" class="arrow"/>
+  <text x="425" y="742" class="tiny">final action</text>
+
+  <path d="M270 822 L80 822 L80 334 L165 334 L165 303" class="blue-arrow dash"/>
+  <text x="90" y="804" class="tiny">next state → next observation</text>
+
+  <path d="M555 621 L705 621 L705 437 L700 437" class="red-arrow dash"/>
+  <text x="575" y="612" class="tiny">SBC loss updates φ</text>
+  <path d="M270 650 L95 650 L95 438 L120 438" class="red-arrow dash"/>
+  <text x="106" y="640" class="tiny">task gradient through QP updates θ</text>
+
+  <rect x="75" y="910" width="670" height="35" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="410" y="933" text-anchor="middle" class="small">Output: a trained runtime controller. Rollout success alone is empirical evidence, not a probability guarantee.</text>
+
+  <!-- Panel B -->
+  <rect x="815" y="105" width="750" height="860" rx="18" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <rect x="815" y="105" width="750" height="58" rx="18" fill="#dcfce7"/>
+  <text x="840" y="142" class="panel-title">(b) Frozen closed loop + trajectory-level CP</text>
+  <text x="1190" y="188" text-anchor="middle" class="small">Post-training calibration and finite-horizon validation</text>
+
+  <rect x="850" y="220" width="255" height="156" class="box" fill="#ecfdf5" stroke="#16a34a"/>
+  <text x="978" y="252" text-anchor="middle" class="label">Registered distribution 𝒟</text>
+  <text x="870" y="282" class="small">• initial state distribution</text>
+  <text x="870" y="308" class="small">• observation mode</text>
+  <text x="888" y="332" class="tiny">exact / image replay / stress error</text>
+  <text x="870" y="356" class="small">• dynamics and horizon H = 400</text>
+
+  <rect x="1165" y="218" width="350" height="160" class="box" fill="#f1f5f9" stroke="#475569"/>
+  <text x="1340" y="247" text-anchor="middle" class="label">Frozen controller under test</text>
+  <text x="1340" y="276" text-anchor="middle" class="small">semantic encoder → PPO → SBC-QP</text>
+  <line x1="1210" y1="301" x2="1470" y2="301" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="1340" y="328" text-anchor="middle" class="tiny">weights and file hashes fixed before rollout</text>
+  <text x="1340" y="351" text-anchor="middle" class="tiny">PPO and PPO+QP evaluated on paired samples</text>
+
+  <path d="M1105 298 L1165 298" class="green-arrow"/>
+  <text x="1135" y="287" text-anchor="middle" class="tiny">sample</text>
+
+  <rect x="930" y="440" width="520" height="100" class="box" fill="#ecfdf5" stroke="#16a34a"/>
+  <text x="1190" y="473" text-anchor="middle" class="label">N independent finite-horizon rollouts</text>
+  <text x="1190" y="502" text-anchor="middle" class="formula">τ<tspan baseline-shift="sub">i</tspan> = {x<tspan baseline-shift="sub">0</tspan>, …, x<tspan baseline-shift="sub">H</tspan>} ,  i = 1,…,N</text>
+  <text x="1190" y="526" text-anchor="middle" class="tiny">one complete trajectory = one calibration unit; time steps are not treated as IID</text>
+  <path d="M1340 378 L1340 410 L1190 410 L1190 440" class="green-arrow"/>
+
+  <rect x="860" y="605" width="300" height="118" class="box" fill="#f0fdf4" stroke="#16a34a"/>
+  <text x="1010" y="640" text-anchor="middle" class="label">Trajectory safety score</text>
+  <text x="1010" y="672" text-anchor="middle" class="formula">q<tspan baseline-shift="sub">i</tspan> = max<tspan baseline-shift="sub">t≤H</tspan> s(x<tspan baseline-shift="sub">t</tspan>)</text>
+  <text x="1010" y="701" text-anchor="middle" class="tiny">q<tspan baseline-shift="sub">i</tspan> &gt; 0 iff the unsafe set was entered</text>
+
+  <rect x="1220" y="605" width="300" height="118" class="box" fill="#f0fdf4" stroke="#16a34a"/>
+  <text x="1370" y="640" text-anchor="middle" class="label">Conformal calibrator</text>
+  <text x="1370" y="672" text-anchor="middle" class="formula">q̂ = ranked score via Beta relation</text>
+  <text x="1370" y="701" text-anchor="middle" class="tiny">N=459 for 99% safety / 99% confidence</text>
+
+  <path d="M1190 540 L1190 574 L1010 574 L1010 605" class="green-arrow"/>
+  <path d="M1160 664 L1220 664" class="green-arrow"/>
+
+  <rect x="855" y="790" width="310" height="105" class="box" fill="#dcfce7" stroke="#15803d"/>
+  <text x="1010" y="826" text-anchor="middle" class="label">q̂ ≤ 0: target passed</text>
+  <text x="1010" y="854" text-anchor="middle" class="tiny">with confidence ≥ 1−β, a new IID trajectory</text>
+  <text x="1010" y="876" text-anchor="middle" class="tiny">is safe over H steps with probability ≥ 1−ε</text>
+
+  <rect x="1215" y="790" width="310" height="105" class="box" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="1370" y="826" text-anchor="middle" class="label">q̂ &gt; 0: target not met</text>
+  <text x="1370" y="854" text-anchor="middle" class="tiny">report the failure; do not reuse the same</text>
+  <text x="1370" y="876" text-anchor="middle" class="tiny">calibration data to manufacture a pass</text>
+
+  <path d="M1370 723 L1370 755 L1010 755 L1010 790" class="green-arrow"/>
+  <path d="M1370 723 L1370 790" class="red-arrow"/>
+
+  <rect x="850" y="920" width="680" height="30" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="1190" y="941" text-anchor="middle" class="small">CP wraps the frozen loop for validation; it does not alter the runtime action in the current implementation.</text>
+
+  <!-- Legend -->
+  <line x1="530" y1="1000" x2="580" y2="1000" class="blue-arrow"/>
+  <text x="592" y="1006" class="small">runtime data flow</text>
+  <line x1="760" y1="1000" x2="810" y2="1000" class="red-arrow dash"/>
+  <text x="822" y="1006" class="small">training gradient / failure path</text>
+  <line x1="1050" y1="1000" x2="1100" y2="1000" class="green-arrow"/>
+  <text x="1112" y="1006" class="small">conformal calibration flow</text>
+</svg>
