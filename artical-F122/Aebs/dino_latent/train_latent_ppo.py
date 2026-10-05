@@ -39,7 +39,7 @@ class LatentAebsEnv(gym.Env):
     def __init__(self, checkpoint_path, observation_mode="surrogate",
                  data_path=Path("Aebs/data/Downsampled.h5"),
                  latent_data_path=Path("results/dino_safety_latent_stage1/latent_data.npz"),
-                 max_episode_steps=400):
+                 max_episode_steps=400, image_indices=None):
         super().__init__()
         checkpoint = torch.load(checkpoint_path, map_location="cpu")
         self.distance_scale_m = float(checkpoint["distance_scale_m"])
@@ -57,26 +57,45 @@ class LatentAebsEnv(gym.Env):
             low=-np.inf, high=np.inf,
             shape=(self.latent_dimension + 1,), dtype=np.float32,
         )
-        if observation_mode not in {"surrogate", "image_nearest"}:
-            raise ValueError("observation_mode must be surrogate or image_nearest")
+        if observation_mode not in {"surrogate", "image_nearest", "mixed_episode"}:
+            raise ValueError(
+                "observation_mode must be surrogate, image_nearest, or mixed_episode"
+            )
         self.observation_mode = observation_mode
+        self.active_observation_mode = (
+            "surrogate" if observation_mode == "mixed_episode" else observation_mode
+        )
         self.image_distances_m = None
         self.image_latents = None
-        if observation_mode == "image_nearest":
+        if observation_mode in {"image_nearest", "mixed_episode"}:
             with h5py.File(data_path, "r") as data_file:
                 self.image_distances_m = np.asarray(
                     data_file["y_train"], dtype=np.float32
                 ).reshape(-1)
             latent_file = np.load(latent_data_path)
             self.image_latents = np.asarray(latent_file["latent"], dtype=np.float32)
+            if "available_indices" in latent_file:
+                requested = np.arange(len(self.image_latents)) if image_indices is None else np.asarray(image_indices)
+                if not np.isin(requested, latent_file["available_indices"]).all():
+                    raise ValueError("requested images were deliberately excluded from this latent cache")
+            if image_indices is not None:
+                indices = np.asarray(image_indices, dtype=np.int64)
+                if indices.ndim != 1 or len(indices) == 0:
+                    raise ValueError("image_indices must be a nonempty 1-D array")
+                if len(np.unique(indices)) != len(indices) or np.any(indices < 0) or np.any(indices >= len(self.image_latents)):
+                    raise ValueError("invalid or duplicate image indices")
+                self.image_distances_m = self.image_distances_m[indices]
+                self.image_latents = self.image_latents[indices]
+        self.lookup_errors_m = []
 
     def _latent(self, distance_norm):
-        if self.observation_mode == "surrogate":
+        if self.active_observation_mode == "surrogate":
             value = torch.tensor([[distance_norm]], dtype=torch.float32)
             with torch.no_grad():
                 return self.q_model(value).numpy()[0].astype(np.float32)
         distance_m = float(distance_norm) * self.distance_scale_m
         index = int(np.argmin(np.abs(self.image_distances_m - distance_m)))
+        self.lookup_errors_m.append(float(abs(self.image_distances_m[index] - distance_m)))
         return self.image_latents[index].astype(np.float32)
 
     def _observation(self, physical_observation):
@@ -88,6 +107,10 @@ class LatentAebsEnv(gym.Env):
     def reset(self, seed=None, options=None):
         if seed is not None:
             np.random.seed(seed)
+        if self.observation_mode == "mixed_episode":
+            self.active_observation_mode = (
+                "surrogate" if np.random.random() < 0.5 else "image_nearest"
+            )
         physical_observation, info = self.base.reset(seed=seed, options=options)
         return self._observation(physical_observation), info
 
@@ -104,11 +127,13 @@ class LatentAebsEnv(gym.Env):
 
 
 def evaluate(model, env, grid_size):
+    env.lookup_errors_m.clear()
     distances = np.linspace(15.0, 16.0, grid_size, dtype=np.float32)
     speeds = np.linspace(2.5, 3.0, grid_size, dtype=np.float32)
     outcomes = Counter()
     returns = []
     steps = []
+    episode_records = []
     for distance_m in distances:
         for speed_mps in speeds:
             observation = env.reset_to(float(distance_m), float(speed_mps))
@@ -124,6 +149,10 @@ def evaluate(model, env, grid_size):
             outcomes[outcome or TIMEOUT] += 1
             returns.append(episode_return)
             steps.append(step)
+            episode_records.append({
+                "distance_m": float(distance_m), "speed_mps": float(speed_mps),
+                "outcome": outcome or TIMEOUT, "steps": step, "return": episode_return,
+            })
     episodes = grid_size * grid_size
     result = {
         "episodes": episodes,
@@ -136,6 +165,11 @@ def evaluate(model, env, grid_size):
         "out_of_domain_rate": outcomes["out_of_domain"] / episodes,
         "mean_return": float(np.mean(returns)),
         "mean_steps": float(np.mean(steps)),
+        "episodes_detail": episode_records,
+        "nearest_image_distance_error_m": {
+            "mean": float(np.mean(env.lookup_errors_m)) if env.lookup_errors_m else None,
+            "max": float(np.max(env.lookup_errors_m)) if env.lookup_errors_m else None,
+        },
     }
     return result
 
@@ -172,7 +206,8 @@ def main():
     parser.add_argument("--eval-grid-size", type=int, default=20)
     parser.add_argument("--seed", type=int, default=7)
     parser.add_argument(
-        "--train-observation-mode", choices=["surrogate", "image_nearest"],
+        "--train-observation-mode",
+        choices=["surrogate", "image_nearest", "mixed_episode"],
         default="surrogate",
     )
     args = parser.parse_args()

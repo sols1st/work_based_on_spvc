@@ -1,0 +1,52 @@
+{
+  "experiment": "dino_latent_spvc_stage3_no_cp",
+  "representation_checkpoint": "results/dino_safety_latent_stage1/dino_safety_latent.pt",
+  "controller_checkpoint": "results/dino_latent_ppo_stage2_mixed_20260928/latent_ppo.zip",
+  "initial_sbc": "results/semantic_spvc_my_run/sbc.pt",
+  "policy": {
+    "variant": "dino_safety_latent_spvc_no_cp",
+    "vt_path": "physical distance -> q_psi latent -> PPO",
+    "deployment_path": "image -> frozen DINO -> projection -> PPO",
+    "latent_dimension": 32,
+    "distance_scale_m": 3.18272066116333,
+    "excluded": [
+      "conformal prediction",
+      "recoverable set",
+      "new verifier"
+    ]
+  },
+  "original_vt_settings": {
+    "environment_factor": 0.05,
+    "l_model_config": [
+      2,
+      16,
+      8,
+      1
+    ],
+    "p_lip": 2.0,
+    "l_lip": 4.0,
+    "epsilon": 0.1,
+    "gamma_decrease": 1.0,
+    "learner_reach_prob": 0.95,
+    "verifier_reach_prob": 0.9,
+    "grid": [
+      100,
+      100
+    ],
+    "hard_violation_fraction_threshold": 0.001
+  },
+  "loop_info": {
+    "ds_size": 10000,
+    "K": 0.027459463220896343,
+    "iter": 0,
+    "runtime": 0.0007176399230957031,
+    "delta": 0.02288288601741362,
+    "hard_violations": "0/10000",
+    "ub_init": 0.9848496913909912,
+    "lb_unsafe": 19.896047592163086,
+    "domain_min": 0.19218705594539642,
+    "actual_reach_prob": 0.9597712014867036,
+    "max_reach_prob": 0.9597712014867036,
+    "checkpoint_matches_verification": true
+  }
+}

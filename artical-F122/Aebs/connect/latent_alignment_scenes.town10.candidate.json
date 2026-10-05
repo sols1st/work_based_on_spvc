@@ -1,0 +1,17 @@
+{
+  "reviewed_for_capture": false,
+  "expected_map": "Town10HD_Opt",
+  "note": "Candidates from user-provided CARLA 0.9.15 spawn coordinates, NOT visually or geometrically certified. Use --preview, inspect images and all nuisance configurations before marking reviewed. Split allocation is provisional until scene/background separation is checked. Preview images must not enter training.",
+  "scenes": [
+    {"id": "train01", "spawn_index": 0, "split": "train"},
+    {"id": "train02", "spawn_index": 6, "split": "train"},
+    {"id": "train03", "spawn_index": 15, "split": "train"},
+    {"id": "train04", "spawn_index": 26, "split": "train"},
+    {"id": "train05", "spawn_index": 30, "split": "train"},
+    {"id": "train06", "spawn_index": 89, "split": "train"},
+    {"id": "validation01", "spawn_index": 19, "split": "validation"},
+    {"id": "validation02", "spawn_index": 36, "split": "validation"},
+    {"id": "test01", "spawn_index": 21, "split": "test"},
+    {"id": "test02", "spawn_index": 149, "split": "test"}
+  ]
+}

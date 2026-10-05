@@ -1,0 +1,18 @@
+{
+  "protocol": "latent_alignment_dense_v1",
+  "samples": 30,
+  "png_files": 30,
+  "split_counts": {
+    "train": 18,
+    "validation": 6,
+    "test": 6
+  },
+  "distances_per_scene_before_sharding": 3,
+  "preview_only": true,
+  "state_groups": 30,
+  "shard_index": 0,
+  "shard_count": 1,
+  "output": "Aebs/carla_latent_alignment/town10_preview02",
+  "static_capture": true,
+  "note": "Not exhaustive real-world coverage; inspect all scenes before full capture"
+}

@@ -1,0 +1,173 @@
+{
+  "protocol": "static_paired_visual_nuisance_v1",
+  "args": {
+    "scenes": "Aebs/connect/latent_alignment_scenes.town10.candidate.json",
+    "output": "Aebs/carla_latent_alignment/town10_preview02",
+    "host": "127.0.0.1",
+    "port": 2000,
+    "timeout": 30,
+    "expected_map": "Town10HD_Opt",
+    "target_blueprint": "vehicle.tesla.model3",
+    "width": 640,
+    "height": 640,
+    "fov": 90,
+    "distance_min": 5,
+    "distance_max": 16,
+    "distance_step": 0.1,
+    "focus_min": 5.5,
+    "focus_max": 7.5,
+    "focus_step": 0.025,
+    "settle_ticks": 10,
+    "shard_count": 1,
+    "shard_index": 0,
+    "depth": false,
+    "smoke": false,
+    "preview": true,
+    "inspect": false,
+    "dry_run": false,
+    "export": null,
+    "collector_protocol": "latent_alignment_dense_v1",
+    "collector_sha256": "a1ead13935935621c40c5a66553ba7c686deed5f2f5f8644dd397b989c47852b",
+    "scene_config_sha256": "ab9bbd87b1310bee28d1deda99818d8b08ca4910d8bba928a136042799437849",
+    "plan_sha256": "9e1ab44eeaa103dc48fe9c166d8fcb5429f5683c09ca344464c8d9e7b87f182b"
+  },
+  "scenes": [
+    {
+      "id": "train01",
+      "spawn_index": 0,
+      "split": "train"
+    },
+    {
+      "id": "train02",
+      "spawn_index": 6,
+      "split": "train"
+    },
+    {
+      "id": "train03",
+      "spawn_index": 15,
+      "split": "train"
+    },
+    {
+      "id": "train04",
+      "spawn_index": 26,
+      "split": "train"
+    },
+    {
+      "id": "train05",
+      "spawn_index": 30,
+      "split": "train"
+    },
+    {
+      "id": "train06",
+      "spawn_index": 89,
+      "split": "train"
+    },
+    {
+      "id": "validation01",
+      "spawn_index": 19,
+      "split": "validation"
+    },
+    {
+      "id": "validation02",
+      "spawn_index": 36,
+      "split": "validation"
+    },
+    {
+      "id": "test01",
+      "spawn_index": 21,
+      "split": "test"
+    },
+    {
+      "id": "test02",
+      "spawn_index": 149,
+      "split": "test"
+    }
+  ],
+  "weather_profiles": {
+    "clear_noon": {
+      "cloudiness": 0,
+      "sun_altitude_angle": 60
+    },
+    "overcast": {
+      "cloudiness": 90,
+      "sun_altitude_angle": 45
+    },
+    "low_sun": {
+      "cloudiness": 20,
+      "sun_altitude_angle": 12,
+      "sun_azimuth_angle": 180
+    },
+    "rain": {
+      "cloudiness": 90,
+      "precipitation": 60,
+      "precipitation_deposits": 60,
+      "wetness": 70,
+      "sun_altitude_angle": 40
+    },
+    "fog_ood": {
+      "cloudiness": 80,
+      "fog_density": 60,
+      "fog_distance": 5,
+      "fog_falloff": 0.2,
+      "sun_altitude_angle": 30
+    },
+    "night_ood": {
+      "cloudiness": 30,
+      "sun_altitude_angle": -15
+    },
+    "clear_low_sun": {
+      "cloudiness": 0,
+      "sun_altitude_angle": 25,
+      "sun_azimuth_angle": 270
+    },
+    "light_rain": {
+      "cloudiness": 50,
+      "precipitation": 20,
+      "precipitation_deposits": 20,
+      "wetness": 30,
+      "sun_altitude_angle": 50
+    }
+  },
+  "camera_profiles": {
+    "nominal": {
+      "height_m": 2.0,
+      "lateral_m": 0,
+      "pitch_deg": 0,
+      "yaw_deg": 0
+    },
+    "height_low": {
+      "height_m": 1.7,
+      "lateral_m": 0,
+      "pitch_deg": 0,
+      "yaw_deg": 0
+    },
+    "height_high": {
+      "height_m": 2.3,
+      "lateral_m": 0,
+      "pitch_deg": 0,
+      "yaw_deg": 0
+    },
+    "yaw_left": {
+      "height_m": 2.0,
+      "lateral_m": 0,
+      "pitch_deg": 0,
+      "yaw_deg": -2
+    },
+    "yaw_right": {
+      "height_m": 2.0,
+      "lateral_m": 0,
+      "pitch_deg": 0,
+      "yaw_deg": 2
+    }
+  },
+  "colors": [
+    "255,0,0",
+    "40,80,160",
+    "220,220,220"
+  ],
+  "client_version": "0.9.15",
+  "server_version": "0.9.15",
+  "map": "Carla/Maps/Town10HD_Opt",
+  "planned_samples": 30,
+  "script_sha256": "ba486a6bc90783647c31b38b54413372b777d6a170d0292a87c4a80645a5a525"
+}
