@@ -2,7 +2,11 @@
 
 文档已按“当前工作、历史归档、参考资料”整理。根目录只保留本入口，避免多个旧计划同时出现。
 
+**2026-10-05当前计划：** [基于现有24,000张数据的后续实验详细计划](docs/current/现有24000张数据_后续实验详细计划.md)。从数据验收、26/9/9距离区间划分、RGB DINO缓存开始，优先完成latent对齐对照，再推进PPO及误差契约/SBC；未实现入口已明确标记。
+
 ## 当前主要看这八份
+
+2026-09-29下一步运行入口：[`DINO_PPO_SBC改进计划.md`](docs/current/DINO_PPO_SBC改进计划.md)。包含按距离分组的图像库隔离、用户执行命令、结果回传格式，以及表示对齐、新数据、SBC复核的分阶段计划。新实验尚待用户执行。
 
 1. [`docs/current/DINO_Latent新方案计划与记录.md`](docs/current/DINO_Latent新方案计划与记录.md)
    **最新主方向。**按建议文档使用冻结DINO、32维safety latent、新latent PPO、SBC和可微QP；当前实施版明确不使用CP。
@@ -43,4 +47,4 @@ external/           外部参考代码
 
 ## 当前状态一句话
 
-旧“距离语义→PPO→SBC/QP”版本作为基线保留。最新主方向是“冻结DINOv2→32维safety latent→新latent PPO→SBC→可微QP”。DINO、projection、`qψ(d)` 和33维PPO已经跑通。两个20万步PPO对照在各自训练latent上都达到400/400成功，但交叉使用 `qψ` 与真图像latent时分别出现提前停车和100%不安全，说明两条latent路径尚不一致。当前不使用CP，历史CP代码和结果不参与主流程。
+旧“距离语义→PPO→SBC/QP”版本作为基线保留。最新主方向是“冻结DINOv2→32维safety latent→新latent PPO→SBC→可微QP”。混合latent PPO已在 `qψ` 和真图像最近邻两条路径上均达到400/400成功、0%不安全；配套SBC在原SPVC 100×100网格上为 `0/10000` 下降违反，原代码计算的安全到达概率下界为95.977%。当前不使用CP；QP和在线DINO图像闭环仍是后续工作。

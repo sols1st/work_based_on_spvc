@@ -1,5 +1,7 @@
 # DINO Safety-Latent 无CP实施方案：框架、数据流与实验记录
 
+> 2026-09-29补充：后续执行请看 [DINO_PPO_SBC改进计划.md](DINO_PPO_SBC改进计划.md)。下文95.977%仅为原SPVC实现报告值；此前区间实现问题尚未消除，且该结果只涉及qψ代理路径，不能视为已确认的图像闭环安全保证。历史400/400是已有图像库回放结果，新的图像库隔离实验待用户运行。
+
 更新时间：2026-09-28
 
 文档用途：本文是当前DINO方向的唯一主实施文档，用于后续写代码、跑实验和向导师汇报。当前版本**不使用CP，不构造latent不确定集合，不加入额外验证方法**。实施严格围绕 `semantic+latent方案.pdf` 的主干：冻结DINO、32维安全latent、新控制器、SBC和QP。
@@ -17,15 +19,15 @@
 - [x] 离线训练路径 `qψ(d)→32维latent` 接口；
 - [x] 8张真实数据集图像的双路径smoke test。
 
-尚未完成：
+控制与SBC进度：
 
-- [x] 输入 `[32维latent,车速]` 的新PPO，已完成两个20万步对照；
-- [x] 新PPO与原AEBS环境的固定400起点闭环评估；
-- [ ] 与新latent控制器配套的SBC；
+- [x] 输入 `[32维latent,车速]` 的新PPO，已完成三个20万步对照；
+- [x] 混合latent PPO在 `qψ` 与真图像最近邻路径上均400/400成功；
+- [x] 与混合latent PPO配套的SBC，原SPVC网格 `0/10000` 违反；
 - [ ] PPO和SBC一起输入可微QP层；
 - [ ] `图像→DINO→latent→PPO→SBC-QP→下一状态` 的完整闭环。
 
-当前的准确结论是：**DINO表示层和33维输入的新PPO已经跑通，但 `qψ(d)` 与真实DINO latent对同一控制器不可互换；SBC和QP还没有在这个DINO框架下完成。**
+当前的准确结论是：**DINO表示层、同时适应两条latent路径的33维PPO和原SPVC口径的SBC已经跑通。PPO在两条评估路径上均400/400成功；SBC为 `0/10000` 下降违反，原代码计算的安全到达概率下界为95.977%。可微QP和真正在线DINO图像闭环尚未完成。**
 
 ## 1. 完整架构
 
@@ -144,8 +146,26 @@ L_q = ||qψ(d_i)-Pρ(E_DINO(o_i))||²
 | `qψ(d)` | 距离最近的真实图像latent | 9.5% | 0.0% | 0.0% | 90.5% |
 | 距离最近的真实图像latent | `qψ(d)` | 0.0% | 100.0% | 0.0% | 0.0% |
 | 距离最近的真实图像latent | 距离最近的真实图像latent | 100.0% | 0.0% | 0.0% | 0.0% |
+| 每回合50% `qψ`、50%真图像最近邻 | `qψ(d)` | 100.0% | 0.0% | 0.0% | 0.0% |
+| 每回合50% `qψ`、50%真图像最近邻 | 距离最近的真实图像latent | 100.0% | 0.0% | 0.0% | 0.0% |
 
-结论：32维DINO latent确实能作为PPO输入完成AEBS任务，但当前 `qψ(d)` 和真实图像latent不能交叉使用。两个控制器在自己的训练输入上都是400/400成功，在另一种输入上则分别变成提前停车或全部不安全。这是当前最主要的train–deployment mismatch，后续不能直接用 `qψ` 训练的PPO代替真图像PPO。
+结论：两个单来源PPO只适应自己的训练latent，证明了明显的train–deployment mismatch。不改网络结构，只在每个训练回合开始时等概率选择 `qψ` 或真图像最近邻latent后，同一个PPO在两条路径均达到400/400成功。这是当前选定的合格PPO checkpoint。
+
+### 4.2 无CP Latent PPO + 原SPVC SBC结果
+
+SBC仍使用原SPVC的二维物理状态 `x=[d,v]`、`[2,16,8,1]` 网络、原噪声、原损失、原100×100网格和原通过口径。网格路径通过 `qψ(d)` 生成32维latent，再调用上述混合PPO。使用同一AEBS物理域上已训练SBC作为初始值，然后针对新latent PPO重新训练10 epochs并完整验证。
+
+| 指标 | 结果 |
+| --- | ---: |
+| 验证网格 | 100×100 = 10,000状态 |
+| 下降违反 | **0/10,000** |
+| 初始区SBC上界 | 0.984850 |
+| 不安全区SBC下界 | 19.896048 |
+| 全域SBC下界 | 0.192187 |
+| 原SPVC概率下界 | **95.977%** |
+| checkpoint是否对应当次验证 | true |
+
+循环在得到零违反和超过90%目标概率后，于下一次PPO更新之前停止，因此不存在“验证的模型和最后保存模型不同”的问题。这个结论是**原SPVC实现口径下的结果**；它尚未覆盖新的在线图像、未见外观变化或QP层。
 
 ## 5. 模块表
 
@@ -156,7 +176,7 @@ L_q = ||qψ(d_i)-Pρ(E_DINO(o_i))||²
 | 辅助decoder | 32维latent | 归一化距离 | 已训练 | 仅用于训练和诊断 |
 | `qψ` | 归一化真实距离 | 32维latent近似 | 已训练 | 离线网格训练/SBC计算 |
 | Latent PPO | 32维latent+速度 | 名义动作 | 未训练 | 完成AEBS任务 |
-| SBC | 物理状态 | 证书值 `B(x)` | 未在新框架训练 | 形成安全下降约束 |
+| SBC | 物理状态 | 证书值 `B(x)` | 已训练并按原SPVC验证 | 形成安全下降约束 |
 | 可微QP | PPO动作+SBC约束 | 最终动作 | 未接入 | 最小改动PPO动作并尽量满足SBC |
 | AEBS环境 | 物理状态+动作 | 下一状态/终局 | 固定 | 闭环任务 |
 
@@ -202,10 +222,14 @@ min 0.5||a-a_nom||² + 0.5 rho xi²
 | `Aebs/dino_latent/encoder.py` | 提供 `图像→32维latent` 和 `距离→32维latent` 接口。 |
 | `Aebs/dino_latent/smoke_test.py` | 检查运行时输出形状、数值和DINO冻结状态。 |
 | `Aebs/dino_latent/train_latent_ppo.py` | 用原AEBS口径训练33维输入PPO，并在400个固定起点上交叉评估 `qψ` latent与真图像latent。 |
+| `Aebs/dino_latent/spvc_policy.py` | 把 `qψ(d)+速度→latent PPO` 包装成原VT学习器所需的策略接口。 |
+| `Aebs/dino_latent/run_spvc.py` | 使用新latent PPO运行原SPVC的SBC训练和100×100网格验证。 |
 | `tests/test_dino_latent.py` | 检查DINO预处理、projection、`qψ`和控制器接口。 |
 | `results/dino_safety_latent_stage1/` | 当前表示模型、数据配置、数值指标和latent数组。 |
 | `results/dino_latent_ppo_stage2_no_cp_threads1_20260928/` | 使用 `qψ(d)` 训练的PPO、配置和交叉评估。 |
 | `results/dino_latent_ppo_stage2_image_20260928/` | 使用距离最近真图像latent训练的PPO、配置和交叉评估。 |
+| `results/dino_latent_ppo_stage2_mixed_20260928/` | 同时适应两种latent输入的合格PPO checkpoint和400起点评估。 |
+| `results/dino_latent_spvc_stage3_20260928/` | 与合格latent PPO配套的SBC、VT策略state dict和验证指标。 |
 
 `Aebs/dino_latent/calibrate_latent.py` 和 `results/dino_latent_cp_stage2/` 仅作为历史探索保留，**当前无CP主流程不调用它们，不使用其结果作为训练或通过条件。**
 
@@ -215,7 +239,7 @@ min 0.5||a-a_nom||² + 0.5 rho xi²
 2. 400张图像主要随障碍物距离变化，尚不能证明latent能在多天气、多摄像机、多遮挡下保持不变。
 3. `qψ(d)` 是对图像latent的近似，其每坐标RMSE为0.27191；交叉评估已证明这个差异会导致控制结果完全改变。
 4. 当前不使用CP，所以不声称 `qψ` 近似误差有概率覆盖保证。
-5. 新PPO、SBC和QP尚未闭环跑通，现在不能宣称安全性提升。
+5. PPO与SBC已在原SPVC口径下跑通，但QP和真正在线图像闭环尚未完成；95.977%不能解释为所有未见环境中的实际安全率。
 
 ## 10. 后续最简计划
 
@@ -226,15 +250,15 @@ min 0.5||a-a_nom||² + 0.5 rho xi²
 - [x] 沿用原AEBS的reward、动作界、初始状态和终局规则；
 - [x] 自动输出success、unsafe、timeout和平均步数；
 - [x] 在400个固定起点上交叉评估两种latent输入；
-- [ ] 在不增加CP的前提下，使训练与部署都使用真实DINO latent，并为SBC确定一致的控制器输入路径。
+- [x] 通过每回合混合两种latent输入，得到两条评估路径均400/400成功的同一PPO。
 
-阶段A的PPO可训练性已通过：两种输入在各自训练分布上均400/400成功。当前未通过的是两种latent的一致性，进入SBC前必须选定同一条训练与部署路径。
+阶段A已完成：混合latent PPO在两条评估路径上均400/400成功、0%不安全、0%超时。
 
 ### 阶段B：SBC
 
-- [ ] 将latent PPO动作接入原SPVC的SBC训练路径；
-- [ ] SBC仍使用原物理状态、原区域和原判定口径；
-- [ ] 记录区域值、下降违反和原SPVC概率下界。
+- [x] 将latent PPO动作接入原SPVC的SBC训练路径；
+- [x] SBC仍使用原物理状态、原区域和原判定口径；
+- [x] 得到 `0/10000` 下降违反、合格区域分离和95.977%原SPVC概率下界。
 
 ### 阶段C：可微QP
 
@@ -259,4 +283,4 @@ min 0.5||a-a_nom||² + 0.5 rho xi²
 4. SBC仍在可解释的物理状态上建立安全条件；
 5. PPO和SBC通过可微QP层在同一控制链中联合学习。
 
-当前已完成第1、2项和第3项的初步对照：DINO latent能训练出有效PPO，但物理替代latent与真图像latent不可互换。CP不属于当前方案，不出现在主实验流程和当前论文贡献中。
+当前已完成第1、2、3项和第4项的原SPVC口径实验：DINO latent能训练出同时适应两条输入路径的PPO，配套SBC达到零网格违反和95.977%概率下界。第5项QP联合学习尚未完成。CP不属于当前方案。
