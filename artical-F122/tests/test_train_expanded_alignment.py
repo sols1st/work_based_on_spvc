@@ -4,7 +4,11 @@ from pathlib import Path
 from types import SimpleNamespace
 import numpy as np
 import torch
+from Aebs.dino_latent.models import SafetyDecoder, SafetyProjection, PhysicalToLatent
 from Aebs.dino_latent.train_expanded_alignment import training_ids, train, metrics
+from Aebs.dino_latent.train_expanded_r2_group_alignment import (
+    exact_distance_groups, grouped_loss,
+)
 
 
 class AlignmentTests(unittest.TestCase):
@@ -35,6 +39,21 @@ class AlignmentTests(unittest.TestCase):
                 self.assertTrue((Path(directory)/name/"dino_safety_latent.pt").is_file())
                 self.assertEqual(result["validation"]["samples"],4)
                 self.assertFalse(result["test_evaluated"])
+
+    def test_r2_groups_exact_distance_and_loss_is_finite(self):
+        rows = []
+        for group, distance in (("a",5.0),("b",7.0)):
+            for appearance in range(3):
+                rows.append(dict(group_id=group,distance_m=distance))
+        groups = exact_distance_groups(rows,list(range(6)))
+        self.assertEqual([len(group) for group in groups],[3,3])
+        features = torch.randn(6,384)
+        distance = torch.tensor([row["distance_m"] for row in rows])
+        loss = grouped_loss(
+            SafetyProjection(),SafetyDecoder(),PhysicalToLatent(),
+            features,distance,1.0,groups,[0,1],1.0,1.0,
+        )
+        self.assertTrue(torch.isfinite(loss))
 
 
 if __name__ == "__main__":

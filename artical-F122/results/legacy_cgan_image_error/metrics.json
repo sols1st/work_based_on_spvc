@@ -1,0 +1,59 @@
+{
+  "scope": "legacy AEBS observation approximation against its 32x32 downsampled targets",
+  "normalization": "generator tanh output mapped by (x+1)/2; target X_train already [0,1]",
+  "data_shape": [
+    400,
+    32,
+    32
+  ],
+  "distance_scale_std_m": 3.18272066116333,
+  "z_zero": {
+    "image": {
+      "samples": 400,
+      "pixels_per_image": 1024,
+      "mae": 0.014428927563130856,
+      "mse": 0.001539768883958459,
+      "rmse": 0.0392398889391708,
+      "psnr_db": 28.125444609518407,
+      "per_image_rmse_p50": 0.02811492048203945,
+      "per_image_rmse_p95": 0.04066597670316696,
+      "per_image_rmse_max": 0.37114977836608887
+    },
+    "generated_state_distance": {
+      "mae_m": 0.1988895982503891,
+      "rmse_m": 0.472440242767334,
+      "max_abs_m": 1.9845037460327148,
+      "bias_m": -0.13674978911876678
+    }
+  },
+  "uniform_latent_mc": {
+    "image": {
+      "samples": 400,
+      "draws_per_image": 32,
+      "latent_distribution": "uniform[-1,1], seed7",
+      "mae": 0.01453417595475912,
+      "mse": 0.0015443864790722728,
+      "rmse": 0.039298682917780756,
+      "psnr_db": 28.112440092300698,
+      "per_image_rmse_p50": 0.028177276253700256,
+      "per_image_rmse_p95": 0.040791288018226624,
+      "per_image_rmse_max": 0.37099143862724304,
+      "mean_pixel_std_across_z": 0.0010325018083676696
+    },
+    "generated_state_distance": {
+      "mae_m": 0.19741442143917085,
+      "rmse_m": 0.4723827926647094,
+      "bias_m": -0.142074573636055
+    }
+  },
+  "downsampled_real_through_legacy_state_net": {
+    "mae_m": 0.3411704897880554,
+    "rmse_m": 0.7101911306381226,
+    "max_abs_m": 7.042863368988037,
+    "bias_m": -0.13369092345237732
+  },
+  "limitations": [
+    "same 400 images used by legacy training; no held-out split",
+    "pixel metrics are not comparable numerically to 32-D latent RMSE"
+  ]
+}

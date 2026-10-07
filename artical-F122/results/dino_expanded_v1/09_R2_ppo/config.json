@@ -1,0 +1,10 @@
+{
+  "representation_sha256": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+  "cache_manifest_sha256": "ca4c9993fbcf12b7a57dddab5f6a75fc1a5da84278fb102747e681888229e5bb",
+  "timesteps": 200000,
+  "seed": 7,
+  "test_used": false,
+  "eval_grid_size": 20,
+  "replay": "50% surrogate / 50% train images per episode; uniform fixed weather/color per episode",
+  "limitation": "train-library nearest-distance replay is not online image rollout; validation matched one-step only"
+}
