@@ -1,0 +1,28 @@
+{
+  "experiment": "frozen_R1_empirical_residual_robust_PPO_v1",
+  "registered_before_training": true,
+  "representation_sha256": "2050baf8a83e8200bf5e9f11b5338d0c9b7047a612173b17f29cb48123f2e2ec",
+  "cache_manifest_sha256": "ca4c9993fbcf12b7a57dddab5f6a75fc1a5da84278fb102747e681888229e5bb",
+  "baseline_metrics_sha256": "39eb4b48ce8f7ca91b3a21fb1a81cd9e6abdf371aa5d4bc7895a5c507780bbcd",
+  "test_used": false,
+  "seed": 7,
+  "timesteps": 200000,
+  "ppo_hyperparameters_unchanged": true,
+  "training_mode_probabilities": {
+    "image_nearest": 0.5,
+    "surrogate": 0.25,
+    "residual_corrected": 0.25
+  },
+  "residual_source": "train image latent minus q at its own label distance",
+  "residual_norm_clip": "train P95",
+  "residual_radius_p95": 0.22207974940538405,
+  "residual_episode_scale": "uniform [0,1]",
+  "representation_frozen": true,
+  "excluded": [
+    "test",
+    "representation retraining",
+    "SBC",
+    "QP",
+    "CP"
+  ]
+}

@@ -1,4 +1,4 @@
-"""Fresh PPO on frozen R1, train-only appearance replay, matched diagnostics."""
+"""Fresh PPO on a frozen expanded-data representation, with matched diagnostics."""
 import argparse
 import heapq
 import json
@@ -23,6 +23,11 @@ class AppearanceEnv(LatentAebsEnv):
     def __init__(self, checkpoint, data, latent, rows, mode, appearance=None):
         ids = [i for i,r in enumerate(rows) if r["split"] == "train"]
         super().__init__(checkpoint, mode, data_path=data, latent_data_path=latent, image_indices=ids)
+        # Keep the mapping from the train-only arrays used by LatentAebsEnv
+        # back to the immutable cache rows.  Training and nearest-neighbour
+        # behavior are unchanged; diagnostics can now identify the exact file
+        # selected at each rollout step.
+        self.source_indices = np.asarray(ids, dtype=np.int64)
         self.pools = {}
         for local, i in enumerate(ids):
             key = rows[i]["weather"]+"|"+rows[i]["color"]
@@ -137,7 +142,7 @@ def main():
         return AppearanceEnv(args.representation,data,latent,rows,mode,appearance)
     model = PPO("MlpPolicy",make_env("mixed_episode"),verbose=0,learning_rate=3e-4,n_steps=2048,
                 batch_size=64,n_epochs=10,gamma=.99,gae_lambda=.95,ent_coef=.01,seed=7,device="cpu")
-    print("Training fresh PPO, frozen R1, train-only replay",flush=True)
+    print("Training fresh PPO, frozen representation, train-only replay",flush=True)
     model.learn(total_timesteps=args.timesteps,callback=Progress())
     model.save(args.output_dir/"latent_ppo.zip")
     result = dict(config,actual_timesteps=int(model.num_timesteps),checkpoint_sha256=sha256(args.output_dir/"latent_ppo.zip"),
@@ -152,7 +157,7 @@ def main():
         ids = [i for i,r in enumerate(rows) if r["split"] == split]
         result["matched"][split] = matched(model,make_env("surrogate"),latents,distances,ids,rows)
         (args.output_dir/"metrics.json").write_text(json.dumps(result,indent=2,allow_nan=False))
-    print("[Expanded R1 PPO and matched diagnostic — no SBC/test]")
+    print("[Expanded frozen-representation PPO and matched diagnostic — no SBC/test]")
     for name,m in result["evaluation"].items():
         print(name,{k:m[k] for k in ["success_rate","unsafe_rate","timeout_rate","mean_steps","nearest_image_distance_error_m"]})
     for name,m in result["matched"].items():

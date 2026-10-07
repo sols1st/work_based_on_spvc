@@ -1,0 +1,17 @@
+{
+  "experiment": "R2_same_distance_appearance_group_alignment",
+  "registered_settings": {
+    "steps": 3000,
+    "q_steps": 400,
+    "groups_per_batch": 8,
+    "group_weight": 0.2,
+    "centroid_q_weight": 0.0,
+    "seed": 7,
+    "selection": "same R1 score: validation image RMSE/scale + 0.2 relative latent RMSE"
+  },
+  "test_evaluated": false,
+  "dino_frozen": true,
+  "cache_manifest_sha256": "ca4c9993fbcf12b7a57dddab5f6a75fc1a5da84278fb102747e681888229e5bb",
+  "r1_representation_sha256": "2050baf8a83e8200bf5e9f11b5338d0c9b7047a612173b17f29cb48123f2e2ec",
+  "r1_metrics_sha256": "6908d5aaa32a854374de943c221f38e2f9269cd92bac3440a592eb0f79929178"
+}
