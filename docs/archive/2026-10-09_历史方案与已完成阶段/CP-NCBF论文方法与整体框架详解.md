@@ -1,7 +1,7 @@
 # CP-NCBF 论文中的 CP 怎么用：整体框架、公式与通俗解释
 
 > 论文：*CP-NCBF: A Conformal Prediction-based Approach to Synthesize Verified Neural Control Barrier Functions*  
-> 对应文件：[2503.17395v2.pdf](../references/2503.17395v2.pdf)  
+> 对应文件：[2503.17395v2.pdf](../../references/2503.17395v2.pdf)  
 > 重点位置：Figure 1、公式 (5)–(12)、Theorem 2、Algorithm 1、Algorithm 2、Appendix A–B。
 
 ## 1. 先说最核心的结论
