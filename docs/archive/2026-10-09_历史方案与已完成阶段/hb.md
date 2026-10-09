@@ -24,9 +24,9 @@
 
 因此汇报时应说：普通条件下的稳定性已经由20个起点扩大到1024个起点；但强语义误差下仍明显失败，现有QP没有降低unsafe数量，不能声称QP已带来安全增益。这个评估不使用CP，所以也不产生99%置信度结论。
 
-![当前框架：不带CP的训练/部署闭环与带CP的冻结模型校准](../../figures/semantic-spvc-cp-framework.png)
+![当前框架：不带CP的训练/部署闭环与带CP的冻结模型校准](../../../figures/semantic-spvc-cp-framework.png)
 
-可编辑矢量版：[semantic-spvc-cp-framework.svg](../../figures/semantic-spvc-cp-framework.svg)
+可编辑矢量版：[semantic-spvc-cp-framework.svg](../../../figures/semantic-spvc-cp-framework.svg)
 
 ---
 

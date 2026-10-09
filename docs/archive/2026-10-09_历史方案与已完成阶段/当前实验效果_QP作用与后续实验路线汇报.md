@@ -59,9 +59,9 @@ PPO 控制器                    SBC 网络 B(x)
                下一状态
 ```
 
-![不带CP的训练/部署闭环与带CP的冻结模型轨迹校准](../../figures/semantic-spvc-cp-framework.png)
+![不带CP的训练/部署闭环与带CP的冻结模型轨迹校准](../../../figures/semantic-spvc-cp-framework.png)
 
-图的可编辑矢量版本：[`semantic-spvc-cp-framework.svg`](../../figures/semantic-spvc-cp-framework.svg)。左侧是运行时与训练链，右侧是模型冻结后的trajectory-level CP；CP当前不参与每一步动作求解。
+图的可编辑矢量版本：[`semantic-spvc-cp-framework.svg`](../../../figures/semantic-spvc-cp-framework.svg)。左侧是运行时与训练链，右侧是模型冻结后的trajectory-level CP；CP当前不参与每一步动作求解。
 
 需要特别注意：早期20回合闭环使用模拟器提供的**准确语义状态**。当前已新增“每步从400张数据集中选取距离最近的真实图像→语义编码器→PPO→QP”的重放闭环并完成CP校准；但它复用有限数据集，不是连续渲染的新图像，也不覆盖真实摄像头分布变化。
 
@@ -432,8 +432,8 @@ QP 的不可行、正 slack 或大动作修正可以暴露 SBC 与动力学不�
 
 参考论文：
 
-- [BarrierNet: Differentiable Control Barrier Functions for Learning of Safe Robot Control](../references/BarrierNet_Differentiable_Control_Barrier_Functions_for_Learning_of_Safe_Robot_Control.pdf)，重点见第 V 节及公式 (7)–(11)；
-- [Opt-ODENet: Neural ODE Controller Design with Differentiable Optimization Layers for Safety and Stability](../references/Opt-ODENet.pdf)，重点见第 4 节、公式 (9)、算法 1 和实验消融。
+- [BarrierNet: Differentiable Control Barrier Functions for Learning of Safe Robot Control](../../references/BarrierNet_Differentiable_Control_Barrier_Functions_for_Learning_of_Safe_Robot_Control.pdf)，重点见第 V 节及公式 (7)–(11)；
+- [Opt-ODENet: Neural ODE Controller Design with Differentiable Optimization Layers for Safety and Stability](../../references/Opt-ODENet.pdf)，重点见第 4 节、公式 (9)、算法 1 和实验消融。
 
 ### 11.1 BarrierNet 的 QP
 
