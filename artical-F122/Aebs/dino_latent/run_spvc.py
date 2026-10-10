@@ -15,6 +15,7 @@ import torch
 
 from Aebs.dino_latent.spvc_policy import DinoLatentSPVCPolicy
 from Aebs.dino_latent.prepare_expanded_data import sha256
+from Aebs.dino_latent.compare_spvc_scopes import compare_scopes
 from Aebs.system.env import Aebs
 from Aebs.VT.loop import Loop
 from Aebs.VT.train import VTLearner
@@ -50,6 +51,10 @@ def main():
     parser.add_argument("--timeout-seconds", type=float, default=3600.0)
     parser.add_argument("--max-iteration-index", type=int, default=100)
     parser.add_argument("--stop-on-zero-violation", action="store_true")
+    parser.add_argument("--compare-scopes", action="store_true",
+                        help="Post-run legacy narrow/broad checks on the same saved models; no training changes.")
+    parser.add_argument("--diagnose-only-from", type=Path, default=None,
+                        help="Load a previous run_spvc output; skip training and compare scopes in a NEW output dir.")
     args = parser.parse_args()
 
     required = [
@@ -57,6 +62,12 @@ def main():
     ]
     if args.initial_sbc is not None:
         required.append(args.initial_sbc)
+    if args.diagnose_only_from is not None:
+        required.extend(args.diagnose_only_from / name for name in (
+            "sbc.pt", "latent_ppo_spvc.pt", "metrics.json"
+        ))
+        if args.initial_sbc is not None:
+            parser.error("--initial-sbc cannot be combined with --diagnose-only-from")
     missing = [str(path) for path in required if not path.is_file()]
     if missing:
         parser.error("missing inputs: " + ", ".join(missing))
@@ -84,6 +95,17 @@ def main():
         args.representation_checkpoint, args.controller, device
     )
     env = Aebs(0.05)
+    policy.set_state_distance_scale(env.std1)
+    source_metrics = None
+    if args.diagnose_only_from is not None:
+        source_metrics = json.loads((args.diagnose_only_from / "metrics.json").read_text(encoding="utf-8"))
+        if (source_metrics.get("representation_sha256") != sha256(args.representation_checkpoint)
+                or source_metrics.get("controller_sha256") != sha256(args.controller)):
+            parser.error("diagnostic source does not match representation/base PPO")
+        # Preserve the original run's input interpretation, even for pre-fix runs.
+        old_policy = source_metrics.get("policy", {})
+        policy.set_state_distance_scale(old_policy.get("state_distance_scale_m", policy.distance_scale_m))
+        policy.load_state_dict(torch.load(args.diagnose_only_from / "latent_ppo_spvc.pt", map_location=device))
     learner = VTLearner(
         l_model_config=[2, 16, 8, 1],
         env=env,
@@ -93,7 +115,8 @@ def main():
         gamma_decrease=1.0,
         reach_prob=0.95,
         square_l_output=True,
-        l_model_path=str(args.initial_sbc) if args.initial_sbc is not None else None,
+        l_model_path=str(args.diagnose_only_from / "sbc.pt") if args.diagnose_only_from is not None
+        else (str(args.initial_sbc) if args.initial_sbc is not None else None),
         p_net=policy,
     )
     l_ibp = learner.create_bounded_module(learner.l_model)
@@ -108,7 +131,10 @@ def main():
         max_iteration_index=args.max_iteration_index,
         stop_on_zero_violation=args.stop_on_zero_violation,
     )
-    loop.run(args.timeout_seconds)
+    if args.diagnose_only_from is None:
+        loop.run(args.timeout_seconds)
+    else:
+        loop.info = {"diagnostic_only": True, "source_loop_info": source_metrics.get("loop_info")}
     torch.save(learner.l_model.state_dict(), output_dir / "sbc.pt")
     torch.save(learner.p_net.state_dict(), output_dir / "latent_ppo_spvc.pt")
     result = {
@@ -148,6 +174,11 @@ def main():
             "new verifier",
         ],
         "test_used": False,
+        "training_run": args.diagnose_only_from is None,
+        "diagnose_only_from": str(args.diagnose_only_from) if args.diagnose_only_from else None,
+        "saved_barrier_sha256": sha256(output_dir / "sbc.pt"),
+        "saved_policy_sha256": sha256(output_dir / "latent_ppo_spvc.pt"),
+        "scope_comparison_requested": args.compare_scopes or args.diagnose_only_from is not None,
         "loop_info": loop.info,
     }
     with open(output_dir / "metrics.json", "w", encoding="utf-8") as output_file:
@@ -165,6 +196,22 @@ def main():
     print("safe-reach probability lower bound:", loop.info.get("actual_reach_prob"))
     print("checkpoint matches verification:", loop.info.get("checkpoint_matches_verification", False))
     print("result directory: %s" % output_dir)
+    if args.compare_scopes or args.diagnose_only_from is not None:
+        # Build a fresh bound wrapper for exactly the final saved model, not the
+        # last iteration's possibly stale pre-PPO-update diagnostics.
+        diagnostic_verifier = VTVerifier(
+            learner, env, learner.create_bounded_module(learner.l_model),
+            batch_size=2048, reach_prob=0.9, fail_check_fast=False,
+        )
+        denominator = len(verifier.train_buffer)
+        if source_metrics is not None:
+            denominator = int(source_metrics.get("loop_info", {}).get("ds_size", 10000))
+        comparison = compare_scopes(diagnostic_verifier, output_dir, denominator)
+        comparison["saved_barrier_sha256"] = result["saved_barrier_sha256"]
+        comparison["saved_policy_sha256"] = result["saved_policy_sha256"]
+        comparison["policy"] = policy.metadata()
+        with (output_dir / "scope_comparison.json").open("w", encoding="utf-8") as stream:
+            json.dump(comparison, stream, indent=2, ensure_ascii=False, allow_nan=False)
 
 
 if __name__ == "__main__":
