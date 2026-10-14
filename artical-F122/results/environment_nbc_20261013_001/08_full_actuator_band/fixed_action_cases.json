@@ -1,0 +1,266 @@
+{
+  "experiment": "fixed_action_interpretation_of_full_actuator_check",
+  "training_run": false,
+  "stress_metrics_sha256": "723dea487f3773cc84801977edc636267c444982a552a94f3d20d04b7c37cedc",
+  "helper_script_sha256": "51b417c283a0ed3ea2db761bc0f0c35f46b47170bed032979d5643ce08be2d20",
+  "scope": "17 constant actions at each recorded worst state; original registered noise model",
+  "arithmetic": "float64 interval bounds with float32 successor padding, not outward-rounded formal proof",
+  "meaning": "negative margin_upper indicates expected B exceeds current B under the registered fixed action/noise calculation; not collision or actual-policy failure",
+  "results": {
+    "train": {
+      "state": [
+        10.408408164978027,
+        2.8499999046325684
+      ],
+      "current_barrier": 19.15537452697754,
+      "noise_bins": 80,
+      "recorded_q_action_range": [
+        -2.9104819297790527,
+        -2.9104819297790527
+      ],
+      "recorded_image_action_range": [
+        -2.9268107414245605,
+        -2.902742385864258
+      ],
+      "actions": [
+        {
+          "action": -3,
+          "margin_lower": 6.166678359432755,
+          "margin_upper": 6.638314438934822,
+          "midpoint_margin": 6.402432007398792
+        },
+        {
+          "action": -2.625,
+          "margin_lower": 5.267146383397062,
+          "margin_upper": 5.738802540419632,
+          "midpoint_margin": 5.5027572894823695
+        },
+        {
+          "action": -2.25,
+          "margin_lower": 4.374023729677759,
+          "margin_upper": 4.8429820973769075,
+          "midpoint_margin": 4.608139136575264
+        },
+        {
+          "action": -1.875,
+          "margin_lower": 3.4939416510972574,
+          "margin_upper": 3.9575973229337365,
+          "midpoint_margin": 3.7252672503263558
+        },
+        {
+          "action": -1.5,
+          "margin_lower": 2.63319906720092,
+          "margin_upper": 3.0891098099410605,
+          "midpoint_margin": 2.8605237465489743
+        },
+        {
+          "action": -1.125,
+          "margin_lower": 1.7976240526226448,
+          "margin_upper": 2.243555798816285,
+          "midpoint_margin": 2.0198425234400936
+        },
+        {
+          "action": -0.75,
+          "margin_lower": 0.9924509787232871,
+          "margin_upper": 1.4264180062221534,
+          "midpoint_margin": 1.2085836827932113
+        },
+        {
+          "action": -0.375,
+          "margin_lower": 0.22221746703138123,
+          "margin_upper": 0.6425157476882362,
+          "midpoint_margin": 0.4314269709394907
+        },
+        {
+          "action": 0,
+          "margin_lower": -0.5093148425834002,
+          "margin_upper": -0.1040827642238682,
+          "midpoint_margin": -0.30771178706682534
+        },
+        {
+          "action": 0.375,
+          "margin_lower": -1.1992124877850507,
+          "margin_upper": -0.81012243820566,
+          "midpoint_margin": -1.0057378683630773
+        },
+        {
+          "action": 0.75,
+          "margin_lower": -1.845393540789246,
+          "margin_upper": -1.4731952189145154,
+          "midpoint_margin": -1.6604063215374758
+        },
+        {
+          "action": 1.125,
+          "margin_lower": -2.4466221202827008,
+          "margin_upper": -2.0917451246371286,
+          "midpoint_margin": -2.2703217319600704
+        },
+        {
+          "action": 1.5,
+          "margin_lower": -3.002475839626719,
+          "margin_upper": -2.6650454657513443,
+          "midpoint_margin": -2.834910510195442
+        },
+        {
+          "action": 1.875,
+          "margin_lower": -3.513289402684041,
+          "margin_upper": -3.1931509142849883,
+          "midpoint_margin": -3.3543686565362094
+        },
+        {
+          "action": 2.25,
+          "margin_lower": -3.980078450668316,
+          "margin_upper": -3.6768282179355083,
+          "midpoint_margin": -3.829588961999189
+        },
+        {
+          "action": 2.625,
+          "margin_lower": -4.404448150115432,
+          "margin_upper": -4.117469931421052,
+          "midpoint_margin": -4.2620720854656575
+        },
+        {
+          "action": 3,
+          "margin_lower": -4.7884910829640965,
+          "margin_upper": -4.516995714415707,
+          "midpoint_margin": -4.6538260654983326
+        }
+      ],
+      "fixed_actions_with_negative_margin_upper": 9,
+      "worst_fixed_action": {
+        "action": 3,
+        "margin_lower": -4.7884910829640965,
+        "margin_upper": -4.516995714415707,
+        "midpoint_margin": -4.6538260654983326
+      }
+    },
+    "validation": {
+      "state": [
+        10.150150299072266,
+        2.9000000953674316
+      ],
+      "current_barrier": 19.178062438964844,
+      "noise_bins": 80,
+      "recorded_q_action_range": [
+        -2.8202452659606934,
+        -2.8202452659606934
+      ],
+      "recorded_image_action_range": [
+        -2.950967788696289,
+        -2.7909650802612305
+      ],
+      "actions": [
+        {
+          "action": -3,
+          "margin_lower": 3.711180298196645,
+          "margin_upper": 4.180265559754714,
+          "midpoint_margin": 3.9452958938146185
+        },
+        {
+          "action": -2.625,
+          "margin_lower": 3.711180298196645,
+          "margin_upper": 4.180265559754714,
+          "midpoint_margin": 3.9452958938146185
+        },
+        {
+          "action": -2.25,
+          "margin_lower": 3.711180298196645,
+          "margin_upper": 4.180265559754714,
+          "midpoint_margin": 3.9452958938146185
+        },
+        {
+          "action": -1.875,
+          "margin_lower": 3.4230785832629547,
+          "margin_upper": 3.890124717632288,
+          "midpoint_margin": 3.656129804488355
+        },
+        {
+          "action": -1.5,
+          "margin_lower": 2.5727127241855676,
+          "margin_upper": 3.0320695685547214,
+          "midpoint_margin": 2.8017917062270215
+        },
+        {
+          "action": -1.125,
+          "margin_lower": 1.7476240831836307,
+          "margin_upper": 2.197101089833872,
+          "midpoint_margin": 1.9716471343773527
+        },
+        {
+          "action": -0.75,
+          "margin_lower": 0.9528988848431901,
+          "margin_upper": 1.3905524242467493,
+          "midpoint_margin": 1.1709073039728288
+        },
+        {
+          "action": -0.375,
+          "margin_lower": 0.19293415219042842,
+          "margin_upper": 0.6170997298305423,
+          "midpoint_margin": 0.404110050714376
+        },
+        {
+          "action": 0,
+          "margin_lower": -0.5286374621424024,
+          "margin_upper": -0.11932147903143431,
+          "midpoint_margin": -0.3249596781279216
+        },
+        {
+          "action": 0.375,
+          "margin_lower": -1.2089961761871493,
+          "margin_upper": -0.8155745849198013,
+          "midpoint_margin": -1.0133232696612922
+        },
+        {
+          "action": 0.75,
+          "margin_lower": -1.8461553602882432,
+          "margin_upper": -1.4693525371111278,
+          "midpoint_margin": -1.658833949696863
+        },
+        {
+          "action": 1.125,
+          "margin_lower": -2.438953832678628,
+          "margin_upper": -2.079180412635832,
+          "midpoint_margin": -2.2601741977047
+        },
+        {
+          "action": 1.5,
+          "margin_lower": -2.987022123535848,
+          "margin_upper": -2.6443911277588725,
+          "midpoint_margin": -2.8168266873196046
+        },
+        {
+          "action": 1.875,
+          "margin_lower": -3.4907259920155767,
+          "margin_upper": -3.165077081774445,
+          "midpoint_margin": -3.329021798067078
+        },
+        {
+          "action": 2.25,
+          "margin_lower": -3.951091265084642,
+          "margin_upper": -3.6420215305186048,
+          "midpoint_margin": -3.7976656431968294
+        },
+        {
+          "action": 2.625,
+          "margin_lower": -4.369714361129127,
+          "margin_upper": -4.076613966584528,
+          "midpoint_margin": -4.22425294136535
+        },
+        {
+          "action": 3,
+          "margin_lower": -4.748662865992291,
+          "margin_upper": -4.470753883047362,
+          "midpoint_margin": -4.610769107311754
+        }
+      ],
+      "fixed_actions_with_negative_margin_upper": 9,
+      "worst_fixed_action": {
+        "action": 3,
+        "margin_lower": -4.748662865992291,
+        "margin_upper": -4.470753883047362,
+        "midpoint_margin": -4.610769107311754
+      }
+    }
+  },
+  "source_models_unchanged": true
+}

@@ -1,0 +1,206 @@
+[
+  {
+    "rollout": 1,
+    "timesteps": 2048,
+    "sampling_log_prob_max_error": 1.9073486328125e-06,
+    "raw_safety_violation_mean": 0.010363047011196613,
+    "positive_safety_samples": 355,
+    "safety_coefficient": 0.050518152350559835,
+    "actor_safety_gradient_norm": 0.05006967484951019,
+    "actor_parameter_max_drift": 0.0002769678831100464,
+    "optimizer_steps": 32,
+    "approx_kl_max": 0.00021417299285531044,
+    "nbc_training_loss": 0.0053927176631987095,
+    "lookup_gap_mean_m": 0.05047326534986496,
+    "lookup_gap_max_m": 0.372182697057724,
+    "terminated_episodes": 27,
+    "timeout_episodes": 0,
+    "safety_feedback": true,
+    "nbc_retention": {
+      "accepted": false,
+      "rejection_reasons": [
+        "old_hinge_mean_increased",
+        "old_raw_violations_increased"
+      ],
+      "proposed": {
+        "initial_max": -0.33462750911712646,
+        "unsafe_min": 0.09251795709133148,
+        "initial_margin_violations": 0,
+        "unsafe_margin_violations": 0,
+        "initial_sign_violations": 0,
+        "unsafe_sign_violations": 0,
+        "old_hinge_mean": 6.885942275403067e-05,
+        "old_raw_violations": 29,
+        "old_sign_escapes": 0
+      },
+      "kept": {
+        "initial_max": -0.35473382472991943,
+        "unsafe_min": 0.03653060644865036,
+        "initial_margin_violations": 0,
+        "unsafe_margin_violations": 0,
+        "initial_sign_violations": 0,
+        "unsafe_sign_violations": 0,
+        "old_hinge_mean": 1.1282998457318172e-05,
+        "old_raw_violations": 7,
+        "old_sign_escapes": 1
+      },
+      "optimized_loss": 0.0053927176631987095,
+      "optimizer_steps": 10,
+      "actor_rollback": false,
+      "check_level": "finite train-only retention check, NOT continuous safety"
+    }
+  },
+  {
+    "rollout": 2,
+    "timesteps": 4096,
+    "sampling_log_prob_max_error": 1.9073486328125e-06,
+    "raw_safety_violation_mean": 0.010050630196928978,
+    "positive_safety_samples": 342,
+    "safety_coefficient": 0.051020683860406285,
+    "actor_safety_gradient_norm": 0.09533586353063583,
+    "actor_parameter_max_drift": 0.00020354986190795898,
+    "optimizer_steps": 32,
+    "approx_kl_max": 8.39622225612402e-05,
+    "nbc_training_loss": 0.005243815016001463,
+    "lookup_gap_mean_m": 0.05029371380805969,
+    "lookup_gap_max_m": 0.37796780467033386,
+    "terminated_episodes": 27,
+    "timeout_episodes": 0,
+    "safety_feedback": true,
+    "nbc_retention": {
+      "accepted": false,
+      "rejection_reasons": [
+        "old_hinge_mean_increased",
+        "old_raw_violations_increased"
+      ],
+      "proposed": {
+        "initial_max": -0.33387377858161926,
+        "unsafe_min": 0.09289763867855072,
+        "initial_margin_violations": 0,
+        "unsafe_margin_violations": 0,
+        "initial_sign_violations": 0,
+        "unsafe_sign_violations": 0,
+        "old_hinge_mean": 6.862245936645195e-05,
+        "old_raw_violations": 28,
+        "old_sign_escapes": 0
+      },
+      "kept": {
+        "initial_max": -0.35473382472991943,
+        "unsafe_min": 0.03653060644865036,
+        "initial_margin_violations": 0,
+        "unsafe_margin_violations": 0,
+        "initial_sign_violations": 0,
+        "unsafe_sign_violations": 0,
+        "old_hinge_mean": 1.1282998457318172e-05,
+        "old_raw_violations": 7,
+        "old_sign_escapes": 1
+      },
+      "optimized_loss": 0.005243815016001463,
+      "optimizer_steps": 10,
+      "actor_rollback": false,
+      "check_level": "finite train-only retention check, NOT continuous safety"
+    }
+  },
+  {
+    "rollout": 3,
+    "timesteps": 6144,
+    "sampling_log_prob_max_error": 2.384185791015625e-06,
+    "raw_safety_violation_mean": 0.009512480348348618,
+    "positive_safety_samples": 342,
+    "safety_coefficient": 0.051496307877823715,
+    "actor_safety_gradient_norm": 0.09877660125494003,
+    "actor_parameter_max_drift": 0.0002765730023384094,
+    "optimizer_steps": 32,
+    "approx_kl_max": 7.435190491378307e-05,
+    "nbc_training_loss": 0.0050268215127289295,
+    "lookup_gap_mean_m": 0.05036694556474686,
+    "lookup_gap_max_m": 0.376994788646698,
+    "terminated_episodes": 28,
+    "timeout_episodes": 0,
+    "safety_feedback": true,
+    "nbc_retention": {
+      "accepted": false,
+      "rejection_reasons": [
+        "old_hinge_mean_increased",
+        "old_raw_violations_increased"
+      ],
+      "proposed": {
+        "initial_max": -0.3332515358924866,
+        "unsafe_min": 0.09236453473567963,
+        "initial_margin_violations": 0,
+        "unsafe_margin_violations": 0,
+        "initial_sign_violations": 0,
+        "unsafe_sign_violations": 0,
+        "old_hinge_mean": 6.771979678887874e-05,
+        "old_raw_violations": 27,
+        "old_sign_escapes": 0
+      },
+      "kept": {
+        "initial_max": -0.35473382472991943,
+        "unsafe_min": 0.03653060644865036,
+        "initial_margin_violations": 0,
+        "unsafe_margin_violations": 0,
+        "initial_sign_violations": 0,
+        "unsafe_sign_violations": 0,
+        "old_hinge_mean": 1.1282998457318172e-05,
+        "old_raw_violations": 7,
+        "old_sign_escapes": 1
+      },
+      "optimized_loss": 0.0050268215127289295,
+      "optimizer_steps": 10,
+      "actor_rollback": false,
+      "check_level": "finite train-only retention check, NOT continuous safety"
+    }
+  },
+  {
+    "rollout": 4,
+    "timesteps": 8192,
+    "sampling_log_prob_max_error": 1.9073486328125e-06,
+    "raw_safety_violation_mean": 0.009515628218650818,
+    "positive_safety_samples": 344,
+    "safety_coefficient": 0.051972089288756254,
+    "actor_safety_gradient_norm": 0.03752266615629196,
+    "actor_parameter_max_drift": 0.0003294944763183594,
+    "optimizer_steps": 32,
+    "approx_kl_max": 0.00013551837764680386,
+    "nbc_training_loss": 0.005069661885499954,
+    "lookup_gap_mean_m": 0.050140634179115295,
+    "lookup_gap_max_m": 0.3781050145626068,
+    "terminated_episodes": 27,
+    "timeout_episodes": 0,
+    "safety_feedback": true,
+    "nbc_retention": {
+      "accepted": false,
+      "rejection_reasons": [
+        "old_hinge_mean_increased",
+        "old_raw_violations_increased"
+      ],
+      "proposed": {
+        "initial_max": -0.3346618413925171,
+        "unsafe_min": 0.09210195392370224,
+        "initial_margin_violations": 0,
+        "unsafe_margin_violations": 0,
+        "initial_sign_violations": 0,
+        "unsafe_sign_violations": 0,
+        "old_hinge_mean": 6.64958351990208e-05,
+        "old_raw_violations": 26,
+        "old_sign_escapes": 0
+      },
+      "kept": {
+        "initial_max": -0.35473382472991943,
+        "unsafe_min": 0.03653060644865036,
+        "initial_margin_violations": 0,
+        "unsafe_margin_violations": 0,
+        "initial_sign_violations": 0,
+        "unsafe_sign_violations": 0,
+        "old_hinge_mean": 1.1282998457318172e-05,
+        "old_raw_violations": 7,
+        "old_sign_escapes": 1
+      },
+      "optimized_loss": 0.005069661885499954,
+      "optimizer_steps": 10,
+      "actor_rollback": false,
+      "check_level": "finite train-only retention check, NOT continuous safety"
+    }
+  }
+]

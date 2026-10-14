@@ -1,0 +1,401 @@
+{
+  "experiment": "frozen_action_bounds_neighbor_label_diagnosis_v1",
+  "status": "development_miss_diagnosis_complete",
+  "training_run": false,
+  "model_updates": false,
+  "test_used": false,
+  "formal_calibration": false,
+  "neighbor_scope": "same speed; bracket distances or fixed physical distance windows; all 12 appearances and same appearance reported separately",
+  "interpretation": "outside an observed neighbor hull means absent from those recorded labels, not physically impossible or a proof of causal failure",
+  "source_hashes": {
+    "fit_metrics": "93854118715121ced31ecbcdd21ede39370e43ed8a319c30c682a9b771e8dc05",
+    "diagnostic_metrics": "a537327f6ee4bfe56dadefb13e51df59a7c182588c01a987bc02b1ec37b92e8b",
+    "bounds_checkpoint": "28fb7d79ce546840ae265fb0a6b19ac436b5515b55c9eaf7a401cb7e65c60b83",
+    "actor": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+    "barrier": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+    "representation": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+    "train_pairs": "8c3b1fc016b186e224781235b6e3b3f8835f8b5b32c292b32da5746631bf4d68",
+    "validation_pairs": "7eb2b3ffc723911d88d09e7f3c2bb9d552b23aca727136bab638ee8506bc07be",
+    "train_predictions": "ed61ad4353dad6d957c7b0f01daba48d5c6a84e293cb4c9c74f7c11f4056f46f",
+    "validation_predictions": "6df64464bfaf5d6d987caed4a06106f14606a2dfdb36783943090d5334a57e62"
+  },
+  "script_sha256": "acf0b823628a9819dc13fc8870e65212c5aa1b7c7cf7a1e3680654ad12f51150",
+  "results": {
+    "global_training_hull": {
+      "all_ongoing": {
+        "pairs": 294480,
+        "predicted_interval_misses": 26703,
+        "missed_but_inside_observed_neighbor_hull": 21576,
+        "missed_and_outside_observed_neighbor_hull": 5127,
+        "missed_without_required_neighbor_evidence": 0
+      },
+      "legacy_band": {
+        "pairs": 1308,
+        "predicted_interval_misses": 194,
+        "missed_but_inside_observed_neighbor_hull": 194,
+        "missed_and_outside_observed_neighbor_hull": 0,
+        "missed_without_required_neighbor_evidence": 0
+      }
+    },
+    "two_sided_neighbor_distances_all_appearances": {
+      "all_ongoing": {
+        "pairs": 294480,
+        "predicted_interval_misses": 26703,
+        "missed_but_inside_observed_neighbor_hull": 2092,
+        "missed_and_outside_observed_neighbor_hull": 24611,
+        "missed_without_required_neighbor_evidence": 0
+      },
+      "legacy_band": {
+        "pairs": 1308,
+        "predicted_interval_misses": 194,
+        "missed_but_inside_observed_neighbor_hull": 22,
+        "missed_and_outside_observed_neighbor_hull": 172,
+        "missed_without_required_neighbor_evidence": 0
+      }
+    },
+    "two_sided_neighbors_same_appearance": {
+      "all_ongoing": {
+        "pairs": 294480,
+        "predicted_interval_misses": 26703,
+        "missed_but_inside_observed_neighbor_hull": 463,
+        "missed_and_outside_observed_neighbor_hull": 26240,
+        "missed_without_required_neighbor_evidence": 0
+      },
+      "legacy_band": {
+        "pairs": 1308,
+        "predicted_interval_misses": 194,
+        "missed_but_inside_observed_neighbor_hull": 12,
+        "missed_and_outside_observed_neighbor_hull": 182,
+        "missed_without_required_neighbor_evidence": 0
+      }
+    },
+    "distance_windows": {
+      "plus_minus_0.05_m": {
+        "all_ongoing": {
+          "pairs": 294480,
+          "predicted_interval_misses": 26703,
+          "missed_but_inside_observed_neighbor_hull": 633,
+          "missed_and_outside_observed_neighbor_hull": 1788,
+          "missed_without_required_neighbor_evidence": 24282
+        },
+        "legacy_band": {
+          "pairs": 1308,
+          "predicted_interval_misses": 194,
+          "missed_but_inside_observed_neighbor_hull": 4,
+          "missed_and_outside_observed_neighbor_hull": 5,
+          "missed_without_required_neighbor_evidence": 185
+        },
+        "all_pairs_without_window_evidence": 233280
+      },
+      "plus_minus_0.15_m": {
+        "all_ongoing": {
+          "pairs": 294480,
+          "predicted_interval_misses": 26703,
+          "missed_but_inside_observed_neighbor_hull": 2525,
+          "missed_and_outside_observed_neighbor_hull": 11135,
+          "missed_without_required_neighbor_evidence": 13043
+        },
+        "legacy_band": {
+          "pairs": 1308,
+          "predicted_interval_misses": 194,
+          "missed_but_inside_observed_neighbor_hull": 54,
+          "missed_and_outside_observed_neighbor_hull": 140,
+          "missed_without_required_neighbor_evidence": 0
+        },
+        "all_pairs_without_window_evidence": 115920
+      },
+      "plus_minus_0.30_m": {
+        "all_ongoing": {
+          "pairs": 294480,
+          "predicted_interval_misses": 26703,
+          "missed_but_inside_observed_neighbor_hull": 6163,
+          "missed_and_outside_observed_neighbor_hull": 20540,
+          "missed_without_required_neighbor_evidence": 0
+        },
+        "legacy_band": {
+          "pairs": 1308,
+          "predicted_interval_misses": 194,
+          "missed_but_inside_observed_neighbor_hull": 74,
+          "missed_and_outside_observed_neighbor_hull": 120,
+          "missed_without_required_neighbor_evidence": 0
+        },
+        "all_pairs_without_window_evidence": 19440
+      }
+    }
+  },
+  "train_fit_failure": {
+    "pairs": 742320,
+    "misses": 6087,
+    "distance_count": 1031,
+    "speed_count": 60,
+    "meaning": "these are recorded training labels missed by the fitted interval, not heldout generalization failures"
+  },
+  "global_train_observed_error_range": [
+    -1.6434381008148193,
+    1.914269208908081
+  ],
+  "validation_observed_error_range": [
+    -3.3268966674804688,
+    4.832333564758301
+  ],
+  "nearest_train_distance_gap_m_pair_weighted": {
+    "median": 0.11511516571044922,
+    "p95": 0.31831836700439453,
+    "max": 0.37837791442871094,
+    "validation_pairs_without_two_sided_bracket": 0
+  },
+  "worst_cases_with_neighbor_labels": [
+    {
+      "scope": "all_ongoing",
+      "distance_m": 7.522522449493408,
+      "speed_mps": 1.850000023841858,
+      "appearance": "rain|255,0,0",
+      "image_action": 2.9876930713653564,
+      "q_action": -1.8446404933929443,
+      "error": 4.832333564758301,
+      "prediction": [
+        -0.626819908618927,
+        0.63896244764328
+      ],
+      "outside_error": 4.193371295928955,
+      "left_train_distance_m": 7.247247219085693,
+      "right_train_distance_m": 7.752752780914307,
+      "two_sided_bracket": true,
+      "neighbor_hull_all_appearances": [
+        -0.4812362790107727,
+        0.5467630624771118
+      ],
+      "neighbor_hull_same_appearance": [
+        0.12150144577026367,
+        0.5467630624771118
+      ]
+    },
+    {
+      "scope": "all_ongoing",
+      "distance_m": 7.527527332305908,
+      "speed_mps": 1.850000023841858,
+      "appearance": "rain|255,0,0",
+      "image_action": 2.9467647075653076,
+      "q_action": -1.8699228763580322,
+      "error": 4.81668758392334,
+      "prediction": [
+        -0.6178925037384033,
+        0.6295648813247681
+      ],
+      "outside_error": 4.187122821807861,
+      "left_train_distance_m": 7.247247219085693,
+      "right_train_distance_m": 7.752752780914307,
+      "two_sided_bracket": true,
+      "neighbor_hull_all_appearances": [
+        -0.4812362790107727,
+        0.5467630624771118
+      ],
+      "neighbor_hull_same_appearance": [
+        0.12150144577026367,
+        0.5467630624771118
+      ]
+    },
+    {
+      "scope": "all_ongoing",
+      "distance_m": 7.522522449493408,
+      "speed_mps": 1.7999999523162842,
+      "appearance": "rain|255,0,0",
+      "image_action": 2.6192054748535156,
+      "q_action": -2.073481559753418,
+      "error": 4.692687034606934,
+      "prediction": [
+        -0.5549250245094299,
+        0.5713775753974915
+      ],
+      "outside_error": 4.121309280395508,
+      "left_train_distance_m": 7.247247219085693,
+      "right_train_distance_m": 7.752752780914307,
+      "two_sided_bracket": true,
+      "neighbor_hull_all_appearances": [
+        -0.5465132594108582,
+        0.3179677128791809
+      ],
+      "neighbor_hull_same_appearance": [
+        0.08274984359741211,
+        0.3179677128791809
+      ]
+    },
+    {
+      "scope": "all_ongoing",
+      "distance_m": 7.572572708129883,
+      "speed_mps": 1.899999976158142,
+      "appearance": "rain|255,0,0",
+      "image_action": 2.8474485874176025,
+      "q_action": -1.8716907501220703,
+      "error": 4.719139099121094,
+      "prediction": [
+        -0.604884922504425,
+        0.608333945274353
+      ],
+      "outside_error": 4.110805034637451,
+      "left_train_distance_m": 7.247247219085693,
+      "right_train_distance_m": 7.752752780914307,
+      "two_sided_bracket": true,
+      "neighbor_hull_all_appearances": [
+        -0.6528881788253784,
+        0.5379027128219604
+      ],
+      "neighbor_hull_same_appearance": [
+        0.1600322723388672,
+        0.5379027128219604
+      ]
+    },
+    {
+      "scope": "all_ongoing",
+      "distance_m": 7.537537574768066,
+      "speed_mps": 1.850000023841858,
+      "appearance": "rain|255,0,0",
+      "image_action": 2.777686834335327,
+      "q_action": -1.9207549095153809,
+      "error": 4.698441505432129,
+      "prediction": [
+        -0.6001042723655701,
+        0.6108273267745972
+      ],
+      "outside_error": 4.087614059448242,
+      "left_train_distance_m": 7.247247219085693,
+      "right_train_distance_m": 7.752752780914307,
+      "two_sided_bracket": true,
+      "neighbor_hull_all_appearances": [
+        -0.4812362790107727,
+        0.5467630624771118
+      ],
+      "neighbor_hull_same_appearance": [
+        0.12150144577026367,
+        0.5467630624771118
+      ]
+    },
+    {
+      "scope": "legacy_band",
+      "distance_m": 10.144144058227539,
+      "speed_mps": 2.9000000953674316,
+      "appearance": "rain|220,220,220",
+      "image_action": -2.961493968963623,
+      "q_action": -2.8187806606292725,
+      "error": -0.14271330833435059,
+      "prediction": [
+        -0.017299426719546318,
+        0.006186259910464287
+      ],
+      "outside_error": 0.12541387975215912,
+      "left_train_distance_m": 9.9949951171875,
+      "right_train_distance_m": 10.252252578735352,
+      "two_sided_bracket": true,
+      "neighbor_hull_all_appearances": [
+        -0.01572895050048828,
+        0.02799081802368164
+      ],
+      "neighbor_hull_same_appearance": [
+        -0.01146554946899414,
+        0.017297983169555664
+      ]
+    },
+    {
+      "scope": "legacy_band",
+      "distance_m": 10.150150299072266,
+      "speed_mps": 2.9000000953674316,
+      "appearance": "rain|220,220,220",
+      "image_action": -2.950967788696289,
+      "q_action": -2.8202452659606934,
+      "error": -0.1307225227355957,
+      "prediction": [
+        -0.017302701249718666,
+        0.006175974849611521
+      ],
+      "outside_error": 0.11341982334852219,
+      "left_train_distance_m": 9.9949951171875,
+      "right_train_distance_m": 10.252252578735352,
+      "two_sided_bracket": true,
+      "neighbor_hull_all_appearances": [
+        -0.01572895050048828,
+        0.02799081802368164
+      ],
+      "neighbor_hull_same_appearance": [
+        -0.01146554946899414,
+        0.017297983169555664
+      ]
+    },
+    {
+      "scope": "legacy_band",
+      "distance_m": 10.138137817382812,
+      "speed_mps": 2.9000000953674316,
+      "appearance": "rain|220,220,220",
+      "image_action": -2.9378256797790527,
+      "q_action": -2.8173134326934814,
+      "error": -0.12051224708557129,
+      "prediction": [
+        -0.01729658991098404,
+        0.006196780130267143
+      ],
+      "outside_error": 0.10321565717458725,
+      "left_train_distance_m": 9.9949951171875,
+      "right_train_distance_m": 10.252252578735352,
+      "two_sided_bracket": true,
+      "neighbor_hull_all_appearances": [
+        -0.01572895050048828,
+        0.02799081802368164
+      ],
+      "neighbor_hull_same_appearance": [
+        -0.01146554946899414,
+        0.017297983169555664
+      ]
+    },
+    {
+      "scope": "legacy_band",
+      "distance_m": 10.108108520507812,
+      "speed_mps": 2.9000000953674316,
+      "appearance": "rain|220,220,220",
+      "image_action": -2.9242208003997803,
+      "q_action": -2.809948682785034,
+      "error": -0.1142721176147461,
+      "prediction": [
+        -0.01728934422135353,
+        0.006253041326999664
+      ],
+      "outside_error": 0.09698277711868286,
+      "left_train_distance_m": 9.9949951171875,
+      "right_train_distance_m": 10.252252578735352,
+      "two_sided_bracket": true,
+      "neighbor_hull_all_appearances": [
+        -0.01572895050048828,
+        0.02799081802368164
+      ],
+      "neighbor_hull_same_appearance": [
+        -0.01146554946899414,
+        0.017297983169555664
+      ]
+    },
+    {
+      "scope": "legacy_band",
+      "distance_m": 10.132132530212402,
+      "speed_mps": 2.9000000953674316,
+      "appearance": "rain|220,220,220",
+      "image_action": -2.9301187992095947,
+      "q_action": -2.815844774246216,
+      "error": -0.1142740249633789,
+      "prediction": [
+        -0.01729421131312847,
+        0.006207539699971676
+      ],
+      "outside_error": 0.09697981178760529,
+      "left_train_distance_m": 9.9949951171875,
+      "right_train_distance_m": 10.252252578735352,
+      "two_sided_bracket": true,
+      "neighbor_hull_all_appearances": [
+        -0.01572895050048828,
+        0.02799081802368164
+      ],
+      "neighbor_hull_same_appearance": [
+        -0.01146554946899414,
+        0.017297983169555664
+      ]
+    }
+  ],
+  "source_files_unchanged": true,
+  "runtime_seconds": 4.67524226102978
+}

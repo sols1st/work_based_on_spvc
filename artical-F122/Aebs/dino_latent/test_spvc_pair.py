@@ -83,7 +83,45 @@ class ActorTests(unittest.TestCase):
         speed = np.asarray([1, 2], dtype=np.float32)
         q_obs = np.column_stack([distance/2, distance/2, speed]).astype(np.float32)
         result = check_adapter_equivalence(actor, actor, actor, q_obs, q_obs, distance, speed)
-        self.assertLessEqual(max(result.values()), 1e-5)
+        self.assertLessEqual(result["new_vt_same_input_max_abs"], 1e-5)
+        self.assertLessEqual(result["q_normalized_input_roundoff_max_budget_ratio"], 1)
+        self.assertEqual(result["check_version"], "v2_same_input_strict_coordinate_roundoff_separate")
+
+    def test_roundoff_is_recorded_but_wrong_q_observation_fails(self):
+        import numpy as np
+        import torch
+        from Aebs.dino_latent.spvc_policy import DinoLatentSPVCPolicy
+        from Aebs.dino_latent.spvc_saved_actor import SavedSpvcActor, check_adapter_equivalence
+
+        # Deliberately sensitive actor, centered at a point where two mathematically
+        # equivalent float32 normalization paths give different coordinates.
+        scale, state_scale = 2.7182818, 3.1415926
+        distances = np.linspace(5, 16, 1000, dtype=np.float32)
+        direct = torch.from_numpy(distances[:, None]/scale)
+        converted = torch.from_numpy(distances[:, None]/state_scale) * (state_scale/scale)
+        index = int(torch.argmax(torch.abs(direct-converted)))
+        self.assertGreater(float(torch.abs(direct-converted).max()), 0)
+        q = torch.nn.Linear(1, 2, bias=False)
+        controller = torch.nn.Linear(3, 1, bias=True)
+        with torch.no_grad():
+            q.weight.fill_(1)
+            controller.weight.zero_()
+            controller.weight[0, 0] = 1024
+            controller.bias.fill_(-1024*float(direct[index, 0]))
+        policy = DinoLatentSPVCPolicy(q, controller, scale, 2)
+        policy.set_state_distance_scale(state_scale)
+        actor = SavedSpvcActor(policy, [-3], [3])
+        distance = distances[index:index+1]
+        speed = np.asarray([1], dtype=np.float32)
+        q_obs = np.column_stack([distance/scale, distance/scale, speed]).astype(np.float32)
+        result = check_adapter_equivalence(actor, actor, actor, q_obs, q_obs, distance, speed)
+        self.assertGreater(result["new_vt_q_vs_physical_q_max_abs"], 1e-5)
+        self.assertEqual(result["new_vt_same_input_max_abs"], 0)
+        self.assertLessEqual(result["q_normalized_input_roundoff_max_budget_ratio"], 1)
+        bad = q_obs.copy()
+        bad[:, 0] += 0.001
+        with self.assertRaises(ValueError):
+            check_adapter_equivalence(actor, actor, actor, bad, bad, distance, speed)
 
 
 if __name__ == "__main__":

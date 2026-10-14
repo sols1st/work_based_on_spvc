@@ -1,0 +1,323 @@
+{
+  "experiment": "offline_image_transition_single_step_NBC_v1",
+  "status": "development_nbc_constraints_violated",
+  "training_run": true,
+  "policy_updated": false,
+  "old_sbc_updated": false,
+  "representation_updated": false,
+  "ppo_joint_training": false,
+  "multi_step_training": false,
+  "test_used": false,
+  "cp_used": false,
+  "extra_noise_used": false,
+  "source_hashes": {
+    "actor": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+    "old_sbc": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+    "representation": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+    "diagnostic": "a537327f6ee4bfe56dadefb13e51df59a7c182588c01a987bc02b1ec37b92e8b",
+    "train_pairs": "8c3b1fc016b186e224781235b6e3b3f8835f8b5b32c292b32da5746631bf4d68",
+    "validation_pairs": "7eb2b3ffc723911d88d09e7f3c2bb9d552b23aca727136bab638ee8506bc07be"
+  },
+  "script_sha256": "a0694aa847f7998226945ce01b08f5f04ff4bb1c807af1e15d23284c5489d251",
+  "initial_nbc_sha256": "c88a5355be40909f2a01e005d3e50414c120cd5d6746f4934ba5850d0bbdeebf",
+  "vt_distance_scale_m": 3.18272066116333,
+  "configuration": {
+    "diagnostic_dir": "results/environment_nbc_20261013_001/01_frozen_diagnostic",
+    "spvc_dir": "results/dino_spvc_minimal_v1",
+    "representation": "results/dino_expanded_v1/08_R2_group_alignment/dino_safety_latent.pt",
+    "output_dir": "results/environment_nbc_20261014_001/02_signed_nbc_hard_tail",
+    "initial_nbc": "results/environment_nbc_20261014_001/01_signed_nbc_mean/nbc.pt",
+    "epochs": 120,
+    "batch_size": 8192,
+    "hidden": 64,
+    "barrier_lambda": 0.1,
+    "epsilon": 0.01,
+    "hard_fraction": 0.1,
+    "seed": 7,
+    "device": "cuda"
+  },
+  "paper_component": "Model-Free NBC IV-B single-step invariant/initial/unsafe losses; positive margins inspired by official srlnbc implementation",
+  "not_implemented": "PPO importance-ratio safety update, adaptive multiplier, multi-step trajectories, formal validation",
+  "condition": "C(next) <= (1-lambda)*C(current); candidate region C<=0, unsafe C>0; signed linear output",
+  "data_scope": "exact-image offline simulator transitions at labeled distances; weather/color affect actual saved actions; no nearest-image lookup",
+  "simulator_scope": "analytic AEBS successors recorded previously, not measured CARLA vehicle dynamics",
+  "label_scope": "known task initial [15,16]x[2.5,3]; unsafe [5,6]x[0.5001,3]; no hand-computed recoverable/TTC labels",
+  "loss": "mean initial relu(C+epsilon) + mean unsafe relu(epsilon-C) + invariant hinge; optional train-only hard-tail emphasis",
+  "train_region_grid": 32,
+  "evaluation_region_grid": 41,
+  "validation_role": "reused development split, not independent safety calibration",
+  "source_safety_probability_reused": false,
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 7.206573565863132e-05,
+      "initial": 0.0,
+      "unsafe": 2.081566947707113e-05,
+      "invariance": 9.326445897828347e-06,
+      "optimized_invariance": 5.1250066372261005e-05
+    },
+    {
+      "epoch": 20,
+      "loss": 3.0471382232733356e-05,
+      "initial": 0.0,
+      "unsafe": 7.362973626554679e-06,
+      "invariance": 4.205232205491617e-06,
+      "optimized_invariance": 2.3108408613079038e-05
+    },
+    {
+      "epoch": 40,
+      "loss": 1.934315880813288e-05,
+      "initial": 0.0,
+      "unsafe": 3.225400867285071e-06,
+      "invariance": 2.9330952749517448e-06,
+      "optimized_invariance": 1.611775794175936e-05
+    },
+    {
+      "epoch": 60,
+      "loss": 1.2599415692900721e-05,
+      "initial": 0.0,
+      "unsafe": 2.3235863818867106e-06,
+      "invariance": 1.8699874507369558e-06,
+      "optimized_invariance": 1.0275829316321601e-05
+    },
+    {
+      "epoch": 80,
+      "loss": 1.8805621962369357e-05,
+      "initial": 0.0,
+      "unsafe": 3.3741226307995578e-06,
+      "invariance": 2.8082125274484665e-06,
+      "optimized_invariance": 1.5431499310868722e-05
+    },
+    {
+      "epoch": 100,
+      "loss": 6.497521671273671e-06,
+      "initial": 0.0,
+      "unsafe": 5.978975504851955e-07,
+      "invariance": 1.0736111433790545e-06,
+      "optimized_invariance": 5.899624118906559e-06
+    },
+    {
+      "epoch": 120,
+      "loss": 3.782612655012603e-06,
+      "initial": 0.0,
+      "unsafe": 3.958015153346127e-07,
+      "invariance": 6.163268994533837e-07,
+      "optimized_invariance": 3.3868111396779904e-06
+    }
+  ],
+  "results": {
+    "train": {
+      "all_pairs": {
+        "pairs": 742320,
+        "raw_invariance_violations": 21,
+        "raw_invariance_violation_rate": 2.8289686388619465e-05,
+        "training_margin_violations": 100,
+        "min_invariance_margin": -0.022439002990722656,
+        "mean_invariance_margin": 0.04379609599709511,
+        "sign_escapes": 0,
+        "unsafe_successors": 10629
+      },
+      "candidate_nonpositive_region": {
+        "pairs": 396300,
+        "raw_invariance_violations": 9,
+        "raw_invariance_violation_rate": 2.271006813020439e-05,
+        "training_margin_violations": 41,
+        "min_invariance_margin": -0.022439002990722656,
+        "mean_invariance_margin": 0.034925106912851334,
+        "sign_escapes": 0,
+        "unsafe_successors": 0
+      },
+      "candidate_region_fraction": 0.5338667959909473,
+      "candidate_region_with_unsafe_successor": 0,
+      "observed_unsafe_successor_nonpositive_nbc": 0,
+      "old_sbc_deterministic_decrease_violations": 11037,
+      "old_vs_nbc_condition_warning": "different signed/unsigned conditions; these counts are not an apples-to-apples certificate-strength comparison",
+      "worst_cases": [
+        {
+          "state": [
+            6.756757072867231,
+            1.2999999523162842
+          ],
+          "next_state": [
+            6.69175733295458,
+            1.1971230506896973
+          ],
+          "current_nbc": -0.23324835300445557,
+          "next_nbc": -0.1874845027923584,
+          "margin": -0.022439002990722656,
+          "next_unsafe": false
+        },
+        {
+          "state": [
+            6.756757072867231,
+            1.25
+          ],
+          "next_state": [
+            6.694256885170603,
+            1.1817370653152466
+          ],
+          "current_nbc": -0.20196402072906494,
+          "next_nbc": -0.17004847526550293,
+          "margin": -0.01171913743019104,
+          "next_unsafe": false
+        },
+        {
+          "state": [
+            6.756757072867231,
+            1.350000023841858
+          ],
+          "next_state": [
+            6.68925702191882,
+            1.2260470390319824
+          ],
+          "current_nbc": -0.2515486478805542,
+          "next_nbc": -0.21517011523246765,
+          "margin": -0.011223658919334412,
+          "next_unsafe": false
+        },
+        {
+          "state": [
+            6.111111125526634,
+            0.550000011920929
+          ],
+          "next_state": [
+            6.083611118822091,
+            0.555931031703949
+          ],
+          "current_nbc": 0.07431918382644653,
+          "next_nbc": 0.07498282194137573,
+          "margin": -0.008095555007457733,
+          "next_unsafe": false
+        },
+        {
+          "state": [
+            6.106106329946556,
+            0.550000011920929
+          ],
+          "next_state": [
+            6.078606323242013,
+            0.5513195395469666
+          ],
+          "current_nbc": 0.0722898542881012,
+          "next_nbc": 0.07132633030414581,
+          "margin": -0.006265461444854736,
+          "next_unsafe": false
+        }
+      ]
+    },
+    "validation": {
+      "all_pairs": {
+        "pairs": 294480,
+        "raw_invariance_violations": 13001,
+        "raw_invariance_violation_rate": 0.04414900842162456,
+        "training_margin_violations": 19039,
+        "min_invariance_margin": -0.287532240152359,
+        "mean_invariance_margin": 0.04005378484725952,
+        "sign_escapes": 2324,
+        "unsafe_successors": 0
+      },
+      "candidate_nonpositive_region": {
+        "pairs": 154260,
+        "raw_invariance_violations": 8690,
+        "raw_invariance_violation_rate": 0.0563334629845715,
+        "training_margin_violations": 13773,
+        "min_invariance_margin": -0.287532240152359,
+        "mean_invariance_margin": 0.02660384215414524,
+        "sign_escapes": 2324,
+        "unsafe_successors": 0
+      },
+      "candidate_region_fraction": 0.523838630806846,
+      "candidate_region_with_unsafe_successor": 0,
+      "observed_unsafe_successor_nonpositive_nbc": 0,
+      "old_sbc_deterministic_decrease_violations": 3348,
+      "old_vs_nbc_condition_warning": "different signed/unsigned conditions; these counts are not an apples-to-apples certificate-strength comparison",
+      "worst_cases": [
+        {
+          "state": [
+            6.501501495397065,
+            1.5499999523162842
+          ],
+          "next_state": [
+            6.424001717945089,
+            1.399999976158142
+          ],
+          "current_nbc": -0.016697078943252563,
+          "next_nbc": 0.27250486612319946,
+          "margin": -0.287532240152359,
+          "next_unsafe": false
+        },
+        {
+          "state": [
+            6.501501495397065,
+            1.5499999523162842
+          ],
+          "next_state": [
+            6.424001717945089,
+            1.399999976158142
+          ],
+          "current_nbc": -0.016697078943252563,
+          "next_nbc": 0.27250486612319946,
+          "margin": -0.287532240152359,
+          "next_unsafe": false
+        },
+        {
+          "state": [
+            6.501501495397065,
+            1.5499999523162842
+          ],
+          "next_state": [
+            6.424001717945089,
+            1.399999976158142
+          ],
+          "current_nbc": -0.016697078943252563,
+          "next_nbc": 0.27250486612319946,
+          "margin": -0.287532240152359,
+          "next_unsafe": false
+        },
+        {
+          "state": [
+            6.501501495397065,
+            1.5499999523162842
+          ],
+          "next_state": [
+            6.424001717945089,
+            1.399999976158142
+          ],
+          "current_nbc": -0.016697078943252563,
+          "next_nbc": 0.27250486612319946,
+          "margin": -0.287532240152359,
+          "next_unsafe": false
+        },
+        {
+          "state": [
+            6.501501495397065,
+            1.5499999523162842
+          ],
+          "next_state": [
+            6.424001717945089,
+            1.399999976158142
+          ],
+          "current_nbc": -0.016697078943252563,
+          "next_nbc": 0.27250486612319946,
+          "margin": -0.287532240152359,
+          "next_unsafe": false
+        }
+      ]
+    }
+  },
+  "region_checks": {
+    "initial_states": 1681,
+    "initial_max": -0.3363012671470642,
+    "initial_raw_violations": 0,
+    "initial_margin_violations": 0,
+    "unsafe_states": 1681,
+    "unsafe_min": 0.05986284464597702,
+    "unsafe_raw_violations": 0,
+    "unsafe_margin_violations": 0
+  },
+  "source_files_unchanged": true,
+  "checkpoint": "results/environment_nbc_20261014_001/02_signed_nbc_hard_tail/nbc.pt",
+  "checkpoint_sha256": "5bfa966a6309069caf2b4927cf09023a5cae737170197016a2a0dea65071b42c",
+  "safety_certificate": false,
+  "runtime_seconds": 104.74075200082734
+}

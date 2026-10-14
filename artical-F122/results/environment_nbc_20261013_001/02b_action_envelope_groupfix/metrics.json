@@ -1,0 +1,135 @@
+{
+  "experiment": "empirical_environment_action_hull_noise_IBP_v1",
+  "status": "sampled_environment_envelope_pass",
+  "training_run": false,
+  "test_used": false,
+  "source_hashes": {
+    "barrier": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+    "actor": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+    "diagnostic": "a537327f6ee4bfe56dadefb13e51df59a7c182588c01a987bc02b1ec37b92e8b",
+    "script": "f0c3bf33290efeaf6ee4591b2f0dfc425c5e6bc746b337130e9d8414354f53b4",
+    "train_pairs": "8c3b1fc016b186e224781235b6e3b3f8835f8b5b32c292b32da5746631bf4d68",
+    "validation_pairs": "7eb2b3ffc723911d88d09e7f3c2bb9d552b23aca727136bab638ee8506bc07be"
+  },
+  "results": {
+    "train": {
+      "unique_matched_states": 61860,
+      "band_states": 337,
+      "remaining": 0,
+      "min_lower_margin": 0.7639194816180073,
+      "rounds": [
+        {
+          "bins": 10,
+          "evaluated_states": 337,
+          "remaining_nonpositive": 24,
+          "min_lower_margin": -0.09532595343414485,
+          "max_action_width": 0.04020977020263672,
+          "max_successor_speed_width": 0.001999747753143044,
+          "mean_out_of_domain_noise_cell_fraction": 0.12433234421364985
+        },
+        {
+          "bins": 20,
+          "evaluated_states": 24,
+          "remaining_nonpositive": 0,
+          "min_lower_margin": 0.7639194816180073,
+          "max_action_width": 0.04020977020263672,
+          "max_successor_speed_width": 0.0,
+          "mean_out_of_domain_noise_cell_fraction": 0.55
+        }
+      ],
+      "worst": {
+        "state": [
+          9.89989948272705,
+          2.950000047683716
+        ],
+        "action_interval": [
+          -2.749074697494507,
+          -2.713463306427002
+        ],
+        "lower_margin": 0.7639194816180073,
+        "bins": 20
+      },
+      "appearances": [
+        "low_sun|220,220,220",
+        "low_sun|255,0,0",
+        "low_sun|40,80,160",
+        "original|220,220,220",
+        "original|255,0,0",
+        "original|40,80,160",
+        "overcast|220,220,220",
+        "overcast|255,0,0",
+        "overcast|40,80,160",
+        "rain|220,220,220",
+        "rain|255,0,0",
+        "rain|40,80,160"
+      ],
+      "all_12_appearances_per_state": true,
+      "observations_per_state_range": [
+        12,
+        12
+      ],
+      "repeated_observations_retained": true
+    },
+    "validation": {
+      "unique_matched_states": 24480,
+      "band_states": 109,
+      "remaining": 0,
+      "min_lower_margin": 2.0596132495716013,
+      "rounds": [
+        {
+          "bins": 10,
+          "evaluated_states": 109,
+          "remaining_nonpositive": 0,
+          "min_lower_margin": 2.0596132495716013,
+          "max_action_width": 0.17079710960388184,
+          "max_successor_speed_width": 0.0,
+          "mean_out_of_domain_noise_cell_fraction": 0.10458715596330274
+        }
+      ],
+      "worst": {
+        "state": [
+          10.042041778564453,
+          2.9000000953674316
+        ],
+        "action_interval": [
+          -2.851824998855591,
+          -2.706392526626587
+        ],
+        "lower_margin": 2.0596132495716013,
+        "bins": 10
+      },
+      "appearances": [
+        "low_sun|220,220,220",
+        "low_sun|255,0,0",
+        "low_sun|40,80,160",
+        "original|220,220,220",
+        "original|255,0,0",
+        "original|40,80,160",
+        "overcast|220,220,220",
+        "overcast|255,0,0",
+        "overcast|40,80,160",
+        "rain|220,220,220",
+        "rain|255,0,0",
+        "rain|40,80,160"
+      ],
+      "all_12_appearances_per_state": true,
+      "observations_per_state_range": [
+        12,
+        24
+      ],
+      "repeated_observations_retained": true
+    }
+  },
+  "resolutions": [
+    10,
+    20,
+    40,
+    80
+  ],
+  "scope": "fixed original legacy band; empirical 12-appearance action hull at exact recorded states",
+  "meaning": "bounds all actions inside the observed hull and original uniform noise at these states; no continuous-state or unseen-environment claim",
+  "arithmetic": "float64 interval propagation with float32 successor input padding; not outward-rounded formal arithmetic",
+  "original_noise_assumption": "uniform factor .05 retained; not independently established as physical process noise",
+  "source_models_unchanged": true,
+  "runtime_seconds": 4.277820740127936
+}

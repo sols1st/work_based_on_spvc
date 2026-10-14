@@ -1,0 +1,140 @@
+{
+  "status": "NBC_single_step_component_implemented_validation_not_passed",
+  "policy_changed": false,
+  "multi_step_implemented": false,
+  "PPO_safety_feedback_implemented": false,
+  "safety_certificate": false,
+  "candidate_selection": "Neither replaces the SPVC baseline; hard-tail is not accepted as a safety improvement because validation sign escapes and worst margin deteriorate.",
+  "rounds": {
+    "01_signed_nbc_mean": {
+      "metrics_sha256": "1fcfef3210cf4a38c75d989b22ddd927c3520b0889c19d1fa2c972e4a2809817",
+      "status": "development_nbc_constraints_violated",
+      "checkpoint_sha256": "c88a5355be40909f2a01e005d3e50414c120cd5d6746f4934ba5850d0bbdeebf",
+      "runtime_seconds": 158.04977667005733,
+      "regions": {
+        "initial_states": 1681,
+        "initial_max": -0.35473376512527466,
+        "initial_raw_violations": 0,
+        "initial_margin_violations": 0,
+        "unsafe_states": 1681,
+        "unsafe_min": 0.036530956625938416,
+        "unsafe_raw_violations": 0,
+        "unsafe_margin_violations": 0
+      },
+      "results": {
+        "train": {
+          "all": {
+            "pairs": 742320,
+            "raw_invariance_violations": 246,
+            "raw_invariance_violation_rate": 0.000331393469123828,
+            "training_margin_violations": 1647,
+            "min_invariance_margin": -0.022384613752365112,
+            "mean_invariance_margin": 0.036550264805555344,
+            "sign_escapes": 6,
+            "unsafe_successors": 10629
+          },
+          "candidate_region": {
+            "pairs": 430032,
+            "raw_invariance_violations": 243,
+            "raw_invariance_violation_rate": 0.0005650742270342672,
+            "training_margin_violations": 1371,
+            "min_invariance_margin": -0.022384613752365112,
+            "mean_invariance_margin": 0.03133993223309517,
+            "sign_escapes": 6,
+            "unsafe_successors": 0
+          },
+          "candidate_region_fraction": 0.5793081150986098
+        },
+        "validation": {
+          "all": {
+            "pairs": 294480,
+            "raw_invariance_violations": 13863,
+            "raw_invariance_violation_rate": 0.047076202118989406,
+            "training_margin_violations": 20342,
+            "min_invariance_margin": -0.1808711439371109,
+            "mean_invariance_margin": 0.034686651080846786,
+            "sign_escapes": 1009,
+            "unsafe_successors": 0
+          },
+          "candidate_region": {
+            "pairs": 158532,
+            "raw_invariance_violations": 9392,
+            "raw_invariance_violation_rate": 0.059243559659879395,
+            "training_margin_violations": 11255,
+            "min_invariance_margin": -0.1677057445049286,
+            "mean_invariance_margin": 0.028579801321029663,
+            "sign_escapes": 1009,
+            "unsafe_successors": 0
+          },
+          "candidate_region_fraction": 0.5383455582722086
+        }
+      },
+      "source_files_unchanged": true
+    },
+    "02_signed_nbc_hard_tail": {
+      "metrics_sha256": "afb91fb2790f80a1a26a47e87d9ddc181e54ff5fdc7f92ee397b3980b46e5682",
+      "status": "development_nbc_constraints_violated",
+      "checkpoint_sha256": "5bfa966a6309069caf2b4927cf09023a5cae737170197016a2a0dea65071b42c",
+      "runtime_seconds": 104.74075200082734,
+      "regions": {
+        "initial_states": 1681,
+        "initial_max": -0.3363012671470642,
+        "initial_raw_violations": 0,
+        "initial_margin_violations": 0,
+        "unsafe_states": 1681,
+        "unsafe_min": 0.05986284464597702,
+        "unsafe_raw_violations": 0,
+        "unsafe_margin_violations": 0
+      },
+      "results": {
+        "train": {
+          "all": {
+            "pairs": 742320,
+            "raw_invariance_violations": 21,
+            "raw_invariance_violation_rate": 0.000028289686388619465,
+            "training_margin_violations": 100,
+            "min_invariance_margin": -0.022439002990722656,
+            "mean_invariance_margin": 0.04379609599709511,
+            "sign_escapes": 0,
+            "unsafe_successors": 10629
+          },
+          "candidate_region": {
+            "pairs": 396300,
+            "raw_invariance_violations": 9,
+            "raw_invariance_violation_rate": 0.00002271006813020439,
+            "training_margin_violations": 41,
+            "min_invariance_margin": -0.022439002990722656,
+            "mean_invariance_margin": 0.034925106912851334,
+            "sign_escapes": 0,
+            "unsafe_successors": 0
+          },
+          "candidate_region_fraction": 0.5338667959909473
+        },
+        "validation": {
+          "all": {
+            "pairs": 294480,
+            "raw_invariance_violations": 13001,
+            "raw_invariance_violation_rate": 0.04414900842162456,
+            "training_margin_violations": 19039,
+            "min_invariance_margin": -0.287532240152359,
+            "mean_invariance_margin": 0.04005378484725952,
+            "sign_escapes": 2324,
+            "unsafe_successors": 0
+          },
+          "candidate_region": {
+            "pairs": 154260,
+            "raw_invariance_violations": 8690,
+            "raw_invariance_violation_rate": 0.0563334629845715,
+            "training_margin_violations": 13773,
+            "min_invariance_margin": -0.287532240152359,
+            "mean_invariance_margin": 0.02660384215414524,
+            "sign_escapes": 2324,
+            "unsafe_successors": 0
+          },
+          "candidate_region_fraction": 0.523838630806846
+        }
+      },
+      "source_files_unchanged": true
+    }
+  }
+}

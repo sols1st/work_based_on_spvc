@@ -1,0 +1,264 @@
+[
+  {
+    "rollout": 1,
+    "timesteps": 2048,
+    "sampling_log_prob_max_error": 1.9073486328125e-06,
+    "raw_safety_violation_mean": 0.021939918398857117,
+    "positive_safety_samples": 590,
+    "safety_coefficient": 0.05109699591994286,
+    "actor_safety_gradient_norm": 0.018875092267990112,
+    "actor_parameter_max_drift": 0.0002752766013145447,
+    "optimizer_steps": 32,
+    "approx_kl_max": 0.00020685698837041855,
+    "nbc_training_loss": 0.010186824947595596,
+    "lookup_gap_mean_m": 0.05047326534986496,
+    "lookup_gap_max_m": 0.372182697057724,
+    "terminated_episodes": 27,
+    "timeout_episodes": 0,
+    "safety_feedback": true,
+    "nbc_retention": {
+      "accepted": false,
+      "rejection_reasons": [
+        "old_hinge_mean_increased"
+      ],
+      "proposed": {
+        "initial_max": -0.3307485282421112,
+        "unsafe_min": 0.03821390122175217,
+        "initial_margin_violations": 0,
+        "unsafe_margin_violations": 0,
+        "initial_sign_violations": 0,
+        "unsafe_sign_violations": 0,
+        "old_hinge_mean": 1.6942507500061765e-05,
+        "old_raw_violations": 7,
+        "old_sign_escapes": 1
+      },
+      "kept": {
+        "initial_max": -0.35473382472991943,
+        "unsafe_min": 0.03653060644865036,
+        "initial_margin_violations": 0,
+        "unsafe_margin_violations": 0,
+        "initial_sign_violations": 0,
+        "unsafe_sign_violations": 0,
+        "old_hinge_mean": 1.1282998457318172e-05,
+        "old_raw_violations": 7,
+        "old_sign_escapes": 1
+      },
+      "optimized_loss": 0.010186824947595596,
+      "optimizer_steps": 10,
+      "actor_rollback": false,
+      "check_level": "finite train-only retention check, NOT continuous safety"
+    },
+    "multistep_windows": {
+      "barrier_steps": 5,
+      "valid_windows_per_horizon": [
+        2048,
+        2020,
+        1992,
+        1964,
+        1936
+      ],
+      "full_horizon_starts": 1936,
+      "partial_starts": 112,
+      "single_positive": 355,
+      "multi_positive": 590,
+      "additional_positive": 235
+    }
+  },
+  {
+    "rollout": 2,
+    "timesteps": 4096,
+    "sampling_log_prob_max_error": 1.9073486328125e-06,
+    "raw_safety_violation_mean": 0.02074979990720749,
+    "positive_safety_samples": 577,
+    "safety_coefficient": 0.05213448591530323,
+    "actor_safety_gradient_norm": 0.05420100688934326,
+    "actor_parameter_max_drift": 0.00019294023513793945,
+    "optimizer_steps": 32,
+    "approx_kl_max": 6.785336881875992e-05,
+    "nbc_training_loss": 0.009633272886276245,
+    "lookup_gap_mean_m": 0.05029134452342987,
+    "lookup_gap_max_m": 0.37796780467033386,
+    "terminated_episodes": 27,
+    "timeout_episodes": 0,
+    "safety_feedback": true,
+    "nbc_retention": {
+      "accepted": false,
+      "rejection_reasons": [
+        "old_hinge_mean_increased",
+        "old_raw_violations_increased"
+      ],
+      "proposed": {
+        "initial_max": -0.33152464032173157,
+        "unsafe_min": 0.040850766003131866,
+        "initial_margin_violations": 0,
+        "unsafe_margin_violations": 0,
+        "initial_sign_violations": 0,
+        "unsafe_sign_violations": 0,
+        "old_hinge_mean": 1.7702195691526867e-05,
+        "old_raw_violations": 8,
+        "old_sign_escapes": 1
+      },
+      "kept": {
+        "initial_max": -0.35473382472991943,
+        "unsafe_min": 0.03653060644865036,
+        "initial_margin_violations": 0,
+        "unsafe_margin_violations": 0,
+        "initial_sign_violations": 0,
+        "unsafe_sign_violations": 0,
+        "old_hinge_mean": 1.1282998457318172e-05,
+        "old_raw_violations": 7,
+        "old_sign_escapes": 1
+      },
+      "optimized_loss": 0.009633272886276245,
+      "optimizer_steps": 10,
+      "actor_rollback": false,
+      "check_level": "finite train-only retention check, NOT continuous safety"
+    },
+    "multistep_windows": {
+      "barrier_steps": 5,
+      "valid_windows_per_horizon": [
+        2048,
+        2020,
+        1992,
+        1964,
+        1936
+      ],
+      "full_horizon_starts": 1936,
+      "partial_starts": 112,
+      "single_positive": 342,
+      "multi_positive": 577,
+      "additional_positive": 235
+    }
+  },
+  {
+    "rollout": 3,
+    "timesteps": 6144,
+    "sampling_log_prob_max_error": 1.9073486328125e-06,
+    "raw_safety_violation_mean": 0.021013181656599045,
+    "positive_safety_samples": 547,
+    "safety_coefficient": 0.053185144998133184,
+    "actor_safety_gradient_norm": 0.05830836296081543,
+    "actor_parameter_max_drift": 0.0002652853727340698,
+    "optimizer_steps": 32,
+    "approx_kl_max": 0.00010631978511810303,
+    "nbc_training_loss": 0.009893517941236496,
+    "lookup_gap_mean_m": 0.05043145269155502,
+    "lookup_gap_max_m": 0.376994788646698,
+    "terminated_episodes": 28,
+    "timeout_episodes": 0,
+    "safety_feedback": true,
+    "nbc_retention": {
+      "accepted": false,
+      "rejection_reasons": [
+        "old_hinge_mean_increased",
+        "old_raw_violations_increased"
+      ],
+      "proposed": {
+        "initial_max": -0.3290503919124603,
+        "unsafe_min": 0.043556809425354004,
+        "initial_margin_violations": 0,
+        "unsafe_margin_violations": 0,
+        "initial_sign_violations": 0,
+        "unsafe_sign_violations": 0,
+        "old_hinge_mean": 1.898448681458831e-05,
+        "old_raw_violations": 8,
+        "old_sign_escapes": 1
+      },
+      "kept": {
+        "initial_max": -0.35473382472991943,
+        "unsafe_min": 0.03653060644865036,
+        "initial_margin_violations": 0,
+        "unsafe_margin_violations": 0,
+        "initial_sign_violations": 0,
+        "unsafe_sign_violations": 0,
+        "old_hinge_mean": 1.1282998457318172e-05,
+        "old_raw_violations": 7,
+        "old_sign_escapes": 1
+      },
+      "optimized_loss": 0.009893517941236496,
+      "optimizer_steps": 10,
+      "actor_rollback": false,
+      "check_level": "finite train-only retention check, NOT continuous safety"
+    },
+    "multistep_windows": {
+      "barrier_steps": 5,
+      "valid_windows_per_horizon": [
+        2048,
+        2019,
+        1990,
+        1961,
+        1932
+      ],
+      "full_horizon_starts": 1932,
+      "partial_starts": 116,
+      "single_positive": 330,
+      "multi_positive": 547,
+      "additional_positive": 217
+    }
+  },
+  {
+    "rollout": 4,
+    "timesteps": 8192,
+    "sampling_log_prob_max_error": 2.384185791015625e-06,
+    "raw_safety_violation_mean": 0.019767140969634056,
+    "positive_safety_samples": 597,
+    "safety_coefficient": 0.054173502046614884,
+    "actor_safety_gradient_norm": 0.09512026607990265,
+    "actor_parameter_max_drift": 0.0003454238176345825,
+    "optimizer_steps": 32,
+    "approx_kl_max": 0.00021182140335440636,
+    "nbc_training_loss": 0.009274044074118137,
+    "lookup_gap_mean_m": 0.049879252910614014,
+    "lookup_gap_max_m": 0.3781050145626068,
+    "terminated_episodes": 27,
+    "timeout_episodes": 0,
+    "safety_feedback": true,
+    "nbc_retention": {
+      "accepted": false,
+      "rejection_reasons": [
+        "old_hinge_mean_increased"
+      ],
+      "proposed": {
+        "initial_max": -0.3318604826927185,
+        "unsafe_min": 0.03489193320274353,
+        "initial_margin_violations": 0,
+        "unsafe_margin_violations": 0,
+        "initial_sign_violations": 0,
+        "unsafe_sign_violations": 0,
+        "old_hinge_mean": 1.3783769645669963e-05,
+        "old_raw_violations": 7,
+        "old_sign_escapes": 1
+      },
+      "kept": {
+        "initial_max": -0.35473382472991943,
+        "unsafe_min": 0.03653060644865036,
+        "initial_margin_violations": 0,
+        "unsafe_margin_violations": 0,
+        "initial_sign_violations": 0,
+        "unsafe_sign_violations": 0,
+        "old_hinge_mean": 1.1282998457318172e-05,
+        "old_raw_violations": 7,
+        "old_sign_escapes": 1
+      },
+      "optimized_loss": 0.009274044074118137,
+      "optimizer_steps": 10,
+      "actor_rollback": false,
+      "check_level": "finite train-only retention check, NOT continuous safety"
+    },
+    "multistep_windows": {
+      "barrier_steps": 5,
+      "valid_windows_per_horizon": [
+        2048,
+        2020,
+        1992,
+        1964,
+        1936
+      ],
+      "full_horizon_starts": 1936,
+      "partial_starts": 112,
+      "single_positive": 349,
+      "multi_positive": 597,
+      "additional_positive": 248
+    }
+  }
+]

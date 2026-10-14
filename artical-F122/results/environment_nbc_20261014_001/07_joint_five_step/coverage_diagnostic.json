@@ -1,0 +1,50 @@
+{
+  "scope": "coarse occupancy diagnostic, not causal proof or verification coverage",
+  "bin_width_distance_m": 0.25,
+  "bin_width_speed_mps": 0.25,
+  "training_steps": 8192,
+  "visited_bins": 91,
+  "validation_pairs": 294480,
+  "validation_pairs_in_unvisited_bins": 247632,
+  "violations": 14617,
+  "violations_in_unvisited_bins": 4206,
+  "inside_c_violations": 9809,
+  "inside_c_violations_in_unvisited_bins": 2077,
+  "worst": [
+    {
+      "distance_m": 7.677677631378174,
+      "speed_mps": 3,
+      "margin": -0.13075026869773865,
+      "current_c": 0.09350153803825378,
+      "visited_bin": true
+    },
+    {
+      "distance_m": 6.501501560211182,
+      "speed_mps": 1.5499999523162842,
+      "margin": -0.12367258220911026,
+      "current_c": -0.02333444356918335,
+      "visited_bin": true
+    },
+    {
+      "distance_m": 6.501501560211182,
+      "speed_mps": 1.5499999523162842,
+      "margin": -0.12367258220911026,
+      "current_c": -0.02333444356918335,
+      "visited_bin": true
+    },
+    {
+      "distance_m": 6.501501560211182,
+      "speed_mps": 1.5499999523162842,
+      "margin": -0.12367258220911026,
+      "current_c": -0.02333444356918335,
+      "visited_bin": true
+    },
+    {
+      "distance_m": 6.501501560211182,
+      "speed_mps": 1.5499999523162842,
+      "margin": -0.12367258220911026,
+      "current_c": -0.02333444356918335,
+      "visited_bin": true
+    }
+  ]
+}

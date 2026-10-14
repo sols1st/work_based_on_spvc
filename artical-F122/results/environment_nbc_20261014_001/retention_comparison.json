@@ -1,0 +1,116 @@
+{
+  "experiment": "NBC retention plus reward-only PPO control",
+  "safety_certificate": false,
+  "scope": "development replay, fixed initial NBC matched checks; not CARLA online",
+  "same_budget_steps": 8192,
+  "same_seed": 7,
+  "remote_tensor_audit": {
+    "initial_full_policy_identical": true,
+    "first_sample_batch_identical": true
+  },
+  "runs": {
+    "03_joint_replay_pilot": {
+      "metrics_sha256": "3a9566850fe9e36ae32a0c8a8c51f71cf94610812e82400df4010f4cdc1f796c",
+      "source_files_unchanged": true,
+      "runtime_seconds": 15.56576481112279,
+      "evaluation": {
+        "episodes": 108,
+        "counts": {
+          "success": 108
+        },
+        "success_rate": 1,
+        "unsafe_rate": 0,
+        "timeout_rate": 0,
+        "mean_return": 20.938535815517692,
+        "mean_steps": 77.28703703703704
+      },
+      "matched": {
+        "pairs": 294480,
+        "frozen_initial_nbc_violations": 14616,
+        "frozen_initial_nbc_escapes": 1059,
+        "image_next_unsafe": 0,
+        "q_next_unsafe": 0,
+        "dual_path_action_mae": 0.12023989709781843,
+        "dual_path_action_max": 4.803927898406982,
+        "nearest_lookup_used": false,
+        "task_episode_guarantee": false
+      },
+      "final_unsafe_sign_errors": 16,
+      "training_terminal_outcomes": {
+        "unsafe": 15,
+        "success": 94
+      },
+      "retention_accepted": null,
+      "retention_attempts": null
+    },
+    "04_joint_retained": {
+      "metrics_sha256": "4ec193e00a96db36424f515d4981412b00c79423fb114357491f61021e532175",
+      "source_files_unchanged": true,
+      "runtime_seconds": 15.782763594062999,
+      "evaluation": {
+        "episodes": 108,
+        "counts": {
+          "success": 108
+        },
+        "success_rate": 1,
+        "unsafe_rate": 0,
+        "timeout_rate": 0,
+        "mean_return": 20.938307157831648,
+        "mean_steps": 77.23148148148148
+      },
+      "matched": {
+        "pairs": 294480,
+        "image_next_unsafe": 0,
+        "q_next_unsafe": 0,
+        "dual_path_action_mae": 0.12027916686750566,
+        "dual_path_action_max": 4.789752006530762,
+        "nearest_lookup_used": false,
+        "task_episode_guarantee": false,
+        "frozen_initial_nbc_violations": 14583,
+        "frozen_initial_nbc_escapes": 1056
+      },
+      "final_unsafe_sign_errors": 0,
+      "training_terminal_outcomes": {
+        "unsafe": 13,
+        "success": 96
+      },
+      "retention_accepted": 0,
+      "retention_attempts": 4
+    },
+    "05_reward_only_control": {
+      "metrics_sha256": "f668165b43fae8f685a1a3369e7ca5325e2a62f50dd30edad7e5943c7b557c63",
+      "source_files_unchanged": true,
+      "runtime_seconds": 15.935428180964664,
+      "evaluation": {
+        "episodes": 108,
+        "counts": {
+          "success": 108
+        },
+        "success_rate": 1,
+        "unsafe_rate": 0,
+        "timeout_rate": 0,
+        "mean_return": 20.938892322132464,
+        "mean_steps": 77.13888888888889
+      },
+      "matched": {
+        "pairs": 294480,
+        "image_next_unsafe": 0,
+        "q_next_unsafe": 0,
+        "dual_path_action_mae": 0.12041272446209567,
+        "dual_path_action_max": 4.782761096954346,
+        "nearest_lookup_used": false,
+        "task_episode_guarantee": false,
+        "frozen_initial_nbc_violations": 14508,
+        "frozen_initial_nbc_escapes": 1049
+      },
+      "final_unsafe_sign_errors": 0,
+      "training_terminal_outcomes": {
+        "unsafe": 14,
+        "success": 95
+      },
+      "retention_accepted": 0,
+      "retention_attempts": 4
+    }
+  },
+  "conclusion": "Retention gate prevented unsafe-label regression by rejecting all NBC proposals; no accepted NBC adaptation, no demonstrated safety improvement over original or reward-only PPO."
+}

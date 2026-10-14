@@ -1,0 +1,194 @@
+{
+  "experiment": "registered_action_range_noise_IBP_v3",
+  "status": "sampled_full_actuator_unresolved",
+  "training_run": false,
+  "test_used": false,
+  "source_hashes": {
+    "barrier": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+    "actor": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+    "diagnostic": "a537327f6ee4bfe56dadefb13e51df59a7c182588c01a987bc02b1ec37b92e8b",
+    "script": "964243e7161c91d54f0207cf643fe31f4e58e867743c6461fae0d8af1f7c6ba0",
+    "train_pairs": "8c3b1fc016b186e224781235b6e3b3f8835f8b5b32c292b32da5746631bf4d68",
+    "validation_pairs": "7eb2b3ffc723911d88d09e7f3c2bb9d552b23aca727136bab638ee8506bc07be"
+  },
+  "results": {
+    "train": {
+      "unique_matched_states": 61860,
+      "band_states": 337,
+      "remaining": 337,
+      "min_lower_margin": -4.870091482935258,
+      "rounds": [
+        {
+          "bins": 20,
+          "evaluated_states": 337,
+          "remaining_nonpositive": 337,
+          "noise_cells_per_state": 400,
+          "action_subintervals": 32,
+          "min_lower_margin": -5.258772350880008,
+          "max_action_width": 6.0,
+          "max_successor_speed_width": 0.2999999999999998,
+          "mean_out_of_domain_noise_cell_fraction": 0.11602373887240354
+        },
+        {
+          "bins": 40,
+          "evaluated_states": 337,
+          "remaining_nonpositive": 337,
+          "noise_cells_per_state": 1600,
+          "action_subintervals": 32,
+          "min_lower_margin": -5.001639824080975,
+          "max_action_width": 6.0,
+          "max_successor_speed_width": 0.2999999999999998,
+          "mean_out_of_domain_noise_cell_fraction": 0.10890207715133532
+        },
+        {
+          "bins": 80,
+          "evaluated_states": 337,
+          "remaining_nonpositive": 337,
+          "noise_cells_per_state": 6400,
+          "action_subintervals": 32,
+          "min_lower_margin": -4.870091482935258,
+          "max_action_width": 6.0,
+          "max_successor_speed_width": 0.2999999999999998,
+          "mean_out_of_domain_noise_cell_fraction": 0.10541543026706231
+        }
+      ],
+      "worst": {
+        "state": [
+          10.408408164978027,
+          2.8499999046325684
+        ],
+        "action_interval": [
+          -3.0,
+          3.0
+        ],
+        "lower_margin": -4.870091482935258,
+        "bins": 80
+      },
+      "appearances": [
+        "low_sun|220,220,220",
+        "low_sun|255,0,0",
+        "low_sun|40,80,160",
+        "original|220,220,220",
+        "original|255,0,0",
+        "original|40,80,160",
+        "overcast|220,220,220",
+        "overcast|255,0,0",
+        "overcast|40,80,160",
+        "rain|220,220,220",
+        "rain|255,0,0",
+        "rain|40,80,160"
+      ],
+      "all_12_appearances_per_state": true,
+      "observations_per_state_range": [
+        12,
+        12
+      ],
+      "repeated_observations_retained": true
+    },
+    "validation": {
+      "unique_matched_states": 24480,
+      "band_states": 109,
+      "remaining": 109,
+      "min_lower_margin": -4.834633838626875,
+      "rounds": [
+        {
+          "bins": 20,
+          "evaluated_states": 109,
+          "remaining_nonpositive": 109,
+          "noise_cells_per_state": 400,
+          "action_subintervals": 32,
+          "min_lower_margin": -5.233256335642402,
+          "max_action_width": 6.0,
+          "max_successor_speed_width": 0.2999999999999998,
+          "mean_out_of_domain_noise_cell_fraction": 0.09587155963302753
+        },
+        {
+          "bins": 40,
+          "evaluated_states": 109,
+          "remaining_nonpositive": 109,
+          "noise_cells_per_state": 1600,
+          "action_subintervals": 32,
+          "min_lower_margin": -4.969476611275319,
+          "max_action_width": 6.0,
+          "max_successor_speed_width": 0.2999999999999998,
+          "mean_out_of_domain_noise_cell_fraction": 0.09151376146788992
+        },
+        {
+          "bins": 80,
+          "evaluated_states": 109,
+          "remaining_nonpositive": 109,
+          "noise_cells_per_state": 6400,
+          "action_subintervals": 32,
+          "min_lower_margin": -4.834633838626875,
+          "max_action_width": 6.0,
+          "max_successor_speed_width": 0.2999999999999998,
+          "mean_out_of_domain_noise_cell_fraction": 0.0893348623853211
+        }
+      ],
+      "worst": {
+        "state": [
+          10.150150299072266,
+          2.9000000953674316
+        ],
+        "action_interval": [
+          -3.0,
+          3.0
+        ],
+        "lower_margin": -4.834633838626875,
+        "bins": 80
+      },
+      "appearances": [
+        "low_sun|220,220,220",
+        "low_sun|255,0,0",
+        "low_sun|40,80,160",
+        "original|220,220,220",
+        "original|255,0,0",
+        "original|40,80,160",
+        "overcast|220,220,220",
+        "overcast|255,0,0",
+        "overcast|40,80,160",
+        "rain|220,220,220",
+        "rain|255,0,0",
+        "rain|40,80,160"
+      ],
+      "all_12_appearances_per_state": true,
+      "observations_per_state_range": [
+        12,
+        24
+      ],
+      "repeated_observations_retained": true
+    }
+  },
+  "resolutions": [
+    20,
+    40,
+    80
+  ],
+  "scope": "fixed original legacy band; registered action range at exact recorded states",
+  "meaning": "finite-state sensitivity check under the registered action/noise model; no continuous-state or unseen-environment claim",
+  "arithmetic": "float64 interval propagation with float32 successor input padding; not outward-rounded formal arithmetic",
+  "original_noise_assumption": "uniform factor .05 is the legacy model, not independently established as physical process noise",
+  "action_source": "full-actuator",
+  "noise_model": "original-uniform",
+  "action_splits": 32,
+  "action_interval_aggregation": "maximum upper B bound across all action subintervals at each noise cell, then uniform noise average",
+  "full_actuator_scope": "includes every clipped image action at these exact states under the registered physics/noise model, not continuous-state or task-level safety",
+  "fixed_band": [
+    19.149779741466045,
+    20.141101837158203
+  ],
+  "noise_bounds_vt": [
+    [
+      -0.1728081226348877,
+      -0.15000000000000002
+    ],
+    [
+      0.1728081226348877,
+      0.15000000000000002
+    ]
+  ],
+  "original_backend_changed": false,
+  "zero_noise_scope": "analytic AEBS update only; does not assert zero CARLA/real-world dynamics error",
+  "source_models_unchanged": true,
+  "runtime_seconds": 8.064161947928369
+}
