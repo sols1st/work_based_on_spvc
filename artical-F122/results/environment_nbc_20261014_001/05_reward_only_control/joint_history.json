@@ -1,0 +1,206 @@
+[
+  {
+    "rollout": 1,
+    "timesteps": 2048,
+    "sampling_log_prob_max_error": 1.9073486328125e-06,
+    "raw_safety_violation_mean": 0.010363047011196613,
+    "positive_safety_samples": 355,
+    "safety_coefficient": 0.0,
+    "actor_safety_gradient_norm": 0.0,
+    "actor_parameter_max_drift": 0.00027295947074890137,
+    "optimizer_steps": 32,
+    "approx_kl_max": 0.00019838474690914154,
+    "nbc_training_loss": 0.0053927176631987095,
+    "lookup_gap_mean_m": 0.05047326534986496,
+    "lookup_gap_max_m": 0.372182697057724,
+    "terminated_episodes": 27,
+    "timeout_episodes": 0,
+    "safety_feedback": false,
+    "nbc_retention": {
+      "accepted": false,
+      "rejection_reasons": [
+        "old_hinge_mean_increased",
+        "old_raw_violations_increased"
+      ],
+      "proposed": {
+        "initial_max": -0.33462750911712646,
+        "unsafe_min": 0.09251795709133148,
+        "initial_margin_violations": 0,
+        "unsafe_margin_violations": 0,
+        "initial_sign_violations": 0,
+        "unsafe_sign_violations": 0,
+        "old_hinge_mean": 6.885942275403067e-05,
+        "old_raw_violations": 29,
+        "old_sign_escapes": 0
+      },
+      "kept": {
+        "initial_max": -0.35473382472991943,
+        "unsafe_min": 0.03653060644865036,
+        "initial_margin_violations": 0,
+        "unsafe_margin_violations": 0,
+        "initial_sign_violations": 0,
+        "unsafe_sign_violations": 0,
+        "old_hinge_mean": 1.1282998457318172e-05,
+        "old_raw_violations": 7,
+        "old_sign_escapes": 1
+      },
+      "optimized_loss": 0.0053927176631987095,
+      "optimizer_steps": 10,
+      "actor_rollback": false,
+      "check_level": "finite train-only retention check, NOT continuous safety"
+    }
+  },
+  {
+    "rollout": 2,
+    "timesteps": 4096,
+    "sampling_log_prob_max_error": 2.86102294921875e-06,
+    "raw_safety_violation_mean": 0.009848063811659813,
+    "positive_safety_samples": 347,
+    "safety_coefficient": 0.0,
+    "actor_safety_gradient_norm": 0.0,
+    "actor_parameter_max_drift": 0.00017867982387542725,
+    "optimizer_steps": 32,
+    "approx_kl_max": 3.480096347630024e-05,
+    "nbc_training_loss": 0.005135193467140198,
+    "lookup_gap_mean_m": 0.050286002457141876,
+    "lookup_gap_max_m": 0.37796780467033386,
+    "terminated_episodes": 27,
+    "timeout_episodes": 0,
+    "safety_feedback": false,
+    "nbc_retention": {
+      "accepted": false,
+      "rejection_reasons": [
+        "old_hinge_mean_increased",
+        "old_raw_violations_increased"
+      ],
+      "proposed": {
+        "initial_max": -0.3346637189388275,
+        "unsafe_min": 0.09350256621837616,
+        "initial_margin_violations": 0,
+        "unsafe_margin_violations": 0,
+        "initial_sign_violations": 0,
+        "unsafe_sign_violations": 0,
+        "old_hinge_mean": 6.861586007289588e-05,
+        "old_raw_violations": 28,
+        "old_sign_escapes": 0
+      },
+      "kept": {
+        "initial_max": -0.35473382472991943,
+        "unsafe_min": 0.03653060644865036,
+        "initial_margin_violations": 0,
+        "unsafe_margin_violations": 0,
+        "initial_sign_violations": 0,
+        "unsafe_sign_violations": 0,
+        "old_hinge_mean": 1.1282998457318172e-05,
+        "old_raw_violations": 7,
+        "old_sign_escapes": 1
+      },
+      "optimized_loss": 0.005135193467140198,
+      "optimizer_steps": 10,
+      "actor_rollback": false,
+      "check_level": "finite train-only retention check, NOT continuous safety"
+    }
+  },
+  {
+    "rollout": 3,
+    "timesteps": 6144,
+    "sampling_log_prob_max_error": 3.814697265625e-06,
+    "raw_safety_violation_mean": 0.01002985704690218,
+    "positive_safety_samples": 329,
+    "safety_coefficient": 0.0,
+    "actor_safety_gradient_norm": 0.0,
+    "actor_parameter_max_drift": 0.0003425478935241699,
+    "optimizer_steps": 32,
+    "approx_kl_max": 6.738048978149891e-05,
+    "nbc_training_loss": 0.005239237565547228,
+    "lookup_gap_mean_m": 0.05046168714761734,
+    "lookup_gap_max_m": 0.376994788646698,
+    "terminated_episodes": 28,
+    "timeout_episodes": 0,
+    "safety_feedback": false,
+    "nbc_retention": {
+      "accepted": false,
+      "rejection_reasons": [
+        "old_hinge_mean_increased",
+        "old_raw_violations_increased"
+      ],
+      "proposed": {
+        "initial_max": -0.332208514213562,
+        "unsafe_min": 0.09239152073860168,
+        "initial_margin_violations": 0,
+        "unsafe_margin_violations": 0,
+        "initial_sign_violations": 0,
+        "unsafe_sign_violations": 0,
+        "old_hinge_mean": 7.048236875561997e-05,
+        "old_raw_violations": 28,
+        "old_sign_escapes": 0
+      },
+      "kept": {
+        "initial_max": -0.35473382472991943,
+        "unsafe_min": 0.03653060644865036,
+        "initial_margin_violations": 0,
+        "unsafe_margin_violations": 0,
+        "initial_sign_violations": 0,
+        "unsafe_sign_violations": 0,
+        "old_hinge_mean": 1.1282998457318172e-05,
+        "old_raw_violations": 7,
+        "old_sign_escapes": 1
+      },
+      "optimized_loss": 0.005239237565547228,
+      "optimizer_steps": 10,
+      "actor_rollback": false,
+      "check_level": "finite train-only retention check, NOT continuous safety"
+    }
+  },
+  {
+    "rollout": 4,
+    "timesteps": 8192,
+    "sampling_log_prob_max_error": 1.9073486328125e-06,
+    "raw_safety_violation_mean": 0.00968149770051241,
+    "positive_safety_samples": 354,
+    "safety_coefficient": 0.0,
+    "actor_safety_gradient_norm": 0.0,
+    "actor_parameter_max_drift": 0.00028777122497558594,
+    "optimizer_steps": 32,
+    "approx_kl_max": 0.0001133396290242672,
+    "nbc_training_loss": 0.005092769395560026,
+    "lookup_gap_mean_m": 0.04991409182548523,
+    "lookup_gap_max_m": 0.3781050145626068,
+    "terminated_episodes": 27,
+    "timeout_episodes": 0,
+    "safety_feedback": false,
+    "nbc_retention": {
+      "accepted": false,
+      "rejection_reasons": [
+        "old_hinge_mean_increased",
+        "old_raw_violations_increased"
+      ],
+      "proposed": {
+        "initial_max": -0.3335348069667816,
+        "unsafe_min": 0.09185054153203964,
+        "initial_margin_violations": 0,
+        "unsafe_margin_violations": 0,
+        "initial_sign_violations": 0,
+        "unsafe_sign_violations": 0,
+        "old_hinge_mean": 6.656078767264262e-05,
+        "old_raw_violations": 27,
+        "old_sign_escapes": 0
+      },
+      "kept": {
+        "initial_max": -0.35473382472991943,
+        "unsafe_min": 0.03653060644865036,
+        "initial_margin_violations": 0,
+        "unsafe_margin_violations": 0,
+        "initial_sign_violations": 0,
+        "unsafe_sign_violations": 0,
+        "old_hinge_mean": 1.1282998457318172e-05,
+        "old_raw_violations": 7,
+        "old_sign_escapes": 1
+      },
+      "optimized_loss": 0.005092769395560026,
+      "optimizer_steps": 10,
+      "actor_rollback": false,
+      "check_level": "finite train-only retention check, NOT continuous safety"
+    }
+  }
+]

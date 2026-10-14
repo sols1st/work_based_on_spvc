@@ -1,0 +1,3920 @@
+{
+  "scope": "Read-only server metric/config index; summaries do not replace each original JSON",
+  "runs": {
+    "results/mvp/01_semantic/metrics.json": {
+      "sha256": "74ce37231cfaee06c12b395b5a6ffd53ff7614e8a2029893a41e39173ecdd89d",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_stage1",
+        "seed": 7,
+        "alpha": 0.05,
+        "device": "cuda",
+        "optimization_count": 192,
+        "validation_count": 48,
+        "distance_scale_m": 3.18272066116333,
+        "best_epoch": 226,
+        "runtime_seconds": 8.376733541488647,
+        "mvp_status": "reused_existing_seed7_checkpoint"
+      },
+      "result_keys": []
+    },
+    "results/mvp/02_controller/metrics.json": {
+      "sha256": "87cd6a5d4185fb9d45a93f875ec8bc42a30c9b1b7b2b9b05ac4bb2dba37846ba",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "robust_controller_stage2",
+        "seed": 7,
+        "timesteps": 20000,
+        "training_seconds": 931.9525473117828
+      },
+      "result_keys": []
+    },
+    "results/mvp/02_safety_filter/metrics.json": {
+      "sha256": "135057ece76f624d76443e57bfb7f1f1a00ff6f1f2277e9b82ac71bdddddc6ad",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "analytic_safety_filter_mvp",
+        "seed": 7,
+        "episodes": 200
+      },
+      "result_keys": []
+    },
+    "results/mvp/02_safety_filter_anti_stall_compare/metrics.json": {
+      "sha256": "7681ae1e17f580f53bbb9734daa605a1df5616f8f1fadfe19c6f88ebfee27fb2",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "safety_filter_fast_comparison",
+        "evaluation_semantics": "mutually_exclusive_terminal_outcomes_v2",
+        "seed": 7,
+        "episodes": 200
+      },
+      "result_keys": []
+    },
+    "results/mvp/02_safety_filter_fast_compare/metrics.json": {
+      "sha256": "7f80bf5a58b7b4bfd2dcb8b5909f063c10be020b771d4063ed72609779877a84",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "safety_filter_fast_comparison",
+        "evaluation_semantics": "mutually_exclusive_terminal_outcomes_v2",
+        "seed": 7,
+        "episodes": 200
+      },
+      "result_keys": []
+    },
+    "results/mvp/02_standalone_ppo_distilled/metrics.json": {
+      "sha256": "58800e1c875fbb6793d1bb73adf2691b0c8d2898910ffc8b63907547c89fb627",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "safety_filter_teacher_to_standalone_ppo",
+        "deployment_controller": "standalone_ppo_without_safety_filter",
+        "seed": 7,
+        "teacher": "results/mvp/02_safety_filter_anti_stall_compare/adaptive_anti_stall_filter.json",
+        "baseline": "Aebs/controller/best_model/best_model.zip",
+        "checkpoint": "results/mvp/02_standalone_ppo_distilled/standalone_ppo.zip",
+        "grid_size": 128,
+        "training_samples": 16384,
+        "epochs": 80,
+        "batch_size": 512,
+        "learning_rate": 0.0003,
+        "underbraking_weight": 4,
+        "low_speed_weight": 4,
+        "best_imitation_loss": 0.7478615418076515,
+        "training_seconds": 9.314560651779175
+      },
+      "result_keys": []
+    },
+    "results/mvp/02_standalone_ppo_distilled_v2/metrics.json": {
+      "sha256": "7f4b2012b0f2ee4dd34beacc185e80e06fffb68269a7ac82a129a15ad47356e1",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "safety_filter_teacher_to_standalone_ppo",
+        "deployment_controller": "standalone_ppo_without_safety_filter",
+        "seed": 7,
+        "teacher": "results/mvp/02_safety_filter_anti_stall_compare/adaptive_anti_stall_filter.json",
+        "baseline": "Aebs/controller/best_model/best_model.zip",
+        "checkpoint": "results/mvp/02_standalone_ppo_distilled_v2/standalone_ppo.zip",
+        "grid_size": 128,
+        "training_samples": 32768,
+        "epochs": 300,
+        "batch_size": 512,
+        "learning_rate": 0.0003,
+        "underbraking_weight": 2,
+        "low_speed_weight": 20,
+        "best_imitation_loss": 0.08139276539441198,
+        "training_seconds": 90.99723982810974
+      },
+      "result_keys": []
+    },
+    "results/mvp/03_domain_analysis/metrics.json": {
+      "sha256": "1437f6a5dae0f6ea0a18ac5d557ce32a2c4b17283047e0880404e0ab092faff7",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "aebs_certificate_domain_analysis",
+        "controller": "results/mvp/02_safety_filter/safety_filter.json",
+        "grid_size": 80,
+        "grid_states": 6400,
+        "max_steps": 400
+      },
+      "result_keys": []
+    },
+    "results/mvp/03_process_uncertainty/metrics.json": {
+      "sha256": "5260e1c1d48ac2131a1593ee533084dbcd877712f93c07dbeb9ec99da8ffe450",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "state_dependent_process_uncertainty_mvp",
+        "source": "deterministic_simulator_residual",
+        "seed": 7,
+        "bins": 4,
+        "states_per_cell": 256,
+        "cells": 16,
+        "min_count_per_cell": 256,
+        "max_count_per_cell": 256
+      },
+      "result_keys": []
+    },
+    "results/mvp/03_uncertainty/metrics.json": {
+      "sha256": "54b7faeaeb82373eaed8bbcde85a9c610acc38cd2f0265392f8e030f6b7b628d",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "state_dependent_uncertainty_mvp",
+        "seed": 7,
+        "bins": 4,
+        "states_per_cell": 256,
+        "errors_per_state": 16,
+        "cells": 16,
+        "min_count_per_cell": 4096,
+        "max_count_per_cell": 4096,
+        "runtime_seconds": 20.10048222541809
+      },
+      "result_keys": []
+    },
+    "results/mvp/04_grid_certificate_lp_standalone_ppo/metrics.json": {
+      "sha256": "04327cc0ab45263916d5516e8bf8f814ffa55409ff0e074797cc8fa5ef8dfc06",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "strengthened_grid_certificate_lp",
+        "certificate_level": "fixed_grid_bilinear_diagnostic",
+        "status": "infeasible",
+        "solver_status_code": 2,
+        "solver_message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is At lower/fixed bound)",
+        "controller": "results/mvp/02_standalone_ppo_distilled_v2/standalone_ppo.zip",
+        "semantic_checkpoint": "results/mvp/01_semantic/semantic_encoder.pt",
+        "uncertainty": "results/mvp/03_process_uncertainty/state_dependent_uncertainty.npz",
+        "grid_size": 80,
+        "state_variables": 6400,
+        "decrease_states": 4483,
+        "successor_candidates_per_state": 15,
+        "unsafe_successor_count": 0,
+        "states_with_unsafe_successor_count": 0,
+        "linear_constraints": 80045,
+        "excluded_terminal_states": 1120,
+        "excluded_unsafe_states": 797,
+        "excluded_inevitable_states": 269,
+        "runtime_seconds": 1.9557981491088867,
+        "interpretation": "A feasible result proves only the stated strengthened conditions on the fixed grid and bilinear table. It is not a continuous-state formal proof."
+      },
+      "result_keys": []
+    },
+    "results/mvp/04_robust_sbc/metrics.json": {
+      "sha256": "d56f221635931200c4a90bbdf64318b65896b8691b47aa2a070552075668310b",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "robust_sbc_mvp",
+        "seed": 7,
+        "controller": "Aebs/controller/best_model/best_model.zip",
+        "epochs": 150,
+        "train_states": 4096,
+        "batch_size": 512,
+        "learning_rate": 0.001,
+        "epsilon": 0.01,
+        "runtime_seconds": 369.20509791374207
+      },
+      "result_keys": []
+    },
+    "results/mvp/04_robust_sbc_complete_domain/metrics.json": {
+      "sha256": "155b9554524f79b6cba6064e11b22d227568b2960de0425de6fdf85137d6414b",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "robust_sbc_mvp",
+        "seed": 7,
+        "controller": "results/mvp/02_safety_filter/safety_filter.json",
+        "epochs": 150,
+        "train_states": 4096,
+        "effective_train_states": 9385,
+        "excluded_train_terminal_states": 248,
+        "excluded_train_unsafe_states": 863,
+        "batch_size": 512,
+        "learning_rate": 0.001,
+        "epsilon": 0.01,
+        "decrease_weight": 100,
+        "init_weight": 10,
+        "unsafe_weight": 10,
+        "square_output": true,
+        "region_warmup_epochs": 25,
+        "warmup_decrease_weight": 0,
+        "init_target": 1,
+        "unsafe_target": 10,
+        "include_verifier_grid_train": true,
+        "max_decrease_weight": 0,
+        "topk_decrease_weight": 0,
+        "topk_decrease_fraction": 0.1,
+        "initial_barrier": null
+      },
+      "result_keys": []
+    },
+    "results/mvp/04_robust_sbc_filtered_zero_process/metrics.json": {
+      "sha256": "546fc6158c10097abcfd600c9601980988e10136a9728cfff6830118d17c3dee",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "robust_sbc_mvp",
+        "seed": 7,
+        "controller": "results/mvp/02_safety_filter/safety_filter.json",
+        "epochs": 150,
+        "train_states": 4096,
+        "effective_train_states": 10416,
+        "batch_size": 512,
+        "learning_rate": 0.001,
+        "epsilon": 0.01,
+        "decrease_weight": 100,
+        "init_weight": 1,
+        "unsafe_weight": 1,
+        "square_output": false,
+        "region_warmup_epochs": 25,
+        "warmup_decrease_weight": 0,
+        "init_target": 1,
+        "unsafe_target": 10,
+        "include_verifier_grid_train": true,
+        "max_decrease_weight": 0,
+        "topk_decrease_weight": 0,
+        "topk_decrease_fraction": 0.1,
+        "initial_barrier": null,
+        "terminal_speed_threshold": 0,
+        "hard_case_count": 0
+      },
+      "result_keys": []
+    },
+    "results/mvp/04_robust_sbc_goal_guided/metrics.json": {
+      "sha256": "479091578ee90fe39e5eb2738c465df9b16338308fc5ec67a56d45e412eb4bb6",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "robust_sbc_mvp",
+        "seed": 7,
+        "controller": "results/mvp/02_safety_filter/safety_filter.json",
+        "epochs": 250,
+        "train_states": 4096,
+        "effective_train_states": 9405,
+        "excluded_train_terminal_states": 228,
+        "excluded_train_unsafe_states": 863,
+        "batch_size": 512,
+        "learning_rate": 0.0001,
+        "epsilon": 0.01,
+        "decrease_weight": 100,
+        "init_weight": 10,
+        "unsafe_weight": 10,
+        "square_output": true,
+        "region_warmup_epochs": 0,
+        "warmup_decrease_weight": 100,
+        "init_target": 1,
+        "unsafe_target": 10,
+        "goal_weight": 10,
+        "goal_target": 1,
+        "include_verifier_grid_train": true,
+        "max_decrease_weight": 0,
+        "topk_decrease_weight": 5
+      },
+      "result_keys": []
+    },
+    "results/mvp/04_robust_sbc_gridtrain_diag/metrics.json": {
+      "sha256": "9b34013ff8e1dec6db2ab289e5eed6762d0346b3b5923ca537843e9daad5a7f7",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "robust_sbc_mvp",
+        "seed": 7,
+        "controller": "Aebs/controller/best_model/best_model.zip",
+        "epochs": 150,
+        "train_states": 4096,
+        "effective_train_states": 10496,
+        "batch_size": 512,
+        "learning_rate": 0.001,
+        "epsilon": 0.01,
+        "decrease_weight": 100,
+        "init_weight": 1,
+        "unsafe_weight": 1,
+        "square_output": false,
+        "region_warmup_epochs": 25,
+        "warmup_decrease_weight": 0,
+        "init_target": 1,
+        "unsafe_target": 10,
+        "include_verifier_grid_train": true,
+        "runtime_seconds": 527.2975249290466
+      },
+      "result_keys": []
+    },
+    "results/mvp/04_robust_sbc_hardcase_maxloss/metrics.json": {
+      "sha256": "38650058cf43e32d40fb607dc23e35a830d1dd0803cc4f753b6a0723b0dd2033",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "robust_sbc_mvp",
+        "seed": 7,
+        "controller": "Aebs/controller/best_model/best_model.zip",
+        "epochs": 150,
+        "train_states": 4096,
+        "effective_train_states": 12544,
+        "batch_size": 512,
+        "learning_rate": 0.001,
+        "epsilon": 0.01,
+        "decrease_weight": 100,
+        "init_weight": 1,
+        "unsafe_weight": 1,
+        "square_output": false,
+        "region_warmup_epochs": 25,
+        "warmup_decrease_weight": 0,
+        "init_target": 1,
+        "unsafe_target": 10,
+        "include_verifier_grid_train": true,
+        "max_decrease_weight": 25,
+        "hard_case_count": 2048,
+        "hard_case_distance_m": 13.35,
+        "hard_case_speed": 3,
+        "hard_case_distance_radius_m": 0.8,
+        "hard_case_speed_radius": 0.2
+      },
+      "result_keys": []
+    },
+    "results/mvp/04_robust_sbc_low_speed_curriculum/metrics.json": {
+      "sha256": "2bdf36df10fb4a2398dc191047d431b05137246c7f6e06a1970ff0570123117e",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "robust_sbc_mvp",
+        "seed": 7,
+        "controller": "results/mvp/02_safety_filter/safety_filter.json",
+        "epochs": 300,
+        "train_states": 4096,
+        "effective_train_states": 7403,
+        "excluded_train_terminal_states": 1778,
+        "excluded_train_unsafe_states": 1315,
+        "excluded_train_inevitable_states": 452,
+        "batch_size": 512,
+        "learning_rate": 0.0001,
+        "epsilon": 0.001,
+        "decrease_weight": 100,
+        "init_weight": 10,
+        "unsafe_weight": 10,
+        "square_output": true,
+        "region_warmup_epochs": 0,
+        "warmup_decrease_weight": 100,
+        "init_target": 1,
+        "unsafe_target": 10,
+        "goal_weight": 0,
+        "goal_target": 1,
+        "enforce_goal_constraint": false,
+        "use_recoverable_domain": true
+      },
+      "result_keys": []
+    },
+    "results/mvp/04_robust_sbc_softplus_square/metrics.json": {
+      "sha256": "f9af85dc76f85a247a06d3b8cc199a11c7644f7d7bb0c747177fe4cfb86bd917",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "robust_sbc_mvp",
+        "seed": 7,
+        "controller": "results/mvp/02_safety_filter/safety_filter.json",
+        "epochs": 300,
+        "train_states": 4096,
+        "effective_train_states": 7403,
+        "excluded_train_terminal_states": 1778,
+        "excluded_train_unsafe_states": 1315,
+        "excluded_train_inevitable_states": 452,
+        "batch_size": 512,
+        "learning_rate": 0.001,
+        "epsilon": 0.001,
+        "decrease_weight": 100,
+        "init_weight": 10,
+        "unsafe_weight": 10,
+        "square_output": true,
+        "barrier_output_transform": "softplus_square",
+        "region_warmup_epochs": 25,
+        "warmup_decrease_weight": 0,
+        "init_target": 1,
+        "unsafe_target": 10,
+        "goal_weight": 0,
+        "goal_target": 1,
+        "enforce_goal_constraint": false
+      },
+      "result_keys": []
+    },
+    "results/mvp/04_robust_sbc_standalone_ppo/metrics.json": {
+      "sha256": "e0ba026a11c1951a7963e6e44df3c24e90565e641a6f7d62c5794672bca42092",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "robust_sbc_mvp",
+        "seed": 7,
+        "controller": "results/mvp/02_standalone_ppo_distilled_v2/standalone_ppo.zip",
+        "epochs": 300,
+        "train_states": 4096,
+        "effective_train_states": 7403,
+        "excluded_train_terminal_states": 1778,
+        "excluded_train_unsafe_states": 1315,
+        "excluded_train_inevitable_states": 452,
+        "batch_size": 512,
+        "learning_rate": 0.001,
+        "epsilon": 0,
+        "decrease_weight": 100,
+        "init_weight": 10,
+        "unsafe_weight": 10,
+        "square_output": false,
+        "barrier_output_transform": "softplus",
+        "region_warmup_epochs": 25,
+        "warmup_decrease_weight": 0,
+        "init_target": 1,
+        "unsafe_target": 10,
+        "goal_weight": 0,
+        "goal_target": 1,
+        "enforce_goal_constraint": false
+      },
+      "result_keys": []
+    },
+    "results/mvp/04_robust_sbc_terminal_value/metrics.json": {
+      "sha256": "0d58dd05c25ea02e053c555f5048c8784e7a10cebfe77e137b71247f311bb8c1",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "robust_sbc_mvp",
+        "seed": 7,
+        "controller": "results/mvp/02_safety_filter/safety_filter.json",
+        "epochs": 250,
+        "train_states": 4096,
+        "effective_train_states": 8933,
+        "excluded_train_terminal_states": 248,
+        "excluded_train_unsafe_states": 1315,
+        "excluded_train_inevitable_states": 452,
+        "batch_size": 512,
+        "learning_rate": 0.0001,
+        "epsilon": 0.01,
+        "decrease_weight": 100,
+        "init_weight": 10,
+        "unsafe_weight": 10,
+        "square_output": true,
+        "region_warmup_epochs": 0,
+        "warmup_decrease_weight": 100,
+        "init_target": 1,
+        "unsafe_target": 10,
+        "goal_weight": 0,
+        "goal_target": 1,
+        "enforce_goal_constraint": false,
+        "use_recoverable_domain": true
+      },
+      "result_keys": []
+    },
+    "results/mvp/04_robust_sbc_topk_warmstart/metrics.json": {
+      "sha256": "90f58dd8208ab536bd70b96f7f087836408c98bfefa4707b5c36e6fd07823feb",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "robust_sbc_mvp",
+        "seed": 7,
+        "controller": "Aebs/controller/best_model/best_model.zip",
+        "epochs": 100,
+        "train_states": 4096,
+        "effective_train_states": 10416,
+        "batch_size": 512,
+        "learning_rate": 0.0001,
+        "epsilon": 0.01,
+        "decrease_weight": 100,
+        "init_weight": 10,
+        "unsafe_weight": 10,
+        "square_output": false,
+        "region_warmup_epochs": 0,
+        "warmup_decrease_weight": 100,
+        "init_target": 1,
+        "unsafe_target": 10,
+        "include_verifier_grid_train": true,
+        "max_decrease_weight": 0,
+        "topk_decrease_weight": 5,
+        "topk_decrease_fraction": 0.1,
+        "initial_barrier": "results/mvp/04_robust_sbc_gridtrain_diag/barrier.pt",
+        "terminal_speed_threshold": 0,
+        "hard_case_count": 0
+      },
+      "result_keys": []
+    },
+    "results/mvp/04_robust_sbc_unsigned_staged/metrics.json": {
+      "sha256": "206b230946bbaa849b828626395546f916de463ffd52b005a0ef5415343930bd",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "robust_sbc_mvp",
+        "seed": 7,
+        "controller": "Aebs/controller/best_model/best_model.zip",
+        "epochs": 150,
+        "train_states": 4096,
+        "batch_size": 512,
+        "learning_rate": 0.001,
+        "epsilon": 0.01,
+        "decrease_weight": 100,
+        "init_weight": 1,
+        "unsafe_weight": 1,
+        "square_output": false,
+        "region_warmup_epochs": 25,
+        "warmup_decrease_weight": 0,
+        "init_target": 1,
+        "unsafe_target": 10,
+        "runtime_seconds": 185.9348566532135
+      },
+      "result_keys": []
+    },
+    "results/mvp/04_robust_sbc_unsigned_staged_old/metrics.json": {
+      "sha256": "190d1bad92ddc31792bbaa2b8ee0b0d70db368f8e43bfd658bb94eed13f67f21",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "robust_sbc_mvp",
+        "seed": 7,
+        "controller": "Aebs/controller/best_model/best_model.zip",
+        "epochs": 150,
+        "train_states": 4096,
+        "batch_size": 512,
+        "learning_rate": 0.001,
+        "epsilon": 0.01,
+        "decrease_weight": 100,
+        "init_weight": 1,
+        "unsafe_weight": 1,
+        "square_output": false,
+        "region_warmup_epochs": 25,
+        "warmup_decrease_weight": 0,
+        "init_target": 1,
+        "unsafe_target": 10,
+        "runtime_seconds": 209.05549240112305
+      },
+      "result_keys": []
+    },
+    "results/mvp/04_robust_sbc_viability_domain/metrics.json": {
+      "sha256": "30da0156256e1a94ac5966c4ccf74719e269a029a0c65b27eb6c18fdcc3cfdf6",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "robust_sbc_mvp",
+        "seed": 7,
+        "controller": "results/mvp/02_safety_filter/safety_filter.json",
+        "epochs": 250,
+        "train_states": 4096,
+        "effective_train_states": 8933,
+        "excluded_train_terminal_states": 248,
+        "excluded_train_unsafe_states": 1315,
+        "excluded_train_inevitable_states": 452,
+        "batch_size": 512,
+        "learning_rate": 0.0001,
+        "epsilon": 0.01,
+        "decrease_weight": 100,
+        "init_weight": 10,
+        "unsafe_weight": 10,
+        "square_output": true,
+        "region_warmup_epochs": 0,
+        "warmup_decrease_weight": 100,
+        "init_target": 1,
+        "unsafe_target": 10,
+        "goal_weight": 0,
+        "goal_target": 1,
+        "enforce_goal_constraint": false,
+        "use_recoverable_domain": true
+      },
+      "result_keys": []
+    },
+    "results/mvp/04_robust_sbc_weight100/metrics.json": {
+      "sha256": "1357125321539fa77648197af3980a7f1a0b44afacca3bf870baf8479f8e7433",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "robust_sbc_mvp",
+        "seed": 7,
+        "controller": "Aebs/controller/best_model/best_model.zip",
+        "epochs": 150,
+        "train_states": 4096,
+        "batch_size": 512,
+        "learning_rate": 0.001,
+        "epsilon": 0.01,
+        "decrease_weight": 100,
+        "init_weight": 1,
+        "unsafe_weight": 1,
+        "runtime_seconds": 368.6735882759094
+      },
+      "result_keys": []
+    },
+    "results/mvp/05_certificate_transfer_check/metrics.json": {
+      "sha256": "1af83ab1458708481fd57ba91ed4f10a247049e0ba76d9ed3641feba1820a8f1",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "sampled_teacher_student_certificate_transfer_check",
+        "status": "promising_for_local_formalization",
+        "formal_guarantee": false,
+        "validity_note": "Dense fixed-grid and semantic-input sampling is a go/no-go diagnostic, not a continuous-state proof. A formal result still needs sound neural output bounds between samples and a cell-discretization remainder. The checked property is one-step invariance of the discrete recoverable set; task completion/liveness remains a separate rollout property.",
+        "semantic_checkpoint": "results/mvp/01_semantic/semantic_encoder.pt",
+        "grid_size": 80,
+        "all_grid_states": 6400,
+        "checked_recoverable_operational_states": 4483,
+        "semantic_samples_per_state": 33,
+        "checked_state_observation_pairs": 147939,
+        "tolerance_m": 1e-8
+      },
+      "result_keys": []
+    },
+    "results/mvp/06_certificate_transfer_local_refinement/metrics.json": {
+      "sha256": "e6b00bf69d2bb29daf25128877e0474dd9f58ede79d964633617f1495bfe3cad",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "dense_local_teacher_student_transfer_refinement",
+        "status": "student_counterexample_found",
+        "formal_guarantee": false,
+        "validity_note": "This is a dense local sampling refinement. It does not bound the student network between semantic samples or states between grid points.",
+        "semantic_checkpoint": "results/mvp/01_semantic/semantic_encoder.pt",
+        "region_grid_states": 40401,
+        "checked_recoverable_operational_states": 18646,
+        "checked_state_observation_pairs": 2405334,
+        "runtime_seconds": 24.206477880477905
+      },
+      "result_keys": []
+    },
+    "results/mvp/07_standalone_ppo_local_repair/local_refinement/metrics.json": {
+      "sha256": "4c303c5a73a2b8091021ce219e864f47ddbbf96f80c51bae2977120c5fc5d472",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "dense_local_teacher_student_transfer_refinement",
+        "status": "student_counterexample_found",
+        "formal_guarantee": false,
+        "validity_note": "This is a dense local sampling refinement. It does not bound the student network between semantic samples or states between grid points.",
+        "semantic_checkpoint": "results/mvp/01_semantic/semantic_encoder.pt",
+        "region_grid_states": 40401,
+        "checked_recoverable_operational_states": 18646,
+        "checked_state_observation_pairs": 2405334,
+        "runtime_seconds": 21.311421632766724
+      },
+      "result_keys": []
+    },
+    "results/mvp/07_standalone_ppo_local_repair/metrics.json": {
+      "sha256": "efea98f2e29988e21100bc9e39d03b84e34cf88d69e04a313b9f4dcbbe881e42",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "local_certificate_margin_repair",
+        "deployment_controller": "standalone_ppo_without_runtime_filter",
+        "seed": 7,
+        "source_student": "results/mvp/02_standalone_ppo_distilled_v2/standalone_ppo.zip",
+        "teacher": "results/mvp/02_safety_filter_anti_stall_compare/adaptive_anti_stall_filter.json",
+        "diagnostics": "results/mvp/06_certificate_transfer_local_refinement/state_diagnostics.npz",
+        "checkpoint": "results/mvp/07_standalone_ppo_local_repair/standalone_ppo_repaired.zip",
+        "selected_state_count": 97,
+        "local_training_observation_count": 6305,
+        "retention_observation_count": 32768,
+        "selection_margin": 0.1,
+        "target_margin": 0.02,
+        "semantic_samples": 65,
+        "epochs": 40,
+        "batch_size": 512,
+        "learning_rate": 0.00001,
+        "local_weight": 10,
+        "underbraking_weight": 10,
+        "training_seconds": 12.028059720993042
+      },
+      "result_keys": []
+    },
+    "results/mvp/08_standalone_ppo_saturation_repair/local_refinement/metrics.json": {
+      "sha256": "f50555e9e991441590bf43ce60de422b3d584f77ac77a5abcef2138f68b47689",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "dense_local_teacher_student_transfer_refinement",
+        "status": "dense_sampled_pass_ready_for_nn_bounds",
+        "formal_guarantee": false,
+        "validity_note": "This is a dense local sampling refinement. It does not bound the student network between semantic samples or states between grid points.",
+        "semantic_checkpoint": "results/mvp/01_semantic/semantic_encoder.pt",
+        "region_grid_states": 40401,
+        "checked_recoverable_operational_states": 18646,
+        "checked_state_observation_pairs": 2405334,
+        "runtime_seconds": 22.95944333076477
+      },
+      "result_keys": []
+    },
+    "results/mvp/08_standalone_ppo_saturation_repair/metrics.json": {
+      "sha256": "864982999231cd13083f1db43f6ccc654775c9cafd93dada9da9ffc83f050cc6",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "local_certificate_margin_repair",
+        "deployment_controller": "standalone_ppo_without_runtime_filter",
+        "seed": 7,
+        "source_student": "results/mvp/07_standalone_ppo_local_repair/standalone_ppo_repaired.zip",
+        "teacher": "results/mvp/02_safety_filter_anti_stall_compare/adaptive_anti_stall_filter.json",
+        "diagnostics": "results/mvp/07_standalone_ppo_local_repair/local_refinement/state_diagnostics.npz",
+        "checkpoint": "results/mvp/08_standalone_ppo_saturation_repair/standalone_ppo_repaired.zip",
+        "selected_state_count": 89,
+        "local_training_observation_count": 5785,
+        "retention_observation_count": 32768,
+        "selection_margin": 0.1,
+        "target_margin": 0.02,
+        "raw_target_headroom": 0.05,
+        "semantic_samples": 65,
+        "epochs": 15,
+        "batch_size": 512,
+        "learning_rate": 0.000005,
+        "local_weight": 10,
+        "underbraking_weight": 10,
+        "training_seconds": 4.251851320266724
+      },
+      "result_keys": []
+    },
+    "results/mvp/09_policy_ibp_local/metrics.json": {
+      "sha256": "819608bddcbe12bfb2a3819983fcfb48acb58902fbe51acecb9854265d47ad7f",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "adaptive_ibp_policy_action_verification",
+        "status": "partial_local_verification",
+        "student": "results/mvp/08_standalone_ppo_saturation_repair/standalone_ppo_repaired.zip",
+        "semantic_checkpoint": "results/mvp/01_semantic/semantic_encoder.pt",
+        "verified_property": "For each certified true-state cell and every semantic observation in its contract-induced input box, the clipped PPO action is no smaller than the conservative action threshold for a recoverable successor.",
+        "scope_limit": "This is a local robust action-condition proof, not yet a complete global inductive or trajectory-level probabilistic safety certificate.",
+        "runtime_seconds": 2.0072648525238037
+      },
+      "result_keys": []
+    },
+    "results/mvp/10_policy_ibp_semantic_split/metrics.json": {
+      "sha256": "cb6761b94575ac19846a2570985d96fba6f29dc323ce3be021ecba75424e50fc",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "adaptive_ibp_policy_action_verification",
+        "status": "local_action_condition_verified",
+        "student": "results/mvp/08_standalone_ppo_saturation_repair/standalone_ppo_repaired.zip",
+        "semantic_checkpoint": "results/mvp/01_semantic/semantic_encoder.pt",
+        "verified_property": "For each certified true-state cell and every semantic observation in its contract-induced input box, the clipped PPO action is no smaller than the conservative action threshold for a recoverable successor.",
+        "scope_limit": "This is a local robust action-condition proof, not yet a complete global inductive or trajectory-level probabilistic safety certificate.",
+        "runtime_seconds": 1.6172220706939697
+      },
+      "result_keys": []
+    },
+    "results/mvp/11_policy_ibp_full_domain/metrics.json": {
+      "sha256": "80e24bb5240c75428de132c37ab54127763f9873ff597597cafacfe833e2f99b",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "adaptive_ibp_policy_action_verification",
+        "status": "partial_local_verification",
+        "student": "results/mvp/08_standalone_ppo_saturation_repair/standalone_ppo_repaired.zip",
+        "semantic_checkpoint": "results/mvp/01_semantic/semantic_encoder.pt",
+        "verified_property": "For each certified true-state cell and every semantic observation in its contract-induced input box, the clipped PPO action is no smaller than the conservative action threshold for a recoverable successor.",
+        "scope_limit": "This is a local robust action-condition proof, not yet a complete global inductive or trajectory-level probabilistic safety certificate.",
+        "runtime_seconds": 3.076324224472046
+      },
+      "result_keys": []
+    },
+    "results/mvp/12_policy_ibp_full_corrected/metrics.json": {
+      "sha256": "051f88af2275f44e063390edcaba9b0658e98c4140ea03e24bb979aa597a1212",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "adaptive_ibp_policy_action_verification",
+        "status": "partial_local_verification",
+        "student": "results/mvp/08_standalone_ppo_saturation_repair/standalone_ppo_repaired.zip",
+        "semantic_checkpoint": "results/mvp/01_semantic/semantic_encoder.pt",
+        "verified_property": "For each certified true-state cell and every semantic observation in its contract-induced input box, the clipped PPO action is no smaller than the conservative action threshold for a recoverable successor.",
+        "boundary_action_rule": "clip((v_high - target_speed) / dt, 0, max_braking); exact for the one-step terminal band and equal to max braking above 0.65 m/s",
+        "scope_limit": "This is a local robust action-condition proof, not yet a complete global inductive or trajectory-level probabilistic safety certificate.",
+        "runtime_seconds": 3.056810140609741
+      },
+      "result_keys": []
+    },
+    "results/mvp/13_standalone_ppo_low_speed_repair/full_domain_verification/metrics.json": {
+      "sha256": "3bac0ede06b946f84099f4abd247d43cafcecb9384ca5fae61ba01f70b42a557",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "adaptive_ibp_policy_action_verification",
+        "status": "partial_local_verification",
+        "student": "results/mvp/13_standalone_ppo_low_speed_repair/standalone_ppo_repaired.zip",
+        "semantic_checkpoint": "results/mvp/01_semantic/semantic_encoder.pt",
+        "verified_property": "For each certified true-state cell and every semantic observation in its contract-induced input box, the clipped PPO action is no smaller than the conservative action threshold for a recoverable successor.",
+        "boundary_action_rule": "clip((v_high - target_speed) / dt, 0, max_braking); exact for the one-step terminal band and equal to max braking above 0.65 m/s",
+        "scope_limit": "This is a local robust action-condition proof, not yet a complete global inductive or trajectory-level probabilistic safety certificate.",
+        "runtime_seconds": 2.775529146194458
+      },
+      "result_keys": []
+    },
+    "results/mvp/13_standalone_ppo_low_speed_repair/local_refinement/metrics.json": {
+      "sha256": "7171946aa2640ded6642bbb96c0e30a019f41c10a7f01ec7a99c3a629855b51e",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "dense_local_teacher_student_transfer_refinement",
+        "status": "student_counterexample_found",
+        "formal_guarantee": false,
+        "validity_note": "This is a dense local sampling refinement. It does not bound the student network between semantic samples or states between grid points.",
+        "semantic_checkpoint": "results/mvp/01_semantic/semantic_encoder.pt",
+        "region_grid_states": 40401,
+        "checked_recoverable_operational_states": 18646,
+        "checked_state_observation_pairs": 2405334,
+        "runtime_seconds": 26.13762664794922
+      },
+      "result_keys": []
+    },
+    "results/mvp/13_standalone_ppo_low_speed_repair/metrics.json": {
+      "sha256": "eb43efb51f9d53d74c89e9c878021be94383a5333881313be9e0482a73cfe7bb",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "local_certificate_margin_repair",
+        "deployment_controller": "standalone_ppo_without_runtime_filter",
+        "seed": 7,
+        "source_student": "results/mvp/08_standalone_ppo_saturation_repair/standalone_ppo_repaired.zip",
+        "teacher": "results/mvp/02_safety_filter_anti_stall_compare/adaptive_anti_stall_filter.json",
+        "diagnostics": "results/mvp/13_standalone_ppo_low_speed_repair/source_boundary_diagnostics.npz",
+        "checkpoint": "results/mvp/13_standalone_ppo_low_speed_repair/standalone_ppo_repaired.zip",
+        "selected_state_count": 478,
+        "local_training_observation_count": 31070,
+        "retention_observation_count": 32768,
+        "selection_margin": 0.1,
+        "target_margin": 0.02,
+        "raw_target_headroom": 0.05,
+        "semantic_samples": 65,
+        "epochs": 15,
+        "batch_size": 512,
+        "learning_rate": 0.000005,
+        "local_weight": 10,
+        "underbraking_weight": 10,
+        "training_seconds": 8.319282531738281
+      },
+      "result_keys": []
+    },
+    "results/mvp/14_standalone_ppo_dual_boundary_repair/full_domain_verification/metrics.json": {
+      "sha256": "d437b91c29aaf47c2b2c03382ec15b1293a7034904290c2c95cd7bde002b33c1",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "adaptive_ibp_policy_action_verification",
+        "status": "partial_local_verification",
+        "student": "results/mvp/14_standalone_ppo_dual_boundary_repair/standalone_ppo_repaired.zip",
+        "semantic_checkpoint": "results/mvp/01_semantic/semantic_encoder.pt",
+        "verified_property": "For each certified true-state cell and every semantic observation in its contract-induced input box, the clipped PPO action is no smaller than the conservative action threshold for a recoverable successor.",
+        "boundary_action_rule": "clip((v_high - target_speed) / dt, 0, max_braking); exact for the one-step terminal band and equal to max braking above 0.65 m/s",
+        "scope_limit": "This is a local robust action-condition proof, not yet a complete global inductive or trajectory-level probabilistic safety certificate.",
+        "runtime_seconds": 1.5047476291656494
+      },
+      "result_keys": []
+    },
+    "results/mvp/14_standalone_ppo_dual_boundary_repair/local_refinement/metrics.json": {
+      "sha256": "b0b07ba35133a6a346d8bf2adb6d49466127f192c3e2e340b3b525b2613bb329",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "dense_local_teacher_student_transfer_refinement",
+        "status": "dense_sampled_pass_ready_for_nn_bounds",
+        "formal_guarantee": false,
+        "validity_note": "This is a dense local sampling refinement. It does not bound the student network between semantic samples or states between grid points.",
+        "semantic_checkpoint": "results/mvp/01_semantic/semantic_encoder.pt",
+        "region_grid_states": 40401,
+        "checked_recoverable_operational_states": 18646,
+        "checked_state_observation_pairs": 2405334,
+        "runtime_seconds": 27.348921537399292
+      },
+      "result_keys": []
+    },
+    "results/mvp/14_standalone_ppo_dual_boundary_repair/metrics.json": {
+      "sha256": "d8dc28395210a2ee52b2248ed4e515b1e9b86f0120363ff408cec83c2186ecf3",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "local_certificate_margin_repair",
+        "deployment_controller": "standalone_ppo_without_runtime_filter",
+        "seed": 7,
+        "source_student": "results/mvp/08_standalone_ppo_saturation_repair/standalone_ppo_repaired.zip",
+        "teacher": "results/mvp/02_safety_filter_anti_stall_compare/adaptive_anti_stall_filter.json",
+        "diagnostics": "results/mvp/14_standalone_ppo_dual_boundary_repair/joint_boundary_diagnostics.npz",
+        "checkpoint": "results/mvp/14_standalone_ppo_dual_boundary_repair/standalone_ppo_repaired.zip",
+        "selected_state_count": 556,
+        "local_training_observation_count": 36140,
+        "retention_observation_count": 32768,
+        "selection_margin": 0.1,
+        "target_margin": 0.02,
+        "raw_target_headroom": 0.05,
+        "semantic_samples": 65,
+        "epochs": 15,
+        "batch_size": 512,
+        "learning_rate": 0.000005,
+        "local_weight": 10,
+        "underbraking_weight": 10,
+        "training_seconds": 380.30627274513245
+      },
+      "result_keys": []
+    },
+    "results/mvp/15_policy_ibp_full_semantic64/metrics.json": {
+      "sha256": "165df265ac1be6738c32f26fff8b78857bb056c134274afd104ca10bfdd82279",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "adaptive_ibp_policy_action_verification",
+        "status": "partial_local_verification",
+        "student": "results/mvp/14_standalone_ppo_dual_boundary_repair/standalone_ppo_repaired.zip",
+        "semantic_checkpoint": "results/mvp/01_semantic/semantic_encoder.pt",
+        "verified_property": "For each certified true-state cell and every semantic observation in its contract-induced input box, the clipped PPO action is no smaller than the conservative action threshold for a recoverable successor.",
+        "boundary_action_rule": "clip((v_high - target_speed) / dt, 0, max_braking); exact for the one-step terminal band and equal to max braking above 0.65 m/s",
+        "scope_limit": "This is a local robust action-condition proof, not yet a complete global inductive or trajectory-level probabilistic safety certificate.",
+        "runtime_seconds": 4.718501567840576
+      },
+      "result_keys": []
+    },
+    "results/mvp/16_policy_ibp_full_final/metrics.json": {
+      "sha256": "1017ef4a51bd8585be717cde0ef50d32694d0acc1fc0283c857fddd9e7069d2d",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "adaptive_ibp_policy_action_verification",
+        "status": "local_action_condition_verified",
+        "student": "results/mvp/14_standalone_ppo_dual_boundary_repair/standalone_ppo_repaired.zip",
+        "semantic_checkpoint": "results/mvp/01_semantic/semantic_encoder.pt",
+        "verified_property": "For each certified true-state cell and every semantic observation in its contract-induced input box, the clipped PPO action is no smaller than the conservative action threshold for a recoverable successor.",
+        "boundary_action_rule": "clip((v_high - target_speed) / dt, 0, max_braking); exact for the one-step terminal band and equal to max braking above 0.65 m/s",
+        "scope_limit": "This is a local robust action-condition proof, not yet a complete global inductive or trajectory-level probabilistic safety certificate.",
+        "runtime_seconds": 20.76935887336731
+      },
+      "result_keys": []
+    },
+    "results/mvp/17_finite_state_sbc/metrics.json": {
+      "sha256": "8e801147d10be3a8a215c74137924ba9490323f7a3af9ee2395326f7de21fd5d",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "finite_state_supermartingale_barrier",
+        "algorithm": "HiGHS linear programming on a three-mode robust abstraction",
+        "status": "verified",
+        "certificate_class": "piecewise_constant_supermartingale_barrier",
+        "stochastic_interpretation": "Degenerate stochastic/robust certificate under zero process residual; semantic inputs are treated adversarially inside the calibrated contract.",
+        "conditional_guarantee": "For every initial state in the stated initial region, if every semantic observation remains inside the calibrated state-conditional contract and the process residual is zero, the supermartingale bound on reaching the unsafe_or_unrecoverable abstract state is beta.",
+        "scope_limit": "beta is not an unconditional trajectory-risk bound. A trajectory-level probability for remaining inside the semantic contract must be calibrated separately before combining it with this conditional certificate.",
+        "runtime_seconds": 0.2731747627258301
+      },
+      "result_keys": []
+    },
+    "results/dino_expanded_v1/02_dino_h5/metrics.json": {
+      "sha256": "d5d8deb98ea254d29b72a935575fd6e058a2b59f9698d8f5a633353aea50e889",
+      "configuration_summary": {
+        "inline": {},
+        "config.json": {
+          "split_manifest_sha256": "1a95ab351686f1048cdc6700ad60f08820838b2f8f893c46df082a5039dc8e80",
+          "dino_weights_sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+          "dino_source_sha256": "b60533f41a1cd98946f9091a8d4cc5cfff2d2c3b2fec5d4fef7c7068132d8dd2",
+          "script_sha256": "b6b0c6a33c815c71b4ed5b4bdff0bbdbffcca03fd5a3bcf25ebb9e2fe8c38c8a",
+          "torch_version": "2.3.1",
+          "preprocess": "PIL RGB /255; existing FrozenDinoV2 bicubic antialias 224; ImageNet normalization",
+          "feature_normalization": "none: fit only on each experiment's permitted training subset",
+          "args": {
+            "manifest": "results/dino_expanded_v1/01_data_prepare/split_manifest.json",
+            "output_dir": "results/dino_expanded_v1/02_dino_h5",
+            "dino_repo": "../external/dinov2",
+            "dino_weights": "../external/dinov2_weights/dinov2_vits14_pretrain.pth",
+            "batch_size": 16,
+            "workers": 2,
+            "device": "cuda"
+          }
+        }
+      },
+      "scalar_metrics": {
+        "status": "cache_complete_pending_visual_review",
+        "cached_rows": 19080,
+        "feature_dimension": 384,
+        "device": "cuda",
+        "storage_format": "hdf5",
+        "test_encoded": 0,
+        "test_evaluated": false,
+        "dino_frozen": true,
+        "training_run": false,
+        "visual_review": "pending",
+        "runtime_seconds": 192.09457002207637
+      },
+      "result_keys": []
+    },
+    "results/dino_expanded_v1/03_alignment_r0_r1/R0_original/metrics.json": {
+      "sha256": "e9316c34c8097da7e1fb0a2f853aca4723296c8d54dcf7145e34a656a4d2a059",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "variant": "R0_original",
+        "train_samples": 1181,
+        "joint_steps": 9250,
+        "q_steps": 400,
+        "best_joint_step": 250,
+        "best_q_step": 1,
+        "runtime_seconds": 37.06928541883826,
+        "test_evaluated": false
+      },
+      "result_keys": []
+    },
+    "results/dino_expanded_v1/03_alignment_r0_r1/R1_all_appearances/metrics.json": {
+      "sha256": "6908d5aaa32a854374de943c221f38e2f9269cd92bac3440a592eb0f79929178",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "variant": "R1_all_appearances",
+        "train_samples": 14172,
+        "joint_steps": 9250,
+        "q_steps": 400,
+        "best_joint_step": 9250,
+        "best_q_step": 349,
+        "runtime_seconds": 41.47757318196818,
+        "test_evaluated": false
+      },
+      "result_keys": []
+    },
+    "results/dino_expanded_v1/04_R1_ppo/metrics.json": {
+      "sha256": "39eb4b48ce8f7ca91b3a21fb1a81cd9e6abdf371aa5d4bc7895a5c507780bbcd",
+      "configuration_summary": {
+        "inline": {},
+        "config.json": {
+          "representation_sha256": "2050baf8a83e8200bf5e9f11b5338d0c9b7047a612173b17f29cb48123f2e2ec",
+          "cache_manifest_sha256": "ca4c9993fbcf12b7a57dddab5f6a75fc1a5da84278fb102747e681888229e5bb",
+          "timesteps": 200000,
+          "seed": 7,
+          "test_used": false,
+          "eval_grid_size": 20,
+          "replay": "50% surrogate / 50% train images per episode; uniform fixed weather/color per episode",
+          "limitation": "train-library nearest-distance replay is not online image rollout; validation matched one-step only"
+        }
+      },
+      "scalar_metrics": {
+        "representation_sha256": "2050baf8a83e8200bf5e9f11b5338d0c9b7047a612173b17f29cb48123f2e2ec",
+        "cache_manifest_sha256": "ca4c9993fbcf12b7a57dddab5f6a75fc1a5da84278fb102747e681888229e5bb",
+        "timesteps": 200000,
+        "seed": 7,
+        "test_used": false,
+        "eval_grid_size": 20,
+        "replay": "50% surrogate / 50% train images per episode; uniform fixed weather/color per episode",
+        "limitation": "train-library nearest-distance replay is not online image rollout; validation matched one-step only",
+        "actual_timesteps": 200704,
+        "checkpoint_sha256": "0fdc4bfbdd0f77fbfb41f00ce4bf02ca80459dc8f597f86dd436f302495cf617"
+      },
+      "result_keys": []
+    },
+    "results/dino_expanded_v1/05_failure_diagnostic/metrics.json": {
+      "sha256": "b05026bdc255ba650992110be8e36861455454e1654c7de3ece51d03230265f9",
+      "configuration_summary": {
+        "inline": {},
+        "config.json": {
+          "scope": "fixed-model development failure diagnostic; no training, SBC, QP, CP, or test",
+          "test_used": false,
+          "cache_manifest_sha256": "ca4c9993fbcf12b7a57dddab5f6a75fc1a5da84278fb102747e681888229e5bb",
+          "features_sha256": "dfc562b4c1a406de6f5dcbbf79e40a62955cd2d70a4d908b7119e2805336cdcd",
+          "representation_sha256": "2050baf8a83e8200bf5e9f11b5338d0c9b7047a612173b17f29cb48123f2e2ec",
+          "controller_sha256": "0fdc4bfbdd0f77fbfb41f00ce4bf02ca80459dc8f597f86dd436f302495cf617",
+          "eval_grid_size": 20,
+          "speed_count": 31,
+          "action_divergence_threshold": 0.1,
+          "appearances": {
+            "count": 12
+          },
+          "source_metrics_sha256": "39eb4b48ce8f7ca91b3a21fb1a81cd9e6abdf371aa5d4bc7895a5c507780bbcd"
+        }
+      },
+      "scalar_metrics": {
+        "test_used": false,
+        "cache_manifest_sha256": "ca4c9993fbcf12b7a57dddab5f6a75fc1a5da84278fb102747e681888229e5bb",
+        "features_sha256": "dfc562b4c1a406de6f5dcbbf79e40a62955cd2d70a4d908b7119e2805336cdcd",
+        "representation_sha256": "2050baf8a83e8200bf5e9f11b5338d0c9b7047a612173b17f29cb48123f2e2ec",
+        "controller_sha256": "0fdc4bfbdd0f77fbfb41f00ce4bf02ca80459dc8f597f86dd436f302495cf617",
+        "eval_grid_size": 20,
+        "speed_count": 31,
+        "action_divergence_threshold": 0.1,
+        "source_metrics_sha256": "39eb4b48ce8f7ca91b3a21fb1a81cd9e6abdf371aa5d4bc7895a5c507780bbcd",
+        "unsafe_rollout_count": 10,
+        "evidence_digest": "c691f14020a4273dbfb4cf26ecea0f179cc828cad96f22fc38128dcdb869d4d2"
+      },
+      "result_keys": []
+    },
+    "results/dino_expanded_v1/06_interpolated_replay/metrics.json": {
+      "sha256": "2f6d909e4fb34ef863316e76d8f869157bf48c296b792acd612ac513fde63990",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "test_used": false,
+        "not_online_image_observation": true,
+        "cache_manifest_sha256": "ca4c9993fbcf12b7a57dddab5f6a75fc1a5da84278fb102747e681888229e5bb",
+        "representation_sha256": "2050baf8a83e8200bf5e9f11b5338d0c9b7047a612173b17f29cb48123f2e2ec",
+        "controller_sha256": "0fdc4bfbdd0f77fbfb41f00ce4bf02ca80459dc8f597f86dd436f302495cf617",
+        "source_metrics_sha256": "39eb4b48ce8f7ca91b3a21fb1a81cd9e6abdf371aa5d4bc7895a5c507780bbcd",
+        "eval_grid_size": 20,
+        "total_nearest_unsafe": 10,
+        "total_interpolated_unsafe": 0
+      },
+      "result_keys": []
+    },
+    "results/dino_expanded_v1/07_robust_ppo_v1/metrics.json": {
+      "sha256": "a79430f7f97c0cc419853c056aa2cb404d5a55f2b71f4d7fcdadb53ef447f30e",
+      "configuration_summary": {
+        "inline": {},
+        "config.json": {
+          "experiment": "frozen_R1_empirical_residual_robust_PPO_v1",
+          "registered_before_training": true,
+          "representation_sha256": "2050baf8a83e8200bf5e9f11b5338d0c9b7047a612173b17f29cb48123f2e2ec",
+          "cache_manifest_sha256": "ca4c9993fbcf12b7a57dddab5f6a75fc1a5da84278fb102747e681888229e5bb",
+          "baseline_metrics_sha256": "39eb4b48ce8f7ca91b3a21fb1a81cd9e6abdf371aa5d4bc7895a5c507780bbcd",
+          "test_used": false,
+          "seed": 7,
+          "timesteps": 200000,
+          "ppo_hyperparameters_unchanged": true,
+          "training_mode_probabilities": {
+            "image_nearest": 0.5,
+            "surrogate": 0.25,
+            "residual_corrected": 0.25
+          },
+          "residual_source": "train image latent minus q at its own label distance",
+          "residual_norm_clip": "train P95",
+          "residual_radius_p95": 0.22207974940538405,
+          "residual_episode_scale": "uniform [0,1]",
+          "representation_frozen": true,
+          "excluded": [
+            "test",
+            "representation retraining",
+            "SBC",
+            "QP",
+            "CP"
+          ]
+        }
+      },
+      "scalar_metrics": {
+        "experiment": "frozen_R1_empirical_residual_robust_PPO_v1",
+        "registered_before_training": true,
+        "representation_sha256": "2050baf8a83e8200bf5e9f11b5338d0c9b7047a612173b17f29cb48123f2e2ec",
+        "cache_manifest_sha256": "ca4c9993fbcf12b7a57dddab5f6a75fc1a5da84278fb102747e681888229e5bb",
+        "baseline_metrics_sha256": "39eb4b48ce8f7ca91b3a21fb1a81cd9e6abdf371aa5d4bc7895a5c507780bbcd",
+        "test_used": false,
+        "seed": 7,
+        "timesteps": 200000,
+        "ppo_hyperparameters_unchanged": true,
+        "residual_source": "train image latent minus q at its own label distance",
+        "residual_norm_clip": "train P95",
+        "residual_radius_p95": 0.22207974940538405,
+        "residual_episode_scale": "uniform [0,1]",
+        "representation_frozen": true,
+        "actual_timesteps": 200704,
+        "checkpoint_sha256": "fdee45b66a5b72b1aae7698dfee1a5e5dbe4ab377389e55466ef7a141087a75a"
+      },
+      "result_keys": []
+    },
+    "results/dino_expanded_v1/08_R2_group_alignment/metrics.json": {
+      "sha256": "8307eb9849f2dac0fdaa207050f7bf6cdfd241e673b8bb1d38fc823678e7f14f",
+      "configuration_summary": {
+        "inline": {
+          "steps": 3000,
+          "q_steps": 400,
+          "groups_per_batch": 8,
+          "group_weight": 0.2,
+          "centroid_q_weight": 0,
+          "seed": 7,
+          "selection": "same R1 score: validation image RMSE/scale + 0.2 relative latent RMSE"
+        },
+        "config.json": {
+          "experiment": "R2_same_distance_appearance_group_alignment",
+          "registered_settings": {
+            "steps": 3000,
+            "q_steps": 400,
+            "groups_per_batch": 8,
+            "group_weight": 0.2,
+            "centroid_q_weight": 0,
+            "seed": 7,
+            "selection": "same R1 score: validation image RMSE/scale + 0.2 relative latent RMSE"
+          },
+          "test_evaluated": false,
+          "dino_frozen": true,
+          "cache_manifest_sha256": "ca4c9993fbcf12b7a57dddab5f6a75fc1a5da84278fb102747e681888229e5bb",
+          "r1_representation_sha256": "2050baf8a83e8200bf5e9f11b5338d0c9b7047a612173b17f29cb48123f2e2ec",
+          "r1_metrics_sha256": "6908d5aaa32a854374de943c221f38e2f9269cd92bac3440a592eb0f79929178"
+        }
+      },
+      "scalar_metrics": {
+        "experiment": "R2_same_distance_appearance_group_alignment",
+        "test_evaluated": false,
+        "dino_frozen": true,
+        "cache_manifest_sha256": "ca4c9993fbcf12b7a57dddab5f6a75fc1a5da84278fb102747e681888229e5bb",
+        "r1_representation_sha256": "2050baf8a83e8200bf5e9f11b5338d0c9b7047a612173b17f29cb48123f2e2ec",
+        "r1_metrics_sha256": "6908d5aaa32a854374de943c221f38e2f9269cd92bac3440a592eb0f79929178",
+        "best_joint_step": 2600,
+        "best_q_step": 0,
+        "runtime_seconds": 37.30625162599608
+      },
+      "result_keys": []
+    },
+    "results/dino_expanded_v1/09_R2_ppo/metrics.json": {
+      "sha256": "c47b9f224330f3fc5893c8ad62be38461dab34d90c750462c68e68d3a6c272b6",
+      "configuration_summary": {
+        "inline": {},
+        "config.json": {
+          "representation_sha256": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+          "cache_manifest_sha256": "ca4c9993fbcf12b7a57dddab5f6a75fc1a5da84278fb102747e681888229e5bb",
+          "timesteps": 200000,
+          "seed": 7,
+          "test_used": false,
+          "eval_grid_size": 20,
+          "replay": "50% surrogate / 50% train images per episode; uniform fixed weather/color per episode",
+          "limitation": "train-library nearest-distance replay is not online image rollout; validation matched one-step only"
+        }
+      },
+      "scalar_metrics": {
+        "representation_sha256": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+        "cache_manifest_sha256": "ca4c9993fbcf12b7a57dddab5f6a75fc1a5da84278fb102747e681888229e5bb",
+        "timesteps": 200000,
+        "seed": 7,
+        "test_used": false,
+        "eval_grid_size": 20,
+        "replay": "50% surrogate / 50% train images per episode; uniform fixed weather/color per episode",
+        "limitation": "train-library nearest-distance replay is not online image rollout; validation matched one-step only",
+        "actual_timesteps": 200704,
+        "checkpoint_sha256": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b"
+      },
+      "result_keys": []
+    },
+    "results/dino_expanded_v1/11_transition_contract_v1/metrics.json": {
+      "sha256": "5c2fa37e4205e78dbdc3ad461b681eb264fc2b370602f54d37f4c838a6a569f3",
+      "configuration_summary": {
+        "inline": {},
+        "config.json": {
+          "experiment": "R2_physical_next_state_trajectory_conformal_contract_v1",
+          "registered_before_calibration": true,
+          "calibration_unit": "one independent synchronized image/state trajectory",
+          "score": "trajectory max of scaled L_inf(image-path minus q-path next-state residual)",
+          "horizon": 400,
+          "epsilon": 0.01,
+          "beta": 0.01,
+          "state_scales": {
+            "distance_m": 1,
+            "speed_mps": 1
+          },
+          "dynamics": "d+=d-v*0.05; v+=clip(v-action*0.05,0,3)",
+          "unsafe_set": "distance_m <= 6 and speed_mps > 0.5",
+          "representation_frozen": true,
+          "controller_frozen": true,
+          "representation_sha256": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+          "controller_sha256": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+          "calibration_h5_sha256": "28bc8b24e0d39a4a0e0b548a94474efd7597cd2d5d51694ff1ca09838f9619ce",
+          "training_cache_manifest_sha256": "ca4c9993fbcf12b7a57dddab5f6a75fc1a5da84278fb102747e681888229e5bb",
+          "test_used": false,
+          "claim_boundary": "trajectory-level tolerance coverage for the registered calibration distribution; not yet a safety certificate until a robust SBC proves safety for every residual inside the saved physical-state contract"
+        }
+      },
+      "scalar_metrics": {
+        "experiment": "R2_physical_next_state_trajectory_conformal_contract_v1",
+        "registered_before_calibration": true,
+        "calibration_unit": "one independent synchronized image/state trajectory",
+        "score": "trajectory max of scaled L_inf(image-path minus q-path next-state residual)",
+        "horizon": 400,
+        "epsilon": 0.01,
+        "beta": 0.01,
+        "dynamics": "d+=d-v*0.05; v+=clip(v-action*0.05,0,3)",
+        "unsafe_set": "distance_m <= 6 and speed_mps > 0.5",
+        "representation_frozen": true,
+        "controller_frozen": true,
+        "representation_sha256": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+        "controller_sha256": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+        "calibration_h5_sha256": "28bc8b24e0d39a4a0e0b548a94474efd7597cd2d5d51694ff1ca09838f9619ce",
+        "training_cache_manifest_sha256": "ca4c9993fbcf12b7a57dddab5f6a75fc1a5da84278fb102747e681888229e5bb",
+        "test_used": false,
+        "claim_boundary": "trajectory-level tolerance coverage for the registered calibration distribution; not yet a safety certificate until a robust SBC proves safety for every residual inside the saved physical-state contract",
+        "trajectory_count": 459,
+        "valid_step_count": 91668,
+        "contract_path": "results/dino_expanded_v1/11_transition_contract_v1/contract.json"
+      },
+      "result_keys": []
+    },
+    "results/dino_expanded_v1/14_transition_contract_spvc_v1/metrics.json": {
+      "sha256": "293b8f29f72c901120849d9c037d6b296a8cfd8b8438fc7a2f58fad6ca190cd3",
+      "configuration_summary": {
+        "inline": {},
+        "config.json": {
+          "experiment": "R2_physical_next_state_trajectory_conformal_contract_v1",
+          "registered_before_calibration": true,
+          "calibration_unit": "one independent synchronized image/state trajectory",
+          "score": "trajectory max of scaled L_inf(image-path minus q-path next-state residual)",
+          "horizon": 400,
+          "epsilon": 0.01,
+          "beta": 0.01,
+          "state_scales": {
+            "distance_m": 1,
+            "speed_mps": 1
+          },
+          "dynamics": "d+=d-v*0.05; v+=clip(v-action*0.05,0,3)",
+          "unsafe_set": "distance_m <= 6 and speed_mps > 0.5",
+          "representation_frozen": true,
+          "controller_frozen": true,
+          "representation_sha256": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+          "controller_sha256": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+          "calibration_h5_sha256": "8da138640b79fb98a473965cf2fd126503e8346678e955de5f4893e4125e0c34",
+          "training_cache_manifest_sha256": "ca4c9993fbcf12b7a57dddab5f6a75fc1a5da84278fb102747e681888229e5bb",
+          "test_used": false,
+          "claim_boundary": "trajectory-level tolerance coverage for the registered calibration distribution; not yet a safety certificate until a robust SBC proves safety for every residual inside the saved physical-state contract"
+        }
+      },
+      "scalar_metrics": {
+        "experiment": "R2_physical_next_state_trajectory_conformal_contract_v1",
+        "registered_before_calibration": true,
+        "calibration_unit": "one independent synchronized image/state trajectory",
+        "score": "trajectory max of scaled L_inf(image-path minus q-path next-state residual)",
+        "horizon": 400,
+        "epsilon": 0.01,
+        "beta": 0.01,
+        "dynamics": "d+=d-v*0.05; v+=clip(v-action*0.05,0,3)",
+        "unsafe_set": "distance_m <= 6 and speed_mps > 0.5",
+        "representation_frozen": true,
+        "controller_frozen": true,
+        "representation_sha256": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+        "controller_sha256": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+        "calibration_h5_sha256": "8da138640b79fb98a473965cf2fd126503e8346678e955de5f4893e4125e0c34",
+        "training_cache_manifest_sha256": "ca4c9993fbcf12b7a57dddab5f6a75fc1a5da84278fb102747e681888229e5bb",
+        "test_used": false,
+        "claim_boundary": "trajectory-level tolerance coverage for the registered calibration distribution; not yet a safety certificate until a robust SBC proves safety for every residual inside the saved physical-state contract",
+        "trajectory_count": 459,
+        "valid_step_count": 37882,
+        "contract_path": "results/dino_expanded_v1/14_transition_contract_spvc_v1/contract.json"
+      },
+      "result_keys": []
+    },
+    "results/dino_expanded_v1/15_cp_robust_sbc_v1/metrics.json": {
+      "sha256": "6194de04c60801ff0205c29dec3110883b5236524681344f10132e894dc59c24",
+      "configuration_summary": {
+        "inline": {},
+        "config.json": {
+          "experiment": "R2_CP_contract_scenario_robust_SBC_v1",
+          "claim_level": "scenario training and sampled-grid verification only",
+          "seed": 7,
+          "contract": "results/dino_expanded_v1/14_transition_contract_spvc_v1/contract.json",
+          "contract_sha256": "60d392c43f85745f2dbcd57b051546a57491a938a0be3ab4b518788fb26ac259",
+          "calibration_h5": "results/dino_expanded_v1/13_spvc_calibration_trajectories_v1/trajectories.h5",
+          "calibration_h5_sha256": "8da138640b79fb98a473965cf2fd126503e8346678e955de5f4893e4125e0c34",
+          "representation": "results/dino_expanded_v1/08_R2_group_alignment/dino_safety_latent.pt",
+          "representation_sha256": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+          "controller": "results/dino_expanded_v1/09_R2_ppo/latent_ppo.zip",
+          "controller_sha256": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+          "conformal": {
+            "sample_count": 459,
+            "target_violation_rate_epsilon": 0.01,
+            "target_confidence_failure_beta": 0.01,
+            "achieved_confidence": 0.9900790257989595,
+            "rank_from_largest_l": 1,
+            "alpha_representative": 0.003260869565217391,
+            "q_hat": 0.1506854683160781,
+            "passes_q_hat_nonpositive": false,
+            "claim_if_passed": "With confidence at least 0.990079, a new IID trajectory has probability at least 0.990000 of score <= q_hat over the configured finite horizon."
+          },
+          "physical_residual_box": {
+            "distance_m": [
+              0,
+              0
+            ],
+            "speed_mps": [
+              -0.1506854683160781,
+              0.1506854683160781
+            ]
+          },
+          "training": {
+            "epochs": 200,
+            "train_states": 20000,
+            "region_samples": 4096,
+            "batch_size": 512,
+            "learning_rate": 0.001,
+            "train_residual_samples": 5,
+            "init_target": 0.01,
+            "unsafe_target": 1,
+            "decrease_weight": 100,
+            "region_weight": 20,
+            "terminal_weight": 1,
+            "topk_fraction": 0.1
+          },
+          "test_used": false
+        }
+      },
+      "scalar_metrics": {
+        "experiment": "R2_CP_contract_scenario_robust_SBC_v1",
+        "claim_level": "scenario training and sampled-grid verification only",
+        "seed": 7,
+        "contract": "results/dino_expanded_v1/14_transition_contract_spvc_v1/contract.json",
+        "contract_sha256": "60d392c43f85745f2dbcd57b051546a57491a938a0be3ab4b518788fb26ac259",
+        "calibration_h5": "results/dino_expanded_v1/13_spvc_calibration_trajectories_v1/trajectories.h5",
+        "calibration_h5_sha256": "8da138640b79fb98a473965cf2fd126503e8346678e955de5f4893e4125e0c34",
+        "representation": "results/dino_expanded_v1/08_R2_group_alignment/dino_safety_latent.pt",
+        "representation_sha256": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+        "controller": "results/dino_expanded_v1/09_R2_ppo/latent_ppo.zip",
+        "controller_sha256": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+        "test_used": false,
+        "runtime_seconds": 116.54008626937866,
+        "checkpoint": "results/dino_expanded_v1/15_cp_robust_sbc_v1/barrier.pt"
+      },
+      "result_keys": []
+    },
+    "results/dino_expanded_v1/15a_cp_robust_sbc_smoke/metrics.json": {
+      "sha256": "4f48bf12a972a0313195f156cfcd678b4cfcd24132ec34bb1808067329f4d051",
+      "configuration_summary": {
+        "inline": {},
+        "config.json": {
+          "experiment": "R2_CP_contract_scenario_robust_SBC_v1",
+          "claim_level": "scenario training and sampled-grid verification only",
+          "seed": 7,
+          "contract": "results/dino_expanded_v1/14_transition_contract_spvc_v1/contract.json",
+          "contract_sha256": "60d392c43f85745f2dbcd57b051546a57491a938a0be3ab4b518788fb26ac259",
+          "calibration_h5": "results/dino_expanded_v1/13_spvc_calibration_trajectories_v1/trajectories.h5",
+          "calibration_h5_sha256": "8da138640b79fb98a473965cf2fd126503e8346678e955de5f4893e4125e0c34",
+          "representation": "results/dino_expanded_v1/08_R2_group_alignment/dino_safety_latent.pt",
+          "representation_sha256": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+          "controller": "results/dino_expanded_v1/09_R2_ppo/latent_ppo.zip",
+          "controller_sha256": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+          "conformal": {
+            "sample_count": 459,
+            "target_violation_rate_epsilon": 0.01,
+            "target_confidence_failure_beta": 0.01,
+            "achieved_confidence": 0.9900790257989595,
+            "rank_from_largest_l": 1,
+            "alpha_representative": 0.003260869565217391,
+            "q_hat": 0.1506854683160781,
+            "passes_q_hat_nonpositive": false,
+            "claim_if_passed": "With confidence at least 0.990079, a new IID trajectory has probability at least 0.990000 of score <= q_hat over the configured finite horizon."
+          },
+          "physical_residual_box": {
+            "distance_m": [
+              0,
+              0
+            ],
+            "speed_mps": [
+              -0.1506854683160781,
+              0.1506854683160781
+            ]
+          },
+          "training": {
+            "epochs": 2,
+            "train_states": 2048,
+            "region_samples": 512,
+            "batch_size": 256,
+            "learning_rate": 0.001,
+            "train_residual_samples": 5,
+            "init_target": 0.01,
+            "unsafe_target": 1,
+            "decrease_weight": 100,
+            "region_weight": 20,
+            "terminal_weight": 1,
+            "topk_fraction": 0.1
+          },
+          "test_used": false
+        }
+      },
+      "scalar_metrics": {
+        "experiment": "R2_CP_contract_scenario_robust_SBC_v1",
+        "claim_level": "scenario training and sampled-grid verification only",
+        "seed": 7,
+        "contract": "results/dino_expanded_v1/14_transition_contract_spvc_v1/contract.json",
+        "contract_sha256": "60d392c43f85745f2dbcd57b051546a57491a938a0be3ab4b518788fb26ac259",
+        "calibration_h5": "results/dino_expanded_v1/13_spvc_calibration_trajectories_v1/trajectories.h5",
+        "calibration_h5_sha256": "8da138640b79fb98a473965cf2fd126503e8346678e955de5f4893e4125e0c34",
+        "representation": "results/dino_expanded_v1/08_R2_group_alignment/dino_safety_latent.pt",
+        "representation_sha256": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+        "controller": "results/dino_expanded_v1/09_R2_ppo/latent_ppo.zip",
+        "controller_sha256": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+        "test_used": false,
+        "runtime_seconds": 2.9508631229400635,
+        "checkpoint": "results/dino_expanded_v1/15a_cp_robust_sbc_smoke/barrier.pt"
+      },
+      "result_keys": []
+    },
+    "results/dino_expanded_v1/15b_cp_box_feasibility/metrics.json": {
+      "sha256": "df42449cacfde9d67ca0f2e5d1033d9231ed1605880e13d26c6dd89fb40ed3e8",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "R2_global_CP_box_feasibility_diagnostic_v1",
+        "level": "diagnostic; one counterexample is decisive, no counterexample is not proof",
+        "status": "global_box_certificate_infeasible_counterexample",
+        "reason": "An allowed residual sequence takes a registered initial state to unsafe; therefore initial-low, unsafe-high and global nonincrease SBC conditions cannot all hold for this residual box.",
+        "initial_states": 400,
+        "horizon": 400,
+        "q_hat": 0.1506854683160781,
+        "test_used": false
+      },
+      "result_keys": []
+    },
+    "results/dino_expanded_v1/16_action_conditional_diagnostic/metrics.json": {
+      "sha256": "5796208ec1f606ebd7cfaf4b9f26f7e265c0e797eaa7b0fc2baefc5bae00ce68",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "R2_action_conditional_residual_development_diagnostic_v1",
+        "status": "action_only_conditioning_still_infeasible",
+        "claim_level": "exploratory only; the inspected calibration data were reused to design the envelope, so this is not a valid new conformal contract",
+        "global_q_hat": 0.1506854683160781,
+        "valid_steps": 37882,
+        "trajectory_count": 459,
+        "next_required_step": "Add preregistered distance/speed conditioning before collecting fresh calibration.",
+        "test_used": false
+      },
+      "result_keys": []
+    },
+    "results/dino_expanded_v1/17_trajectory_scenario_sbc_v1/metrics.json": {
+      "sha256": "124122327913265acd0e0f11800ef5b2fc4ca6cf229ac7ccea7e525e007daf10",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "R2_trajectory_scenario_SBC_v1",
+        "status": "development_constraints_violated",
+        "claim_level": "development scenario train/validation only; a new independent trajectory set is required for conformal calibration",
+        "trajectory_count": 459,
+        "train_trajectory_count": 367,
+        "validation_trajectory_count": 92,
+        "runtime_seconds": 166.2225260734558,
+        "test_used": false,
+        "checkpoint": "results/dino_expanded_v1/17_trajectory_scenario_sbc_v1/barrier.pt"
+      },
+      "result_keys": []
+    },
+    "results/dino_expanded_v1/17a_trajectory_scenario_sbc_smoke/metrics.json": {
+      "sha256": "6066d7e84ec1e93f0d87766e32672ee1c3b20437103735ea4aa496e1a74b00b1",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "R2_trajectory_scenario_SBC_v1",
+        "status": "development_constraints_violated",
+        "claim_level": "development scenario train/validation only; a new independent trajectory set is required for conformal calibration",
+        "trajectory_count": 459,
+        "train_trajectory_count": 367,
+        "validation_trajectory_count": 92,
+        "runtime_seconds": 4.690927505493164,
+        "test_used": false,
+        "checkpoint": "results/dino_expanded_v1/17a_trajectory_scenario_sbc_smoke/barrier.pt"
+      },
+      "result_keys": []
+    },
+    "results/dino_expanded_v1/18_trajectory_scenario_sbc_safe_occupancy/metrics.json": {
+      "sha256": "5bc172d24f3e9bdb57188aef95254bc59fb309d95951c15cf968465efd74af83",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "R2_trajectory_scenario_SBC_safe_occupancy_v2",
+        "status": "development_constraints_violated",
+        "claim_level": "development scenario train/validation only; a new independent trajectory set is required for conformal calibration",
+        "trajectory_count": 459,
+        "train_trajectory_count": 367,
+        "validation_trajectory_count": 92,
+        "runtime_seconds": 223.97395634651184,
+        "test_used": false,
+        "checkpoint": "results/dino_expanded_v1/18_trajectory_scenario_sbc_safe_occupancy/barrier.pt"
+      },
+      "result_keys": []
+    },
+    "results/dino_expanded_v1/19_trajectory_scenario_sbc_boundary_v3/metrics.json": {
+      "sha256": "94fe61b79c4f0220992d55805115439f169de9895478570689238b002a878394",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "R2_trajectory_scenario_SBC_boundary_focused_v3",
+        "status": "development_constraints_violated",
+        "claim_level": "development scenario train/validation only; a new independent trajectory set is required for conformal calibration",
+        "trajectory_count": 459,
+        "train_trajectory_count": 367,
+        "validation_trajectory_count": 92,
+        "runtime_seconds": 187.24500012397766,
+        "test_used": false,
+        "checkpoint": "results/dino_expanded_v1/19_trajectory_scenario_sbc_boundary_v3/barrier.pt"
+      },
+      "result_keys": []
+    },
+    "results/dino_expanded_v1/21_trajectory_sbc_cp_v1/metrics.json": {
+      "sha256": "5804f9cc65790017862e1fc62145286987cc8b594637d2a68507483d6b580262",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "R2_frozen_trajectory_SBC_conformal_safety_v1",
+        "status": "trajectory_sbc_cp_safety_pass",
+        "score": "B(s0) + sum positive stopped-barrier increments - 1",
+        "score_logic": "unsafe implies score >= 0 because stopped B is 1 on unsafe and 0 on safe terminal states; q_hat < 0 converts trajectory coverage into safety coverage",
+        "trajectory_count": 459,
+        "claim_boundary": "finite-horizon IID trajectory safety for the preregistered original-SPVC capture, initial-state and appearance distribution; not continuous-domain or out-of-distribution safety",
+        "barrier_sha256": "d5d0f15598977a243acf9266f8eb04f7b1f00f4e568a78bd21e38517db1ba496",
+        "registration_sha256": "20527b6319f2e2a34efebb6e09f185f4d95d0b75c3de217367ce0c4a595bb5a0",
+        "calibration_h5_sha256": "a3b379b7cbcc8d29eb2cca6e0ec4c06f189058b8dc4ae9c4c9722ba114021bee",
+        "barrier_training_h5_sha256": "8da138640b79fb98a473965cf2fd126503e8346678e955de5f4893e4125e0c34",
+        "test_used": false
+      },
+      "result_keys": []
+    },
+    "results/dino_expanded_v1/22_R2_original_spvc_scope_compare/metrics.json": {
+      "sha256": "a9e49a74f9932a66f413818053c6bdae16c7351c8a6e0311abfce12db14289d8",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "R2_DINO_original_SPVC_front_end_only_v1",
+        "claim_boundary": "legacy SPVC assumptions and verifier only; this run does not add a formal bound for image-latent versus q-latent mismatch",
+        "representation_checkpoint": "results/dino_expanded_v1/08_R2_group_alignment/dino_safety_latent.pt",
+        "representation_sha256": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+        "controller_checkpoint": "results/dino_expanded_v1/09_R2_ppo/latent_ppo.zip",
+        "controller_sha256": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+        "controller_metrics": "results/dino_expanded_v1/09_R2_ppo/metrics.json",
+        "initial_sbc": null,
+        "test_used": false,
+        "training_run": true,
+        "diagnose_only_from": null,
+        "saved_barrier_sha256": "9330d029a5daca3d9b5aeaeef5ebc3b35fdd4cc9148685f18f7b044490063c19",
+        "saved_policy_sha256": "f46215db59d0caba80f94a0a013340480974740c21c896f5baf715abee7b3364",
+        "scope_comparison_requested": true
+      },
+      "result_keys": []
+    },
+    "results/dino_expanded_v1/23_R2_spvc_matched_pair/metrics.json": {
+      "sha256": "92a9162c74c01729419f2c76c5eafa00000eb88787ffe435a35d99788c4b2db7",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "R2_step09_vs_step22_exact_image_paired_one_step",
+        "status": "no_sampled_unsafe_regression_not_a_certificate",
+        "level": "development diagnostic, NOT a safety certificate",
+        "training_run": false,
+        "test_used": false,
+        "online_carla": false,
+        "nearest_image_lookup": false,
+        "lookup_distance_error_m": 0,
+        "representation_is_newly_heldout": false,
+        "representation_sha256": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+        "cache_manifest_sha256": "ca4c9993fbcf12b7a57dddab5f6a75fc1a5da84278fb102747e681888229e5bb",
+        "feature_sha256": "dfc562b4c1a406de6f5dcbbf79e40a62955cd2d70a4d908b7119e2805336cdcd",
+        "runtime_seconds": 121.44495256314985
+      },
+      "result_keys": [
+        "train",
+        "validation"
+      ]
+    },
+    "results/dino_expanded_v1/24_R2_sbc_mainline_diagnostic/metrics.json": {
+      "sha256": "65617e52532cb18dc81ca89d1f067de3e1bf97c085e01c9ead21d40b10cca2a1",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "R2_frozen_step22_SBC_mainline_violation_diagnostic",
+        "status": "diagnostic_complete",
+        "level": "selected-point numerical diagnostic, NOT a certificate",
+        "training_run": false,
+        "models_frozen": true,
+        "test_used": false,
+        "scope_samples_sha256": "a4074bf5a7ce03839d30d3b66d02f7486fb8b7f80ace9f1e1b687f6af51a396d",
+        "vt_data_sha256": "41cc88359f64d52ffb25a8ec57ea9efddd9b8463d37e63bc972b2854dbed1bf1",
+        "vt_utils_sha256": "1a835fc24bdd210fbfdb3cd3ab147f10f3d699a963188e378b0df42aa51aab82",
+        "scope_masks": "three saved step22 masks unchanged; separate target-probability point mask added",
+        "barrier_output": "original MLP square_output=True flag actually applies softplus",
+        "sign_tolerance_diagnostic_only": 0.00001,
+        "selected_count": 12
+      },
+      "result_keys": []
+    },
+    "results/dino_expanded_v1/25_legacy_dino_paired_error/metrics.json": {
+      "sha256": "b4c9032377767e6042a18ef4eae0065c20d3d70d45c76e59c4e9de31881a90d3",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "status": "running",
+        "training": false,
+        "test_used": false,
+        "split": "validation",
+        "legacy_scale_m": 3.18272066116333,
+        "dino_scale_m": 3.161912679672241,
+        "rgb_hashes_checked": 0,
+        "legacy_policy_kind": "shipped base PPO (not final original-SPVC checkpoint)"
+      },
+      "result_keys": []
+    },
+    "results/dino_expanded_v1/25_legacy_dino_paired_error_retry1/metrics.json": {
+      "sha256": "fcf38f13cd9c283855930ec2a80642b3d0f147de1c717f9727824461218c2286",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "status": "development_comparison_complete",
+        "training": false,
+        "test_used": false,
+        "split": "validation",
+        "legacy_scale_m": 3.18272066116333,
+        "dino_scale_m": 3.161912679672241,
+        "rgb_hashes_checked": 4908,
+        "legacy_policy_kind": "shipped base PPO (not final original-SPVC checkpoint)",
+        "images": 4908,
+        "nonterminal_state_pairs": 147240,
+        "excluded_terminal_state_pairs": 4908,
+        "runtime_seconds": 117.71353030996397
+      },
+      "result_keys": []
+    },
+    "results/dino_improvement/01_old_ppo_validation/metrics.json": {
+      "sha256": "b869177355971993a08e64d65223075bc86fa0e342482d00594af5f96e0f256d",
+      "configuration_summary": {
+        "inline": {},
+        "config.json": {
+          "mode": "evaluate",
+          "seed": 7,
+          "requested_timesteps": 200000,
+          "hashes": {
+            "representation": "9c12c799c599691315a08454314c975d9eb5381fe70cdd04867f9fcff4a0412a",
+            "latent_data": "af78bea92a305807fe42d72b8aec2f8f5e3b5e1e508c340790b9136258f6057e"
+          },
+          "manifest_sha256": "4cc7fdf0e5af7d9d09065bcadbc9f9aad731a31366767e62a14c76546e2da531",
+          "eval_split": "validation",
+          "eval_grid_size": 20,
+          "representation_scope": "PPO image-library holdout only; representation was previously trained",
+          "image_counts": {
+            "test": 80,
+            "validation": 80,
+            "train": 240
+          },
+          "note": "An old controller may already have seen these images. Test subset evaluation does not erase prior exposure."
+        }
+      },
+      "scalar_metrics": {
+        "mode": "evaluate",
+        "seed": 7,
+        "requested_timesteps": 200000,
+        "manifest_sha256": "4cc7fdf0e5af7d9d09065bcadbc9f9aad731a31366767e62a14c76546e2da531",
+        "eval_split": "validation",
+        "eval_grid_size": 20,
+        "representation_scope": "PPO image-library holdout only; representation was previously trained",
+        "checkpoint": "results/dino_latent_ppo_stage2_mixed_20260928/latent_ppo.zip",
+        "checkpoint_sha256": "2466d0b3d4dd000ba2bdc890f4c7179fba615dc021d20d5b09aace9092dfaf64",
+        "actual_model_timesteps": 200704,
+        "development_gate_pass": false,
+        "runtime_seconds": 34.17673206329346
+      },
+      "result_keys": []
+    },
+    "results/dino_improvement/02_train_only_ppo/metrics.json": {
+      "sha256": "4467706573098d04dbd36330a7279f4ae1c666ab3da2f2584b9c6721f054fb08",
+      "configuration_summary": {
+        "inline": {},
+        "config.json": {
+          "mode": "train",
+          "seed": 7,
+          "requested_timesteps": 200000,
+          "hashes": {
+            "representation": "9c12c799c599691315a08454314c975d9eb5381fe70cdd04867f9fcff4a0412a",
+            "latent_data": "af78bea92a305807fe42d72b8aec2f8f5e3b5e1e508c340790b9136258f6057e"
+          },
+          "manifest_sha256": "4cc7fdf0e5af7d9d09065bcadbc9f9aad731a31366767e62a14c76546e2da531",
+          "eval_split": "validation",
+          "eval_grid_size": 20,
+          "representation_scope": "PPO image-library holdout only; representation was previously trained",
+          "image_counts": {
+            "test": 80,
+            "validation": 80,
+            "train": 240
+          },
+          "note": "An old controller may already have seen these images. Test subset evaluation does not erase prior exposure."
+        }
+      },
+      "scalar_metrics": {
+        "mode": "train",
+        "seed": 7,
+        "requested_timesteps": 200000,
+        "manifest_sha256": "4cc7fdf0e5af7d9d09065bcadbc9f9aad731a31366767e62a14c76546e2da531",
+        "eval_split": "validation",
+        "eval_grid_size": 20,
+        "representation_scope": "PPO image-library holdout only; representation was previously trained",
+        "checkpoint": "results/dino_improvement/02_train_only_ppo/latent_ppo.zip",
+        "checkpoint_sha256": "52b5bd583ce27b976b5a8d1383a7ba9d283abc8a814323464578e3b5d91a5d36",
+        "actual_model_timesteps": 200704,
+        "development_gate_pass": false,
+        "runtime_seconds": 234.61955976486206
+      },
+      "result_keys": []
+    },
+    "results/dino_improvement/04_matched_image_diagnostic/metrics.json": {
+      "sha256": "724fc5475c065a4d23b0724c144f1345eeb96f3c42744907ad0662b14808d0c9",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "representation_is_newly_heldout": false,
+        "surrogate_is_safe_oracle": false,
+        "controller": "results/dino_improvement/02_train_only_ppo/latent_ppo.zip",
+        "controller_sha256": "52b5bd583ce27b976b5a8d1383a7ba9d283abc8a814323464578e3b5d91a5d36",
+        "manifest_sha256": "4cc7fdf0e5af7d9d09065bcadbc9f9aad731a31366767e62a14c76546e2da531"
+      },
+      "result_keys": []
+    },
+    "results/dino_improvement/05_representation_alignment_ab/A_sequential/metrics.json": {
+      "sha256": "f9a97a70231773334ae6a4a52a2300e1a8d50f8b85a0aa4a47dcbf2960d8d8da",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "variant": "A_sequential",
+        "best_projection_epoch": 163,
+        "best_q_epoch": 400,
+        "test_evaluated": false
+      },
+      "result_keys": []
+    },
+    "results/dino_improvement/05_representation_alignment_ab/B_joint/metrics.json": {
+      "sha256": "3143c79e54f323c56bc704549bafa79f428e751a68912e2ff43d0a4b59fe6f8c",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "variant": "B_joint",
+        "best_projection_epoch": 247,
+        "best_q_epoch": 14,
+        "test_evaluated": false
+      },
+      "result_keys": []
+    },
+    "results/dino_improvement/06_B_joint_ppo/matched/metrics.json": {
+      "sha256": "fad6ad1d7166a50d9752cdb2b8e3016641a19194ec5f41173120251edd0654e2",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "representation_is_newly_heldout": false,
+        "surrogate_is_safe_oracle": false,
+        "controller": "results/dino_improvement/06_B_joint_ppo/ppo/latent_ppo.zip",
+        "controller_sha256": "2bd83e74af9996d3e8fa783e04a5ac4806f83a020d06d09fc21b67fb824299a6",
+        "manifest_sha256": "bc36b925f0bcaa5bb7edafcf8b7a526f76f89baabbfa749d79383e2e99998295"
+      },
+      "result_keys": []
+    },
+    "results/dino_improvement/06_B_joint_ppo/ppo/metrics.json": {
+      "sha256": "8ed7b67bfadb9529482daab98a499f79babbab9915cfebf3822f90fc47fb9bea",
+      "configuration_summary": {
+        "inline": {},
+        "config.json": {
+          "mode": "train",
+          "seed": 7,
+          "requested_timesteps": 200000,
+          "hashes": {
+            "representation": "534193c23fd41a368fff44953c0cac77cbd4cc43715a7ebd0e0a710b9b2cdae6",
+            "latent_data": "8cd06c16d703b21fe9b6049c9f012a5521f53a17ab335476ac953482c3b5df14"
+          },
+          "manifest_sha256": "bc36b925f0bcaa5bb7edafcf8b7a526f76f89baabbfa749d79383e2e99998295",
+          "eval_split": "validation",
+          "eval_grid_size": 20,
+          "heldout_rollout_skipped": true,
+          "representation_scope": "representation retrained on train, selected on historical validation; test not encoded",
+          "image_counts": {
+            "test": 80,
+            "validation": 80,
+            "train": 240
+          },
+          "note": "An old controller may already have seen these images. Test subset evaluation does not erase prior exposure."
+        }
+      },
+      "scalar_metrics": {
+        "mode": "train",
+        "seed": 7,
+        "requested_timesteps": 200000,
+        "manifest_sha256": "bc36b925f0bcaa5bb7edafcf8b7a526f76f89baabbfa749d79383e2e99998295",
+        "eval_split": "validation",
+        "eval_grid_size": 20,
+        "heldout_rollout_skipped": true,
+        "representation_scope": "representation retrained on train, selected on historical validation; test not encoded",
+        "checkpoint": "results/dino_improvement/06_B_joint_ppo/ppo/latent_ppo.zip",
+        "checkpoint_sha256": "2bd83e74af9996d3e8fa783e04a5ac4806f83a020d06d09fc21b67fb824299a6",
+        "actual_model_timesteps": 200704,
+        "development_gate_pass": null,
+        "runtime_seconds": 231.0732593536377
+      },
+      "result_keys": []
+    },
+    "results/environment_nbc_20261013_001/01_frozen_diagnostic/metrics.json": {
+      "sha256": "a537327f6ee4bfe56dadefb13e51df59a7c182588c01a987bc02b1ec37b92e8b",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "final_SPVC_exact_image_environment_barrier_v1",
+        "status": "environment_barrier_diagnostic_complete",
+        "training_run": false,
+        "test_used": false,
+        "noise_bins": 10,
+        "vt_distance_scale_m": 3.18272066116333,
+        "noise_interpretation": "legacy independent uniform noise is a sensitivity assumption, not a calibrated environment contract",
+        "inequality": "margin=current B - next/expected B; original hard check uses margin<=0; no added epsilon",
+        "successor_terminal_handling": "raw saved B evaluated including terminal successor; current terminal states excluded",
+        "source_files_unchanged": true,
+        "runtime_seconds": 12.894730642903596
+      },
+      "result_keys": [
+        "train",
+        "validation"
+      ]
+    },
+    "results/environment_nbc_20261013_001/02_action_envelope/metrics.json": {
+      "sha256": "e8dbc520b06851d2bf4f45148bd0606c40e230176bbe0221f9ef8df619303dfe",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "empirical_environment_action_hull_noise_IBP_v1",
+        "status": "failed",
+        "training_run": false,
+        "test_used": false,
+        "meaning": "bounds all actions inside the observed hull and original uniform noise at these states; no continuous-state or unseen-environment claim",
+        "arithmetic": "float64 interval propagation with float32 successor input padding; not outward-rounded formal arithmetic",
+        "original_noise_assumption": "uniform factor .05 retained; not independently established as physical process noise",
+        "error": "ValueError('expected 12 matched appearances at every state')",
+        "runtime_seconds": 4.104742729105055
+      },
+      "result_keys": [
+        "train"
+      ]
+    },
+    "results/environment_nbc_20261013_001/02b_action_envelope_groupfix/metrics.json": {
+      "sha256": "5292291982701b43d5882d3a534e01db241a8ea2bdf42216b5aafb08f8ff93aa",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "empirical_environment_action_hull_noise_IBP_v1",
+        "status": "sampled_environment_envelope_pass",
+        "training_run": false,
+        "test_used": false,
+        "meaning": "bounds all actions inside the observed hull and original uniform noise at these states; no continuous-state or unseen-environment claim",
+        "arithmetic": "float64 interval propagation with float32 successor input padding; not outward-rounded formal arithmetic",
+        "original_noise_assumption": "uniform factor .05 retained; not independently established as physical process noise",
+        "source_models_unchanged": true,
+        "runtime_seconds": 4.277820740127936
+      },
+      "result_keys": [
+        "train",
+        "validation"
+      ]
+    },
+    "results/environment_nbc_20261013_001/03_noise_audit_nominal/metrics.json": {
+      "sha256": "bc90d535597927cd312dc5f5d3bb6ebd00a216c34090f6dc19f57f74d8fc387b",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "empirical_environment_action_hull_noise_IBP_v2",
+        "status": "sampled_environment_envelope_pass",
+        "training_run": false,
+        "test_used": false,
+        "meaning": "finite-state sensitivity check under the registered action/noise model; no continuous-state or unseen-environment claim",
+        "arithmetic": "float64 interval propagation with float32 successor input padding; not outward-rounded formal arithmetic",
+        "original_noise_assumption": "uniform factor .05 is the legacy model, not independently established as physical process noise",
+        "action_source": "nominal",
+        "noise_model": "original-uniform",
+        "original_backend_changed": false,
+        "zero_noise_scope": "analytic AEBS update only; does not assert zero CARLA/real-world dynamics error",
+        "source_models_unchanged": true,
+        "runtime_seconds": 4.027042572852224
+      },
+      "result_keys": [
+        "train",
+        "validation"
+      ]
+    },
+    "results/environment_nbc_20261013_001/04_noise_audit_hull_original/metrics.json": {
+      "sha256": "b8b96e067870c019bc8126ec0f807084fcff2733d00b2455fca41fd8ad53f63a",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "empirical_environment_action_hull_noise_IBP_v2",
+        "status": "sampled_environment_envelope_pass",
+        "training_run": false,
+        "test_used": false,
+        "meaning": "finite-state sensitivity check under the registered action/noise model; no continuous-state or unseen-environment claim",
+        "arithmetic": "float64 interval propagation with float32 successor input padding; not outward-rounded formal arithmetic",
+        "original_noise_assumption": "uniform factor .05 is the legacy model, not independently established as physical process noise",
+        "action_source": "environment-hull",
+        "noise_model": "original-uniform",
+        "original_backend_changed": false,
+        "zero_noise_scope": "analytic AEBS update only; does not assert zero CARLA/real-world dynamics error",
+        "source_models_unchanged": true,
+        "runtime_seconds": 4.218958524055779
+      },
+      "result_keys": [
+        "train",
+        "validation"
+      ]
+    },
+    "results/environment_nbc_20261013_001/05_noise_audit_hull_deterministic/metrics.json": {
+      "sha256": "eb9e8844cedad3f912d3ff58242a9ba9838207d66e71a3e7908b7b61e280454e",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "empirical_environment_action_hull_noise_IBP_v2",
+        "status": "sampled_environment_envelope_pass",
+        "training_run": false,
+        "test_used": false,
+        "meaning": "finite-state sensitivity check under the registered action/noise model; no continuous-state or unseen-environment claim",
+        "arithmetic": "float64 interval propagation with float32 successor input padding; not outward-rounded formal arithmetic",
+        "original_noise_assumption": "uniform factor .05 is the legacy model, not independently established as physical process noise",
+        "action_source": "environment-hull",
+        "noise_model": "none",
+        "original_backend_changed": false,
+        "zero_noise_scope": "analytic AEBS update only; does not assert zero CARLA/real-world dynamics error",
+        "source_models_unchanged": true,
+        "runtime_seconds": 4.270072422921658
+      },
+      "result_keys": [
+        "train",
+        "validation"
+      ]
+    },
+    "results/environment_nbc_20261013_001/06_action_bounds_train_v1/metrics.json": {
+      "sha256": "93854118715121ced31ecbcdd21ede39370e43ed8a319c30c682a9b771e8dc05",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "train_only_state_dependent_action_error_bounds_v1",
+        "status": "development_only_action_bounds_fitted",
+        "training_scope": "new offline action-error bounds model only; DINO/q/PPO/SBC frozen",
+        "test_used": false,
+        "formal_calibration": false,
+        "rollout_run": false,
+        "sbc_reverified": false,
+        "diagnostic_sha256": "a537327f6ee4bfe56dadefb13e51df59a7c182588c01a987bc02b1ec37b92e8b",
+        "script_sha256": "ff41489e9ccad764ed8deed6baf253e34aee88e6eba44df42445963604786aed",
+        "target": "per exact training state, lower/upper hull of image_action-q_action including zero",
+        "interval_formula": "[a_q+lower(d,v), a_q+upper(d,v)] clipped to [-3,3]",
+        "model_selection": "final preset epoch; no validation selection",
+        "validation_role": "reused development split, not independent calibration",
+        "train_unique_states": 61860,
+        "frozen_models_unchanged": true,
+        "pair_data_unchanged": true,
+        "checkpoint": "results/environment_nbc_20261013_001/06_action_bounds_train_v1/action_error_bounds.pt",
+        "checkpoint_sha256": "28fb7d79ce546840ae265fb0a6b19ac436b5515b55c9eaf7a401cb7e65c60b83",
+        "training_validation_disjoint": true,
+        "safety_claim": false,
+        "independent_coverage_claim": false,
+        "runtime_seconds": 31.380035037873313
+      },
+      "result_keys": [
+        "train",
+        "validation"
+      ]
+    },
+    "results/environment_nbc_20261013_001/07_action_bounds_miss_diagnosis/metrics.json": {
+      "sha256": "edb1e2d4ec414c20ebe1a3438b88dfd84509bb63f0e0135745c12725b50c24bd",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "frozen_action_bounds_neighbor_label_diagnosis_v1",
+        "status": "development_miss_diagnosis_complete",
+        "training_run": false,
+        "model_updates": false,
+        "test_used": false,
+        "formal_calibration": false,
+        "neighbor_scope": "same speed; bracket distances or fixed physical distance windows; all 12 appearances and same appearance reported separately",
+        "interpretation": "outside an observed neighbor hull means absent from those recorded labels, not physically impossible or a proof of causal failure",
+        "script_sha256": "acf0b823628a9819dc13fc8870e65212c5aa1b7c7cf7a1e3680654ad12f51150",
+        "source_files_unchanged": true,
+        "runtime_seconds": 4.67524226102978
+      },
+      "result_keys": [
+        "global_training_hull",
+        "two_sided_neighbor_distances_all_appearances",
+        "two_sided_neighbors_same_appearance",
+        "distance_windows"
+      ]
+    },
+    "results/environment_nbc_20261013_001/08_full_actuator_band/metrics.json": {
+      "sha256": "723dea487f3773cc84801977edc636267c444982a552a94f3d20d04b7c37cedc",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "registered_action_range_noise_IBP_v3",
+        "status": "sampled_full_actuator_unresolved",
+        "training_run": false,
+        "test_used": false,
+        "meaning": "finite-state sensitivity check under the registered action/noise model; no continuous-state or unseen-environment claim",
+        "arithmetic": "float64 interval propagation with float32 successor input padding; not outward-rounded formal arithmetic",
+        "original_noise_assumption": "uniform factor .05 is the legacy model, not independently established as physical process noise",
+        "action_source": "full-actuator",
+        "noise_model": "original-uniform",
+        "action_splits": 32,
+        "action_interval_aggregation": "maximum upper B bound across all action subintervals at each noise cell, then uniform noise average",
+        "full_actuator_scope": "includes every clipped image action at these exact states under the registered physics/noise model, not continuous-state or task-level safety",
+        "original_backend_changed": false,
+        "zero_noise_scope": "analytic AEBS update only; does not assert zero CARLA/real-world dynamics error",
+        "source_models_unchanged": true,
+        "runtime_seconds": 8.064161947928369
+      },
+      "result_keys": [
+        "train",
+        "validation"
+      ]
+    },
+    "results/environment_nbc_20261014_001/01_signed_nbc_mean/metrics.json": {
+      "sha256": "1fcfef3210cf4a38c75d989b22ddd927c3520b0889c19d1fa2c972e4a2809817",
+      "configuration_summary": {
+        "diagnostic_dir": "results/environment_nbc_20261013_001/01_frozen_diagnostic",
+        "spvc_dir": "results/dino_spvc_minimal_v1",
+        "representation": "results/dino_expanded_v1/08_R2_group_alignment/dino_safety_latent.pt",
+        "output_dir": "results/environment_nbc_20261014_001/01_signed_nbc_mean",
+        "initial_nbc": null,
+        "epochs": 200,
+        "batch_size": 8192,
+        "hidden": 64,
+        "barrier_lambda": 0.1,
+        "epsilon": 0.01,
+        "hard_fraction": 0,
+        "seed": 7,
+        "device": "cuda"
+      },
+      "scalar_metrics": {
+        "experiment": "offline_image_transition_single_step_NBC_v1",
+        "status": "development_nbc_constraints_violated",
+        "training_run": true,
+        "policy_updated": false,
+        "old_sbc_updated": false,
+        "representation_updated": false,
+        "ppo_joint_training": false,
+        "multi_step_training": false,
+        "test_used": false,
+        "cp_used": false,
+        "extra_noise_used": false,
+        "script_sha256": "a0694aa847f7998226945ce01b08f5f04ff4bb1c807af1e15d23284c5489d251",
+        "initial_nbc_sha256": null,
+        "vt_distance_scale_m": 3.18272066116333,
+        "paper_component": "Model-Free NBC IV-B single-step invariant/initial/unsafe losses; positive margins inspired by official srlnbc implementation",
+        "data_scope": "exact-image offline simulator transitions at labeled distances; weather/color affect actual saved actions; no nearest-image lookup",
+        "simulator_scope": "analytic AEBS successors recorded previously, not measured CARLA vehicle dynamics",
+        "label_scope": "known task initial [15,16]x[2.5,3]; unsafe [5,6]x[0.5001,3]; no hand-computed recoverable/TTC labels",
+        "train_region_grid": 32,
+        "evaluation_region_grid": 41,
+        "validation_role": "reused development split, not independent safety calibration",
+        "source_safety_probability_reused": false,
+        "source_files_unchanged": true,
+        "checkpoint": "results/environment_nbc_20261014_001/01_signed_nbc_mean/nbc.pt"
+      },
+      "result_keys": [
+        "train",
+        "validation"
+      ]
+    },
+    "results/environment_nbc_20261014_001/02_signed_nbc_hard_tail/metrics.json": {
+      "sha256": "afb91fb2790f80a1a26a47e87d9ddc181e54ff5fdc7f92ee397b3980b46e5682",
+      "configuration_summary": {
+        "diagnostic_dir": "results/environment_nbc_20261013_001/01_frozen_diagnostic",
+        "spvc_dir": "results/dino_spvc_minimal_v1",
+        "representation": "results/dino_expanded_v1/08_R2_group_alignment/dino_safety_latent.pt",
+        "output_dir": "results/environment_nbc_20261014_001/02_signed_nbc_hard_tail",
+        "initial_nbc": "results/environment_nbc_20261014_001/01_signed_nbc_mean/nbc.pt",
+        "epochs": 120,
+        "batch_size": 8192,
+        "hidden": 64,
+        "barrier_lambda": 0.1,
+        "epsilon": 0.01,
+        "hard_fraction": 0.1,
+        "seed": 7,
+        "device": "cuda"
+      },
+      "scalar_metrics": {
+        "experiment": "offline_image_transition_single_step_NBC_v1",
+        "status": "development_nbc_constraints_violated",
+        "training_run": true,
+        "policy_updated": false,
+        "old_sbc_updated": false,
+        "representation_updated": false,
+        "ppo_joint_training": false,
+        "multi_step_training": false,
+        "test_used": false,
+        "cp_used": false,
+        "extra_noise_used": false,
+        "script_sha256": "a0694aa847f7998226945ce01b08f5f04ff4bb1c807af1e15d23284c5489d251",
+        "initial_nbc_sha256": "c88a5355be40909f2a01e005d3e50414c120cd5d6746f4934ba5850d0bbdeebf",
+        "vt_distance_scale_m": 3.18272066116333,
+        "paper_component": "Model-Free NBC IV-B single-step invariant/initial/unsafe losses; positive margins inspired by official srlnbc implementation",
+        "data_scope": "exact-image offline simulator transitions at labeled distances; weather/color affect actual saved actions; no nearest-image lookup",
+        "simulator_scope": "analytic AEBS successors recorded previously, not measured CARLA vehicle dynamics",
+        "label_scope": "known task initial [15,16]x[2.5,3]; unsafe [5,6]x[0.5001,3]; no hand-computed recoverable/TTC labels",
+        "train_region_grid": 32,
+        "evaluation_region_grid": 41,
+        "validation_role": "reused development split, not independent safety calibration",
+        "source_safety_probability_reused": false,
+        "source_files_unchanged": true,
+        "checkpoint": "results/environment_nbc_20261014_001/02_signed_nbc_hard_tail/nbc.pt"
+      },
+      "result_keys": [
+        "train",
+        "validation"
+      ]
+    },
+    "results/environment_nbc_20261014_001/03_joint_replay_pilot/metrics.json": {
+      "sha256": "3a9566850fe9e36ae32a0c8a8c51f71cf94610812e82400df4010f4cdc1f796c",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "DINO_train_image_replay_PPO_NBC_joint_pilot_v1",
+        "status": "joint_replay_pilot_complete",
+        "initial_mean_equivalence_error": 0,
+        "initial_exploration_std": 1.4175128936767578,
+        "policy_initialization": "final SPVC mean; inherited base PPO value/exploration variance; fresh optimizer, not a full PPO resume",
+        "representation_frozen": true,
+        "q_frozen": true,
+        "test_used": false,
+        "cp_used": false,
+        "qp_used": false,
+        "safety_condition": "single-step signed NBC lambda=.1 epsilon=.01",
+        "safety_actor_loss": "likelihood-ratio weighted detached globally centered/scaled hinge; adaptive nonnegative coefficient, clipped to 1",
+        "old_log_prob_action": "sampled unclipped Gaussian action; executed clipped action recorded separately",
+        "nbc_update_order": "score with pre-update NBC; update PPO; then fit NBC on recorded transitions (10 steps)",
+        "actor_lr": 0.00001,
+        "nbc_lr": 0.0003,
+        "timesteps": 8192,
+        "seed": 7,
+        "multi_step": false,
+        "safety_certificate": false,
+        "safety_actor_gradient_active": true,
+        "actor_updated": true,
+        "source_files_unchanged": true,
+        "runtime_seconds": 15.56576481112279
+      },
+      "result_keys": []
+    },
+    "results/environment_nbc_20261014_001/04_joint_retained/metrics.json": {
+      "sha256": "4ec193e00a96db36424f515d4981412b00c79423fb114357491f61021e532175",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "DINO_train_image_replay_PPO_NBC_joint_pilot_v1",
+        "status": "joint_replay_pilot_complete",
+        "initial_mean_equivalence_error": 0,
+        "initial_exploration_std": 1.4175128936767578,
+        "policy_initialization": "final SPVC mean; inherited base PPO value/exploration variance; fresh optimizer, not a full PPO resume",
+        "representation_frozen": true,
+        "q_frozen": true,
+        "test_used": false,
+        "cp_used": false,
+        "qp_used": false,
+        "safety_condition": "single-step signed NBC lambda=.1 epsilon=.01",
+        "safety_actor_loss": "likelihood-ratio weighted detached globally centered/scaled hinge; adaptive nonnegative coefficient, clipped to 1",
+        "old_log_prob_action": "sampled unclipped Gaussian action; executed clipped action recorded separately",
+        "nbc_update_order": "score with pre-update NBC; update PPO; then fit NBC on recorded transitions (10 steps)",
+        "actor_lr": 0.00001,
+        "nbc_lr": 0.0003,
+        "timesteps": 8192,
+        "seed": 7,
+        "multi_step": false,
+        "safety_certificate": false,
+        "safety_feedback": "on",
+        "nbc_retention": true,
+        "retention_spec": "2048 old train transitions/step; balanced new/old invariant hinge; mean+max region hinge; fixed 16384 train guard and 81x81 region gate; restore NBC+Adam on rejection",
+        "script_sha256": "bed22a05effabf181310299537166a7b0c41c80b5ea9ec44a2e999a76401201a"
+      },
+      "result_keys": []
+    },
+    "results/environment_nbc_20261014_001/05_reward_only_control/metrics.json": {
+      "sha256": "f668165b43fae8f685a1a3369e7ca5325e2a62f50dd30edad7e5943c7b557c63",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "DINO_train_image_replay_PPO_NBC_joint_pilot_v1",
+        "status": "reward_only_ppo_control_complete",
+        "initial_mean_equivalence_error": 0,
+        "initial_exploration_std": 1.4175128936767578,
+        "policy_initialization": "final SPVC mean; inherited base PPO value/exploration variance; fresh optimizer, not a full PPO resume",
+        "representation_frozen": true,
+        "q_frozen": true,
+        "test_used": false,
+        "cp_used": false,
+        "qp_used": false,
+        "safety_condition": "single-step signed NBC lambda=.1 epsilon=.01",
+        "safety_actor_loss": "likelihood-ratio weighted detached globally centered/scaled hinge; adaptive nonnegative coefficient, clipped to 1",
+        "old_log_prob_action": "sampled unclipped Gaussian action; executed clipped action recorded separately",
+        "nbc_update_order": "score with pre-update NBC; update PPO; then fit NBC on recorded transitions (10 steps)",
+        "actor_lr": 0.00001,
+        "nbc_lr": 0.0003,
+        "timesteps": 8192,
+        "seed": 7,
+        "multi_step": false,
+        "safety_certificate": false,
+        "safety_feedback": "off",
+        "nbc_retention": true,
+        "retention_spec": "2048 old train transitions/step; balanced new/old invariant hinge; mean+max region hinge; fixed 16384 train guard and 81x81 region gate; restore NBC+Adam on rejection",
+        "script_sha256": "bed22a05effabf181310299537166a7b0c41c80b5ea9ec44a2e999a76401201a"
+      },
+      "result_keys": []
+    },
+    "results/environment_nbc_20261014_001/07_joint_five_step/metrics.json": {
+      "sha256": "bd036ef5ae97c3a8720c49ed165d312cf01e3ea9d36f4428f5aa82064b6746a7",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "DINO_train_image_replay_PPO_NBC_joint_pilot_v1",
+        "status": "joint_replay_pilot_complete",
+        "initial_mean_equivalence_error": 0,
+        "initial_exploration_std": 1.4175128936767578,
+        "policy_initialization": "final SPVC mean; inherited base PPO value/exploration variance; fresh optimizer, not a full PPO resume",
+        "representation_frozen": true,
+        "q_frozen": true,
+        "test_used": false,
+        "cp_used": false,
+        "qp_used": false,
+        "safety_condition": "signed NBC lambda=.1 epsilon=.01; 5-step discounted hinges",
+        "safety_actor_loss": "likelihood-ratio weighted detached globally centered/scaled hinge; adaptive nonnegative coefficient, clipped to 1",
+        "old_log_prob_action": "sampled unclipped Gaussian action; executed clipped action recorded separately",
+        "nbc_update_order": "score with pre-update NBC; update PPO; then fit NBC on recorded transitions (10 steps)",
+        "actor_lr": 0.00001,
+        "nbc_lr": 0.0003,
+        "timesteps": 8192,
+        "seed": 7,
+        "multi_step": true,
+        "barrier_steps": 5,
+        "multi_step_discount": 0.99,
+        "safety_certificate": false,
+        "boundary_handling": "actual terminal successor included; no crossing episodes/rollouts; available-horizon weight normalization",
+        "safety_feedback": "on"
+      },
+      "result_keys": []
+    },
+    "results/environment_nbc_20261014_001/08_reward_only_five_step_shadow/metrics.json": {
+      "sha256": "39a7ecf99957e3b17e0a477723a7fc5ffe7565b48bb9abdb2e9589d9a932e179",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "DINO_train_image_replay_PPO_NBC_joint_pilot_v1",
+        "status": "reward_only_ppo_control_complete",
+        "initial_mean_equivalence_error": 0,
+        "initial_exploration_std": 1.4175128936767578,
+        "policy_initialization": "final SPVC mean; inherited base PPO value/exploration variance; fresh optimizer, not a full PPO resume",
+        "representation_frozen": true,
+        "q_frozen": true,
+        "test_used": false,
+        "cp_used": false,
+        "qp_used": false,
+        "safety_condition": "signed NBC lambda=.1 epsilon=.01; 5-step discounted hinges",
+        "safety_actor_loss": "likelihood-ratio weighted detached globally centered/scaled hinge; adaptive nonnegative coefficient, clipped to 1",
+        "old_log_prob_action": "sampled unclipped Gaussian action; executed clipped action recorded separately",
+        "nbc_update_order": "score with pre-update NBC; update PPO; then fit NBC on recorded transitions (10 steps)",
+        "actor_lr": 0.00001,
+        "nbc_lr": 0.0003,
+        "timesteps": 8192,
+        "seed": 7,
+        "multi_step": true,
+        "barrier_steps": 5,
+        "multi_step_discount": 0.99,
+        "safety_certificate": false,
+        "boundary_handling": "actual terminal successor included; no crossing episodes/rollouts; available-horizon weight normalization",
+        "safety_feedback": "off"
+      },
+      "result_keys": []
+    },
+    "results/conformal/trajectory_cp_99_99_20260927/metrics.json": {
+      "sha256": "b442b11876ea6651e153d91037a94b6d80e964c7c18f0bc1d7d39aacd7407259",
+      "configuration_summary": {
+        "inline": {
+          "experiment": "trajectory_level_conformal_mvp",
+          "registered_before_rollout": true,
+          "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+          "checkpoint_sha256": {
+            "semantic_ppo": "6c21819360a73c52eca666eacc1c6e9648b0e5d5d6312b89f4c01556093304e9",
+            "sbc": "c4de7d45345c649a77a7be4075086755a89e7a3af1b2bdbc32e50e9d6fcbc111"
+          },
+          "controllers": [
+            "ppo",
+            "ppo_plus_qp"
+          ],
+          "calibration_episodes": 459,
+          "test_episodes": 200,
+          "horizon": 400,
+          "target_epsilon": 0.01,
+          "target_beta": 0.01,
+          "calibration_seed": 20260927,
+          "test_seed": 20260928,
+          "initial_distribution": {
+            "distance_m": "Uniform(15,16)",
+            "speed_mps": "Uniform(2.5,3.0)"
+          },
+          "semantics": "exact simulator distance and speed",
+          "dynamics": "deterministic original AebsEnv dynamics",
+          "trajectory_score": "max_t min((6-d_t)/1m, (v_t-0.5)/1mps)",
+          "score_positive_means": "entered the configured unsafe set during the finite horizon",
+          "not_covered": [
+            "image or semantic estimation error",
+            "process disturbance",
+            "distribution shift",
+            "infinite horizon",
+            "worst-endpoint stress mode"
+          ]
+        },
+        "config.json": {
+          "experiment": "trajectory_level_conformal_mvp",
+          "registered_before_rollout": true,
+          "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+          "checkpoint_sha256": {
+            "semantic_ppo": "6c21819360a73c52eca666eacc1c6e9648b0e5d5d6312b89f4c01556093304e9",
+            "sbc": "c4de7d45345c649a77a7be4075086755a89e7a3af1b2bdbc32e50e9d6fcbc111"
+          },
+          "controllers": [
+            "ppo",
+            "ppo_plus_qp"
+          ],
+          "calibration_episodes": 459,
+          "test_episodes": 200,
+          "horizon": 400,
+          "target_epsilon": 0.01,
+          "target_beta": 0.01,
+          "calibration_seed": 20260927,
+          "test_seed": 20260928,
+          "initial_distribution": {
+            "distance_m": "Uniform(15,16)",
+            "speed_mps": "Uniform(2.5,3.0)"
+          },
+          "semantics": "exact simulator distance and speed",
+          "dynamics": "deterministic original AebsEnv dynamics",
+          "trajectory_score": "max_t min((6-d_t)/1m, (v_t-0.5)/1mps)",
+          "score_positive_means": "entered the configured unsafe set during the finite horizon",
+          "not_covered": [
+            "image or semantic estimation error",
+            "process disturbance",
+            "distribution shift",
+            "infinite horizon",
+            "worst-endpoint stress mode"
+          ]
+        }
+      },
+      "scalar_metrics": {
+        "experiment": "trajectory_level_conformal_mvp",
+        "runtime_seconds": 3.4038431644439697
+      },
+      "result_keys": []
+    },
+    "results/conformal/trajectory_cp_99_99_final_20260927/metrics.json": {
+      "sha256": "1ae328c5fdfec34831b75ac2c5703e268d1bf59db014e4ee07713d4c22b8d2a6",
+      "configuration_summary": {
+        "inline": {
+          "experiment": "trajectory_level_conformal_mvp",
+          "registered_before_rollout": true,
+          "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+          "checkpoint_sha256": {
+            "semantic_ppo": "6c21819360a73c52eca666eacc1c6e9648b0e5d5d6312b89f4c01556093304e9",
+            "sbc": "c4de7d45345c649a77a7be4075086755a89e7a3af1b2bdbc32e50e9d6fcbc111"
+          },
+          "controllers": [
+            "ppo",
+            "ppo_plus_qp"
+          ],
+          "calibration_episodes": 459,
+          "test_episodes": 200,
+          "horizon": 400,
+          "target_epsilon": 0.01,
+          "target_beta": 0.01,
+          "calibration_seed": 20260927,
+          "test_seed": 20260928,
+          "initial_distribution": {
+            "distance_m": "Uniform(15,16)",
+            "speed_mps": "Uniform(2.5,3.0)"
+          },
+          "semantics": "exact simulator distance and speed",
+          "dynamics": "deterministic original AebsEnv dynamics",
+          "trajectory_score": "max_t min((6-d_t)/1m, (v_t-0.5)/1mps)",
+          "score_positive_means": "entered the configured unsafe set during the finite horizon",
+          "not_covered": [
+            "image or semantic estimation error",
+            "process disturbance",
+            "distribution shift",
+            "infinite horizon",
+            "worst-endpoint stress mode"
+          ]
+        },
+        "config.json": {
+          "experiment": "trajectory_level_conformal_mvp",
+          "registered_before_rollout": true,
+          "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+          "checkpoint_sha256": {
+            "semantic_ppo": "6c21819360a73c52eca666eacc1c6e9648b0e5d5d6312b89f4c01556093304e9",
+            "sbc": "c4de7d45345c649a77a7be4075086755a89e7a3af1b2bdbc32e50e9d6fcbc111"
+          },
+          "controllers": [
+            "ppo",
+            "ppo_plus_qp"
+          ],
+          "calibration_episodes": 459,
+          "test_episodes": 200,
+          "horizon": 400,
+          "target_epsilon": 0.01,
+          "target_beta": 0.01,
+          "calibration_seed": 20260927,
+          "test_seed": 20260928,
+          "initial_distribution": {
+            "distance_m": "Uniform(15,16)",
+            "speed_mps": "Uniform(2.5,3.0)"
+          },
+          "semantics": "exact simulator distance and speed",
+          "dynamics": "deterministic original AebsEnv dynamics",
+          "trajectory_score": "max_t min((6-d_t)/1m, (v_t-0.5)/1mps)",
+          "score_positive_means": "entered the configured unsafe set during the finite horizon",
+          "not_covered": [
+            "image or semantic estimation error",
+            "process disturbance",
+            "distribution shift",
+            "infinite horizon",
+            "worst-endpoint stress mode"
+          ]
+        }
+      },
+      "scalar_metrics": {
+        "experiment": "trajectory_level_conformal_mvp",
+        "runtime_seconds": 3.3531928062438965
+      },
+      "result_keys": []
+    },
+    "results/conformal/trajectory_cp_exact_regression_20260927/metrics.json": {
+      "sha256": "4580ae26ec9f15402bc7b68b32032460f3a6afd876bf6f50a5809ebde0f199da",
+      "configuration_summary": {
+        "inline": {
+          "experiment": "trajectory_level_conformal_mvp",
+          "registered_before_rollout": true,
+          "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+          "checkpoint_sha256": {
+            "semantic_encoder": "ffd67195092dcb479faf8630aa4b6100a89fe4c25f23a6c9d15e0e910282341b",
+            "semantic_ppo": "6c21819360a73c52eca666eacc1c6e9648b0e5d5d6312b89f4c01556093304e9",
+            "sbc": "c4de7d45345c649a77a7be4075086755a89e7a3af1b2bdbc32e50e9d6fcbc111"
+          },
+          "controllers": [
+            "ppo",
+            "ppo_plus_qp"
+          ],
+          "calibration_episodes": 59,
+          "test_episodes": 20,
+          "horizon": 400,
+          "target_epsilon": 0.05,
+          "target_beta": 0.05,
+          "calibration_seed": 20260927,
+          "test_seed": 20260928,
+          "initial_distribution": {
+            "distance_m": "Uniform(15,16)",
+            "speed_mps": "Uniform(2.5,3.0)"
+          },
+          "semantics": "exact simulator distance and speed",
+          "semantic_mode": "exact",
+          "dynamics": "deterministic original AebsEnv dynamics",
+          "trajectory_score": "max_t min((6-d_t)/1m, (v_t-0.5)/1mps)",
+          "score_positive_means": "entered the configured unsafe set during the finite horizon",
+          "not_covered": [
+            "real image-distribution shift",
+            "process disturbance",
+            "distribution shift",
+            "infinite horizon",
+            "worst-endpoint stress mode"
+          ]
+        },
+        "config.json": {
+          "experiment": "trajectory_level_conformal_mvp",
+          "registered_before_rollout": true,
+          "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+          "checkpoint_sha256": {
+            "semantic_encoder": "ffd67195092dcb479faf8630aa4b6100a89fe4c25f23a6c9d15e0e910282341b",
+            "semantic_ppo": "6c21819360a73c52eca666eacc1c6e9648b0e5d5d6312b89f4c01556093304e9",
+            "sbc": "c4de7d45345c649a77a7be4075086755a89e7a3af1b2bdbc32e50e9d6fcbc111"
+          },
+          "controllers": [
+            "ppo",
+            "ppo_plus_qp"
+          ],
+          "calibration_episodes": 59,
+          "test_episodes": 20,
+          "horizon": 400,
+          "target_epsilon": 0.05,
+          "target_beta": 0.05,
+          "calibration_seed": 20260927,
+          "test_seed": 20260928,
+          "initial_distribution": {
+            "distance_m": "Uniform(15,16)",
+            "speed_mps": "Uniform(2.5,3.0)"
+          },
+          "semantics": "exact simulator distance and speed",
+          "semantic_mode": "exact",
+          "dynamics": "deterministic original AebsEnv dynamics",
+          "trajectory_score": "max_t min((6-d_t)/1m, (v_t-0.5)/1mps)",
+          "score_positive_means": "entered the configured unsafe set during the finite horizon",
+          "not_covered": [
+            "real image-distribution shift",
+            "process disturbance",
+            "distribution shift",
+            "infinite horizon",
+            "worst-endpoint stress mode"
+          ]
+        }
+      },
+      "scalar_metrics": {
+        "experiment": "trajectory_level_conformal_mvp",
+        "runtime_seconds": 3.1503758430480957
+      },
+      "result_keys": []
+    },
+    "results/conformal/trajectory_cp_image_replay_99_99_20260927/metrics.json": {
+      "sha256": "dbce8653ea99a52791cb2e593590fbadf520f44067543cb67e318cb3df82b779",
+      "configuration_summary": {
+        "inline": {
+          "experiment": "trajectory_level_conformal_mvp",
+          "registered_before_rollout": true,
+          "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+          "checkpoint_sha256": {
+            "semantic_encoder": "ffd67195092dcb479faf8630aa4b6100a89fe4c25f23a6c9d15e0e910282341b",
+            "semantic_ppo": "6c21819360a73c52eca666eacc1c6e9648b0e5d5d6312b89f4c01556093304e9",
+            "sbc": "c4de7d45345c649a77a7be4075086755a89e7a3af1b2bdbc32e50e9d6fcbc111",
+            "image_dataset": "41cc88359f64d52ffb25a8ec57ea9efddd9b8463d37e63bc972b2854dbed1bf1"
+          },
+          "controllers": [
+            "ppo",
+            "ppo_plus_qp"
+          ],
+          "calibration_episodes": 459,
+          "test_episodes": 200,
+          "horizon": 400,
+          "target_epsilon": 0.01,
+          "target_beta": 0.01,
+          "calibration_seed": 20260927,
+          "test_seed": 20260928,
+          "initial_distribution": {
+            "distance_m": "Uniform(15,16)",
+            "speed_mps": "Uniform(2.5,3.0)"
+          },
+          "semantics": "exact speed plus semantic-encoder point estimate from the nearest labeled real dataset image",
+          "semantic_mode": "dataset_nearest",
+          "dynamics": "deterministic original AebsEnv dynamics",
+          "trajectory_score": "max_t min((6-d_t)/1m, (v_t-0.5)/1mps)",
+          "score_positive_means": "entered the configured unsafe set during the finite horizon",
+          "not_covered": [
+            "real image-distribution shift",
+            "process disturbance",
+            "distribution shift",
+            "infinite horizon",
+            "worst-endpoint stress mode"
+          ],
+          "semantic_image_replay": {
+            "dataset": "Aebs/data/Downsampled.h5",
+            "selection": "nearest labeled physical distance at each active step",
+            "encoder_output": "point estimate",
+            "important_limitation": "finite 400-image nearest-neighbor replay; not a rendering engine, not new camera data, and not a guarantee under image distribution shift"
+          }
+        },
+        "config.json": {
+          "experiment": "trajectory_level_conformal_mvp",
+          "registered_before_rollout": true,
+          "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+          "checkpoint_sha256": {
+            "semantic_encoder": "ffd67195092dcb479faf8630aa4b6100a89fe4c25f23a6c9d15e0e910282341b",
+            "semantic_ppo": "6c21819360a73c52eca666eacc1c6e9648b0e5d5d6312b89f4c01556093304e9",
+            "sbc": "c4de7d45345c649a77a7be4075086755a89e7a3af1b2bdbc32e50e9d6fcbc111",
+            "image_dataset": "41cc88359f64d52ffb25a8ec57ea9efddd9b8463d37e63bc972b2854dbed1bf1"
+          },
+          "controllers": [
+            "ppo",
+            "ppo_plus_qp"
+          ],
+          "calibration_episodes": 459,
+          "test_episodes": 200,
+          "horizon": 400,
+          "target_epsilon": 0.01,
+          "target_beta": 0.01,
+          "calibration_seed": 20260927,
+          "test_seed": 20260928,
+          "initial_distribution": {
+            "distance_m": "Uniform(15,16)",
+            "speed_mps": "Uniform(2.5,3.0)"
+          },
+          "semantics": "exact speed plus semantic-encoder point estimate from the nearest labeled real dataset image",
+          "semantic_mode": "dataset_nearest",
+          "dynamics": "deterministic original AebsEnv dynamics",
+          "trajectory_score": "max_t min((6-d_t)/1m, (v_t-0.5)/1mps)",
+          "score_positive_means": "entered the configured unsafe set during the finite horizon",
+          "not_covered": [
+            "real image-distribution shift",
+            "process disturbance",
+            "distribution shift",
+            "infinite horizon",
+            "worst-endpoint stress mode"
+          ],
+          "semantic_image_replay": {
+            "dataset": "Aebs/data/Downsampled.h5",
+            "selection": "nearest labeled physical distance at each active step",
+            "encoder_output": "point estimate",
+            "important_limitation": "finite 400-image nearest-neighbor replay; not a rendering engine, not new camera data, and not a guarantee under image distribution shift"
+          }
+        }
+      },
+      "scalar_metrics": {
+        "experiment": "trajectory_level_conformal_mvp",
+        "runtime_seconds": 3.528195858001709
+      },
+      "result_keys": []
+    },
+    "results/conformal/trajectory_cp_image_replay_smoke_20260927/metrics.json": {
+      "sha256": "a82f2e2bf0a646240ddef6c0711fb68c56a1763486142e5fdd8cce7c306f7b93",
+      "configuration_summary": {
+        "inline": {
+          "experiment": "trajectory_level_conformal_mvp",
+          "registered_before_rollout": true,
+          "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+          "checkpoint_sha256": {
+            "semantic_encoder": "ffd67195092dcb479faf8630aa4b6100a89fe4c25f23a6c9d15e0e910282341b",
+            "semantic_ppo": "6c21819360a73c52eca666eacc1c6e9648b0e5d5d6312b89f4c01556093304e9",
+            "sbc": "c4de7d45345c649a77a7be4075086755a89e7a3af1b2bdbc32e50e9d6fcbc111",
+            "image_dataset": "41cc88359f64d52ffb25a8ec57ea9efddd9b8463d37e63bc972b2854dbed1bf1"
+          },
+          "controllers": [
+            "ppo",
+            "ppo_plus_qp"
+          ],
+          "calibration_episodes": 59,
+          "test_episodes": 20,
+          "horizon": 400,
+          "target_epsilon": 0.05,
+          "target_beta": 0.05,
+          "calibration_seed": 20260927,
+          "test_seed": 20260928,
+          "initial_distribution": {
+            "distance_m": "Uniform(15,16)",
+            "speed_mps": "Uniform(2.5,3.0)"
+          },
+          "semantics": "exact speed plus semantic-encoder point estimate from the nearest labeled real dataset image",
+          "semantic_mode": "dataset_nearest",
+          "dynamics": "deterministic original AebsEnv dynamics",
+          "trajectory_score": "max_t min((6-d_t)/1m, (v_t-0.5)/1mps)",
+          "score_positive_means": "entered the configured unsafe set during the finite horizon",
+          "not_covered": [
+            "real image-distribution shift",
+            "process disturbance",
+            "distribution shift",
+            "infinite horizon",
+            "worst-endpoint stress mode"
+          ],
+          "semantic_image_replay": {
+            "dataset": "Aebs/data/Downsampled.h5",
+            "selection": "nearest labeled physical distance at each active step",
+            "encoder_output": "point estimate",
+            "important_limitation": "finite 400-image nearest-neighbor replay; not a rendering engine, not new camera data, and not a guarantee under image distribution shift"
+          }
+        },
+        "config.json": {
+          "experiment": "trajectory_level_conformal_mvp",
+          "registered_before_rollout": true,
+          "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+          "checkpoint_sha256": {
+            "semantic_encoder": "ffd67195092dcb479faf8630aa4b6100a89fe4c25f23a6c9d15e0e910282341b",
+            "semantic_ppo": "6c21819360a73c52eca666eacc1c6e9648b0e5d5d6312b89f4c01556093304e9",
+            "sbc": "c4de7d45345c649a77a7be4075086755a89e7a3af1b2bdbc32e50e9d6fcbc111",
+            "image_dataset": "41cc88359f64d52ffb25a8ec57ea9efddd9b8463d37e63bc972b2854dbed1bf1"
+          },
+          "controllers": [
+            "ppo",
+            "ppo_plus_qp"
+          ],
+          "calibration_episodes": 59,
+          "test_episodes": 20,
+          "horizon": 400,
+          "target_epsilon": 0.05,
+          "target_beta": 0.05,
+          "calibration_seed": 20260927,
+          "test_seed": 20260928,
+          "initial_distribution": {
+            "distance_m": "Uniform(15,16)",
+            "speed_mps": "Uniform(2.5,3.0)"
+          },
+          "semantics": "exact speed plus semantic-encoder point estimate from the nearest labeled real dataset image",
+          "semantic_mode": "dataset_nearest",
+          "dynamics": "deterministic original AebsEnv dynamics",
+          "trajectory_score": "max_t min((6-d_t)/1m, (v_t-0.5)/1mps)",
+          "score_positive_means": "entered the configured unsafe set during the finite horizon",
+          "not_covered": [
+            "real image-distribution shift",
+            "process disturbance",
+            "distribution shift",
+            "infinite horizon",
+            "worst-endpoint stress mode"
+          ],
+          "semantic_image_replay": {
+            "dataset": "Aebs/data/Downsampled.h5",
+            "selection": "nearest labeled physical distance at each active step",
+            "encoder_output": "point estimate",
+            "important_limitation": "finite 400-image nearest-neighbor replay; not a rendering engine, not new camera data, and not a guarantee under image distribution shift"
+          }
+        }
+      },
+      "scalar_metrics": {
+        "experiment": "trajectory_level_conformal_mvp",
+        "runtime_seconds": 3.389735698699951
+      },
+      "result_keys": []
+    },
+    "results/conformal/trajectory_cp_smoke_20260927/metrics.json": {
+      "sha256": "4a46bfb60b6e31f7331d6a7bbfdfd79dce5dd19f91529984bef71a362cbc42d6",
+      "configuration_summary": {
+        "inline": {
+          "experiment": "trajectory_level_conformal_mvp",
+          "registered_before_rollout": true,
+          "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+          "checkpoint_sha256": {
+            "semantic_ppo": "6c21819360a73c52eca666eacc1c6e9648b0e5d5d6312b89f4c01556093304e9",
+            "sbc": "c4de7d45345c649a77a7be4075086755a89e7a3af1b2bdbc32e50e9d6fcbc111"
+          },
+          "controllers": [
+            "ppo",
+            "ppo_plus_qp"
+          ],
+          "calibration_episodes": 59,
+          "test_episodes": 20,
+          "horizon": 400,
+          "target_epsilon": 0.05,
+          "target_beta": 0.05,
+          "calibration_seed": 20260927,
+          "test_seed": 20260928,
+          "initial_distribution": {
+            "distance_m": "Uniform(15,16)",
+            "speed_mps": "Uniform(2.5,3.0)"
+          },
+          "semantics": "exact simulator distance and speed",
+          "dynamics": "deterministic original AebsEnv dynamics",
+          "trajectory_score": "max_t min((6-d_t)/1m, (v_t-0.5)/1mps)",
+          "score_positive_means": "entered the configured unsafe set during the finite horizon",
+          "not_covered": [
+            "image or semantic estimation error",
+            "process disturbance",
+            "distribution shift",
+            "infinite horizon",
+            "worst-endpoint stress mode"
+          ]
+        },
+        "config.json": {
+          "experiment": "trajectory_level_conformal_mvp",
+          "registered_before_rollout": true,
+          "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+          "checkpoint_sha256": {
+            "semantic_ppo": "6c21819360a73c52eca666eacc1c6e9648b0e5d5d6312b89f4c01556093304e9",
+            "sbc": "c4de7d45345c649a77a7be4075086755a89e7a3af1b2bdbc32e50e9d6fcbc111"
+          },
+          "controllers": [
+            "ppo",
+            "ppo_plus_qp"
+          ],
+          "calibration_episodes": 59,
+          "test_episodes": 20,
+          "horizon": 400,
+          "target_epsilon": 0.05,
+          "target_beta": 0.05,
+          "calibration_seed": 20260927,
+          "test_seed": 20260928,
+          "initial_distribution": {
+            "distance_m": "Uniform(15,16)",
+            "speed_mps": "Uniform(2.5,3.0)"
+          },
+          "semantics": "exact simulator distance and speed",
+          "dynamics": "deterministic original AebsEnv dynamics",
+          "trajectory_score": "max_t min((6-d_t)/1m, (v_t-0.5)/1mps)",
+          "score_positive_means": "entered the configured unsafe set during the finite horizon",
+          "not_covered": [
+            "image or semantic estimation error",
+            "process disturbance",
+            "distribution shift",
+            "infinite horizon",
+            "worst-endpoint stress mode"
+          ]
+        }
+      },
+      "scalar_metrics": {
+        "experiment": "trajectory_level_conformal_mvp",
+        "runtime_seconds": 7.963294744491577
+      },
+      "result_keys": []
+    },
+    "results/conformal/trajectory_cp_uniform_semantic_99_99_20260927/metrics.json": {
+      "sha256": "6c642a104aed42015e8c0009be1d581c7920c42bc558f6c66e75acaeba402e25",
+      "configuration_summary": {
+        "inline": {
+          "experiment": "trajectory_level_conformal_mvp",
+          "registered_before_rollout": true,
+          "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+          "checkpoint_sha256": {
+            "semantic_encoder": "ffd67195092dcb479faf8630aa4b6100a89fe4c25f23a6c9d15e0e910282341b",
+            "semantic_ppo": "6c21819360a73c52eca666eacc1c6e9648b0e5d5d6312b89f4c01556093304e9",
+            "sbc": "c4de7d45345c649a77a7be4075086755a89e7a3af1b2bdbc32e50e9d6fcbc111"
+          },
+          "controllers": [
+            "ppo",
+            "ppo_plus_qp"
+          ],
+          "calibration_episodes": 459,
+          "test_episodes": 200,
+          "horizon": 400,
+          "target_epsilon": 0.01,
+          "target_beta": 0.01,
+          "calibration_seed": 20260927,
+          "test_seed": 20260928,
+          "initial_distribution": {
+            "distance_m": "Uniform(15,16)",
+            "speed_mps": "Uniform(2.5,3.0)"
+          },
+          "semantics": "exact speed plus independent per-step uniform distance error inside the saved state-conditional semantic contract",
+          "semantic_mode": "uniform_contract",
+          "dynamics": "deterministic original AebsEnv dynamics",
+          "trajectory_score": "max_t min((6-d_t)/1m, (v_t-0.5)/1mps)",
+          "score_positive_means": "entered the configured unsafe set during the finite horizon",
+          "not_covered": [
+            "real image-distribution shift",
+            "process disturbance",
+            "distribution shift",
+            "infinite horizon",
+            "worst-endpoint stress mode"
+          ],
+          "semantic_error_distribution": {
+            "multiplier": "IID Uniform(-1,1) at every active control step",
+            "radius_source": "results/mvp/01_semantic/semantic_encoder.pt",
+            "conditioning": "true physical distance bin",
+            "important_limitation": "synthetic distribution inside the calibrated interval; not the empirical image-error distribution and not a worst-case guarantee"
+          }
+        },
+        "config.json": {
+          "experiment": "trajectory_level_conformal_mvp",
+          "registered_before_rollout": true,
+          "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+          "checkpoint_sha256": {
+            "semantic_encoder": "ffd67195092dcb479faf8630aa4b6100a89fe4c25f23a6c9d15e0e910282341b",
+            "semantic_ppo": "6c21819360a73c52eca666eacc1c6e9648b0e5d5d6312b89f4c01556093304e9",
+            "sbc": "c4de7d45345c649a77a7be4075086755a89e7a3af1b2bdbc32e50e9d6fcbc111"
+          },
+          "controllers": [
+            "ppo",
+            "ppo_plus_qp"
+          ],
+          "calibration_episodes": 459,
+          "test_episodes": 200,
+          "horizon": 400,
+          "target_epsilon": 0.01,
+          "target_beta": 0.01,
+          "calibration_seed": 20260927,
+          "test_seed": 20260928,
+          "initial_distribution": {
+            "distance_m": "Uniform(15,16)",
+            "speed_mps": "Uniform(2.5,3.0)"
+          },
+          "semantics": "exact speed plus independent per-step uniform distance error inside the saved state-conditional semantic contract",
+          "semantic_mode": "uniform_contract",
+          "dynamics": "deterministic original AebsEnv dynamics",
+          "trajectory_score": "max_t min((6-d_t)/1m, (v_t-0.5)/1mps)",
+          "score_positive_means": "entered the configured unsafe set during the finite horizon",
+          "not_covered": [
+            "real image-distribution shift",
+            "process disturbance",
+            "distribution shift",
+            "infinite horizon",
+            "worst-endpoint stress mode"
+          ],
+          "semantic_error_distribution": {
+            "multiplier": "IID Uniform(-1,1) at every active control step",
+            "radius_source": "results/mvp/01_semantic/semantic_encoder.pt",
+            "conditioning": "true physical distance bin",
+            "important_limitation": "synthetic distribution inside the calibrated interval; not the empirical image-error distribution and not a worst-case guarantee"
+          }
+        }
+      },
+      "scalar_metrics": {
+        "experiment": "trajectory_level_conformal_mvp",
+        "runtime_seconds": 3.340081214904785
+      },
+      "result_keys": []
+    },
+    "results/conformal/trajectory_cp_uniform_semantic_smoke_20260927/metrics.json": {
+      "sha256": "d4cb178227c052d578723fe7537e3abb9d29cc9701f87a97ff445d81d0617e1b",
+      "configuration_summary": {
+        "inline": {
+          "experiment": "trajectory_level_conformal_mvp",
+          "registered_before_rollout": true,
+          "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+          "checkpoint_sha256": {
+            "semantic_encoder": "ffd67195092dcb479faf8630aa4b6100a89fe4c25f23a6c9d15e0e910282341b",
+            "semantic_ppo": "6c21819360a73c52eca666eacc1c6e9648b0e5d5d6312b89f4c01556093304e9",
+            "sbc": "c4de7d45345c649a77a7be4075086755a89e7a3af1b2bdbc32e50e9d6fcbc111"
+          },
+          "controllers": [
+            "ppo",
+            "ppo_plus_qp"
+          ],
+          "calibration_episodes": 59,
+          "test_episodes": 20,
+          "horizon": 400,
+          "target_epsilon": 0.05,
+          "target_beta": 0.05,
+          "calibration_seed": 20260927,
+          "test_seed": 20260928,
+          "initial_distribution": {
+            "distance_m": "Uniform(15,16)",
+            "speed_mps": "Uniform(2.5,3.0)"
+          },
+          "semantics": "exact speed plus independent per-step uniform distance error inside the saved state-conditional semantic contract",
+          "semantic_mode": "uniform_contract",
+          "dynamics": "deterministic original AebsEnv dynamics",
+          "trajectory_score": "max_t min((6-d_t)/1m, (v_t-0.5)/1mps)",
+          "score_positive_means": "entered the configured unsafe set during the finite horizon",
+          "not_covered": [
+            "real image-distribution shift",
+            "process disturbance",
+            "distribution shift",
+            "infinite horizon",
+            "worst-endpoint stress mode"
+          ],
+          "semantic_error_distribution": {
+            "multiplier": "IID Uniform(-1,1) at every active control step",
+            "radius_source": "results/mvp/01_semantic/semantic_encoder.pt",
+            "conditioning": "true physical distance bin",
+            "important_limitation": "synthetic distribution inside the calibrated interval; not the empirical image-error distribution and not a worst-case guarantee"
+          }
+        },
+        "config.json": {
+          "experiment": "trajectory_level_conformal_mvp",
+          "registered_before_rollout": true,
+          "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+          "checkpoint_sha256": {
+            "semantic_encoder": "ffd67195092dcb479faf8630aa4b6100a89fe4c25f23a6c9d15e0e910282341b",
+            "semantic_ppo": "6c21819360a73c52eca666eacc1c6e9648b0e5d5d6312b89f4c01556093304e9",
+            "sbc": "c4de7d45345c649a77a7be4075086755a89e7a3af1b2bdbc32e50e9d6fcbc111"
+          },
+          "controllers": [
+            "ppo",
+            "ppo_plus_qp"
+          ],
+          "calibration_episodes": 59,
+          "test_episodes": 20,
+          "horizon": 400,
+          "target_epsilon": 0.05,
+          "target_beta": 0.05,
+          "calibration_seed": 20260927,
+          "test_seed": 20260928,
+          "initial_distribution": {
+            "distance_m": "Uniform(15,16)",
+            "speed_mps": "Uniform(2.5,3.0)"
+          },
+          "semantics": "exact speed plus independent per-step uniform distance error inside the saved state-conditional semantic contract",
+          "semantic_mode": "uniform_contract",
+          "dynamics": "deterministic original AebsEnv dynamics",
+          "trajectory_score": "max_t min((6-d_t)/1m, (v_t-0.5)/1mps)",
+          "score_positive_means": "entered the configured unsafe set during the finite horizon",
+          "not_covered": [
+            "real image-distribution shift",
+            "process disturbance",
+            "distribution shift",
+            "infinite horizon",
+            "worst-endpoint stress mode"
+          ],
+          "semantic_error_distribution": {
+            "multiplier": "IID Uniform(-1,1) at every active control step",
+            "radius_source": "results/mvp/01_semantic/semantic_encoder.pt",
+            "conditioning": "true physical distance bin",
+            "important_limitation": "synthetic distribution inside the calibrated interval; not the empirical image-error distribution and not a worst-case guarantee"
+          }
+        }
+      },
+      "scalar_metrics": {
+        "experiment": "trajectory_level_conformal_mvp",
+        "runtime_seconds": 3.4200539588928223
+      },
+      "result_keys": []
+    },
+    "results/dino_latent_ppo_stage2_image_20260928/metrics.json": {
+      "sha256": "064779198fcb64cb31efab17cca6b06aaee3ca3be13b028168ca9d4c6694f130",
+      "configuration_summary": {
+        "inline": {},
+        "config.json": {
+          "experiment": "dino_latent_ppo_stage2_no_cp",
+          "registered_before_training": true,
+          "seed": 7,
+          "timesteps": 200000,
+          "observation": "[32-D latent, speed]",
+          "train_observation_mode": "image_nearest",
+          "excluded": [
+            "conformal prediction",
+            "SBC",
+            "QP"
+          ],
+          "unchanged_from_original": [
+            "AEBS dynamics",
+            "reward",
+            "action bounds",
+            "terminal conditions",
+            "PPO hyperparameters"
+          ],
+          "evaluation_initial_region": {
+            "distance_m": [
+              15,
+              16
+            ],
+            "speed_mps": [
+              2.5,
+              3
+            ],
+            "grid": [
+              20,
+              20
+            ]
+          }
+        }
+      },
+      "scalar_metrics": {
+        "experiment": "dino_latent_ppo_stage2_no_cp",
+        "registered_before_training": true,
+        "seed": 7,
+        "timesteps": 200000,
+        "observation": "[32-D latent, speed]",
+        "train_observation_mode": "image_nearest",
+        "training_seconds": 198.5140814781189,
+        "checkpoint": "results/dino_latent_ppo_stage2_image_20260928/latent_ppo.zip"
+      },
+      "result_keys": []
+    },
+    "results/dino_latent_ppo_stage2_mixed_20260928/metrics.json": {
+      "sha256": "42c9163c1f0f0260f9e10f498bec5bc268208412b5a29ef21c864fd1a9b59d7f",
+      "configuration_summary": {
+        "inline": {},
+        "config.json": {
+          "experiment": "dino_latent_ppo_stage2_no_cp",
+          "registered_before_training": true,
+          "seed": 7,
+          "timesteps": 200000,
+          "observation": "[32-D latent, speed]",
+          "train_observation_mode": "mixed_episode",
+          "excluded": [
+            "conformal prediction",
+            "SBC",
+            "QP"
+          ],
+          "unchanged_from_original": [
+            "AEBS dynamics",
+            "reward",
+            "action bounds",
+            "terminal conditions",
+            "PPO hyperparameters"
+          ],
+          "evaluation_initial_region": {
+            "distance_m": [
+              15,
+              16
+            ],
+            "speed_mps": [
+              2.5,
+              3
+            ],
+            "grid": [
+              20,
+              20
+            ]
+          }
+        }
+      },
+      "scalar_metrics": {
+        "experiment": "dino_latent_ppo_stage2_no_cp",
+        "registered_before_training": true,
+        "seed": 7,
+        "timesteps": 200000,
+        "observation": "[32-D latent, speed]",
+        "train_observation_mode": "mixed_episode",
+        "training_seconds": 204.2092068195343,
+        "checkpoint": "results/dino_latent_ppo_stage2_mixed_20260928/latent_ppo.zip"
+      },
+      "result_keys": []
+    },
+    "results/dino_latent_ppo_stage2_no_cp_threads1_20260928/metrics.json": {
+      "sha256": "bc83de0e13ad29fef21eca898606d6dfaad33c0b72b888cac252dc9fb423a958",
+      "configuration_summary": {
+        "inline": {},
+        "config.json": {
+          "experiment": "dino_latent_ppo_stage2_no_cp",
+          "registered_before_training": true,
+          "seed": 7,
+          "timesteps": 200000,
+          "observation": "[q_psi(normalized distance) 32-D latent, speed]",
+          "excluded": [
+            "conformal prediction",
+            "SBC",
+            "QP"
+          ],
+          "unchanged_from_original": [
+            "AEBS dynamics",
+            "reward",
+            "action bounds",
+            "terminal conditions",
+            "PPO hyperparameters"
+          ],
+          "evaluation_initial_region": {
+            "distance_m": [
+              15,
+              16
+            ],
+            "speed_mps": [
+              2.5,
+              3
+            ],
+            "grid": [
+              20,
+              20
+            ]
+          }
+        }
+      },
+      "scalar_metrics": {
+        "experiment": "dino_latent_ppo_stage2_no_cp",
+        "registered_before_training": true,
+        "seed": 7,
+        "timesteps": 200000,
+        "observation": "[q_psi(normalized distance) 32-D latent, speed]",
+        "training_seconds": 208.8206958770752,
+        "checkpoint": "results/dino_latent_ppo_stage2_no_cp_threads1_20260928/latent_ppo.zip"
+      },
+      "result_keys": []
+    },
+    "results/dino_latent_spvc_stage3_20260928/metrics.json": {
+      "sha256": "8857a1abd304c1dd118fbc8747010b13555ed9fc9489af5d083c8bf2f5cdc6a0",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "dino_latent_spvc_stage3_no_cp",
+        "representation_checkpoint": "results/dino_safety_latent_stage1/dino_safety_latent.pt",
+        "controller_checkpoint": "results/dino_latent_ppo_stage2_mixed_20260928/latent_ppo.zip",
+        "initial_sbc": "results/semantic_spvc_my_run/sbc.pt"
+      },
+      "result_keys": []
+    },
+    "results/dino_safety_latent_stage1/metrics.json": {
+      "sha256": "3c22fd0652666c7cf2732dce405603533ba43b21d73b9ce12cc2fff24a24de10",
+      "configuration_summary": {
+        "inline": {},
+        "config.json": {
+          "experiment": "frozen_dino_safety_latent_stage1",
+          "registered_before_training": true,
+          "dino_model": "dinov2_vits14",
+          "dino_frozen": true,
+          "dino_weights_sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+          "feature_dimension": 384,
+          "latent_dimension": 32,
+          "projection": "384 -> 128 -> 32",
+          "deployment_semantics": "controller consumes 32-D latent plus speed; not a 1-D distance estimate",
+          "auxiliary_losses": {
+            "safety_sufficiency": "latent decoder reconstructs normalized distance during training only",
+            "nuisance_invariance": "two brightness/contrast/noise views should share latent",
+            "state_separation": "states separated by >=1m receive a latent-margin loss"
+          },
+          "physical_to_latent": "q_psi(normalized distance) -> 32-D latent",
+          "dataset_limitation": "Current data have distance labels but no repeated CARLA weather/camera-pose groups; appearance augmentations are only a first nuisance proxy",
+          "sample_counts": {
+            "train": 240,
+            "calibration": 80,
+            "test": 80
+          },
+          "optimization_count": 192,
+          "validation_count": 48,
+          "seed": 7,
+          "epochs": 250,
+          "q_epochs": 400
+        }
+      },
+      "scalar_metrics": {
+        "experiment": "frozen_dino_safety_latent_stage1",
+        "registered_before_training": true,
+        "dino_model": "dinov2_vits14",
+        "dino_frozen": true,
+        "dino_weights_sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+        "feature_dimension": 384,
+        "latent_dimension": 32,
+        "projection": "384 -> 128 -> 32",
+        "deployment_semantics": "controller consumes 32-D latent plus speed; not a 1-D distance estimate",
+        "physical_to_latent": "q_psi(normalized distance) -> 32-D latent",
+        "dataset_limitation": "Current data have distance labels but no repeated CARLA weather/camera-pose groups; appearance augmentations are only a first nuisance proxy",
+        "optimization_count": 192,
+        "validation_count": 48,
+        "seed": 7,
+        "epochs": 250,
+        "q_epochs": 400,
+        "device": "cuda",
+        "official_dino_parameters": 22056576,
+        "trained_projection_parameters": 53408,
+        "trained_auxiliary_decoder_parameters": 1089,
+        "trained_q_parameters": 6368,
+        "best_projection_epoch": 171,
+        "best_validation_score": 0.10060998087637713,
+        "test_nuisance_invariance_mse": 0.023355333134531975
+      },
+      "result_keys": []
+    },
+    "results/dino_safety_latent_stage1/smoke/metrics.json": {
+      "sha256": "777330a60e4a5443be8925493a4a14482d45c947ba7099944222555c36928bb4",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "dino_safety_latent_runtime_smoke",
+        "status": "passed",
+        "runtime_output_is_distance": false,
+        "residual_norm_mean": 1.9655548334121704,
+        "residual_norm_max": 2.166515827178955,
+        "image_latent_finite": true
+      },
+      "result_keys": []
+    },
+    "results/dino_spvc_minimal_v1/metrics.json": {
+      "sha256": "e5d10b7d33d4a1ecc549e6306d1105d954ad9d495711b53bf70e50dc16b35e54",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "R2_DINO_original_SPVC_front_end_only_v1",
+        "claim_boundary": "legacy SPVC assumptions and verifier only; this run does not add a formal bound for image-latent versus q-latent mismatch",
+        "representation_checkpoint": "results/dino_expanded_v1/08_R2_group_alignment/dino_safety_latent.pt",
+        "representation_sha256": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+        "controller_checkpoint": "results/dino_expanded_v1/09_R2_ppo/latent_ppo.zip",
+        "controller_sha256": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+        "controller_metrics": "results/dino_expanded_v1/09_R2_ppo/metrics.json",
+        "initial_sbc": null,
+        "test_used": false,
+        "training_run": true,
+        "diagnose_only_from": null,
+        "saved_barrier_sha256": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+        "saved_policy_sha256": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+        "scope_comparison_requested": false
+      },
+      "result_keys": []
+    },
+    "results/dino_spvc_minimal_v1_common_latent/metrics.json": {
+      "sha256": "94e2e2eb4b0ae0fb9972bc1ccea98dc5f431c4b1c38dadfbfa119de38dd9857c",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "status": "development_common_latent_comparison_complete",
+        "experiment": "frozen_common_latent_q_vs_cgan_v1",
+        "training": false,
+        "test_used": false,
+        "split": "validation",
+        "device": "cuda",
+        "dino_source_sha256": "b60533f41a1cd98946f9091a8d4cc5cfff2d2c3b2fec5d4fef7c7068132d8dd2",
+        "metric": "Euclidean distance / sqrt(32), same frozen P(DINO) coordinate system",
+        "interpretation": "mae is mean nonnegative vector RMS gap; rmse is RMS of those gaps",
+        "generator_pixels": "(tanh_output+1)/2; inverse of gen_aebs_images training mapping; no minmax",
+        "images": 4908,
+        "rgb_hashes_checked": 4908,
+        "unique_distances": 408,
+        "random_draws": 32,
+        "generated_dino_encodings": 13464,
+        "rgb_cache_anchor_count": 12,
+        "rgb_cache_anchor_max_abs": 0.000028371810913085938,
+        "input_files_unchanged": true,
+        "runtime_seconds": 139.2903250490781
+      },
+      "result_keys": []
+    },
+    "results/dino_spvc_minimal_v1_final_recheck/metrics.json": {
+      "sha256": "53fbe78e94ca791d00d42d8a7e509e59bbc3513b54055a087ecbdbcd5c1f1020",
+      "configuration_summary": {
+        "environment_factor": 0.05,
+        "l_model_config": [
+          2,
+          16,
+          8,
+          1
+        ],
+        "p_lip": 2,
+        "l_lip": 4,
+        "epsilon": 0.1,
+        "gamma_decrease": 1,
+        "learner_reach_prob": 0.95,
+        "verifier_reach_prob": 0.9,
+        "grid": [
+          100,
+          100
+        ],
+        "hard_violation_fraction_threshold": 0.001,
+        "interval_implementation": "legacy VTVerifier unchanged"
+      },
+      "scalar_metrics": {
+        "experiment": "minimal_R2_saved_pair_original_SPVC_recheck",
+        "training_run": false,
+        "test_used": false,
+        "checkpoint_matches_verification": true,
+        "source_dir": "results/dino_spvc_minimal_v1",
+        "training_backend_manifest_checked": true,
+        "checkpoint_files_unchanged": true,
+        "K_except_barrier": 1.2,
+        "noise_cells": 100,
+        "original_fail_check_fast": true,
+        "vt_data_sha256": "41cc88359f64d52ffb25a8ec57ea9efddd9b8463d37e63bc972b2854dbed1bf1",
+        "status": "saved_pair_passes_legacy_checks",
+        "hard_violations": 1,
+        "compensated_violations": 2,
+        "grid_denominator": 10000,
+        "actually_checked_band_states": 82,
+        "hard_fraction_total_grid": 0.0001,
+        "hard_fraction_checked_band": 0.012195121951219513,
+        "legacy_threshold_pass": true,
+        "zero_hard_violations": false,
+        "init_upper": 1.1836737394332886,
+        "unsafe_lower": 20.141101837158203,
+        "domain_lower": 0.3146599233150482,
+        "legacy_probability_readout": 0.9561689475149103
+      },
+      "result_keys": []
+    },
+    "results/dino_spvc_minimal_v1_paired_error/metrics.json": {
+      "sha256": "70109b6e45af4e97663eb01e0056cc2b1901881ee2175f6dd8f0fc3f2f3d4095",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "status": "running",
+        "training": false,
+        "test_used": false,
+        "split": "validation",
+        "legacy_scale_m": 3.18272066116333,
+        "dino_scale_m": 3.161912679672241,
+        "rgb_hashes_checked": 0,
+        "legacy_policy_kind": "shipped base PPO (not final original-SPVC checkpoint)"
+      },
+      "result_keys": []
+    },
+    "results/dino_spvc_minimal_v1_paired_error_retry1/metrics.json": {
+      "sha256": "c22a13dc4b3bd91e216d60a1425c00c4df38f8b6da1acccb7bbdfd2585701715",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "status": "development_comparison_complete",
+        "training": false,
+        "test_used": false,
+        "split": "validation",
+        "legacy_scale_m": 3.18272066116333,
+        "dino_scale_m": 3.161912679672241,
+        "rgb_hashes_checked": 4908,
+        "legacy_policy_kind": "shipped base PPO (not final original-SPVC checkpoint)",
+        "input_files_unchanged": true,
+        "images": 4908,
+        "nonterminal_state_pairs": 147240,
+        "excluded_terminal_state_pairs": 4908,
+        "runtime_seconds": 86.45740645891055
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_corrected_recheck/metrics.json": {
+      "sha256": "03f5e4007fb3ede4e1aa9840a1726c9e20c27e46c22f578ae10f60cbd4db196d",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_corrected_interval_recheck",
+        "level": "corrected_legacy_grid_check_not_a_full_safety_certificate",
+        "checkpoint_dir": "results/semantic_spvc_my_run",
+        "grid_states": 10000,
+        "original_filtered_region_states": 21,
+        "corrected_ibp_hard_violations": 1,
+        "original_threshold_at_most_0_1_percent": true,
+        "candidate_probability_if_zero_violations": null
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_corrected_violation_diagnostic/metrics.json": {
+      "sha256": "aef9ed424c5737d5962bfcd90c0a6863046d47ee216ba8201c92188882ea7a52",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_corrected_violation_diagnostic",
+        "level": "corrected_region_and_finite_action_scan_not_a_certificate",
+        "original_grid_states": 10000,
+        "corrected_region_states": 21,
+        "expected_region_states_from_recheck": 21,
+        "nominal_nonnegative_residuals": 1,
+        "qp_nonnegative_residuals": 1,
+        "positive_slack_states": 0,
+        "action_scan_points": 121
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_extended_500/metrics.json": {
+      "sha256": "6a0383733ab356c8074f313b55d1f3a095af71892caa7b094d7012dfe3e308d2",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "spvc_semantic_only",
+        "semantic_checkpoint": "results/mvp/01_semantic/semantic_encoder.pt",
+        "controller_checkpoint": "Aebs/controller/best_model/best_model.zip",
+        "resume_dir": "results/semantic_spvc_minimal",
+        "start_iteration": 101,
+        "max_iteration_index": 500
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_minimal/metrics.json": {
+      "sha256": "45620f566005c1b879a81e76d5c73918f6e4df1924bd559a2c91e6db8a7508f8",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "spvc_semantic_only",
+        "semantic_checkpoint": "results/mvp/01_semantic/semantic_encoder.pt",
+        "controller_checkpoint": "Aebs/controller/best_model/best_model.zip"
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_my_run/metrics.json": {
+      "sha256": "953368ebdb5ea2353f1bbc117ae773a60697347520db059e3f92455d1f439bd8",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "spvc_semantic_only",
+        "semantic_checkpoint": "results/mvp/01_semantic/semantic_encoder.pt",
+        "controller_checkpoint": "Aebs/controller/best_model/best_model.zip",
+        "resume_dir": "results/semantic_spvc_extended_500",
+        "start_iteration": 501,
+        "max_iteration_index": 550,
+        "stop_on_zero_violation": true
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_no_cp_comprehensive_20260928/metrics.json": {
+      "sha256": "3fde8d21016229e212cf8d2dfcdb1cafc40301b243f4a963be9abc4e614a656c",
+      "configuration_summary": {
+        "inline": {
+          "experiment": "semantic_spvc_no_cp_comprehensive_empirical_evaluation",
+          "registered_before_rollout": true,
+          "uses_conformal_prediction": false,
+          "claim_level": "empirical_fixed_grid_evaluation_only_not_a_certificate",
+          "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+          "checkpoint_sha256": {
+            "semantic_encoder": "ffd67195092dcb479faf8630aa4b6100a89fe4c25f23a6c9d15e0e910282341b",
+            "semantic_ppo": "6c21819360a73c52eca666eacc1c6e9648b0e5d5d6312b89f4c01556093304e9",
+            "sbc": "c4de7d45345c649a77a7be4075086755a89e7a3af1b2bdbc32e50e9d6fcbc111",
+            "image_dataset": "41cc88359f64d52ffb25a8ec57ea9efddd9b8463d37e63bc972b2854dbed1bf1"
+          },
+          "controllers": [
+            "ppo",
+            "ppo_plus_qp"
+          ],
+          "semantic_modes": [
+            "exact",
+            "dataset_nearest",
+            "uniform_contract",
+            "random_boundary_contract",
+            "worst_endpoint_contract"
+          ],
+          "initial_grid": {
+            "distance_m": [
+              15,
+              16
+            ],
+            "speed_mps": [
+              2.5,
+              3
+            ],
+            "distance_points": 32,
+            "speed_points": 32,
+            "states": 1024,
+            "construction": "cell midpoints"
+          },
+          "horizon": 400,
+          "fixed_seed": 20260928,
+          "seed_policy": "one fixed seed; no multi-seed sweep",
+          "paired_design": "PPO and PPO+QP use identical initial states and identical pre-sampled observation-error sequences within each applicable mode",
+          "semantic_mode_definitions": {
+            "exact": "true simulator distance and speed",
+            "dataset_nearest": "semantic-encoder point estimate from the real dataset frame with nearest labeled distance",
+            "uniform_contract": "independent per-step Uniform(-radius,+radius) distance error",
+            "random_boundary_contract": "independent per-step random choice of -radius or +radius",
+            "worst_endpoint_contract": "at every step choose the contract endpoint yielding the smaller executed braking action for the evaluated controller"
+          },
+          "important_limitations": [
+            "No CP calibration or confidence statement is used.",
+            "The grid is finite and does not prove safety for all continuous initial states.",
+            "Dataset-nearest is finite image replay, not new-camera distribution testing.",
+            "Contract stress modes assume the saved semantic-error radii.",
+            "The original deterministic AEBS dynamics are used without process disturbance."
+          ]
+        },
+        "config.json": {
+          "experiment": "semantic_spvc_no_cp_comprehensive_empirical_evaluation",
+          "registered_before_rollout": true,
+          "uses_conformal_prediction": false,
+          "claim_level": "empirical_fixed_grid_evaluation_only_not_a_certificate",
+          "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+          "checkpoint_sha256": {
+            "semantic_encoder": "ffd67195092dcb479faf8630aa4b6100a89fe4c25f23a6c9d15e0e910282341b",
+            "semantic_ppo": "6c21819360a73c52eca666eacc1c6e9648b0e5d5d6312b89f4c01556093304e9",
+            "sbc": "c4de7d45345c649a77a7be4075086755a89e7a3af1b2bdbc32e50e9d6fcbc111",
+            "image_dataset": "41cc88359f64d52ffb25a8ec57ea9efddd9b8463d37e63bc972b2854dbed1bf1"
+          },
+          "controllers": [
+            "ppo",
+            "ppo_plus_qp"
+          ],
+          "semantic_modes": [
+            "exact",
+            "dataset_nearest",
+            "uniform_contract",
+            "random_boundary_contract",
+            "worst_endpoint_contract"
+          ],
+          "initial_grid": {
+            "distance_m": [
+              15,
+              16
+            ],
+            "speed_mps": [
+              2.5,
+              3
+            ],
+            "distance_points": 32,
+            "speed_points": 32,
+            "states": 1024,
+            "construction": "cell midpoints"
+          },
+          "horizon": 400,
+          "fixed_seed": 20260928,
+          "seed_policy": "one fixed seed; no multi-seed sweep",
+          "paired_design": "PPO and PPO+QP use identical initial states and identical pre-sampled observation-error sequences within each applicable mode",
+          "semantic_mode_definitions": {
+            "exact": "true simulator distance and speed",
+            "dataset_nearest": "semantic-encoder point estimate from the real dataset frame with nearest labeled distance",
+            "uniform_contract": "independent per-step Uniform(-radius,+radius) distance error",
+            "random_boundary_contract": "independent per-step random choice of -radius or +radius",
+            "worst_endpoint_contract": "at every step choose the contract endpoint yielding the smaller executed braking action for the evaluated controller"
+          },
+          "important_limitations": [
+            "No CP calibration or confidence statement is used.",
+            "The grid is finite and does not prove safety for all continuous initial states.",
+            "Dataset-nearest is finite image replay, not new-camera distribution testing.",
+            "Contract stress modes assume the saved semantic-error radii.",
+            "The original deterministic AEBS dynamics are used without process disturbance."
+          ]
+        }
+      },
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_no_cp_comprehensive_empirical_evaluation",
+        "runtime_seconds": 6.623778343200684,
+        "decision": "comprehensive_empirical_evaluation_complete_no_cp_claim; inspect_each_mode_separately"
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_noise_ibp_refinement/metrics.json": {
+      "sha256": "a6848b92b3e5c8c247952fb77bb1f307a8fabacfaa07459447df3e6f78703221",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_noise_ibp_refinement",
+        "level": "single_state_partition_sensitivity_not_a_certificate",
+        "barrier_value": 19.45125961303711,
+        "same_noise_support": true
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_qp_feasibility/metrics.json": {
+      "sha256": "4ee4202d7673baadd6e562c7d21d42111b79272b5845ccbcd464daee835a4796",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_qp_feasibility",
+        "level": "three_trajectory_finite_action_scan_not_a_certificate",
+        "checkpoint_dir": "results/semantic_spvc_qp_joint_full_20260926",
+        "examined_states": 118,
+        "slack_states": 63,
+        "slack_states_with_scanned_feasible_action": 0,
+        "slack_states_without_scanned_feasible_action": 63,
+        "minimum_of_minimum_residuals": -2.969694137573242,
+        "maximum_of_minimum_residuals": 3.302877902984619
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_qp_joint_full_20260926/metrics.json": {
+      "sha256": "4f9d430f900e46718641825114d912841643b22aec7d8b971fc372fca84bda0e",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_qp_joint_smoke",
+        "resume_dir": "results/semantic_spvc_my_run"
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_qp_joint_full_20260926_feasibility_region/metrics.json": {
+      "sha256": "0058835d691d26b2b9c1021565218e5eff2348742b83487e8dda4b10412fb061",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_qp_feasibility",
+        "level": "three_trajectory_finite_action_scan_not_a_certificate",
+        "checkpoint_dir": "results/semantic_spvc_qp_joint_full_20260926",
+        "examined_states": 118,
+        "slack_states": 63,
+        "slack_states_with_scanned_feasible_action": 0,
+        "slack_states_without_scanned_feasible_action": 63,
+        "all_trajectory_steps": 209,
+        "all_steps_in_original_verifier_region": 1,
+        "slack_states_in_original_verifier_region": 1,
+        "minimum_of_minimum_residuals": -2.969694137573242,
+        "maximum_of_minimum_residuals": 3.302877902984619
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_qp_joint_full_20260926_image_smoke/metrics.json": {
+      "sha256": "3b15b1304199ee30c141fbabe591f811be56933d9b24ddffd5aba77eb6ca30bc",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_qp_image_smoke",
+        "level": "forward_interface_check_not_a_closed_loop_or_certificate",
+        "checkpoint_dir": "results/semantic_spvc_qp_joint_full_20260926",
+        "images": 8,
+        "status": "passed"
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_qp_joint_full_20260926_qp_rho10000/metrics.json": {
+      "sha256": "1d2881b6e3818bdd653fe117270a71b5a839c127bd6f62a8a957717da0014a62",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_qp_q2_original",
+        "level": "paired_rollout_empirical_only_not_a_certificate",
+        "checkpoint_dir": "results/semantic_spvc_qp_joint_full_20260926",
+        "state_path": "true semantic state -> saved PPO -> optional frozen SBC-QP -> original AEBS environment",
+        "image_path_tested": false,
+        "paired_initial_states": 20,
+        "qp_constraint": "10x10 midpoint linearization, soft slack, no training",
+        "slack_weight": 10000
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_qp_joint_full_20260926_rollout/metrics.json": {
+      "sha256": "8bc20f29e5339e92164a199b0266e3a3c2d048f3218e80c44e9401020bbf3bc7",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_qp_q2_original",
+        "level": "paired_rollout_empirical_only_not_a_certificate",
+        "checkpoint_dir": "results/semantic_spvc_qp_joint_full_20260926",
+        "state_path": "true semantic state -> saved PPO -> optional frozen SBC-QP -> original AEBS environment",
+        "image_path_tested": false,
+        "paired_initial_states": 20,
+        "qp_constraint": "10x10 midpoint linearization, soft slack, no training",
+        "slack_weight": 100
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_qp_joint_smoke_20260926/metrics.json": {
+      "sha256": "af477c085e93e11d735cce69a59d7685967cbd838a13d99c2806dc1f977dbd00",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_qp_joint_smoke",
+        "resume_dir": "results/semantic_spvc_my_run"
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_qp_joint_smoke_20260926_rollout/metrics.json": {
+      "sha256": "37ca72035ad96543f7dbdcd0543ec1d5bf42de3694ce58e756f68ea2aae342e1",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_qp_q2_original",
+        "level": "paired_rollout_empirical_only_not_a_certificate",
+        "checkpoint_dir": "results/semantic_spvc_qp_joint_smoke_20260926",
+        "state_path": "true semantic state -> saved PPO -> optional frozen SBC-QP -> original AEBS environment",
+        "image_path_tested": false,
+        "paired_initial_states": 20,
+        "qp_constraint": "10x10 midpoint linearization, soft slack, no training",
+        "slack_weight": 100
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_qp_original_controller_baseline/metrics.json": {
+      "sha256": "4d9785bfa19a2c7b14e777f975c6a7c9d156377abe3db96d1100420946d7b629",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_qp_q2_original",
+        "level": "paired_rollout_empirical_only_not_a_certificate",
+        "checkpoint_dir": "results/semantic_spvc_qp_joint_full_20260926",
+        "controller_source": "original_pretrained_ppo",
+        "state_path": "true semantic state -> saved PPO -> optional frozen SBC-QP -> original AEBS environment",
+        "image_path_tested": false,
+        "paired_initial_states": 20,
+        "qp_constraint": "10x10 midpoint linearization, soft slack, no training",
+        "slack_weight": 100
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_qp_original_init_lr1e4_full_20260926/metrics.json": {
+      "sha256": "875faa1e01af0db998c0ae2be35ceac69088b021572d9ded09e3e06e55d75bc0",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_qp_joint_smoke",
+        "resume_dir": "results/semantic_spvc_qp_joint_full_20260926",
+        "controller_initialization": "original_pretrained_ppo"
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_qp_original_init_lr1e4_full_20260926_feasibility/metrics.json": {
+      "sha256": "be3b415a030a07b297fc05f1402c215c2ffca9bfc676b3f0e89d409926325f45",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_qp_feasibility",
+        "level": "three_trajectory_finite_action_scan_not_a_certificate",
+        "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+        "examined_states": 148,
+        "slack_states": 90,
+        "slack_states_with_scanned_feasible_action": 3,
+        "slack_states_without_scanned_feasible_action": 87,
+        "all_trajectory_steps": 260,
+        "all_steps_in_original_verifier_region": 2,
+        "slack_states_in_original_verifier_region": 2,
+        "minimum_of_minimum_residuals": -4.633247375488281,
+        "maximum_of_minimum_residuals": 5.507087230682373
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_qp_original_init_lr1e4_full_20260926_image_smoke/metrics.json": {
+      "sha256": "948300265f78d426f8373881c6e62b280110d0f94c44e8bae06501fd1797fdc1",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_qp_image_smoke",
+        "level": "forward_interface_check_not_a_closed_loop_or_certificate",
+        "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+        "images": 8,
+        "status": "passed"
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_qp_original_init_lr1e4_full_20260926_rollout/metrics.json": {
+      "sha256": "490a1de7684c60988d05297790a574f2fdd865c1312272a1c0b4c337ea30b3f5",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_qp_q2_original",
+        "level": "paired_rollout_empirical_only_not_a_certificate",
+        "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926",
+        "controller_source": "results/semantic_spvc_qp_original_init_lr1e4_full_20260926/semantic_ppo.pt",
+        "state_path": "true semantic state -> saved PPO -> optional frozen SBC-QP -> original AEBS environment",
+        "image_path_tested": false,
+        "paired_initial_states": 20,
+        "qp_constraint": "10x10 midpoint linearization, soft slack, no training",
+        "slack_weight": 100
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_qp_original_init_lr1e4_smoke_20260926/metrics.json": {
+      "sha256": "f7b892095e3b341f2020bbda468ea1631c8ab264fc65b931df57ccbfb2d7f632",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_qp_joint_smoke",
+        "resume_dir": "results/semantic_spvc_qp_joint_full_20260926",
+        "controller_initialization": "original_pretrained_ppo"
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_qp_original_init_lr1e4_smoke_20260926_rollout/metrics.json": {
+      "sha256": "e02939057c434e320eb6c0b4a04c6159c963b658c3b647ee949ce223c110e6cf",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_qp_q2_original",
+        "level": "paired_rollout_empirical_only_not_a_certificate",
+        "checkpoint_dir": "results/semantic_spvc_qp_original_init_lr1e4_smoke_20260926",
+        "controller_source": "results/semantic_spvc_qp_original_init_lr1e4_smoke_20260926/semantic_ppo.pt",
+        "state_path": "true semantic state -> saved PPO -> optional frozen SBC-QP -> original AEBS environment",
+        "image_path_tested": false,
+        "paired_initial_states": 20,
+        "qp_constraint": "10x10 midpoint linearization, soft slack, no training",
+        "slack_weight": 100
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_qp_original_init_smoke_20260926/metrics.json": {
+      "sha256": "6b08b31ca9483063647ff8456516b42acc680d6c3d89cd2f5883ebb143499bbe",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_qp_joint_smoke",
+        "resume_dir": "results/semantic_spvc_qp_joint_full_20260926",
+        "controller_initialization": "original_pretrained_ppo"
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_qp_original_init_smoke_20260926_rollout/metrics.json": {
+      "sha256": "f7419c6c988b2fb1b2090108b3e71cf61f0ac15d37872266781fcb76562b459a",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_qp_q2_original",
+        "level": "paired_rollout_empirical_only_not_a_certificate",
+        "checkpoint_dir": "results/semantic_spvc_qp_original_init_smoke_20260926",
+        "controller_source": "results/semantic_spvc_qp_original_init_smoke_20260926/semantic_ppo.pt",
+        "state_path": "true semantic state -> saved PPO -> optional frozen SBC-QP -> original AEBS environment",
+        "image_path_tested": false,
+        "paired_initial_states": 20,
+        "qp_constraint": "10x10 midpoint linearization, soft slack, no training",
+        "slack_weight": 100
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_qp_q1/metrics.json": {
+      "sha256": "c4c9b7100b81903ca0732f2fb3d21b0642735dbaab5ab0e39b70d057d72f73f0",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_qp_q1",
+        "level": "sampled_grid_diagnostic_not_a_certificate",
+        "checkpoint_dir": "results/semantic_spvc_my_run",
+        "noise_midpoint_bins_per_dimension": 10,
+        "ibp_noise_bins_per_dimension": 10,
+        "margin": 0,
+        "slack_weight": 100,
+        "device": "cuda",
+        "intervention_rate": 0.4609375,
+        "positive_slack_rate": 0.015625,
+        "qp_solver_failures": 0,
+        "flat_slope_rate": 0.0234375,
+        "affine_linear_residual_max": 0,
+        "runtime_seconds": 16.069983959197998
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_qp_q1b/metrics.json": {
+      "sha256": "1283a0427e6ca21574402cc94d30363271bf0c221c9d2dc72bc601a676fc05d3",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_qp_q1b_failure_diagnostic",
+        "level": "sampled_action_grid_diagnostic_not_a_certificate",
+        "action_grid_points": 121
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_qp_q1c_region/metrics.json": {
+      "sha256": "c49575c940a6dae7167d2030a5cfdf3c61b66e3fd1fbfe74983cb8b7c9a6b26a",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_qp_q1",
+        "level": "sampled_grid_diagnostic_not_a_certificate",
+        "checkpoint_dir": "results/semantic_spvc_my_run",
+        "full_original_verifier_region_count": 29,
+        "noise_midpoint_bins_per_dimension": 10,
+        "ibp_noise_bins_per_dimension": 10,
+        "margin": 0,
+        "slack_weight": 100,
+        "device": "cuda",
+        "intervention_rate": 0.7241379310344828,
+        "positive_slack_rate": 0.2413793103448276,
+        "qp_solver_failures": 0,
+        "flat_slope_rate": 0,
+        "affine_linear_residual_max": 0,
+        "runtime_seconds": 1.822378158569336
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_qp_q1d_ibp_audit/metrics.json": {
+      "sha256": "6af87846384f44e47a9d5e32a8368f178f18ca814aee9b39d57e56f0c6412b7b",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_qp_q1d_ibp_audit",
+        "level": "sampled_interval_implementation_audit_not_a_full_certificate",
+        "states": 29,
+        "noise_cells": 100,
+        "saved_q1c_legacy_max_abs_difference": 9.5367431640625e-7,
+        "saved_q1c_midpoint_max_abs_difference": 0
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_qp_q2_original/metrics.json": {
+      "sha256": "5ac205f59a88e82f6b32fc9e530050f24edeee61933c8436fa9c15052610b8aa",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "semantic_spvc_qp_q2_original",
+        "level": "paired_rollout_empirical_only_not_a_certificate",
+        "checkpoint_dir": "results/semantic_spvc_my_run",
+        "state_path": "true semantic state -> saved PPO -> optional frozen SBC-QP -> original AEBS environment",
+        "image_path_tested": false,
+        "paired_initial_states": 20,
+        "qp_constraint": "10x10 midpoint linearization, soft slack, no training",
+        "slack_weight": 100
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_zero_target/metrics.json": {
+      "sha256": "d2d83aec3ef04d1189f58f35d602c9671ce065d71d1295ed90bcb88d88c076f8",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "spvc_semantic_only",
+        "semantic_checkpoint": "results/mvp/01_semantic/semantic_encoder.pt",
+        "controller_checkpoint": "Aebs/controller/best_model/best_model.zip",
+        "resume_dir": "results/semantic_spvc_zero_violation",
+        "start_iteration": 502,
+        "max_iteration_index": 550,
+        "stop_on_zero_violation": true
+      },
+      "result_keys": []
+    },
+    "results/semantic_spvc_zero_violation/metrics.json": {
+      "sha256": "7b086115d18592087bde90815d1f765dacd559ba4de931c3144d647d9ecc9c2b",
+      "configuration_summary": {},
+      "scalar_metrics": {
+        "experiment": "spvc_semantic_only",
+        "semantic_checkpoint": "results/mvp/01_semantic/semantic_encoder.pt",
+        "controller_checkpoint": "Aebs/controller/best_model/best_model.zip",
+        "resume_dir": "results/semantic_spvc_extended_500",
+        "start_iteration": 501,
+        "max_iteration_index": 550,
+        "stop_on_zero_violation": true
+      },
+      "result_keys": []
+    }
+  }
+}

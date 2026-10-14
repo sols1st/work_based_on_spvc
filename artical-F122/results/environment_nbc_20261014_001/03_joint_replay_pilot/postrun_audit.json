@@ -1,0 +1,63 @@
+{
+  "scope": "saved-run development audit; no additional training; no certificate",
+  "initial_positive_violations": 0,
+  "initial_max": -0.3869473934173584,
+  "unsafe_nonpositive_violations": 16,
+  "unsafe_min": -0.16913604736328125,
+  "region_grid_size": 41,
+  "matched_final_candidate": {
+    "pairs": 294480,
+    "image_next_unsafe": 0,
+    "q_next_unsafe": 0,
+    "dual_path_action_mae": 0.12023989709781843,
+    "dual_path_action_max": 4.803927898406982,
+    "nearest_lookup_used": false,
+    "task_episode_guarantee": false,
+    "final_nbc_violations": 19559,
+    "final_nbc_escapes": 950
+  },
+  "rollouts": [
+    {
+      "rollout": "rollout_001",
+      "steps": 2048,
+      "physics_max_error": 4.76837158203125e-07,
+      "same_episode_continuity_max_error": 0.0,
+      "terminal_samples": 27,
+      "lookup_gap_max_m": 0.372182697057724,
+      "raw_actions_outside_bounds": 1134
+    },
+    {
+      "rollout": "rollout_002",
+      "steps": 2048,
+      "physics_max_error": 4.76837158203125e-07,
+      "same_episode_continuity_max_error": 0.0,
+      "terminal_samples": 27,
+      "lookup_gap_max_m": 0.37796780467033386,
+      "raw_actions_outside_bounds": 1153
+    },
+    {
+      "rollout": "rollout_003",
+      "steps": 2048,
+      "physics_max_error": 4.76837158203125e-07,
+      "same_episode_continuity_max_error": 0.0,
+      "terminal_samples": 28,
+      "lookup_gap_max_m": 0.376994788646698,
+      "raw_actions_outside_bounds": 1148
+    },
+    {
+      "rollout": "rollout_004",
+      "steps": 2048,
+      "physics_max_error": 4.76837158203125e-07,
+      "same_episode_continuity_max_error": 0.0,
+      "terminal_samples": 27,
+      "lookup_gap_max_m": 0.3781050145626068,
+      "raw_actions_outside_bounds": 1139
+    }
+  ],
+  "sampled_training_terminal_outcomes": {
+    "unsafe": 15,
+    "success": 94
+  },
+  "policy_sha256": "7a5a6e2c624272178b2ec1a22cfe35b830e809d6c2a938db74cb504737b779b7",
+  "nbc_sha256": "d047e1e97b1efaa1384d2ed484fee015e1432a73c0b2cd224eb18ab8bbf2b217"
+}

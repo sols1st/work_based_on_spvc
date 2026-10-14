@@ -15,14 +15,13 @@ import torch
 
 from Aebs.dino_latent.spvc_policy import DinoLatentSPVCPolicy
 from Aebs.dino_latent.prepare_expanded_data import sha256
-from Aebs.dino_latent.compare_spvc_scopes import compare_scopes
 from Aebs.system.env import Aebs
 from Aebs.VT.loop import Loop
 from Aebs.VT.train import VTLearner
 from Aebs.VT.verify import VTVerifier
 
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--representation-checkpoint",
@@ -55,7 +54,7 @@ def main():
                         help="Post-run legacy narrow/broad checks on the same saved models; no training changes.")
     parser.add_argument("--diagnose-only-from", type=Path, default=None,
                         help="Load a previous run_spvc output; skip training and compare scopes in a NEW output dir.")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
     required = [
         args.representation_checkpoint, args.controller, args.controller_metrics,
@@ -197,6 +196,8 @@ def main():
     print("checkpoint matches verification:", loop.info.get("checkpoint_matches_verification", False))
     print("result directory: %s" % output_dir)
     if args.compare_scopes or args.diagnose_only_from is not None:
+        from Aebs.dino_latent.compare_spvc_scopes import compare_scopes
+
         # Build a fresh bound wrapper for exactly the final saved model, not the
         # last iteration's possibly stale pre-PPO-update diagnostics.
         diagnostic_verifier = VTVerifier(

@@ -1,0 +1,1038 @@
+{
+  "experiment": "train_only_state_dependent_action_error_bounds_v1",
+  "status": "development_only_action_bounds_fitted",
+  "training_scope": "new offline action-error bounds model only; DINO/q/PPO/SBC frozen",
+  "test_used": false,
+  "formal_calibration": false,
+  "rollout_run": false,
+  "sbc_reverified": false,
+  "source_hashes": {
+    "actor": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+    "barrier": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+    "representation": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16"
+  },
+  "pair_hashes": {
+    "train": "8c3b1fc016b186e224781235b6e3b3f8835f8b5b32c292b32da5746631bf4d68",
+    "validation": "7eb2b3ffc723911d88d09e7f3c2bb9d552b23aca727136bab638ee8506bc07be"
+  },
+  "diagnostic_sha256": "a537327f6ee4bfe56dadefb13e51df59a7c182588c01a987bc02b1ec37b92e8b",
+  "script_sha256": "ff41489e9ccad764ed8deed6baf253e34aee88e6eba44df42445963604786aed",
+  "training_config": {
+    "diagnostic_dir": "results/environment_nbc_20261013_001/01_frozen_diagnostic",
+    "spvc_dir": "results/dino_spvc_minimal_v1",
+    "representation": "results/dino_expanded_v1/08_R2_group_alignment/dino_safety_latent.pt",
+    "output_dir": "results/environment_nbc_20261013_001/06_action_bounds_train_v1",
+    "epochs": 120,
+    "batch_size": 4096,
+    "hidden": 64,
+    "seed": 7,
+    "device": "cuda"
+  },
+  "target": "per exact training state, lower/upper hull of image_action-q_action including zero",
+  "interval_formula": "[a_q+lower(d,v), a_q+upper(d,v)] clipped to [-3,3]",
+  "model_inputs": [
+    "distance m",
+    "speed m/s"
+  ],
+  "model_selection": "final preset epoch; no validation selection",
+  "validation_role": "reused development split, not independent calibration",
+  "loss": "endpoint MSE + 20*undercoverage MSE + 0.1*batch maximum undercoverage squared + 0.001*width",
+  "train_unique_states": 61860,
+  "appearances": [
+    "low_sun|220,220,220",
+    "low_sun|255,0,0",
+    "low_sun|40,80,160",
+    "original|220,220,220",
+    "original|255,0,0",
+    "original|40,80,160",
+    "overcast|220,220,220",
+    "overcast|255,0,0",
+    "overcast|40,80,160",
+    "rain|220,220,220",
+    "rain|255,0,0",
+    "rain|40,80,160"
+  ],
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.532188021165439,
+      "train_states_with_target_miss": 4306,
+      "max_target_miss": 1.7214480638504028,
+      "mean_error_width": 0.28247493505477905
+    },
+    {
+      "epoch": 20,
+      "train_loss": 0.14151061474843354,
+      "train_states_with_target_miss": 1256,
+      "max_target_miss": 0.943116307258606,
+      "mean_error_width": 0.34269535541534424
+    },
+    {
+      "epoch": 40,
+      "train_loss": 0.12330256799471405,
+      "train_states_with_target_miss": 1353,
+      "max_target_miss": 0.9362125396728516,
+      "mean_error_width": 0.31378352642059326
+    },
+    {
+      "epoch": 60,
+      "train_loss": 0.10627617108621452,
+      "train_states_with_target_miss": 1421,
+      "max_target_miss": 0.8340939283370972,
+      "mean_error_width": 0.29139772057533264
+    },
+    {
+      "epoch": 80,
+      "train_loss": 0.08220728223561045,
+      "train_states_with_target_miss": 1497,
+      "max_target_miss": 0.7501421570777893,
+      "mean_error_width": 0.2750377058982849
+    },
+    {
+      "epoch": 100,
+      "train_loss": 0.059141065789018676,
+      "train_states_with_target_miss": 1734,
+      "max_target_miss": 0.7141923904418945,
+      "mean_error_width": 0.24808403849601746
+    },
+    {
+      "epoch": 120,
+      "train_loss": 0.04512214700691703,
+      "train_states_with_target_miss": 2427,
+      "max_target_miss": 0.6131885051727295,
+      "mean_error_width": 0.21353000402450562
+    }
+  ],
+  "results": {
+    "train": {
+      "all_ongoing": {
+        "pairs": 742320,
+        "outside_count": 6087,
+        "coverage": 0.9918000323310702,
+        "unique_states": 61860,
+        "states_with_any_miss": 2427,
+        "all_observed_appearance_state_coverage": 0.9607662463627547,
+        "mean_error_interval_width": 0.21352991461753845,
+        "p95_error_interval_width": 1.386008375883064,
+        "max_error_interval_width": 2.2800869941711426,
+        "mean_clipped_action_width": 0.1570824533700943,
+        "max_outside_error": 0.6131885051727295
+      },
+      "legacy_band": {
+        "pairs": 4044,
+        "outside_count": 145,
+        "coverage": 0.9641444114737884,
+        "unique_states": 337,
+        "states_with_any_miss": 54,
+        "all_observed_appearance_state_coverage": 0.8397626112759644,
+        "mean_error_interval_width": 0.042799241840839386,
+        "p95_error_interval_width": 0.0541049987077713,
+        "max_error_interval_width": 0.05432639271020889,
+        "mean_clipped_action_width": 0.015516409650444984,
+        "max_outside_error": 0.01695292443037033
+      },
+      "by_appearance": {
+        "low_sun|220,220,220": {
+          "pairs": 61860,
+          "outside_count": 673,
+          "coverage": 0.9891205948916909,
+          "unique_states": 61860,
+          "states_with_any_miss": 673,
+          "all_observed_appearance_state_coverage": 0.9891205948916909,
+          "mean_error_interval_width": 0.21353000402450562,
+          "p95_error_interval_width": 1.3860083758831,
+          "max_error_interval_width": 2.2800869941711426,
+          "mean_clipped_action_width": 0.1570824533700943,
+          "max_outside_error": 0.6131885051727295
+        },
+        "low_sun|255,0,0": {
+          "pairs": 61860,
+          "outside_count": 315,
+          "coverage": 0.9949078564500485,
+          "unique_states": 61860,
+          "states_with_any_miss": 315,
+          "all_observed_appearance_state_coverage": 0.9949078564500485,
+          "mean_error_interval_width": 0.21353000402450562,
+          "p95_error_interval_width": 1.3860083758831,
+          "max_error_interval_width": 2.2800869941711426,
+          "mean_clipped_action_width": 0.1570824533700943,
+          "max_outside_error": 0.1872466802597046
+        },
+        "low_sun|40,80,160": {
+          "pairs": 61860,
+          "outside_count": 524,
+          "coverage": 0.9915292596184934,
+          "unique_states": 61860,
+          "states_with_any_miss": 524,
+          "all_observed_appearance_state_coverage": 0.9915292596184934,
+          "mean_error_interval_width": 0.21353000402450562,
+          "p95_error_interval_width": 1.3860083758831,
+          "max_error_interval_width": 2.2800869941711426,
+          "mean_clipped_action_width": 0.1570824533700943,
+          "max_outside_error": 0.3684948682785034
+        },
+        "original|220,220,220": {
+          "pairs": 61860,
+          "outside_count": 860,
+          "coverage": 0.9860976398318785,
+          "unique_states": 61860,
+          "states_with_any_miss": 860,
+          "all_observed_appearance_state_coverage": 0.9860976398318785,
+          "mean_error_interval_width": 0.21353000402450562,
+          "p95_error_interval_width": 1.3860083758831,
+          "max_error_interval_width": 2.2800869941711426,
+          "mean_clipped_action_width": 0.1570824533700943,
+          "max_outside_error": 0.3451961278915405
+        },
+        "original|255,0,0": {
+          "pairs": 61860,
+          "outside_count": 623,
+          "coverage": 0.9899288716456515,
+          "unique_states": 61860,
+          "states_with_any_miss": 623,
+          "all_observed_appearance_state_coverage": 0.9899288716456515,
+          "mean_error_interval_width": 0.21353000402450562,
+          "p95_error_interval_width": 1.3860083758831,
+          "max_error_interval_width": 2.2800869941711426,
+          "mean_clipped_action_width": 0.1570824533700943,
+          "max_outside_error": 0.24947547912597656
+        },
+        "original|40,80,160": {
+          "pairs": 61860,
+          "outside_count": 588,
+          "coverage": 0.9904946653734239,
+          "unique_states": 61860,
+          "states_with_any_miss": 588,
+          "all_observed_appearance_state_coverage": 0.9904946653734239,
+          "mean_error_interval_width": 0.21353000402450562,
+          "p95_error_interval_width": 1.3860083758831,
+          "max_error_interval_width": 2.2800869941711426,
+          "mean_clipped_action_width": 0.1570824533700943,
+          "max_outside_error": 0.09733021259307861
+        },
+        "overcast|220,220,220": {
+          "pairs": 61860,
+          "outside_count": 440,
+          "coverage": 0.9928871645651471,
+          "unique_states": 61860,
+          "states_with_any_miss": 440,
+          "all_observed_appearance_state_coverage": 0.9928871645651471,
+          "mean_error_interval_width": 0.21353000402450562,
+          "p95_error_interval_width": 1.3860083758831,
+          "max_error_interval_width": 2.2800869941711426,
+          "mean_clipped_action_width": 0.1570824533700943,
+          "max_outside_error": 0.2975233793258667
+        },
+        "overcast|255,0,0": {
+          "pairs": 61860,
+          "outside_count": 325,
+          "coverage": 0.9947462010992564,
+          "unique_states": 61860,
+          "states_with_any_miss": 325,
+          "all_observed_appearance_state_coverage": 0.9947462010992564,
+          "mean_error_interval_width": 0.21353000402450562,
+          "p95_error_interval_width": 1.3860083758831,
+          "max_error_interval_width": 2.2800869941711426,
+          "mean_clipped_action_width": 0.1570824533700943,
+          "max_outside_error": 0.2017890214920044
+        },
+        "overcast|40,80,160": {
+          "pairs": 61860,
+          "outside_count": 360,
+          "coverage": 0.9941804073714839,
+          "unique_states": 61860,
+          "states_with_any_miss": 360,
+          "all_observed_appearance_state_coverage": 0.9941804073714839,
+          "mean_error_interval_width": 0.21353000402450562,
+          "p95_error_interval_width": 1.3860083758831,
+          "max_error_interval_width": 2.2800869941711426,
+          "mean_clipped_action_width": 0.1570824533700943,
+          "max_outside_error": 0.19759374856948853
+        },
+        "rain|220,220,220": {
+          "pairs": 61860,
+          "outside_count": 452,
+          "coverage": 0.9926931781441966,
+          "unique_states": 61860,
+          "states_with_any_miss": 452,
+          "all_observed_appearance_state_coverage": 0.9926931781441966,
+          "mean_error_interval_width": 0.21353000402450562,
+          "p95_error_interval_width": 1.3860083758831,
+          "max_error_interval_width": 2.2800869941711426,
+          "mean_clipped_action_width": 0.1570824533700943,
+          "max_outside_error": 0.33941662311553955
+        },
+        "rain|255,0,0": {
+          "pairs": 61860,
+          "outside_count": 437,
+          "coverage": 0.9929356611703848,
+          "unique_states": 61860,
+          "states_with_any_miss": 437,
+          "all_observed_appearance_state_coverage": 0.9929356611703848,
+          "mean_error_interval_width": 0.21353000402450562,
+          "p95_error_interval_width": 1.3860083758831,
+          "max_error_interval_width": 2.2800869941711426,
+          "mean_clipped_action_width": 0.1570824533700943,
+          "max_outside_error": 0.39874398708343506
+        },
+        "rain|40,80,160": {
+          "pairs": 61860,
+          "outside_count": 490,
+          "coverage": 0.9920788878111866,
+          "unique_states": 61860,
+          "states_with_any_miss": 490,
+          "all_observed_appearance_state_coverage": 0.9920788878111866,
+          "mean_error_interval_width": 0.21353000402450562,
+          "p95_error_interval_width": 1.3860083758831,
+          "max_error_interval_width": 2.2800869941711426,
+          "mean_clipped_action_width": 0.1570824533700943,
+          "max_outside_error": 0.5125254392623901
+        }
+      },
+      "by_distance": {
+        "6.0-8.0": {
+          "pairs": 144000,
+          "outside_count": 516,
+          "coverage": 0.9964166666666666,
+          "unique_states": 12000,
+          "states_with_any_miss": 455,
+          "all_observed_appearance_state_coverage": 0.9620833333333333,
+          "mean_error_interval_width": 0.8018946051597595,
+          "p95_error_interval_width": 2.1122718095779414,
+          "max_error_interval_width": 2.2800869941711426,
+          "mean_clipped_action_width": 0.6307976841926575,
+          "max_outside_error": 0.6131885051727295
+        },
+        "8.0-10.0": {
+          "pairs": 179280,
+          "outside_count": 3062,
+          "coverage": 0.9829205711735832,
+          "unique_states": 14940,
+          "states_with_any_miss": 1257,
+          "all_observed_appearance_state_coverage": 0.915863453815261,
+          "mean_error_interval_width": 0.11170659959316254,
+          "p95_error_interval_width": 0.4525082930922492,
+          "max_error_interval_width": 1.5868439674377441,
+          "mean_clipped_action_width": 0.0931110605597496,
+          "max_outside_error": 0.2079717516899109
+        },
+        "10.0-12.0": {
+          "pairs": 179280,
+          "outside_count": 2509,
+          "coverage": 0.9860051316376618,
+          "unique_states": 14940,
+          "states_with_any_miss": 715,
+          "all_observed_appearance_state_coverage": 0.9521419009370816,
+          "mean_error_interval_width": 0.0486164428293705,
+          "p95_error_interval_width": 0.0817776277661323,
+          "max_error_interval_width": 0.09327231347560883,
+          "mean_clipped_action_width": 0.020038392394781113,
+          "max_outside_error": 0.02563493885099888
+        },
+        "12.0-14.0": {
+          "pairs": 120240,
+          "outside_count": 0,
+          "coverage": 1.0,
+          "unique_states": 10020,
+          "states_with_any_miss": 0,
+          "all_observed_appearance_state_coverage": 1.0,
+          "mean_error_interval_width": 0.05761321634054184,
+          "p95_error_interval_width": 0.0903608284890651,
+          "max_error_interval_width": 0.09912212193012238,
+          "mean_clipped_action_width": 0.021791379898786545,
+          "max_outside_error": 0.0
+        },
+        "14.0-16.0": {
+          "pairs": 119520,
+          "outside_count": 0,
+          "coverage": 1.0,
+          "unique_states": 9960,
+          "states_with_any_miss": 0,
+          "all_observed_appearance_state_coverage": 1.0,
+          "mean_error_interval_width": 0.061618439853191376,
+          "p95_error_interval_width": 0.09516286179423332,
+          "max_error_interval_width": 0.10324423760175705,
+          "mean_clipped_action_width": 0.02397034503519535,
+          "max_outside_error": 0.0
+        }
+      },
+      "by_speed": {
+        "0.0-0.50": {
+          "pairs": 111348,
+          "outside_count": 50,
+          "coverage": 0.9995509573589108,
+          "unique_states": 9279,
+          "states_with_any_miss": 46,
+          "all_observed_appearance_state_coverage": 0.9950425692423752,
+          "mean_error_interval_width": 0.17776748538017273,
+          "p95_error_interval_width": 0.35745210200546984,
+          "max_error_interval_width": 2.2800869941711426,
+          "mean_clipped_action_width": 0.13752058148384094,
+          "max_outside_error": 0.33941662311553955
+        },
+        "0.5-1.00": {
+          "pairs": 123720,
+          "outside_count": 49,
+          "coverage": 0.9996039443905593,
+          "unique_states": 10310,
+          "states_with_any_miss": 40,
+          "all_observed_appearance_state_coverage": 0.9961202715809894,
+          "mean_error_interval_width": 0.18046125769615173,
+          "p95_error_interval_width": 1.1656758785247803,
+          "max_error_interval_width": 2.168226718902588,
+          "mean_clipped_action_width": 0.11656259745359421,
+          "max_outside_error": 0.39874398708343506
+        },
+        "1.0-2.00": {
+          "pairs": 247440,
+          "outside_count": 164,
+          "coverage": 0.9993372130617524,
+          "unique_states": 20620,
+          "states_with_any_miss": 148,
+          "all_observed_appearance_state_coverage": 0.9928225024248303,
+          "mean_error_interval_width": 0.24298855662345886,
+          "p95_error_interval_width": 1.7318240523338095,
+          "max_error_interval_width": 2.226262092590332,
+          "mean_clipped_action_width": 0.17931874096393585,
+          "max_outside_error": 0.6131885051727295
+        },
+        "2.0-2.50": {
+          "pairs": 123720,
+          "outside_count": 678,
+          "coverage": 0.9945198836081475,
+          "unique_states": 10310,
+          "states_with_any_miss": 443,
+          "all_observed_appearance_state_coverage": 0.9570320077594568,
+          "mean_error_interval_width": 0.2021668553352356,
+          "p95_error_interval_width": 1.03062105178833,
+          "max_error_interval_width": 1.8855308294296265,
+          "mean_clipped_action_width": 0.13641519844532013,
+          "max_outside_error": 0.2789195775985718
+        },
+        "2.5-3.01": {
+          "pairs": 136092,
+          "outside_count": 5146,
+          "coverage": 0.9621873438556271,
+          "unique_states": 11341,
+          "states_with_any_miss": 1750,
+          "all_observed_appearance_state_coverage": 0.8456926196984393,
+          "mean_error_interval_width": 0.22962193191051483,
+          "p95_error_interval_width": 1.396259069442749,
+          "max_error_interval_width": 1.5868439674377441,
+          "mean_clipped_action_width": 0.1882825642824173,
+          "max_outside_error": 0.3910682201385498
+        }
+      },
+      "worst_cases": [
+        {
+          "distance_m": 6.8818817138671875,
+          "speed_mps": 1.7000000476837158,
+          "appearance": "low_sun|220,220,220",
+          "action_error": -1.6434381008148193,
+          "predicted_error_bounds": [
+            -1.0302495956420898,
+            1.0317187309265137
+          ],
+          "outside_error": 0.6131885051727295,
+          "legacy_band": false
+        },
+        {
+          "distance_m": 7.087087154388428,
+          "speed_mps": 1.7999999523162842,
+          "appearance": "rain|40,80,160",
+          "action_error": 1.6030434370040894,
+          "predicted_error_bounds": [
+            -1.0788706541061401,
+            1.0905179977416992
+          ],
+          "outside_error": 0.5125254392623901,
+          "legacy_band": false
+        },
+        {
+          "distance_m": 6.8818817138671875,
+          "speed_mps": 1.649999976158142,
+          "appearance": "low_sun|220,220,220",
+          "action_error": -1.4925651550292969,
+          "predicted_error_bounds": [
+            -1.0594933032989502,
+            1.0843031406402588
+          ],
+          "outside_error": 0.4330718517303467,
+          "legacy_band": false
+        },
+        {
+          "distance_m": 6.8768768310546875,
+          "speed_mps": 1.7000000476837158,
+          "appearance": "low_sun|220,220,220",
+          "action_error": -1.4384522438049316,
+          "predicted_error_bounds": [
+            -1.0257985591888428,
+            1.0258455276489258
+          ],
+          "outside_error": 0.41265368461608887,
+          "legacy_band": false
+        },
+        {
+          "distance_m": 6.19619607925415,
+          "speed_mps": 0.550000011920929,
+          "appearance": "rain|255,0,0",
+          "action_error": 1.8001012802124023,
+          "predicted_error_bounds": [
+            -0.6959877014160156,
+            1.4013572931289673
+          ],
+          "outside_error": 0.39874398708343506,
+          "legacy_band": false
+        },
+        {
+          "distance_m": 7.757757663726807,
+          "speed_mps": 2.5999999046325684,
+          "appearance": "rain|255,0,0",
+          "action_error": 1.117113709449768,
+          "predicted_error_bounds": [
+            -0.8132426738739014,
+            0.7260454893112183
+          ],
+          "outside_error": 0.3910682201385498,
+          "legacy_band": false
+        },
+        {
+          "distance_m": 6.19619607925415,
+          "speed_mps": 0.6000000238418579,
+          "appearance": "rain|255,0,0",
+          "action_error": 1.7450987100601196,
+          "predicted_error_bounds": [
+            -0.7268140912055969,
+            1.3765459060668945
+          ],
+          "outside_error": 0.3685528039932251,
+          "legacy_band": false
+        },
+        {
+          "distance_m": 6.826827049255371,
+          "speed_mps": 1.4500000476837158,
+          "appearance": "low_sun|40,80,160",
+          "action_error": 1.521695852279663,
+          "predicted_error_bounds": [
+            -1.0367521047592163,
+            1.1532009840011597
+          ],
+          "outside_error": 0.3684948682785034,
+          "legacy_band": false
+        },
+        {
+          "distance_m": 7.757757663726807,
+          "speed_mps": 2.6500000953674316,
+          "appearance": "rain|255,0,0",
+          "action_error": 1.0913233757019043,
+          "predicted_error_bounds": [
+            -0.8252993822097778,
+            0.7256956100463867
+          ],
+          "outside_error": 0.3656277656555176,
+          "legacy_band": false
+        },
+        {
+          "distance_m": 7.757757663726807,
+          "speed_mps": 2.549999952316284,
+          "appearance": "rain|255,0,0",
+          "action_error": 1.079860806465149,
+          "predicted_error_bounds": [
+            -0.7940095067024231,
+            0.7191922068595886
+          ],
+          "outside_error": 0.3606685996055603,
+          "legacy_band": false
+        }
+      ],
+      "measurement_tolerance": 1e-06,
+      "tolerance_is_not_a_safety_allowance": true,
+      "global_train_hull_baseline": {
+        "pairs": 742320,
+        "outside_count": 0,
+        "coverage": 1.0,
+        "unique_states": 61860,
+        "states_with_any_miss": 0,
+        "all_observed_appearance_state_coverage": 1.0,
+        "mean_error_interval_width": 3.557708263397217,
+        "p95_error_interval_width": 3.5577073097229004,
+        "max_error_interval_width": 3.5577073097229004,
+        "mean_clipped_action_width": 1.988762617111206,
+        "max_outside_error": 0.0
+      },
+      "global_train_hull_bounds": [
+        -1.6434381008148193,
+        1.914269208908081
+      ]
+    },
+    "validation": {
+      "all_ongoing": {
+        "pairs": 294480,
+        "outside_count": 26703,
+        "coverage": 0.9093215158924205,
+        "unique_states": 24480,
+        "states_with_any_miss": 4637,
+        "all_observed_appearance_state_coverage": 0.8105800653594771,
+        "mean_error_interval_width": 0.32075411081314087,
+        "p95_error_interval_width": 1.5700394272804257,
+        "max_error_interval_width": 2.164661407470703,
+        "mean_clipped_action_width": 0.24581526219844818,
+        "max_outside_error": 4.193371295928955
+      },
+      "legacy_band": {
+        "pairs": 1308,
+        "outside_count": 194,
+        "coverage": 0.8516819571865444,
+        "unique_states": 109,
+        "states_with_any_miss": 19,
+        "all_observed_appearance_state_coverage": 0.8256880733944953,
+        "mean_error_interval_width": 0.04385477304458618,
+        "p95_error_interval_width": 0.052293166518211365,
+        "max_error_interval_width": 0.05235663801431656,
+        "mean_clipped_action_width": 0.015306627377867699,
+        "max_outside_error": 0.12541387975215912
+      },
+      "by_appearance": {
+        "low_sun|220,220,220": {
+          "pairs": 24540,
+          "outside_count": 1983,
+          "coverage": 0.9191931540342299,
+          "unique_states": 24480,
+          "states_with_any_miss": 1983,
+          "all_observed_appearance_state_coverage": 0.9189950980392156,
+          "mean_error_interval_width": 0.32075411081314087,
+          "p95_error_interval_width": 1.570039427280426,
+          "max_error_interval_width": 2.164661407470703,
+          "mean_clipped_action_width": 0.245815247297287,
+          "max_outside_error": 2.529498338699341
+        },
+        "low_sun|255,0,0": {
+          "pairs": 24540,
+          "outside_count": 2085,
+          "coverage": 0.9150366748166259,
+          "unique_states": 24480,
+          "states_with_any_miss": 2076,
+          "all_observed_appearance_state_coverage": 0.9151960784313725,
+          "mean_error_interval_width": 0.32075411081314087,
+          "p95_error_interval_width": 1.570039427280426,
+          "max_error_interval_width": 2.164661407470703,
+          "mean_clipped_action_width": 0.245815247297287,
+          "max_outside_error": 2.941739559173584
+        },
+        "low_sun|40,80,160": {
+          "pairs": 24540,
+          "outside_count": 1717,
+          "coverage": 0.9300325998370008,
+          "unique_states": 24480,
+          "states_with_any_miss": 1708,
+          "all_observed_appearance_state_coverage": 0.9302287581699347,
+          "mean_error_interval_width": 0.32075411081314087,
+          "p95_error_interval_width": 1.570039427280426,
+          "max_error_interval_width": 2.164661407470703,
+          "mean_clipped_action_width": 0.245815247297287,
+          "max_outside_error": 1.4819207191467285
+        },
+        "original|220,220,220": {
+          "pairs": 24540,
+          "outside_count": 1200,
+          "coverage": 0.9511002444987775,
+          "unique_states": 24480,
+          "states_with_any_miss": 1191,
+          "all_observed_appearance_state_coverage": 0.9513480392156862,
+          "mean_error_interval_width": 0.32075411081314087,
+          "p95_error_interval_width": 1.570039427280426,
+          "max_error_interval_width": 2.164661407470703,
+          "mean_clipped_action_width": 0.245815247297287,
+          "max_outside_error": 1.1041622161865234
+        },
+        "original|255,0,0": {
+          "pairs": 24540,
+          "outside_count": 2606,
+          "coverage": 0.8938060309698451,
+          "unique_states": 24480,
+          "states_with_any_miss": 2605,
+          "all_observed_appearance_state_coverage": 0.8935866013071896,
+          "mean_error_interval_width": 0.32075411081314087,
+          "p95_error_interval_width": 1.570039427280426,
+          "max_error_interval_width": 2.164661407470703,
+          "mean_clipped_action_width": 0.245815247297287,
+          "max_outside_error": 3.822340250015259
+        },
+        "original|40,80,160": {
+          "pairs": 24540,
+          "outside_count": 2266,
+          "coverage": 0.9076609616951915,
+          "unique_states": 24480,
+          "states_with_any_miss": 2256,
+          "all_observed_appearance_state_coverage": 0.907843137254902,
+          "mean_error_interval_width": 0.32075411081314087,
+          "p95_error_interval_width": 1.570039427280426,
+          "max_error_interval_width": 2.164661407470703,
+          "mean_clipped_action_width": 0.245815247297287,
+          "max_outside_error": 2.9148740768432617
+        },
+        "overcast|220,220,220": {
+          "pairs": 24540,
+          "outside_count": 1941,
+          "coverage": 0.9209046454767726,
+          "unique_states": 24480,
+          "states_with_any_miss": 1940,
+          "all_observed_appearance_state_coverage": 0.9207516339869282,
+          "mean_error_interval_width": 0.32075411081314087,
+          "p95_error_interval_width": 1.570039427280426,
+          "max_error_interval_width": 2.164661407470703,
+          "mean_clipped_action_width": 0.245815247297287,
+          "max_outside_error": 2.5398354530334473
+        },
+        "overcast|255,0,0": {
+          "pairs": 24540,
+          "outside_count": 2659,
+          "coverage": 0.8916462917685412,
+          "unique_states": 24480,
+          "states_with_any_miss": 2657,
+          "all_observed_appearance_state_coverage": 0.8914624183006536,
+          "mean_error_interval_width": 0.32075411081314087,
+          "p95_error_interval_width": 1.570039427280426,
+          "max_error_interval_width": 2.164661407470703,
+          "mean_clipped_action_width": 0.245815247297287,
+          "max_outside_error": 3.4758267402648926
+        },
+        "overcast|40,80,160": {
+          "pairs": 24540,
+          "outside_count": 2067,
+          "coverage": 0.9157701711491443,
+          "unique_states": 24480,
+          "states_with_any_miss": 2067,
+          "all_observed_appearance_state_coverage": 0.915563725490196,
+          "mean_error_interval_width": 0.32075411081314087,
+          "p95_error_interval_width": 1.570039427280426,
+          "max_error_interval_width": 2.164661407470703,
+          "mean_clipped_action_width": 0.245815247297287,
+          "max_outside_error": 2.961226463317871
+        },
+        "rain|220,220,220": {
+          "pairs": 24540,
+          "outside_count": 2222,
+          "coverage": 0.9094539527302363,
+          "unique_states": 24480,
+          "states_with_any_miss": 2222,
+          "all_observed_appearance_state_coverage": 0.9092320261437908,
+          "mean_error_interval_width": 0.32075411081314087,
+          "p95_error_interval_width": 1.570039427280426,
+          "max_error_interval_width": 2.164661407470703,
+          "mean_clipped_action_width": 0.245815247297287,
+          "max_outside_error": 2.7489752769470215
+        },
+        "rain|255,0,0": {
+          "pairs": 24540,
+          "outside_count": 3079,
+          "coverage": 0.8745313773431133,
+          "unique_states": 24480,
+          "states_with_any_miss": 3079,
+          "all_observed_appearance_state_coverage": 0.8742238562091503,
+          "mean_error_interval_width": 0.32075411081314087,
+          "p95_error_interval_width": 1.570039427280426,
+          "max_error_interval_width": 2.164661407470703,
+          "mean_clipped_action_width": 0.245815247297287,
+          "max_outside_error": 4.193371295928955
+        },
+        "rain|40,80,160": {
+          "pairs": 24540,
+          "outside_count": 2878,
+          "coverage": 0.8827220863895681,
+          "unique_states": 24480,
+          "states_with_any_miss": 2878,
+          "all_observed_appearance_state_coverage": 0.8824346405228758,
+          "mean_error_interval_width": 0.32075411081314087,
+          "p95_error_interval_width": 1.570039427280426,
+          "max_error_interval_width": 2.164661407470703,
+          "mean_clipped_action_width": 0.245815247297287,
+          "max_outside_error": 3.7213759422302246
+        }
+      },
+      "by_distance": {
+        "6.0-8.0": {
+          "pairs": 108000,
+          "outside_count": 19442,
+          "coverage": 0.8199814814814814,
+          "unique_states": 9000,
+          "states_with_any_miss": 3591,
+          "all_observed_appearance_state_coverage": 0.601,
+          "mean_error_interval_width": 0.78378826379776,
+          "p95_error_interval_width": 1.94598987698555,
+          "max_error_interval_width": 2.164661407470703,
+          "mean_clipped_action_width": 0.6317840218544006,
+          "max_outside_error": 4.193371295928955
+        },
+        "8.0-10.0": {
+          "pairs": 36000,
+          "outside_count": 4117,
+          "coverage": 0.8856388888888889,
+          "unique_states": 3000,
+          "states_with_any_miss": 660,
+          "all_observed_appearance_state_coverage": 0.78,
+          "mean_error_interval_width": 0.04375763237476349,
+          "p95_error_interval_width": 0.07473580054937547,
+          "max_error_interval_width": 0.08523277193307877,
+          "mean_clipped_action_width": 0.024744413793087006,
+          "max_outside_error": 0.13011430203914642
+        },
+        "10.0-12.0": {
+          "pairs": 30960,
+          "outside_count": 3143,
+          "coverage": 0.8984819121447029,
+          "unique_states": 2520,
+          "states_with_any_miss": 385,
+          "all_observed_appearance_state_coverage": 0.8472222222222222,
+          "mean_error_interval_width": 0.04415957257151604,
+          "p95_error_interval_width": 0.07731688246130762,
+          "max_error_interval_width": 0.08739921450614929,
+          "mean_clipped_action_width": 0.021084902808070183,
+          "max_outside_error": 0.13507579267024994
+        },
+        "12.0-14.0": {
+          "pairs": 89280,
+          "outside_count": 1,
+          "coverage": 0.9999887992831541,
+          "unique_states": 7440,
+          "states_with_any_miss": 1,
+          "all_observed_appearance_state_coverage": 0.9998655913978495,
+          "mean_error_interval_width": 0.055911850184202194,
+          "p95_error_interval_width": 0.08871498554944994,
+          "max_error_interval_width": 0.09781017899513245,
+          "mean_clipped_action_width": 0.02107471041381359,
+          "max_outside_error": 0.003935449756681919
+        },
+        "14.0-16.0": {
+          "pairs": 30240,
+          "outside_count": 0,
+          "coverage": 1.0,
+          "unique_states": 2520,
+          "states_with_any_miss": 0,
+          "all_observed_appearance_state_coverage": 1.0,
+          "mean_error_interval_width": 0.061913713812828064,
+          "p95_error_interval_width": 0.09467016011476384,
+          "max_error_interval_width": 0.10211905092000961,
+          "mean_clipped_action_width": 0.024136105552315712,
+          "max_outside_error": 0.0
+        }
+      },
+      "by_speed": {
+        "0.0-0.50": {
+          "pairs": 44172,
+          "outside_count": 40,
+          "coverage": 0.9990944489721996,
+          "unique_states": 3672,
+          "states_with_any_miss": 22,
+          "all_observed_appearance_state_coverage": 0.9940087145969498,
+          "mean_error_interval_width": 0.13316033780574799,
+          "p95_error_interval_width": 0.49166980385780334,
+          "max_error_interval_width": 1.0276364088058472,
+          "mean_clipped_action_width": 0.08907690644264221,
+          "max_outside_error": 0.6152464151382446
+        },
+        "0.5-1.00": {
+          "pairs": 49080,
+          "outside_count": 1626,
+          "coverage": 0.9668704156479218,
+          "unique_states": 4080,
+          "states_with_any_miss": 428,
+          "all_observed_appearance_state_coverage": 0.8950980392156863,
+          "mean_error_interval_width": 0.21160417795181274,
+          "p95_error_interval_width": 1.344114065170288,
+          "max_error_interval_width": 2.019397735595703,
+          "mean_clipped_action_width": 0.16675995290279388,
+          "max_outside_error": 2.529498338699341
+        },
+        "1.0-2.00": {
+          "pairs": 98160,
+          "outside_count": 9302,
+          "coverage": 0.9052363488182559,
+          "unique_states": 8160,
+          "states_with_any_miss": 1770,
+          "all_observed_appearance_state_coverage": 0.7830882352941176,
+          "mean_error_interval_width": 0.3885616958141327,
+          "p95_error_interval_width": 1.963885569572449,
+          "max_error_interval_width": 2.164661407470703,
+          "mean_clipped_action_width": 0.29407256841659546,
+          "max_outside_error": 4.193371295928955
+        },
+        "2.0-2.50": {
+          "pairs": 49080,
+          "outside_count": 7359,
+          "coverage": 0.8500611246943766,
+          "unique_states": 4080,
+          "states_with_any_miss": 1108,
+          "all_observed_appearance_state_coverage": 0.7284313725490197,
+          "mean_error_interval_width": 0.4447624683380127,
+          "p95_error_interval_width": 1.609246850013733,
+          "max_error_interval_width": 1.9013655185699463,
+          "mean_clipped_action_width": 0.38596081733703613,
+          "max_outside_error": 3.751049041748047
+        },
+        "2.5-3.01": {
+          "pairs": 53988,
+          "outside_count": 8376,
+          "coverage": 0.844854412091576,
+          "unique_states": 4488,
+          "states_with_any_miss": 1309,
+          "all_observed_appearance_state_coverage": 0.7083333333333333,
+          "mean_error_interval_width": 0.33744579553604126,
+          "p95_error_interval_width": 1.4223100304603449,
+          "max_error_interval_width": 1.550307273864746,
+          "mean_clipped_action_width": 0.2307785004377365,
+          "max_outside_error": 1.8732068538665771
+        }
+      },
+      "worst_cases": [
+        {
+          "distance_m": 7.522522449493408,
+          "speed_mps": 1.850000023841858,
+          "appearance": "rain|255,0,0",
+          "action_error": 4.832333564758301,
+          "predicted_error_bounds": [
+            -0.626819908618927,
+            0.63896244764328
+          ],
+          "outside_error": 4.193371295928955,
+          "legacy_band": false
+        },
+        {
+          "distance_m": 7.527527332305908,
+          "speed_mps": 1.850000023841858,
+          "appearance": "rain|255,0,0",
+          "action_error": 4.81668758392334,
+          "predicted_error_bounds": [
+            -0.6178925037384033,
+            0.6295648813247681
+          ],
+          "outside_error": 4.187122821807861,
+          "legacy_band": false
+        },
+        {
+          "distance_m": 7.522522449493408,
+          "speed_mps": 1.7999999523162842,
+          "appearance": "rain|255,0,0",
+          "action_error": 4.692687034606934,
+          "predicted_error_bounds": [
+            -0.5549250245094299,
+            0.5713775753974915
+          ],
+          "outside_error": 4.121309280395508,
+          "legacy_band": false
+        },
+        {
+          "distance_m": 7.572572708129883,
+          "speed_mps": 1.899999976158142,
+          "appearance": "rain|255,0,0",
+          "action_error": 4.719139099121094,
+          "predicted_error_bounds": [
+            -0.604884922504425,
+            0.608333945274353
+          ],
+          "outside_error": 4.110805034637451,
+          "legacy_band": false
+        },
+        {
+          "distance_m": 7.537537574768066,
+          "speed_mps": 1.850000023841858,
+          "appearance": "rain|255,0,0",
+          "action_error": 4.698441505432129,
+          "predicted_error_bounds": [
+            -0.6001042723655701,
+            0.6108273267745972
+          ],
+          "outside_error": 4.087614059448242,
+          "legacy_band": false
+        },
+        {
+          "distance_m": 7.527527332305908,
+          "speed_mps": 1.7999999523162842,
+          "appearance": "rain|255,0,0",
+          "action_error": 4.62816047668457,
+          "predicted_error_bounds": [
+            -0.5461645126342773,
+            0.5620452165603638
+          ],
+          "outside_error": 4.066115379333496,
+          "legacy_band": false
+        },
+        {
+          "distance_m": 7.542542457580566,
+          "speed_mps": 1.899999976158142,
+          "appearance": "rain|255,0,0",
+          "action_error": 4.701554298400879,
+          "predicted_error_bounds": [
+            -0.6570906639099121,
+            0.6629225015640259
+          ],
+          "outside_error": 4.038631916046143,
+          "legacy_band": false
+        },
+        {
+          "distance_m": 7.537537574768066,
+          "speed_mps": 1.899999976158142,
+          "appearance": "rain|255,0,0",
+          "action_error": 4.699967861175537,
+          "predicted_error_bounds": [
+            -0.6658008098602295,
+            0.6720179915428162
+          ],
+          "outside_error": 4.027949810028076,
+          "legacy_band": false
+        },
+        {
+          "distance_m": 7.532532691955566,
+          "speed_mps": 1.899999976158142,
+          "appearance": "rain|255,0,0",
+          "action_error": 4.6757307052612305,
+          "predicted_error_bounds": [
+            -0.6745030879974365,
+            0.6811003684997559
+          ],
+          "outside_error": 3.9946303367614746,
+          "legacy_band": false
+        },
+        {
+          "distance_m": 7.572572708129883,
+          "speed_mps": 1.9500000476837158,
+          "appearance": "rain|255,0,0",
+          "action_error": 4.654074668884277,
+          "predicted_error_bounds": [
+            -0.6619548797607422,
+            0.661566436290741
+          ],
+          "outside_error": 3.9925081729888916,
+          "legacy_band": false
+        }
+      ],
+      "measurement_tolerance": 1e-06,
+      "tolerance_is_not_a_safety_allowance": true,
+      "global_train_hull_baseline": {
+        "pairs": 294480,
+        "outside_count": 5127,
+        "coverage": 0.9825896495517522,
+        "unique_states": 24480,
+        "states_with_any_miss": 1680,
+        "all_observed_appearance_state_coverage": 0.9313725490196079,
+        "mean_error_interval_width": 3.557708501815796,
+        "p95_error_interval_width": 3.5577073097229004,
+        "max_error_interval_width": 3.5577073097229004,
+        "mean_clipped_action_width": 2.0208311080932617,
+        "max_outside_error": 2.9180643558502197
+      },
+      "global_train_hull_bounds": [
+        -1.6434381008148193,
+        1.914269208908081
+      ]
+    }
+  },
+  "frozen_models_unchanged": true,
+  "pair_data_unchanged": true,
+  "checkpoint": "results/environment_nbc_20261013_001/06_action_bounds_train_v1/action_error_bounds.pt",
+  "checkpoint_sha256": "28fb7d79ce546840ae265fb0a6b19ac436b5515b55c9eaf7a401cb7e65c60b83",
+  "training_validation_disjoint": true,
+  "safety_claim": false,
+  "independent_coverage_claim": false,
+  "runtime_seconds": 31.380035037873313
+}

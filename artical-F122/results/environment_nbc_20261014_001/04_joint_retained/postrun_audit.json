@@ -1,0 +1,63 @@
+{
+  "scope": "saved-run development audit; no additional training; no certificate",
+  "initial_positive_violations": 0,
+  "initial_max": -0.35473382472991943,
+  "unsafe_nonpositive_violations": 0,
+  "unsafe_min": 0.03653060644865036,
+  "region_grid_size": 41,
+  "matched_final_candidate": {
+    "pairs": 294480,
+    "image_next_unsafe": 0,
+    "q_next_unsafe": 0,
+    "dual_path_action_mae": 0.12027916686750566,
+    "dual_path_action_max": 4.789752006530762,
+    "nearest_lookup_used": false,
+    "task_episode_guarantee": false,
+    "final_nbc_violations": 14583,
+    "final_nbc_escapes": 1056
+  },
+  "rollouts": [
+    {
+      "rollout": "rollout_001",
+      "steps": 2048,
+      "physics_max_error": 4.76837158203125e-07,
+      "same_episode_continuity_max_error": 0.0,
+      "terminal_samples": 27,
+      "lookup_gap_max_m": 0.372182697057724,
+      "raw_actions_outside_bounds": 1134
+    },
+    {
+      "rollout": "rollout_002",
+      "steps": 2048,
+      "physics_max_error": 4.76837158203125e-07,
+      "same_episode_continuity_max_error": 0.0,
+      "terminal_samples": 27,
+      "lookup_gap_max_m": 0.37796780467033386,
+      "raw_actions_outside_bounds": 1153
+    },
+    {
+      "rollout": "rollout_003",
+      "steps": 2048,
+      "physics_max_error": 4.76837158203125e-07,
+      "same_episode_continuity_max_error": 0.0,
+      "terminal_samples": 28,
+      "lookup_gap_max_m": 0.376994788646698,
+      "raw_actions_outside_bounds": 1141
+    },
+    {
+      "rollout": "rollout_004",
+      "steps": 2048,
+      "physics_max_error": 4.76837158203125e-07,
+      "same_episode_continuity_max_error": 0.0,
+      "terminal_samples": 27,
+      "lookup_gap_max_m": 0.3781050145626068,
+      "raw_actions_outside_bounds": 1141
+    }
+  ],
+  "sampled_training_terminal_outcomes": {
+    "unsafe": 13,
+    "success": 96
+  },
+  "policy_sha256": "e3c08bb5ad550f17ce729a66d4bd42e600ed3f83779de475ce5271e665faf434",
+  "nbc_sha256": "32eb12571b462291676f792b110d6a4d6539d405c64cd6387e781cccc6648e43"
+}

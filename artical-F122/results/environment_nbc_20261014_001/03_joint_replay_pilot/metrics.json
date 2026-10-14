@@ -1,0 +1,2248 @@
+{
+  "experiment": "DINO_train_image_replay_PPO_NBC_joint_pilot_v1",
+  "status": "joint_replay_pilot_complete",
+  "source_hashes": {
+    "actor": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+    "old_sbc": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+    "representation": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+    "nbc": "c88a5355be40909f2a01e005d3e50414c120cd5d6746f4934ba5850d0bbdeebf",
+    "base_ppo": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+    "cache": "ca4c9993fbcf12b7a57dddab5f6a75fc1a5da84278fb102747e681888229e5bb",
+    "features": "dfc562b4c1a406de6f5dcbbf79e40a62955cd2d70a4d908b7119e2805336cdcd"
+  },
+  "source_identity": {
+    "old_controller_sha256": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+    "new_controller_sha256": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+    "barrier_sha256": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+    "source_metrics_sha256": "e5d10b7d33d4a1ecc549e6306d1105d954ad9d495711b53bf70e50dc16b35e54",
+    "stage": "minimal_final_saved_pair",
+    "final_recheck_sha256": "53fbe78e94ca791d00d42d8a7e509e59bbc3513b54055a087ecbdbcd5c1f1020",
+    "final_recheck_status": "saved_pair_passes_legacy_checks",
+    "final_recheck_source_hashes": {
+      "metrics": "e5d10b7d33d4a1ecc549e6306d1105d954ad9d495711b53bf70e50dc16b35e54",
+      "policy": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+      "barrier": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+      "representation": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+      "base_controller": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+      "minimal_manifest": "d32af8fa0beddaa6386a3a8f3a3dc55b5a30e23723f661037b9bef216164f054"
+    },
+    "checkpoint_matches_final_recheck": true,
+    "note": "identity/legacy-check evidence only; not an image-path safety certificate",
+    "changed_actor_tensors": 6,
+    "q_parameters_unchanged": true,
+    "state_distance_scale_m": 3.18272066116333,
+    "representation_distance_scale_m": 3.161912679672241,
+    "inference": "deterministic actor mean clipped to [-3,3]; no QP; no SBC action filtering"
+  },
+  "initial_mean_equivalence_error": 0.0,
+  "initial_exploration_std": 1.4175128936767578,
+  "policy_initialization": "final SPVC mean; inherited base PPO value/exploration variance; fresh optimizer, not a full PPO resume",
+  "scope": "on-policy joint learning in train-image nearest-distance replay + analytic AEBS; NOT online CARLA",
+  "representation_frozen": true,
+  "q_frozen": true,
+  "test_used": false,
+  "cp_used": false,
+  "qp_used": false,
+  "safety_condition": "single-step signed NBC lambda=.1 epsilon=.01",
+  "safety_actor_loss": "likelihood-ratio weighted detached globally centered/scaled hinge; adaptive nonnegative coefficient, clipped to 1",
+  "old_log_prob_action": "sampled unclipped Gaussian action; executed clipped action recorded separately",
+  "nbc_update_order": "score with pre-update NBC; update PPO; then fit NBC on recorded transitions (10 steps)",
+  "actor_lr": 1e-05,
+  "nbc_lr": 0.0003,
+  "timesteps": 8192,
+  "seed": 7,
+  "multi_step": false,
+  "safety_certificate": false,
+  "evaluation": {
+    "before": {
+      "low_sun|220,220,220": {
+        "episodes": 9,
+        "grid": [
+          3,
+          3
+        ],
+        "counts": {
+          "success": 9
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "stopped_safe_outside_goal_rate": 0.0,
+        "out_of_domain_rate": 0.0,
+        "mean_return": 20.94243813625975,
+        "mean_steps": 76.33333333333333,
+        "episodes_detail": [
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 73,
+            "return": 19.931691874980956
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 73,
+            "return": 19.96199774336818
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 72,
+            "return": 19.939657330393825
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.943620894432097
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.947981752038032
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 76,
+            "return": 20.934552507638966
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 79,
+            "return": 21.935352497458485
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.943398104310074
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.943690521717112
+          }
+        ],
+        "nearest_image_distance_error_m": {
+          "mean": 0.04996878749542582,
+          "max": 0.37351099434636126
+        }
+      },
+      "low_sun|255,0,0": {
+        "episodes": 9,
+        "grid": [
+          3,
+          3
+        ],
+        "counts": {
+          "success": 9
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "stopped_safe_outside_goal_rate": 0.0,
+        "out_of_domain_rate": 0.0,
+        "mean_return": 20.937564971685447,
+        "mean_steps": 77.11111111111111,
+        "episodes_detail": [
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 74,
+            "return": 19.94137078619007
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 74,
+            "return": 19.947093386411705
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 73,
+            "return": 19.941188370108637
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 78,
+            "return": 20.938863605380085
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.93151217210296
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.94021471548084
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.935042918920548
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.925885109305423
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 81,
+            "return": 21.936913681268734
+          }
+        ],
+        "nearest_image_distance_error_m": {
+          "mean": 0.04978741030108417,
+          "max": 0.37351099434636126
+        }
+      },
+      "low_sun|40,80,160": {
+        "episodes": 9,
+        "grid": [
+          3,
+          3
+        ],
+        "counts": {
+          "success": 9
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "stopped_safe_outside_goal_rate": 0.0,
+        "out_of_domain_rate": 0.0,
+        "mean_return": 20.946294646157195,
+        "mean_steps": 75.66666666666667,
+        "episodes_detail": [
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 73,
+            "return": 19.953285088062316
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 72,
+            "return": 19.952449905753166
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 71,
+            "return": 19.929821697711983
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 76,
+            "return": 20.942788239359885
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 76,
+            "return": 20.950077896356614
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 76,
+            "return": 20.949693708658256
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 79,
+            "return": 21.954668646216422
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 79,
+            "return": 21.940877856969873
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 79,
+            "return": 21.94298877632621
+          }
+        ],
+        "nearest_image_distance_error_m": {
+          "mean": 0.04998655200864069,
+          "max": 0.37351099434636126
+        }
+      },
+      "original|220,220,220": {
+        "episodes": 9,
+        "grid": [
+          3,
+          3
+        ],
+        "counts": {
+          "success": 9
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "stopped_safe_outside_goal_rate": 0.0,
+        "out_of_domain_rate": 0.0,
+        "mean_return": 20.938205391208363,
+        "mean_steps": 76.0,
+        "episodes_detail": [
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 73,
+            "return": 19.94123000395301
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 72,
+            "return": 19.9314382194281
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 72,
+            "return": 19.943991935133973
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.958868382453954
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 76,
+            "return": 20.924286161899595
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 76,
+            "return": 20.94196784698966
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 79,
+            "return": 21.921155845284495
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.958374865055116
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 79,
+            "return": 21.92253526067737
+          }
+        ],
+        "nearest_image_distance_error_m": {
+          "mean": 0.05005466605946186,
+          "max": 0.37351099434636126
+        }
+      },
+      "original|255,0,0": {
+        "episodes": 9,
+        "grid": [
+          3,
+          3
+        ],
+        "counts": {
+          "success": 9
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "stopped_safe_outside_goal_rate": 0.0,
+        "out_of_domain_rate": 0.0,
+        "mean_return": 20.94311168503765,
+        "mean_steps": 75.22222222222223,
+        "episodes_detail": [
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 72,
+            "return": 19.939619117856058
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 71,
+            "return": 19.93854011380676
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 71,
+            "return": 19.961132473588023
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.953369073152572
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 75,
+            "return": 20.945294567942657
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 75,
+            "return": 20.938904887437857
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 78,
+            "return": 21.944075068950685
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 79,
+            "return": 21.930687587618863
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 79,
+            "return": 21.936382274985355
+          }
+        ],
+        "nearest_image_distance_error_m": {
+          "mean": 0.049893957595512156,
+          "max": 0.37351099434636126
+        }
+      },
+      "original|40,80,160": {
+        "episodes": 9,
+        "grid": [
+          3,
+          3
+        ],
+        "counts": {
+          "success": 9
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "stopped_safe_outside_goal_rate": 0.0,
+        "out_of_domain_rate": 0.0,
+        "mean_return": 20.939605146129956,
+        "mean_steps": 75.88888888888889,
+        "episodes_detail": [
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 73,
+            "return": 19.94423889410499
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 72,
+            "return": 19.940758216261898
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 72,
+            "return": 19.95162609505657
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 76,
+            "return": 20.92832546138766
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 76,
+            "return": 20.934354304313697
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 76,
+            "return": 20.937275486230888
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 79,
+            "return": 21.93621670818332
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.9538199079037
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 79,
+            "return": 21.929831241726916
+          }
+        ],
+        "nearest_image_distance_error_m": {
+          "mean": 0.049818354762146286,
+          "max": 0.37351099434636126
+        }
+      },
+      "overcast|220,220,220": {
+        "episodes": 9,
+        "grid": [
+          3,
+          3
+        ],
+        "counts": {
+          "success": 9
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "stopped_safe_outside_goal_rate": 0.0,
+        "out_of_domain_rate": 0.0,
+        "mean_return": 20.938077683621017,
+        "mean_steps": 76.0,
+        "episodes_detail": [
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 73,
+            "return": 19.93099857759479
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 71,
+            "return": 19.932179693222082
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 71,
+            "return": 19.935910035014192
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.92619750308993
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 76,
+            "return": 20.944167055726087
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 76,
+            "return": 20.942737232685126
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 79,
+            "return": 21.94534889376167
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 81,
+            "return": 21.942281952738796
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.94287820875648
+          }
+        ],
+        "nearest_image_distance_error_m": {
+          "mean": 0.049260476435591484,
+          "max": 0.37351099434636126
+        }
+      },
+      "overcast|255,0,0": {
+        "episodes": 9,
+        "grid": [
+          3,
+          3
+        ],
+        "counts": {
+          "success": 9
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "stopped_safe_outside_goal_rate": 0.0,
+        "out_of_domain_rate": 0.0,
+        "mean_return": 20.941178117142815,
+        "mean_steps": 76.44444444444444,
+        "episodes_detail": [
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 73,
+            "return": 19.927798857212103
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 72,
+            "return": 19.945175462842027
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 72,
+            "return": 19.944396036744152
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 78,
+            "return": 20.95219559383395
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.957897199273138
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 76,
+            "return": 20.932895379304927
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 79,
+            "return": 21.935336550235775
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 81,
+            "return": 21.94946327233318
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.925444702506102
+          }
+        ],
+        "nearest_image_distance_error_m": {
+          "mean": 0.049753661735576445,
+          "max": 0.37351099434636126
+        }
+      },
+      "overcast|40,80,160": {
+        "episodes": 9,
+        "grid": [
+          3,
+          3
+        ],
+        "counts": {
+          "success": 9
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "stopped_safe_outside_goal_rate": 0.0,
+        "out_of_domain_rate": 0.0,
+        "mean_return": 20.94104266999831,
+        "mean_steps": 76.33333333333333,
+        "episodes_detail": [
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 74,
+            "return": 19.95552339649203
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 72,
+            "return": 19.92973789560799
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 72,
+            "return": 19.943270385146178
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.94584878790381
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.95648314762119
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 76,
+            "return": 20.927267499804532
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 79,
+            "return": 21.934246864080457
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.93875054240231
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.938255510926286
+          }
+        ],
+        "nearest_image_distance_error_m": {
+          "mean": 0.049767443495614405,
+          "max": 0.37351099434636126
+        }
+      },
+      "rain|220,220,220": {
+        "episodes": 9,
+        "grid": [
+          3,
+          3
+        ],
+        "counts": {
+          "success": 9
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "stopped_safe_outside_goal_rate": 0.0,
+        "out_of_domain_rate": 0.0,
+        "mean_return": 20.943399012486175,
+        "mean_steps": 76.66666666666667,
+        "episodes_detail": [
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 73,
+            "return": 19.94520523440841
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 72,
+            "return": 19.94113880980018
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 73,
+            "return": 19.949149989008937
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 78,
+            "return": 20.95250291836265
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.944749645471614
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 76,
+            "return": 20.950103937625922
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 79,
+            "return": 21.922760944724114
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 81,
+            "return": 21.94238603734974
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 81,
+            "return": 21.942593595624007
+          }
+        ],
+        "nearest_image_distance_error_m": {
+          "mean": 0.04929140475556575,
+          "max": 0.37351099434636126
+        }
+      },
+      "rain|255,0,0": {
+        "episodes": 9,
+        "grid": [
+          3,
+          3
+        ],
+        "counts": {
+          "success": 9
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "stopped_safe_outside_goal_rate": 0.0,
+        "out_of_domain_rate": 0.0,
+        "mean_return": 20.940467338098454,
+        "mean_steps": 77.77777777777777,
+        "episodes_detail": [
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 74,
+            "return": 19.935549301862743
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 74,
+            "return": 19.937798140406645
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 74,
+            "return": 19.945637507200278
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 79,
+            "return": 20.95056312894824
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.926497573733357
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.93680136311058
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 81,
+            "return": 21.949169340968158
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 82,
+            "return": 21.940886109352146
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 82,
+            "return": 21.941303577303923
+          }
+        ],
+        "nearest_image_distance_error_m": {
+          "mean": 0.049679895889734434,
+          "max": 0.37351099434636126
+        }
+      },
+      "rain|40,80,160": {
+        "episodes": 9,
+        "grid": [
+          3,
+          3
+        ],
+        "counts": {
+          "success": 9
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "stopped_safe_outside_goal_rate": 0.0,
+        "out_of_domain_rate": 0.0,
+        "mean_return": 20.93872999379373,
+        "mean_steps": 76.77777777777777,
+        "episodes_detail": [
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 74,
+            "return": 19.930414233565358
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 73,
+            "return": 19.93604430449012
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 73,
+            "return": 19.942715062618294
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.92323529827598
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.957527114033734
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.938581658482583
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.95213675618174
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.932623417377506
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.93529209911827
+          }
+        ],
+        "nearest_image_distance_error_m": {
+          "mean": 0.04976409663917171,
+          "max": 0.37351099434636126
+        }
+      }
+    },
+    "after": {
+      "low_sun|220,220,220": {
+        "episodes": 9,
+        "grid": [
+          3,
+          3
+        ],
+        "counts": {
+          "success": 9
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "stopped_safe_outside_goal_rate": 0.0,
+        "out_of_domain_rate": 0.0,
+        "mean_return": 20.944504424028963,
+        "mean_steps": 77.33333333333333,
+        "episodes_detail": [
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 74,
+            "return": 19.945087809324296
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 74,
+            "return": 19.95743135607246
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 73,
+            "return": 19.944472815513645
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 78,
+            "return": 20.941188994169266
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 78,
+            "return": 20.948414629817044
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.942848206639326
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.939811195135142
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 81,
+            "return": 21.94373045587543
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 81,
+            "return": 21.93755435371403
+          }
+        ],
+        "nearest_image_distance_error_m": {
+          "mean": 0.049795306125513604,
+          "max": 0.37351099434636126
+        }
+      },
+      "low_sun|255,0,0": {
+        "episodes": 9,
+        "grid": [
+          3,
+          3
+        ],
+        "counts": {
+          "success": 9
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "stopped_safe_outside_goal_rate": 0.0,
+        "out_of_domain_rate": 0.0,
+        "mean_return": 20.92998444481694,
+        "mean_steps": 77.66666666666667,
+        "episodes_detail": [
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 74,
+            "return": 19.93454095518592
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 74,
+            "return": 19.927662105321915
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 74,
+            "return": 19.934080717921294
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 79,
+            "return": 20.92877099132541
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.924008793711696
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.933675960779226
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 81,
+            "return": 21.930507448554067
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 81,
+            "return": 21.92921676361565
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 82,
+            "return": 21.927396266937293
+          }
+        ],
+        "nearest_image_distance_error_m": {
+          "mean": 0.04980756150602141,
+          "max": 0.37351099434636126
+        }
+      },
+      "low_sun|40,80,160": {
+        "episodes": 9,
+        "grid": [
+          3,
+          3
+        ],
+        "counts": {
+          "success": 9
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "stopped_safe_outside_goal_rate": 0.0,
+        "out_of_domain_rate": 0.0,
+        "mean_return": 20.94207621962498,
+        "mean_steps": 76.55555555555556,
+        "episodes_detail": [
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 74,
+            "return": 19.944785300850896
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 73,
+            "return": 19.949996887564694
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 72,
+            "return": 19.946966764211695
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.942670882821115
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.941447098135985
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.94004464852814
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 79,
+            "return": 21.94113952732089
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.936169261932417
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.935465605258972
+          }
+        ],
+        "nearest_image_distance_error_m": {
+          "mean": 0.04988466377256081,
+          "max": 0.37351099434636126
+        }
+      },
+      "original|220,220,220": {
+        "episodes": 9,
+        "grid": [
+          3,
+          3
+        ],
+        "counts": {
+          "success": 9
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "stopped_safe_outside_goal_rate": 0.0,
+        "out_of_domain_rate": 0.0,
+        "mean_return": 20.946842593484487,
+        "mean_steps": 77.22222222222223,
+        "episodes_detail": [
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 74,
+            "return": 19.947323633194006
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 74,
+            "return": 19.957939035654096
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 73,
+            "return": 19.945495112657582
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 78,
+            "return": 20.953789526343378
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 78,
+            "return": 20.959473267316852
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.938793764591253
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.932666600942643
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 81,
+            "return": 21.95392362797263
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.932178772687948
+          }
+        ],
+        "nearest_image_distance_error_m": {
+          "mean": 0.04975558198425692,
+          "max": 0.37351099434636126
+        }
+      },
+      "original|255,0,0": {
+        "episodes": 9,
+        "grid": [
+          3,
+          3
+        ],
+        "counts": {
+          "success": 9
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "stopped_safe_outside_goal_rate": 0.0,
+        "out_of_domain_rate": 0.0,
+        "mean_return": 20.943678059445524,
+        "mean_steps": 76.11111111111111,
+        "episodes_detail": [
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 73,
+            "return": 19.939510767579115
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 72,
+            "return": 19.940547990679775
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 72,
+            "return": 19.96131769406799
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.943073214173342
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 76,
+            "return": 20.9373850693703
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 76,
+            "return": 20.9384051343203
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 79,
+            "return": 21.94635107135775
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.955156765580213
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.931354827880895
+          }
+        ],
+        "nearest_image_distance_error_m": {
+          "mean": 0.04969852644077927,
+          "max": 0.37351099434636126
+        }
+      },
+      "original|40,80,160": {
+        "episodes": 9,
+        "grid": [
+          3,
+          3
+        ],
+        "counts": {
+          "success": 9
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "stopped_safe_outside_goal_rate": 0.0,
+        "out_of_domain_rate": 0.0,
+        "mean_return": 20.93191439869672,
+        "mean_steps": 76.77777777777777,
+        "episodes_detail": [
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 74,
+            "return": 19.939982212543512
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 73,
+            "return": 19.9318053890467
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 73,
+            "return": 19.951301666021383
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.924911294460323
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.926733634948764
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.935093940377275
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.932124589085607
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.922840331196824
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.922436530590094
+          }
+        ],
+        "nearest_image_distance_error_m": {
+          "mean": 0.04966628001353724,
+          "max": 0.37351099434636126
+        }
+      },
+      "overcast|220,220,220": {
+        "episodes": 9,
+        "grid": [
+          3,
+          3
+        ],
+        "counts": {
+          "success": 9
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "stopped_safe_outside_goal_rate": 0.0,
+        "out_of_domain_rate": 0.0,
+        "mean_return": 20.93420935965912,
+        "mean_steps": 77.11111111111111,
+        "episodes_detail": [
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 74,
+            "return": 19.932486251950298
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 73,
+            "return": 19.945069717288046
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 73,
+            "return": 19.949101962566413
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 78,
+            "return": 20.92725172352794
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.933188630223306
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.935399813532868
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.93047151386741
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 81,
+            "return": 21.92750573778156
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 81,
+            "return": 21.927408886194264
+          }
+        ],
+        "nearest_image_distance_error_m": {
+          "mean": 0.0490432820187018,
+          "max": 0.37351099434636126
+        }
+      },
+      "overcast|255,0,0": {
+        "episodes": 9,
+        "grid": [
+          3,
+          3
+        ],
+        "counts": {
+          "success": 9
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "stopped_safe_outside_goal_rate": 0.0,
+        "out_of_domain_rate": 0.0,
+        "mean_return": 20.93600054160757,
+        "mean_steps": 77.33333333333333,
+        "episodes_detail": [
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 74,
+            "return": 19.930585099220306
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 73,
+            "return": 19.94399998974804
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 73,
+            "return": 19.94491121363643
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 79,
+            "return": 20.950524335265186
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.927343906044996
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.929498724222213
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.92740690231326
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 82,
+            "return": 21.945320915460623
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 81,
+            "return": 21.924413788557086
+          }
+        ],
+        "nearest_image_distance_error_m": {
+          "mean": 0.04972616142753704,
+          "max": 0.37351099434636126
+        }
+      },
+      "overcast|40,80,160": {
+        "episodes": 9,
+        "grid": [
+          3,
+          3
+        ],
+        "counts": {
+          "success": 9
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "stopped_safe_outside_goal_rate": 0.0,
+        "out_of_domain_rate": 0.0,
+        "mean_return": 20.937727627025748,
+        "mean_steps": 77.22222222222223,
+        "episodes_detail": [
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 75,
+            "return": 19.951011812686943
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 73,
+            "return": 19.928936042308845
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 73,
+            "return": 19.94236600291733
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 78,
+            "return": 20.943295228600537
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 78,
+            "return": 20.95185525429252
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.93013933110241
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.926986472010647
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 81,
+            "return": 21.939606961846383
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.92535153746609
+          }
+        ],
+        "nearest_image_distance_error_m": {
+          "mean": 0.04966254867410782,
+          "max": 0.37351099434636126
+        }
+      },
+      "rain|220,220,220": {
+        "episodes": 9,
+        "grid": [
+          3,
+          3
+        ],
+        "counts": {
+          "success": 9
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "stopped_safe_outside_goal_rate": 0.0,
+        "out_of_domain_rate": 0.0,
+        "mean_return": 20.937818117592105,
+        "mean_steps": 77.44444444444444,
+        "episodes_detail": [
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 74,
+            "return": 19.93295991218093
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 73,
+            "return": 19.93426292729381
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 74,
+            "return": 19.942751658916507
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 78,
+            "return": 20.943234616637266
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 78,
+            "return": 20.944187769413027
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.944583259105716
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 80,
+            "return": 21.926915101408987
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 82,
+            "return": 21.93438640463356
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 81,
+            "return": 21.937081408739132
+          }
+        ],
+        "nearest_image_distance_error_m": {
+          "mean": 0.04912810257465328,
+          "max": 0.37351099434636126
+        }
+      },
+      "rain|255,0,0": {
+        "episodes": 9,
+        "grid": [
+          3,
+          3
+        ],
+        "counts": {
+          "success": 9
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "stopped_safe_outside_goal_rate": 0.0,
+        "out_of_domain_rate": 0.0,
+        "mean_return": 20.9382084750401,
+        "mean_steps": 79.0,
+        "episodes_detail": [
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 76,
+            "return": 19.943252891838576
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 75,
+            "return": 19.93136204183105
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 75,
+            "return": 19.951114532351536
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 80,
+            "return": 20.939006559252764
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 79,
+            "return": 20.940747018814122
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 78,
+            "return": 20.92470099639896
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 82,
+            "return": 21.941267322778728
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 83,
+            "return": 21.9353487504721
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 83,
+            "return": 21.93707616162304
+          }
+        ],
+        "nearest_image_distance_error_m": {
+          "mean": 0.04941684688174293,
+          "max": 0.37351099434636126
+        }
+      },
+      "rain|40,80,160": {
+        "episodes": 9,
+        "grid": [
+          3,
+          3
+        ],
+        "counts": {
+          "success": 9
+        },
+        "success_rate": 1.0,
+        "unsafe_rate": 0.0,
+        "timeout_rate": 0.0,
+        "stopped_safe_outside_goal_rate": 0.0,
+        "out_of_domain_rate": 0.0,
+        "mean_return": 20.93946552519007,
+        "mean_steps": 77.66666666666667,
+        "episodes_detail": [
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 74,
+            "return": 19.932733444333106
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 74,
+            "return": 19.938866210937533
+          },
+          {
+            "distance_m": 15.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 74,
+            "return": 19.94043831324581
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 78,
+            "return": 20.92962084126475
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 78,
+            "return": 20.949682071924244
+          },
+          {
+            "distance_m": 15.5,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 77,
+            "return": 20.93389691221718
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.5,
+            "outcome": "success",
+            "steps": 81,
+            "return": 21.951085356116323
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 2.75,
+            "outcome": "success",
+            "steps": 82,
+            "return": 21.947900017380753
+          },
+          {
+            "distance_m": 16.0,
+            "speed_mps": 3.0,
+            "outcome": "success",
+            "steps": 81,
+            "return": 21.930966559290923
+          }
+        ],
+        "nearest_image_distance_error_m": {
+          "mean": 0.049567737374718736,
+          "max": 0.37351099434636126
+        }
+      }
+    }
+  },
+  "matched": {
+    "before_validation": {
+      "pairs": 294480,
+      "frozen_initial_nbc_violations": 13863,
+      "frozen_initial_nbc_escapes": 1009,
+      "image_next_unsafe": 0,
+      "q_next_unsafe": 0,
+      "dual_path_action_mae": 0.12109661324618141,
+      "dual_path_action_max": 4.832334041595459,
+      "nearest_lookup_used": false,
+      "task_episode_guarantee": false
+    },
+    "after_validation": {
+      "pairs": 294480,
+      "frozen_initial_nbc_violations": 14616,
+      "frozen_initial_nbc_escapes": 1059,
+      "image_next_unsafe": 0,
+      "q_next_unsafe": 0,
+      "dual_path_action_mae": 0.12023989709781843,
+      "dual_path_action_max": 4.803927898406982,
+      "nearest_lookup_used": false,
+      "task_episode_guarantee": false
+    }
+  },
+  "joint_history": [
+    {
+      "rollout": 1,
+      "timesteps": 2048,
+      "sampling_log_prob_max_error": 1.9073486328125e-06,
+      "raw_safety_violation_mean": 0.010363047011196613,
+      "positive_safety_samples": 355,
+      "safety_coefficient": 0.050518152350559835,
+      "actor_safety_gradient_norm": 0.05006967484951019,
+      "actor_parameter_max_drift": 0.0002769678831100464,
+      "optimizer_steps": 32,
+      "approx_kl_max": 0.00021417299285531044,
+      "nbc_training_loss": 0.007052048575133085,
+      "lookup_gap_mean_m": 0.05047326534986496,
+      "lookup_gap_max_m": 0.372182697057724,
+      "terminated_episodes": 27,
+      "timeout_episodes": 0
+    },
+    {
+      "rollout": 2,
+      "timesteps": 4096,
+      "sampling_log_prob_max_error": 1.9073486328125e-06,
+      "raw_safety_violation_mean": 0.006248865742236376,
+      "positive_safety_samples": 216,
+      "safety_coefficient": 0.05083059563767165,
+      "actor_safety_gradient_norm": 0.06739550828933716,
+      "actor_parameter_max_drift": 0.00019627809524536133,
+      "optimizer_steps": 32,
+      "approx_kl_max": 7.484108209609985e-05,
+      "nbc_training_loss": 0.005171990022063255,
+      "lookup_gap_mean_m": 0.05029371380805969,
+      "lookup_gap_max_m": 0.37796780467033386,
+      "terminated_episodes": 27,
+      "timeout_episodes": 0
+    },
+    {
+      "rollout": 3,
+      "timesteps": 6144,
+      "sampling_log_prob_max_error": 2.384185791015625e-06,
+      "raw_safety_violation_mean": 0.004161220043897629,
+      "positive_safety_samples": 183,
+      "safety_coefficient": 0.05103865663986653,
+      "actor_safety_gradient_norm": 0.11287588626146317,
+      "actor_parameter_max_drift": 0.0002664215862751007,
+      "optimizer_steps": 32,
+      "approx_kl_max": 0.00011068140156567097,
+      "nbc_training_loss": 0.004428560845553875,
+      "lookup_gap_mean_m": 0.05043913424015045,
+      "lookup_gap_max_m": 0.376994788646698,
+      "terminated_episodes": 28,
+      "timeout_episodes": 0
+    },
+    {
+      "rollout": 4,
+      "timesteps": 8192,
+      "sampling_log_prob_max_error": 1.9073486328125e-06,
+      "raw_safety_violation_mean": 0.0037701325491070747,
+      "positive_safety_samples": 213,
+      "safety_coefficient": 0.051227163267321886,
+      "actor_safety_gradient_norm": 0.01832057163119316,
+      "actor_parameter_max_drift": 0.00031907856464385986,
+      "optimizer_steps": 32,
+      "approx_kl_max": 0.00019358634017407894,
+      "nbc_training_loss": 0.003986767493188381,
+      "lookup_gap_mean_m": 0.049859777092933655,
+      "lookup_gap_max_m": 0.3781050145626068,
+      "terminated_episodes": 27,
+      "timeout_episodes": 0
+    }
+  ],
+  "safety_actor_gradient_active": true,
+  "actor_updated": true,
+  "source_files_unchanged": true,
+  "aggregate": {
+    "before": {
+      "episodes": 108,
+      "counts": {
+        "success": 108
+      },
+      "success_rate": 1.0,
+      "unsafe_rate": 0.0,
+      "timeout_rate": 0.0,
+      "mean_return": 20.940842899301565,
+      "mean_steps": 76.35185185185185
+    },
+    "after": {
+      "episodes": 108,
+      "counts": {
+        "success": 108
+      },
+      "success_rate": 1.0,
+      "unsafe_rate": 0.0,
+      "timeout_rate": 0.0,
+      "mean_return": 20.938535815517692,
+      "mean_steps": 77.28703703703704
+    }
+  },
+  "runtime_seconds": 15.56576481112279
+}
