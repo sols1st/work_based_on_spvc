@@ -1,0 +1,29 @@
+{
+  "upstream_sha256": {
+    "/root/work_based_on_spvc/VISION-SLS/dyn/unicycle.py": "249e74a51370b0c4ea75a3700cb4dd6b9112e999ac33c4525d0ac8078fab7710",
+    "/root/work_based_on_spvc/VISION-SLS/dyn/model.py": "44ac6f26909388ab2807d0e36c379ad2e7de71ce960c5a338832810e53a71038",
+    "/root/work_based_on_spvc/VISION-SLS/dyn/unicycle_of_perception.py": "00b1330541f7e8996aa6d22e6af1cd2669e97da9355711cc02730f4aafbdd08f",
+    "/root/work_based_on_spvc/VISION-SLS/expe/parking_lot/run_parking_lot_dino.py": "efc835650069f0697654519821548c95f502ce899db8baa919b0fe23069133c8",
+    "/root/work_based_on_spvc/VISION-SLS/expe/parking_lot/main_parking_lot.py": "42e4c13a35d7a8e7d8a0e7fb3c4f1b023755dfb22d45ae50872114c5d50b2511",
+    "/root/work_based_on_spvc/VISION-SLS/LICENSE": "690c62bfb1f61f9e08c9caf09f6fad6d6199c589248aa49fdda79fb13e845656",
+    "/root/work_based_on_spvc/VISION-SLS/expe/parking_lot/plane_v2/background_v4.png": "f2950fc6cd0b2b01e505dd3ab7e6635e18903fc7bcf79376091d8082f2e8e988",
+    "/root/work_based_on_spvc/VISION-SLS/expe/parking_lot/plane_v2/plane_v2.urdf": "5ac31cfc4a74188e1aaf2c161ca0bdfaf6accdf76da1726768eb2001fe3c6fdc",
+    "/root/work_based_on_spvc/VISION-SLS/expe/parking_lot/plane_v2/plane_v2.mtl": "18b2ae604b4d3d214c7b01771df99f0003e04ed610beeb6f087e465f08232b17",
+    "/root/work_based_on_spvc/VISION-SLS/expe/parking_lot/plane_v2/plane_v2.obj": "e2e8cb4fa42d6ad357bf006e114729297371b12063586cc01e2f7a7ef3ca66e4"
+  },
+  "adapter_sha256": {
+    "/root/work_based_on_spvc/artical-F122/Aebs/vision_sls_parking/__init__.py": "4b3c21e2ca39e804bcdf5b1ed552ab4a6c0d802319b73df62d0151a61869eacf",
+    "/root/work_based_on_spvc/artical-F122/Aebs/vision_sls_parking/core.py": "d3266697cf7db8db3edd9bd3c8e21499359874049098b38a6838d2d4e2646eda",
+    "/root/work_based_on_spvc/artical-F122/Aebs/vision_sls_parking/smoke_test.py": "c2e1bebb2986c2639ff1220fbbf5ab97e8d6e74fb35d5728c03a323d001d4530",
+    "/root/work_based_on_spvc/artical-F122/Aebs/vision_sls_parking/env.py": "d3ca8ac146a7528b6e955341fbde7b7f6827abc7ebe0b23a09e81a2225094ab8",
+    "/root/work_based_on_spvc/artical-F122/Aebs/vision_sls_parking/renderer.py": "a28c3d1e1eccb7eeca8022d88b4e316bac9c19f1ba2be00414659a68e7da8fa4"
+  },
+  "dt": 0.15,
+  "horizon": 30,
+  "renderer": "tiny",
+  "observation_delay": 1,
+  "process_disturbance": "explicit zero; no stochastic law introduced",
+  "actions": "fixed open-loop yaw=.08*sin(t*.2), acceleration=.25; NOT a controller",
+  "training": false,
+  "python": "3.8.20"
+}

@@ -1,0 +1,131 @@
+{
+  "experiment": "causal_CLS_world_model_development_AB",
+  "seed": 7,
+  "suite": "speed_ablation",
+  "learning_arms": [
+    {
+      "name": "t32_concat_speed",
+      "native": "latent32",
+      "kind": "transformer",
+      "speed_mode": "concat",
+      "use_action": true
+    },
+    {
+      "name": "t32_no_speed",
+      "native": "latent32",
+      "kind": "transformer",
+      "speed_mode": "none",
+      "use_action": true
+    },
+    {
+      "name": "t32_separate_speed",
+      "native": "latent32",
+      "kind": "transformer",
+      "speed_mode": "add",
+      "use_action": true
+    },
+    {
+      "name": "t32_images_only",
+      "native": "latent32",
+      "kind": "transformer",
+      "speed_mode": "none",
+      "use_action": false
+    },
+    {
+      "name": "mlp32_no_speed",
+      "native": "latent32",
+      "kind": "mlp",
+      "speed_mode": "none",
+      "use_action": true
+    },
+    {
+      "name": "t384_concat_speed",
+      "native": "dino384",
+      "kind": "transformer",
+      "speed_mode": "concat",
+      "use_action": true
+    },
+    {
+      "name": "t384_no_speed",
+      "native": "dino384",
+      "kind": "transformer",
+      "speed_mode": "none",
+      "use_action": true
+    },
+    {
+      "name": "t384_separate_speed",
+      "native": "dino384",
+      "kind": "transformer",
+      "speed_mode": "add",
+      "use_action": true
+    }
+  ],
+  "diagnostic_actor_uses_true_speed": true,
+  "context": 3,
+  "horizon": 3,
+  "steps": 1200,
+  "batch_size": 256,
+  "learning_rate": 0.0003,
+  "transformer_width": 128,
+  "transformer_layers": 2,
+  "attention_heads": 4,
+  "source_sha256": {
+    "results/dino_expanded_v1/13_spvc_calibration_trajectories_v1/trajectories.h5": "8da138640b79fb98a473965cf2fd126503e8346678e955de5f4893e4125e0c34",
+    "results/dino_expanded_v1/08_R2_group_alignment/dino_safety_latent.pt": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+    "results/dino_expanded_v1/09_R2_ppo/latent_ppo.zip": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+    "results/dino_spvc_minimal_v1/latent_ppo_spvc.pt": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+    "results/dino_spvc_minimal_v1/sbc.pt": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+    "results/dino_spvc_minimal_v1/metrics.json": "e5d10b7d33d4a1ecc549e6306d1105d954ad9d495711b53bf70e50dc16b35e54",
+    "results/dino_spvc_minimal_v1_final_recheck/metrics.json": "53fbe78e94ca791d00d42d8a7e509e59bbc3513b54055a087ecbdbcd5c1f1020"
+  },
+  "script_sha256": "2050a8eba7aed74ed2d94aa1d2869f9182edbf3b51f1320adedd3aa16527aa75",
+  "frozen_actor_identity": {
+    "old_controller_sha256": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+    "new_controller_sha256": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+    "barrier_sha256": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+    "source_metrics_sha256": "e5d10b7d33d4a1ecc549e6306d1105d954ad9d495711b53bf70e50dc16b35e54",
+    "stage": "minimal_final_saved_pair",
+    "final_recheck_sha256": "53fbe78e94ca791d00d42d8a7e509e59bbc3513b54055a087ecbdbcd5c1f1020",
+    "final_recheck_status": "saved_pair_passes_legacy_checks",
+    "final_recheck_source_hashes": {
+      "metrics": "e5d10b7d33d4a1ecc549e6306d1105d954ad9d495711b53bf70e50dc16b35e54",
+      "policy": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+      "barrier": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+      "representation": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+      "base_controller": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+      "minimal_manifest": "d32af8fa0beddaa6386a3a8f3a3dc55b5a30e23723f661037b9bef216164f054"
+    },
+    "checkpoint_matches_final_recheck": true,
+    "note": "identity/legacy-check evidence only; not an image-path safety certificate",
+    "changed_actor_tensors": 6,
+    "q_parameters_unchanged": true,
+    "state_distance_scale_m": 3.18272066116333,
+    "representation_distance_scale_m": 3.161912679672241,
+    "inference": "deterministic actor mean clipped to [-3,3]; no QP; no SBC action filtering"
+  },
+  "module_sha256": "ee98f8cb2d63d261a4f1f9f592201ab4f285936ed2d5aec8898e3b3f5235a611",
+  "trajectory_count": 459,
+  "train_trajectories": 367,
+  "validation_trajectories": 92,
+  "train_windows": 28502,
+  "validation_windows": 7085,
+  "original_input_role": "calibration",
+  "input_repurposed_for_development": true,
+  "future_CP_must_not_reuse_this_data": true,
+  "test_used": false,
+  "fresh_CP_data_used": false,
+  "representation_frozen": true,
+  "ppo_frozen": true,
+  "paper_adaptation": "DINO CLS 384, NOT full 16x16 patch tokens; no paper-controller/barrier reproduction",
+  "horizon_actions": "observed/planned future controls supplied to every arm equally; open-loop prediction",
+  "selection": "validation 3-horizon mean common frozen-R2 latent RMSE",
+  "limitations": [
+    "same-policy old trajectories, not random-action coverage",
+    "no new PPO/SBC/online rollout",
+    "prediction comparison not a formal safety guarantee",
+    "models not parameter-count matched"
+  ],
+  "max_record_distance_error_m": 9.5367431640625e-07,
+  "max_record_speed_error_mps": 2.384185791015625e-07,
+  "physical_diagnostic_scope": "At each predicted observation time, use its true speed ONLY for the frozen-PPO diagnostic; compare predicted-latent and real-image-latent actions in the SAME state. Successor gap is one physical step AFTER that observation, not the forecast speed target. No true future speed/latent/distance is supplied to learned predictors."
+}

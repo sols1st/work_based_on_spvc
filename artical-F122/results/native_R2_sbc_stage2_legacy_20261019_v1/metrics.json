@@ -1,0 +1,70 @@
+{
+  "config": {
+    "rounds": 80,
+    "epochs_per_round": 10,
+    "seed": 7,
+    "policy_frozen": true,
+    "CP_error_included": false,
+    "no_actor_update": true,
+    "grid": [
+      100,
+      100
+    ],
+    "original_noise_factor": 0.05,
+    "legacy_threshold": 0.001,
+    "original_VT_backend_unchanged": true,
+    "evaluation_wrapper": "fresh frozen deep-copy of current barrier each check",
+    "scope": "legacy assumed-noise proxy SBC baseline only, NOT calibrated image-path guarantee",
+    "adapter_action_max_abs": 0.0,
+    "VT_adapter_max_abs": 0.0,
+    "provenance": {
+      "source_sha256": {
+        "results/native_representation_dimensions_20261019_v1/historical_R2.pt": "42d2bea5ffe112df753e23777f2b86d4edf193fe4489f507dd99b21b60d90230",
+        "results/native_controllers_speed_residual_20261019_v1/historical_R2/native_ppo.zip": "01a1173645051eb7e96480bd2a21a948c6fb8b3a860263784d5a10ad8dd4c373",
+        "results/native_controllers_speed_residual_20261019_v1/historical_R2/metrics.json": "4a7cba5444f5a68e56162700b3cb763d1d0c1adbeff0809a089a92514d2948a6"
+      },
+      "adapter_action_max_abs": 0.0,
+      "new_q_and_native_standardization_used": true,
+      "old_R2_q_used": false,
+      "PPO_updated": false,
+      "fresh_CP_contract": false,
+      "backend_sha256": {
+        "Aebs/VT/train.py": "b386421749f3b6f083de20ae72a90e1158a7c630dc112031a1724776153b622e",
+        "Aebs/VT/verify.py": "402a4b429eb8b811c1e8145274c01bdf24bf73922fffefff396d7af355090de5",
+        "Aebs/VT/utils.py": "1a835fc24bdd210fbfdb3cd3ab147f10f3d699a963188e378b0df42aa51aab82",
+        "Aebs/system/env.py": "bdc29eb57ce048e3bc945eba4702c260021e334442bc991e61af692e2d6b69b1"
+      }
+    },
+    "source_sha256": "5f3c7648d80d357acb36ef698847ef039e8e9c99f32c752da08a3c89c86ca5b0"
+  },
+  "status": "legacy_proxy_checks_pass",
+  "best_round": 76,
+  "rounds_completed": 80,
+  "verification": {
+    "original_threshold_pass": true,
+    "hard_violations": 1,
+    "grid_states": 10000,
+    "actual_checked_band_states": 112,
+    "init_upper": 1.0664461851119995,
+    "unsafe_lower": 19.8333740234375,
+    "domain_lower": 0.27114561200141907,
+    "separated": true,
+    "legacy_probability_readout": 0.959345093187561,
+    "zero_hard_violations": false,
+    "formal_certificate": false,
+    "image_proxy_error_included": false,
+    "info": {
+      "delta": 0.02288288601741362,
+      "K": 0.027459463220896343,
+      "hard_violations": "1/10000"
+    }
+  },
+  "checkpoint_matches_verification": true,
+  "controller_q_tensorwise_unchanged": true,
+  "barrier_changed_tensors": 6,
+  "runtime_seconds": 86.37485114298761,
+  "saved_barrier_sha256": "add61cae950cb967ddaa9845cdd37d54b4d877c39d4856442df7f86214f26249",
+  "formal_certificate": false,
+  "image_path_guarantee": false,
+  "original_backend_unchanged": true
+}

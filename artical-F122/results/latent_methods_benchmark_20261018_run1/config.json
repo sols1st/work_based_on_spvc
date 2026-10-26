@@ -1,0 +1,124 @@
+{
+  "status": "registered_before_training",
+  "arms": [
+    {
+      "name": "mlp32",
+      "kind": "mlp",
+      "space": "r2"
+    },
+    {
+      "name": "transformer32",
+      "kind": "transformer",
+      "space": "r2"
+    },
+    {
+      "name": "mlp32_parameter_matched",
+      "kind": "mlp_matched",
+      "space": "r2"
+    },
+    {
+      "name": "transformer32_no_speed",
+      "kind": "no_speed",
+      "space": "r2"
+    },
+    {
+      "name": "gru32",
+      "kind": "gru",
+      "space": "r2"
+    },
+    {
+      "name": "rssm32",
+      "kind": "rssm",
+      "space": "r2"
+    },
+    {
+      "name": "lifted_linear32",
+      "kind": "lifted_linear",
+      "space": "r2"
+    },
+    {
+      "name": "transformer32_task_aware",
+      "kind": "task_aware",
+      "space": "r2"
+    },
+    {
+      "name": "pca32_transformer",
+      "kind": "transformer",
+      "space": "pca"
+    }
+  ],
+  "steps": 800,
+  "batch_size": 128,
+  "horizon": 10,
+  "context": 3,
+  "seed": 7,
+  "split_seed": 71,
+  "train_trajectories": 321,
+  "selection_trajectories": 69,
+  "internal_audit_trajectories": 69,
+  "window_counts": {
+    "train": 22641,
+    "selection": 4879,
+    "internal_audit": 4854
+  },
+  "source_sha256": {
+    "results/dino_expanded_v1/13_spvc_calibration_trajectories_v1/trajectories.h5": "8da138640b79fb98a473965cf2fd126503e8346678e955de5f4893e4125e0c34",
+    "results/dino_expanded_v1/08_R2_group_alignment/dino_safety_latent.pt": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+    "results/dino_expanded_v1/09_R2_ppo/latent_ppo.zip": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+    "results/dino_spvc_minimal_v1_final_recheck/metrics.json": "53fbe78e94ca791d00d42d8a7e509e59bbc3513b54055a087ecbdbcd5c1f1020",
+    "results/dino_spvc_minimal_v1/latent_ppo_spvc.pt": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+    "results/dino_spvc_minimal_v1/sbc.pt": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+    "results/dino_spvc_minimal_v1/metrics.json": "e5d10b7d33d4a1ecc549e6306d1105d954ad9d495711b53bf70e50dc16b35e54"
+  },
+  "code_sha256": {
+    "/root/work_based_on_spvc/artical-F122/Aebs/dino_latent/benchmark_latent_methods.py": "67b3feff674fa2d6c631c95d7bfecfe36a359735bac64c61cc410d7904bb14b8",
+    "/root/work_based_on_spvc/artical-F122/Aebs/dino_latent/latent_method_models.py": "17a565b13210d33147d64494e7b8f25a4ac65ba97ff3033aed0aba5ddb95016c",
+    "/root/work_based_on_spvc/artical-F122/Aebs/dino_latent/temporal_world_model.py": "ee98f8cb2d63d261a4f1f9f592201ab4f285936ed2d5aec8898e3b3f5235a611"
+  },
+  "actor_identity": {
+    "old_controller_sha256": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+    "new_controller_sha256": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+    "barrier_sha256": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+    "source_metrics_sha256": "e5d10b7d33d4a1ecc549e6306d1105d954ad9d495711b53bf70e50dc16b35e54",
+    "stage": "minimal_final_saved_pair",
+    "final_recheck_sha256": "53fbe78e94ca791d00d42d8a7e509e59bbc3513b54055a087ecbdbcd5c1f1020",
+    "final_recheck_status": "saved_pair_passes_legacy_checks",
+    "final_recheck_source_hashes": {
+      "metrics": "e5d10b7d33d4a1ecc549e6306d1105d954ad9d495711b53bf70e50dc16b35e54",
+      "policy": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+      "barrier": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+      "representation": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+      "base_controller": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+      "minimal_manifest": "d32af8fa0beddaa6386a3a8f3a3dc55b5a30e23723f661037b9bef216164f054"
+    },
+    "checkpoint_matches_final_recheck": true,
+    "note": "identity/legacy-check evidence only; not an image-path safety certificate",
+    "changed_actor_tensors": 6,
+    "q_parameters_unchanged": true,
+    "state_distance_scale_m": 3.18272066116333,
+    "representation_distance_scale_m": 3.161912679672241,
+    "inference": "deterministic actor mean clipped to [-3,3]; no QP; no SBC action filtering"
+  },
+  "selection": "all-horizon common R2 RMSE on selection trajectories only",
+  "internal_audit_note": "not globally unseen; old pool used in previous development experiments",
+  "learning_rate": 0.0003,
+  "weight_decay": 0.0001,
+  "task_aux_weights": {
+    "distance": 1.0,
+    "action": 0.1
+  },
+  "rssm_aux_weights": {
+    "reconstruction": 0.1,
+    "gaussian_kl": 0.001
+  },
+  "pca_variance_fraction": 0.8856825828552246,
+  "future_true_states_in_predictor": false,
+  "future_actions": "same recorded open-loop sequence for all methods",
+  "diagnostic_actor_uses_target_true_speed": true,
+  "all_models_use_speed_except": "transformer32_no_speed",
+  "matched_steps_not_matched_parameter_count": true,
+  "test_used": false,
+  "fresh_CP_used": false,
+  "original_PPO_SBC_frozen": true,
+  "official_paper_reproductions": false
+}

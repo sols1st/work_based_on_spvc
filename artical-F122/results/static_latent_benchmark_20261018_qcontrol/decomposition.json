@@ -1,0 +1,105 @@
+{
+  "status": "posthoc_same_distance_decomposition_complete_no_training",
+  "images": 2460,
+  "exact_distance_groups": 204,
+  "models_unchanged": true,
+  "model_sha256": {
+    "r2_frozen_refit_q": "fe6f7f300ee27b6bf30f9ce09a218e684db51eb33b0620749310b70a7cdea4a0",
+    "pca32": "914ba302a764e48e017b96175d9f1636848140437a452cd7696dbe9d4b1f77cc",
+    "feature_ae32": "578408b1d9a819c2d42d9b1f34420ffa7750274e013d5efb32966a1f519bf29f",
+    "feature_vae32": "14e47517187177f1ae6962bcc042ecc1e010bd2a4aab65172ef835606deacf94"
+  },
+  "results": {
+    "original_R2": {
+      "native": {
+        "pair_mse": 0.00321954139508307,
+        "same_distance_appearance_mse": 0.002136588518598259,
+        "centroid_q_fit_mse": 0.001082952656624699,
+        "identity_abs_error": 2.1986011188718235e-10,
+        "appearance_fraction_of_pair_mse": 0.6636313239709506,
+        "appearance_fraction_of_centered_image_variance": 0.0040379821087489455,
+        "interpretation": "finite-sample group decomposition, not a population lower bound or coverage guarantee"
+      }
+    },
+    "r2_frozen_refit_q": {
+      "native": {
+        "pair_mse": 0.003450611839070916,
+        "same_distance_appearance_mse": 0.002136588518598259,
+        "centroid_q_fit_mse": 0.001314023030895868,
+        "identity_abs_error": 2.8957678919680485e-10,
+        "appearance_fraction_of_pair_mse": 0.6191912096300984,
+        "appearance_fraction_of_centered_image_variance": 0.0040379821087489455,
+        "interpretation": "finite-sample group decomposition, not a population lower bound or coverage guarantee"
+      },
+      "common": {
+        "pair_mse": 0.003450611839070916,
+        "same_distance_appearance_mse": 0.002136588518598259,
+        "centroid_q_fit_mse": 0.001314023030895868,
+        "identity_abs_error": 2.8957678919680485e-10,
+        "appearance_fraction_of_pair_mse": 0.6191912096300984,
+        "appearance_fraction_of_centered_image_variance": 0.0040379821087489455,
+        "interpretation": "finite-sample group decomposition, not a population lower bound or coverage guarantee"
+      }
+    },
+    "pca32": {
+      "native": {
+        "pair_mse": 6.239840984344482,
+        "same_distance_appearance_mse": 5.270616887829623,
+        "centroid_q_fit_mse": 0.9692248295845973,
+        "identity_abs_error": 7.330697375795836e-07,
+        "appearance_fraction_of_pair_mse": 0.8446716672834124,
+        "appearance_fraction_of_centered_image_variance": 0.5447106448958369,
+        "interpretation": "finite-sample group decomposition, not a population lower bound or coverage guarantee"
+      },
+      "common": {
+        "pair_mse": 0.16508637368679047,
+        "same_distance_appearance_mse": 0.007524029711072682,
+        "centroid_q_fit_mse": 0.15756234080392678,
+        "identity_abs_error": 3.1717909965145452e-09,
+        "appearance_fraction_of_pair_mse": 0.04557632191586945,
+        "appearance_fraction_of_centered_image_variance": 0.013819926376040402,
+        "interpretation": "finite-sample group decomposition, not a population lower bound or coverage guarantee"
+      }
+    },
+    "feature_ae32": {
+      "native": {
+        "pair_mse": 3.7923922538757324,
+        "same_distance_appearance_mse": 3.2263112141466874,
+        "centroid_q_fit_mse": 0.5660806881515866,
+        "identity_abs_error": 3.515774583684461e-07,
+        "appearance_fraction_of_pair_mse": 0.8507324659914797,
+        "appearance_fraction_of_centered_image_variance": 0.46180160790663877,
+        "interpretation": "finite-sample group decomposition, not a population lower bound or coverage guarantee"
+      },
+      "common": {
+        "pair_mse": 0.12890887260437012,
+        "same_distance_appearance_mse": 0.006451547621030427,
+        "centroid_q_fit_mse": 0.12245732342664033,
+        "identity_abs_error": 1.5566993666338291e-09,
+        "appearance_fraction_of_pair_mse": 0.05004735120778424,
+        "appearance_fraction_of_centered_image_variance": 0.012117015346268226,
+        "interpretation": "finite-sample group decomposition, not a population lower bound or coverage guarantee"
+      }
+    },
+    "feature_vae32": {
+      "native": {
+        "pair_mse": 2.2814064025878906,
+        "same_distance_appearance_mse": 1.7534230115619984,
+        "centroid_q_fit_mse": 0.5279835883656491,
+        "identity_abs_error": 1.9733975686886396e-07,
+        "appearance_fraction_of_pair_mse": 0.7685710926264696,
+        "appearance_fraction_of_centered_image_variance": 0.541058864816933,
+        "interpretation": "finite-sample group decomposition, not a population lower bound or coverage guarantee"
+      },
+      "common": {
+        "pair_mse": 0.20854777097702026,
+        "same_distance_appearance_mse": 0.007784637223233669,
+        "centroid_q_fit_mse": 0.20076311769694236,
+        "identity_abs_error": 1.6056844243106383e-08,
+        "appearance_fraction_of_pair_mse": 0.03732783710304654,
+        "appearance_fraction_of_centered_image_variance": 0.013812919726123593,
+        "interpretation": "finite-sample group decomposition, not a population lower bound or coverage guarantee"
+      }
+    }
+  }
+}

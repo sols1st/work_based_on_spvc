@@ -1,0 +1,24 @@
+{
+  "source_sha256": {
+    "/root/work_based_on_spvc/VISION-SLS/expe/parking_lot/data/unicycle_checkpoint_observability_ft_075w_3pi4_097_300000_post.pt": "83aec716dfa330ef0d2edb5f248753f0bf3739a0ccf5fe9bc63216f4ff8086fe",
+    "/root/work_based_on_spvc/VISION-SLS/expe/parking_lot/data/unicycle_10000_512small_03width_background4_075w_3pi4_op097_dino_1536_states_large_val.pt": "6330d15de6edd446ce385e9779bcb24890ed4ec49bf0a7ac0a6e0574c84d6887",
+    "/root/work_based_on_spvc/VISION-SLS/expe/parking_lot/data/unicycle_observability_bound_ppoly_097_300000_val_3_0.97_0.04.npz": "d54f2c33a4beb6a109cb4f2c126e938de000575d7036d7665e2ab8206cafa500",
+    "/root/work_based_on_spvc/artical-F122/Aebs/vision_sls_parking/__init__.py": "4b3c21e2ca39e804bcdf5b1ed552ab4a6c0d802319b73df62d0151a61869eacf",
+    "/root/work_based_on_spvc/artical-F122/Aebs/vision_sls_parking/core.py": "d3266697cf7db8db3edd9bd3c8e21499359874049098b38a6838d2d4e2646eda",
+    "/root/work_based_on_spvc/artical-F122/Aebs/vision_sls_parking/perception.py": "a8eca639fc507ebe7007e746ae5c881a4aebbeca1b7d4edfb0fd256a62f5642e",
+    "/root/work_based_on_spvc/artical-F122/Aebs/vision_sls_parking/test_perception.py": "c7d2c0523a487019307821c30a0679da35c64136d149038753b341015b1a7011",
+    "/root/work_based_on_spvc/artical-F122/Aebs/vision_sls_parking/smoke_test.py": "c2e1bebb2986c2639ff1220fbbf5ab97e8d6e74fb35d5728c03a323d001d4530",
+    "/root/work_based_on_spvc/artical-F122/Aebs/vision_sls_parking/env.py": "d3ca8ac146a7528b6e955341fbde7b7f6827abc7ebe0b23a09e81a2225094ab8",
+    "/root/work_based_on_spvc/artical-F122/Aebs/vision_sls_parking/renderer.py": "ca70d7ba6e74f31bbbe451a0050e63f26daa2a4747104ed98240de92df03fb76"
+  },
+  "features_only": true,
+  "random_samples": 128,
+  "seed": 7,
+  "renderer": "tiny",
+  "preprocessing": "PIL RGB -> bicubic Resize(224) -> ToTensor -> ImageNet Normalize; no center crop",
+  "model": "official DINOv2-G/14 1536-D CLS, float32, frozen",
+  "panel": "15 starts + 128 (default) uniform paper-domain states + 4 occlusion probes",
+  "pose_target": "C_normalized @ (same captured world state + [3,0,0,0])",
+  "torch_version": "2.3.1",
+  "training": false
+}

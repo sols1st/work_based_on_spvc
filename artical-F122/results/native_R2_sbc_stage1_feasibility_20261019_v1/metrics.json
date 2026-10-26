@@ -1,0 +1,166 @@
+{
+  "status": "reference_global_box_counterexample_found",
+  "stage": "SBC development feasibility gate; NOT training or CP calibration",
+  "metadata": {
+    "source_sha256": {
+      "results/native_representation_dimensions_20261019_v1/historical_R2.pt": "42d2bea5ffe112df753e23777f2b86d4edf193fe4489f507dd99b21b60d90230",
+      "results/native_controllers_speed_residual_20261019_v1/historical_R2/native_ppo.zip": "01a1173645051eb7e96480bd2a21a948c6fb8b3a860263784d5a10ad8dd4c373",
+      "results/native_controllers_speed_residual_20261019_v1/historical_R2/metrics.json": "4a7cba5444f5a68e56162700b3cb763d1d0c1adbeff0809a089a92514d2948a6",
+      "/root/work_based_on_spvc/artical-F122/Aebs/dino_latent/native_sbc_stage.py": "2489e6b6ea47fddf90971f8a518a6c26e7048feac168f013d657d105fb2ac007"
+    },
+    "adapter_action_max_abs": 0.0,
+    "new_q_and_native_standardization_used": true,
+    "old_R2_q_used": false,
+    "PPO_updated": false,
+    "fresh_CP_contract": false
+  },
+  "development_reference_radius_mps": 0.08441196680068952,
+  "development_static_radius_mps": 0.1402195245027542,
+  "initial_states": 400,
+  "horizon": 400,
+  "modes": {
+    "zero": {
+      "outcomes": {
+        "success": 400,
+        "unsafe": 0,
+        "timeout": 0,
+        "stopped_safe_outside_goal": 0,
+        "out_of_domain": 0
+      },
+      "first_counterexample": null
+    },
+    "negative_reference": {
+      "outcomes": {
+        "success": 0,
+        "unsafe": 0,
+        "timeout": 400,
+        "stopped_safe_outside_goal": 0,
+        "out_of_domain": 0
+      },
+      "first_counterexample": null
+    },
+    "positive_reference": {
+      "outcomes": {
+        "success": 0,
+        "unsafe": 400,
+        "timeout": 0,
+        "stopped_safe_outside_goal": 0,
+        "out_of_domain": 0
+      },
+      "first_counterexample": {
+        "initial_state": [
+          15.0,
+          2.763157844543457
+        ],
+        "previous_state": [
+          6.107454776763916,
+          2.1663241386413574
+        ],
+        "unsafe_state": [
+          5.999138569831848,
+          2.100736105442047
+        ],
+        "unsafe_at_step": 62,
+        "action": 3.0,
+        "residual_each_step": 0.08441196680068952,
+        "initial_index": 10
+      },
+      "float64_dynamics_replay": {
+        "outcomes": {
+          "success": 0,
+          "unsafe": 1,
+          "timeout": 0,
+          "stopped_safe_outside_goal": 0,
+          "out_of_domain": 0
+        },
+        "first_counterexample": {
+          "initial_state": [
+            15.0,
+            2.763157844543457
+          ],
+          "previous_state": [
+            6.107443279623969,
+            2.1663159728050214
+          ],
+          "unsafe_state": [
+            5.999127480983718,
+            2.100727939605711
+          ],
+          "unsafe_at_step": 62,
+          "action": 3.0,
+          "residual_each_step": 0.08441196680068952,
+          "initial_index": 0
+        }
+      }
+    },
+    "negative_static": {
+      "outcomes": {
+        "success": 0,
+        "unsafe": 0,
+        "timeout": 400,
+        "stopped_safe_outside_goal": 0,
+        "out_of_domain": 0
+      },
+      "first_counterexample": null
+    },
+    "positive_static": {
+      "outcomes": {
+        "success": 0,
+        "unsafe": 400,
+        "timeout": 0,
+        "stopped_safe_outside_goal": 0,
+        "out_of_domain": 0
+      },
+      "first_counterexample": {
+        "initial_state": [
+          15.0,
+          2.5
+        ],
+        "previous_state": [
+          6.059797763824463,
+          2.897623300552368
+        ],
+        "unsafe_state": [
+          5.914916598796845,
+          2.8878428250551225
+        ],
+        "unsafe_at_step": 61,
+        "action": 3.0,
+        "residual_each_step": 0.1402195245027542,
+        "initial_index": 0
+      },
+      "float64_dynamics_replay": {
+        "outcomes": {
+          "success": 0,
+          "unsafe": 1,
+          "timeout": 0,
+          "stopped_safe_outside_goal": 0,
+          "out_of_domain": 0
+        },
+        "first_counterexample": {
+          "initial_state": [
+            15.0,
+            2.5
+          ],
+          "previous_state": [
+            6.059782789945585,
+            2.8976198524236687
+          ],
+          "unsafe_state": [
+            5.914901797324402,
+            2.887839376926423
+          ],
+          "unsafe_at_step": 61,
+          "action": 3.0,
+          "residual_each_step": 0.1402195245027542,
+          "initial_index": 0
+        }
+      }
+    }
+  },
+  "stop_robust_box_training": true,
+  "formal_certificate": false,
+  "scope": "a bad allowed constant residual sequence refutes pathwise-global-box nonincrease SBC with initial<unsafe",
+  "not_refuted": "other stochastic SBCs, structured residual contracts, or actual image-path safety",
+  "PPO_SBC_updated": false
+}

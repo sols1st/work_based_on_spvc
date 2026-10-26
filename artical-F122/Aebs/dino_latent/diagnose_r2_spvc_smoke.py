@@ -86,6 +86,9 @@ def main():
 
     with h5py.File(args.trajectory_h5, "r") as stream:
         attrs = dict(stream.attrs)
+        if representation.get("deployment_export"):
+            from Aebs.dino_latent.export_native_r2_collection import require_export_trajectory_identity
+            require_export_trajectory_identity(attrs, representation, args.representation, controller_path)
         if (
             attrs.get("schema") != DEVELOPMENT_SCHEMA
             or attrs.get("capture_protocol") != CAPTURE_PROTOCOL

@@ -1,0 +1,351 @@
+{
+  "source_sha256": {
+    "results/dino_expanded_v1/13_spvc_calibration_trajectories_v1/trajectories.h5": "8da138640b79fb98a473965cf2fd126503e8346678e955de5f4893e4125e0c34",
+    "results/dino_expanded_v1/08_R2_group_alignment/dino_safety_latent.pt": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+    "results/dino_expanded_v1/09_R2_ppo/latent_ppo.zip": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+    "results/dino_spvc_minimal_v1_final_recheck/metrics.json": "53fbe78e94ca791d00d42d8a7e509e59bbc3513b54055a087ecbdbcd5c1f1020",
+    "results/dino_spvc_minimal_v1/latent_ppo_spvc.pt": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+    "results/dino_spvc_minimal_v1/sbc.pt": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+    "results/dino_spvc_minimal_v1/metrics.json": "e5d10b7d33d4a1ecc549e6306d1105d954ad9d495711b53bf70e50dc16b35e54",
+    "results/static_latent_benchmark_20261018_qcontrol/metrics.json": "562e0e9548cb0c9ba4d9fa3ea3e2b58905204bd43a7010428c8ae1063a83c677",
+    "results/latent_methods_benchmark_20261018_run1/coordinates.pt": "e3cf08c315bf4adc6b1882b83b3e7a8a29f82c0c77f794ee3aae8441c7ec8b54",
+    "results/latent_methods_benchmark_20261018_run1/split.json": "164d5b08d0dc71818b8b2aa460a532363e6769af1b76c7d3b934d78ae9ecf6c9",
+    "results/latent_methods_benchmark_20261018_run1/windows.npz": "7324248d66c5b41e76e136d0a7d2931a2a297dd5a855cbeff5d2994377c54305",
+    "results/route_selection_20261019_task_mlp_v1/model.pt": "d3b7f20c658bb77b3f5e1b2509bd7eae8826e30e53564e8e27365b5c6cb080b8",
+    "results/route_selection_20261019_task_mlp_v1/metrics.json": "e5f450bd2e94fc01b3cc08375d928384269b5ddf2a33c25aecbe724a7c8d872a",
+    "results/transformer_pilot_20261018/split.json": "5da3e98af85040b282a0653a5123a9dc6c27840edd73e7868851c24d0d2e789f",
+    "results/transformer_speed_ablation_20261018/split.json": "5da3e98af85040b282a0653a5123a9dc6c27840edd73e7868851c24d0d2e789f",
+    "results/transformer_pilot_20261018/mlp32.pt": "d134c29b317cece2ceb8d233c5e9ac132f5c0afa7d22c12e34ca5ab9ae273935",
+    "results/transformer_pilot_20261018/transformer32.pt": "13a70c9512d5afc3a2cce82c4cc04a3e11b20f9b2d3ec209984413c7e36c895c",
+    "results/transformer_pilot_20261018/transformer384.pt": "1d698571aa77628af636930fc28606cc0efb6e2bbae9aee469f78dec85220319",
+    "results/transformer_speed_ablation_20261018/mlp32_no_speed.pt": "3a140dc0f9585718977110036865222dd6c55dc723718f80f03e063040362d67",
+    "results/transformer_speed_ablation_20261018/t32_concat_speed.pt": "622654bf02fb3f3558eb9585b61f776f6b4f509c6807a8810e5f84015af8d5e3",
+    "results/transformer_speed_ablation_20261018/t32_images_only.pt": "22199d429b7640f85c08682096bfb2b8a3734ecda8153935ab0022a3b26826d4",
+    "results/transformer_speed_ablation_20261018/t32_no_speed.pt": "85e7804d527a23a795d15f09a08c3fb6b7d84c07d51cde4a5bb8bc6d04b26adb",
+    "results/transformer_speed_ablation_20261018/t32_separate_speed.pt": "d6311af51966edc4343bc9c8b65da068e47a2c9d86460e6bc31364a5fb6b1dc6",
+    "results/transformer_speed_ablation_20261018/t384_concat_speed.pt": "e6c042370794ba69e0edc32b0c7370321d485bba273368f334f05c335bb3d7be",
+    "results/transformer_speed_ablation_20261018/t384_no_speed.pt": "e34f83d13d1057010fab4d6630632e383cb752a64288f4e83328cd050777e5db",
+    "results/transformer_speed_ablation_20261018/t384_separate_speed.pt": "78f0bfee64d94abeddb97a0fbae6e066084633eaf369acb361d2ade6e7ad2878",
+    "results/latent_methods_benchmark_20261018_run1/mlp32.pt": "6c87737d997472195aaa351c5240a648841f3880301f700370852ec58ad51744",
+    "results/latent_methods_benchmark_20261018_run1/transformer32.pt": "8d53bb9c21397f959ed0714b7b23be428376d5bd140d7f3283e3e83a8a870de0",
+    "results/latent_methods_benchmark_20261018_run1/mlp32_parameter_matched.pt": "14ed8539fa2034c4f4abe86b5906a27e16802b9794a5a82b49b7a2a3e9d7456d",
+    "results/latent_methods_benchmark_20261018_run1/transformer32_no_speed.pt": "71bd90096d6cea3a20ac6e7a34431dc9e30eb77375b1118ee0b30fdb00c48351",
+    "results/latent_methods_benchmark_20261018_run1/gru32.pt": "81777223d5dd6efd3d9931c92a4202f6d2f077253b4f8223b630e9bfb773fa65",
+    "results/latent_methods_benchmark_20261018_run1/rssm32.pt": "1fac3f60c5ce64e0a23df92e9e4973a91a8d7657e83b8d64155be78bda803ad0",
+    "results/latent_methods_benchmark_20261018_run1/lifted_linear32.pt": "a71841318212cf253d0c4a7cba65bb1461ede9b2a2c448de944d885bc7582045",
+    "results/latent_methods_benchmark_20261018_run1/transformer32_task_aware.pt": "d40c2c3bd9a824aeeb0bd4612e95c53e443a5fcc7900b32ca040f455d60b3208",
+    "results/latent_methods_benchmark_20261018_run1/pca32_transformer.pt": "d6412b36b67da2e9f1cb997283facb01a6362d00414c44fe804200ca08d947a3"
+  },
+  "actor_identity": {
+    "old_controller_sha256": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+    "new_controller_sha256": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+    "barrier_sha256": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+    "source_metrics_sha256": "e5d10b7d33d4a1ecc549e6306d1105d954ad9d495711b53bf70e50dc16b35e54",
+    "stage": "minimal_final_saved_pair",
+    "final_recheck_sha256": "53fbe78e94ca791d00d42d8a7e509e59bbc3513b54055a087ecbdbcd5c1f1020",
+    "final_recheck_status": "saved_pair_passes_legacy_checks",
+    "final_recheck_source_hashes": {
+      "metrics": "e5d10b7d33d4a1ecc549e6306d1105d954ad9d495711b53bf70e50dc16b35e54",
+      "policy": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+      "barrier": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+      "representation": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+      "base_controller": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+      "minimal_manifest": "d32af8fa0beddaa6386a3a8f3a3dc55b5a30e23723f661037b9bef216164f054"
+    },
+    "checkpoint_matches_final_recheck": true,
+    "note": "identity/legacy-check evidence only; not an image-path safety certificate",
+    "changed_actor_tensors": 6,
+    "q_parameters_unchanged": true,
+    "state_distance_scale_m": 3.18272066116333,
+    "representation_distance_scale_m": 3.161912679672241,
+    "inference": "deterministic actor mean clipped to [-3,3]; no QP; no SBC action filtering"
+  },
+  "training": false,
+  "new_CP_calibration": false,
+  "step20_H5_used": false,
+  "RGB_test_used": false,
+  "device": "cuda",
+  "torch_version": "2.3.1",
+  "platform": "Linux-5.15.0-139-generic-x86_64-with-glibc2.17",
+  "cohort_counts": {
+    "latest_same_split69": 69,
+    "common_nontraining": 16
+  },
+  "cohort_trajectory_ids": {
+    "latest_same_split69": [
+      "calibration_seed3701_000000",
+      "calibration_seed3701_000007",
+      "calibration_seed3701_000009",
+      "calibration_seed3701_000013",
+      "calibration_seed3701_000023",
+      "calibration_seed3701_000029",
+      "calibration_seed3701_000032",
+      "calibration_seed3701_000035",
+      "calibration_seed3701_000039",
+      "calibration_seed3701_000040",
+      "calibration_seed3701_000056",
+      "calibration_seed3701_000071",
+      "calibration_seed3701_000081",
+      "calibration_seed3701_000089",
+      "calibration_seed3701_000097",
+      "calibration_seed3701_000107",
+      "calibration_seed3701_000122",
+      "calibration_seed3701_000124",
+      "calibration_seed3701_000128",
+      "calibration_seed3701_000136",
+      "calibration_seed3701_000142",
+      "calibration_seed3701_000144",
+      "calibration_seed3701_000147",
+      "calibration_seed3701_000151",
+      "calibration_seed3701_000163",
+      "calibration_seed3701_000173",
+      "calibration_seed3701_000183",
+      "calibration_seed3701_000185",
+      "calibration_seed3701_000192",
+      "calibration_seed3701_000198",
+      "calibration_seed3701_000202",
+      "calibration_seed3701_000221",
+      "calibration_seed3701_000226",
+      "calibration_seed3701_000244",
+      "calibration_seed3701_000250",
+      "calibration_seed3701_000252",
+      "calibration_seed3701_000253",
+      "calibration_seed3701_000254",
+      "calibration_seed3701_000262",
+      "calibration_seed3701_000272",
+      "calibration_seed3701_000278",
+      "calibration_seed3701_000282",
+      "calibration_seed3701_000283",
+      "calibration_seed3701_000289",
+      "calibration_seed3701_000306",
+      "calibration_seed3701_000315",
+      "calibration_seed3701_000318",
+      "calibration_seed3701_000326",
+      "calibration_seed3701_000337",
+      "calibration_seed3701_000338",
+      "calibration_seed3701_000341",
+      "calibration_seed3701_000342",
+      "calibration_seed3701_000348",
+      "calibration_seed3701_000370",
+      "calibration_seed3701_000372",
+      "calibration_seed3701_000377",
+      "calibration_seed3701_000387",
+      "calibration_seed3701_000402",
+      "calibration_seed3701_000406",
+      "calibration_seed3701_000411",
+      "calibration_seed3701_000413",
+      "calibration_seed3701_000415",
+      "calibration_seed3701_000420",
+      "calibration_seed3701_000424",
+      "calibration_seed3701_000433",
+      "calibration_seed3701_000435",
+      "calibration_seed3701_000445",
+      "calibration_seed3701_000449",
+      "calibration_seed3701_000456"
+    ],
+    "common_nontraining": [
+      "calibration_seed3701_000013",
+      "calibration_seed3701_000122",
+      "calibration_seed3701_000124",
+      "calibration_seed3701_000128",
+      "calibration_seed3701_000136",
+      "calibration_seed3701_000221",
+      "calibration_seed3701_000244",
+      "calibration_seed3701_000278",
+      "calibration_seed3701_000289",
+      "calibration_seed3701_000337",
+      "calibration_seed3701_000338",
+      "calibration_seed3701_000341",
+      "calibration_seed3701_000402",
+      "calibration_seed3701_000406",
+      "calibration_seed3701_000435",
+      "calibration_seed3701_000445"
+    ]
+  },
+  "common_nontraining_note": "not used to fit these predictors, but legacy methods used their validation pool for checkpoint selection; NOT an independent final test",
+  "latest69_note": "same train/selection/internal-audit split for latest9 plus new candidate; old development pool, NOT new final test",
+  "no_universal_ranking": "verification proxies know target distance; temporal predictors use history/control queries; different roles",
+  "training_budget_caveat": "legacy suites:1200 updates/batch256; latest/new:800 updates/batch128; cross-suite differences do not isolate architecture",
+  "frozen_specifications": [
+    {
+      "name": "transformer_pilot_20261018/mlp32",
+      "path": "results/transformer_pilot_20261018/mlp32.pt",
+      "horizons": [
+        1,
+        3
+      ]
+    },
+    {
+      "name": "transformer_pilot_20261018/transformer32",
+      "path": "results/transformer_pilot_20261018/transformer32.pt",
+      "horizons": [
+        1,
+        3
+      ]
+    },
+    {
+      "name": "transformer_pilot_20261018/transformer384",
+      "path": "results/transformer_pilot_20261018/transformer384.pt",
+      "horizons": [
+        1,
+        3
+      ]
+    },
+    {
+      "name": "transformer_speed_ablation_20261018/mlp32_no_speed",
+      "path": "results/transformer_speed_ablation_20261018/mlp32_no_speed.pt",
+      "horizons": [
+        1,
+        3
+      ]
+    },
+    {
+      "name": "transformer_speed_ablation_20261018/t32_concat_speed",
+      "path": "results/transformer_speed_ablation_20261018/t32_concat_speed.pt",
+      "horizons": [
+        1,
+        3
+      ]
+    },
+    {
+      "name": "transformer_speed_ablation_20261018/t32_images_only",
+      "path": "results/transformer_speed_ablation_20261018/t32_images_only.pt",
+      "horizons": [
+        1,
+        3
+      ]
+    },
+    {
+      "name": "transformer_speed_ablation_20261018/t32_no_speed",
+      "path": "results/transformer_speed_ablation_20261018/t32_no_speed.pt",
+      "horizons": [
+        1,
+        3
+      ]
+    },
+    {
+      "name": "transformer_speed_ablation_20261018/t32_separate_speed",
+      "path": "results/transformer_speed_ablation_20261018/t32_separate_speed.pt",
+      "horizons": [
+        1,
+        3
+      ]
+    },
+    {
+      "name": "transformer_speed_ablation_20261018/t384_concat_speed",
+      "path": "results/transformer_speed_ablation_20261018/t384_concat_speed.pt",
+      "horizons": [
+        1,
+        3
+      ]
+    },
+    {
+      "name": "transformer_speed_ablation_20261018/t384_no_speed",
+      "path": "results/transformer_speed_ablation_20261018/t384_no_speed.pt",
+      "horizons": [
+        1,
+        3
+      ]
+    },
+    {
+      "name": "transformer_speed_ablation_20261018/t384_separate_speed",
+      "path": "results/transformer_speed_ablation_20261018/t384_separate_speed.pt",
+      "horizons": [
+        1,
+        3
+      ]
+    },
+    {
+      "name": "latest/mlp32",
+      "path": "results/latent_methods_benchmark_20261018_run1/mlp32.pt",
+      "horizons": [
+        1,
+        3,
+        10
+      ]
+    },
+    {
+      "name": "latest/transformer32",
+      "path": "results/latent_methods_benchmark_20261018_run1/transformer32.pt",
+      "horizons": [
+        1,
+        3,
+        10
+      ]
+    },
+    {
+      "name": "latest/mlp32_parameter_matched",
+      "path": "results/latent_methods_benchmark_20261018_run1/mlp32_parameter_matched.pt",
+      "horizons": [
+        1,
+        3,
+        10
+      ]
+    },
+    {
+      "name": "latest/transformer32_no_speed",
+      "path": "results/latent_methods_benchmark_20261018_run1/transformer32_no_speed.pt",
+      "horizons": [
+        1,
+        3,
+        10
+      ]
+    },
+    {
+      "name": "latest/gru32",
+      "path": "results/latent_methods_benchmark_20261018_run1/gru32.pt",
+      "horizons": [
+        1,
+        3,
+        10
+      ]
+    },
+    {
+      "name": "latest/rssm32",
+      "path": "results/latent_methods_benchmark_20261018_run1/rssm32.pt",
+      "horizons": [
+        1,
+        3,
+        10
+      ]
+    },
+    {
+      "name": "latest/lifted_linear32",
+      "path": "results/latent_methods_benchmark_20261018_run1/lifted_linear32.pt",
+      "horizons": [
+        1,
+        3,
+        10
+      ]
+    },
+    {
+      "name": "latest/transformer32_task_aware",
+      "path": "results/latent_methods_benchmark_20261018_run1/transformer32_task_aware.pt",
+      "horizons": [
+        1,
+        3,
+        10
+      ]
+    },
+    {
+      "name": "latest/pca32_transformer",
+      "path": "results/latent_methods_benchmark_20261018_run1/pca32_transformer.pt",
+      "horizons": [
+        1,
+        3,
+        10
+      ]
+    },
+    {
+      "name": "new/mlp32_parameter_matched_task_aware",
+      "path": "results/route_selection_20261019_task_mlp_v1/model.pt",
+      "horizons": [
+        1,
+        3,
+        10
+      ]
+    }
+  ],
+  "timing": "CPU predictor only, single thread, warmup10, repetitions40; batch1 and64; not camera-to-action latency",
+  "code_sha256": "554a8acb844d65dfee881f69e9c8aa99622281d292c770dca2bf59c31334801a"
+}

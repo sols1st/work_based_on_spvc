@@ -1,0 +1,42 @@
+{
+  "experiment": "native_R2_development_occupancy_risk_monitor_v1",
+  "seed": 7,
+  "steps": 3000,
+  "batch_size": 1024,
+  "lr": 0.003,
+  "network": [
+    2,
+    16,
+    8,
+    1
+  ],
+  "training_trajectories": 200,
+  "training_transitions": 16242,
+  "loss": "20*mean(B_safe)+20*mean(relu(1.2-B_unsafe)^2)+10*mean(relu(B_init-.01)^2)+10*mean(relu(B_next-B_current))",
+  "calibration_or_evaluation_loaded": false,
+  "PPO_q_updated": false,
+  "original_SBC_overwritten": false,
+  "classical_SBC_verified": false,
+  "source_sha256": {
+    "results/native_R2_sbc_risk_cp_20261020_v1/development_rollouts.npz": "492d4638766ef3c7cc2db184a50c44dce397d22826adbfbeb5e48fd44d91c042",
+    "results/native_R2_sbc_risk_cp_20261020_v1/config.json": "476562b1a347b8a5213a98cf2be0f43fc5c2c290158ca19e06be111ff791a898",
+    "results/native_controllers_speed_residual_20261019_v1/historical_R2/native_ppo.zip": "01a1173645051eb7e96480bd2a21a948c6fb8b3a860263784d5a10ad8dd4c373",
+    "results/native_representation_dimensions_20261019_v1/historical_R2.pt": "42d2bea5ffe112df753e23777f2b86d4edf193fe4489f507dd99b21b60d90230",
+    "/root/work_based_on_spvc/artical-F122/Aebs/dino_latent/train_trajectory_risk_monitor.py": "7fb6360e3a79d4f5588495857706f7d4e9e5a1e68045abff38ab9e3144a88059"
+  },
+  "status": "development_risk_monitor_trained_not_a_classical_SBC_certificate",
+  "monitor_sha256": "b90d751e26c49eb9d0322513e8cb09a5e9032ceb1604fcb96a5b955a8ee63c31",
+  "controller_sha256": "01a1173645051eb7e96480bd2a21a948c6fb8b3a860263784d5a10ad8dd4c373",
+  "native_checkpoint_sha256": "42d2bea5ffe112df753e23777f2b86d4edf193fe4489f507dd99b21b60d90230",
+  "normalization": {
+    "lower": 0.0,
+    "upper": 1.0
+  },
+  "safe_occupancy_max": 0.016088927164673805,
+  "safe_occupancy_mean": 0.0005118430708535016,
+  "unsafe_grid_min": 0.21306268870830536,
+  "unsafe_grid_below_one": 16,
+  "unsafe_grid_points": 10000,
+  "continuous_unsafe_bound_verified": false,
+  "runtime_seconds": 9.124348022043705
+}

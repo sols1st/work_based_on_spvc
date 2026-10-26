@@ -1,0 +1,29 @@
+{
+  "ppo_dir": "results/vision_sls_parking_20261025_ppo_v2",
+  "projection": "results/vision_sls_parking_20261025_adaptation_v1/projection_adapted.pt",
+  "output_dir": "results/vision_sls_parking_20261025_spvc_backend_v2",
+  "barrier_epochs": 100,
+  "actor_epochs": 1,
+  "actor_lr": 0.0003,
+  "image_eval": true,
+  "vision_root": "../VISION-SLS",
+  "dino_repo": "../external/dinov2",
+  "dino_weights": "../external/dinov2_weights/dinov2_vitg14_pretrain.pth",
+  "front_end_dimension": 3,
+  "actor_input_dimension": 16,
+  "augmented_barrier_state_dimension": 20,
+  "backend": "original Aebs.VT.train.VTLearner and VTVerifier.compute_expected_l",
+  "backend_sha256": {
+    "Aebs/VT/train.py": "b386421749f3b6f083de20ae72a90e1158a7c630dc112031a1724776153b622e",
+    "Aebs/VT/verify.py": "402a4b429eb8b811c1e8145274c01bdf24bf73922fffefff396d7af355090de5",
+    "Aebs/VT/loop.py": "0b29843fadcf48517d92b82e51720e892de65fbdcdb52fb927bd26d265ab095c",
+    "Aebs/VT/utils.py": "1a835fc24bdd210fbfdb3cd3ab147f10f3d699a963188e378b0df42aa51aab82"
+  },
+  "projection_sha256": "58c4f75c540ca24d40bf3241386922185f3d5b7c5ec9d0993d2b264f27d6a16b",
+  "source_ppo_sha256": "1a7837d752e0acbd1e068c24c00263fa1a49647199f7f16d5dd895e76770b242",
+  "seed": 7,
+  "noise": "zero, same as previous parking test; no image error distribution added",
+  "verification": "point diagnostic only; full 20D grid NOT run",
+  "region_sampler": "original parking circles/bounds; initial exact 15 starts",
+  "source_directory": "results/vision_sls_parking_20261025_ppo_v2"
+}

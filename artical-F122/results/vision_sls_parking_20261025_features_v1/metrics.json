@@ -1,0 +1,37 @@
+{
+  "status": "supplied_features_diagnostic_complete",
+  "training": false,
+  "PPO_tested": false,
+  "SBC_tested": false,
+  "formal_contract": false,
+  "fresh_holdout": false,
+  "AEBS_comparison": false,
+  "checkpoint": {
+    "normalized_C_max_gap": 2.4911096963009527e-08,
+    "projection_frozen": true,
+    "output_dimension": 3
+  },
+  "supplied_features": {
+    "samples": 5000,
+    "latent_linf_mean": 0.026383532175970795,
+    "latent_linf_p95": 0.05383472211409758,
+    "latent_linf_max": 1.4192455077334305,
+    "latent_rmse": 0.02962858568202319,
+    "target_centered_rms": 1.1521777945733858,
+    "relative_latent_rmse": 0.02571528962072533,
+    "pose_xy_euclidean_mae_m": 0.01913808330957081,
+    "pose_x_mae_m": 0.012658735772414822,
+    "pose_y_mae_m": 0.011496339426466315,
+    "pose_heading_wrapped_mae_rad": 0.022334881317183048,
+    "position_readout": "algebraic inverse of fixed C, evaluation only; NOT deployed",
+    "model_coordinate": "world position + [3,0,0]; heading unchanged",
+    "empirical_bound_coverage": 0.986,
+    "empirical_bound_misses": 70,
+    "signed_max_instead_of_abs_coverage": 0.9902,
+    "bound_mean": 0.08227415138497944,
+    "max_exceedance": 1.3581239391133126,
+    "formal_contract": false
+  },
+  "rgb_inference_done": false,
+  "runtime_seconds": 0.45422906801104546
+}

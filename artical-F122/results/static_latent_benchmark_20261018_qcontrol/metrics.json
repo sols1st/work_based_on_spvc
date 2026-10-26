@@ -1,0 +1,653 @@
+{
+  "status": "static_latent_development_comparison_complete",
+  "config": {
+    "steps": 1200,
+    "q_steps": 1500,
+    "seed": 7,
+    "split_seed": 71,
+    "source_sha256": {
+      "results/dino_expanded_v1/02_dino_h5/cache_manifest.json": "ca4c9993fbcf12b7a57dddab5f6a75fc1a5da84278fb102747e681888229e5bb",
+      "results/dino_expanded_v1/02_dino_h5/features.h5": "dfc562b4c1a406de6f5dcbbf79e40a62955cd2d70a4d908b7119e2805336cdcd",
+      "results/dino_expanded_v1/08_R2_group_alignment/dino_safety_latent.pt": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+      "results/dino_expanded_v1/09_R2_ppo/latent_ppo.zip": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+      "results/dino_spvc_minimal_v1_final_recheck/metrics.json": "53fbe78e94ca791d00d42d8a7e509e59bbc3513b54055a087ecbdbcd5c1f1020",
+      "results/dino_spvc_minimal_v1/latent_ppo_spvc.pt": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+      "results/dino_spvc_minimal_v1/sbc.pt": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+      "results/dino_spvc_minimal_v1/metrics.json": "e5d10b7d33d4a1ecc549e6306d1105d954ad9d495711b53bf70e50dc16b35e54"
+    },
+    "train_rows": 14172,
+    "selection_rows": 2448,
+    "internal_audit_rows": 2460,
+    "selection_exact_distance_groups": 204,
+    "audit_exact_distance_groups": 204,
+    "native_dimension": 32,
+    "vae_kl_weight": 0.001,
+    "test_used": false,
+    "ppo_sbc_frozen": true,
+    "internal_audit": "old validation pool previously used for R2 selection; NOT independent final test",
+    "evaluator": "fixed task-trained R2 projection/decoder/actor; favors R2 coordinates",
+    "comparison": "new codecs reconstruct DINO features before common-R2 readout; not a drop-in new PPO",
+    "q_fit": "same 1500-step conditional mean fitting for each NEW frozen codec; original q remains frozen",
+    "actor_identity": {
+      "old_controller_sha256": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+      "new_controller_sha256": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+      "barrier_sha256": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+      "source_metrics_sha256": "e5d10b7d33d4a1ecc549e6306d1105d954ad9d495711b53bf70e50dc16b35e54",
+      "stage": "minimal_final_saved_pair",
+      "final_recheck_sha256": "53fbe78e94ca791d00d42d8a7e509e59bbc3513b54055a087ecbdbcd5c1f1020",
+      "final_recheck_status": "saved_pair_passes_legacy_checks",
+      "final_recheck_source_hashes": {
+        "metrics": "e5d10b7d33d4a1ecc549e6306d1105d954ad9d495711b53bf70e50dc16b35e54",
+        "policy": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+        "barrier": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+        "representation": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+        "base_controller": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+        "minimal_manifest": "d32af8fa0beddaa6386a3a8f3a3dc55b5a30e23723f661037b9bef216164f054"
+      },
+      "checkpoint_matches_final_recheck": true,
+      "note": "identity/legacy-check evidence only; not an image-path safety certificate",
+      "changed_actor_tensors": 6,
+      "q_parameters_unchanged": true,
+      "state_distance_scale_m": 3.18272066116333,
+      "representation_distance_scale_m": 3.161912679672241,
+      "inference": "deterministic actor mean clipped to [-3,3]; no QP; no SBC action filtering"
+    },
+    "code_sha256": "8748d859ff4d20c70cc06c6cdd0d05adb0481b5aec76a1985ae1a469f7f29976"
+  },
+  "results": {
+    "original_R2": {
+      "native_latent_rmse": 0.05674099922180176,
+      "native_centered_rms": 0.7274082899093628,
+      "relative_native_rmse": 0.07800433402934115,
+      "collapsed": false,
+      "common_pair_gap": {
+        "mean": 0.047944962306750744,
+        "mae": 0.047944962306750744,
+        "rmse": 0.05674100064439025,
+        "p95": 0.1086596988141535,
+        "max": 0.24375633895397186
+      },
+      "common_proxy_vs_original_image_gap": {
+        "mean": 0.047944962306750744,
+        "mae": 0.047944962306750744,
+        "rmse": 0.05674100064439025,
+        "p95": 0.1086596988141535,
+        "max": 0.24375633895397186
+      },
+      "common_image_codec_gap": {
+        "mean": 0.0,
+        "mae": 0.0,
+        "rmse": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "proxy_distance_error_m": {
+        "mean": -0.0028368926629787536,
+        "mae": 0.00415519621314072,
+        "rmse": 0.004986685121748933,
+        "p95": 0.010268211364746094,
+        "max": 0.012083053588867188
+      },
+      "image_distance_error_m": {
+        "mean": -0.03772052497398563,
+        "mae": 0.1673073204552255,
+        "rmse": 0.2170693620566847,
+        "p95": 0.43893227577209465,
+        "max": 0.9720611572265625
+      },
+      "all_nonterminal_speed_pairs": 73800,
+      "all_pair_proxy_vs_original_speed_gap_mps": {
+        "mean": 0.004555344584026957,
+        "mae": 0.006290808802213126,
+        "rmse": 0.023152765047262443,
+        "p95": 0.04696190953254711,
+        "max": 0.2350778579711914
+      },
+      "all_pair_proxy_vs_original_action_gap": {
+        "mean": -0.09092967681717985,
+        "mae": 0.12619184476845874,
+        "rmse": 0.4630731949770856,
+        "p95": 0.9392382979393028,
+        "max": 4.7015581130981445
+      },
+      "per_image_mean_proxy_vs_original_speed_gap_mps": {
+        "mean": 0.006290808794463233,
+        "mae": 0.006290808794463233,
+        "rmse": 0.013497120253855768,
+        "p95": 0.03223236892372367,
+        "max": 0.06783949583768845
+      },
+      "per_image_mean_dual_path_speed_gap_mps": {
+        "mean": 0.006290808794463233,
+        "mae": 0.006290808794463233,
+        "rmse": 0.013497120253855768,
+        "p95": 0.03223236892372367,
+        "max": 0.06783949583768845
+      }
+    },
+    "r2_frozen_refit_q": {
+      "native_latent_rmse": 0.05874190852046013,
+      "native_centered_rms": 0.7274082899093628,
+      "relative_native_rmse": 0.08075507158129795,
+      "collapsed": false,
+      "common_pair_gap": {
+        "mean": 0.04957149638264342,
+        "mae": 0.04957149638264342,
+        "rmse": 0.05874190592805619,
+        "p95": 0.11304709650576102,
+        "max": 0.2444044053554535
+      },
+      "common_proxy_vs_original_image_gap": {
+        "mean": 0.04957149638264342,
+        "mae": 0.04957149638264342,
+        "rmse": 0.05874190592805619,
+        "p95": 0.11304709650576102,
+        "max": 0.2444044053554535
+      },
+      "common_image_codec_gap": {
+        "mean": 0.0,
+        "mae": 0.0,
+        "rmse": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "proxy_distance_error_m": {
+        "mean": 0.012296616158834317,
+        "mae": 0.015606052119557451,
+        "rmse": 0.020773757073504692,
+        "p95": 0.04279327392578125,
+        "max": 0.043689727783203125
+      },
+      "image_distance_error_m": {
+        "mean": -0.03772052497398563,
+        "mae": 0.1673073204552255,
+        "rmse": 0.2170693620566847,
+        "p95": 0.43893227577209465,
+        "max": 0.9720611572265625
+      },
+      "all_nonterminal_speed_pairs": 73800,
+      "all_pair_proxy_vs_original_speed_gap_mps": {
+        "mean": 0.005815809395739703,
+        "mae": 0.0069586247908390636,
+        "rmse": 0.025044985175659323,
+        "p95": 0.053121995925903345,
+        "max": 0.2405688762664795
+      },
+      "all_pair_proxy_vs_original_action_gap": {
+        "mean": -0.1162359643364098,
+        "mae": 0.13955543539337914,
+        "rmse": 0.5009161145007011,
+        "p95": 1.062440443038941,
+        "max": 4.811378479003906
+      },
+      "per_image_mean_proxy_vs_original_speed_gap_mps": {
+        "mean": 0.006958624786981373,
+        "mae": 0.006958624786981373,
+        "rmse": 0.01463513571155167,
+        "p95": 0.03506340626627204,
+        "max": 0.07056614756584167
+      },
+      "per_image_mean_dual_path_speed_gap_mps": {
+        "mean": 0.006958624786981373,
+        "mae": 0.006958624786981373,
+        "rmse": 0.01463513571155167,
+        "p95": 0.03506340626627204,
+        "max": 0.07056614756584167
+      },
+      "best_codec_step": 0,
+      "best_q_step": 1500,
+      "q_selection_mse": 0.010459800250828266
+    },
+    "pca32": {
+      "native_latent_rmse": 2.497967481613159,
+      "native_centered_rms": 3.110625743865967,
+      "relative_native_rmse": 0.8030434026141056,
+      "collapsed": false,
+      "common_pair_gap": {
+        "mean": 0.3689164609125838,
+        "mae": 0.3689164609125838,
+        "rmse": 0.40630821993655597,
+        "p95": 0.6715394496917719,
+        "max": 0.7984921932220459
+      },
+      "common_proxy_vs_original_image_gap": {
+        "mean": 0.3963799897490478,
+        "mae": 0.3963799897490478,
+        "rmse": 0.41803950524843325,
+        "p95": 0.5872088015079497,
+        "max": 0.6638408899307251
+      },
+      "common_image_codec_gap": {
+        "mean": 0.0871063131835251,
+        "mae": 0.0871063131835251,
+        "rmse": 0.10439469650827421,
+        "p95": 0.2016494885087011,
+        "max": 0.33203157782554626
+      },
+      "proxy_distance_error_m": {
+        "mean": -1.7765296633650618,
+        "mae": 1.7765296633650618,
+        "rmse": 1.8522542199985468,
+        "p95": 2.6268739700317383,
+        "max": 2.6365909576416016
+      },
+      "image_distance_error_m": {
+        "mean": -0.1574993583245006,
+        "mae": 0.38439677013614315,
+        "rmse": 0.4869404043149151,
+        "p95": 0.966115522384643,
+        "max": 1.7727022171020508
+      },
+      "all_nonterminal_speed_pairs": 73800,
+      "all_pair_proxy_vs_original_speed_gap_mps": {
+        "mean": -0.032775304644573025,
+        "mae": 0.032775304644573025,
+        "rmse": 0.07784753704059386,
+        "p95": 0.2185072034597398,
+        "max": 0.30000007152557373
+      },
+      "all_pair_proxy_vs_original_action_gap": {
+        "mean": 0.6729253479507235,
+        "mae": 0.6729253479507235,
+        "rmse": 1.5805318620485078,
+        "p95": 4.404478883743287,
+        "max": 6.0
+      },
+      "per_image_mean_proxy_vs_original_speed_gap_mps": {
+        "mean": 0.032775304610787294,
+        "mae": 0.032775304610787294,
+        "rmse": 0.05002284279880968,
+        "p95": 0.10875482298433777,
+        "max": 0.1428043395280838
+      },
+      "per_image_mean_dual_path_speed_gap_mps": {
+        "mean": 0.025867144283127093,
+        "mae": 0.025867144283127093,
+        "rmse": 0.04100267851829743,
+        "p95": 0.0907710377126932,
+        "max": 0.14952358603477478
+      },
+      "best_codec_step": 0,
+      "best_q_step": 1500,
+      "q_selection_mse": 0.8056750297546387
+    },
+    "feature_ae32": {
+      "native_latent_rmse": 1.947406530380249,
+      "native_centered_rms": 2.643171787261963,
+      "relative_native_rmse": 0.7367688092636421,
+      "collapsed": false,
+      "common_pair_gap": {
+        "mean": 0.32502720818317277,
+        "mae": 0.32502720818317277,
+        "rmse": 0.35903881542922755,
+        "p95": 0.5777522474527358,
+        "max": 0.7432243824005127
+      },
+      "common_proxy_vs_original_image_gap": {
+        "mean": 0.3381710319378512,
+        "mae": 0.3381710319378512,
+        "rmse": 0.36434025429817674,
+        "p95": 0.5422413438558578,
+        "max": 0.6176242232322693
+      },
+      "common_image_codec_gap": {
+        "mean": 0.06795020024708616,
+        "mae": 0.06795020024708616,
+        "rmse": 0.0811767676993884,
+        "p95": 0.15316620543599122,
+        "max": 0.292961984872818
+      },
+      "proxy_distance_error_m": {
+        "mean": -1.5221767867483744,
+        "mae": 1.5221767867483744,
+        "rmse": 1.6060443714355666,
+        "p95": 2.1246328353881836,
+        "max": 2.127758026123047
+      },
+      "image_distance_error_m": {
+        "mean": -0.09487658128505799,
+        "mae": 0.31248495753218486,
+        "rmse": 0.39617378755068294,
+        "p95": 0.801781606674194,
+        "max": 1.4225902557373047
+      },
+      "all_nonterminal_speed_pairs": 73800,
+      "all_pair_proxy_vs_original_speed_gap_mps": {
+        "mean": -0.019724332576360158,
+        "mae": 0.019730623137498612,
+        "rmse": 0.05412288475012233,
+        "p95": 0.15544580817222603,
+        "max": 0.29636919498443604
+      },
+      "all_pair_proxy_vs_original_action_gap": {
+        "mean": 0.4053722494368146,
+        "mae": 0.40549806061920113,
+        "rmse": 1.087866017687188,
+        "p95": 3.108916842937471,
+        "max": 5.9273834228515625
+      },
+      "per_image_mean_proxy_vs_original_speed_gap_mps": {
+        "mean": 0.019730623140210485,
+        "mae": 0.019730623140210485,
+        "rmse": 0.032091211096544676,
+        "p95": 0.06821570806205268,
+        "max": 0.09490783512592316
+      },
+      "per_image_mean_dual_path_speed_gap_mps": {
+        "mean": 0.01756947262160682,
+        "mae": 0.01756947262160682,
+        "rmse": 0.0301444560083663,
+        "p95": 0.06954143941402434,
+        "max": 0.11672481149435043
+      },
+      "best_codec_step": 1200,
+      "best_q_step": 1500,
+      "q_selection_mse": 0.5401227474212646
+    },
+    "feature_vae32": {
+      "native_latent_rmse": 1.510432481765747,
+      "native_centered_rms": 1.800201416015625,
+      "relative_native_rmse": 0.8390352703470139,
+      "collapsed": false,
+      "common_pair_gap": {
+        "mean": 0.40673414130309005,
+        "mae": 0.40673414130309005,
+        "rmse": 0.45667029152312927,
+        "p95": 0.7681412369012832,
+        "max": 0.9391424059867859
+      },
+      "common_proxy_vs_original_image_gap": {
+        "mean": 0.4268217838180017,
+        "mae": 0.4268217838180017,
+        "rmse": 0.46704983619191914,
+        "p95": 0.7216322809457778,
+        "max": 0.8304671049118042
+      },
+      "common_image_codec_gap": {
+        "mean": 0.07179869430828688,
+        "mae": 0.07179869430828688,
+        "rmse": 0.09066690114140229,
+        "p95": 0.18381932675838467,
+        "max": 0.4840049147605896
+      },
+      "proxy_distance_error_m": {
+        "mean": -1.8962093864999165,
+        "mae": 1.8962093864999165,
+        "rmse": 2.037872141169175,
+        "p95": 2.9978532791137695,
+        "max": 3.011715888977051
+      },
+      "image_distance_error_m": {
+        "mean": -0.12425867096195375,
+        "mae": 0.32699717196022593,
+        "rmse": 0.4382527909093429,
+        "p95": 0.8993281126022336,
+        "max": 2.407604217529297
+      },
+      "all_nonterminal_speed_pairs": 73800,
+      "all_pair_proxy_vs_original_speed_gap_mps": {
+        "mean": -0.027010828469826925,
+        "mae": 0.027010828469826925,
+        "rmse": 0.06845307819156408,
+        "p95": 0.1955635488033295,
+        "max": 0.30000007152557373
+      },
+      "all_pair_proxy_vs_original_action_gap": {
+        "mean": 0.5570886996768031,
+        "mae": 0.5570886996768031,
+        "rmse": 1.378620549277819,
+        "p95": 3.911273312568665,
+        "max": 6.0
+      },
+      "per_image_mean_proxy_vs_original_speed_gap_mps": {
+        "mean": 0.027010828449780772,
+        "mae": 0.027010828449780772,
+        "rmse": 0.04181169404854852,
+        "p95": 0.08422929346561431,
+        "max": 0.10636591911315918
+      },
+      "per_image_mean_dual_path_speed_gap_mps": {
+        "mean": 0.02250429494547794,
+        "mae": 0.02250429494547794,
+        "rmse": 0.03570380945022201,
+        "p95": 0.07703965567052364,
+        "max": 0.11892493814229965
+      },
+      "best_codec_step": 1200,
+      "best_q_step": 1500,
+      "q_selection_mse": 0.6433240175247192
+    }
+  },
+  "paired_vs_original_R2": {
+    "r2_frozen_refit_q": {
+      "common_pair_gap": {
+        "trajectory_count": 9,
+        "mean_paired_delta": 0.001394074410200119,
+        "ci95": [
+          0.00019847360090352595,
+          0.002683304593665525
+        ],
+        "lower_error_trajectory_fraction": 0.3333333333333333,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      },
+      "common_proxy_vs_original_image_gap": {
+        "trajectory_count": 9,
+        "mean_paired_delta": 0.001394074410200119,
+        "ci95": [
+          0.00019847360090352595,
+          0.002683304593665525
+        ],
+        "lower_error_trajectory_fraction": 0.3333333333333333,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      },
+      "physical_gap": {
+        "trajectory_count": 9,
+        "mean_paired_delta": 0.0005766649264842272,
+        "ci95": [
+          7.19542651950178e-06,
+          0.0011513401987031102
+        ],
+        "lower_error_trajectory_fraction": 0.1111111111111111,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      },
+      "image_codec_gap": {
+        "trajectory_count": 9,
+        "mean_paired_delta": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "lower_error_trajectory_fraction": 0.0,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      },
+      "dual_path_physical_gap": {
+        "trajectory_count": 9,
+        "mean_paired_delta": 0.0005766649264842272,
+        "ci95": [
+          7.19542651950178e-06,
+          0.0011513401987031102
+        ],
+        "lower_error_trajectory_fraction": 0.1111111111111111,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      }
+    },
+    "pca32": {
+      "common_pair_gap": {
+        "trajectory_count": 9,
+        "mean_paired_delta": 0.3259362578392029,
+        "ci95": [
+          0.2410659000277519,
+          0.4141931310296058
+        ],
+        "lower_error_trajectory_fraction": 0.0,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      },
+      "common_proxy_vs_original_image_gap": {
+        "trajectory_count": 9,
+        "mean_paired_delta": 0.35515549778938293,
+        "ci95": [
+          0.2790710099041462,
+          0.42658757716417306
+        ],
+        "lower_error_trajectory_fraction": 0.0,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      },
+      "physical_gap": {
+        "trajectory_count": 9,
+        "mean_paired_delta": 0.023194478824734688,
+        "ci95": [
+          0.006851763895247132,
+          0.041941422224044796
+        ],
+        "lower_error_trajectory_fraction": 0.0,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      },
+      "image_codec_gap": {
+        "trajectory_count": 9,
+        "mean_paired_delta": 0.08911296725273132,
+        "ci95": [
+          0.07737182062119245,
+          0.10116596966981888
+        ],
+        "lower_error_trajectory_fraction": 0.0,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      },
+      "dual_path_physical_gap": {
+        "trajectory_count": 9,
+        "mean_paired_delta": 0.017376994714140892,
+        "ci95": [
+          0.004949498397763819,
+          0.031837394088506665
+        ],
+        "lower_error_trajectory_fraction": 0.0,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      }
+    },
+    "feature_ae32": {
+      "common_pair_gap": {
+        "trajectory_count": 9,
+        "mean_paired_delta": 0.2917311191558838,
+        "ci95": [
+          0.20994779728353025,
+          0.369312085956335
+        ],
+        "lower_error_trajectory_fraction": 0.0,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      },
+      "common_proxy_vs_original_image_gap": {
+        "trajectory_count": 9,
+        "mean_paired_delta": 0.3060939908027649,
+        "ci95": [
+          0.22390040792524815,
+          0.3861272439360618
+        ],
+        "lower_error_trajectory_fraction": 0.0,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      },
+      "physical_gap": {
+        "trajectory_count": 9,
+        "mean_paired_delta": 0.01171994861215353,
+        "ci95": [
+          0.002395603252807632,
+          0.021914144977927187
+        ],
+        "lower_error_trajectory_fraction": 0.0,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      },
+      "image_codec_gap": {
+        "trajectory_count": 9,
+        "mean_paired_delta": 0.06942477822303772,
+        "ci95": [
+          0.059292064607143403,
+          0.08044294882565736
+        ],
+        "lower_error_trajectory_fraction": 0.0,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      },
+      "dual_path_physical_gap": {
+        "trajectory_count": 9,
+        "mean_paired_delta": 0.009824265725910664,
+        "ci95": [
+          0.0024950952793005854,
+          0.0182086044922471
+        ],
+        "lower_error_trajectory_fraction": 0.0,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      }
+    },
+    "feature_vae32": {
+      "common_pair_gap": {
+        "trajectory_count": 9,
+        "mean_paired_delta": 0.38374248147010803,
+        "ci95": [
+          0.26183156967163085,
+          0.5042101591825484
+        ],
+        "lower_error_trajectory_fraction": 0.0,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      },
+      "common_proxy_vs_original_image_gap": {
+        "trajectory_count": 9,
+        "mean_paired_delta": 0.4023333191871643,
+        "ci95": [
+          0.2819754660129547,
+          0.5207620278000832
+        ],
+        "lower_error_trajectory_fraction": 0.0,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      },
+      "physical_gap": {
+        "trajectory_count": 9,
+        "mean_paired_delta": 0.018155880272388458,
+        "ci95": [
+          0.00475172873120755,
+          0.03362876968458294
+        ],
+        "lower_error_trajectory_fraction": 0.0,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      },
+      "image_codec_gap": {
+        "trajectory_count": 9,
+        "mean_paired_delta": 0.0742655023932457,
+        "ci95": [
+          0.06067058509215713,
+          0.08978561814874408
+        ],
+        "lower_error_trajectory_fraction": 0.0,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      },
+      "dual_path_physical_gap": {
+        "trajectory_count": 9,
+        "mean_paired_delta": 0.014255947433412075,
+        "ci95": [
+          0.0040454472415149215,
+          0.026193372951820486
+        ],
+        "lower_error_trajectory_fraction": 0.0,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      }
+    }
+  },
+  "source_files_unchanged": true,
+  "test_evaluated": false
+}

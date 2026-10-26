@@ -1,0 +1,49 @@
+{
+  "status": "saved_rollout_replay_and_counts_pass",
+  "paths": {
+    "proxy": {
+      "replayed_transitions": 450,
+      "max_dynamics_replay_error": 0.0,
+      "max_action_bound_excess": 0.0,
+      "counts_match": true,
+      "upstream_xy_arrival_without_collision_count": 7
+    },
+    "image": {
+      "replayed_transitions": 450,
+      "max_dynamics_replay_error": 0.0,
+      "max_action_bound_excess": 0.0,
+      "counts_match": true,
+      "upstream_xy_arrival_without_collision_count": 5
+    }
+  },
+  "baseline_paired_outcomes": {
+    "proxy": {
+      "new_unsafe_task_ids": [],
+      "removed_unsafe_task_ids": [],
+      "old_unsafe_task_ids": [
+        0,
+        1,
+        5
+      ],
+      "new_unsafe_task_ids_all": [
+        0,
+        1,
+        5
+      ]
+    },
+    "image": {
+      "new_unsafe_task_ids": [],
+      "removed_unsafe_task_ids": [],
+      "old_unsafe_task_ids": [
+        0,
+        5,
+        10
+      ],
+      "new_unsafe_task_ids_all": [
+        0,
+        5,
+        10
+      ]
+    }
+  }
+}

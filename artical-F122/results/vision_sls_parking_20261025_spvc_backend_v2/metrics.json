@@ -1,0 +1,1565 @@
+{
+  "config": {
+    "ppo_dir": "results/vision_sls_parking_20261025_ppo_v2",
+    "projection": "results/vision_sls_parking_20261025_adaptation_v1/projection_adapted.pt",
+    "output_dir": "results/vision_sls_parking_20261025_spvc_backend_v2",
+    "barrier_epochs": 100,
+    "actor_epochs": 1,
+    "actor_lr": 0.0003,
+    "image_eval": true,
+    "vision_root": "../VISION-SLS",
+    "dino_repo": "../external/dinov2",
+    "dino_weights": "../external/dinov2_weights/dinov2_vitg14_pretrain.pth",
+    "front_end_dimension": 3,
+    "actor_input_dimension": 16,
+    "augmented_barrier_state_dimension": 20,
+    "backend": "original Aebs.VT.train.VTLearner and VTVerifier.compute_expected_l",
+    "backend_sha256": {
+      "Aebs/VT/train.py": "b386421749f3b6f083de20ae72a90e1158a7c630dc112031a1724776153b622e",
+      "Aebs/VT/verify.py": "402a4b429eb8b811c1e8145274c01bdf24bf73922fffefff396d7af355090de5",
+      "Aebs/VT/loop.py": "0b29843fadcf48517d92b82e51720e892de65fbdcdb52fb927bd26d265ab095c",
+      "Aebs/VT/utils.py": "1a835fc24bdd210fbfdb3cd3ab147f10f3d699a963188e378b0df42aa51aab82"
+    },
+    "projection_sha256": "58c4f75c540ca24d40bf3241386922185f3d5b7c5ec9d0993d2b264f27d6a16b",
+    "source_ppo_sha256": "1a7837d752e0acbd1e068c24c00263fa1a49647199f7f16d5dd895e76770b242",
+    "seed": 7,
+    "noise": "zero, same as previous parking test; no image error distribution added",
+    "verification": "point diagnostic only; full 20D grid NOT run",
+    "region_sampler": "original parking circles/bounds; initial exact 15 starts",
+    "source_directory": "results/vision_sls_parking_20261025_ppo_v2"
+  },
+  "before_training": {
+    "status": "sampled_diagnostic_not_a_certificate",
+    "checked_states": 450,
+    "nonincrease_violations": 231,
+    "strict_epsilon_violations": 450,
+    "epsilon": 0.1,
+    "min_margin": -0.04354375600814819,
+    "mean_margin": -0.0004921685324774848,
+    "initial_max": 0.7720563411712646,
+    "initial_violations": 0,
+    "initial_count": 15,
+    "initial_target": 1.0,
+    "unsafe_min": 0.6712689995765686,
+    "unsafe_violations": 1024,
+    "unsafe_count": 1024,
+    "unsafe_target": 20.0,
+    "worst_physical_state": [
+      -0.06421923637390137,
+      0.011186796799302054,
+      0.007872387893697652,
+      0.2347191795706749
+    ],
+    "continuous_state_verification": false,
+    "image_error_covered": false,
+    "certificate_probability": null
+  },
+  "after_barrier_training": {
+    "status": "sampled_diagnostic_not_a_certificate",
+    "checked_states": 450,
+    "nonincrease_violations": 7,
+    "strict_epsilon_violations": 197,
+    "epsilon": 0.1,
+    "min_margin": -0.02443552017211914,
+    "mean_margin": 0.10486530264218648,
+    "initial_max": 4.026961803436279,
+    "initial_violations": 15,
+    "initial_count": 15,
+    "initial_target": 1.0,
+    "unsafe_min": 0.35507312417030334,
+    "unsafe_violations": 1024,
+    "unsafe_count": 1024,
+    "unsafe_target": 20.0,
+    "worst_physical_state": [
+      -2.3941648602485657,
+      -0.9327806115150452,
+      0.9424778335276408,
+      0.5144969346001744
+    ],
+    "continuous_state_verification": false,
+    "image_error_covered": false,
+    "certificate_probability": null
+  },
+  "after_actor_training": {
+    "status": "sampled_diagnostic_not_a_certificate",
+    "checked_states": 450,
+    "nonincrease_violations": 6,
+    "strict_epsilon_violations": 183,
+    "epsilon": 0.1,
+    "min_margin": -0.021164655685424805,
+    "mean_margin": 0.10890905327267117,
+    "initial_max": 4.026961803436279,
+    "initial_violations": 15,
+    "initial_count": 15,
+    "initial_target": 1.0,
+    "unsafe_min": 0.35507312417030334,
+    "unsafe_violations": 1024,
+    "unsafe_count": 1024,
+    "unsafe_target": 20.0,
+    "worst_physical_state": [
+      -1.0875457227230072,
+      0.9584021389484405,
+      -0.541458984568644,
+      0.37728940695524216
+    ],
+    "continuous_state_verification": false,
+    "image_error_covered": false,
+    "certificate_probability": null
+  },
+  "l_history": [
+    {
+      "loss_l": 120.63682174682617,
+      "dec_loss_l": 0.10057859495282173,
+      "train_violations_l": 0.5304647088050842,
+      "lip_loss_l": 0.0,
+      "region_loss": 20.05823040008545
+    },
+    {
+      "loss_l": 119.76200866699219,
+      "dec_loss_l": 0.09970493242144585,
+      "train_violations_l": 0.5110945403575897,
+      "lip_loss_l": 0.0,
+      "region_loss": 20.057074546813965
+    },
+    {
+      "loss_l": 118.88558959960938,
+      "dec_loss_l": 0.09882203862071037,
+      "train_violations_l": 0.4891470670700073,
+      "lip_loss_l": 0.0,
+      "region_loss": 20.06355094909668
+    },
+    {
+      "loss_l": 118.48344039916992,
+      "dec_loss_l": 0.09839736297726631,
+      "train_violations_l": 0.48562338948249817,
+      "lip_loss_l": 0.0,
+      "region_loss": 20.086078643798828
+    },
+    {
+      "loss_l": 117.2359390258789,
+      "dec_loss_l": 0.09712669253349304,
+      "train_violations_l": 0.48071037232875824,
+      "lip_loss_l": 0.0,
+      "region_loss": 20.109251022338867
+    },
+    {
+      "loss_l": 117.08599853515625,
+      "dec_loss_l": 0.09695365652441978,
+      "train_violations_l": 0.48171713948249817,
+      "lip_loss_l": 0.0,
+      "region_loss": 20.132344245910645
+    },
+    {
+      "loss_l": 115.53271484375,
+      "dec_loss_l": 0.09537744149565697,
+      "train_violations_l": 0.4760993868112564,
+      "lip_loss_l": 0.0,
+      "region_loss": 20.155272483825684
+    },
+    {
+      "loss_l": 115.04381561279297,
+      "dec_loss_l": 0.09486497566103935,
+      "train_violations_l": 0.48117348551750183,
+      "lip_loss_l": 0.0,
+      "region_loss": 20.17884349822998
+    },
+    {
+      "loss_l": 114.20225524902344,
+      "dec_loss_l": 0.09399792551994324,
+      "train_violations_l": 0.4791398048400879,
+      "lip_loss_l": 0.0,
+      "region_loss": 20.20433235168457
+    },
+    {
+      "loss_l": 113.0516586303711,
+      "dec_loss_l": 0.0928208939731121,
+      "train_violations_l": 0.4728173315525055,
+      "lip_loss_l": 0.0,
+      "region_loss": 20.230767250061035
+    },
+    {
+      "loss_l": 112.15725326538086,
+      "dec_loss_l": 0.09190021455287933,
+      "train_violations_l": 0.4708642065525055,
+      "lip_loss_l": 0.0,
+      "region_loss": 20.257043838500977
+    },
+    {
+      "loss_l": 110.7016372680664,
+      "dec_loss_l": 0.09041869267821312,
+      "train_violations_l": 0.46055492758750916,
+      "lip_loss_l": 0.0,
+      "region_loss": 20.28294563293457
+    },
+    {
+      "loss_l": 109.7466049194336,
+      "dec_loss_l": 0.08940928429365158,
+      "train_violations_l": 0.4489167183637619,
+      "lip_loss_l": 0.0,
+      "region_loss": 20.337321281433105
+    },
+    {
+      "loss_l": 108.28247833251953,
+      "dec_loss_l": 0.08785335347056389,
+      "train_violations_l": 0.4119684249162674,
+      "lip_loss_l": 0.0,
+      "region_loss": 20.42912483215332
+    },
+    {
+      "loss_l": 107.21221923828125,
+      "dec_loss_l": 0.08667834103107452,
+      "train_violations_l": 0.39821600914001465,
+      "lip_loss_l": 0.0,
+      "region_loss": 20.533878326416016
+    },
+    {
+      "loss_l": 105.31144714355469,
+      "dec_loss_l": 0.08465908467769623,
+      "train_violations_l": 0.38212789595127106,
+      "lip_loss_l": 0.0,
+      "region_loss": 20.652362823486328
+    },
+    {
+      "loss_l": 103.6664810180664,
+      "dec_loss_l": 0.08288927003741264,
+      "train_violations_l": 0.3634624630212784,
+      "lip_loss_l": 0.0,
+      "region_loss": 20.77721405029297
+    },
+    {
+      "loss_l": 102.13211822509766,
+      "dec_loss_l": 0.08122923970222473,
+      "train_violations_l": 0.3626771867275238,
+      "lip_loss_l": 0.0,
+      "region_loss": 20.90287971496582
+    },
+    {
+      "loss_l": 100.81298828125,
+      "dec_loss_l": 0.07977505028247833,
+      "train_violations_l": 0.33815237879753113,
+      "lip_loss_l": 0.0,
+      "region_loss": 21.03793716430664
+    },
+    {
+      "loss_l": 99.1880111694336,
+      "dec_loss_l": 0.07801006734371185,
+      "train_violations_l": 0.33299773931503296,
+      "lip_loss_l": 0.0,
+      "region_loss": 21.17794704437256
+    },
+    {
+      "loss_l": 97.46358489990234,
+      "dec_loss_l": 0.07614348828792572,
+      "train_violations_l": 0.3290109485387802,
+      "lip_loss_l": 0.0,
+      "region_loss": 21.320093154907227
+    },
+    {
+      "loss_l": 95.74081802368164,
+      "dec_loss_l": 0.07427867501974106,
+      "train_violations_l": 0.31886275112628937,
+      "lip_loss_l": 0.0,
+      "region_loss": 21.462145805358887
+    },
+    {
+      "loss_l": 94.67988586425781,
+      "dec_loss_l": 0.07307370752096176,
+      "train_violations_l": 0.32057425379753113,
+      "lip_loss_l": 0.0,
+      "region_loss": 21.606178283691406
+    },
+    {
+      "loss_l": 93.8228988647461,
+      "dec_loss_l": 0.07207224145531654,
+      "train_violations_l": 0.3327561169862747,
+      "lip_loss_l": 0.0,
+      "region_loss": 21.750656127929688
+    },
+    {
+      "loss_l": 92.74403762817383,
+      "dec_loss_l": 0.07085612788796425,
+      "train_violations_l": 0.32502415776252747,
+      "lip_loss_l": 0.0,
+      "region_loss": 21.88790798187256
+    },
+    {
+      "loss_l": 91.43023681640625,
+      "dec_loss_l": 0.06940917298197746,
+      "train_violations_l": 0.28042444586753845,
+      "lip_loss_l": 0.0,
+      "region_loss": 22.02105712890625
+    },
+    {
+      "loss_l": 89.9149169921875,
+      "dec_loss_l": 0.06776386871933937,
+      "train_violations_l": 0.2429325059056282,
+      "lip_loss_l": 0.0,
+      "region_loss": 22.151050567626953
+    },
+    {
+      "loss_l": 88.6442642211914,
+      "dec_loss_l": 0.06636384502053261,
+      "train_violations_l": 0.23644893616437912,
+      "lip_loss_l": 0.0,
+      "region_loss": 22.280418395996094
+    },
+    {
+      "loss_l": 87.68249893188477,
+      "dec_loss_l": 0.06527058035135269,
+      "train_violations_l": 0.24784551560878754,
+      "lip_loss_l": 0.0,
+      "region_loss": 22.41192054748535
+    },
+    {
+      "loss_l": 87.20851516723633,
+      "dec_loss_l": 0.06466137617826462,
+      "train_violations_l": 0.25549693405628204,
+      "lip_loss_l": 0.0,
+      "region_loss": 22.547136306762695
+    },
+    {
+      "loss_l": 84.80477905273438,
+      "dec_loss_l": 0.06213228590786457,
+      "train_violations_l": 0.2564432919025421,
+      "lip_loss_l": 0.0,
+      "region_loss": 22.672490119934082
+    },
+    {
+      "loss_l": 83.7062759399414,
+      "dec_loss_l": 0.06091702915728092,
+      "train_violations_l": 0.21254832297563553,
+      "lip_loss_l": 0.0,
+      "region_loss": 22.789244651794434
+    },
+    {
+      "loss_l": 82.34081268310547,
+      "dec_loss_l": 0.05944490060210228,
+      "train_violations_l": 0.1781773492693901,
+      "lip_loss_l": 0.0,
+      "region_loss": 22.895909309387207
+    },
+    {
+      "loss_l": 81.29423904418945,
+      "dec_loss_l": 0.05829104036092758,
+      "train_violations_l": 0.18590930849313736,
+      "lip_loss_l": 0.0,
+      "region_loss": 23.00319766998291
+    },
+    {
+      "loss_l": 80.30954360961914,
+      "dec_loss_l": 0.057194797322154045,
+      "train_violations_l": 0.19106394797563553,
+      "lip_loss_l": 0.0,
+      "region_loss": 23.11474895477295
+    },
+    {
+      "loss_l": 79.00340270996094,
+      "dec_loss_l": 0.055778613314032555,
+      "train_violations_l": 0.18536565452814102,
+      "lip_loss_l": 0.0,
+      "region_loss": 23.224787712097168
+    },
+    {
+      "loss_l": 78.25568771362305,
+      "dec_loss_l": 0.054927099496126175,
+      "train_violations_l": 0.14052432030439377,
+      "lip_loss_l": 0.0,
+      "region_loss": 23.32858943939209
+    },
+    {
+      "loss_l": 76.85129928588867,
+      "dec_loss_l": 0.053415462374687195,
+      "train_violations_l": 0.1216978058218956,
+      "lip_loss_l": 0.0,
+      "region_loss": 23.43583583831787
+    },
+    {
+      "loss_l": 76.0298843383789,
+      "dec_loss_l": 0.052488990128040314,
+      "train_violations_l": 0.14505476504564285,
+      "lip_loss_l": 0.0,
+      "region_loss": 23.54089641571045
+    },
+    {
+      "loss_l": 76.26204681396484,
+      "dec_loss_l": 0.05262543074786663,
+      "train_violations_l": 0.17481475323438644,
+      "lip_loss_l": 0.0,
+      "region_loss": 23.636616706848145
+    },
+    {
+      "loss_l": 74.02807235717773,
+      "dec_loss_l": 0.05030788481235504,
+      "train_violations_l": 0.13091978058218956,
+      "lip_loss_l": 0.0,
+      "region_loss": 23.720190048217773
+    },
+    {
+      "loss_l": 74.07221221923828,
+      "dec_loss_l": 0.050274163484573364,
+      "train_violations_l": 0.10162290558218956,
+      "lip_loss_l": 0.0,
+      "region_loss": 23.79805088043213
+    },
+    {
+      "loss_l": 73.6498908996582,
+      "dec_loss_l": 0.04977545887231827,
+      "train_violations_l": 0.10569023713469505,
+      "lip_loss_l": 0.0,
+      "region_loss": 23.874431610107422
+    },
+    {
+      "loss_l": 71.1512680053711,
+      "dec_loss_l": 0.04720483906567097,
+      "train_violations_l": 0.09521987661719322,
+      "lip_loss_l": 0.0,
+      "region_loss": 23.946431159973145
+    },
+    {
+      "loss_l": 72.29032135009766,
+      "dec_loss_l": 0.048267148435115814,
+      "train_violations_l": 0.1509946808218956,
+      "lip_loss_l": 0.0,
+      "region_loss": 24.02316951751709
+    },
+    {
+      "loss_l": 71.50432586669922,
+      "dec_loss_l": 0.047416333109140396,
+      "train_violations_l": 0.14505476504564285,
+      "lip_loss_l": 0.0,
+      "region_loss": 24.087993621826172
+    },
+    {
+      "loss_l": 69.06331253051758,
+      "dec_loss_l": 0.04492112994194031,
+      "train_violations_l": 0.08615898713469505,
+      "lip_loss_l": 0.0,
+      "region_loss": 24.14218235015869
+    },
+    {
+      "loss_l": 69.52964401245117,
+      "dec_loss_l": 0.045329997316002846,
+      "train_violations_l": 0.08927996084094048,
+      "lip_loss_l": 0.0,
+      "region_loss": 24.199647903442383
+    },
+    {
+      "loss_l": 68.32237243652344,
+      "dec_loss_l": 0.044065482914447784,
+      "train_violations_l": 0.07584970816969872,
+      "lip_loss_l": 0.0,
+      "region_loss": 24.256895065307617
+    },
+    {
+      "loss_l": 67.27058410644531,
+      "dec_loss_l": 0.04295588284730911,
+      "train_violations_l": 0.1021665558218956,
+      "lip_loss_l": 0.0,
+      "region_loss": 24.31470012664795
+    },
+    {
+      "loss_l": 65.91861724853516,
+      "dec_loss_l": 0.04155262932181358,
+      "train_violations_l": 0.09787773713469505,
+      "lip_loss_l": 0.0,
+      "region_loss": 24.365989685058594
+    },
+    {
+      "loss_l": 65.2007064819336,
+      "dec_loss_l": 0.04077837057411671,
+      "train_violations_l": 0.07568862661719322,
+      "lip_loss_l": 0.0,
+      "region_loss": 24.42233657836914
+    },
+    {
+      "loss_l": 64.23269462585449,
+      "dec_loss_l": 0.03974707052111626,
+      "train_violations_l": 0.06858086213469505,
+      "lip_loss_l": 0.0,
+      "region_loss": 24.485624313354492
+    },
+    {
+      "loss_l": 63.420122146606445,
+      "dec_loss_l": 0.03886792249977589,
+      "train_violations_l": 0.09318621084094048,
+      "lip_loss_l": 0.0,
+      "region_loss": 24.552197456359863
+    },
+    {
+      "loss_l": 62.62126159667969,
+      "dec_loss_l": 0.0380069725215435,
+      "train_violations_l": 0.08146746084094048,
+      "lip_loss_l": 0.0,
+      "region_loss": 24.614290237426758
+    },
+    {
+      "loss_l": 61.577253341674805,
+      "dec_loss_l": 0.03690420463681221,
+      "train_violations_l": 0.06342622265219688,
+      "lip_loss_l": 0.0,
+      "region_loss": 24.673049926757812
+    },
+    {
+      "loss_l": 60.33909225463867,
+      "dec_loss_l": 0.0356000903993845,
+      "train_violations_l": 0.07053398713469505,
+      "lip_loss_l": 0.0,
+      "region_loss": 24.739002227783203
+    },
+    {
+      "loss_l": 59.37736892700195,
+      "dec_loss_l": 0.034574706107378006,
+      "train_violations_l": 0.05452641658484936,
+      "lip_loss_l": 0.0,
+      "region_loss": 24.802660942077637
+    },
+    {
+      "loss_l": 58.83287048339844,
+      "dec_loss_l": 0.033966295421123505,
+      "train_violations_l": 0.045304445549845695,
+      "lip_loss_l": 0.0,
+      "region_loss": 24.866575241088867
+    },
+    {
+      "loss_l": 58.52231788635254,
+      "dec_loss_l": 0.033579910174012184,
+      "train_violations_l": 0.06396987661719322,
+      "lip_loss_l": 0.0,
+      "region_loss": 24.94240665435791
+    },
+    {
+      "loss_l": 57.37277412414551,
+      "dec_loss_l": 0.03236220218241215,
+      "train_violations_l": 0.06928559765219688,
+      "lip_loss_l": 0.0,
+      "region_loss": 25.010573387145996
+    },
+    {
+      "loss_l": 56.45065689086914,
+      "dec_loss_l": 0.031385292299091816,
+      "train_violations_l": 0.04147873632609844,
+      "lip_loss_l": 0.0,
+      "region_loss": 25.0653657913208
+    },
+    {
+      "loss_l": 55.994367599487305,
+      "dec_loss_l": 0.030866221524775028,
+      "train_violations_l": 0.03632409777492285,
+      "lip_loss_l": 0.0,
+      "region_loss": 25.128146171569824
+    },
+    {
+      "loss_l": 55.34282875061035,
+      "dec_loss_l": 0.030146765522658825,
+      "train_violations_l": 0.046552833169698715,
+      "lip_loss_l": 0.0,
+      "region_loss": 25.19606304168701
+    },
+    {
+      "loss_l": 57.73651313781738,
+      "dec_loss_l": 0.03247629851102829,
+      "train_violations_l": 0.08483005687594414,
+      "lip_loss_l": 0.0,
+      "region_loss": 25.26021385192871
+    },
+    {
+      "loss_l": 53.79804992675781,
+      "dec_loss_l": 0.028494016267359257,
+      "train_violations_l": 0.03827722277492285,
+      "lip_loss_l": 0.0,
+      "region_loss": 25.304033279418945
+    },
+    {
+      "loss_l": 55.2547492980957,
+      "dec_loss_l": 0.02991784829646349,
+      "train_violations_l": 0.03694829158484936,
+      "lip_loss_l": 0.0,
+      "region_loss": 25.33690071105957
+    },
+    {
+      "loss_l": 56.6918888092041,
+      "dec_loss_l": 0.031315688975155354,
+      "train_violations_l": 0.04476079158484936,
+      "lip_loss_l": 0.0,
+      "region_loss": 25.376198768615723
+    },
+    {
+      "loss_l": 51.483774185180664,
+      "dec_loss_l": 0.02606070600450039,
+      "train_violations_l": 0.03296150080859661,
+      "lip_loss_l": 0.0,
+      "region_loss": 25.423068046569824
+    },
+    {
+      "loss_l": 54.76396179199219,
+      "dec_loss_l": 0.02929016761481762,
+      "train_violations_l": 0.0628020279109478,
+      "lip_loss_l": 0.0,
+      "region_loss": 25.473793029785156
+    },
+    {
+      "loss_l": 53.20502853393555,
+      "dec_loss_l": 0.02769602183252573,
+      "train_violations_l": 0.05382168106734753,
+      "lip_loss_l": 0.0,
+      "region_loss": 25.50900650024414
+    },
+    {
+      "loss_l": 50.57893371582031,
+      "dec_loss_l": 0.025045874528586864,
+      "train_violations_l": 0.025229541584849358,
+      "lip_loss_l": 0.0,
+      "region_loss": 25.533058166503906
+    },
+    {
+      "loss_l": 49.88551139831543,
+      "dec_loss_l": 0.024318532086908817,
+      "train_violations_l": 0.023981153033673763,
+      "lip_loss_l": 0.0,
+      "region_loss": 25.566978454589844
+    },
+    {
+      "loss_l": 49.56747817993164,
+      "dec_loss_l": 0.023959873244166374,
+      "train_violations_l": 0.03499516658484936,
+      "lip_loss_l": 0.0,
+      "region_loss": 25.607606887817383
+    },
+    {
+      "loss_l": 49.415687561035156,
+      "dec_loss_l": 0.02378026768565178,
+      "train_violations_l": 0.029840528033673763,
+      "lip_loss_l": 0.0,
+      "region_loss": 25.63541889190674
+    },
+    {
+      "loss_l": 48.35110092163086,
+      "dec_loss_l": 0.022689031437039375,
+      "train_violations_l": 0.022028028033673763,
+      "lip_loss_l": 0.0,
+      "region_loss": 25.66206932067871
+    },
+    {
+      "loss_l": 47.669471740722656,
+      "dec_loss_l": 0.021973044611513615,
+      "train_violations_l": 0.025229541584849358,
+      "lip_loss_l": 0.0,
+      "region_loss": 25.69642734527588
+    },
+    {
+      "loss_l": 46.893110275268555,
+      "dec_loss_l": 0.021160203032195568,
+      "train_violations_l": 0.022028028033673763,
+      "lip_loss_l": 0.0,
+      "region_loss": 25.73290729522705
+    },
+    {
+      "loss_l": 46.49494171142578,
+      "dec_loss_l": 0.020720788277685642,
+      "train_violations_l": 0.022652222774922848,
+      "lip_loss_l": 0.0,
+      "region_loss": 25.774150848388672
+    },
+    {
+      "loss_l": 45.74385070800781,
+      "dec_loss_l": 0.019930405542254448,
+      "train_violations_l": 0.02140383329242468,
+      "lip_loss_l": 0.0,
+      "region_loss": 25.81344699859619
+    },
+    {
+      "loss_l": 45.121524810791016,
+      "dec_loss_l": 0.019267656840384007,
+      "train_violations_l": 0.023981153033673763,
+      "lip_loss_l": 0.0,
+      "region_loss": 25.853869438171387
+    },
+    {
+      "loss_l": 44.3535213470459,
+      "dec_loss_l": 0.018461698666214943,
+      "train_violations_l": 0.022652222774922848,
+      "lip_loss_l": 0.0,
+      "region_loss": 25.891823768615723
+    },
+    {
+      "loss_l": 46.8647575378418,
+      "dec_loss_l": 0.020946728065609932,
+      "train_violations_l": 0.02077963901683688,
+      "lip_loss_l": 0.0,
+      "region_loss": 25.918028831481934
+    },
+    {
+      "loss_l": 45.095041275024414,
+      "dec_loss_l": 0.019143197685480118,
+      "train_violations_l": 0.02140383329242468,
+      "lip_loss_l": 0.0,
+      "region_loss": 25.95184326171875
+    },
+    {
+      "loss_l": 45.05887413024902,
+      "dec_loss_l": 0.019067807123064995,
+      "train_violations_l": 0.025853736326098442,
+      "lip_loss_l": 0.0,
+      "region_loss": 25.991065979003906
+    },
+    {
+      "loss_l": 43.64702606201172,
+      "dec_loss_l": 0.0176311070099473,
+      "train_violations_l": 0.02273276401683688,
+      "lip_loss_l": 0.0,
+      "region_loss": 26.015920639038086
+    },
+    {
+      "loss_l": 44.150001525878906,
+      "dec_loss_l": 0.01812059059739113,
+      "train_violations_l": 0.020699097774922848,
+      "lip_loss_l": 0.0,
+      "region_loss": 26.02941131591797
+    },
+    {
+      "loss_l": 43.054874420166016,
+      "dec_loss_l": 0.017003079876303673,
+      "train_violations_l": 0.020074903033673763,
+      "lip_loss_l": 0.0,
+      "region_loss": 26.051794052124023
+    },
+    {
+      "loss_l": 43.98702812194824,
+      "dec_loss_l": 0.017906258814036846,
+      "train_violations_l": 0.023276416584849358,
+      "lip_loss_l": 0.0,
+      "region_loss": 26.080769538879395
+    },
+    {
+      "loss_l": 42.84858703613281,
+      "dec_loss_l": 0.016751314513385296,
+      "train_violations_l": 0.020699097774922848,
+      "lip_loss_l": 0.0,
+      "region_loss": 26.097270965576172
+    },
+    {
+      "loss_l": 43.13787841796875,
+      "dec_loss_l": 0.01703396812081337,
+      "train_violations_l": 0.020699097774922848,
+      "lip_loss_l": 0.0,
+      "region_loss": 26.10390853881836
+    },
+    {
+      "loss_l": 41.51128005981445,
+      "dec_loss_l": 0.0153917265124619,
+      "train_violations_l": 0.01945070829242468,
+      "lip_loss_l": 0.0,
+      "region_loss": 26.11955451965332
+    },
+    {
+      "loss_l": 42.92630386352539,
+      "dec_loss_l": 0.01678384281694889,
+      "train_violations_l": 0.022652222774922848,
+      "lip_loss_l": 0.0,
+      "region_loss": 26.14245891571045
+    },
+    {
+      "loss_l": 41.47492790222168,
+      "dec_loss_l": 0.015320648904889822,
+      "train_violations_l": 0.01945070829242468,
+      "lip_loss_l": 0.0,
+      "region_loss": 26.154279708862305
+    },
+    {
+      "loss_l": 42.114450454711914,
+      "dec_loss_l": 0.015957017429172993,
+      "train_violations_l": 0.016792847774922848,
+      "lip_loss_l": 0.0,
+      "region_loss": 26.15743350982666
+    },
+    {
+      "loss_l": 41.549957275390625,
+      "dec_loss_l": 0.015379752963781357,
+      "train_violations_l": 0.015544458292424679,
+      "lip_loss_l": 0.0,
+      "region_loss": 26.170204162597656
+    },
+    {
+      "loss_l": 41.627315521240234,
+      "dec_loss_l": 0.015437210910022259,
+      "train_violations_l": 0.01687338901683688,
+      "lip_loss_l": 0.0,
+      "region_loss": 26.190104484558105
+    },
+    {
+      "loss_l": 40.453351974487305,
+      "dec_loss_l": 0.014254000969231129,
+      "train_violations_l": 0.015544458292424679,
+      "lip_loss_l": 0.0,
+      "region_loss": 26.199350357055664
+    },
+    {
+      "loss_l": 41.551300048828125,
+      "dec_loss_l": 0.01535051828250289,
+      "train_violations_l": 0.016792847774922848,
+      "lip_loss_l": 0.0,
+      "region_loss": 26.200779914855957
+    },
+    {
+      "loss_l": 40.69373321533203,
+      "dec_loss_l": 0.014481761492788792,
+      "train_violations_l": 0.016168653033673763,
+      "lip_loss_l": 0.0,
+      "region_loss": 26.211971282958984
+    }
+  ],
+  "p_history": [
+    {
+      "loss_p": 0.5411477759480476,
+      "dec_loss_p": 0.012667668517678976,
+      "train_violations_p": 0.012967139016836882,
+      "lip_loss_p": 55.53810691833496,
+      "mse_loss_p": 0.03589329868555069
+    }
+  ],
+  "actor_changed_tensors": 6,
+  "barrier_changed_tensors": 6,
+  "actor_unchanged_during_barrier_phase": true,
+  "barrier_unchanged_during_actor_phase": true,
+  "actor_export_max_abs_physical_action_error": 2.6226043701171875e-06,
+  "baseline": {
+    "proxy": {
+      "episodes": 15,
+      "success_count": 5,
+      "collision_count": 0,
+      "out_of_bounds_count": 3,
+      "goal_at_horizon_count": 6,
+      "mean_final_goal_distance": 0.4169005896085809,
+      "per_scenario": [
+        {
+          "scenario": 0,
+          "success": false,
+          "collision": false,
+          "out_of_bounds": true,
+          "goal_at_horizon": false,
+          "final_goal_distance": 0.5118866310375761,
+          "return_sum": 13.060266197839098,
+          "steps": 30
+        },
+        {
+          "scenario": 1,
+          "success": false,
+          "collision": false,
+          "out_of_bounds": true,
+          "goal_at_horizon": false,
+          "final_goal_distance": 0.2662395937080076,
+          "return_sum": 17.183631033870274,
+          "steps": 30
+        },
+        {
+          "scenario": 2,
+          "success": true,
+          "collision": false,
+          "out_of_bounds": false,
+          "goal_at_horizon": true,
+          "final_goal_distance": 0.15312021662539238,
+          "return_sum": 48.79775162790445,
+          "steps": 30
+        },
+        {
+          "scenario": 3,
+          "success": true,
+          "collision": false,
+          "out_of_bounds": false,
+          "goal_at_horizon": true,
+          "final_goal_distance": 0.1068055645470228,
+          "return_sum": 47.57851489792492,
+          "steps": 30
+        },
+        {
+          "scenario": 4,
+          "success": true,
+          "collision": false,
+          "out_of_bounds": false,
+          "goal_at_horizon": true,
+          "final_goal_distance": 0.05692689223363966,
+          "return_sum": 40.456986161829924,
+          "steps": 30
+        },
+        {
+          "scenario": 5,
+          "success": false,
+          "collision": false,
+          "out_of_bounds": true,
+          "goal_at_horizon": true,
+          "final_goal_distance": 0.09424924662721619,
+          "return_sum": 8.673899022023782,
+          "steps": 30
+        },
+        {
+          "scenario": 6,
+          "success": true,
+          "collision": false,
+          "out_of_bounds": false,
+          "goal_at_horizon": true,
+          "final_goal_distance": 0.14785535778160055,
+          "return_sum": 45.40344256950826,
+          "steps": 30
+        },
+        {
+          "scenario": 7,
+          "success": false,
+          "collision": false,
+          "out_of_bounds": false,
+          "goal_at_horizon": false,
+          "final_goal_distance": 0.6936772407912039,
+          "return_sum": 6.305065689298351,
+          "steps": 30
+        },
+        {
+          "scenario": 8,
+          "success": false,
+          "collision": false,
+          "out_of_bounds": false,
+          "goal_at_horizon": false,
+          "final_goal_distance": 0.6931713452136079,
+          "return_sum": 4.704479956658035,
+          "steps": 30
+        },
+        {
+          "scenario": 9,
+          "success": false,
+          "collision": false,
+          "out_of_bounds": false,
+          "goal_at_horizon": false,
+          "final_goal_distance": 0.7995162253113276,
+          "return_sum": 0.899698334214369,
+          "steps": 30
+        },
+        {
+          "scenario": 10,
+          "success": false,
+          "collision": false,
+          "out_of_bounds": false,
+          "goal_at_horizon": false,
+          "final_goal_distance": 0.6962719927275669,
+          "return_sum": 4.664205241653777,
+          "steps": 30
+        },
+        {
+          "scenario": 11,
+          "success": false,
+          "collision": false,
+          "out_of_bounds": false,
+          "goal_at_horizon": false,
+          "final_goal_distance": 0.6417595202237913,
+          "return_sum": -2.229960406161252,
+          "steps": 30
+        },
+        {
+          "scenario": 12,
+          "success": false,
+          "collision": false,
+          "out_of_bounds": false,
+          "goal_at_horizon": false,
+          "final_goal_distance": 0.6484664954238859,
+          "return_sum": 2.641376926965915,
+          "steps": 30
+        },
+        {
+          "scenario": 13,
+          "success": false,
+          "collision": false,
+          "out_of_bounds": false,
+          "goal_at_horizon": false,
+          "final_goal_distance": 0.6135351331443831,
+          "return_sum": 0.562879846921513,
+          "steps": 30
+        },
+        {
+          "scenario": 14,
+          "success": true,
+          "collision": false,
+          "out_of_bounds": false,
+          "goal_at_horizon": true,
+          "final_goal_distance": 0.13002738873249128,
+          "return_sum": 44.655623121089036,
+          "steps": 30
+        }
+      ]
+    },
+    "image": {
+      "episodes": 15,
+      "success_count": 4,
+      "collision_count": 0,
+      "out_of_bounds_count": 3,
+      "goal_at_horizon_count": 4,
+      "mean_final_goal_distance": 0.5381635347115415,
+      "per_scenario": [
+        {
+          "scenario": 0,
+          "success": false,
+          "collision": false,
+          "out_of_bounds": true,
+          "goal_at_horizon": false,
+          "final_goal_distance": 0.33880350249945307,
+          "return_sum": 16.957591799097706,
+          "steps": 30,
+          "rendered_frames": 30,
+          "outside_adaptation_domain": 15
+        },
+        {
+          "scenario": 1,
+          "success": false,
+          "collision": false,
+          "out_of_bounds": false,
+          "goal_at_horizon": false,
+          "final_goal_distance": 0.2377202325032529,
+          "return_sum": 17.484972588084688,
+          "steps": 30,
+          "rendered_frames": 30,
+          "outside_adaptation_domain": 12
+        },
+        {
+          "scenario": 2,
+          "success": true,
+          "collision": false,
+          "out_of_bounds": false,
+          "goal_at_horizon": true,
+          "final_goal_distance": 0.0020212556194725826,
+          "return_sum": 50.669498021911124,
+          "steps": 30,
+          "rendered_frames": 30,
+          "outside_adaptation_domain": 8
+        },
+        {
+          "scenario": 3,
+          "success": true,
+          "collision": false,
+          "out_of_bounds": false,
+          "goal_at_horizon": true,
+          "final_goal_distance": 0.19622280240706003,
+          "return_sum": 46.70999995403668,
+          "steps": 30,
+          "rendered_frames": 30,
+          "outside_adaptation_domain": 0
+        },
+        {
+          "scenario": 4,
+          "success": true,
+          "collision": false,
+          "out_of_bounds": false,
+          "goal_at_horizon": true,
+          "final_goal_distance": 0.16892924131320988,
+          "return_sum": 38.98103465207348,
+          "steps": 30,
+          "rendered_frames": 30,
+          "outside_adaptation_domain": 0
+        },
+        {
+          "scenario": 5,
+          "success": false,
+          "collision": false,
+          "out_of_bounds": true,
+          "goal_at_horizon": false,
+          "final_goal_distance": 0.4225801995191257,
+          "return_sum": -4.058200526104105,
+          "steps": 30,
+          "rendered_frames": 30,
+          "outside_adaptation_domain": 19
+        },
+        {
+          "scenario": 6,
+          "success": true,
+          "collision": false,
+          "out_of_bounds": false,
+          "goal_at_horizon": true,
+          "final_goal_distance": 0.21661784774265833,
+          "return_sum": 44.80234674873443,
+          "steps": 30,
+          "rendered_frames": 30,
+          "outside_adaptation_domain": 4
+        },
+        {
+          "scenario": 7,
+          "success": false,
+          "collision": false,
+          "out_of_bounds": false,
+          "goal_at_horizon": false,
+          "final_goal_distance": 0.5725307132092772,
+          "return_sum": 9.542178831881786,
+          "steps": 30,
+          "rendered_frames": 30,
+          "outside_adaptation_domain": 12
+        },
+        {
+          "scenario": 8,
+          "success": false,
+          "collision": false,
+          "out_of_bounds": false,
+          "goal_at_horizon": false,
+          "final_goal_distance": 0.7952880396348676,
+          "return_sum": 2.7775253116198115,
+          "steps": 30,
+          "rendered_frames": 30,
+          "outside_adaptation_domain": 12
+        },
+        {
+          "scenario": 9,
+          "success": false,
+          "collision": false,
+          "out_of_bounds": false,
+          "goal_at_horizon": false,
+          "final_goal_distance": 0.7728154407014608,
+          "return_sum": 1.5603087026923035,
+          "steps": 30,
+          "rendered_frames": 30,
+          "outside_adaptation_domain": 9
+        },
+        {
+          "scenario": 10,
+          "success": false,
+          "collision": false,
+          "out_of_bounds": true,
+          "goal_at_horizon": false,
+          "final_goal_distance": 2.5240043334545272,
+          "return_sum": -99.25150345105925,
+          "steps": 30,
+          "rendered_frames": 30,
+          "outside_adaptation_domain": 13
+        },
+        {
+          "scenario": 11,
+          "success": false,
+          "collision": false,
+          "out_of_bounds": false,
+          "goal_at_horizon": false,
+          "final_goal_distance": 0.5792309706025554,
+          "return_sum": -0.3403479803314191,
+          "steps": 30,
+          "rendered_frames": 30,
+          "outside_adaptation_domain": 0
+        },
+        {
+          "scenario": 12,
+          "success": false,
+          "collision": false,
+          "out_of_bounds": false,
+          "goal_at_horizon": false,
+          "final_goal_distance": 0.5293780924791992,
+          "return_sum": 5.3469749608041415,
+          "steps": 30,
+          "rendered_frames": 30,
+          "outside_adaptation_domain": 0
+        },
+        {
+          "scenario": 13,
+          "success": false,
+          "collision": false,
+          "out_of_bounds": false,
+          "goal_at_horizon": false,
+          "final_goal_distance": 0.46721372089131186,
+          "return_sum": 3.9885658913319704,
+          "steps": 30,
+          "rendered_frames": 30,
+          "outside_adaptation_domain": 0
+        },
+        {
+          "scenario": 14,
+          "success": false,
+          "collision": false,
+          "out_of_bounds": false,
+          "goal_at_horizon": false,
+          "final_goal_distance": 0.24909662809569175,
+          "return_sum": 10.698267316992185,
+          "steps": 30,
+          "rendered_frames": 30,
+          "outside_adaptation_domain": 0
+        }
+      ]
+    }
+  },
+  "baseline_image_result_reused_with_matching_checkpoint": true,
+  "checkpoint_sha256": "bd8bd598be0924709977a75d6d8d4ba4747ef8f6dc6a91df9c246009d0c68dae",
+  "training_seconds": 7.3842439749860205,
+  "full_verifier_run": false,
+  "probability_guarantee": null,
+  "proxy": {
+    "episodes": 15,
+    "success_count": 5,
+    "collision_count": 0,
+    "out_of_bounds_count": 3,
+    "goal_at_horizon_count": 7,
+    "mean_final_goal_distance": 0.4073772119388385,
+    "per_scenario": [
+      {
+        "scenario": 0,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": true,
+        "goal_at_horizon": false,
+        "final_goal_distance": 0.4965742348725633,
+        "return_sum": 13.030445275327828,
+        "steps": 30
+      },
+      {
+        "scenario": 1,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": true,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.21093384914043134,
+        "return_sum": 18.138502607377564,
+        "steps": 30
+      },
+      {
+        "scenario": 2,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.0660351148215253,
+        "return_sum": 50.04155890280309,
+        "steps": 30
+      },
+      {
+        "scenario": 3,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.026208750835222106,
+        "return_sum": 48.26261100945603,
+        "steps": 30
+      },
+      {
+        "scenario": 4,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.07552166703194234,
+        "return_sum": 40.47052501320236,
+        "steps": 30
+      },
+      {
+        "scenario": 5,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": true,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.1384840548260291,
+        "return_sum": 7.756464037654974,
+        "steps": 30
+      },
+      {
+        "scenario": 6,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.14475317306046787,
+        "return_sum": 45.83699853396044,
+        "steps": 30
+      },
+      {
+        "scenario": 7,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": false,
+        "final_goal_distance": 0.6442966628740664,
+        "return_sum": 7.695362291346993,
+        "steps": 30
+      },
+      {
+        "scenario": 8,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": false,
+        "final_goal_distance": 0.7327976911590238,
+        "return_sum": 3.9669452529443374,
+        "steps": 30
+      },
+      {
+        "scenario": 9,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": false,
+        "final_goal_distance": 0.7891647497481461,
+        "return_sum": 1.1654093494002993,
+        "steps": 30
+      },
+      {
+        "scenario": 10,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": false,
+        "final_goal_distance": 0.730451397257377,
+        "return_sum": 4.071801390716013,
+        "steps": 30
+      },
+      {
+        "scenario": 11,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": false,
+        "final_goal_distance": 0.6593142429123703,
+        "return_sum": -1.7330095122646867,
+        "steps": 30
+      },
+      {
+        "scenario": 12,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": false,
+        "final_goal_distance": 0.660892411025707,
+        "return_sum": 2.6108376069130586,
+        "steps": 30
+      },
+      {
+        "scenario": 13,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": false,
+        "final_goal_distance": 0.6055158939370479,
+        "return_sum": 1.046961988253388,
+        "steps": 30
+      },
+      {
+        "scenario": 14,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.1297142855806577,
+        "return_sum": 44.735590557856,
+        "steps": 30
+      }
+    ]
+  },
+  "candidate_own_rollout_barrier": {
+    "status": "sampled_diagnostic_not_a_certificate",
+    "checked_states": 450,
+    "nonincrease_violations": 6,
+    "strict_epsilon_violations": 200,
+    "epsilon": 0.1,
+    "min_margin": -0.02280712127685547,
+    "mean_margin": 0.10557302938567267,
+    "initial_max": 4.026961803436279,
+    "initial_violations": 15,
+    "initial_count": 15,
+    "initial_target": 1.0,
+    "unsafe_min": 0.35507312417030334,
+    "unsafe_violations": 1024,
+    "unsafe_count": 1024,
+    "unsafe_target": 20.0,
+    "worst_physical_state": [
+      -2.3903123140335083,
+      -0.9289293035864831,
+      0.9424778335276408,
+      0.587579907849431
+    ],
+    "continuous_state_verification": false,
+    "image_error_covered": false,
+    "certificate_probability": null
+  },
+  "image": {
+    "episodes": 15,
+    "success_count": 5,
+    "collision_count": 0,
+    "out_of_bounds_count": 3,
+    "goal_at_horizon_count": 5,
+    "mean_final_goal_distance": 0.45513617512028426,
+    "per_scenario": [
+      {
+        "scenario": 0,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": true,
+        "goal_at_horizon": false,
+        "final_goal_distance": 0.27282045129519367,
+        "return_sum": 18.085969394859863,
+        "steps": 30,
+        "rendered_frames": 30,
+        "outside_adaptation_domain": 15
+      },
+      {
+        "scenario": 1,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": false,
+        "final_goal_distance": 0.24686688163842102,
+        "return_sum": 17.707716939189105,
+        "steps": 30,
+        "rendered_frames": 30,
+        "outside_adaptation_domain": 12
+      },
+      {
+        "scenario": 2,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.03601787253162322,
+        "return_sum": 50.25627034893634,
+        "steps": 30,
+        "rendered_frames": 30,
+        "outside_adaptation_domain": 0
+      },
+      {
+        "scenario": 3,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.2070728128156949,
+        "return_sum": 46.24586792737655,
+        "steps": 30,
+        "rendered_frames": 30,
+        "outside_adaptation_domain": 0
+      },
+      {
+        "scenario": 4,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.08138419377386795,
+        "return_sum": 40.7817213607397,
+        "steps": 30,
+        "rendered_frames": 30,
+        "outside_adaptation_domain": 0
+      },
+      {
+        "scenario": 5,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": true,
+        "goal_at_horizon": false,
+        "final_goal_distance": 0.6099046973729145,
+        "return_sum": -7.3156075579213855,
+        "steps": 30,
+        "rendered_frames": 30,
+        "outside_adaptation_domain": 19
+      },
+      {
+        "scenario": 6,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.21582155869260974,
+        "return_sum": 45.249525300161324,
+        "steps": 30,
+        "rendered_frames": 30,
+        "outside_adaptation_domain": 9
+      },
+      {
+        "scenario": 7,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": false,
+        "final_goal_distance": 0.8560274620777922,
+        "return_sum": 3.127722370371428,
+        "steps": 30,
+        "rendered_frames": 30,
+        "outside_adaptation_domain": 10
+      },
+      {
+        "scenario": 8,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": false,
+        "final_goal_distance": 0.6872790415353577,
+        "return_sum": 4.898829442641837,
+        "steps": 30,
+        "rendered_frames": 30,
+        "outside_adaptation_domain": 13
+      },
+      {
+        "scenario": 9,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": false,
+        "final_goal_distance": 0.8987828558754216,
+        "return_sum": -1.417124331454116,
+        "steps": 30,
+        "rendered_frames": 30,
+        "outside_adaptation_domain": 11
+      },
+      {
+        "scenario": 10,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": true,
+        "goal_at_horizon": false,
+        "final_goal_distance": 0.7647021303480614,
+        "return_sum": 0.9929872526884091,
+        "steps": 30,
+        "rendered_frames": 30,
+        "outside_adaptation_domain": 13
+      },
+      {
+        "scenario": 11,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": false,
+        "final_goal_distance": 0.5107652314433263,
+        "return_sum": 1.4977731941269612,
+        "steps": 30,
+        "rendered_frames": 30,
+        "outside_adaptation_domain": 0
+      },
+      {
+        "scenario": 12,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": false,
+        "final_goal_distance": 0.7403687141430608,
+        "return_sum": 1.2459101704318618,
+        "steps": 30,
+        "rendered_frames": 30,
+        "outside_adaptation_domain": 2
+      },
+      {
+        "scenario": 13,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": false,
+        "final_goal_distance": 0.5404359467720884,
+        "return_sum": 2.5022480645613,
+        "steps": 30,
+        "rendered_frames": 30,
+        "outside_adaptation_domain": 0
+      },
+      {
+        "scenario": 14,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.15879277648883103,
+        "return_sum": 44.694227771734916,
+        "steps": 30,
+        "rendered_frames": 30,
+        "outside_adaptation_domain": 0
+      }
+    ]
+  },
+  "candidate_promoted": false,
+  "status": "spvc_backend_connection_complete_not_certified",
+  "backend_files_unchanged": true,
+  "projection_unchanged": true,
+  "source_ppo_unchanged": true,
+  "checkpoint_unchanged_during_evaluation": true,
+  "runtime_seconds": 178.83995947398944
+}

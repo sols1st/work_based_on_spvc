@@ -1,0 +1,10 @@
+[State-dependent speed residual envelope — development only]
+trajectories: {'fit': 183, 'calibration_reference': 183, 'evaluation': 93}
+global radius=0.076974511 m/s; state multiplier=3.035792
+global_cp_reference: mean radius=0.076974511 m/s, trajectory coverage=98.92%, step coverage=99.99%, max exceedance=0.004660797 m/s
+state_raw_fit: mean radius=0.015752391 m/s, trajectory coverage=7.53%, step coverage=96.59%, max exceedance=0.056385751 m/s
+state_cp_reference: mean radius=0.047820977 m/s, trajectory coverage=97.85%, step coverage=99.97%, max exceedance=0.004982912 m/s
+status: development_tradeoff_or_no_improvement
+99% coverage / 99% confidence target: NOT established; hypothetical IID confidence with this calibration size=84.11%.
+No fresh CP / infinite-horizon SBC guarantee; frozen models unchanged.
+metrics: results/state_residual_envelope_20261023_v1_audited/metrics.json

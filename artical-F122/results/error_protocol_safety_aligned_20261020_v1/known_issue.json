@@ -1,0 +1,7 @@
+{
+  "status": "superseded_due_to_native_feature_audit_weight_loading_bug",
+  "invalid_field": "metrics.json/native_forecast_accuracy",
+  "cause": "The new native-feature audit did not load checkpoint weights; initialized zero residual heads reproduced persistence. Its zero-skill values are invalid.",
+  "unaffected_scope": "The physical-error reanalysis loaded its actors and used the previously saved forecast outputs; these physical summaries are not affected by this native-audit bug.",
+  "action": "Do not use v1 for conclusions. Recompute in a new v2 directory after strict checkpoint loading and saved-prediction replay tests. Original outputs preserved."
+}

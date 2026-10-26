@@ -1,0 +1,31 @@
+{
+  "status": "scene_connection_pass",
+  "training": false,
+  "safety_certificate": false,
+  "DINO_loaded": false,
+  "PPO_loaded": false,
+  "SBC_loaded": false,
+  "full_upstream_controller_reproduced": false,
+  "scene_adapter_only": true,
+  "renderer": "tiny",
+  "observation_delay": 1,
+  "collision_definition": "sampled state center within planning circles; no swept car body",
+  "process_disturbance": "zero",
+  "trajectories": 15,
+  "dynamics_steps": 450,
+  "saved_state_rows": 465,
+  "sampled_constraint_violations": 79,
+  "open_loop_outcomes": {
+    "constraint_violation": 15
+  },
+  "renderer_pose_max_error_m": 0.0,
+  "repeated_pose_max_pixel_difference": 0,
+  "speed_only_max_pixel_difference": 0,
+  "different_pose_mean_pixel_difference": 1.0344708760579426,
+  "actual_rgb_rendered": true,
+  "upstream_sources_unchanged": true,
+  "visual_review": "pending human inspection of contact_sheet.png",
+  "renderer_pixel_equivalent_to_upstream": false,
+  "next_step": "inspect scene; only then connect frozen DINO/projection",
+  "runtime_seconds": 121.28840743200271
+}

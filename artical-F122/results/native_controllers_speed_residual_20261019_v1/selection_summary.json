@@ -1,0 +1,75 @@
+{
+  "controllers": 18,
+  "task_qualified": [
+    "historical_R2",
+    "pca16",
+    "ae16",
+    "vicreg16",
+    "vicreg32",
+    "vicreg64"
+  ],
+  "qualified_order_by_reference_radius": [
+    "historical_R2",
+    "vicreg32",
+    "vicreg16",
+    "ae16",
+    "vicreg64",
+    "pca16"
+  ],
+  "qualified_order_by_reference_mae": [
+    "historical_R2",
+    "vicreg16",
+    "ae16",
+    "vicreg32",
+    "vicreg64",
+    "pca16"
+  ],
+  "all_order_by_reference_radius": [
+    "historical_R2",
+    "vae32",
+    "vae16",
+    "vicreg32",
+    "vicreg16",
+    "ae16",
+    "vicreg128",
+    "vicreg64",
+    "pca32",
+    "pca16",
+    "ae64",
+    "ae32",
+    "DINO_CLS",
+    "pca64",
+    "vae64",
+    "vae128",
+    "ae128",
+    "pca128"
+  ],
+  "reference_steps": 37828,
+  "actual_timesteps": {
+    "pca32": 200704,
+    "historical_R2": 200704,
+    "pca16": 200704,
+    "pca64": 200704,
+    "pca128": 200704,
+    "DINO_CLS": 200704,
+    "ae32": 200704,
+    "ae16": 200704,
+    "ae64": 200704,
+    "vae16": 200704,
+    "ae128": 200704,
+    "vae32": 200704,
+    "vae64": 200704,
+    "vicreg16": 200704,
+    "vae128": 200704,
+    "vicreg32": 200704,
+    "vicreg128": 200704,
+    "vicreg64": 200704
+  },
+  "every_saved_controller_hash_matches": true,
+  "limitations": [
+    "reused off-policy reference trajectories, not independent candidate calibration",
+    "task screen uses train-image library replay, not new online CARLA",
+    "a different trained PPO/q for each representation means system comparison, not isolated encoder causality",
+    "none of these residual radii alone is an SBC or image-loop safety certificate"
+  ]
+}
