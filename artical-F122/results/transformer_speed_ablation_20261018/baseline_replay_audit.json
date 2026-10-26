@@ -1,0 +1,15 @@
+{
+  "baseline_replay": {
+    "t32_concat_speed": {
+      "all_weight_tensors_equal": true,
+      "max_metric_difference": 0.0
+    },
+    "t384_concat_speed": {
+      "all_weight_tensors_equal": true,
+      "max_metric_difference": 0.0
+    }
+  },
+  "input_files_unchanged": true,
+  "status": "development_prediction_comparison_complete_not_a_safety_certificate",
+  "audit_scope": "Read-only comparison to transformer_pilot_20261018; all model state tensors and MAE/RMSE/P95/max of latent, distance, action and physical successor metrics for horizons 1,2,3"
+}

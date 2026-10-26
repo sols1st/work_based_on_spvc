@@ -1,0 +1,163 @@
+"""Write a Chinese experiment report from completed server results."""
+import json
+from pathlib import Path
+
+root = Path(__file__).resolve().parent
+results = root / 'results'
+s = json.loads((results / 'visual_rollouts/summary.json').read_text())
+c = json.loads((results / 'calibration/summary.json').read_text())
+p = json.loads((results / 'plan_checks.json').read_text())
+v = json.loads((results / 'provenance.json').read_text())
+assert s['host'] == v['hostname']
+assert s['rollouts'] == 50
+text = f'''# VISION-SLS 停车场实验：10.11.154.191 运行记录
+
+本次在 `root@10.11.154.191:20020` 实际执行了停车场轨迹与控制器求解、误差界重新拟合，以及图像闭环仿真。运行主机名为 `{s['host']}`，GPU 为 `{s['gpu']}`。以下数值取自该服务器的实际输出。
+
+## 1. 本次完成的范围
+
+- 使用原代码默认初始条件 `eval_idx=0`，初始状态为 `[-2.1, -1.75, pi/2, 0]`。
+- 预测与仿真时域为 30 步，步长 0.15 秒，每次模拟 4.5 秒。
+- 执行 50 次视觉闭环仿真，共记录 1500 次图像观测和控制输入。
+- 使用作者提供的投影网络、离线状态与特征数据，以及原始误差界参数。
+- 另外抽取 250 个样本，按原代码的混合整数规划重新拟合一次误差界，单独保存分析结果。
+
+本次没有重新训练 DINOv2 或投影网络，也没有完成论文所有 15 组初始条件和全部对比方法。
+
+## 2. 服务器目录与复现方法
+
+实验根目录：
+
+```text
+{root}
+├── .venv/                     实验专用 Python 环境
+├── source/                    原始 VISION-SLS 代码与所需资产的副本
+├── assets/dinov2/             DINOv2 模型源码
+├── assets/dinov2_vitg14_pretrain.pth
+├── run_all.sh                 完整实验入口
+├── run_visual_rollout.py      原仿真入口的加载与记录适配
+├── refit_error_envelope.py    等价 Gurobi 混合整数规划
+├── check_plan.py              保存结果的独立数值检查
+└── results/                   日志、数据、图像与视频
+```
+
+在服务器上重复执行：
+
+```bash
+cd {root}
+bash run_all.sh
+```
+
+该命令会重新生成本目录的规划与仿真结果。模型权重已下载，无需再次下载。环境通过 `--system-site-packages` 复用服务器已有 PyTorch，新增 Python 依赖安装在本实验 `.venv` 中。系统另外安装了虚拟显示与 Mesa/OpenGL 渲染组件。
+
+## 3. 各阶段输入、操作与输出
+
+| 阶段 | 输入 | 实际操作 | 主要输出 |
+|---|---|---|---|
+| 感知模型加载 | 官方 DINOv2 ViT-g/14 权重、作者投影网络检查点 | 512×512 渲染图像按原流程缩放至 224，提取 1536 维 CLS 特征，再映射为 3 维观测 | 每一步的低维观测 y |
+| 误差界拟合 | 作者提供的 5000 组状态与预提取特征 | 固定种子 42 抽 250 组，计算最大绝对残差，拟合三次位置多项式与常数下界 | `calibration/refitted_envelope.npz`，含多项式参数、z、q 与样本索引 |
+| 轨迹与控制器求解 | 初始状态、目标、障碍、动力学、作者原误差界 | 执行原 `main_parking_lot.py`，联合求解名义轨迹和输出反馈响应 | 4×31 状态、2×30 输入、四组 SLS 响应与约束收紧量 |
+| 视觉闭环验证 | 求得的计划、真实渲染图像、原脚本扰动 | 逐步提取观测、计算反馈输入并积分动力学，重复 50 次 | 完整状态/输入轨迹、观测残差、误差界、视频和统计 |
+
+误差界拟合与规划分别完成。闭环控制器使用作者提供的原误差界，重新拟合的界仅用于诊断，没有替换控制器中的参数。
+
+仿真保留了原脚本的 PyBullet GUI/OpenGL 路径，通过 Xvfb 在无显示器服务器上运行，并使用软件 OpenGL 渲染。车辆状态按照原脚本的离散动力学更新，PyBullet 用于生成图像；这里并未将车辆运动改为 PyBullet 物理仿真。
+
+50 次扰动采用原脚本设置：前 8 次为四个状态方向的正负轴向扰动，其余使用固定随机种子 42 的单位二范数扰动。不同运行共享相同初始状态和控制器。
+
+## 4. 误差界拟合结果
+
+Drake 1.26.0 的本机发行包未启用 Gurobi 后端，因此通过 `gurobipy` 表达与原 `relax_poly=True` 分支相同的线性约束和目标；原训练脚本未被覆盖。
+
+| 项目 | 结果 |
+|---|---:|
+| 总样本数 | {c['dataset_samples']} |
+| 拟合样本数 | {c['fit_samples']} |
+| 其余评估样本数 | {c['heldout_samples']} |
+| 多项式次数 | {c['degree']} |
+| THRESH_KEEP | {c['threshold_keep']} |
+| 拟合得到的常数下界 | {c['b_min']:.10f} |
+| sum(z) | {c['z_sum']:.0f} |
+| sum(q) | {c['q_sum']:.0f} |
+| 拟合样本实际覆盖率 | {100*c['fit_absolute_residual_coverage']:.2f}% |
+| 其余样本实际覆盖率 | {100*c['heldout_absolute_residual_coverage']:.2f}% |
+| 最优性间隙 | {c['MIP_gap']:.1f} |
+| 求解耗时 | {c['wall_seconds']:.3f} 秒 |
+
+覆盖率按三维残差的最大绝对值计算，即 `max(abs(y-Cx)) <= b(x)`。z 和 q 是求解器与多项式系数、常数下界一起决定的二进制变量。
+
+本次有 `sum(q)=0.03*sum(z)=6`。这条计数约束约束的是这批拟合样本上的二进制变量，不是对未来观测的概率陈述。其余 4750 组样本的覆盖率约 90.9%，直接体现了这个区别。
+
+这 4750 组样本没有参与本次 250 点的误差界拟合，但它们属于作者提供的数据文件；无法据此确认它们与原投影网络训练过程完全独立。作者原误差界也可能使用过这些数据，因此对其计算的覆盖率不能称为独立测试保证。
+
+## 5. 闭环仿真结果
+
+| 项目 | 结果 |
+|---|---:|
+| 完成次数 | {s['rollouts']} |
+| 作者到达且无碰撞判据下的成功次数 | {s['author_successes']} / {s['rollouts']} |
+| 作者状态与碰撞约束判据下的违规次数 | {s['author_constraint_violations']} |
+| 额外计入输入约束后的违规次数 | {s['full_state_input_collision_constraint_violations']} |
+| 碰撞次数 | {s['collision_rollouts']} |
+| 采样时刻最小障碍间距 | {s['minimum_sampled_obstacle_clearance_m']:.6f} 米 |
+| 含状态管越界的运行数 | {s['state_tube_violating_rollouts_tolerance_1e-6']} |
+| 含输入管越界的运行数 | {s['input_tube_violating_rollouts_tolerance_1e-6']} |
+| 状态管最大越界量 | {s['max_state_tube_excess']:.8f} |
+| 输入管最大越界量 | {s['max_input_tube_excess']:.8f} |
+| 实际图像观测残差被原误差界覆盖的比例 | {100*s['actual_absolute_perception_bound_coverage']:.2f}% |
+| 超出原误差界的观测次数 | {s['perception_bound_violating_observations']} / {s['rollouts']*s['steps_per_rollout']} |
+| 最大残差/误差界比值 | {s['maximum_perception_residual_over_bound']:.3f} |
+| 模型加载与 50 次运行合计耗时 | {s['wall_seconds']:.2f} 秒 |
+
+最小障碍间距按原模型的位置点到圆形障碍边缘计算，不包含额外车身半径。碰撞检查在离散采样时刻执行，使用原脚本的 `距离平方 <= 半径平方 + 1e-4` 判据；状态与输入约束检查使用 1e-3 容差。状态和输入管越界采用 1e-6 容差；各分量具有不同物理单位，最大越界量不能统一解释为米。
+
+**到达成功与理论误差假设成立是两件需要分别检查的事。** 本次实测感知残差与原误差界的关系见上表；若残差超界，则不能套用“所有扰动都在假定集合内”的安全结论。观察到状态或输入超出计划管，也应作为限制保留。
+
+感知残差使用生成当前观测的真实状态计算，并与原脚本一致地处理一拍延迟和 `[3,0,0,0]` 坐标偏移。误差界评估为 `max(abs(y - C(x+offset))) <= b(x)`。这些结果对应本次服务器渲染与模型组合，超界原因尚未定位。
+
+## 6. 规划结果的额外数值检查
+
+保存的所有数组均为有限数。收紧后阶段约束的最大残差为 `{p['max_tightened_stage_constraint_residual']:.3e}`，终端约束最大残差为 `{p['max_tightened_terminal_constraint_residual']:.6f}`。
+
+同时检查发现：
+
+- 将保存的名义状态和输入代回非线性离散动力学，最大逐分量缺陷为 `{p['max_nonlinear_nominal_dynamics_defect']:.8f}`。
+- 在最终保存轨迹处重新线性化，再检查四组 SLS 恒等式，最大绝对残差依次为 `{p['SLS_identity_max_abs_residuals_relinearized_at_final_plan']}`。
+
+原求解器保存的响应对应最后一次局部模型，而最终轨迹可能已做了 SCP 更新；上述重新线性化诊断并不等同于求解器内部同一局部模型上的约束残差。它们没有被隐藏，也不能作为已验证非线性安全证书的依据。
+
+此外，当前原代码默认不启用非线性余项补偿，并采用二范数约束收紧。不能仅根据程序退出成功，认定它满足论文全部假设或实现了所有理论条件。
+
+## 7. 结果文件
+
+服务器 `results/` 下：
+
+| 文件 | 用途 |
+|---|---|
+| `plan.log` | 原规划程序日志 |
+| `plan_checks.json` | 保存计划的数值检查 |
+| `calibration/summary.json` | 误差界拟合与覆盖率 |
+| `calibration/refitted_envelope.npz` | 每个拟合样本的 z、q、残差、拟合界与索引 |
+| `visual_rollouts/summary.json` | 50 次闭环运行统计 |
+| `visual_rollouts/diagnostic_traces.npz` | 完整状态、输入、观测、误差界及扰动 |
+| `visual_rollouts/first_rollout.mp4` | 第一条图像闭环轨迹的视频 |
+| `visual_rollouts/rollout_trajectories.png` | 50 条实际轨迹与名义计划 |
+| `visual_rollouts.log` | 原程序输出与逐次完成日志 |
+| `environment.freeze.txt` | 本次 Python 包版本 |
+| `provenance.json` | 主机、模型来源、版本与代码指纹 |
+
+规划数组保存在 `source/expe/parking_lot/data/unicycle_of_perception_0.npz`，规划图保存在 `source/expe/parking_lot/imgs/Unicycle_OF_Perception.png`。
+
+## 8. 版本与适配说明
+
+- 原代码提交：`{v['upstream_source_revision']}`。传输副本与本地原代码进行了文件内容核对，原算法源码未修改。
+- DINOv2 源码记录：`{v['dinov2_source_revision']}`。
+- 官方模型大小：`{v['weights_bytes']}` 字节。
+- 模型 SHA256：`{v['weights_sha256']}`。
+- Python：`{v['python'].splitlines()[0]}`。
+- 关键版本：`{json.dumps(v['versions'], ensure_ascii=False)}`。
+- 图像仿真适配只在内存中替换本地模型加载方式、增加过程记录；保留原控制律、动力学、预处理、扰动和成功判据。
+- 没有运行原脚本中被注释的开环对照，因此不将其保存的零数组视为开环实验结果。
+'''
+(results / '实验运行报告.md').write_text(text)
+print(results / '实验运行报告.md')

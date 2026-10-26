@@ -1,0 +1,11 @@
+{
+  "experiment":"Parking-lot direct CP replacement, default initial condition 0",
+  "alpha":0.05,
+  "observation_dimension":3,
+  "steps":30,
+  "score":"max_t ||y_t-C(x_t+[3,0,0,0])||_2; raw residual, no original bound",
+  "calibration":{"rollouts":40,"seed":2026102503,"controller":"frozen original controller, random disturbances only"},
+  "evaluation":{"rollouts":50,"seed":42,"axis_stress_rollouts":8,"random_rollouts":42,"baseline":"Reuse original 2026-10-24 50-rollout data; verify identical core code and disturbances."},
+  "new_model":"F=R_CP*I_3; bypass original polynomial model initialization",
+  "interpretation":"Same original-code empirical safety metrics; trajectory CP coverage is calibrated for the reference controller and evaluated separately for the replanned controller."
+}

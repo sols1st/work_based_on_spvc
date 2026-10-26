@@ -1,0 +1,783 @@
+{
+  "config": {
+    "experiment": "causal_CLS_world_model_development_AB",
+    "seed": 7,
+    "context": 3,
+    "horizon": 3,
+    "steps": 1200,
+    "batch_size": 256,
+    "learning_rate": 0.0003,
+    "transformer_width": 128,
+    "transformer_layers": 2,
+    "attention_heads": 4,
+    "source_sha256": {
+      "results/dino_expanded_v1/13_spvc_calibration_trajectories_v1/trajectories.h5": "8da138640b79fb98a473965cf2fd126503e8346678e955de5f4893e4125e0c34",
+      "results/dino_expanded_v1/08_R2_group_alignment/dino_safety_latent.pt": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+      "results/dino_expanded_v1/09_R2_ppo/latent_ppo.zip": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+      "results/dino_spvc_minimal_v1/latent_ppo_spvc.pt": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+      "results/dino_spvc_minimal_v1/sbc.pt": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+      "results/dino_spvc_minimal_v1/metrics.json": "e5d10b7d33d4a1ecc549e6306d1105d954ad9d495711b53bf70e50dc16b35e54",
+      "results/dino_spvc_minimal_v1_final_recheck/metrics.json": "53fbe78e94ca791d00d42d8a7e509e59bbc3513b54055a087ecbdbcd5c1f1020"
+    },
+    "script_sha256": "3d41b2c8d401cde3c9573e28624653b70b43939b7c4d74fb72c1616db6f1b4f7",
+    "frozen_actor_identity": {
+      "old_controller_sha256": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+      "new_controller_sha256": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+      "barrier_sha256": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+      "source_metrics_sha256": "e5d10b7d33d4a1ecc549e6306d1105d954ad9d495711b53bf70e50dc16b35e54",
+      "stage": "minimal_final_saved_pair",
+      "final_recheck_sha256": "53fbe78e94ca791d00d42d8a7e509e59bbc3513b54055a087ecbdbcd5c1f1020",
+      "final_recheck_status": "saved_pair_passes_legacy_checks",
+      "final_recheck_source_hashes": {
+        "metrics": "e5d10b7d33d4a1ecc549e6306d1105d954ad9d495711b53bf70e50dc16b35e54",
+        "policy": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+        "barrier": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+        "representation": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+        "base_controller": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+        "minimal_manifest": "d32af8fa0beddaa6386a3a8f3a3dc55b5a30e23723f661037b9bef216164f054"
+      },
+      "checkpoint_matches_final_recheck": true,
+      "note": "identity/legacy-check evidence only; not an image-path safety certificate",
+      "changed_actor_tensors": 6,
+      "q_parameters_unchanged": true,
+      "state_distance_scale_m": 3.18272066116333,
+      "representation_distance_scale_m": 3.161912679672241,
+      "inference": "deterministic actor mean clipped to [-3,3]; no QP; no SBC action filtering"
+    },
+    "module_sha256": "08fbcf7d1e4cf0e453c3abde0b2a08cffe78885561af88eaf258ed832872ef6d",
+    "trajectory_count": 459,
+    "train_trajectories": 367,
+    "validation_trajectories": 92,
+    "train_windows": 28502,
+    "validation_windows": 7085,
+    "original_input_role": "calibration",
+    "input_repurposed_for_development": true,
+    "future_CP_must_not_reuse_this_data": true,
+    "test_used": false,
+    "fresh_CP_data_used": false,
+    "representation_frozen": true,
+    "ppo_frozen": true,
+    "paper_adaptation": "DINO CLS 384, NOT full 16x16 patch tokens; no paper-controller/barrier reproduction",
+    "horizon_actions": "observed/planned future controls supplied to every arm equally; open-loop prediction",
+    "selection": "validation 3-horizon mean common frozen-R2 latent RMSE",
+    "limitations": [
+      "same-policy old trajectories, not random-action coverage",
+      "no new PPO/SBC/online rollout",
+      "prediction comparison not a formal safety guarantee",
+      "models not parameter-count matched"
+    ],
+    "max_record_distance_error_m": 9.5367431640625e-07,
+    "max_record_speed_error_mps": 2.384185791015625e-07,
+    "physical_diagnostic_scope": "At each predicted observation time, use its true speed ONLY for the frozen-PPO diagnostic; compare predicted-latent and real-image-latent actions in the SAME state. Successor gap is one physical step AFTER that observation, not the forecast speed target. No true future speed/latent/distance is supplied to learned predictors."
+  },
+  "results": {
+    "persistence32": {
+      "kind": "no training; last image latent repeated",
+      "metrics": {
+        "1": {
+          "latent_rms": {
+            "mean": 0.042564710533876046,
+            "mae": 0.042564710533876046,
+            "rmse": 0.052261903369531425,
+            "p95": 0.1006249144673346,
+            "max": 0.3052689731121063
+          },
+          "distance_error": {
+            "mean": 0.09337605891634901,
+            "mae": 0.1385353488827896,
+            "rmse": 0.17408187446208673,
+            "p95": 0.32818508148193254,
+            "max": 1.1267356872558594
+          },
+          "distance_reference_gap": {
+            "mean": 0.11786238570068618,
+            "mae": 0.1541824559552954,
+            "rmse": 0.20219571089883598,
+            "p95": 0.3987052917480468,
+            "max": 1.2761430740356445
+          },
+          "action_gap": {
+            "mean": -0.21506812593984453,
+            "mae": 0.2865371292290043,
+            "rmse": 0.5731189029531848,
+            "p95": 1.4451448917388883,
+            "max": 3.5459136962890625
+          },
+          "successor_speed_gap": {
+            "mean": 0.00893279266719172,
+            "mae": 0.012151469997982787,
+            "rmse": 0.027322069856014587,
+            "p95": 0.07072757482528681,
+            "max": 0.17729568481445312
+          }
+        },
+        "2": {
+          "latent_rms": {
+            "mean": 0.06720000594912193,
+            "mae": 0.06720000594912193,
+            "rmse": 0.07976241126502154,
+            "p95": 0.1473859667778015,
+            "max": 0.31081363558769226
+          },
+          "distance_error": {
+            "mean": 0.21035046782725783,
+            "mae": 0.23016259113330612,
+            "rmse": 0.2696649364583929,
+            "p95": 0.45974082946777306,
+            "max": 0.9767360687255859
+          },
+          "distance_reference_gap": {
+            "mean": 0.23380626538477906,
+            "mae": 0.2508176899158206,
+            "rmse": 0.31010434686472144,
+            "p95": 0.5925420761108391,
+            "max": 1.2759895324707031
+          },
+          "action_gap": {
+            "mean": -0.5075835521961908,
+            "mae": 0.5400470624034389,
+            "rmse": 0.983175076214003,
+            "p95": 2.4582804203033444,
+            "max": 4.746634483337402
+          },
+          "successor_speed_gap": {
+            "mean": 0.02193007928410633,
+            "mae": 0.023511069338971152,
+            "rmse": 0.04722823968203632,
+            "p95": 0.1226344108581543,
+            "max": 0.23733174800872803
+          }
+        },
+        "3": {
+          "latent_rms": {
+            "mean": 0.09413315039029478,
+            "mae": 0.09413315039029478,
+            "rmse": 0.10888955689681125,
+            "p95": 0.18799451291561126,
+            "max": 0.3706546127796173
+          },
+          "distance_error": {
+            "mean": 0.32557353219602336,
+            "mae": 0.3350829687771363,
+            "rmse": 0.38299269448910433,
+            "p95": 0.6032880783081052,
+            "max": 1.0020570755004883
+          },
+          "distance_reference_gap": {
+            "mean": 0.3482793867882491,
+            "mae": 0.35791697323785,
+            "rmse": 0.4239441603715403,
+            "p95": 0.7477340698242186,
+            "max": 1.4903945922851562
+          },
+          "action_gap": {
+            "mean": -0.8026845258751972,
+            "mae": 0.8239156375258593,
+            "rmse": 1.4286816174585704,
+            "p95": 3.4503896713256834,
+            "max": 5.193127632141113
+          },
+          "successor_speed_gap": {
+            "mean": 0.035313124246974185,
+            "mae": 0.03636775537115971,
+            "rmse": 0.06891879312355398,
+            "p95": 0.1713452100753784,
+            "max": 0.2596563696861267
+          }
+        }
+      }
+    },
+    "current_q_known_distance": {
+      "kind": "current proxy; true FUTURE distance supplied, not a forecast competitor",
+      "metrics": {
+        "1": {
+          "latent_rms": {
+            "mean": 0.027166683016175336,
+            "mae": 0.027166683016175336,
+            "rmse": 0.03683753320168899,
+            "p95": 0.07364630103111264,
+            "max": 0.30842041969299316
+          },
+          "distance_error": {
+            "mean": -0.0006457160540508736,
+            "mae": 0.003948527519856024,
+            "rmse": 0.004905880471278849,
+            "p95": 0.010864448547363278,
+            "max": 0.014069557189941406
+          },
+          "distance_reference_gap": {
+            "mean": 0.02384061073028629,
+            "mae": 0.09065869579705539,
+            "rmse": 0.1408109228594793,
+            "p95": 0.29375438690185524,
+            "max": 1.2800493240356445
+          },
+          "action_gap": {
+            "mean": -0.09965556968179655,
+            "mae": 0.21278145390240003,
+            "rmse": 0.4898098577225174,
+            "p95": 1.1715161323547358,
+            "max": 3.2829878330230713
+          },
+          "successor_speed_gap": {
+            "mean": 0.005623816337565258,
+            "mae": 0.009549168915334687,
+            "rmse": 0.023931623596835552,
+            "p95": 0.05824277400970453,
+            "max": 0.16414940357208252
+          }
+        },
+        "2": {
+          "latent_rms": {
+            "mean": 0.026822270683736535,
+            "mae": 0.026822270683736535,
+            "rmse": 0.036420715888756755,
+            "p95": 0.07301419824361795,
+            "max": 0.30842041969299316
+          },
+          "distance_error": {
+            "mean": -0.0006791323444417605,
+            "mae": 0.003966850315758942,
+            "rmse": 0.004911484582508529,
+            "p95": 0.010864448547363278,
+            "max": 0.014069557189941406
+          },
+          "distance_reference_gap": {
+            "mean": 0.02277666521307946,
+            "mae": 0.0892055379562001,
+            "rmse": 0.13891400342880336,
+            "p95": 0.2898128509521484,
+            "max": 1.2800493240356445
+          },
+          "action_gap": {
+            "mean": -0.10701552198209978,
+            "mae": 0.22087061337248573,
+            "rmse": 0.49935406011272376,
+            "p95": 1.1881641387939452,
+            "max": 3.2829878330230713
+          },
+          "successor_speed_gap": {
+            "mean": 0.005991813973717565,
+            "mae": 0.009953626910396756,
+            "rmse": 0.024419757591470893,
+            "p95": 0.05909270644187922,
+            "max": 0.16414940357208252
+          }
+        },
+        "3": {
+          "latent_rms": {
+            "mean": 0.026510729887650922,
+            "mae": 0.026510729887650922,
+            "rmse": 0.03606729351029485,
+            "p95": 0.0724262878298759,
+            "max": 0.30842041969299316
+          },
+          "distance_error": {
+            "mean": -0.0007068601728074552,
+            "mae": 0.003987846024539493,
+            "rmse": 0.004917669170722964,
+            "p95": 0.010864448547363278,
+            "max": 0.014069557189941406
+          },
+          "distance_reference_gap": {
+            "mean": 0.021998994419418258,
+            "mae": 0.08785892996724087,
+            "rmse": 0.1373362189368691,
+            "p95": 0.2875499725341794,
+            "max": 1.2800493240356445
+          },
+          "action_gap": {
+            "mean": -0.11640232474232275,
+            "mae": 0.23061424536747502,
+            "rmse": 0.511754165798576,
+            "p95": 1.2237230539321857,
+            "max": 3.2829878330230713
+          },
+          "successor_speed_gap": {
+            "mean": 0.006461154112701443,
+            "mae": 0.010440808507280613,
+            "rmse": 0.025053326802656452,
+            "p95": 0.060601949691772426,
+            "max": 0.16414940357208252
+          }
+        }
+      }
+    },
+    "mlp32": {
+      "best_step": 1200,
+      "parameter_count": 33824,
+      "runtime_seconds": 14.386873521842062,
+      "history": [
+        {
+          "step": 1,
+          "train_native_mse": 0.013823021203279495,
+          "validation_common_rmse": 0.08328020066139503
+        },
+        {
+          "step": 200,
+          "train_native_mse": 0.006191456224769354,
+          "validation_common_rmse": 0.04482165588765751
+        },
+        {
+          "step": 400,
+          "train_native_mse": 0.005556146614253521,
+          "validation_common_rmse": 0.043687064236263354
+        },
+        {
+          "step": 600,
+          "train_native_mse": 0.00531791802495718,
+          "validation_common_rmse": 0.04290423462689129
+        },
+        {
+          "step": 800,
+          "train_native_mse": 0.0048300763592123985,
+          "validation_common_rmse": 0.042135928797054883
+        },
+        {
+          "step": 1000,
+          "train_native_mse": 0.004994695540517569,
+          "validation_common_rmse": 0.04088344628527076
+        },
+        {
+          "step": 1200,
+          "train_native_mse": 0.0042754244059324265,
+          "validation_common_rmse": 0.03998974048346598
+        }
+      ],
+      "metrics": {
+        "1": {
+          "latent_rms": {
+            "mean": 0.02947885958404243,
+            "mae": 0.02947885958404243,
+            "rmse": 0.037494165779065974,
+            "p95": 0.07354256510734557,
+            "max": 0.29948553442955017
+          },
+          "distance_error": {
+            "mean": -0.014524787399410445,
+            "mae": 0.0775488974598822,
+            "rmse": 0.11211650840490842,
+            "p95": 0.2366077423095703,
+            "max": 0.7871437072753906
+          },
+          "distance_reference_gap": {
+            "mean": 0.009961539384926719,
+            "mae": 0.09921716280865181,
+            "rmse": 0.14263466093862115,
+            "p95": 0.2964214324951171,
+            "max": 1.2552728652954102
+          },
+          "action_gap": {
+            "mean": -0.02472181299000705,
+            "mae": 0.17553589267205333,
+            "rmse": 0.4092092363766167,
+            "p95": 0.9424925565719598,
+            "max": 3.5112130641937256
+          },
+          "successor_speed_gap": {
+            "mean": 0.0013113752228320276,
+            "mae": 0.007574239011456954,
+            "rmse": 0.019593445255800035,
+            "p95": 0.04477944374084472,
+            "max": 0.17556071281433105
+          }
+        },
+        "2": {
+          "latent_rms": {
+            "mean": 0.0320962434367723,
+            "mae": 0.0320962434367723,
+            "rmse": 0.040298248574952025,
+            "p95": 0.07791431397199627,
+            "max": 0.2851824462413788
+          },
+          "distance_error": {
+            "mean": -0.00739616974189236,
+            "mae": 0.07133485697151998,
+            "rmse": 0.10000185046335144,
+            "p95": 0.21927795410156245,
+            "max": 0.5974540710449219
+          },
+          "distance_reference_gap": {
+            "mean": 0.01605962781562886,
+            "mae": 0.10665422667057142,
+            "rmse": 0.15240295726463812,
+            "p95": 0.3137699127197265,
+            "max": 1.1775932312011719
+          },
+          "action_gap": {
+            "mean": -0.048589164948770504,
+            "mae": 0.18793267593860374,
+            "rmse": 0.4233769159388,
+            "p95": 1.0154625415801999,
+            "max": 3.000568151473999
+          },
+          "successor_speed_gap": {
+            "mean": 0.0026184318819850285,
+            "mae": 0.00815051845054687,
+            "rmse": 0.020352733092290236,
+            "p95": 0.04825192689895617,
+            "max": 0.15002840757369995
+          }
+        },
+        "3": {
+          "latent_rms": {
+            "mean": 0.033652249198596225,
+            "mae": 0.033652249198596225,
+            "rmse": 0.042044935362463974,
+            "p95": 0.08065908700227738,
+            "max": 0.28211456537246704
+          },
+          "distance_error": {
+            "mean": -0.0020559530318750826,
+            "mae": 0.07255417185092192,
+            "rmse": 0.10040714274556184,
+            "p95": 0.21545982360839838,
+            "max": 0.6432771682739258
+          },
+          "distance_reference_gap": {
+            "mean": 0.020649901560350632,
+            "mae": 0.11098351347337075,
+            "rmse": 0.1579158065709266,
+            "p95": 0.3244928359985349,
+            "max": 1.1366796493530273
+          },
+          "action_gap": {
+            "mean": -0.07634131420947922,
+            "mae": 0.21515090503666126,
+            "rmse": 0.4726451640599242,
+            "p95": 1.1191406965255728,
+            "max": 3.3392090797424316
+          },
+          "successor_speed_gap": {
+            "mean": 0.004091303465899735,
+            "mae": 0.009626838825669353,
+            "rmse": 0.023041456323133088,
+            "p95": 0.054939568042755106,
+            "max": 0.1669604778289795
+          }
+        }
+      }
+    },
+    "transformer32": {
+      "best_step": 1000,
+      "parameter_count": 273952,
+      "runtime_seconds": 46.060378764756024,
+      "history": [
+        {
+          "step": 1,
+          "train_native_mse": 0.013823021203279495,
+          "validation_common_rmse": 0.08137846975324717
+        },
+        {
+          "step": 200,
+          "train_native_mse": 0.004707116633653641,
+          "validation_common_rmse": 0.04041924485637631
+        },
+        {
+          "step": 400,
+          "train_native_mse": 0.004123672842979431,
+          "validation_common_rmse": 0.036350154694659645
+        },
+        {
+          "step": 600,
+          "train_native_mse": 0.0035975277423858643,
+          "validation_common_rmse": 0.03398674300307276
+        },
+        {
+          "step": 800,
+          "train_native_mse": 0.003600969910621643,
+          "validation_common_rmse": 0.03328467970647207
+        },
+        {
+          "step": 1000,
+          "train_native_mse": 0.003537797136232257,
+          "validation_common_rmse": 0.03249762946123203
+        },
+        {
+          "step": 1200,
+          "train_native_mse": 0.003191696247085929,
+          "validation_common_rmse": 0.033193165587678375
+        }
+      ],
+      "metrics": {
+        "1": {
+          "latent_rms": {
+            "mean": 0.026457223042927226,
+            "mae": 0.026457223042927226,
+            "rmse": 0.03196599217876517,
+            "p95": 0.06348865926265715,
+            "max": 0.21151089668273926
+          },
+          "distance_error": {
+            "mean": -0.02539029939122493,
+            "mae": 0.07220273337569469,
+            "rmse": 0.10656615209656721,
+            "p95": 0.2074411392211912,
+            "max": 0.7804298400878906
+          },
+          "distance_reference_gap": {
+            "mean": -0.0009039726068877635,
+            "mae": 0.08595141435729507,
+            "rmse": 0.11736479216716102,
+            "p95": 0.24653282165527304,
+            "max": 0.8888826370239258
+          },
+          "action_gap": {
+            "mean": 0.02372785723579544,
+            "mae": 0.16112372268440864,
+            "rmse": 0.38113918650441814,
+            "p95": 0.9168236017227159,
+            "max": 3.5433809757232666
+          },
+          "successor_speed_gap": {
+            "mean": -0.0012649491545004834,
+            "mae": 0.007026464323300919,
+            "rmse": 0.01843713830950406,
+            "p95": 0.04477750062942499,
+            "max": 0.1771690845489502
+          }
+        },
+        "2": {
+          "latent_rms": {
+            "mean": 0.02712972252304359,
+            "mae": 0.02712972252304359,
+            "rmse": 0.03230239787863405,
+            "p95": 0.06343683749437326,
+            "max": 0.15159361064434052
+          },
+          "distance_error": {
+            "mean": -0.02898301156204859,
+            "mae": 0.07096328869956264,
+            "rmse": 0.10558508170517605,
+            "p95": 0.19253597259521452,
+            "max": 0.8260612487792969
+          },
+          "distance_reference_gap": {
+            "mean": -0.00552721400452737,
+            "mae": 0.08457760195035538,
+            "rmse": 0.11607708086321267,
+            "p95": 0.24716396331787105,
+            "max": 0.6133947372436523
+          },
+          "action_gap": {
+            "mean": 0.04608775972951948,
+            "mae": 0.17483860947239038,
+            "rmse": 0.4000224197653697,
+            "p95": 0.9997791528701782,
+            "max": 3.507270574569702
+          },
+          "successor_speed_gap": {
+            "mean": -0.00238301793643094,
+            "mae": 0.007741761315895288,
+            "rmse": 0.0194899841377819,
+            "p95": 0.0491339147090911,
+            "max": 0.17536354064941406
+          }
+        },
+        "3": {
+          "latent_rms": {
+            "mean": 0.028018153974971746,
+            "mae": 0.028018153974971746,
+            "rmse": 0.033211717040191824,
+            "p95": 0.06403051614761343,
+            "max": 0.1885795146226883
+          },
+          "distance_error": {
+            "mean": -0.026604866157052546,
+            "mae": 0.07003093321052503,
+            "rmse": 0.10107981657324493,
+            "p95": 0.18300476074218744,
+            "max": 0.7340450286865234
+          },
+          "distance_reference_gap": {
+            "mean": -0.0038990115648268307,
+            "mae": 0.08667212340220988,
+            "rmse": 0.11852754082847132,
+            "p95": 0.2498418807983397,
+            "max": 0.7564516067504883
+          },
+          "action_gap": {
+            "mean": 0.06376393619890607,
+            "mae": 0.19869101715649445,
+            "rmse": 0.4473633363872198,
+            "p95": 1.1137550592422483,
+            "max": 3.5433809757232666
+          },
+          "successor_speed_gap": {
+            "mean": -0.0033370047828725465,
+            "mae": 0.008976310466323507,
+            "rmse": 0.021947424720551268,
+            "p95": 0.05555624961853024,
+            "max": 0.1771690845489502
+          }
+        }
+      }
+    },
+    "transformer384": {
+      "best_step": 1200,
+      "parameter_count": 364416,
+      "runtime_seconds": 45.640047093853354,
+      "history": [
+        {
+          "step": 1,
+          "train_native_mse": 0.283215194940567,
+          "validation_common_rmse": 0.08254619907452243
+        },
+        {
+          "step": 200,
+          "train_native_mse": 0.19049303233623505,
+          "validation_common_rmse": 0.06876535797008612
+        },
+        {
+          "step": 400,
+          "train_native_mse": 0.15843087434768677,
+          "validation_common_rmse": 0.07163045434393175
+        },
+        {
+          "step": 600,
+          "train_native_mse": 0.1321197748184204,
+          "validation_common_rmse": 0.06306210884423465
+        },
+        {
+          "step": 800,
+          "train_native_mse": 0.11681590229272842,
+          "validation_common_rmse": 0.05862097302277801
+        },
+        {
+          "step": 1000,
+          "train_native_mse": 0.10521747171878815,
+          "validation_common_rmse": 0.05506254513619052
+        },
+        {
+          "step": 1200,
+          "train_native_mse": 0.09995368868112564,
+          "validation_common_rmse": 0.05377853383703727
+        }
+      ],
+      "metrics": {
+        "1": {
+          "latent_rms": {
+            "mean": 0.03903479579045459,
+            "mae": 0.03903479579045459,
+            "rmse": 0.04815258308235034,
+            "p95": 0.0963434636592864,
+            "max": 0.23494714498519897
+          },
+          "distance_error": {
+            "mean": -0.043891129261520265,
+            "mae": 0.15379090763433936,
+            "rmse": 0.2050400481237659,
+            "p95": 0.41615734100341745,
+            "max": 0.9923744201660156
+          },
+          "distance_reference_gap": {
+            "mean": -0.019404802477183104,
+            "mae": 0.14779832122522757,
+            "rmse": 0.19507338679080477,
+            "p95": 0.40108776092529275,
+            "max": 0.9771614074707031
+          },
+          "action_gap": {
+            "mean": 0.03035778911414917,
+            "mae": 0.1936571498161567,
+            "rmse": 0.4295851996547838,
+            "p95": 0.9991518259048454,
+            "max": 3.5433809757232666
+          },
+          "successor_speed_gap": {
+            "mean": -0.0012924195408568723,
+            "mae": 0.008155849735839483,
+            "rmse": 0.020556422424064916,
+            "p95": 0.04881806373596186,
+            "max": 0.1771690845489502
+          }
+        },
+        "2": {
+          "latent_rms": {
+            "mean": 0.04506870351883602,
+            "mae": 0.04506870351883602,
+            "rmse": 0.05505994188025694,
+            "p95": 0.10969062447547906,
+            "max": 0.2163173109292984
+          },
+          "distance_error": {
+            "mean": -0.04102966938543757,
+            "mae": 0.17802681515733373,
+            "rmse": 0.23210603821596296,
+            "p95": 0.46954059600830067,
+            "max": 0.955510139465332
+          },
+          "distance_reference_gap": {
+            "mean": -0.01757387182791635,
+            "mae": 0.17352744939046252,
+            "rmse": 0.22521975687884724,
+            "p95": 0.46328926086425765,
+            "max": 0.8909463882446289
+          },
+          "action_gap": {
+            "mean": 0.0367355274298112,
+            "mae": 0.23344955421516234,
+            "rmse": 0.48062796005129943,
+            "p95": 1.147424697875975,
+            "max": 3.6121881008148193
+          },
+          "successor_speed_gap": {
+            "mean": -0.0016143100892227135,
+            "mae": 0.009818918275303123,
+            "rmse": 0.022904577486452728,
+            "p95": 0.05643162727355957,
+            "max": 0.18060940504074097
+          }
+        },
+        "3": {
+          "latent_rms": {
+            "mean": 0.0469456305849611,
+            "mae": 0.0469456305849611,
+            "rmse": 0.057672554335328516,
+            "p95": 0.11576745063066482,
+            "max": 0.28395408391952515
+          },
+          "distance_error": {
+            "mean": -0.03822622204971044,
+            "mae": 0.18186424937816933,
+            "rmse": 0.23865337147421067,
+            "p95": 0.4862514495849608,
+            "max": 1.1643924713134766
+          },
+          "distance_reference_gap": {
+            "mean": -0.015520367457484727,
+            "mae": 0.18046700296556772,
+            "rmse": 0.2364680415896474,
+            "p95": 0.4881406784057615,
+            "max": 1.1849088668823242
+          },
+          "action_gap": {
+            "mean": 0.041595063647209295,
+            "mae": 0.25974171583237743,
+            "rmse": 0.537523121969366,
+            "p95": 1.304100608825682,
+            "max": 3.818295955657959
+          },
+          "successor_speed_gap": {
+            "mean": -0.0018198407676410068,
+            "mae": 0.011014842421300157,
+            "rmse": 0.025709371256690733,
+            "p95": 0.06368856430053695,
+            "max": 0.19091477990150452
+          }
+        }
+      }
+    }
+  },
+  "model_sha256": {
+    "mlp32": "d134c29b317cece2ceb8d233c5e9ac132f5c0afa7d22c12e34ca5ab9ae273935",
+    "transformer32": "13a70c9512d5afc3a2cce82c4cc04a3e11b20f9b2d3ec209984413c7e36c895c",
+    "transformer384": "1d698571aa77628af636930fc28606cc0efb6e2bbae9aee469f78dec85220319"
+  },
+  "source_files_unchanged": true,
+  "status": "development_prediction_comparison_complete_not_a_safety_certificate",
+  "runtime_seconds": 106.08729938045144,
+  "runtime_scope": "sum of learning-arm training/selection; excludes final evaluations and initial baselines",
+  "finalization_script_sha256": "d480d31644219da171e94f216eff0598ec014f96cb197fc2e8024b257b828f0c",
+  "postrun_fix": "Converted saved string source paths to Path for final checksum; no weights/metrics retrained"
+}

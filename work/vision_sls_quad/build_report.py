@@ -1,0 +1,131 @@
+"""Build a Chinese report from the completed quadrotor results."""
+import json
+from pathlib import Path
+import re
+
+root=Path(__file__).resolve().parent
+results=root/'results'
+s=json.loads((results/'visual_rollouts/summary.json').read_text())
+p=json.loads((results/'plan_checks.json').read_text())
+v=json.loads((results/'provenance.json').read_text())
+assert s['host']==v['hostname'] and s['rollouts']==50
+match=re.search(r'total runtime: ([0-9.]+)s',(results/'plan.log').read_text())
+runtime=float(match.group(1)) if match else None
+components='\n'.join(f'| 第 {i+1} 个观测分量 | {100*c:.2f}% |' for i,c in
+                      enumerate(s['per_component_absolute_perception_bound_coverage']))
+report=f'''# VISION-SLS 无人机视觉避障：10.11.154.191 实验记录
+
+本次已在 `root@10.11.154.191:20020` 实际完成无人机场景的轨迹与控制器求解，以及 50 次图像闭环仿真。主机名为 `{s['host']}`，GPU 为 `{s['gpu']}`。本报告中的统计全部来自这台服务器。
+
+## 1. 运行范围与结果
+
+使用原代码默认初始条件 `idx=eval_idx=0`：起点位置 `[0.9,3.1,1.0]`，目标位置 `[-1.5,2.5,1.4]`。系统有 10 个状态、3 个控制输入和 5 个低维观测；时域为 35 步，步长 0.15 秒，即每次模拟 5.25 秒。
+
+| 项目 | 实测结果 |
+|---|---:|
+| 规划程序报告的求解耗时 | {runtime} 秒 |
+| 完成闭环仿真次数 | {s['rollouts']} |
+| 原脚本判据下的成功次数 | {s['author_successes']} / {s['rollouts']} |
+| 原脚本状态与碰撞约束违规次数 | {s['author_constraint_violations']} |
+| 加入输入约束后的违规次数 | {s['full_state_input_collision_constraint_violations']} |
+| 碰撞次数 | {s['collision_rollouts']} |
+| 最小采样障碍间距 | {s['minimum_sampled_obstacle_clearance_m']:.6f} 米 |
+| 最终位置距指定目标的平均距离 | {s['terminal_position_distance_mean_m']:.6f} 米 |
+| 最终位置距指定目标的最大距离 | {s['terminal_position_distance_max_m']:.6f} 米 |
+| 距目标不超过 0.25 米且无碰撞的次数 | {s['within_0_25m_of_target_and_no_collision']} / {s['rollouts']} |
+| 模型加载与 50 次运行总耗时 | {s['wall_seconds']:.2f} 秒 |
+
+**原脚本的成功判据需要单独说明。** 它检查最终位置是否位于模型的宽范围位置边界，并检查是否碰撞；不是检查是否足够靠近 `xG`。原终端位置范围为 `[-10,-10,0]` 到 `[10,10,10]`。因此额外报告三维目标距离，并增加了 0.25 米阈值诊断；这个阈值是本次补充的指标，不是论文原判据。
+
+本次只运行了 15 组初始条件中的第 0 组，使用作者已有的投影网络与误差界，没有重新训练或重新拟合，也没有运行全部对比方法。
+
+## 2. 每一步的输入与输出
+
+| 步骤 | 输入 | 操作 | 输出 |
+|---|---|---|---|
+| 规划 | 初始状态、目标、动力学、状态和输入边界、5 个圆形障碍、已学习的误差界 | 原 `main_quad10d_perception.py` 联合优化名义运动与输出反馈响应 | 10×36 名义状态、3×35 名义输入、四组 SLS 响应与轨迹管 |
+| 场景渲染 | 当前或延迟一拍的真实仿真状态 | 在雪地森林背景和柱状障碍场景中更新相机位姿，按原脚本生成 512×512 图像 | RGB 图像 |
+| 视觉特征 | RGB 图像 | 按原预处理缩放至 224，使用 DINOv2 ViT-L/14 | 1024 维 CLS 特征 |
+| 低维观测 | CLS 特征、作者的投影网络检查点 | 神经网络映射 | 5 维观测 y |
+| 反馈控制 | 历史观测、名义计划和四组 SLS 响应 | 保留原脚本的延迟输出反馈公式 | 3 维控制输入 |
+| 状态更新 | 真实状态、控制输入和过程扰动 | 原离散动力学积分 | 下一时刻的 10 维状态 |
+| 验证 | 全部状态、输入和观测 | 检查约束、碰撞、目标距离、误差界与轨迹管 | JSON 统计、完整 NPZ 数据、轨迹图和视频 |
+
+PyBullet 用于渲染图像，车辆运动仍由原模型的离散动力学推进。保持原 GUI/OpenGL 渲染路径，通过 Xvfb 和软件 OpenGL 在服务器上运行。
+
+## 3. 五个误差界与 F(x)e
+
+本场景的误差界系数矩阵形状为 `{p['error_bound_coefficient_shape']}`：对位置与两个姿态相关状态构造四次多项式，共 126 个单项式，输出 5 个界。
+
+其观测模型可写为：
+
+```text
+y = Cx + F(x)e
+F(x) = diag(b1(x), b2(x), b3(x), b4(x), b5(x))
+```
+
+这里的实际残差是 `r=y-Cx`。逐分量检查 `abs(r_j)<=b_j(x)`，对应归一化误差 `abs(e_j)<=1`。起点处五个界约为 `{[round(a,6) for a in p['initial_error_bounds']]}`。
+
+实测 1750 次观测的覆盖率为：
+
+| 检查项 | 覆盖率 |
+|---|---:|
+{components}
+| 同一条观测的全部五个分量都被覆盖 | {100*s['joint_absolute_perception_bound_coverage']:.2f}% |
+
+有 `{s['perception_bound_violating_observations']}` 次观测至少一个分量超界。最大归一化绝对残差为 `{s['max_normalized_absolute_residual']:.4f}`。另外计算 `norm(e,2)<=1` 的比例为 `{100*s['normalized_residual_l2_le_1_fraction']:.2f}%`；这是比逐分量界更严格的不同检查，不应混为同一个覆盖率。
+
+这些检查使用生成该次观测的真实状态，并保留原脚本的一拍观测延迟。它们对应本次模型与服务器渲染组合；超界原因尚未定位。
+
+**闭环轨迹没有碰撞，并不意味着感知误差假设已满足。** 如果实际残差超出拟定集合，就不能直接应用以该集合为前提的鲁棒安全结论。
+
+## 4. 轨迹管与规划数值检查
+
+| 检查项 | 结果 |
+|---|---:|
+| 包含状态管越界的运行数 | {s['state_tube_violating_rollouts_tolerance_1e-6']} |
+| 包含输入管越界的运行数 | {s['input_tube_violating_rollouts_tolerance_1e-6']} |
+| 状态管最大越界量 | {s['max_state_tube_excess']:.8f} |
+| 输入管最大越界量 | {s['max_input_tube_excess']:.8f} |
+| 名义轨迹最大非线性动力学缺陷 | {p['max_nonlinear_nominal_dynamics_defect']:.3e} |
+| 收紧后阶段约束最大残差 | {p['max_tightened_stage_constraint_residual']:.3e} |
+| 收紧后终端约束最大残差 | {p['max_tightened_terminal_constraint_residual']:.6f} |
+
+在最终导出轨迹处重新线性化，四组 SLS 恒等式最大绝对残差依次为 `{p['SLS_identity_max_abs_residuals_relinearized_at_final_plan']}`。该诊断与求解器最后局部模型的内部残差不完全相同；本次结果并不是非线性安全证书。当前原实现默认也未启用非线性余项补偿。
+
+状态与输入约束检查采用 1e-3 容差，轨迹管检查采用 1e-6 容差。各状态分量单位不同，最大管越界量不能统一理解为米。碰撞检查使用原脚本的 5 个 XY 圆形障碍及 `距离平方<=半径平方+1e-4` 判据，只检查离散采样时刻；不代表连续时间、完整车身或全部渲染物体的碰撞验证。
+
+## 5. 随机扰动与代码适配
+
+前 20 次运行按原脚本依次测试 10 个状态方向的负、正轴向扰动，后 30 次为随机单位二范数扰动。原无人机脚本没有固定随机种子，本次设置 NumPy 种子为 42，以便复现。
+
+原算法源文件没有修改。适配脚本在内存中替换本地 DINOv2 加载、计划文件路径和仿真次数入口，并增加过程记录；保留原网络、图像预处理、控制律、动力学、扰动生成规则及原成功判据。原脚本注释掉的开环对照没有执行，不把其零数组当作开环实验结果。
+
+## 6. 服务器目录与重复运行
+
+实验根目录为 `{root}`。复用此前停车场的 Python 环境和 DINOv2 源码，通过软链接引用，未修改该环境的软件包。
+
+```bash
+cd {root}
+bash run_all.sh
+```
+
+该命令会重新生成本目录的结果。模型权重已下载。
+
+主要输出：
+
+| 文件 | 内容 |
+|---|---|
+| `results/visual_rollouts/summary.json` | 全部运行统计 |
+| `results/visual_rollouts/diagnostic_traces.npz` | 状态、输入、观测、残差、误差界、扰动与目标距离 |
+| `results/visual_rollouts/first_rollout.mp4` | 第一条轨迹的 35 帧第一视角视频 |
+| `results/visual_rollouts/rollout_trajectories.png` | 50 条 XY 轨迹与高度曲线 |
+| `results/plan_checks.json` | 保存计划的独立数值诊断 |
+| `results/plan.log`、`results/visual_rollouts.log` | 原程序日志和逐次完成记录 |
+| `results/provenance.json`、`results/environment.freeze.txt` | 主机、代码指纹与软件版本 |
+| `source/expe/quad_perception/data/quad10d_perception_0.npz` | 求得的名义计划与控制器响应 |
+
+原代码提交为 `{v['source_revision']}`。DINOv2 ViT-L/14 官方模型文件为 `{v['weights_bytes']}` 字节，SHA256 为 `{v['weights_sha256']}`。关键版本见 `provenance.json`。
+'''
+(results/'无人机实验运行报告.md').write_text(report)
+print(results/'无人机实验运行报告.md')

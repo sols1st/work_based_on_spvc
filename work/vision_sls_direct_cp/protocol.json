@@ -1,0 +1,23 @@
+{
+  "experiment": "Direct trajectory CP replacing the quadrotor polynomial envelope",
+  "date": "2026-10-25",
+  "scene": "quadrotor, default initial condition 0",
+  "alpha": 0.05,
+  "score": "max over all 35 observations of L2 norm of raw residual y-Cx",
+  "old_envelope_used_in_score": false,
+  "new_model": "F=R_CP*I_5, independent of state; no polynomial coefficients loaded",
+  "calibration": {
+    "rollouts": 100,
+    "seed": 2026102501,
+    "disturbances": "all independent random unit L2 state disturbances, no axis stress episodes",
+    "controller": "previously frozen original controller; data collection only"
+  },
+  "evaluation": {
+    "rollouts_per_controller": 50,
+    "seed": 2026102502,
+    "controllers": ["original envelope baseline", "direct CP ball"],
+    "disturbances": "original 20 axis-stress episodes followed by 30 random episodes; paired across controllers"
+  },
+  "unchanged": ["DINOv2 ViT-L/14 and projection checkpoint", "C", "dynamics", "constraints", "costs", "horizon", "renderer", "feedback construction"],
+  "interpretation": "Compare at the original implementation's experimental safety level. Reference-policy CP coverage does not automatically transfer to the replanned policy."
+}

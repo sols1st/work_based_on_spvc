@@ -1,0 +1,449 @@
+{
+  "name": "vae16",
+  "native_dimension": 16,
+  "seed": 7,
+  "requested_timesteps": 200000,
+  "actual_timesteps": 200704,
+  "training_seconds": 210.06337058078498,
+  "controller_sha256": "6703ae0761739b59cf90a9bc0c660cafb98a24f59fa1ecd989740c334d103bb0",
+  "representation_sha256": "14a74dc8e73719e979b687480830732444ca1693257c37322c0e582ba7097a36",
+  "observation": "own native standardized latent + measured physical speed; no distance readout",
+  "actor_parameters": 5377,
+  "reference_residual": {
+    "step": {
+      "count": 37828,
+      "unit": "m/s",
+      "bias": -0.010026369707443607,
+      "mae": 0.017288909073352992,
+      "rmse": 0.030293887171801443,
+      "p95_abs": 0.0703072587773204,
+      "p99_abs": 0.10312687834352242,
+      "max_abs": 0.14967218860983866,
+      "signed_min": -0.14967218860983866,
+      "signed_max": 0.14310325384140032,
+      "thresholds": {
+        "0.05": {
+          "count_above": 4371,
+          "denominator": 37828,
+          "fraction_above": 0.11554932853970604,
+          "positive_above": 756,
+          "negative_below": 3615,
+          "within_or_equal_count": 33457
+        },
+        "0.1": {
+          "count_above": 467,
+          "denominator": 37828,
+          "fraction_above": 0.012345352648831553,
+          "positive_above": 105,
+          "negative_below": 362,
+          "within_or_equal_count": 37361
+        },
+        "0.15": {
+          "count_above": 0,
+          "denominator": 37828,
+          "fraction_above": 0.0,
+          "positive_above": 0,
+          "negative_below": 0,
+          "within_or_equal_count": 37828
+        },
+        "0.150685468316": {
+          "count_above": 0,
+          "denominator": 37828,
+          "fraction_above": 0.0,
+          "positive_above": 0,
+          "negative_below": 0,
+          "within_or_equal_count": 37828
+        }
+      }
+    },
+    "trajectory_score": {
+      "count": 459,
+      "unit": "m/s",
+      "bias": 0.09955947148920016,
+      "mae": 0.09955947148920016,
+      "rmse": 0.10161716929596677,
+      "p95_abs": 0.13213147208094597,
+      "p99_abs": 0.13798180978000188,
+      "max_abs": 0.14967218860983866,
+      "signed_min": 0.054379379749298185,
+      "signed_max": 0.14967218860983866,
+      "thresholds": {
+        "0.05": {
+          "count_above": 459,
+          "denominator": 459,
+          "fraction_above": 1.0,
+          "positive_above": 459,
+          "negative_below": 0,
+          "within_or_equal_count": 0
+        },
+        "0.1": {
+          "count_above": 232,
+          "denominator": 459,
+          "fraction_above": 0.5054466230936819,
+          "positive_above": 232,
+          "negative_below": 0,
+          "within_or_equal_count": 227
+        },
+        "0.15": {
+          "count_above": 0,
+          "denominator": 459,
+          "fraction_above": 0.0,
+          "positive_above": 0,
+          "negative_below": 0,
+          "within_or_equal_count": 459
+        },
+        "0.150685468316": {
+          "count_above": 0,
+          "denominator": 459,
+          "fraction_above": 0.0,
+          "positive_above": 0,
+          "negative_below": 0,
+          "within_or_equal_count": 459
+        }
+      },
+      "trajectories_checked": 459,
+      "trajectories_absent": 0,
+      "score": "maximum absolute per-step residual in each trajectory; empirical diagnostic, not new CP"
+    },
+    "same_recipe_radius_mps": 0.14967218860983866,
+    "rank_from_largest": 1,
+    "nominal_iid_confidence": 0.9900790257989595,
+    "target_trajectory_coverage": 0.99,
+    "fresh_CP_guarantee": false,
+    "safety_certificate": false,
+    "scope": "reused 459 old PPO09 reference trajectories; off-policy common-state diagnostic, NOT candidate on-policy calibration",
+    "worst": {
+      "distance_m": 14.953495979309082,
+      "speed_mps": 2.686265707015991,
+      "image_action": 0.0781889408826828,
+      "q_action": -2.915254831314087,
+      "residual_mps": -0.14967218860983866
+    }
+  },
+  "matched": {
+    "train": {
+      "images": 14172,
+      "steps": {
+        "count": 371160,
+        "unit": "m/s",
+        "bias": -0.014440510649573694,
+        "mae": 0.01787799286323558,
+        "rmse": 0.03818591506435056,
+        "p95_abs": 0.09961390018463143,
+        "p99_abs": 0.13719447141885752,
+        "max_abs": 0.21533213257789607,
+        "signed_min": -0.21533213257789607,
+        "signed_max": 0.14323703125119236,
+        "thresholds": {
+          "0.05": {
+            "count_above": 56318,
+            "denominator": 371160,
+            "fraction_above": 0.15173510076516866,
+            "positive_above": 4044,
+            "negative_below": 52274,
+            "within_or_equal_count": 314842
+          },
+          "0.1": {
+            "count_above": 18336,
+            "denominator": 371160,
+            "fraction_above": 0.049401875202069186,
+            "positive_above": 564,
+            "negative_below": 17772,
+            "within_or_equal_count": 352824
+          },
+          "0.15": {
+            "count_above": 1450,
+            "denominator": 371160,
+            "fraction_above": 0.003906670977476021,
+            "positive_above": 0,
+            "negative_below": 1450,
+            "within_or_equal_count": 369710
+          },
+          "0.150685468316": {
+            "count_above": 1374,
+            "denominator": 371160,
+            "fraction_above": 0.003701907533139347,
+            "positive_above": 0,
+            "negative_below": 1374,
+            "within_or_equal_count": 369786
+          }
+        }
+      },
+      "image_only_next_unsafe": 3,
+      "q_only_next_unsafe": 0,
+      "both_next_unsafe": 5328,
+      "scope": "exact same RGB-label state and speed; no nearest-image lookup"
+    },
+    "internal_audit": {
+      "images": 2460,
+      "steps": {
+        "count": 73800,
+        "unit": "m/s",
+        "bias": -0.017113135824913812,
+        "mae": 0.01904916011934801,
+        "rmse": 0.03876035407013138,
+        "p95_abs": 0.09489486888051026,
+        "p99_abs": 0.13914274656027562,
+        "max_abs": 0.2292318344116211,
+        "signed_min": -0.2292318344116211,
+        "signed_max": 0.12373980283737174,
+        "thresholds": {
+          "0.05": {
+            "count_above": 11977,
+            "denominator": 73800,
+            "fraction_above": 0.162289972899729,
+            "positive_above": 149,
+            "negative_below": 11828,
+            "within_or_equal_count": 61823
+          },
+          "0.1": {
+            "count_above": 3119,
+            "denominator": 73800,
+            "fraction_above": 0.042262872628726286,
+            "positive_above": 12,
+            "negative_below": 3107,
+            "within_or_equal_count": 70681
+          },
+          "0.15": {
+            "count_above": 448,
+            "denominator": 73800,
+            "fraction_above": 0.006070460704607046,
+            "positive_above": 0,
+            "negative_below": 448,
+            "within_or_equal_count": 73352
+          },
+          "0.150685468316": {
+            "count_above": 431,
+            "denominator": 73800,
+            "fraction_above": 0.005840108401084011,
+            "positive_above": 0,
+            "negative_below": 431,
+            "within_or_equal_count": 73369
+          }
+        }
+      },
+      "image_only_next_unsafe": 0,
+      "q_only_next_unsafe": 0,
+      "both_next_unsafe": 0,
+      "scope": "exact same RGB-label state and speed; no nearest-image lookup"
+    }
+  },
+  "rollouts": {
+    "surrogate": {
+      "episodes": 100,
+      "counts": {
+        "success": 100
+      },
+      "success_rate": 1.0,
+      "unsafe_rate": 0.0,
+      "timeout_rate": 0.0,
+      "stopped_safe_outside_goal_rate": 0.0,
+      "out_of_domain_rate": 0.0,
+      "mean_return": 20.93038977471474,
+      "mean_steps": 79.62,
+      "by_appearance": {
+        "surrogate": {
+          "episodes": 100,
+          "counts": {
+            "success": 100
+          },
+          "success_rate": 1.0,
+          "unsafe_rate": 0.0,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 0.0,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 20.93038977471474,
+          "mean_steps": 79.62
+        }
+      },
+      "lookup_error_m": null,
+      "scope": "own q proxy in analytic physical environment"
+    },
+    "image": {
+      "episodes": 1200,
+      "counts": {
+        "stopped_safe_outside_goal": 426,
+        "success": 774
+      },
+      "success_rate": 0.645,
+      "unsafe_rate": 0.0,
+      "timeout_rate": 0.0,
+      "stopped_safe_outside_goal_rate": 0.355,
+      "out_of_domain_rate": 0.0,
+      "mean_return": 20.19561834671126,
+      "mean_steps": 80.4425,
+      "by_appearance": {
+        "low_sun|220,220,220": {
+          "episodes": 100,
+          "counts": {
+            "stopped_safe_outside_goal": 38,
+            "success": 62
+          },
+          "success_rate": 0.62,
+          "unsafe_rate": 0.0,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 0.38,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 20.148510388476936,
+          "mean_steps": 82.28
+        },
+        "low_sun|255,0,0": {
+          "episodes": 100,
+          "counts": {
+            "success": 3,
+            "stopped_safe_outside_goal": 97
+          },
+          "success_rate": 0.03,
+          "unsafe_rate": 0.0,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 0.97,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 18.956846517296682,
+          "mean_steps": 81.54
+        },
+        "low_sun|40,80,160": {
+          "episodes": 100,
+          "counts": {
+            "success": 100
+          },
+          "success_rate": 1.0,
+          "unsafe_rate": 0.0,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 0.0,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 20.942023568363215,
+          "mean_steps": 73.28
+        },
+        "original|220,220,220": {
+          "episodes": 100,
+          "counts": {
+            "stopped_safe_outside_goal": 100
+          },
+          "success_rate": 0.0,
+          "unsafe_rate": 0.0,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 1.0,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 18.83548060422625,
+          "mean_steps": 86.08
+        },
+        "original|255,0,0": {
+          "episodes": 100,
+          "counts": {
+            "stopped_safe_outside_goal": 100
+          },
+          "success_rate": 0.0,
+          "unsafe_rate": 0.0,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 1.0,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 18.77459721429567,
+          "mean_steps": 85.25
+        },
+        "original|40,80,160": {
+          "episodes": 100,
+          "counts": {
+            "stopped_safe_outside_goal": 91,
+            "success": 9
+          },
+          "success_rate": 0.09,
+          "unsafe_rate": 0.0,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 0.91,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 19.079020926745088,
+          "mean_steps": 89.98
+        },
+        "overcast|220,220,220": {
+          "episodes": 100,
+          "counts": {
+            "success": 100
+          },
+          "success_rate": 1.0,
+          "unsafe_rate": 0.0,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 0.0,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 20.938563613045844,
+          "mean_steps": 76.09
+        },
+        "overcast|255,0,0": {
+          "episodes": 100,
+          "counts": {
+            "success": 100
+          },
+          "success_rate": 1.0,
+          "unsafe_rate": 0.0,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 0.0,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 20.93597717733029,
+          "mean_steps": 77.96
+        },
+        "overcast|40,80,160": {
+          "episodes": 100,
+          "counts": {
+            "success": 100
+          },
+          "success_rate": 1.0,
+          "unsafe_rate": 0.0,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 0.0,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 20.940760664225845,
+          "mean_steps": 75.53
+        },
+        "rain|220,220,220": {
+          "episodes": 100,
+          "counts": {
+            "success": 100
+          },
+          "success_rate": 1.0,
+          "unsafe_rate": 0.0,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 0.0,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 20.932518770287064,
+          "mean_steps": 77.99
+        },
+        "rain|255,0,0": {
+          "episodes": 100,
+          "counts": {
+            "success": 100
+          },
+          "success_rate": 1.0,
+          "unsafe_rate": 0.0,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 0.0,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 20.922727697437427,
+          "mean_steps": 81.51
+        },
+        "rain|40,80,160": {
+          "episodes": 100,
+          "counts": {
+            "success": 100
+          },
+          "success_rate": 1.0,
+          "unsafe_rate": 0.0,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 0.0,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 20.94039301880481,
+          "mean_steps": 77.82
+        }
+      },
+      "lookup_error_m": {
+        "mean": 0.04871335736556073,
+        "max": 0.3783733831440941
+      },
+      "scope": "analytic physical dynamics; train-library nearest RGB feature replay, NOT online CARLA"
+    }
+  },
+  "sampled_task_gate": false,
+  "task_gate_scope": "development performance screen only; does not constitute a safety proof",
+  "status": "native_ppo_speed_residual_development_complete",
+  "runtime_seconds": 212.55020876321942,
+  "SBC_QP_CP_training": false,
+  "RGB_test_used": false
+}

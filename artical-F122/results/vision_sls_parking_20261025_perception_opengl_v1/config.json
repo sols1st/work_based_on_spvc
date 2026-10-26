@@ -1,0 +1,28 @@
+{
+  "source_sha256": {
+    "/root/work_based_on_spvc/VISION-SLS/expe/parking_lot/data/unicycle_checkpoint_observability_ft_075w_3pi4_097_300000_post.pt": "83aec716dfa330ef0d2edb5f248753f0bf3739a0ccf5fe9bc63216f4ff8086fe",
+    "/root/work_based_on_spvc/VISION-SLS/expe/parking_lot/data/unicycle_10000_512small_03width_background4_075w_3pi4_op097_dino_1536_states_large_val.pt": "6330d15de6edd446ce385e9779bcb24890ed4ec49bf0a7ac0a6e0574c84d6887",
+    "/root/work_based_on_spvc/VISION-SLS/expe/parking_lot/data/unicycle_observability_bound_ppoly_097_300000_val_3_0.97_0.04.npz": "d54f2c33a4beb6a109cb4f2c126e938de000575d7036d7665e2ab8206cafa500",
+    "results/vision_sls_parking_20261025_panel_opengl_v1/rendered_panel.npz": "6cd6b4714276bf3c08887cb26b7436e092ea669f6cc9bb0ba2ebbc78927798f4",
+    "/root/work_based_on_spvc/external/dinov2_weights/dinov2_vitg14_pretrain.pth": "baf8467e50af277596bbbafa06887c177ee899ab46033649c383577d7e9309d3",
+    "/root/work_based_on_spvc/external/dinov2/hubconf.py": "e82275b3adcc3631865d1edd4b620b89d42459169acdeb652804cd0eb0fe9615",
+    "/root/work_based_on_spvc/artical-F122/Aebs/vision_sls_parking/__init__.py": "4b3c21e2ca39e804bcdf5b1ed552ab4a6c0d802319b73df62d0151a61869eacf",
+    "/root/work_based_on_spvc/artical-F122/Aebs/vision_sls_parking/core.py": "d3266697cf7db8db3edd9bd3c8e21499359874049098b38a6838d2d4e2646eda",
+    "/root/work_based_on_spvc/artical-F122/Aebs/vision_sls_parking/perception.py": "a8eca639fc507ebe7007e746ae5c881a4aebbeca1b7d4edfb0fd256a62f5642e",
+    "/root/work_based_on_spvc/artical-F122/Aebs/vision_sls_parking/test_perception.py": "7a2f600a603623cd410e3f4bfc4d6a7843c9e9a7841927517d1f417234562703",
+    "/root/work_based_on_spvc/artical-F122/Aebs/vision_sls_parking/smoke_test.py": "e37e6ca4b1e429064667aa2aff9cd80f4d80a4a4f320766c9556d6660eb5cf2f",
+    "/root/work_based_on_spvc/artical-F122/Aebs/vision_sls_parking/env.py": "d3ca8ac146a7528b6e955341fbde7b7f6827abc7ebe0b23a09e81a2225094ab8",
+    "/root/work_based_on_spvc/artical-F122/Aebs/vision_sls_parking/renderer.py": "60256e2e664e0ed758b51d9c5202d0477de49b6e77778ddcabeaa890db6107bb"
+  },
+  "features_only": false,
+  "render_only": false,
+  "random_samples": 128,
+  "seed": 7,
+  "renderer": "opengl",
+  "preprocessing": "PIL RGB -> bicubic Resize(224) -> ToTensor -> ImageNet Normalize; no center crop",
+  "model": "official DINOv2-G/14 1536-D CLS, float32, frozen",
+  "panel": "15 starts + 128 (default) uniform paper-domain states + 4 occlusion probes",
+  "pose_target": "C_normalized @ (same captured world state + [3,0,0,0])",
+  "torch_version": "2.3.1",
+  "training": false
+}

@@ -1,0 +1,111 @@
+{
+  "source_metrics_sha256": "fcc33125fe1407785a9b971f70b0c713d80f0b4c579ea17fc8f5c59087d8e473",
+  "comparisons": {
+    "matched_MLP_task_vs_plain": {
+      "1": {
+        "trajectory_count": 69,
+        "mean_paired_delta": -0.00027353052372564225,
+        "ci95": [
+          -0.00031110012936239756,
+          -0.00023425915754316082
+        ],
+        "lower_error_trajectory_fraction": 0.9710144927536232,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      },
+      "3": {
+        "trajectory_count": 69,
+        "mean_paired_delta": -0.0008076638700740736,
+        "ci95": [
+          -0.000946474684861794,
+          -0.0006701280569424765
+        ],
+        "lower_error_trajectory_fraction": 0.9420289855072463,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      },
+      "10": {
+        "trajectory_count": 69,
+        "mean_paired_delta": -0.0008783249097665568,
+        "ci95": [
+          -0.0013806248012636837,
+          -0.00040815952633009334
+        ],
+        "lower_error_trajectory_fraction": 0.5797101449275363,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      }
+    },
+    "Transformer_task_vs_plain": {
+      "1": {
+        "trajectory_count": 69,
+        "mean_paired_delta": -0.00032656680512182124,
+        "ci95": [
+          -0.00043580586520317917,
+          -0.00021218277145074787
+        ],
+        "lower_error_trajectory_fraction": 0.782608695652174,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      },
+      "3": {
+        "trajectory_count": 69,
+        "mean_paired_delta": -0.001502058540797912,
+        "ci95": [
+          -0.001749571920590797,
+          -0.001254487721863466
+        ],
+        "lower_error_trajectory_fraction": 0.9420289855072463,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      },
+      "10": {
+        "trajectory_count": 69,
+        "mean_paired_delta": -0.003238904697848186,
+        "ci95": [
+          -0.0036991787120438076,
+          -0.0027816497930029356
+        ],
+        "lower_error_trajectory_fraction": 0.9420289855072463,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      }
+    },
+    "task_MLP_vs_task_Transformer": {
+      "1": {
+        "trajectory_count": 69,
+        "mean_paired_delta": -2.9157988748624048e-05,
+        "ci95": [
+          -0.00010603479438815554,
+          5.7114453245568656e-05
+        ],
+        "lower_error_trajectory_fraction": 0.4782608695652174,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      },
+      "3": {
+        "trajectory_count": 69,
+        "mean_paired_delta": 0.0008937105979940292,
+        "ci95": [
+          0.0006474526130602566,
+          0.0011341828588420275
+        ],
+        "lower_error_trajectory_fraction": 0.17391304347826086,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      },
+      "10": {
+        "trajectory_count": 69,
+        "mean_paired_delta": 0.0017626272743621486,
+        "ci95": [
+          0.001346624150250745,
+          0.0021642506209305773
+        ],
+        "lower_error_trajectory_fraction": 0.11594202898550725,
+        "estimand": "equal-trajectory mean absolute-error difference; negative favors candidate",
+        "scope": "conditional on this trained pair and old development distribution"
+      }
+    }
+  },
+  "scope": "old development trajectories; paired whole-trajectory mean differences, NOT training-seed uncertainty"
+}

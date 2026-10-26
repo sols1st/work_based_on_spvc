@@ -1,0 +1,456 @@
+{
+  "name": "pca128",
+  "native_dimension": 128,
+  "seed": 7,
+  "requested_timesteps": 200000,
+  "actual_timesteps": 200704,
+  "training_seconds": 214.13521010102704,
+  "controller_sha256": "ac559f7aa1feefddbcc90afce6067abec21444d4d1ce08636058ad73c3f1640d",
+  "representation_sha256": "a7315ce94253962384cf6b1fbb3e463bafc4724f71815c2e1e81f39f55323075",
+  "observation": "own native standardized latent + measured physical speed; no distance readout",
+  "actor_parameters": 12545,
+  "reference_residual": {
+    "step": {
+      "count": 37828,
+      "unit": "m/s",
+      "bias": -0.0025630973430073143,
+      "mae": 0.05479324874822828,
+      "rmse": 0.07279712975830781,
+      "p95_abs": 0.14180645473301412,
+      "p99_abs": 0.1812120841741564,
+      "max_abs": 0.2863573431968689,
+      "signed_min": -0.1701030805706978,
+      "signed_max": 0.2863573431968689,
+      "thresholds": {
+        "0.05": {
+          "count_above": 17430,
+          "denominator": 37828,
+          "fraction_above": 0.4607698001480385,
+          "positive_above": 8241,
+          "negative_below": 9189,
+          "within_or_equal_count": 20398
+        },
+        "0.1": {
+          "count_above": 7819,
+          "denominator": 37828,
+          "fraction_above": 0.20669874167283495,
+          "positive_above": 3944,
+          "negative_below": 3875,
+          "within_or_equal_count": 30009
+        },
+        "0.15": {
+          "count_above": 1215,
+          "denominator": 37828,
+          "fraction_above": 0.03211906524267738,
+          "positive_above": 967,
+          "negative_below": 248,
+          "within_or_equal_count": 36613
+        },
+        "0.150685468316": {
+          "count_above": 1173,
+          "denominator": 37828,
+          "fraction_above": 0.031008776567621868,
+          "positive_above": 942,
+          "negative_below": 231,
+          "within_or_equal_count": 36655
+        }
+      }
+    },
+    "trajectory_score": {
+      "count": 459,
+      "unit": "m/s",
+      "bias": 0.19232184234539892,
+      "mae": 0.19232184234539892,
+      "rmse": 0.19526724929352263,
+      "p95_abs": 0.26310190796852123,
+      "p99_abs": 0.28244176936149595,
+      "max_abs": 0.2863573431968689,
+      "signed_min": 0.12298703826963903,
+      "signed_max": 0.2863573431968689,
+      "thresholds": {
+        "0.05": {
+          "count_above": 459,
+          "denominator": 459,
+          "fraction_above": 1.0,
+          "positive_above": 459,
+          "negative_below": 0,
+          "within_or_equal_count": 0
+        },
+        "0.1": {
+          "count_above": 459,
+          "denominator": 459,
+          "fraction_above": 1.0,
+          "positive_above": 459,
+          "negative_below": 0,
+          "within_or_equal_count": 0
+        },
+        "0.15": {
+          "count_above": 429,
+          "denominator": 459,
+          "fraction_above": 0.934640522875817,
+          "positive_above": 429,
+          "negative_below": 0,
+          "within_or_equal_count": 30
+        },
+        "0.150685468316": {
+          "count_above": 426,
+          "denominator": 459,
+          "fraction_above": 0.9281045751633987,
+          "positive_above": 426,
+          "negative_below": 0,
+          "within_or_equal_count": 33
+        }
+      },
+      "trajectories_checked": 459,
+      "trajectories_absent": 0,
+      "score": "maximum absolute per-step residual in each trajectory; empirical diagnostic, not new CP"
+    },
+    "same_recipe_radius_mps": 0.2863573431968689,
+    "rank_from_largest": 1,
+    "nominal_iid_confidence": 0.9900790257989595,
+    "target_trajectory_coverage": 0.99,
+    "fresh_CP_guarantee": false,
+    "safety_certificate": false,
+    "scope": "reused 459 old PPO09 reference trajectories; off-policy common-state diagnostic, NOT candidate on-policy calibration",
+    "worst": {
+      "distance_m": 6.870176315307617,
+      "speed_mps": 1.8410881757736206,
+      "image_action": -3.0,
+      "q_action": 2.727146863937378,
+      "residual_mps": 0.2863573431968689
+    }
+  },
+  "matched": {
+    "train": {
+      "images": 14172,
+      "steps": {
+        "count": 371160,
+        "unit": "m/s",
+        "bias": -0.033724186590082375,
+        "mae": 0.0729397269192326,
+        "rmse": 0.0943248970325076,
+        "p95_abs": 0.18816619798541087,
+        "p99_abs": 0.24686760544776917,
+        "max_abs": 0.30000000000000004,
+        "signed_min": -0.30000000000000004,
+        "signed_max": 0.2999999999999998,
+        "thresholds": {
+          "0.05": {
+            "count_above": 212021,
+            "denominator": 371160,
+            "fraction_above": 0.5712388188382369,
+            "positive_above": 58551,
+            "negative_below": 153470,
+            "within_or_equal_count": 159139
+          },
+          "0.1": {
+            "count_above": 108200,
+            "denominator": 371160,
+            "fraction_above": 0.2915184825951072,
+            "positive_above": 25305,
+            "negative_below": 82895,
+            "within_or_equal_count": 262960
+          },
+          "0.15": {
+            "count_above": 43162,
+            "denominator": 371160,
+            "fraction_above": 0.11628947084815174,
+            "positive_above": 8026,
+            "negative_below": 35136,
+            "within_or_equal_count": 327998
+          },
+          "0.150685468316": {
+            "count_above": 42518,
+            "denominator": 371160,
+            "fraction_above": 0.11455437008298308,
+            "positive_above": 7879,
+            "negative_below": 34639,
+            "within_or_equal_count": 328642
+          }
+        }
+      },
+      "image_only_next_unsafe": 27,
+      "q_only_next_unsafe": 16,
+      "both_next_unsafe": 5384,
+      "scope": "exact same RGB-label state and speed; no nearest-image lookup"
+    },
+    "internal_audit": {
+      "images": 2460,
+      "steps": {
+        "count": 73800,
+        "unit": "m/s",
+        "bias": -0.0494594904547999,
+        "mae": 0.07888708061670793,
+        "rmse": 0.09998178154053806,
+        "p95_abs": 0.1960961580276488,
+        "p99_abs": 0.2581635245084757,
+        "max_abs": 0.30000000000000004,
+        "signed_min": -0.30000000000000004,
+        "signed_max": 0.2513394474983215,
+        "thresholds": {
+          "0.05": {
+            "count_above": 45817,
+            "denominator": 73800,
+            "fraction_above": 0.6208265582655826,
+            "positive_above": 9483,
+            "negative_below": 36334,
+            "within_or_equal_count": 27983
+          },
+          "0.1": {
+            "count_above": 24246,
+            "denominator": 73800,
+            "fraction_above": 0.3285365853658537,
+            "positive_above": 3068,
+            "negative_below": 21178,
+            "within_or_equal_count": 49554
+          },
+          "0.15": {
+            "count_above": 9548,
+            "denominator": 73800,
+            "fraction_above": 0.12937669376693767,
+            "positive_above": 605,
+            "negative_below": 8943,
+            "within_or_equal_count": 64252
+          },
+          "0.150685468316": {
+            "count_above": 9409,
+            "denominator": 73800,
+            "fraction_above": 0.12749322493224932,
+            "positive_above": 583,
+            "negative_below": 8826,
+            "within_or_equal_count": 64391
+          }
+        }
+      },
+      "image_only_next_unsafe": 0,
+      "q_only_next_unsafe": 0,
+      "both_next_unsafe": 0,
+      "scope": "exact same RGB-label state and speed; no nearest-image lookup"
+    }
+  },
+  "rollouts": {
+    "surrogate": {
+      "episodes": 100,
+      "counts": {
+        "success": 100
+      },
+      "success_rate": 1.0,
+      "unsafe_rate": 0.0,
+      "timeout_rate": 0.0,
+      "stopped_safe_outside_goal_rate": 0.0,
+      "out_of_domain_rate": 0.0,
+      "mean_return": 20.930855497201687,
+      "mean_steps": 88.76,
+      "by_appearance": {
+        "surrogate": {
+          "episodes": 100,
+          "counts": {
+            "success": 100
+          },
+          "success_rate": 1.0,
+          "unsafe_rate": 0.0,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 0.0,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 20.930855497201687,
+          "mean_steps": 88.76
+        }
+      },
+      "lookup_error_m": null,
+      "scope": "own q proxy in analytic physical environment"
+    },
+    "image": {
+      "episodes": 1200,
+      "counts": {
+        "unsafe": 916,
+        "stopped_safe_outside_goal": 155,
+        "success": 129
+      },
+      "success_rate": 0.1075,
+      "unsafe_rate": 0.7633333333333333,
+      "timeout_rate": 0.0,
+      "stopped_safe_outside_goal_rate": 0.12916666666666668,
+      "out_of_domain_rate": 0.0,
+      "mean_return": 17.634213849215296,
+      "mean_steps": 83.27916666666667,
+      "by_appearance": {
+        "low_sun|220,220,220": {
+          "episodes": 100,
+          "counts": {
+            "unsafe": 100
+          },
+          "success_rate": 0.0,
+          "unsafe_rate": 1.0,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 0.0,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 17.08731260846258,
+          "mean_steps": 90.3
+        },
+        "low_sun|255,0,0": {
+          "episodes": 100,
+          "counts": {
+            "stopped_safe_outside_goal": 19,
+            "unsafe": 59,
+            "success": 22
+          },
+          "success_rate": 0.22,
+          "unsafe_rate": 0.59,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 0.19,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 18.205672738986653,
+          "mean_steps": 98.6
+        },
+        "low_sun|40,80,160": {
+          "episodes": 100,
+          "counts": {
+            "success": 30,
+            "unsafe": 53,
+            "stopped_safe_outside_goal": 17
+          },
+          "success_rate": 0.3,
+          "unsafe_rate": 0.53,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 0.17,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 19.22746337325754,
+          "mean_steps": 91.11
+        },
+        "original|220,220,220": {
+          "episodes": 100,
+          "counts": {
+            "unsafe": 94,
+            "success": 6
+          },
+          "success_rate": 0.06,
+          "unsafe_rate": 0.94,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 0.0,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 18.180157440786974,
+          "mean_steps": 75.51
+        },
+        "original|255,0,0": {
+          "episodes": 100,
+          "counts": {
+            "stopped_safe_outside_goal": 56,
+            "success": 30,
+            "unsafe": 14
+          },
+          "success_rate": 0.3,
+          "unsafe_rate": 0.14,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 0.56,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 19.34658431942178,
+          "mean_steps": 91.85
+        },
+        "original|40,80,160": {
+          "episodes": 100,
+          "counts": {
+            "stopped_safe_outside_goal": 59,
+            "success": 41
+          },
+          "success_rate": 0.41,
+          "unsafe_rate": 0.0,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 0.59,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 19.502710085365496,
+          "mean_steps": 94.23
+        },
+        "overcast|220,220,220": {
+          "episodes": 100,
+          "counts": {
+            "unsafe": 100
+          },
+          "success_rate": 0.0,
+          "unsafe_rate": 1.0,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 0.0,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 15.952581135556713,
+          "mean_steps": 71.89
+        },
+        "overcast|255,0,0": {
+          "episodes": 100,
+          "counts": {
+            "unsafe": 100
+          },
+          "success_rate": 0.0,
+          "unsafe_rate": 1.0,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 0.0,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 15.964032048773332,
+          "mean_steps": 72.32
+        },
+        "overcast|40,80,160": {
+          "episodes": 100,
+          "counts": {
+            "unsafe": 96,
+            "stopped_safe_outside_goal": 4
+          },
+          "success_rate": 0.0,
+          "unsafe_rate": 0.96,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 0.04,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 17.7731572282263,
+          "mean_steps": 77.48
+        },
+        "rain|220,220,220": {
+          "episodes": 100,
+          "counts": {
+            "unsafe": 100
+          },
+          "success_rate": 0.0,
+          "unsafe_rate": 1.0,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 0.0,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 15.869296346457018,
+          "mean_steps": 75.28
+        },
+        "rain|255,0,0": {
+          "episodes": 100,
+          "counts": {
+            "unsafe": 100
+          },
+          "success_rate": 0.0,
+          "unsafe_rate": 1.0,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 0.0,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 17.24856356404728,
+          "mean_steps": 84.19
+        },
+        "rain|40,80,160": {
+          "episodes": 100,
+          "counts": {
+            "unsafe": 100
+          },
+          "success_rate": 0.0,
+          "unsafe_rate": 1.0,
+          "timeout_rate": 0.0,
+          "stopped_safe_outside_goal_rate": 0.0,
+          "out_of_domain_rate": 0.0,
+          "mean_return": 17.25303530124189,
+          "mean_steps": 76.59
+        }
+      },
+      "lookup_error_m": {
+        "mean": 0.05177851450518528,
+        "max": 0.37828162845931956
+      },
+      "scope": "analytic physical dynamics; train-library nearest RGB feature replay, NOT online CARLA"
+    }
+  },
+  "sampled_task_gate": false,
+  "task_gate_scope": "development performance screen only; does not constitute a safety proof",
+  "status": "native_ppo_speed_residual_development_complete",
+  "runtime_seconds": 218.11225376138464,
+  "SBC_QP_CP_training": false,
+  "RGB_test_used": false
+}

@@ -1,0 +1,103 @@
+{
+  "args": {
+    "trajectories": "results/dino_expanded_v1/20_trajectory_sbc_cp_calibration_v1/trajectories.h5",
+    "representation": "results/dino_expanded_v1/08_R2_group_alignment/dino_safety_latent.pt",
+    "base_ppo": "results/dino_expanded_v1/09_R2_ppo/latent_ppo.zip",
+    "spvc_dir": "results/dino_spvc_minimal_v1",
+    "final_recheck": "results/dino_spvc_minimal_v1_final_recheck/metrics.json",
+    "native_dir": "results/native_representation_dimensions_20261019_v1",
+    "controller_dir": "results/native_controllers_speed_residual_20261019_v1/historical_R2",
+    "temporal_dir": "results/latent_methods_benchmark_20261018_run1",
+    "pilot_dir": "results/transformer_pilot_20261018",
+    "device": "cuda",
+    "batch_size": 1024,
+    "window_scope": "per_horizon",
+    "output_dir": "results/exact_latent_path_comparison_20261020_v2"
+  },
+  "source_sha256": {
+    "results/dino_expanded_v1/08_R2_group_alignment/dino_safety_latent.pt": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+    "results/dino_expanded_v1/09_R2_ppo/latent_ppo.zip": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+    "results/dino_spvc_minimal_v1_final_recheck/metrics.json": "53fbe78e94ca791d00d42d8a7e509e59bbc3513b54055a087ecbdbcd5c1f1020",
+    "results/dino_spvc_minimal_v1/latent_ppo_spvc.pt": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+    "results/dino_spvc_minimal_v1/sbc.pt": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+    "results/dino_spvc_minimal_v1/metrics.json": "e5d10b7d33d4a1ecc549e6306d1105d954ad9d495711b53bf70e50dc16b35e54",
+    "results/native_representation_dimensions_20261019_v1/historical_R2.pt": "42d2bea5ffe112df753e23777f2b86d4edf193fe4489f507dd99b21b60d90230",
+    "results/native_controllers_speed_residual_20261019_v1/historical_R2/native_ppo.zip": "01a1173645051eb7e96480bd2a21a948c6fb8b3a860263784d5a10ad8dd4c373",
+    "results/native_controllers_speed_residual_20261019_v1/historical_R2/metrics.json": "4a7cba5444f5a68e56162700b3cb763d1d0c1adbeff0809a089a92514d2948a6",
+    "results/latent_methods_benchmark_20261018_run1/coordinates.pt": "e3cf08c315bf4adc6b1882b83b3e7a8a29f82c0c77f794ee3aae8441c7ec8b54",
+    "results/latent_methods_benchmark_20261018_run1/config.json": "42dee20f1ea0a434a85321a7efde839c3e2d91194e95b2ceb17d4344397a5c51",
+    "results/transformer_pilot_20261018/config.json": "5058f51509a8509201e927ef0613c3b0cca255114be7470ccf0b8e7edaebf4c7",
+    "/root/work_based_on_spvc/artical-F122/Aebs/dino_latent/compare_exact_latent_paths.py": "365339e241a135f28d4409932c20d81e4ed3643825ff0c3af0c57609eddb6d2d",
+    "results/latent_methods_benchmark_20261018_run1/mlp32_parameter_matched.pt": "14ed8539fa2034c4f4abe86b5906a27e16802b9794a5a82b49b7a2a3e9d7456d",
+    "results/latent_methods_benchmark_20261018_run1/transformer32.pt": "8d53bb9c21397f959ed0714b7b23be428376d5bd140d7f3283e3e83a8a870de0",
+    "results/latent_methods_benchmark_20261018_run1/transformer32_task_aware.pt": "d40c2c3bd9a824aeeb0bd4612e95c53e443a5fcc7900b32ca040f455d60b3208",
+    "results/latent_methods_benchmark_20261018_run1/transformer32_no_speed.pt": "71bd90096d6cea3a20ac6e7a34431dc9e30eb77375b1118ee0b30fdb00c48351",
+    "results/transformer_pilot_20261018/transformer32.pt": "13a70c9512d5afc3a2cce82c4cc04a3e11b20f9b2d3ec209984413c7e36c895c",
+    "results/transformer_pilot_20261018/transformer384.pt": "1d698571aa77628af636930fc28606cc0efb6e2bbae9aee469f78dec85220319"
+  },
+  "trajectory_sha256": "a3b379b7cbcc8d29eb2cca6e0ec4c06f189058b8dc4ae9c4c9722ba114021bee",
+  "trajectory_count": 459,
+  "common_contexts": 32320,
+  "context_length": 3,
+  "windows_per_horizon": {
+    "1": 36451,
+    "3": 35533,
+    "10": 32320
+  },
+  "eligibility": "ALL methods share EXACT same window set within each horizon; nonterminal targets only",
+  "window_scope": "per_horizon",
+  "near_terminal_policy": "per_horizon includes all eligible late frames; common10 restricts to ten-step-capable contexts",
+  "static_task": "q gets exact target distance; consistency, not forecasting",
+  "temporal_task": "past3 synchronized features + recorded open-loop actions; no future image/speed inputs",
+  "actor_task": "same target TRUE speed supplied to all actors; isolates latent effects, not full speed prediction",
+  "residual_sign": "candidate_next_speed minus matched_real_image_next_speed; positive=underbraking",
+  "collector": "old PPO09, not the candidate models or native_R2",
+  "nearest_lookup": false,
+  "training": false,
+  "autonomous_rollout": false,
+  "fresh_CP": false,
+  "final_test_used": false,
+  "safety_certificate": false,
+  "reference_reused": true,
+  "trajectory_audit": {
+    "distance_transition_max_abs_m": 9.5367431640625e-07,
+    "speed_transition_max_abs_mps": 2.384185791015625e-07,
+    "collector_recorded_action_replay_max_abs": 9.417533874511719e-06
+  },
+  "minimal_actor_identity": {
+    "old_controller_sha256": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+    "new_controller_sha256": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+    "barrier_sha256": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+    "source_metrics_sha256": "e5d10b7d33d4a1ecc549e6306d1105d954ad9d495711b53bf70e50dc16b35e54",
+    "stage": "minimal_final_saved_pair",
+    "final_recheck_sha256": "53fbe78e94ca791d00d42d8a7e509e59bbc3513b54055a087ecbdbcd5c1f1020",
+    "final_recheck_status": "saved_pair_passes_legacy_checks",
+    "final_recheck_source_hashes": {
+      "metrics": "e5d10b7d33d4a1ecc549e6306d1105d954ad9d495711b53bf70e50dc16b35e54",
+      "policy": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+      "barrier": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+      "representation": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+      "base_controller": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+      "minimal_manifest": "d32af8fa0beddaa6386a3a8f3a3dc55b5a30e23723f661037b9bef216164f054"
+    },
+    "checkpoint_matches_final_recheck": true,
+    "note": "identity/legacy-check evidence only; not an image-path safety certificate",
+    "changed_actor_tensors": 6,
+    "q_parameters_unchanged": true,
+    "state_distance_scale_m": 3.18272066116333,
+    "representation_distance_scale_m": 3.161912679672241,
+    "inference": "deterministic actor mean clipped to [-3,3]; no QP; no SBC action filtering"
+  },
+  "native_actor_identity": {
+    "source_sha256": {
+      "results/native_representation_dimensions_20261019_v1/historical_R2.pt": "42d2bea5ffe112df753e23777f2b86d4edf193fe4489f507dd99b21b60d90230",
+      "results/native_controllers_speed_residual_20261019_v1/historical_R2/native_ppo.zip": "01a1173645051eb7e96480bd2a21a948c6fb8b3a860263784d5a10ad8dd4c373",
+      "results/native_controllers_speed_residual_20261019_v1/historical_R2/metrics.json": "4a7cba5444f5a68e56162700b3cb763d1d0c1adbeff0809a089a92514d2948a6"
+    },
+    "adapter_action_max_abs": 0.0,
+    "new_q_and_native_standardization_used": true,
+    "old_R2_q_used": false,
+    "PPO_updated": false,
+    "fresh_CP_contract": false
+  }
+}

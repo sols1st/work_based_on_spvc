@@ -1,0 +1,110 @@
+"""Write the completed numerical follow-up, keeping every variant visible."""
+import json
+from pathlib import Path
+out=Path('/Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_建议原方案CP验证_20261026')
+suffixes={'convexified':'_convexified_iter50000_outer80','regularized':'_convexified_iter50000_outer100_rf0p001','conditioned':'_convexified_iter100000_outer100_rf0p001_normalized'}
+data={}
+for scene in ['parking','quad']:
+    for variant,suffix in suffixes.items():
+        file=out/scene/('doc_cp_comparison'+suffix+'.json')
+        if file.exists():data[scene,variant]=json.loads(file.read_text())
+if ('quad','regularized') not in data:raise RuntimeError('Follow-up is incomplete')
+for (scene,variant),d in data.items():
+    strict=json.loads((out/scene/'doc_cp_comparison.json').read_text())
+    assert d['model']==strict['model'],'The document CP model must stay frozen'
+    if 'doc_cp' in d['methods']:assert d['paired_disturbances_identical']
+
+lines=['| 场景与数值配置 | 外层检查数 | 原判据收敛 | 最终局部 QP 状态 | 输出计划 |','|---|---:|---|---|---|']
+for scene in ['parking','quad']:
+    for label,suffix in [('原配置',''),('仅增加 QP 预算','_iter50000'),('局部凸化，比例下限 1e-8',suffixes['convexified']),('局部凸化，比例下限 1e-3',suffixes['regularized']),('再作目标归一化并收紧 QP 容差',suffixes['conditioned'])]:
+        file=out/scene/('plan_status'+suffix+'.json')
+        if not file.exists():continue
+        status=json.loads(file.read_text());a=json.loads((out/scene/('qp_audit'+suffix+'.json')).read_text())
+        lines.append('| '+('停车场' if scene=='parking' else '无人机')+'：'+label+' | '+str(status['convergence_checks'])+' | '+('是' if status['converged'] else '否')+' | '+a['records'][-1].get('solver_status','未记录')+' | '+('是' if status['plan_exported'] else '否')+' |')
+planning_table='\n'.join(lines)
+strong=data['quad','regularized'];weak=data['quad','convexified']
+base=strong['methods']['baseline'];c=strong['methods']['doc_cp'];w=weak['methods']['doc_cp']
+rows=[('作者任务成功数 / 50','author_successes'),('采样碰撞轨迹数 / 50','collision_rollouts'),
+ ('实际联合约束违规轨迹数 / 50','full_state_input_collision_constraint_violations'),
+ ('实际阶段状态约束违规轨迹数 / 50','stage_state_constraint_violating_rollouts'),
+ ('实际输入约束违规轨迹数 / 50','input_constraint_violating_rollouts'),
+ ('状态管束越界轨迹数 / 50','state_tube_violating_rollouts_tolerance_1e-6'),
+ ('输入管束越界轨迹数 / 50','input_tube_violating_rollouts_tolerance_1e-6'),
+ ('平均终点目标距离（米）','terminal_position_distance_mean_m'),
+ ('文档盒界逐点覆盖','doc_box_point_coverage'),('文档盒界整轨迹覆盖数 / 50','doc_box_trajectories_covered'),
+ ('外包球逐点覆盖','outer_ball_point_coverage'),('外包球整轨迹覆盖数 / 50','outer_ball_trajectories_covered')]
+table=['| 无人机配对测试 | 原控制器 | 凸化比例 1e-8，未收敛计划 | 凸化比例 1e-3，收敛计划 |','|---|---:|---:|---:|']
+for label,key in rows:
+    values=[f'{100*d[key]:.2f}%' if 'point_coverage' in key else f'{d[key]:.6g}' if isinstance(d[key],float) else str(d[key]) for d in [base,w,c]]
+    table.append('| '+label+' | '+' | '.join(values)+' |')
+text=rf'''## 9. 继续推进后的数值适配与真实闭环结果
+
+### 9.1 最新结论：无人机完成了闭环，但仍未达到原约束表现
+
+在保留原配置失败结果后，本轮继续排查了数值规划。**停车场在所有列出的数值配置下仍未生成控制器；无人机通过加强局部正则生成了满足原收敛判据的计划，并完成 50 条实际图像闭环，但 50/50 条均违反阶段状态约束，文档盒界整轨迹覆盖为 0/50。**
+
+因此本次进展是“进一步打通了无人机的数值求解和闭环执行”，不是“获得了同等或更好的安全保障”。下面将不收敛的诊断计划与较好收敛计划全部列出，不只选取表现较好的一组。
+
+### 9.2 改动范围：建议公式不变，局部数值算法作了调整
+
+各版本使用完全相同的包络系数、训练数据、CP 校准数据、乘法倍率、无穷范数盒和外包球接口。原始动力学、硬约束、时域、视觉网络及目标函数表达式不变。已逐一比较保存的模型字典，确认没有重新拟合或调整倍率。
+
+数值适配改变了原控制规划器的局部二次近似，因此**不能称为原求解器参数完全不变的文档方案**。具体尝试如下：
+
+1. 当局部对称 Hessian 的最小特征值小于 -1e-7 时，将特征值截到正下限，再交给 OSQP。先用 `max(1e-6,1e-8*max_abs_eigenvalue)`，随后用更强的 `max(1e-6,1e-3*max_abs_eigenvalue)`，减轻局部病态曲率。前者对被投影 Hessian 的谱条件数约束较弱，后者较强；这不是对整个非线性问题的凸性证明。
+2. QP 最大迭代数增加到 50000，外层最大迭代数分别为 80 或 100。额外迭代预算本身不等于收敛。
+3. 停车场仍出现迭代上限后，另外尝试局部 QP 目标正比例归一化：二次项和线性项除以同一个正数，返回的对偶变量与代价乘回原尺度；同时将 QP 迭代数设为 100000、绝对／相对容差设为 1e-7。该缩放在精确算术下保持已构造局部 QP 的极小点，但不能修复误差模型的统计条件。
+
+这些选择根据规划失败和收敛诊断作出；没有利用停车场的新控制器性能调参，因为停车场没有产生新控制器。无人机两个配置均在各自闭环测试开始前固定，测试后没有再用表现结果修改模型并重复宣称独立验证。
+
+### 9.3 所有规划尝试
+
+{planning_table}
+
+无人机比例下限 1e-8 的版本达到 80 次外层迭代仍不收敛，但原源码在达到迭代上限时仍返回 `success=True`，因此导出了计划。该计划的回放仅用于诊断；不能作为合格控制计划。比例下限 1e-3 的版本在第 10 次收敛检查通过，记录的完整步长范数约为 0.000857。
+
+停车场依次经过 40、83、78 次收敛检查后，局部 QP 再次触及迭代上限；即使部分数值偏差降低，也没有导出可测试控制器。因此没有停车场新控制器的成功率、碰撞率或覆盖率，不能填成零。
+
+### 9.4 无人机 50 条配对视觉闭环
+
+两个数值配置各运行 50 条新控制器轨迹，使用同一预先确定的种子 2026102614，与此前 50 条原控制器轨迹的过程扰动完全一致。20 条为轴向压力，30 条为随机；没有把两种样本混为同分布校准样本。加上原参数阶段的 200 条，本轮累计完成 300 条视觉轨迹。
+
+{chr(10).join(table)}
+
+作者任务成功使用较宽的终端位置范围，并不要求所有阶段状态／输入约束同时成立。因此“50/50 任务成功、0 次碰撞”和“50/50 约束违规”并不矛盾，不能只汇报前两项。
+
+对比例下限 1e-3 的较好收敛版本，违规发生在**阶段状态约束**：模型第 9 个状态分量（从 0 计数为索引 8）允许绝对值不超过 2，最大超出约为 {c['max_stage_state_bound_excess_by_component'][8]:.6f}，即出现绝对值约 2.054589。实际输入约束与终端状态约束均无违规。检查容差为 0.001，故这不是仅在极小数值容差下才出现的越界。
+
+与原控制器相比，该版本平均终点目标距离由 {base['terminal_position_distance_mean_m']:.6f} 米降到 {c['terminal_position_distance_mean_m']:.6f} 米，但原控制器的实际联合约束违规为 0/50，新版本为 50/50。目标距离略有改善不能抵消约束表现退化。
+
+### 9.5 规划收敛为什么仍不足以证明控制有效
+
+比例下限 1e-3 版本的保存计划检查为：
+
+- 单步非线性名义动力学最大绝对缺陷约为 {strong['plan_checks']['max_nonlinear_nominal_dynamics_defect']:.3g}。
+- 在最终轨迹重新线性化后的最大 SLS 恒等式残差约为 {max(strong['plan_checks']['SLS_identity_max_abs_residuals_relinearized_at_final_plan']):.3g}。
+- 收紧后阶段约束最大残差约为 {strong['plan_checks']['max_tightened_stage_constraint_residual']:.6f}，仍为正值。
+- 按外接圆膨胀的名义 XY 障碍物最小净距约为 {strong['plan_checks']['minimum_tube_inflated_nominal_XY_obstacle_clearance_m']:.6f} 米。
+
+这说明动力学一致性和局部收敛已经明显改善，但收紧约束仍未完全满足，实际控制也确实出现了阶段约束违反。不能只凭原收敛标志跳过这些检查。
+
+### 9.6 新策略下，误差尺度仍发生了明显失效
+
+较好收敛版本的 1750 个观测中，{c['uncovered_box_observations']} 个不被文档盒覆盖；{c['uncovered_box_observations_at_scale_floor']} 个观测落到正尺度下限且全部未覆盖，占全部观测的 {100*c['positive_scale_floor_fraction']:.2f}%。未截断包络最小预测值约为 {c['unclipped_envelope_min']:.6f}，而相同函数在训练点上均为正。
+
+原策略测试中至少一个特征超出训练逐坐标范围的比例约为 {100*base['feature_outside_training_coordinate_ranges_fraction']:.2f}%，新策略中约为 {100*c['feature_outside_training_coordinate_ranges_fraction']:.2f}%。该范围只是矩形诊断，不是严格分布支持集；它与大量下限点共同提示新策略访问了模型不可靠的区域。原策略随机子集 29/30 的盒整轨迹覆盖，不能转移为新策略的覆盖结论。
+
+文档本身已经提醒“训练点非负不等于整个状态域非负”。本轮按其示例拟合并使用正尺度截断，**尚未补齐整个使用状态域的非负性或误差充足性验证**。所以不能把当前实现称为已满足建议中所有区域验证条件，更不能把当前失败推导为完整建议方向不可行。
+
+可以确认的是：当前固定参考策略数据训练出的高阶函数，在规划搜索和新策略数据上出现严重域外／分布变化问题。仅将二范数改为无穷范数、将加法改成乘法，或继续修改求解器参数，都不能自动解决这个问题。尚未做因果消融，不能断言所有违规仅由某一个因素造成。
+
+![无人机：加强正则后的文档 CP 闭环诊断](quad/doc_cp_comparison_convexified_iter50000_outer100_rf0p001.png)
+
+### 9.7 目前向导师应怎样汇报
+
+> 我已按文档的误差界公式实现了凸包络拟合、无穷范数轨迹比值校准和乘法界，并验证了原策略随机测试中的覆盖表现。通过外包球接入原控制器时，原数值配置在两场景都失败。进一步保持误差界不变、处理局部 QP 数值问题后，无人机已经能完成图像闭环，但仍出现 50/50 条阶段状态约束违规、0/50 条整轨迹误差覆盖；停车场仍未生成新控制器。因此“误差界计算可实现”已有证据，“可靠替换原控制器”尚未实现。下一步的重点应是限定并验证模型使用域、改善该域的数据覆盖，并处理策略变化与校准分布的关系，而不是将已有参考策略覆盖直接当作新策略安全保证。
+
+各版本的模型、规划状态、逐次收敛记录、局部 QP 审计、轨迹、回放与独立重算指标均保存在各场景文件夹。后续数值版本的文件名带 `convexified`、`rf0p001` 或 `normalized`，原参数失败记录没有覆盖。
+'''
+(Path(__file__).parent/'numerical_followup_section.md').write_text(text)
+print('Wrote completed numerical follow-up:',len(text),'characters')

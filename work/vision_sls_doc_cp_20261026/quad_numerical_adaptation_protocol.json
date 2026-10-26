@@ -1,0 +1,20 @@
+{
+  "variant": "doc CP unchanged; relative-floor PSD local Hessian projection",
+  "reason": "Original local QP failed; iteration-budget-only diagnostic did not repair parking",
+  "changes": [
+    "when min eigenvalue < -1e-7, floor eigenvalues at max(1e-6,1e-8*max_abs_eigenvalue)",
+    "QP iteration budget 50000",
+    "outer SCP maximum 80"
+  ],
+  "unchanged": [
+    "doc envelope coefficients",
+    "CP multiplier",
+    "box-to-ball containment",
+    "original objective expression and constraints",
+    "dynamics, horizon, visual networks"
+  ],
+  "decided_before_new_controller_test": true,
+  "closed_loop_seed": 2026102614,
+  "test_rollouts_if_plan_available": 50,
+  "scope": "numerical adaptation variant, not unchanged original solver"
+}

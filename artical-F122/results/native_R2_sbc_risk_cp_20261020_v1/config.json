@@ -1,0 +1,57 @@
+{
+  "experiment": "frozen_native_R2_trajectory_barrier_CP_comparison_v1",
+  "primary_score": "positive_variation",
+  "comparison_scores": [
+    "positive_variation",
+    "decomposed_budget",
+    "horizon_max_increment",
+    "max_barrier"
+  ],
+  "epsilon": 0.01,
+  "beta": 0.01,
+  "horizon": 400,
+  "registered_before_rollouts": true,
+  "rollout_counts": {
+    "development": 200,
+    "calibration": 459,
+    "evaluation": 1000
+  },
+  "seeds": {
+    "development": 7101,
+    "calibration": 7102,
+    "evaluation": 7103
+  },
+  "initial_distribution": "independent distance U[15,16] and speed U[2.5,3]",
+  "appearance_distribution": "one of 12 train-library weather/color pools uniformly, held fixed per episode",
+  "simulator": "analytic clipped AEBS; float32 physical states; nearest TRAIN image feature by exact appearance",
+  "new_RGB_captured": false,
+  "new_CARLA_rollout": false,
+  "RGB_test_used": false,
+  "model_training": false,
+  "additional_process_noise": false,
+  "barrier_normalization": {
+    "distance_scale": 3.18272066116333,
+    "lower": 0.27114561200141907,
+    "upper": 19.8333740234375,
+    "function": "clip((raw_B-lower)/(upper-lower),0,1); unsafe=1; safe terminal=0"
+  },
+  "unsafe": "d<=6 and v>0.5; all scores include successor of final recorded action",
+  "guarantee_scope": "independent trajectories in this frozen image-library simulator only; NOT real image/CARLA safety or classical SBC conditions",
+  "source_sha256": {
+    "results/dino_expanded_v1/08_R2_group_alignment/dino_safety_latent.pt": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+    "results/native_representation_dimensions_20261019_v1/historical_R2.pt": "42d2bea5ffe112df753e23777f2b86d4edf193fe4489f507dd99b21b60d90230",
+    "results/native_representation_dimensions_20261019_v1/split.json": "9793e0d4c39314118b1b6c522d5de06eeed679312dbe69ab7bd4825167828f97",
+    "results/native_controllers_speed_residual_20261019_v1/historical_R2/native_ppo.zip": "01a1173645051eb7e96480bd2a21a948c6fb8b3a860263784d5a10ad8dd4c373",
+    "results/native_controllers_speed_residual_20261019_v1/historical_R2/metrics.json": "4a7cba5444f5a68e56162700b3cb763d1d0c1adbeff0809a089a92514d2948a6",
+    "results/native_R2_sbc_stage2_legacy_20261019_v1/sbc.pt": "add61cae950cb967ddaa9845cdd37d54b4d877c39d4856442df7f86214f26249",
+    "results/native_R2_sbc_stage2_legacy_20261019_v1/metrics.json": "1d4b9b5fd647fa92b5d46ca7e82524bfb8b0fccbc196a160fe164e7365e47b0f",
+    "results/dino_expanded_v1/02_dino_h5/cache_manifest.json": "ca4c9993fbcf12b7a57dddab5f6a75fc1a5da84278fb102747e681888229e5bb",
+    "results/dino_expanded_v1/02_dino_h5/features.h5": "dfc562b4c1a406de6f5dcbbf79e40a62955cd2d70a4d908b7119e2805336cdcd",
+    "results/native_controllers_speed_residual_20261019_v1/reference_panel.npz": "9042a4af2a7b079a7c128de5ebfb5820ea6c31ad6c07dde2c171dcf1067711d8",
+    "/root/work_based_on_spvc/artical-F122/Aebs/dino_latent/experiment_sbc_risk_cp.py": "190b07ffcc51c5ae743bb3fc88aeb82399d8f54656cae2bda031fd4c2fa66aa0",
+    "Aebs/VT/train.py": "b386421749f3b6f083de20ae72a90e1158a7c630dc112031a1724776153b622e",
+    "Aebs/VT/verify.py": "402a4b429eb8b811c1e8145274c01bdf24bf73922fffefff396d7af355090de5",
+    "Aebs/VT/utils.py": "1a835fc24bdd210fbfdb3cd3ab147f10f3d699a963188e378b0df42aa51aab82",
+    "Aebs/system/env.py": "bdc29eb57ce048e3bc945eba4702c260021e334442bc991e61af692e2d6b69b1"
+  }
+}

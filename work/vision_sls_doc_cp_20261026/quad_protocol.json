@@ -1,0 +1,51 @@
+{
+  "scene": "quad",
+  "experiment": "Advisor document infinity-norm envelope plus multiplicative trajectory CP v1",
+  "date": "2026-10-26",
+  "alpha": 0.05,
+  "training": {
+    "source_task": "vision_sls_direct_cp_20261025",
+    "phase": "calibration",
+    "features": [
+      "px",
+      "py",
+      "pz",
+      "state[6]",
+      "state[7]"
+    ],
+    "degree": 4,
+    "gamma": 0.0001,
+    "mu": 20.0,
+    "objective": "mean(M beta)+gamma*norm(beta,2)^2+mu*mean(xi)",
+    "constraints": [
+      "M beta+xi>=raw infinity residual",
+      "xi>=0",
+      "M beta>=0 on training samples"
+    ],
+    "feature_standardization": true,
+    "target_scaling": false,
+    "old_envelope_loaded": false
+  },
+  "calibration": {
+    "rollouts": 60,
+    "seed": 2026102612,
+    "random_only": true,
+    "controller": "frozen original controller",
+    "score": "max_t(norm(raw residual,infinity)/max(epsilon,b0(image_source_state)))"
+  },
+  "bound": {
+    "epsilon": 0.001,
+    "formula": "q_alpha*max(epsilon,b0(x))",
+    "original_set": "infinity-norm box",
+    "controller_interface": "outer enclosing Euclidean ball sqrt(ny)*b_cp(x), explicitly conservative containment",
+    "solver_modification": "none; no Hessian projection"
+  },
+  "evaluation": {
+    "rollouts_per_method": 50,
+    "seed": 2026102614,
+    "axis_stress_rollouts": 20,
+    "random_rollouts": 30,
+    "paired_disturbances": true,
+    "tuning_on_test": false
+  }
+}

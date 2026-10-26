@@ -1,0 +1,16 @@
+{
+  "variant": "regularized local QP plus positive objective normalization",
+  "reason": "Raw QP Hessian magnitudes up to 3.19e10; OSQP maximum iterations with an otherwise convexified local model",
+  "changes": {
+    "local_psd_eigenvalue_relative_floor": 0.001,
+    "QP_objective_division": "positive max absolute entry of effective Hessian; scales both quadratic and linear cost, multiplies returned duals and cost back",
+    "qp_max_iter": 100000,
+    "qp_absolute_and_relative_tolerance": 1e-07,
+    "outer_max_iter": 100
+  },
+  "doc_CP_model_or_multiplier_changed": false,
+  "constraints_dynamics_visual_or_test_seed_changed": false,
+  "test_seed": 2026102613,
+  "selected_before_any_parking_doc_CP_new_controller_test": true,
+  "scope": "numerical adaptation; not unchanged original solver"
+}

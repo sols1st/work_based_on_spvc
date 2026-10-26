@@ -1,0 +1,310 @@
+{
+  "registered_before_calibration_inference": true,
+  "registered_before_collection": false,
+  "model_sha256": {
+    "results/dino_expanded_v1/08_R2_group_alignment/dino_safety_latent.pt": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+    "results/dino_expanded_v1/09_R2_ppo/latent_ppo.zip": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+    "results/dino_spvc_minimal_v1/latent_ppo_spvc.pt": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+    "results/dino_spvc_minimal_v1/sbc.pt": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+    "results/static_latent_benchmark_20261018_qcontrol/r2_frozen_refit_q.pt": "fe6f7f300ee27b6bf30f9ce09a218e684db51eb33b0620749310b70a7cdea4a0",
+    "results/static_latent_benchmark_20261018_qcontrol/pca32.pt": "914ba302a764e48e017b96175d9f1636848140437a452cd7696dbe9d4b1f77cc",
+    "results/static_latent_benchmark_20261018_qcontrol/feature_ae32.pt": "578408b1d9a819c2d42d9b1f34420ffa7750274e013d5efb32966a1f519bf29f",
+    "results/static_latent_benchmark_20261018_qcontrol/feature_vae32.pt": "14e47517187177f1ae6962bcc042ecc1e010bd2a4aab65172ef835606deacf94",
+    "results/transformer_pilot_20261018/mlp32.pt": "d134c29b317cece2ceb8d233c5e9ac132f5c0afa7d22c12e34ca5ab9ae273935",
+    "results/transformer_pilot_20261018/transformer32.pt": "13a70c9512d5afc3a2cce82c4cc04a3e11b20f9b2d3ec209984413c7e36c895c",
+    "results/transformer_pilot_20261018/transformer384.pt": "1d698571aa77628af636930fc28606cc0efb6e2bbae9aee469f78dec85220319",
+    "results/transformer_speed_ablation_20261018/mlp32_no_speed.pt": "3a140dc0f9585718977110036865222dd6c55dc723718f80f03e063040362d67",
+    "results/transformer_speed_ablation_20261018/t32_concat_speed.pt": "622654bf02fb3f3558eb9585b61f776f6b4f509c6807a8810e5f84015af8d5e3",
+    "results/transformer_speed_ablation_20261018/t32_images_only.pt": "22199d429b7640f85c08682096bfb2b8a3734ecda8153935ab0022a3b26826d4",
+    "results/transformer_speed_ablation_20261018/t32_no_speed.pt": "85e7804d527a23a795d15f09a08c3fb6b7d84c07d51cde4a5bb8bc6d04b26adb",
+    "results/transformer_speed_ablation_20261018/t32_separate_speed.pt": "d6311af51966edc4343bc9c8b65da068e47a2c9d86460e6bc31364a5fb6b1dc6",
+    "results/transformer_speed_ablation_20261018/t384_concat_speed.pt": "e6c042370794ba69e0edc32b0c7370321d485bba273368f334f05c335bb3d7be",
+    "results/transformer_speed_ablation_20261018/t384_no_speed.pt": "e34f83d13d1057010fab4d6630632e383cb752a64288f4e83328cd050777e5db",
+    "results/transformer_speed_ablation_20261018/t384_separate_speed.pt": "78f0bfee64d94abeddb97a0fbae6e066084633eaf369acb361d2ade6e7ad2878",
+    "results/latent_methods_benchmark_20261018_run1/mlp32.pt": "6c87737d997472195aaa351c5240a648841f3880301f700370852ec58ad51744",
+    "results/latent_methods_benchmark_20261018_run1/transformer32.pt": "8d53bb9c21397f959ed0714b7b23be428376d5bd140d7f3283e3e83a8a870de0",
+    "results/latent_methods_benchmark_20261018_run1/mlp32_parameter_matched.pt": "14ed8539fa2034c4f4abe86b5906a27e16802b9794a5a82b49b7a2a3e9d7456d",
+    "results/latent_methods_benchmark_20261018_run1/transformer32_no_speed.pt": "71bd90096d6cea3a20ac6e7a34431dc9e30eb77375b1118ee0b30fdb00c48351",
+    "results/latent_methods_benchmark_20261018_run1/gru32.pt": "81777223d5dd6efd3d9931c92a4202f6d2f077253b4f8223b630e9bfb773fa65",
+    "results/latent_methods_benchmark_20261018_run1/rssm32.pt": "1fac3f60c5ce64e0a23df92e9e4973a91a8d7657e83b8d64155be78bda803ad0",
+    "results/latent_methods_benchmark_20261018_run1/lifted_linear32.pt": "a71841318212cf253d0c4a7cba65bb1461ede9b2a2c448de944d885bc7582045",
+    "results/latent_methods_benchmark_20261018_run1/transformer32_task_aware.pt": "d40c2c3bd9a824aeeb0bd4612e95c53e443a5fcc7900b32ca040f455d60b3208",
+    "results/latent_methods_benchmark_20261018_run1/pca32_transformer.pt": "d6412b36b67da2e9f1cb997283facb01a6362d00414c44fe804200ca08d947a3",
+    "Aebs/cGAN/mlp_supervised_ld4/mlp_supervised.pth": "02fc87c1c6dd7fb36971c58eebc5d22245fa2353b7dbf7cc0e1638ccea9fbfdc",
+    "../external/dinov2_weights/dinov2_vits14_pretrain.pth": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9"
+  },
+  "temporal_paths": [
+    {
+      "name": "transformer_pilot_20261018/mlp32",
+      "path": "results/transformer_pilot_20261018/mlp32.pt",
+      "legacy": true,
+      "trained_horizon": 3
+    },
+    {
+      "name": "transformer_pilot_20261018/transformer32",
+      "path": "results/transformer_pilot_20261018/transformer32.pt",
+      "legacy": true,
+      "trained_horizon": 3
+    },
+    {
+      "name": "transformer_pilot_20261018/transformer384",
+      "path": "results/transformer_pilot_20261018/transformer384.pt",
+      "legacy": true,
+      "trained_horizon": 3
+    },
+    {
+      "name": "transformer_speed_ablation_20261018/mlp32_no_speed",
+      "path": "results/transformer_speed_ablation_20261018/mlp32_no_speed.pt",
+      "legacy": true,
+      "trained_horizon": 3
+    },
+    {
+      "name": "transformer_speed_ablation_20261018/t32_concat_speed",
+      "path": "results/transformer_speed_ablation_20261018/t32_concat_speed.pt",
+      "legacy": true,
+      "trained_horizon": 3
+    },
+    {
+      "name": "transformer_speed_ablation_20261018/t32_images_only",
+      "path": "results/transformer_speed_ablation_20261018/t32_images_only.pt",
+      "legacy": true,
+      "trained_horizon": 3
+    },
+    {
+      "name": "transformer_speed_ablation_20261018/t32_no_speed",
+      "path": "results/transformer_speed_ablation_20261018/t32_no_speed.pt",
+      "legacy": true,
+      "trained_horizon": 3
+    },
+    {
+      "name": "transformer_speed_ablation_20261018/t32_separate_speed",
+      "path": "results/transformer_speed_ablation_20261018/t32_separate_speed.pt",
+      "legacy": true,
+      "trained_horizon": 3
+    },
+    {
+      "name": "transformer_speed_ablation_20261018/t384_concat_speed",
+      "path": "results/transformer_speed_ablation_20261018/t384_concat_speed.pt",
+      "legacy": true,
+      "trained_horizon": 3
+    },
+    {
+      "name": "transformer_speed_ablation_20261018/t384_no_speed",
+      "path": "results/transformer_speed_ablation_20261018/t384_no_speed.pt",
+      "legacy": true,
+      "trained_horizon": 3
+    },
+    {
+      "name": "transformer_speed_ablation_20261018/t384_separate_speed",
+      "path": "results/transformer_speed_ablation_20261018/t384_separate_speed.pt",
+      "legacy": true,
+      "trained_horizon": 3
+    },
+    {
+      "name": "latest/mlp32",
+      "path": "results/latent_methods_benchmark_20261018_run1/mlp32.pt",
+      "legacy": false,
+      "kind": "mlp",
+      "space": "r2",
+      "trained_horizon": 10
+    },
+    {
+      "name": "latest/transformer32",
+      "path": "results/latent_methods_benchmark_20261018_run1/transformer32.pt",
+      "legacy": false,
+      "kind": "transformer",
+      "space": "r2",
+      "trained_horizon": 10
+    },
+    {
+      "name": "latest/mlp32_parameter_matched",
+      "path": "results/latent_methods_benchmark_20261018_run1/mlp32_parameter_matched.pt",
+      "legacy": false,
+      "kind": "mlp_matched",
+      "space": "r2",
+      "trained_horizon": 10
+    },
+    {
+      "name": "latest/transformer32_no_speed",
+      "path": "results/latent_methods_benchmark_20261018_run1/transformer32_no_speed.pt",
+      "legacy": false,
+      "kind": "no_speed",
+      "space": "r2",
+      "trained_horizon": 10
+    },
+    {
+      "name": "latest/gru32",
+      "path": "results/latent_methods_benchmark_20261018_run1/gru32.pt",
+      "legacy": false,
+      "kind": "gru",
+      "space": "r2",
+      "trained_horizon": 10
+    },
+    {
+      "name": "latest/rssm32",
+      "path": "results/latent_methods_benchmark_20261018_run1/rssm32.pt",
+      "legacy": false,
+      "kind": "rssm",
+      "space": "r2",
+      "trained_horizon": 10
+    },
+    {
+      "name": "latest/lifted_linear32",
+      "path": "results/latent_methods_benchmark_20261018_run1/lifted_linear32.pt",
+      "legacy": false,
+      "kind": "lifted_linear",
+      "space": "r2",
+      "trained_horizon": 10
+    },
+    {
+      "name": "latest/transformer32_task_aware",
+      "path": "results/latent_methods_benchmark_20261018_run1/transformer32_task_aware.pt",
+      "legacy": false,
+      "kind": "task_aware",
+      "space": "r2",
+      "trained_horizon": 10
+    },
+    {
+      "name": "latest/pca32_transformer",
+      "path": "results/latent_methods_benchmark_20261018_run1/pca32_transformer.pt",
+      "legacy": false,
+      "kind": "transformer",
+      "space": "pca",
+      "trained_horizon": 10
+    }
+  ],
+  "reference_collector_policy": "frozen PPO09; NOT these new models",
+  "calibration_file": "results/dino_expanded_v1/20_trajectory_sbc_cp_calibration_v1/trajectories.h5",
+  "training": false,
+  "model_selection": false,
+  "final_RGB_test_used": false,
+  "cgan_draws": 8,
+  "cgan_seed": 7,
+  "static_paths": [
+    "r2_frozen_refit_q",
+    "pca32",
+    "feature_ae32",
+    "feature_vae32"
+  ],
+  "epsilon": 0.01,
+  "beta": 0.01,
+  "dataset_note": "step20 is independent from model fitting, but already used historically for a different frozen SBC calibration; not a newly collected blind test",
+  "per_path_confidence_is_not_joint_confidence": true,
+  "future_use": "Do not tune candidates using this pool then reuse these CP radii as independent calibration",
+  "script_sha256": "8867fc7799f0321664c8191d25ea44a1d7cc9a75b56bfbcfa75a76444d05ce74",
+  "nonlearned_baselines": [
+    "persistence/h1",
+    "persistence/h3",
+    "persistence/h10"
+  ],
+  "calibration_sha256": "a3b379b7cbcc8d29eb2cca6e0ec4c06f189058b8dc4ae9c4c9722ba114021bee",
+  "collection_provenance": {
+    "collector": "R2_original_SPVC_fullscreen_trajectory_collector_v1",
+    "registered_before_collection": true,
+    "role": "calibration",
+    "seed": 91009,
+    "episodes": 459,
+    "horizon": 400,
+    "initial_distribution": "distance uniform[15,16], speed uniform[2.5,3]",
+    "appearance_distribution": "weather and color sampled independently and uniformly per trajectory",
+    "weather_profiles": {
+      "low_sun": {
+        "cloudiness": 0.0,
+        "precipitation": 0.0,
+        "precipitation_deposits": 0.0,
+        "wind_intensity": 0.0,
+        "fog_density": 0.0,
+        "wetness": 0.0,
+        "sun_altitude_angle": 12,
+        "sun_azimuth_angle": 90.0
+      },
+      "original": {
+        "cloudiness": 0.0,
+        "precipitation": 0.0,
+        "precipitation_deposits": 0.0,
+        "wind_intensity": 0.0,
+        "fog_density": 0.0,
+        "wetness": 0.0,
+        "sun_altitude_angle": 60.0,
+        "sun_azimuth_angle": 90.0
+      },
+      "overcast": {
+        "cloudiness": 90,
+        "precipitation": 0.0,
+        "precipitation_deposits": 0.0,
+        "wind_intensity": 0.0,
+        "fog_density": 0.0,
+        "wetness": 0.0,
+        "sun_altitude_angle": 60.0,
+        "sun_azimuth_angle": 90.0
+      },
+      "rain": {
+        "cloudiness": 90,
+        "precipitation": 60,
+        "precipitation_deposits": 60,
+        "wind_intensity": 0.0,
+        "fog_density": 0.0,
+        "wetness": 70,
+        "sun_altitude_angle": 60.0,
+        "sun_azimuth_angle": 90.0
+      }
+    },
+    "colors": [
+      "255,0,0",
+      "40,80,160",
+      "220,220,220"
+    ],
+    "capture_protocol": "original_spvc_primary_monitor_fullscreen_v1",
+    "screenshot_region": {
+      "top": 0,
+      "left": 0,
+      "width": 1920,
+      "height": 1080
+    },
+    "resize": [
+      640,
+      640
+    ],
+    "map_selection": "available_maps[3]",
+    "map": "Carla/Maps/Town01_Opt",
+    "spawn_index": 4,
+    "spectator_height_m": 2.0,
+    "wait_after_teleport_seconds": 0.3,
+    "appearance_settle_seconds": 8.0,
+    "deployment_rollout": "image latent PPO; analytic AEBS state; CARLA renders only",
+    "representation_sha256": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+    "controller_sha256": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+    "dino_weights_sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+    "dino_source_sha256": "b60533f41a1cd98946f9091a8d4cc5cfff2d2c3b2fec5d4fef7c7068132d8dd2",
+    "training_cache_manifest_sha256": "ca4c9993fbcf12b7a57dddab5f6a75fc1a5da84278fb102747e681888229e5bb",
+    "test_used": false,
+    "model_updates": false,
+    "device": "cuda",
+    "server_version": "0.9.15"
+  },
+  "final_actor_identity": {
+    "old_controller_sha256": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+    "new_controller_sha256": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+    "barrier_sha256": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+    "source_metrics_sha256": "e5d10b7d33d4a1ecc549e6306d1105d954ad9d495711b53bf70e50dc16b35e54",
+    "stage": "minimal_final_saved_pair",
+    "final_recheck_sha256": "53fbe78e94ca791d00d42d8a7e509e59bbc3513b54055a087ecbdbcd5c1f1020",
+    "final_recheck_status": "saved_pair_passes_legacy_checks",
+    "final_recheck_source_hashes": {
+      "metrics": "e5d10b7d33d4a1ecc549e6306d1105d954ad9d495711b53bf70e50dc16b35e54",
+      "policy": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+      "barrier": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+      "representation": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+      "base_controller": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+      "minimal_manifest": "d32af8fa0beddaa6386a3a8f3a3dc55b5a30e23723f661037b9bef216164f054"
+    },
+    "checkpoint_matches_final_recheck": true,
+    "note": "identity/legacy-check evidence only; not an image-path safety certificate",
+    "changed_actor_tensors": 6,
+    "q_parameters_unchanged": true,
+    "state_distance_scale_m": 3.18272066116333,
+    "representation_distance_scale_m": 3.161912679672241,
+    "inference": "deterministic actor mean clipped to [-3,3]; no QP; no SBC action filtering"
+  },
+  "recorded_action_replay_max_abs": 9.417533874511719e-06
+}

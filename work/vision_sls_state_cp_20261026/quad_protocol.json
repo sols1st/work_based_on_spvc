@@ -1,0 +1,59 @@
+{
+  "experiment": "Direct state-dependent trajectory CP validation v1",
+  "date": "2026-10-26",
+  "scene": "quad",
+  "alpha": 0.05,
+  "steps": 35,
+  "observation_dimension": 5,
+  "training": {
+    "source_task": "vision_sls_direct_cp_20261025",
+    "source_phase": "calibration",
+    "source_controller": "fixed original controller",
+    "features": [
+      "px",
+      "py",
+      "pz",
+      "state[6]",
+      "state[7]"
+    ],
+    "basis": "all total-degree <=2 monomials of standardized features",
+    "regression": "linear-program quantile regression at tau=0.90; L1 coefficient regularization 0.001, intercept unpenalized",
+    "target": "raw residual L2 norm divided by median training residual norm",
+    "old_error_bound_used": false,
+    "standardization_scale_floor": 0.05
+  },
+  "calibration": {
+    "rollouts": 60,
+    "seed": 2026102602,
+    "random_only": true,
+    "controller": "fixed original controller",
+    "score": "max_t (norm(raw residual,2)-new_quantile_predictor(x))"
+  },
+  "bound": {
+    "formula": "max(0.001, new_quantile_predictor(x)+CP_order_statistic)",
+    "F": "bound(x)*I_ny",
+    "old_polynomial_parameters_loaded": false
+  },
+  "evaluation": {
+    "rollouts_per_method": 50,
+    "seed": 2026102604,
+    "axis_stress_rollouts": 20,
+    "random_rollouts": 30,
+    "methods": [
+      "fresh original baseline",
+      "state-dependent direct CP"
+    ],
+    "paired_disturbances": true,
+    "tuning_on_test": false
+  },
+  "success_criteria": {
+    "engineering": "planner returns a finite usable plan and full image-based rollouts finish",
+    "empirical_control": "compare success/collision/constraints/tubes/terminal distance using original definitions",
+    "statistical": "report trajectory coverage separately for reference-policy test and replanned-policy test, random and stress split; no automatic policy-transfer guarantee"
+  },
+  "non_goals": [
+    "retrain DINO or projection network",
+    "repair old polynomial by multiplying a coefficient",
+    "claim pointwise state coverage or a universal safety theorem"
+  ]
+}

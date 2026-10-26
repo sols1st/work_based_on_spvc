@@ -1,0 +1,314 @@
+{
+  "old_trajectory": {
+    "states": 37828,
+    "scope": "exact saved current states; NOT new-policy trajectories or a conditional-expectation SBC test",
+    "additional_process_noise": "none: isolate image/proxy difference; legacy VT noise is not reinterpreted as CP error",
+    "speed_error_mps": {
+      "count": 37828,
+      "mean": 0.004739540169484093,
+      "median": 0.0,
+      "p95": 0.02231158018112183,
+      "p99": 0.03559985518455507,
+      "min": 0.0,
+      "max": 0.0844120979309082
+    },
+    "raw_barrier_error": {
+      "count": 37828,
+      "mean": -0.0010217900783929686,
+      "median": 0.0,
+      "p95": 0.013374805450439467,
+      "p99": 0.04447254180908236,
+      "min": -0.17301368713378906,
+      "max": 0.235687255859375
+    },
+    "positive_barrier_error_fraction": 0.17357512953367876,
+    "scopes": {
+      "all_saved_states": {
+        "states": 37828,
+        "proxy_increase_count": 21654,
+        "image_increase_count": 21653,
+        "proxy_nonincrease_but_image_increase": 1
+      },
+      "current_below_unsafe": {
+        "states": 13626,
+        "proxy_increase_count": 12681,
+        "image_increase_count": 12681,
+        "proxy_nonincrease_but_image_increase": 0
+      },
+      "original_style_narrow_band": {
+        "states": 424,
+        "proxy_increase_count": 424,
+        "image_increase_count": 424,
+        "proxy_nonincrease_but_image_increase": 0
+      }
+    },
+    "worst_cases": [
+      {
+        "state": [
+          8.693181991577148,
+          3.0
+        ],
+        "image_action": 0.720370352268219,
+        "proxy_action": -0.009539768099784851,
+        "image_minus_proxy_B": 0.235687255859375,
+        "proxy_increment": 0.13863182067871094,
+        "image_increment": 0.37431907653808594
+      },
+      {
+        "state": [
+          8.706418991088867,
+          3.0
+        ],
+        "image_action": 0.6751869320869446,
+        "proxy_action": -0.04427620768547058,
+        "image_minus_proxy_B": 0.22765159606933594,
+        "proxy_increment": 0.1430644989013672,
+        "image_increment": 0.3707160949707031
+      },
+      {
+        "state": [
+          8.762981414794922,
+          3.0
+        ],
+        "image_action": 0.5854268074035645,
+        "proxy_action": -0.19117921590805054,
+        "image_minus_proxy_B": 0.21807861328125,
+        "proxy_increment": 0.16259193420410156,
+        "image_increment": 0.38067054748535156
+      },
+      {
+        "state": [
+          8.760417938232422,
+          3.0
+        ],
+        "image_action": 0.5702322125434875,
+        "proxy_action": -0.18457666039466858,
+        "image_minus_proxy_B": 0.21256256103515625,
+        "proxy_increment": 0.1616840362548828,
+        "image_increment": 0.37424659729003906
+      },
+      {
+        "state": [
+          8.736310958862305,
+          3.0
+        ],
+        "image_action": 0.5124185681343079,
+        "proxy_action": -0.12222440540790558,
+        "image_minus_proxy_B": 0.18793106079101562,
+        "proxy_increment": 0.1532611846923828,
+        "image_increment": 0.34119224548339844
+      },
+      {
+        "state": [
+          8.587745666503906,
+          3.0
+        ],
+        "image_action": 0.9580032229423523,
+        "proxy_action": 0.2716458737850189,
+        "image_minus_proxy_B": 0.16655540466308594,
+        "proxy_increment": 0.19242286682128906,
+        "image_increment": 0.358978271484375
+      },
+      {
+        "state": [
+          8.755594253540039,
+          3.0
+        ],
+        "image_action": 0.40725427865982056,
+        "proxy_action": -0.17213758826255798,
+        "image_minus_proxy_B": 0.15767478942871094,
+        "proxy_increment": 0.15998458862304688,
+        "image_increment": 0.3176593780517578
+      },
+      {
+        "state": [
+          8.68990421295166,
+          3.0
+        ],
+        "image_action": 0.436795711517334,
+        "proxy_action": -0.0009179264307022095,
+        "image_minus_proxy_B": 0.1537342071533203,
+        "proxy_increment": 0.13754844665527344,
+        "image_increment": 0.29128265380859375
+      },
+      {
+        "state": [
+          8.749210357666016,
+          3.0
+        ],
+        "image_action": 0.39020276069641113,
+        "proxy_action": -0.15564638376235962,
+        "image_minus_proxy_B": 0.1505126953125,
+        "proxy_increment": 0.1577434539794922,
+        "image_increment": 0.3082561492919922
+      },
+      {
+        "state": [
+          8.657560348510742,
+          3.0
+        ],
+        "image_action": 0.5504410862922668,
+        "proxy_action": 0.0845838338136673,
+        "image_minus_proxy_B": 0.14818191528320312,
+        "proxy_increment": 0.15848541259765625,
+        "image_increment": 0.3066673278808594
+      }
+    ]
+  },
+  "exact_static_internal_audit": {
+    "states": 73800,
+    "scope": "exact saved current states; NOT new-policy trajectories or a conditional-expectation SBC test",
+    "additional_process_noise": "none: isolate image/proxy difference; legacy VT noise is not reinterpreted as CP error",
+    "speed_error_mps": {
+      "count": 73800,
+      "mean": 0.007707459370133676,
+      "median": 0.0,
+      "p95": 0.045720282196998606,
+      "p99": 0.08789353251457199,
+      "min": 0.0,
+      "max": 0.14021944999694824
+    },
+    "raw_barrier_error": {
+      "count": 73800,
+      "mean": 0.0067961829206161705,
+      "median": 0.0,
+      "p95": 0.0383097648620607,
+      "p99": 0.2316009759902938,
+      "min": -0.6508784294128418,
+      "max": 1.5982770919799805
+    },
+    "positive_barrier_error_fraction": 0.14752032520325203,
+    "scopes": {
+      "all_saved_states": {
+        "states": 73800,
+        "proxy_increase_count": 1332,
+        "image_increase_count": 1332,
+        "proxy_nonincrease_but_image_increase": 0
+      },
+      "current_below_unsafe": {
+        "states": 9744,
+        "proxy_increase_count": 732,
+        "image_increase_count": 732,
+        "proxy_nonincrease_but_image_increase": 0
+      },
+      "original_style_narrow_band": {
+        "states": 612,
+        "proxy_increase_count": 72,
+        "image_increase_count": 72,
+        "proxy_nonincrease_but_image_increase": 0
+      }
+    },
+    "worst_cases": [
+      {
+        "state": [
+          12.600600242614746,
+          2.799999952316284
+        ],
+        "image_action": -1.996755838394165,
+        "proxy_action": -2.8425168991088867,
+        "image_minus_proxy_B": 1.5982770919799805,
+        "proxy_increment": -4.034812927246094,
+        "image_increment": -2.4365358352661133
+      },
+      {
+        "state": [
+          12.6126127243042,
+          2.799999952316284
+        ],
+        "image_action": -2.0028367042541504,
+        "proxy_action": -2.8491876125335693,
+        "image_minus_proxy_B": 1.5871844291687012,
+        "proxy_increment": -4.01972770690918,
+        "image_increment": -2.4325432777404785
+      },
+      {
+        "state": [
+          12.594594955444336,
+          2.799999952316284
+        ],
+        "image_action": -2.014099597930908,
+        "proxy_action": -2.8392016887664795,
+        "image_minus_proxy_B": 1.5649595260620117,
+        "proxy_increment": -4.042166709899902,
+        "image_increment": -2.4772071838378906
+      },
+      {
+        "state": [
+          12.450450897216797,
+          2.799999952316284
+        ],
+        "image_action": -2.0298779010772705,
+        "proxy_action": -2.7640483379364014,
+        "image_minus_proxy_B": 1.5087523460388184,
+        "proxy_increment": -4.181306838989258,
+        "image_increment": -2.6725544929504395
+      },
+      {
+        "state": [
+          12.582582473754883,
+          2.799999952316284
+        ],
+        "image_action": -2.0735011100769043,
+        "proxy_action": -2.832606792449951,
+        "image_minus_proxy_B": 1.4500908851623535,
+        "proxy_increment": -4.056481838226318,
+        "image_increment": -2.606390953063965
+      },
+      {
+        "state": [
+          12.642642974853516,
+          2.799999952316284
+        ],
+        "image_action": -2.0815930366516113,
+        "proxy_action": -2.8660707473754883,
+        "image_minus_proxy_B": 1.4411993026733398,
+        "proxy_increment": -3.9797935485839844,
+        "image_increment": -2.5385942459106445
+      },
+      {
+        "state": [
+          12.600600242614746,
+          2.700000047683716
+        ],
+        "image_action": -2.197967052459717,
+        "proxy_action": -3.0,
+        "image_minus_proxy_B": 1.4257268905639648,
+        "proxy_increment": -3.5973691940307617,
+        "image_increment": -2.171642303466797
+      },
+      {
+        "state": [
+          12.354353904724121,
+          2.799999952316284
+        ],
+        "image_action": -2.053363800048828,
+        "proxy_action": -2.7171924114227295,
+        "image_minus_proxy_B": 1.42470121383667,
+        "proxy_increment": -4.230498790740967,
+        "image_increment": -2.805797576904297
+      },
+      {
+        "state": [
+          12.6126127243042,
+          2.700000047683716
+        ],
+        "image_action": -2.2073421478271484,
+        "proxy_action": -3.0,
+        "image_minus_proxy_B": 1.4044198989868164,
+        "proxy_increment": -3.585658073425293,
+        "image_increment": -2.1812381744384766
+      },
+      {
+        "state": [
+          12.594594955444336,
+          2.700000047683716
+        ],
+        "image_action": -2.213627576828003,
+        "proxy_action": -3.0,
+        "image_minus_proxy_B": 1.4012689590454102,
+        "proxy_increment": -3.6030149459838867,
+        "image_increment": -2.2017459869384766
+      }
+    ]
+  }
+}

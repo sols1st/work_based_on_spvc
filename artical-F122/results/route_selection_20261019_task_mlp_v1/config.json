@@ -1,0 +1,36 @@
+{
+  "name": "mlp32_parameter_matched_task_aware",
+  "kind": "mlp_matched",
+  "space": "r2",
+  "parent_benchmark": "results/latent_methods_benchmark_20261018_run1",
+  "source_sha256": {
+    "results/dino_expanded_v1/13_spvc_calibration_trajectories_v1/trajectories.h5": "8da138640b79fb98a473965cf2fd126503e8346678e955de5f4893e4125e0c34",
+    "results/dino_expanded_v1/08_R2_group_alignment/dino_safety_latent.pt": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+    "results/dino_expanded_v1/09_R2_ppo/latent_ppo.zip": "39b11af7d466154612e7d3f992489417a271ddd2d589ef1a461ac935543de51b",
+    "results/dino_spvc_minimal_v1_final_recheck/metrics.json": "53fbe78e94ca791d00d42d8a7e509e59bbc3513b54055a087ecbdbcd5c1f1020",
+    "results/dino_spvc_minimal_v1/latent_ppo_spvc.pt": "2aafb6b35f4d521d01f72ed1981fbe4ce7b1cf1b914ae225965b1c8439fc481d",
+    "results/dino_spvc_minimal_v1/sbc.pt": "157c8adc769ef3c17945c3b9cc6d4f9c0b2c93648cb58d18f6df4de29e03daae",
+    "results/dino_spvc_minimal_v1/metrics.json": "e5d10b7d33d4a1ecc549e6306d1105d954ad9d495711b53bf70e50dc16b35e54",
+    "results/latent_methods_benchmark_20261018_run1/config.json": "42dee20f1ea0a434a85321a7efde839c3e2d91194e95b2ceb17d4344397a5c51",
+    "results/latent_methods_benchmark_20261018_run1/coordinates.pt": "e3cf08c315bf4adc6b1882b83b3e7a8a29f82c0c77f794ee3aae8441c7ec8b54",
+    "results/latent_methods_benchmark_20261018_run1/windows.npz": "7324248d66c5b41e76e136d0a7d2931a2a297dd5a855cbeff5d2994377c54305",
+    "results/latent_methods_benchmark_20261018_run1/split.json": "164d5b08d0dc71818b8b2aa460a532363e6769af1b76c7d3b934d78ae9ecf6c9",
+    "results/latent_methods_benchmark_20261018_run1/mlp32_parameter_matched.pt": "14ed8539fa2034c4f4abe86b5906a27e16802b9794a5a82b49b7a2a3e9d7456d",
+    "results/latent_methods_benchmark_20261018_run1/transformer32_task_aware.pt": "d40c2c3bd9a824aeeb0bd4612e95c53e443a5fcc7900b32ca040f455d60b3208"
+  },
+  "steps": 800,
+  "batch_size": 128,
+  "horizon": 10,
+  "context": 3,
+  "seed": 7,
+  "task_weights": {
+    "distance": 1.0,
+    "action": 0.1
+  },
+  "selection": "all-horizon common R2 RMSE on selection trajectories only",
+  "test_used": false,
+  "CP_pool_used": false,
+  "old_development_only": true,
+  "original_PPO_SBC_unchanged": true,
+  "code_sha256": "02ba13aa580355fd920435a3eb7b4f12d7d3b0f3ae61e85d44d65e59ad92455a"
+}

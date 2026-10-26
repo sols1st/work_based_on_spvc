@@ -1,0 +1,38 @@
+{
+  "dimensions": [
+    16,
+    32,
+    64,
+    128
+  ],
+  "families": [
+    "pca",
+    "ae",
+    "vae",
+    "vicreg"
+  ],
+  "codec_steps": 800,
+  "q_steps": 1000,
+  "probe_steps": 1000,
+  "seed": 7,
+  "batch_size": 256,
+  "device": "cuda",
+  "source_sha256": {
+    "results/dino_expanded_v1/02_dino_h5/cache_manifest.json": "ca4c9993fbcf12b7a57dddab5f6a75fc1a5da84278fb102747e681888229e5bb",
+    "results/dino_expanded_v1/02_dino_h5/features.h5": "dfc562b4c1a406de6f5dcbbf79e40a62955cd2d70a4d908b7119e2805336cdcd",
+    "results/dino_expanded_v1/08_R2_group_alignment/dino_safety_latent.pt": "7cb9c4a49e20bc02ecb86fd2aa1b9a306a969cc4fe6089d520cc62a8f5d9db16",
+    "results/static_latent_benchmark_20261018_qcontrol/split.json": "b6823c10e486fce70f3f0cb7f28abfc8383b4683871415a1c6b333a2e6b55845",
+    "/root/work_based_on_spvc/artical-F122/Aebs/dino_latent/benchmark_native_representations.py": "5699c8c39989233f6de2489083e577c16259211698a4a8abeaf6d90dfad2fcac"
+  },
+  "train_rows": 14172,
+  "selection_rows": 2448,
+  "audit_rows": 2460,
+  "evaluator": "own new linear/MLP probes on native coordinates; no R2 decoder or actor",
+  "probe_hidden_width": 32,
+  "normalization": "train only",
+  "test_evaluated": false,
+  "audit_scope": "historical validation reuse, not an independent final test",
+  "historical_R2_budget_matched": false,
+  "world_model_training": false,
+  "ppo_sbc_training": false
+}

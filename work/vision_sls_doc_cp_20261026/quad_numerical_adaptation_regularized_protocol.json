@@ -1,0 +1,14 @@
+{
+  "variant": "stronger regularized positive Hessian",
+  "reason": "Weak PSD projection produced large steps and failed planning before any new-controller test",
+  "changes": {
+    "eigenvalue_floor": "max(1e-6,0.001*max_abs_eigenvalue) when minimum eigenvalue<-1e-7",
+    "qp_max_iter": 50000,
+    "outer_max_iter": 100
+  },
+  "CP_model_or_multiplier_changed": false,
+  "constraints_dynamics_or_visual_model_changed": false,
+  "selected_before_any_doc_CP_closed_loop_performance": true,
+  "test_seed": 2026102614,
+  "scope": "solver numerical adaptation; not unchanged original controller"
+}
