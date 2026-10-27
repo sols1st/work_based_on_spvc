@@ -1,0 +1,257 @@
+{
+  "date": "2026-10-27",
+  "scope": "Frozen reference-policy original data re-evaluation; no new experiments",
+  "comparison": "Same frozen scale h and same test residuals, before and after multiplying q",
+  "scenes": {
+    "parking": {
+      "training_trajectories": 40,
+      "training_points": 1200,
+      "training_trace_path": "/Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_parking_direct_cp_20261025/calibration/diagnostic_traces.npz",
+      "training_trace_sha256": "832651326d23879fe4adee289ed4a9f50ceb6b9f87f8cf8eeb4a65bd7549490a",
+      "calibration_trajectories": 40,
+      "rank_k": 39,
+      "multiplier": 1.232638379750399,
+      "alpha": 0.05,
+      "calibration_before": {
+        "points_covered": 1144,
+        "points": 1200,
+        "point_coverage": 0.9533333333333334,
+        "trajectories_covered": 13,
+        "trajectories": 40,
+        "trajectory_coverage": 0.325
+      },
+      "calibration_after": {
+        "points_covered": 1198,
+        "points": 1200,
+        "point_coverage": 0.9983333333333333,
+        "trajectories_covered": 39,
+        "trajectories": 40,
+        "trajectory_coverage": 0.975
+      },
+      "test": {
+        "random": {
+          "before": {
+            "points_covered": 1208,
+            "points": 1260,
+            "point_coverage": 0.9587301587301588,
+            "trajectories_covered": 13,
+            "trajectories": 42,
+            "trajectory_coverage": 0.30952380952380953
+          },
+          "after": {
+            "points_covered": 1259,
+            "points": 1260,
+            "point_coverage": 0.9992063492063492,
+            "trajectories_covered": 41,
+            "trajectories": 42,
+            "trajectory_coverage": 0.9761904761904762
+          }
+        },
+        "stress": {
+          "before": {
+            "points_covered": 224,
+            "points": 240,
+            "point_coverage": 0.9333333333333333,
+            "trajectories_covered": 1,
+            "trajectories": 8,
+            "trajectory_coverage": 0.125
+          },
+          "after": {
+            "points_covered": 234,
+            "points": 240,
+            "point_coverage": 0.975,
+            "trajectories_covered": 3,
+            "trajectories": 8,
+            "trajectory_coverage": 0.375
+          }
+        },
+        "mixed": {
+          "before": {
+            "points_covered": 1432,
+            "points": 1500,
+            "point_coverage": 0.9546666666666667,
+            "trajectories_covered": 14,
+            "trajectories": 50,
+            "trajectory_coverage": 0.28
+          },
+          "after": {
+            "points_covered": 1493,
+            "points": 1500,
+            "point_coverage": 0.9953333333333333,
+            "trajectories_covered": 44,
+            "trajectories": 50,
+            "trajectory_coverage": 0.88
+          }
+        }
+      },
+      "random_test_uncovered_observations": [
+        {
+          "random_subset_run_1_based": 23,
+          "saved_rollout_index_0_based": 30,
+          "observation_index_0_based": 21,
+          "observation_number_1_based": 22,
+          "r": 0.09132456177179593,
+          "h": 0.0710363675596272,
+          "b_cp": 0.08756215301205243,
+          "r_over_h": 1.2856029229695485,
+          "r_over_b_cp": 1.042968435908898
+        }
+      ],
+      "source_traces": {
+        "calibration": {
+          "path": "/Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_建议原方案CP验证_20261026/parking/calibration/diagnostic_traces.npz",
+          "sha256": "984dc0a7def09db166a67344b4b03e04b8360d61dcb04a8f614479facdef9288",
+          "residual_reconstruction_max_error": 4.440892098500626e-16
+        },
+        "baseline": {
+          "path": "/Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_建议原方案CP验证_20261026/parking/baseline/diagnostic_traces.npz",
+          "sha256": "3d8aadae6adc77214decd4d63227337a61fb3bde39611b19711fe42521188b77",
+          "residual_reconstruction_max_error": 4.440892098500626e-16
+        }
+      },
+      "calibration_sorted_last10": [
+        1.09014646521519,
+        1.0961735090242932,
+        1.0968062178979923,
+        1.1209621520758712,
+        1.1434358079841551,
+        1.1525377570846351,
+        1.1652150492935434,
+        1.2046052398077765,
+        1.232638379750399,
+        1.3170507971731482
+      ],
+      "model_path": "/Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_建议原方案CP验证_20261026/parking/doc_cp_model.json",
+      "model_sha256": "dec5aeba0de82a8e36e43123849745aab3a591e86ea1fa9a35313f0c61bcab88",
+      "protocol_path": "/Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_建议原方案CP验证_20261026/parking/protocol.json",
+      "protocol_sha256": "3631cd132e65e249c3a023f7ea05f7f9f184a4de17cc6820235055c7b30dd09f"
+    },
+    "quad": {
+      "training_trajectories": 100,
+      "training_points": 3500,
+      "training_trace_path": "/Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_direct_cp_20261025/calibration/diagnostic_traces.npz",
+      "training_trace_sha256": "9c9f462ddf9a214ef164c189061c8d134d4d907925795ce5b6d2e54d7887ae37",
+      "calibration_trajectories": 60,
+      "rank_k": 58,
+      "multiplier": 1.1870461215166213,
+      "alpha": 0.05,
+      "calibration_before": {
+        "points_covered": 1962,
+        "points": 2100,
+        "point_coverage": 0.9342857142857143,
+        "trajectories_covered": 4,
+        "trajectories": 60,
+        "trajectory_coverage": 0.06666666666666667
+      },
+      "calibration_after": {
+        "points_covered": 2098,
+        "points": 2100,
+        "point_coverage": 0.9990476190476191,
+        "trajectories_covered": 58,
+        "trajectories": 60,
+        "trajectory_coverage": 0.9666666666666667
+      },
+      "test": {
+        "random": {
+          "before": {
+            "points_covered": 1001,
+            "points": 1050,
+            "point_coverage": 0.9533333333333334,
+            "trajectories_covered": 4,
+            "trajectories": 30,
+            "trajectory_coverage": 0.13333333333333333
+          },
+          "after": {
+            "points_covered": 1049,
+            "points": 1050,
+            "point_coverage": 0.9990476190476191,
+            "trajectories_covered": 29,
+            "trajectories": 30,
+            "trajectory_coverage": 0.9666666666666667
+          }
+        },
+        "stress": {
+          "before": {
+            "points_covered": 591,
+            "points": 700,
+            "point_coverage": 0.8442857142857143,
+            "trajectories_covered": 2,
+            "trajectories": 20,
+            "trajectory_coverage": 0.1
+          },
+          "after": {
+            "points_covered": 645,
+            "points": 700,
+            "point_coverage": 0.9214285714285714,
+            "trajectories_covered": 8,
+            "trajectories": 20,
+            "trajectory_coverage": 0.4
+          }
+        },
+        "mixed": {
+          "before": {
+            "points_covered": 1592,
+            "points": 1750,
+            "point_coverage": 0.9097142857142857,
+            "trajectories_covered": 6,
+            "trajectories": 50,
+            "trajectory_coverage": 0.12
+          },
+          "after": {
+            "points_covered": 1694,
+            "points": 1750,
+            "point_coverage": 0.968,
+            "trajectories_covered": 37,
+            "trajectories": 50,
+            "trajectory_coverage": 0.74
+          }
+        }
+      },
+      "random_test_uncovered_observations": [
+        {
+          "random_subset_run_1_based": 11,
+          "saved_rollout_index_0_based": 30,
+          "observation_index_0_based": 22,
+          "observation_number_1_based": 23,
+          "r": 0.0545368942711979,
+          "h": 0.044600247935806275,
+          "b_cp": 0.05294255133087846,
+          "r_over_h": 1.2227935223520185,
+          "r_over_b_cp": 1.0301145845872666
+        }
+      ],
+      "source_traces": {
+        "calibration": {
+          "path": "/Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_建议原方案CP验证_20261026/quad/calibration/diagnostic_traces.npz",
+          "sha256": "1d8018c1d812adb8c78b16aacdaa44625bc900049d99ea5250505f4af545c7c5",
+          "residual_reconstruction_max_error": 8.881784197001252e-16
+        },
+        "baseline": {
+          "path": "/Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_建议原方案CP验证_20261026/quad/baseline/diagnostic_traces.npz",
+          "sha256": "b994c2c39f640a2134a3a3fe6d1f559635fca9284310c0e0fa8e1985476f8548",
+          "residual_reconstruction_max_error": 8.881784197001252e-16
+        }
+      },
+      "calibration_sorted_last10": [
+        1.1231552109000345,
+        1.1540765594159992,
+        1.1622243844821902,
+        1.1628306471829444,
+        1.1747517319850735,
+        1.1748261918781155,
+        1.1775259724662765,
+        1.1870461215166213,
+        1.197988831371526,
+        1.2131981878170113
+      ],
+      "model_path": "/Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_建议原方案CP验证_20261026/quad/doc_cp_model.json",
+      "model_sha256": "c214bd73f07a1026a1ffc41a54a713a5cb6bcd23c867186acf722b54ae0993ce",
+      "protocol_path": "/Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_建议原方案CP验证_20261026/quad/protocol.json",
+      "protocol_sha256": "4b53acf5182896ef6b2dfc27dfe3962c3b6b05cbb7c921456811e0e7efaa8845"
+    }
+  },
+  "figure": {
+    "path": "/Users/johann/project/work_based_on_spvc/docs/assets/vision_sls_cp/unseen_random_coverage_before_after.png",
+    "sha256": "b96493a2a36ee7d10bc605ea2e070d19905035a19686bc5881eeef0f22617e20"
+  }
+}

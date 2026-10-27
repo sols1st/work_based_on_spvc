@@ -1,0 +1,44 @@
+{
+  "kind": "documentation consolidation; no new control experiments",
+  "report": "/Users/johann/project/work_based_on_spvc/docs/current/VISION-SLS_CP完整说明与可行性分析.md",
+  "report_sha256": "ac9b5416413235dc39c70fa1fe958ccf7880764a09124d54ad583eeb662a4750",
+  "verified_source_json_files": 58,
+  "verified_unique_image_batches": 19,
+  "trajectories": 990,
+  "observations": 32800,
+  "experiment_records": 22,
+  "table_sources_sha256": "014603dddcd96f7597b8a2c10eab2bb2976e94c55ade22e40f0ce96a06b07461",
+  "figures": [
+    {
+      "path": "/Users/johann/project/work_based_on_spvc/docs/assets/vision_sls_cp/cp_worked_example.png",
+      "sha256": "bfedcbfd2898a59bfec241038ab75168c25e98afb0e3a53cd6c9b1a1cc126a11"
+    },
+    {
+      "path": "/Users/johann/project/work_based_on_spvc/docs/assets/vision_sls_cp/d07_diagnosis.png",
+      "sha256": "45ede0510685f7acbace6ff9f1e38d9ecad311853177872850630068d9f86eac"
+    },
+    {
+      "path": "/Users/johann/project/work_based_on_spvc/docs/assets/vision_sls_cp/norm_geometry.png",
+      "sha256": "e33665c9a2b2b5f7fa7d3e068ba0b9d15b9f19beb5c13b2ae862b8dc946d3084"
+    }
+  ],
+  "D07_independent_plot_recalculation": {
+    "参考策略": {
+      "trajectory_coverage": 37,
+      "max_absolute_stage_state_8": 2.000001473327609,
+      "stage_state_8_violations": 0,
+      "scale_floor_observations": 13,
+      "unclipped_envelope_min": -0.06115216957618834,
+      "trace_sha256": "b994c2c39f640a2134a3a3fe6d1f559635fca9284310c0e0fa8e1985476f8548"
+    },
+    "CP 新策略": {
+      "trajectory_coverage": 0,
+      "max_absolute_stage_state_8": 2.0545894171104715,
+      "stage_state_8_violations": 50,
+      "scale_floor_observations": 1420,
+      "unclipped_envelope_min": -2.0198288039432857,
+      "trace_sha256": "88ae3d4b7f302723f448715d8d93d391eb9e4990540fdd78c13e08921f5e2d61"
+    }
+  },
+  "font": "/System/Library/AssetsV2/com_apple_MobileAsset_Font7/3419f2a427639ad8c8e139149a287865a90fa17e.asset/AssetData/PingFang.ttc"
+}

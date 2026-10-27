@@ -1,5 +1,8 @@
 # VISION-SLS：全部尝试结果总账
 
+> 历史归档：本稿只代表该阶段。CP 的现行完整说明与全部结论见 [统一主报告](</Users/johann/project/work_based_on_spvc/docs/current/VISION-SLS_CP完整说明与可行性分析.md>)。原文路径与哈希见本归档清单；本可读副本只增加此提示并迁移文件链接，逐字原文保存在同目录恢复压缩包。
+
+
 **汇总日期：2026 年 10 月 26 日。** 本文记录本轮对话中已有证据的 VISION-SLS 复现、CP 误差界和数值适配尝试，包含成功、失败、未收敛输出以及没有执行闭环的版本。本次只整理记录，没有新增实验或改变既有结果。
 
 ## 1. 怎样读这份总账
@@ -262,4 +265,4 @@ D07 保存计划的名义动力学最大缺陷约 5.03e-10，最终重新线性�
 | D07 | [原始记录](</Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_建议原方案CP验证_20261026/quad/doc_cp_comparison_convexified_iter50000_outer100_rf0p001.json>) |
 | D08 | [原始记录](</Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_建议原方案CP验证_20261026/parking/doc_cp_comparison_convexified_iter100000_outer100_rf0p001_normalized.json>) |
 
-分阶段详解：[复现与常数 CP 报告](</Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_复现与CP替换_综合报告_20261025/VISION-SLS_实验复现与直接CP替换_详细报告.md>)；[加法状态 CP 与建议差异](</Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_状态相关CP验证_20261026/VISION-SLS_状态相关CP_服务器验证与导师汇报.md>)；[文档公式及所有数值适配报告](</Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_建议原方案CP验证_20261026/VISION-SLS_按建议原公式CP_详细实验报告.md>)。
+分阶段详解：[复现与常数 CP 报告](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-26_VISION-SLS_CP阶段文档/exports/vision_sls_复现与CP替换_综合报告_20261025/VISION-SLS_实验复现与直接CP替换_详细报告.md>)；[加法状态 CP 与建议差异](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-26_VISION-SLS_CP阶段文档/exports/vision_sls_状态相关CP验证_20261026/VISION-SLS_状态相关CP_服务器验证与导师汇报.md>)；[文档公式及所有数值适配报告](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-26_VISION-SLS_CP阶段文档/exports/vision_sls_建议原方案CP验证_20261026/VISION-SLS_按建议原公式CP_详细实验报告.md>)。
