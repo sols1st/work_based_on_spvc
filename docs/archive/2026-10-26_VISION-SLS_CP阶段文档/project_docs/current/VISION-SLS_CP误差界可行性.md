@@ -1,5 +1,8 @@
 # 用 CP 计算 VISION-SLS 感知误差界：状态相关版本的实测验证
 
+> 历史归档：本稿只代表该阶段。CP 的现行完整说明与全部结论见 [统一主报告](</Users/johann/project/work_based_on_spvc/docs/current/VISION-SLS_CP完整说明与可行性分析.md>)。原文路径与哈希见本归档清单；本可读副本只增加此提示并迁移文件链接，逐字原文保存在同目录恢复压缩包。
+
+
 > **后续验证已补充：** 本文第 1—9 节记录加法 CP 变体阶段；第 10 节记录随后按建议文档原公式计算误差界、通过外包球接入原规划器的新实验。请结合第 10 节判断最新进度，不能把两个阶段混为同一次试验。
 
 
@@ -115,7 +118,7 @@ $$\boxed{b_{\rm CP}(x)=\max\{0.001,g_\theta(x)+Q_\alpha\}}.$$
 
 **直接回答：当前实现遵循了建议的两阶段思路，但不是建议文档公式的原样实现。** 共同点是“固定视觉模型 → 用残差拟合状态相关函数 → 独立 CP 校准 → 接入控制”。核心差异是拟合目标、状态特征、残差范数、CP 分数、最终集合和数值求解。当前方案应称为“参考建议设计的加法轨迹 CP 候选版本”，不能称为“已完整复现建议文档中的归一化 CP 方案”。
 
-本节对照来源为 [导师提供的技术说明](/Users/johann/project/work_based_on_spvc/VISION_SLS_状态相关误差界计算.pdf)：第 2 页定义残差，第 3—4 页介绍多项式，第 5、7 页说明包络拟合，第 8 页给出 CP 校准公式。PDF 中三阶、四阶多项式是在介绍原场景，示例超参数也不是所有新实现必须照搬的固定要求。
+本节对照来源为 [导师提供的技术说明](</Users/johann/project/work_based_on_spvc/VISION_SLS_状态相关误差界计算.pdf>)：第 2 页定义残差，第 3—4 页介绍多项式，第 5、7 页说明包络拟合，第 8 页给出 CP 校准公式。PDF 中三阶、四阶多项式是在介绍原场景，示例超参数也不是所有新实现必须照搬的固定要求。
 
 #### 3.4.1 两条计算链并排看
 
@@ -237,7 +240,7 @@ $$A_i=\max_t\frac{\|\delta_{i,t}\|_\infty}{h_0(x_{i,t}^{\rm image})}.$$
 
 另一方面，也不能因为两者不同就预先认定照文档改成乘法一定成功。状态域、策略变化和非线性规划有效性仍需独立解决。向导师应表述为：“我先实现并测试了参考建议的一个变体，发现覆盖与求解问题；建议中的原始比值校准方案尚缺完整独立闭环验证。”
 
-代码复核入口：[预测器拟合](/Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_状态相关CP验证_20261026/scripts/fit_state_predictor.py)、[CP 校准](/Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_状态相关CP验证_20261026/scripts/calibrate_state_cp.py)、[特征与最终界](/Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_状态相关CP验证_20261026/scripts/state_cp_features.py)、[观测模型接入](/Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_状态相关CP验证_20261026/scripts/state_cp_model.py)、[无人机局部凸化](/Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_状态相关CP验证_20261026/scripts/qp_audit.py)。各场景目录中的 `scripts/` 另保存该场景实际执行脚本，与实验溯源哈希对应。
+代码复核入口：[预测器拟合](</Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_状态相关CP验证_20261026/scripts/fit_state_predictor.py>)、[CP 校准](</Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_状态相关CP验证_20261026/scripts/calibrate_state_cp.py>)、[特征与最终界](</Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_状态相关CP验证_20261026/scripts/state_cp_features.py>)、[观测模型接入](</Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_状态相关CP验证_20261026/scripts/state_cp_model.py>)、[无人机局部凸化](</Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_状态相关CP验证_20261026/scripts/qp_audit.py>)。各场景目录中的 `scripts/` 另保存该场景实际执行脚本，与实验溯源哈希对应。
 
 
 ### 3.5 为什么这个公式在适用条件下有 CP 理论支撑
@@ -294,7 +297,7 @@ $$F(x)=b_{\rm CP}(x)I,\qquad y=Cx+F(x)e,\qquad\|e\|_2\le1.$$
 
 同时，新反馈算子范数仅为原来的约 0.264%。这支持“当前控制对视觉修正的依赖明显减弱”的解释，但未单独做零反馈消融，不能直接说控制成功完全不依赖视觉。当前试验的初始条件固定、过程扰动较小，名义路线和较宽管束可能使控制仍然成功；这个现象不能弥补误差覆盖条件的失败。
 
-![停车场：路线、整轨迹覆盖与沿途误差界](/Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_状态相关CP验证_20261026/parking/state_cp_comparison.png)
+![停车场：路线、整轨迹覆盖与沿途误差界](</Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_状态相关CP验证_20261026/parking/state_cp_comparison.png>)
 
 ## 5. 无人机：直接替换失败，数值适配后的闭环也失败
 
@@ -344,7 +347,7 @@ $$F(x)=b_{\rm CP}(x)I,\qquad y=Cx+F(x)e,\qquad\|e\|_2\le1.$$
 
 该版本已经比原基线明显退化，不应继续当成可靠替代控制器使用。仿真完成和程序没有抛异常，只能说明执行链跑完。
 
-![无人机：失败路线、覆盖与误差界变化](/Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_状态相关CP验证_20261026/quad/state_cp_comparison.png)
+![无人机：失败路线、覆盖与误差界变化](</Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_状态相关CP验证_20261026/quad/state_cp_comparison.png>)
 
 ## 6. 失败原因能说到什么程度
 
@@ -438,7 +441,7 @@ $$F(x)=b_{\rm CP}(x)I,\qquad y=Cx+F(x)e,\qquad\|e\|_2\le1.$$
 | 外包球整轨迹覆盖数 / 50 | 40 | 未产生可测试控制器 |
 | 反馈算子 Frobenius 范数 | 0.215015 | 未产生可测试控制器 |
 
-完整的数据、实现范围、倍率、规划状态与限制见[按建议原公式的详细实验报告](/Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_建议原方案CP验证_20261026/VISION-SLS_按建议原公式CP_详细实验报告.md)。
+完整的数据、实现范围、倍率、规划状态与限制见[按建议原公式的详细实验报告](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-26_VISION-SLS_CP阶段文档/exports/vision_sls_建议原方案CP验证_20261026/VISION-SLS_按建议原公式CP_详细实验报告.md>)。
 
 前述“建议原方案尚未做完整验证”等表述记录的是加法变体阶段的进度；本轮已补做文档误差界公式及外包球接入的测试，原生盒控制器仍未实现。新结果仍不能直接提升为新策略概率安全证明。
 
@@ -466,4 +469,4 @@ $$F(x)=b_{\rm CP}(x)I,\qquad y=Cx+F(x)e,\qquad\|e\|_2\le1.$$
 
 可按 `fit_state_predictor.py → calibrate_state_cp.py → plan_state_cp.py → run_visual_rollout.py → compare_state_cp.py → audit_calibration.py` 追踪每个环节。重新采集图像还依赖对应场景原源码、已安装环境、DINO 骨干及原投影网络；`protocol.json` 记录训练数据来源。数值适配通过 `--convexify` 显式启用，原始失败保留，不能将其覆盖成无条件成功。
 
-此前完整的常数 CP 阶段汇报稿保留为 [此前汇报稿_常数CP实验阶段_保留.md](/Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_状态相关CP验证_20261026/此前汇报稿_常数CP实验阶段_保留.md)。其中“下一步状态相关验证”等描述是当时进度，当前结论以本报告为准。
+此前完整的常数 CP 阶段汇报稿保留为 [此前汇报稿_常数CP实验阶段_保留.md](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-26_VISION-SLS_CP阶段文档/exports/vision_sls_状态相关CP验证_20261026/此前汇报稿_常数CP实验阶段_保留.md>)。其中“下一步状态相关验证”等描述是当时进度，当前结论以本报告为准。
