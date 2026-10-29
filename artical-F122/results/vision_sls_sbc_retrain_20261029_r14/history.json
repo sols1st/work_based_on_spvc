@@ -1,0 +1,52 @@
+[
+  {
+    "regions": {
+      "initial": {
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "unsafe": {
+        "lower": 21.914451599121094,
+        "upper": 51.53290557861328
+      }
+    },
+    "active": 7797,
+    "positive": 180,
+    "positive_training_margin": 7697,
+    "verification_condition": "nonnegative supermartingale: B(next)<=B(now); positive epsilon is a training margin only",
+    "max_drift": 0.13529586791992188,
+    "region_pass": true,
+    "sampled_tube_pass": false,
+    "formal_certificate": false,
+    "epoch": 500,
+    "loss": 0.9986095428466797,
+    "seconds": 0.9035147079848684,
+    "rejected_region_blocks": 0,
+    "feedback_samples": 180
+  },
+  {
+    "regions": {
+      "initial": {
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "unsafe": {
+        "lower": 22.0119686126709,
+        "upper": 51.565704345703125
+      }
+    },
+    "active": 7639,
+    "positive": 0,
+    "positive_training_margin": 7505,
+    "verification_condition": "nonnegative supermartingale: B(next)<=B(now); positive epsilon is a training margin only",
+    "max_drift": 0.0,
+    "region_pass": true,
+    "sampled_tube_pass": true,
+    "formal_certificate": false,
+    "epoch": 1000,
+    "loss": 1.0123366117477417,
+    "seconds": 1.7738649579696357,
+    "rejected_region_blocks": 0,
+    "feedback_samples": 0
+  }
+]

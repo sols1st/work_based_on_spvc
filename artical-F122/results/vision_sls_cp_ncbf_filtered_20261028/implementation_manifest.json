@@ -1,0 +1,43 @@
+{
+  "purpose": "Post-validation implementation snapshot; no model tuning or new calibration selection",
+  "hashes": {
+    "results/vision_sls_spvc_goalfix_full_20261028/policy.pt": "7435e5f946e71594fea3523151121f47a8a2a164f22207011798d646157e7031",
+    "results/vision_sls_spvc_goalfix_full_20261028/observation.pt": "6a9767a737d3551c8d7bf0f2754e1d3f0a20e6f3a157355ef2fff14f31eec451",
+    "results/vision_sls_spvc_goalfix_full_20261028/observations.npz": "bf46e4e640fba64587cbdc0208e62bef510ee055e45caee9b5ecbf03a9316c89",
+    "results/vision_sls_cp_ncbf_20261028/ncbf.pt": "340be1dbc891dc926b4d50984be2c38aeff6c573b28c70eb20672f51d72daca3",
+    "results/vision_sls_cp_ncbf_20261028/perception_contract.json": "21ae3ecdeed0cfcb7fc760f0bbfc773faa0f377d6c24b3325ffa69272228d039",
+    "Aebs/vision_sls/run.py": "3855fd53ef68514800e1974e9af738ae5274d61ed4af93a3b2552f59de05b683",
+    "Aebs/vision_sls/env.py": "1f79ab5e3afddfbc13a7097d1efb9057ec03fe0bbc4b24de05d2817c8199baaf",
+    "Aebs/vision_sls/deploy.py": "524fb263354d9fe6cd0d3df6927e81a05877169d1369452baae310edb7b3f853",
+    "Aebs/vision_sls/conformal.py": "57c5cd8a48e9ddf5a59e1ddaeb837573e53d4433d7cfba7a6855a16b157a2af9",
+    "Aebs/vision_sls/benchmark.py": "4654ab24f6fc89f1d9b69a42ab92f77617915026a417211a5f523bf39028b7ba",
+    "Aebs/vision_sls/cp_filter.py": "17deeaa7ee6385483870a78474e011f49ad28f704e6a9a23fde535d97171daa5",
+    "Aebs/vision_sls/deploy_cp.py": "65d40f9bcc7644940169ba116edc2e8be60700d0b8817c05ed31c76978ea9f19",
+    "Aebs/vision_sls/calibrate_cp_filter.py": "6e4e3c6f4175a33d4bb0b27d55a957f086046df45048ec474a73cd3156a9f2f6",
+    "Aebs/vision_sls/audit_certificate.py": "ccfa70610e98e3021d0c7f977298fa96b45b3ce65a586b4a0bc2dceb53ac8914",
+    "Aebs/vision_sls/__init__.py": "00e0342cfd0e27dc2390391a59599fcaea8ad3985c26a538cd36dddd6b7a3dba",
+    "Aebs/vision_sls/model.py": "63793f8d35f9ef1e6d3d81c73060ceb8b9a82dedc8361c719083c4c4b7d3dcdd",
+    "Aebs/vision_sls/rollout.py": "be7fcde00d490bbe1c83ed4296ca4653ac358ddb3d4b5acf398211e1c1da2516",
+    "Aebs/vision_sls/evaluate.py": "a2e9702ff129c3649ab76177a508c596852a0857131895a3f570a1d45c222904",
+    "Aebs/vision_sls/run_cp_ncbf.py": "afe50d36ef15945b700ca98183f271ba8b98d90467ffd9378af27733b0dc72e2",
+    "Aebs/vision_sls/cp_ncbf.py": "25e5e6c191bef1704e03b720fe8bc52db998c8bb9776df40cc7c8d9e0e553ddf",
+    "Aebs/vision_sls/training.py": "b12e3f12ee3e4ec35395e4e36555e86a4538131369d48ea0e715232ec0239acb",
+    "Aebs/system/outcomes.py": "17ed40612a60015cc733ae874fa5aabf2658602f29b0ffb1d42fb890902f3a93"
+  },
+  "packages": {
+    "torch": "2.3.1",
+    "numpy": "1.26.4",
+    "scipy": "1.17.1",
+    "stable-baselines3": "2.3.2"
+  },
+  "filter_config": {
+    "decay": 0.05,
+    "numerical_margin": 1e-05,
+    "bisection_steps": 28
+  },
+  "tests": {
+    "passed": 24,
+    "command": "python -m pytest tests/test_vision_sls_cp_ncbf.py tests/test_vision_sls_spvc.py tests/test_minimal_latent_spvc.py -q"
+  },
+  "original_actor_unchanged": true
+}

@@ -1,6 +1,16 @@
 # Provably Probabilistic Safe Controller Synthesis for Vision-Based Neural Network Control Systems
 This is an example project for the CARLA Emergency Braking Benchmark used in the paper.
 
+## Current default: VISION-SLS front end (2026-10-28)
+
+`python -m Aebs.VT.loop --smoke` now runs the AEBS-adapted pipeline:
+image → frozen DINOv2 → low-dimensional observation ≈ Cx → PPO → original SPVC SBC training/verification.
+See [setup, full run, deployment, and scope](Aebs/vision_sls/README.md).
+The old cGAN pipeline below is available explicitly with `python -m Aebs.VT.loop --frontend cgan`.
+Nominal SPVC verification does not certify image-observation residuals.
+
+The 2026-10-29 stopped-process **nonnegative SBC adaptation** passed continuous-state numerical interval checks for both the reference CP tube and the frozen image-replay model. The deployed controller remains the PPO actor, with no NCBF/QP filter. See the [ready-to-run model bundle and exact scope](results/vision_sls_spvc_sbc_pass_20261029/README.md). The original literal Softplus/strict-drift configuration and a real-world image certificate are not claimed to pass.
+
 
 ## Contributions
 * We propose a **provably probabilistic safe controller synthesis
@@ -54,7 +64,7 @@ Next, the controller needs to be trained. The controller performs state estimati
 Finally, after constructing the complete vision-based NNCS, a barrier certificate and a safety-assured controller can be generated using the following command:
 
 ```bash
-python -m Aebs.VT.loop
+python -m Aebs.VT.loop --frontend cgan
 ```
 
 

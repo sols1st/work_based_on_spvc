@@ -1,0 +1,19 @@
+{
+  "artifact_dir": "results/vision_sls_sbc_actor_20261029_r1",
+  "barrier_dir": "results/vision_sls_sbc_actor_20261029_r1",
+  "perception_contract": "results/vision_sls_sbc_actor_20261029_r1/perception_contract.json",
+  "output_dir": "results/vision_sls_sbc_actor_20261029_r2",
+  "rounds": 80,
+  "steps_per_round": 20,
+  "learning_rate": 1e-05,
+  "imitation_weight": 0.2,
+  "line_search": true,
+  "barrier_distance_scale_m": 3.18272066116333,
+  "nonnegative_activation": "relu",
+  "source_policy_sha256": "e2a2f3566e49590a9f66196502c4077a7125b9b0ab6001b157f5d9be0c829ba5",
+  "source_barrier_sha256": "cd33fc354bba66d43b86e8da7ce8ca44567b03a8e01408f12f3cb5cda4ec2c7a",
+  "source_observation_sha256": "6a9767a737d3551c8d7bf0f2754e1d3f0a20e6f3a157355ef2fff14f31eec451",
+  "offline_actor_training": true,
+  "deployment_action_filter": false,
+  "task_panel_uses_train_images_only": true
+}

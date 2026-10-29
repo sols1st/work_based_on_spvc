@@ -1,0 +1,37 @@
+{
+  "saved_actor_image_reload_passed": true,
+  "real_test_images": 80,
+  "image_actions": [
+    [
+      3.0
+    ],
+    [
+      3.0
+    ],
+    [
+      3.0
+    ],
+    [
+      3.0
+    ]
+  ],
+  "action_path_max_gap": 0.0,
+  "nominal": {
+    "episodes": 25,
+    "counts": {
+      "stopped_safe_outside_goal": 25
+    },
+    "lookup_max_error_m": 0.0,
+    "mode": "nominal_Cx"
+  },
+  "heldout_image_replay": {
+    "episodes": 25,
+    "counts": {
+      "stopped_safe_outside_goal": 25
+    },
+    "lookup_max_error_m": 0.30150828722707956,
+    "mode": "saved_image_nearest_replay"
+  },
+  "live_carla": false,
+  "image_closed_loop_certified": false
+}

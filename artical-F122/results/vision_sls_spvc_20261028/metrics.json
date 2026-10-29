@@ -1,0 +1,109 @@
+{
+  "frontend": "vision_sls",
+  "smoke": false,
+  "seed": 7,
+  "perception": {
+    "train": {
+      "samples": 240,
+      "rmse_m": 0.08584622965630118,
+      "mae_m": 0.06577679180457352,
+      "residual_linf_max": 0.07577133178710938
+    },
+    "validation": {
+      "samples": 80,
+      "rmse_m": 0.4676525186176832,
+      "mae_m": 0.15005020906819766,
+      "residual_linf_max": 1.2383695840835571
+    },
+    "test": {
+      "samples": 80,
+      "rmse_m": 0.16544396871113065,
+      "mae_m": 0.1292662863300933,
+      "residual_linf_max": 0.12813901901245117
+    }
+  },
+  "vision_sls_observation": {
+    "C": [
+      [
+        1.0,
+        0.0
+      ]
+    ],
+    "dimension": 1
+  },
+  "image_forward_cache_max_gap": 2.86102294921875e-06,
+  "image_forward_actions": [
+    [
+      1.0009180307388306
+    ],
+    [
+      1.8793467283248901
+    ],
+    [
+      1.8527429103851318
+    ],
+    [
+      0.8151348233222961
+    ]
+  ],
+  "nominal_rollout": {
+    "episodes": 25,
+    "counts": {
+      "stopped_safe_outside_goal": 25
+    },
+    "lookup_max_error_m": 0.0,
+    "mode": "nominal_Cx"
+  },
+  "heldout_image_replay": {
+    "episodes": 25,
+    "counts": {
+      "stopped_safe_outside_goal": 25
+    },
+    "lookup_max_error_m": 0.30150828722707956,
+    "mode": "saved_image_nearest_replay"
+  },
+  "spvc": {
+    "loop_info": {
+      "ds_size": 10000,
+      "K": 0.027459463220896343,
+      "iter": 0,
+      "runtime": 0.0001761913299560547,
+      "delta": 0.02288288601741362,
+      "hard_violations": "122/10000"
+    },
+    "final_nominal_decrease_satisfied": true,
+    "final_nominal_hard_violations": 0,
+    "final_info": {
+      "delta": 0.02288288601741362,
+      "K": 0.027459463220896343,
+      "hard_violations": "0/10000"
+    },
+    "barrier_updated": true,
+    "actor_updated": true,
+    "image_closed_loop_certified": false,
+    "grid": [
+      100,
+      100
+    ]
+  },
+  "policy": {
+    "frontend": "vision_sls",
+    "C": [
+      [
+        1.0,
+        0.0
+      ]
+    ],
+    "visual_dimension": 1,
+    "distance_scale_m": 3.2378063201904297,
+    "state_distance_scale_m": 3.18272066116333,
+    "deployment": "image -> frozen DINOv2 -> projection + measured speed -> actor",
+    "verification": "nominal Cx only; image residual not certified"
+  },
+  "claim": "Pipeline execution only. Nominal VT does not certify image residuals; replay is not live CARLA.",
+  "artifacts": {
+    "observation.pt": "6a9767a737d3551c8d7bf0f2754e1d3f0a20e6f3a157355ef2fff14f31eec451",
+    "policy.pt": "e26e8facad4658572ebc3e6156ff4324fb764c68780da930a2263f83278f6a33",
+    "sbc.pt": "0d31d0b927618e0b22d1b5c7eef3397c6f91a6eea2489c1ac9c6dc15b17bf4d3"
+  }
+}

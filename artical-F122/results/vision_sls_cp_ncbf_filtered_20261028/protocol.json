@@ -1,0 +1,19 @@
+{
+  "source_policy_sha256": "7435e5f946e71594fea3523151121f47a8a2a164f22207011798d646157e7031",
+  "ncbf_sha256": "340be1dbc891dc926b4d50984be2c38aeff6c573b28c70eb20672f51d72daca3",
+  "fixed_before_calibration": true,
+  "no_updates_after_calibration": true,
+  "state_calibration_seed": 9011,
+  "state_audit_seed": 9012,
+  "state_samples": 8192,
+  "trajectory_calibration_seed": 9051,
+  "trajectory_test_seed": 9052,
+  "trajectory_calibration_count": 512,
+  "trajectory_test_count": 1000,
+  "horizon": 400,
+  "renderer": "nearest distance over all 400 frozen images, deterministic argmin tie-breaking",
+  "image_library_sha256": "bf46e4e640fba64587cbdc0208e62bef510ee055e45caee9b5ecbf03a9316c89",
+  "initial_distribution": "uniform [15,16] metres x [2.5,3] m/s",
+  "confidence_failure": 0.01,
+  "live_carla": false
+}

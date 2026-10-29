@@ -1,0 +1,231 @@
+Training AEBS VISION-SLS observation: frozen DINO -> 1-D Cx
+Training PPO: 8192 steps, nominal/train-image mixed episodes
+/Users/johann/project/work_based_on_spvc/external/dinov2/dinov2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/Users/johann/project/work_based_on_spvc/external/dinov2/dinov2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/Users/johann/project/work_based_on_spvc/external/dinov2/dinov2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+Running original SPVC learner/verifier with nominal Cx observations
+Creating pre-train buffer ...  [done]
+
+#### Iteration 0 (0:00 elapsed) #####
+Epoch 1:
+  loss_l: 119.5683
+  dec_loss_l: 0.0995
+  train_violations_l: 0.4808
+  lip_loss_l: 0.0000
+  region_loss: 20.0809
+----------------------------------------
+Epoch 2:
+  loss_l: 118.6482
+  dec_loss_l: 0.0986
+  train_violations_l: 0.4400
+  lip_loss_l: 0.0000
+  region_loss: 20.0511
+----------------------------------------
+Epoch 3:
+  loss_l: 117.5061
+  dec_loss_l: 0.0975
+  train_violations_l: 0.4274
+  lip_loss_l: 0.0000
+  region_loss: 20.0155
+----------------------------------------
+Epoch 4:
+  loss_l: 116.1882
+  dec_loss_l: 0.0962
+  train_violations_l: 0.4216
+  lip_loss_l: 0.0000
+  region_loss: 19.9797
+----------------------------------------
+Epoch 5:
+  loss_l: 114.7440
+  dec_loss_l: 0.0948
+  train_violations_l: 0.4241
+  lip_loss_l: 0.0000
+  region_loss: 19.9569
+----------------------------------------
+Epoch 6:
+  loss_l: 113.0054
+  dec_loss_l: 0.0930
+  train_violations_l: 0.4286
+  lip_loss_l: 0.0000
+  region_loss: 19.9670
+----------------------------------------
+Epoch 7:
+  loss_l: 111.1107
+  dec_loss_l: 0.0911
+  train_violations_l: 0.4233
+  lip_loss_l: 0.0000
+  region_loss: 19.9990
+----------------------------------------
+Epoch 8:
+  loss_l: 109.1030
+  dec_loss_l: 0.0891
+  train_violations_l: 0.4274
+  lip_loss_l: 0.0000
+  region_loss: 20.0155
+----------------------------------------
+Epoch 9:
+  loss_l: 106.7743
+  dec_loss_l: 0.0867
+  train_violations_l: 0.4268
+  lip_loss_l: 0.0000
+  region_loss: 20.0435
+----------------------------------------
+Epoch 10:
+  loss_l: 104.2407
+  dec_loss_l: 0.0841
+  train_violations_l: 0.4257
+  lip_loss_l: 0.0000
+  region_loss: 20.1051
+----------------------------------------
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 562.16it/s]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 1579.78it/s]
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 1297.42it/s]
+delta=0.02288288601741362
+Checking GRID of size [100 100]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 120.75it/s]
+violations=122
+122/10000 violations
+Train buffer len: 10000
+Grid runtime=0.03 s
+info= {'ds_size': 10000, 'K': 0.027459463220896343, 'iter': 0, 'runtime': 0.00018095970153808594, 'delta': 0.02288288601741362, 'hard_violations': '122/10000', 'checked_states_after_legacy_filter': 139}
+Epoch 1:
+  loss_p: 59.5482
+  dec_loss_p: 0.0520
+  train_violations_p: 0.0862
+  lip_loss_p: 0.0010
+  mse_loss_p: 5.9028
+----------------------------------------
+Iteration limit reached (0). Stop.
+Creating pre-train buffer ...  [done]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 2216.86it/s]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 2156.45it/s]
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 1758.18it/s]
+delta=0.02288288601741362
+Checking GRID of size [100 100]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 127.52it/s]
+violations=0
+0/10000 violations
+Train buffer len: 10000
+Grid runtime=0.01 s
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 2357.68it/s]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 2362.99it/s]
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 1359.49it/s]
+{
+  "frontend": "vision_sls",
+  "smoke": false,
+  "seed": 7,
+  "perception": {
+    "train": {
+      "samples": 240,
+      "rmse_m": 0.08584622965630118,
+      "mae_m": 0.06577679180457352,
+      "residual_linf_max": 0.07577133178710938
+    },
+    "validation": {
+      "samples": 80,
+      "rmse_m": 0.4676525186176832,
+      "mae_m": 0.15005020906819766,
+      "residual_linf_max": 1.2383695840835571
+    },
+    "test": {
+      "samples": 80,
+      "rmse_m": 0.16544396871113065,
+      "mae_m": 0.1292662863300933,
+      "residual_linf_max": 0.12813901901245117
+    }
+  },
+  "vision_sls_observation": {
+    "C": [
+      [
+        1.0,
+        0.0
+      ]
+    ],
+    "dimension": 1
+  },
+  "image_forward_cache_max_gap": 2.86102294921875e-06,
+  "image_forward_actions": [
+    [
+      1.0009180307388306
+    ],
+    [
+      1.8793467283248901
+    ],
+    [
+      1.8527429103851318
+    ],
+    [
+      0.8151348233222961
+    ]
+  ],
+  "nominal_rollout": {
+    "episodes": 25,
+    "counts": {
+      "stopped_safe_outside_goal": 25
+    },
+    "lookup_max_error_m": 0.0,
+    "mode": "nominal_Cx"
+  },
+  "heldout_image_replay": {
+    "episodes": 25,
+    "counts": {
+      "stopped_safe_outside_goal": 25
+    },
+    "lookup_max_error_m": 0.30150828722707956,
+    "mode": "saved_image_nearest_replay"
+  },
+  "spvc": {
+    "loop_info": {
+      "ds_size": 10000,
+      "K": 0.027459463220896343,
+      "iter": 0,
+      "runtime": 0.00018095970153808594,
+      "delta": 0.02288288601741362,
+      "hard_violations": "122/10000",
+      "checked_states_after_legacy_filter": 139
+    },
+    "final_nominal_decrease_satisfied": true,
+    "final_nominal_hard_violations": 0,
+    "final_info": {
+      "delta": 0.02288288601741362,
+      "K": 0.027459463220896343,
+      "hard_violations": "0/10000",
+      "checked_states_after_legacy_filter": 139
+    },
+    "final_bounds": {
+      "init_upper": 1.1274375915527344,
+      "unsafe_lower": 0.3455888628959656,
+      "domain_lower": 0.2508438229560852
+    },
+    "barrier_updated": true,
+    "actor_updated": true,
+    "image_closed_loop_certified": false,
+    "grid": [
+      100,
+      100
+    ]
+  },
+  "policy": {
+    "frontend": "vision_sls",
+    "C": [
+      [
+        1.0,
+        0.0
+      ]
+    ],
+    "visual_dimension": 1,
+    "distance_scale_m": 3.2378063201904297,
+    "state_distance_scale_m": 3.18272066116333,
+    "deployment": "image -> frozen DINOv2 -> projection + measured speed -> actor",
+    "verification": "nominal Cx only; image residual not certified"
+  },
+  "claim": "Pipeline execution only. Nominal VT does not certify image residuals; replay is not live CARLA.",
+  "artifacts": {
+    "observation.pt": "6a9767a737d3551c8d7bf0f2754e1d3f0a20e6f3a157355ef2fff14f31eec451",
+    "policy.pt": "e26e8facad4658572ebc3e6156ff4324fb764c68780da930a2263f83278f6a33",
+    "sbc.pt": "0d31d0b927618e0b22d1b5c7eef3397c6f91a6eea2489c1ac9c6dc15b17bf4d3"
+  }
+}

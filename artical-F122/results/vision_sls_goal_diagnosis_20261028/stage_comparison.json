@@ -1,0 +1,74 @@
+{
+  "ppo_before_vt": {
+    "nominal": {
+      "episodes": 25,
+      "counts": {
+        "success": 25
+      },
+      "lookup_max_error_m": 0.0,
+      "mode": "nominal_Cx"
+    },
+    "images": {
+      "episodes": 25,
+      "counts": {
+        "success": 25
+      },
+      "lookup_max_error_m": 0.30150828722707956,
+      "mode": "saved_image_nearest_replay"
+    },
+    "actions": {
+      "15.5": 0.7793840765953064,
+      "12.0": 1.3067673444747925,
+      "8.0": 1.7255390882492065,
+      "6.0": 1.861862301826477
+    }
+  },
+  "original_ppo": {
+    "nominal": {
+      "episodes": 25,
+      "counts": {
+        "success": 25
+      },
+      "lookup_max_error_m": 0.0,
+      "mode": "nominal_Cx"
+    },
+    "images": {
+      "episodes": 25,
+      "counts": {
+        "success": 25
+      },
+      "lookup_max_error_m": 0.30150828722707956,
+      "mode": "saved_image_nearest_replay"
+    },
+    "actions": {
+      "15.5": -2.4105961322784424,
+      "12.0": -0.9811174273490906,
+      "8.0": 1.861175298690796,
+      "6.0": 3.0
+    }
+  },
+  "after_vt": {
+    "nominal": {
+      "episodes": 25,
+      "counts": {
+        "stopped_safe_outside_goal": 25
+      },
+      "lookup_max_error_m": 0.0,
+      "mode": "nominal_Cx"
+    },
+    "images": {
+      "episodes": 25,
+      "counts": {
+        "stopped_safe_outside_goal": 25
+      },
+      "lookup_max_error_m": 0.30150828722707956,
+      "mode": "saved_image_nearest_replay"
+    },
+    "actions": {
+      "15.5": 3.0,
+      "12.0": 3.0,
+      "8.0": 3.0,
+      "6.0": 3.0
+    }
+  }
+}

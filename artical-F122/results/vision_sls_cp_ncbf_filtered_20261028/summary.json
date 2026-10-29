@@ -1,0 +1,68 @@
+{
+  "state_constraint_cp": {
+    "q_hat": 0.0,
+    "rank": 8112,
+    "n": 8192,
+    "alpha": 0.01,
+    "marginal_target": 0.99,
+    "confidence": 0.99,
+    "coverage_lower_at_confidence": 0.9873966147667107,
+    "guarantee_scope": "one exchangeable draw, fixed score function; not trajectory safety"
+  },
+  "state_calibration_positive": 0,
+  "state_audit_positive": 0,
+  "state_active_infeasible": [
+    0,
+    0
+  ],
+  "trajectory_cp": {
+    "q_hat": 0.0,
+    "rank": 512,
+    "n": 512,
+    "alpha": 0.001949317738791423,
+    "marginal_target": 0.9980506822612085,
+    "confidence": 0.99,
+    "coverage_lower_at_confidence": 0.9910458562488609,
+    "guarantee_scope": "one IID initial-state draw in the fixed replay world; score is the maximum over the stopped 400-step trajectory"
+  },
+  "finite_replay_trajectory_certificate": true,
+  "claim_scope": "conditional finite fixed-library replay model, random initial state, 400-step safety until existing terminal event",
+  "probability_lower_for_fixed_replay": 0.9910458562488609,
+  "confidence": 0.99,
+  "original_spvc_certificate": false,
+  "real_world_image_certificate": false,
+  "formal_continuous_state_verification": false,
+  "limitations": [
+    "not a new-image or live-CARLA certificate",
+    "not an infinite-horizon SBC",
+    "pointwise perception CP was a reused-data reference; trajectory scores calibrate the final fixed replay system directly",
+    "no claim of deterministic correctness at every state; state CP remains distributional",
+    "confidence bound covers finite-horizon safety, not goal-reaching probability"
+  ],
+  "rollouts": {
+    "calibration": {
+      "counts": {
+        "success": 512
+      },
+      "qp_infeasible_steps": 108,
+      "intervention_steps": 37461,
+      "perception_tube_miss_episodes": 512
+    },
+    "test": {
+      "counts": {
+        "success": 1000
+      },
+      "qp_infeasible_steps": 272,
+      "intervention_steps": 72820,
+      "perception_tube_miss_episodes": 1000
+    },
+    "grid": {
+      "counts": {
+        "success": 441
+      },
+      "qp_infeasible_steps": 127,
+      "intervention_steps": 32096,
+      "perception_tube_miss_episodes": 441
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "experiment": "vision_sls_spvc_goalfix_full_20261028",
+  "root_cause": "legacy actor learning rate 0.05 destroys the working pre-VT PPO; matched ablation confirms",
+  "actor_learning_rate": 0.0003,
+  "ppo_steps_requested": 30000,
+  "actor_updates_accepted": 101,
+  "actor_updates_rejected": 0,
+  "barrier_updated": true,
+  "actor_updated": true,
+  "benchmark": {
+    "before_vt": {
+      "grid": {
+        "nominal": {
+          "success": 441
+        },
+        "heldout_images": {
+          "success": 441
+        }
+      },
+      "random": {
+        "nominal": {
+          "success": 1000
+        },
+        "heldout_images": {
+          "success": 1000
+        }
+      }
+    },
+    "after_vt": {
+      "grid": {
+        "nominal": {
+          "success": 441
+        },
+        "heldout_images": {
+          "success": 441
+        }
+      },
+      "random": {
+        "nominal": {
+          "success": 1000
+        },
+        "heldout_images": {
+          "success": 1000
+        }
+      }
+    }
+  },
+  "real_image_reload_passed": true,
+  "image_forward_action_gap": 5.9604644775390625e-06,
+  "test_image_count": 80,
+  "formal_image_safety_certificate": false,
+  "live_carla": false,
+  "final_barrier_bounds": {
+    "init_upper": 13.928470611572266,
+    "unsafe_lower": 10.364975929260254,
+    "domain_lower": 2.088299036026001
+  },
+  "tests_passed": 25
+}

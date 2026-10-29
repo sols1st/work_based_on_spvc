@@ -3,11 +3,7 @@ import copy
 import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
-from Combined_network.model import AebsEnd2EndNet
 from Aebs.VT.utils import triangular, martingale_loss, MLP
-from cGAN.taxi_models_and_data import AebsMLPGenerator
-from Combined_network.model import AebsEnd2EndNet
-from stable_baselines3 import PPO
 from auto_LiRPA import BoundedModule
 
 # -------------------------
@@ -50,6 +46,9 @@ class VTLearner:
         # alternative policy can be injected by a separate experiment entry
         # point without changing the original learner, losses, or verifier.
         if p_net is None:
+            from cGAN.taxi_models_and_data import AebsMLPGenerator
+            from Combined_network.model import AebsEnd2EndNet
+            from stable_baselines3 import PPO
             gen_net = AebsMLPGenerator(4, 1)
             gen_net.load_state_dict(torch.load("./Aebs/cGAN/mlp_supervised_ld4/mlp_supervised.pth"))
             state_layer_sizes = [1024, 256, 64, 1]
@@ -441,10 +440,8 @@ class VTLearner:
         """
         Create a BoundedModule from a model.
         """
-        for name, param in model.named_parameters():
-            # Freeze parameters; do not participate in training
-            param.requires_grad = False
-
+        # Building the bound wrapper must not freeze the learner's parameters:
+        # the next CEGIS iteration still needs to optimize this same barrier.
         state_input = torch.randn(1, self.env.observation_space.shape[0]).to(self.device)
         # Wrap the original model using the neural network verification tool
         lirpa_model = BoundedModule(model, state_input, device=self.device)

@@ -1,0 +1,73 @@
+{
+  "experiment": "VISION_SLS_CP_discrete_NCBF_fixed_actor",
+  "perception_contract": "perception_contract.json",
+  "final_constraint_cp": {
+    "q_hat": 0.004950135946273804,
+    "rank": 8112,
+    "n": 8192,
+    "alpha": 0.01,
+    "marginal_target": 0.99,
+    "confidence": 0.99,
+    "coverage_lower_at_confidence": 0.9873966147667107,
+    "guarantee_scope": "one exchangeable draw, fixed score function; not trajectory safety"
+  },
+  "exact_regions": {
+    "initial_min": 6.139390468597412,
+    "unsafe_max": -0.019999999552965164,
+    "method": "analytic monotonicity, full initial and unsafe rectangles"
+  },
+  "calibrated_score_nonpositive": false,
+  "calibration_positive_scores": 703,
+  "audit_positive_scores": 653,
+  "audit_max_violation": 0.008066549897193909,
+  "calibration_scope": "IID triples: initial rectangle, unsafe rectangle, uniform full domain; fixed nominal actor and fitted observation tube",
+  "development_history": [
+    {
+      "round": 0,
+      "development_q_hat": 0.0050189197063446045,
+      "next_margin": 0.0050189197063446045,
+      "exact_regions": {
+        "initial_min": 6.089389324188232,
+        "unsafe_max": -0.019999999552965164,
+        "method": "analytic monotonicity, full initial and unsafe rectangles"
+      },
+      "final_calibration_used": false
+    },
+    {
+      "round": 1,
+      "development_q_hat": 0.004394002258777618,
+      "next_margin": 0.0050189197063446045,
+      "exact_regions": {
+        "initial_min": 6.139390468597412,
+        "unsafe_max": -0.019999999552965164,
+        "method": "analytic monotonicity, full initial and unsafe rectangles"
+      },
+      "final_calibration_used": false
+    },
+    {
+      "round": 2,
+      "development_q_hat": 0.004818513989448547,
+      "next_margin": 0.0050189197063446045,
+      "exact_regions": {
+        "initial_min": 6.189208507537842,
+        "unsafe_max": -0.019999999552965164,
+        "method": "analytic monotonicity, full initial and unsafe rectangles"
+      },
+      "final_calibration_used": false
+    }
+  ],
+  "source_policy_sha256": "7435e5f946e71594fea3523151121f47a8a2a164f22207011798d646157e7031",
+  "actor_changed": false,
+  "vision_changed": false,
+  "ncbf": "structured monotone ReLU neural barrier; discrete stopped-system h_next >= (1-.05)h",
+  "uncertainty": "all observation values in state-dependent CP tube propagated through frozen actor via interval bounds",
+  "model_scope": "AEBS deterministic plant with perception uncertainty; NOT legacy uniform additive state noise",
+  "trajectory_safety_probability": null,
+  "original_spvc_certificate": false,
+  "end_to_end_image_certificate": false,
+  "limitations": [
+    "image CP uses reused static data, not independent on-policy trajectories",
+    "random-state constraint coverage is not uniform-in-state or trajectory safety",
+    "new discrete NCBF is not the original nonnegative SBC or continuous-time QP theorem"
+  ]
+}
