@@ -1,0 +1,140 @@
+{
+  "backend": "original_SPVC_SBC",
+  "architecture": "original VT.utils.MLP [2,16,8,1], tanh, softplus output",
+  "source_hashes": {
+    "policy.pt": "7435e5f946e71594fea3523151121f47a8a2a164f22207011798d646157e7031",
+    "sbc.pt": "59d67f809fc22bbb17cca054b7e3637030534a65c77fd533b947ee942b075de9",
+    "observation.pt": "6a9767a737d3551c8d7bf0f2754e1d3f0a20e6f3a157355ef2fff14f31eec451"
+  },
+  "actor_changed": false,
+  "barrier_changed": false,
+  "vision_changed": false,
+  "ncbf_used": false,
+  "action_filter_used": false,
+  "reach_probability_target": 0.95,
+  "epsilon": 0.1,
+  "domain_nonnegative_by_construction": true,
+  "regions": {
+    "initial": {
+      "lower": 10.990062713623047,
+      "upper": 13.930024147033691,
+      "cells": 1024
+    },
+    "unsafe": {
+      "lower": 9.196521759033203,
+      "upper": 13.678557395935059,
+      "cells": 1024
+    }
+  },
+  "initial_upper_at_most_one": false,
+  "unsafe_lower_at_least_twenty": false,
+  "region_separation": false,
+  "states": 10204,
+  "checked_states": 7276,
+  "unresolved_robust_drift_states": 5500,
+  "nominal_strict_drift_witnesses": 1180,
+  "successor_domain_exit_states": 16,
+  "witnesses": [
+    {
+      "state_physical": [
+        5.880000114440918,
+        0.0
+      ],
+      "B": 7.578557014465332,
+      "robust_upper_residual": 2.2223052978515625,
+      "nominal_residual": 1.3859405517578125
+    },
+    {
+      "state_physical": [
+        5.989999771118164,
+        0.0
+      ],
+      "B": 8.30891227722168,
+      "robust_upper_residual": 2.198209762573242,
+      "nominal_residual": 1.4023065567016602
+    },
+    {
+      "state_physical": [
+        6.0,
+        0.0
+      ],
+      "B": 8.373785018920898,
+      "robust_upper_residual": 2.193385124206543,
+      "nominal_residual": 1.4009037017822266
+    },
+    {
+      "state_physical": [
+        5.769999980926514,
+        0.0
+      ],
+      "B": 6.824404239654541,
+      "robust_upper_residual": 2.1844840049743652,
+      "nominal_residual": 1.3028960227966309
+    },
+    {
+      "state_physical": [
+        6.099999904632568,
+        0.0
+      ],
+      "B": 9.006218910217285,
+      "robust_upper_residual": 2.125025749206543,
+      "nominal_residual": 1.364333152770996
+    },
+    {
+      "state_physical": [
+        5.659999847412109,
+        0.0
+      ],
+      "B": 6.059098243713379,
+      "robust_upper_residual": 2.0739145278930664,
+      "nominal_residual": 1.1432371139526367
+    },
+    {
+      "state_physical": [
+        6.210000038146973,
+        0.0
+      ],
+      "B": 9.664769172668457,
+      "robust_upper_residual": 2.0155515670776367,
+      "nominal_residual": 1.2848224639892578
+    },
+    {
+      "state_physical": [
+        5.550000190734863,
+        0.0
+      ],
+      "B": 5.297813415527344,
+      "robust_upper_residual": 1.8832039833068848,
+      "nominal_residual": 0.9009766578674316
+    },
+    {
+      "state_physical": [
+        6.320000171661377,
+        0.0
+      ],
+      "B": 10.28203010559082,
+      "robust_upper_residual": 1.8811092376708984,
+      "nominal_residual": 1.1754465103149414
+    },
+    {
+      "state_physical": [
+        6.429999828338623,
+        0.0
+      ],
+      "B": 10.857993125915527,
+      "robust_upper_residual": 1.7308549880981445,
+      "nominal_residual": 1.045907974243164
+    }
+  ],
+  "cp_role": "state-dependent observation radius only; not a conditional disturbance probability law",
+  "expectation_assumption_established": false,
+  "reference_tube_sufficient_condition": "sup_y B(f(x,pi(y,v))) + epsilon <= B(x), conditional on full support inside the tube",
+  "original_spvc_certificate": false,
+  "limitations": [
+    "marginal image CP does not establish the conditional expectation required by SBC",
+    "no claimed tail bound outside the CP tube",
+    "grid states do not cover the full continuous drift domain",
+    "strict drift is checked literally, including safe terminal states; stopping semantics need explicit theorem treatment",
+    "numerical IBP is not a floating-point formal proof"
+  ]
+}

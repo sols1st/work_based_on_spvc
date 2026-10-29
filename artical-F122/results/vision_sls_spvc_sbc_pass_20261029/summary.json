@@ -1,0 +1,81 @@
+{
+  "status": "continuous_state_numerical_interval_checks_passed",
+  "backend": "SPVC nonnegative SBC adaptation",
+  "frontend": "frozen DINOv2 + one-dimensional VISION-SLS observation",
+  "policy": "SBC-refined PPO; no online NCBF or QP",
+  "regions": {
+    "initial": {
+      "lower": 0.0,
+      "upper": 0.0
+    },
+    "unsafe": {
+      "lower": 24.965931914703024,
+      "upper": 51.52194910355073
+    }
+  },
+  "reach_probability_target": 0.95,
+  "nonnegative_activation": "relu",
+  "verified_models": {
+    "tube": {
+      "checked_cells": 4971398,
+      "witnesses": 0,
+      "unresolved": 0,
+      "scope": "stopped AEBS, all live d in (6,16], v in (1e-6,3], conditional on observation-tube support"
+    },
+    "replay": {
+      "checked_cells": 105608,
+      "witnesses": 0,
+      "unresolved": 0,
+      "scope": "stopped deterministic nearest-image replay over the frozen 400-image library; all continuous initial states, no new-image claim"
+    }
+  },
+  "original_softplus_and_strict_epsilon_configuration_preserved": false,
+  "floating_point_formal_proof": false,
+  "real_world_image_certificate": false,
+  "assumptions": [
+    "AEBS stopped at its original terminal events",
+    "tube result requires observation support inside the reference CP tube; marginal CP alone does not prove this",
+    "replay result covers the frozen nearest-image library and has no unmodeled image tail",
+    "float64 numerical interval bounds, without outward rounding or IEEE execution proof"
+  ],
+  "hashes": {
+    "policy.pt": "e2a2f3566e49590a9f66196502c4077a7125b9b0ab6001b157f5d9be0c829ba5",
+    "observation.pt": "6a9767a737d3551c8d7bf0f2754e1d3f0a20e6f3a157355ef2fff14f31eec451",
+    "sbc.pt": "8a6ad2258013bdd799794b5e72f28dd5ef9c68b81fddd6e54142d8548cc12a0c",
+    "observations.npz": "bf46e4e640fba64587cbdc0208e62bef510ee055e45caee9b5ecbf03a9316c89",
+    "perception_contract.json": "a2c19b2bb0306f7d099f82a0de28c77ecc6da7b702dbb69bc03470c245a2634b"
+  },
+  "reload_verification_passed": true,
+  "tests_passed": 32,
+  "task_success_counts": {
+    "nominal": 1441,
+    "all_images": 1441,
+    "heldout_images": 1441
+  },
+  "task_episodes_per_mode": 1441,
+  "source_snapshot_sha256": {
+    "refine_sbc_actor.py": "0eeb525cbd25eada496ccadb20039fa2d44963185d712e99c2b2cf4a27160519",
+    "prepare_sbc_training.py": "e1f6d4423de376d922b71870b924adac7f96a4794e38292d29c739a0acbd0b45",
+    "deploy.py": "524fb263354d9fe6cd0d3df6927e81a05877169d1369452baae310edb7b3f853",
+    "conformal.py": "57c5cd8a48e9ddf5a59e1ddaeb837573e53d4433d7cfba7a6855a16b157a2af9",
+    "verify_sbc_cells.py": "51a54cc68625e4e5976c7d5599bca5ef6ee589db389fb4ae9c0ac06bd8f48c47",
+    "model.py": "63793f8d35f9ef1e6d3d81c73060ceb8b9a82dedc8361c719083c4c4b7d3dcdd",
+    "package_sbc.py": "7fa9841c2f418dc6c7527940d4844832422c7e472c9acb6da7529b69024a77f5",
+    "rollout.py": "be7fcde00d490bbe1c83ed4296ca4653ac358ddb3d4b5acf398211e1c1da2516",
+    "sbc_cp.py": "59eafe66a27678de8ca5e6bde6c3318b5311af509d531a09f1c68f0ca52a1177",
+    "evaluate.py": "5b7b0c07dc0640c95505e8c0abf37dbe0873b56ceabe72f02ecc77ff2cb99851",
+    "cp_ncbf.py": "25e5e6c191bef1704e03b720fe8bc52db998c8bb9776df40cc7c8d9e0e553ddf",
+    "train_sbc_cp.py": "297dabab8f3dce93295c32af736e2bc1004bc4c69c9a172cd05ba77aea124968"
+  },
+  "runtime_versions": {
+    "torch": "2.3.1",
+    "numpy": "1.26.4",
+    "scipy": "1.17.1",
+    "stable-baselines3": "2.3.2"
+  },
+  "real_image_reload": {
+    "samples": 80,
+    "max_action_path_gap": 5.781650543212891e-06,
+    "passed": true
+  }
+}

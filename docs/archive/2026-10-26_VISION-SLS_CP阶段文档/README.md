@@ -2,7 +2,7 @@
 
 整理日期：2026 年 10 月 26 日。这里用于追溯历史，不是日常阅读入口。
 
-**现在只需阅读 [CP 加入 VISION-SLS 统一主报告](</Users/johann/project/work_based_on_spvc/docs/current/VISION-SLS_CP完整说明与可行性分析.md>)。** 主报告已经整合方法来由、符号、手算例子、代码链路、全部 22 项尝试、12 个回顾参数点、19 个图像批次及可行性分析。
+**现在只需阅读 [CP 加入 VISION-SLS 统一主报告](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-29_主线更新前文档/current/VISION-SLS_CP完整说明与可行性分析.md>)。** 主报告已经整合方法来由、符号、手算例子、代码链路、全部 22 项尝试、12 个回顾参数点、19 个图像批次及可行性分析。
 
 本次移入 16 份重复/阶段说明：3 份原 current CP 文档，10 份复现/CP 阶段导出稿，以及 3 份逐步详解导出副本、备份和修订说明。逐步详解的现行参考版本仍在 docs/references，未删除独有内容。
 

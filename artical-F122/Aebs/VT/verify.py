@@ -20,12 +20,9 @@ def v_contains(box, states):
 def v_intersect(box, lb, ub):
     b_low = np.expand_dims(box.low, axis=0)
     b_high = np.expand_dims(box.high, axis=0)
-    contain_lb = np.logical_and(lb >= b_low, lb <= b_high)
-    contain_ub = np.logical_and(ub >= b_low, ub <= b_high)
-    # Must intersect in all dimensions
-    contains_any = np.all(np.logical_or(contain_lb, contain_ub), axis=1)
-
-    return contains_any
+    # Endpoint membership misses cells containing the entire target box.
+    # Closed intervals overlap iff neither lies strictly outside the other.
+    return np.all((ub >= b_low) & (lb <= b_high), axis=1)
 
 # Training Buffer
 class TrainBuffer:
@@ -419,6 +416,7 @@ class VTVerifier:
         
         violations = 0
         hard_violations = 0
+        checked_states = 0
         # violation_buffer = []
         hard_violation_buffer = []
 
@@ -456,6 +454,7 @@ class VTVerifier:
                     violation_buffer_np = None
                     continue
                 s_batch = s_batch[less_than_p]
+                checked_states += s_batch.shape[0]
                 a_batch = a_batch[less_than_p]
                 l_batch = l_batch[less_than_p]
                 lips_l_batch = lips_l_batch[less_than_p]
@@ -502,6 +501,7 @@ class VTVerifier:
 
         # info_dict["dec_violations"] = f"{violations}/{grid_total_size}"
         info_dict["hard_violations"] = f"{hard_violations}/{grid_total_size}"
+        info_dict["checked_states_after_legacy_filter"] = int(checked_states)
         # print(f"{violations}/{grid_total_size} violated decrease condition")
         print(f"{hard_violations}/{grid_total_size} violations")
         print(f"Train buffer len: {len(self.train_buffer)}")

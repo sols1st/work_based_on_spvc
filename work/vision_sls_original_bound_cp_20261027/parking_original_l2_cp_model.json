@@ -1,0 +1,31 @@
+{
+  "record_id": "O03",
+  "scene": "parking",
+  "definition": "l2",
+  "alpha": 0.05,
+  "q": 14.541022437429765,
+  "calibration_rank": 39,
+  "calibration_trajectories": 40,
+  "original_parameters": {
+    "source": "/Users/johann/project/work_based_on_spvc/VISION-SLS/dyn/unicycle_of_perception.py",
+    "source_sha256": "00b1330541f7e8996aa6d22e6af1cd2669e97da9355711cc02730f4aafbdd08f",
+    "coefficient_file": "/Users/johann/project/work_based_on_spvc/VISION-SLS/dyn/unicycle_observability_bound_ppoly_097_300000_val_3_0.97_0.04.npz",
+    "coefficient_sha256": "d54f2c33a4beb6a109cb4f2c126e938de000575d7036d7665e2ab8206cafa500",
+    "verified_against_initial_reproduction_provenance": true,
+    "original_model_source_hash_verified": true,
+    "shape_preserved": "scalar shared across 3 components"
+  },
+  "scaling": "q times every original component width",
+  "new_floor_added": false,
+  "original_coefficients_refitted": false,
+  "calibration_trace": {
+    "path": "/Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_建议原方案CP验证_20261026/parking/calibration/diagnostic_traces.npz",
+    "sha256": "984dc0a7def09db166a67344b4b03e04b8360d61dcb04a8f614479facdef9288",
+    "summary_path": "/Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_建议原方案CP验证_20261026/parking/calibration/summary.json",
+    "summary_sha256": "edebaa3c3cb6ed1585ceadffb395c32f57a85efb3b9334179a9f45555b743573",
+    "seed": 2026102611,
+    "trajectories": 40,
+    "observations_per_trajectory": 30
+  },
+  "protocol_sha256": "afffb8b4d1a9faf7dd46063c3f2a4b629f2797840970d93854061d117c8c2034"
+}

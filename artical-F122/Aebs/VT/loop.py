@@ -188,7 +188,7 @@ class Loop:
         # np.save("./exp_Carla/prob_list_050.npy", np.array(prob_list, dtype=float))
         return True
 
-if __name__ == "__main__":
+def legacy_main():
 
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -238,3 +238,16 @@ if __name__ == "__main__":
     with open("info.log", "a") as f:
         f.write("sat=" + str(sat) + "\n")
         f.write("info=" + str(loop.info) + "\n\n\n")
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--frontend", choices=["vision-sls", "cgan"], default="vision-sls")
+    entry, remaining = parser.parse_known_args()
+    if entry.frontend == "cgan":
+        if remaining:
+            parser.error("legacy cGAN entry does not accept extra arguments")
+        legacy_main()
+    else:
+        from Aebs.vision_sls.run import main
+        main(remaining)

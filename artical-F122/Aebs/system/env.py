@@ -1,4 +1,5 @@
 import torch
+from pathlib import Path
 import h5py
 import numpy as np
 import gymnasium as gym
@@ -129,7 +130,7 @@ class Box:
 class Aebs:
     def __init__(self, factor=0.01):
         # Load dataset
-        fn = "./Aebs/data/Downsampled.h5"
+        fn = Path(__file__).resolve().parents[1] / "data/Downsampled.h5"
         with h5py.File(fn, 'r') as f:
             y_data = np.array(f["y_train"], dtype=np.float32)
 

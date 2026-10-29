@@ -1,0 +1,24 @@
+{
+  "regions": {
+    "initial": {
+      "lower": 0.3377874791622162,
+      "upper": 0.4662395119667053
+    },
+    "unsafe": {
+      "lower": 22.97785186767578,
+      "upper": 40.21453094482422
+    }
+  },
+  "active": 7161,
+  "positive": 3155,
+  "positive_training_margin": 3162,
+  "verification_condition": "nonnegative supermartingale: B(next)<=B(now); positive epsilon is a training margin only",
+  "max_drift": 0.6655263900756836,
+  "region_pass": true,
+  "sampled_tube_pass": false,
+  "formal_certificate": false,
+  "source_policy_unchanged": true,
+  "vision_unchanged": true,
+  "final_image_certificate": false,
+  "conditional_expectation_assumption_established": false
+}

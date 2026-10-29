@@ -1,0 +1,108 @@
+{
+  "source_policy_sha256": "7435e5f946e71594fea3523151121f47a8a2a164f22207011798d646157e7031",
+  "source_barrier_sha256": "59d67f809fc22bbb17cca054b7e3637030534a65c77fd533b947ee942b075de9",
+  "regions": {
+    "initial": {
+      "legacy": [
+        11.265290260314941,
+        13.928470611572266
+      ],
+      "corrected_interval": [
+        10.849398612976074,
+        14.322957038879395
+      ]
+    },
+    "unsafe": {
+      "legacy": [
+        10.364975929260254,
+        13.50601577758789
+      ],
+      "corrected_interval": [
+        9.544866561889648,
+        13.687803268432617
+      ]
+    },
+    "domain": {
+      "legacy": [
+        2.088299036026001,
+        23.160064697265625
+      ],
+      "corrected_interval": [
+        0.7932771444320679,
+        23.23788833618164
+      ]
+    }
+  },
+  "interval_witness": {
+    "endpoint_and_center_values": [
+      13.768241882324219,
+      11.088258743286133,
+      12.357582092285156
+    ],
+    "legacy": [
+      13.768241882324219,
+      13.768241882324219
+    ],
+    "corrected": [
+      8.336935997009277,
+      19.044052124023438
+    ],
+    "legacy_encloses_samples": false
+  },
+  "training_noise": "triangular",
+  "verification_noise": "uniform",
+  "noise_model_consistent": false,
+  "policy_frozen": true,
+  "stochastic_diagnostics": {
+    "none": {
+      "episodes": 10000,
+      "counts": {
+        "success": 10000
+      },
+      "seed": 1701,
+      "noise_amplitude_physical": [
+        0.5499999823269036,
+        0.15000000000000002
+      ],
+      "distribution": "none",
+      "semantics": "v_next then additive noise; original terminal events, explicit velocity domain exits",
+      "formal_certificate": false
+    },
+    "triangular": {
+      "episodes": 10000,
+      "counts": {
+        "velocity_domain_exit": 9390,
+        "out_of_domain": 596,
+        "unsafe": 10,
+        "success": 4
+      },
+      "seed": 1701,
+      "noise_amplitude_physical": [
+        0.5499999823269036,
+        0.15000000000000002
+      ],
+      "distribution": "triangular",
+      "semantics": "v_next then additive noise; original terminal events, explicit velocity domain exits",
+      "formal_certificate": false
+    },
+    "uniform": {
+      "episodes": 10000,
+      "counts": {
+        "velocity_domain_exit": 8633,
+        "out_of_domain": 1315,
+        "unsafe": 47,
+        "success": 5
+      },
+      "seed": 1701,
+      "noise_amplitude_physical": [
+        0.5499999823269036,
+        0.15000000000000002
+      ],
+      "distribution": "uniform",
+      "semantics": "v_next then additive noise; original terminal events, explicit velocity domain exits",
+      "formal_certificate": false
+    }
+  },
+  "image_residual_in_verifier": false,
+  "certificate_established": false
+}

@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-27",
+  "purpose": "Compare the author's saved original envelope against the same envelope times a CP multiplier on exactly the same fixed-reference-policy data used by the existing explanation.",
+  "scope": "Retrospective re-evaluation of existing calibration and reference-policy test traces. No new image collection, envelope fitting, controller redesign or rollout.",
+  "alpha": 0.05,
+  "primary_definition": "componentwise box: max_j(abs(delta_j)/original_width_j) <= 1",
+  "secondary_definition": "Euclidean unit disturbance as used in the implementation: sqrt(sum_j((delta_j/original_width_j)^2)) <= 1",
+  "score": "For each definition separately, take the maximum normalized error across every observation in one calibration trajectory.",
+  "rank": "ceil((n_calibration+1)*(1-alpha))",
+  "multiplier": "The kth smallest calibration trajectory score; +infinity if k exceeds n. Do not select or tune using test results.",
+  "calibrated_envelope": "q times every original component width. Preserve the original coefficients, coordinate handling, component anisotropy and original floors. No new clipping floor and no refitting.",
+  "test_groups": ["random", "predefined_axis_stress", "mixed"],
+  "comparability": "Each before/after pair uses exactly the same residuals, original widths, trajectories and error definition. Box and Euclidean results are separate pairs.",
+  "test_reuse_disclosure": "These test traces have been viewed in earlier analyses. This is not a newly collected blind final test. All prespecified definitions and both scenes will be reported, including missed trajectories.",
+  "scenes": {
+    "parking": {
+      "source_directory": "/Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_建议原方案CP验证_20261026/parking",
+      "calibration_phase": "calibration",
+      "test_phase": "baseline",
+      "calibration_trajectories": 40,
+      "calibration_seed": 2026102611,
+      "test_trajectories": 50,
+      "test_seed": 2026102613,
+      "axis_stress_prefix_count": 8,
+      "observations_per_trajectory": 30,
+      "image_state_offset": [3, 0, 0, 0]
+    },
+    "quad": {
+      "source_directory": "/Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_建议原方案CP验证_20261026/quad",
+      "calibration_phase": "calibration",
+      "test_phase": "baseline",
+      "calibration_trajectories": 60,
+      "calibration_seed": 2026102612,
+      "test_trajectories": 50,
+      "test_seed": 2026102614,
+      "axis_stress_prefix_count": 20,
+      "observations_per_trajectory": 35,
+      "image_state_offset": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    }
+  }
+}

@@ -1,6 +1,6 @@
 # 关于“用 CP 计算 VISION-SLS 感知误差界是否可行”的汇报稿
 
-> 历史归档：本稿只代表该阶段。CP 的现行完整说明与全部结论见 [统一主报告](</Users/johann/project/work_based_on_spvc/docs/current/VISION-SLS_CP完整说明与可行性分析.md>)。原文路径与哈希见本归档清单；本可读副本只增加此提示并迁移文件链接，逐字原文保存在同目录恢复压缩包。
+> 历史归档：本稿只代表该阶段。CP 的现行完整说明与全部结论见 [统一主报告](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-29_主线更新前文档/current/VISION-SLS_CP完整说明与可行性分析.md>)。原文路径与哈希见本归档清单；本可读副本只增加此提示并迁移文件链接，逐字原文保存在同目录恢复压缩包。
 
 
 **汇报日期：2026 年 10 月 26 日**  

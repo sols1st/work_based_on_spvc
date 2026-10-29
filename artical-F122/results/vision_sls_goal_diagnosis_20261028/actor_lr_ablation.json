@@ -1,0 +1,83 @@
+{
+  "0.05": {
+    "train_loss": [
+      {
+        "loss_p": 59.42552585601807,
+        "dec_loss_p": 0.05206897109746933,
+        "train_violations_p": 0.08665998340584338,
+        "lip_loss_p": 0.0008422913961112499,
+        "mse_loss_p": 5.890483474731445
+      }
+    ],
+    "nominal": {
+      "episodes": 25,
+      "counts": {
+        "stopped_safe_outside_goal": 25
+      },
+      "lookup_max_error_m": 0.0,
+      "mode": "nominal_Cx"
+    },
+    "train_image": {
+      "episodes": 25,
+      "counts": {
+        "stopped_safe_outside_goal": 25
+      },
+      "lookup_max_error_m": 0.05838594977194589,
+      "mode": "saved_image_nearest_replay"
+    }
+  },
+  "0.0003": {
+    "train_loss": [
+      {
+        "loss_p": 0.8249961376190186,
+        "dec_loss_p": 0.08215380311012269,
+        "train_violations_p": 0.41935581564903257,
+        "lip_loss_p": 0.0,
+        "mse_loss_p": 0.00034581074432935564
+      }
+    ],
+    "nominal": {
+      "episodes": 25,
+      "counts": {
+        "success": 25
+      },
+      "lookup_max_error_m": 0.0,
+      "mode": "nominal_Cx"
+    },
+    "train_image": {
+      "episodes": 25,
+      "counts": {
+        "success": 25
+      },
+      "lookup_max_error_m": 0.07459002625455469,
+      "mode": "saved_image_nearest_replay"
+    }
+  },
+  "0.0001": {
+    "train_loss": [
+      {
+        "loss_p": 0.8244953632354737,
+        "dec_loss_p": 0.08222294598817825,
+        "train_violations_p": 0.4189790189266205,
+        "lip_loss_p": 0.0,
+        "mse_loss_p": 0.0002265895571326837
+      }
+    ],
+    "nominal": {
+      "episodes": 25,
+      "counts": {
+        "success": 25
+      },
+      "lookup_max_error_m": 0.0,
+      "mode": "nominal_Cx"
+    },
+    "train_image": {
+      "episodes": 25,
+      "counts": {
+        "success": 25
+      },
+      "lookup_max_error_m": 0.07429977185802272,
+      "mode": "saved_image_nearest_replay"
+    }
+  }
+}
