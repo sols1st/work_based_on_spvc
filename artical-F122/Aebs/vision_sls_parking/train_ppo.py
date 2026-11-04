@@ -15,13 +15,13 @@ def sha(path):
     return h.hexdigest()
 
 
-def evaluate(model, sensor=None):
+def evaluate(model, sensor=None, *, quiet=False, seed=7):
     from .ppo_env import ParkingPPOEnv
     rows, paths, actions = [], [], []
     env = ParkingPPOEnv(image_sensor=sensor)
     try:
         for scenario in range(15):
-            obs, _ = env.reset(options={'scenario': scenario})
+            obs, _ = env.reset(seed=seed+scenario, options={'scenario': scenario})
             states, us, rewards = [env.task.state.copy()], [], []
             while True:
                 u, _ = model.predict(obs, deterministic=True)
@@ -36,15 +36,16 @@ def evaluate(model, sensor=None):
                        goal_at_horizon=info['goal_at_horizon'],
                        final_goal_distance=info['final_goal_distance'],
                        return_sum=float(sum(rewards)), steps=len(us))
-            if sensor is not None:
+            if sensor is not None and hasattr(sensor, 'calls'):
                 row.update(rendered_frames=sensor.calls,
                            outside_adaptation_domain=sensor.outside_adaptation_domain)
             rows.append(row)
             paths.append(states)
             actions.append(us)
-            print('path=%s scenario=%02d success=%s collision=%s bounds=%s distance=%.3f' %
-                  ('image' if sensor else 'Cx', scenario, row['success'], row['collision'],
-                   row['out_of_bounds'], row['final_goal_distance']), flush=True)
+            if not quiet:
+                print('path=%s scenario=%02d success=%s collision=%s bounds=%s distance=%.3f' %
+                      ('sensor' if sensor else 'Cx', scenario, row['success'], row['collision'],
+                       row['out_of_bounds'], row['final_goal_distance']), flush=True)
     finally:
         env.close()
     return dict(episodes=15, success_count=sum(r['success'] for r in rows),

@@ -1,0 +1,30 @@
+{
+  "load": "results/vision_sls_parking_20261102_residual_v2/ppo.zip",
+  "output_dir": "results/vision_sls_parking_20261102_residual_v3",
+  "timesteps": 1000000,
+  "eval_every": 100000,
+  "seed": 17,
+  "learning_rate": 5e-05,
+  "residual_data": "results/vision_sls_parking_20261102_residual_data_v3/samples.npz",
+  "reward_mode": "safety_v3",
+  "sensor_jitter": 0.04,
+  "focus_scenarios": [
+    8,
+    9,
+    10
+  ],
+  "projection": "results/vision_sls_parking_20261025_adaptation_v1/projection_adapted.pt",
+  "source_sha256": "03c0c1cb2ffa84a3179811bd287dbb672be170ec0270c96f553efafd176918b9",
+  "projection_sha256": "58c4f75c540ca24d40bf3241386922185f3d5b7c5ec9d0993d2b264f27d6a16b",
+  "physical_dimension": 4,
+  "visual_dimension": 3,
+  "actor_input_dimension": 16,
+  "horizon": 30,
+  "delay": 1,
+  "process_noise": "zero",
+  "training_sensor": "50% nominal episodes + 50% fit-only nearest-residual surrogate",
+  "selection": "joint nominal/surrogate development: fewer unsafe, higher worst success, total success, distance",
+  "independent_test": false,
+  "visual_weights_changed": false,
+  "residual_sha256": "4f65286cb69729c88ac1a0e59095607a710469003311879215982203270e4052"
+}

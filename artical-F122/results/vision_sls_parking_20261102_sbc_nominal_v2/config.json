@@ -1,0 +1,26 @@
+{
+  "ppo_dir": "results/vision_sls_parking_20261102_migration_v3",
+  "output_dir": "results/vision_sls_parking_20261102_sbc_nominal_v2",
+  "error_model": null,
+  "epochs": 6000,
+  "ppo_sha256": "54e6e8da2d854e9cb5d1d0761132b3bc95f4c9efcf3a45c3a40c70744ec0dd0f",
+  "error_model_sha256": null,
+  "nonnegative_output": "ReLU",
+  "augmented_state": 20,
+  "hidden_layers": [
+    64,
+    64
+  ],
+  "initial_threshold": 1,
+  "unsafe_threshold": 20,
+  "finite_horizon": 30,
+  "dynamic_condition": "nonincrease; horizon and unsafe process stopped",
+  "policy_updated": false,
+  "actor_memory_preserved": true,
+  "current_state_coverage": "nominal policy replay points only",
+  "observation_error_coverage": "successor and initial boxes, only at sampled states",
+  "initial_history_set": "independent box superset of repeated single measurement",
+  "continuous_state_verification": false,
+  "outward_rounding": false,
+  "certificate_probability": null
+}

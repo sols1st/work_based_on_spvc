@@ -1,0 +1,86 @@
+{
+  "config": {
+    "ppo_dir": "results/vision_sls_parking_20261102_migration_v2",
+    "output_dir": "results/vision_sls_parking_20261102_sbc_nominal_v1",
+    "error_model": null,
+    "epochs": 1200,
+    "ppo_sha256": "8f537fead36b21dcf40ad92e5153e4ca663b8f6099d0a6e65ef72ac05d3605d7",
+    "error_model_sha256": null,
+    "nonnegative_output": "ReLU",
+    "augmented_state": 20,
+    "hidden_layers": [
+      64,
+      64
+    ],
+    "initial_threshold": 1,
+    "unsafe_threshold": 20,
+    "finite_horizon": 30,
+    "dynamic_condition": "nonincrease; horizon and unsafe process stopped",
+    "policy_updated": false,
+    "actor_memory_preserved": true,
+    "current_state_coverage": "nominal policy replay points only",
+    "observation_error_coverage": "successor and initial boxes, only at sampled states",
+    "initial_history_set": "independent box superset of repeated single measurement",
+    "continuous_state_verification": false,
+    "outward_rounding": false,
+    "certificate_probability": null
+  },
+  "history": [
+    {
+      "epoch": 200,
+      "initial": 0.6689890623092651,
+      "unsafe": 13.304741859436035,
+      "successor": 14.418219566345215,
+      "total": 154.15553283691406
+    },
+    {
+      "epoch": 400,
+      "initial": 0.05019766464829445,
+      "unsafe": 7.347553730010986,
+      "successor": 19.497983932495117,
+      "total": 93.47550201416016
+    },
+    {
+      "epoch": 600,
+      "initial": 0.45911020040512085,
+      "unsafe": 7.839596271514893,
+      "successor": 16.967849731445312,
+      "total": 99.95491790771484
+    },
+    {
+      "epoch": 800,
+      "initial": 0.39501529932022095,
+      "unsafe": 8.538946151733398,
+      "successor": 15.285649299621582,
+      "total": 104.6252670288086
+    },
+    {
+      "epoch": 1000,
+      "initial": 0.005194027908146381,
+      "unsafe": 6.187290668487549,
+      "successor": 15.121597290039062,
+      "total": 77.04644775390625
+    },
+    {
+      "epoch": 1200,
+      "initial": 0.18052029609680176,
+      "unsafe": 2.915294647216797,
+      "successor": 14.152135848999023,
+      "total": 45.11028289794922
+    }
+  ],
+  "replay_points": 450,
+  "initial_box_upper": 1.150977611541748,
+  "initial_violations": 1,
+  "unsafe_sample_min": 0.0,
+  "unsafe_sample_count": 4096,
+  "unsafe_violations": 93,
+  "successor_box_not_proven_count": 309,
+  "max_successor_box_gap": 21.44228172302246,
+  "nominal_point_violation_count": 309,
+  "runtime_seconds": 3.3357353330357,
+  "ppo_unchanged": true,
+  "status": "sampled_current_states_with_numeric_successor_box_bounds_not_a_certificate",
+  "safety_certificate": false,
+  "certificate_probability": null
+}

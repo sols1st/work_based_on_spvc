@@ -1,0 +1,20 @@
+{
+  "references": "results/vision_sls_parking_20261103_references_v1/references.npz",
+  "output_dir": "results/vision_sls_parking_20261103_planned_ppo_v2",
+  "residual_data": "results/vision_sls_parking_20261102_residual_data_v3/samples.npz",
+  "timesteps": 200000,
+  "projection": "results/vision_sls_parking_20261025_adaptation_v1/projection_adapted.pt",
+  "references_sha256": "56c4309c5b0d7d7e286e34f344cc2cb503d34efb55f55b59958d5b06355ff49b",
+  "projection_sha256": "58c4f75c540ca24d40bf3241386922185f3d5b7c5ec9d0993d2b264f27d6a16b",
+  "residual_data_sha256": "4f65286cb69729c88ac1a0e59095607a710469003311879215982203270e4052",
+  "residual_action_scale": [
+    0.3,
+    0.5
+  ],
+  "observation_dimension": 13,
+  "initial_jitter": 0.04,
+  "seed": 103,
+  "true_state_to_actor": false,
+  "safety_certificate": false,
+  "selection": "nominal, fit-residual sensor, perturbed nominal initial states; development only"
+}

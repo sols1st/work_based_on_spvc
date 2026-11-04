@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "records": {
+    "open_loop_jitter_0.0": {
+      "transitions": 450,
+      "delayed_frames": 465,
+      "exact_delay_pairing": true,
+      "max_dynamics_error": 4.440892098500626e-16,
+      "max_action_replay_error": 0.0,
+      "max_memory_replay_error": 6.661338147750939e-16,
+      "max_torch_transition_error": 0.0,
+      "outcome_counts_recomputed": true,
+      "archive_sha256": "6ac426c32f3d9a43b8214f84a3ac79322e3e36b5b69ca24475a4b1cac42ead9e"
+    },
+    "open_loop_jitter_0.04": {
+      "transitions": 450,
+      "delayed_frames": 465,
+      "exact_delay_pairing": true,
+      "max_dynamics_error": 4.440892098500626e-16,
+      "max_action_replay_error": 0.0,
+      "max_memory_replay_error": 6.661338147750939e-16,
+      "max_torch_transition_error": 0.0,
+      "outcome_counts_recomputed": true,
+      "archive_sha256": "9fccd16866058525c1a33252ff75471907bd4b3e074ef3013e9a1cdc26612ec3"
+    },
+    "feedback_jitter_0.0": {
+      "transitions": 450,
+      "delayed_frames": 465,
+      "exact_delay_pairing": true,
+      "max_dynamics_error": 2.220446049250313e-16,
+      "max_action_replay_error": 3.164135620181696e-15,
+      "max_memory_replay_error": 6.661338147750939e-16,
+      "max_torch_transition_error": 4.440892098500626e-16,
+      "outcome_counts_recomputed": true,
+      "archive_sha256": "9c572701370595d37fcf625d4ca1dac3ee2b639b6205ae56d92441977d93ee5a"
+    },
+    "feedback_jitter_0.04": {
+      "transitions": 450,
+      "delayed_frames": 465,
+      "exact_delay_pairing": true,
+      "max_dynamics_error": 2.220446049250313e-16,
+      "max_action_replay_error": 3.1086244689504383e-15,
+      "max_memory_replay_error": 8.881784197001252e-16,
+      "max_torch_transition_error": 4.440892098500626e-16,
+      "outcome_counts_recomputed": true,
+      "archive_sha256": "39563630cbfba4ee35b7e01ca86bd66c35962e54f96cad6b97fcd431cd21e064"
+    }
+  },
+  "scope": "numerical interface consistency, not safety verification"
+}

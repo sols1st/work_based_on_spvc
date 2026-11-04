@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "records": {
+    "residual_jitter_0.0": {
+      "transitions": 450,
+      "delayed_frames": 465,
+      "exact_delay_pairing": true,
+      "max_dynamics_error": 2.220446049250313e-16,
+      "max_action_replay_error": 1.2050958453357907e-08,
+      "max_memory_replay_error": 1.5204466574658682e-09,
+      "max_torch_transition_error": 1.341104505225843e-09,
+      "outcome_counts_recomputed": true,
+      "archive_sha256": "d2b2d61e380ed0e19f664d4fcc2283e243761e643fd316ca493ad6b14e5cd167"
+    },
+    "residual_jitter_0.04": {
+      "transitions": 450,
+      "delayed_frames": 465,
+      "exact_delay_pairing": true,
+      "max_dynamics_error": 2.220446049250313e-16,
+      "max_action_replay_error": 1.2395109438845253e-08,
+      "max_memory_replay_error": 1.6924812662466593e-09,
+      "max_torch_transition_error": 1.3411046717592967e-09,
+      "outcome_counts_recomputed": true,
+      "archive_sha256": "b5c254a31a2e4ff82826bfefb417bf33ce268aa50f986eb21562d46aeb452f95"
+    }
+  },
+  "scope": "numerical interface consistency, not safety verification"
+}

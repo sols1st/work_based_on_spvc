@@ -1,0 +1,252 @@
+{
+  "config": {
+    "candidate": "results/vision_sls_parking_20261103_planned_candidate",
+    "output_dir": "results/vision_sls_parking_20261103_startup_cp_v2",
+    "bound": 0.02,
+    "seed": 641907,
+    "fit": 16,
+    "calibration": 32,
+    "audit": 16,
+    "alpha": 0.05,
+    "device": "cpu",
+    "threads": 8,
+    "projection_sha256": "58c4f75c540ca24d40bf3241386922185f3d5b7c5ec9d0993d2b264f27d6a16b",
+    "dino_sha256": "baf8467e50af277596bbbafa06887c177ee899ab46033649c383577d7e9309d3",
+    "unit": "independent initial-state draw and one fresh render",
+    "distribution": "uniform +/- bound around each of 15 registered starts; fixed scene and renderer",
+    "control_policy_does_not_affect_sampling": true,
+    "trajectory_frames_reused": false,
+    "probability_scope": "one future initial draw from its same group protocol; not per-state conditional coverage"
+  },
+  "groups": [
+    {
+      "group": 0,
+      "rank": 32,
+      "calibration_count": 32,
+      "q": 2.167544494427188,
+      "radius": [
+        0.11526222423862481,
+        0.12057547677361703,
+        0.12811504059399323
+      ],
+      "calibration_covered": 32,
+      "audit_count": 16,
+      "audit_covered": 15,
+      "center_covered": true
+    },
+    {
+      "group": 1,
+      "rank": 32,
+      "calibration_count": 32,
+      "q": 2.2587251860873176,
+      "radius": [
+        0.0882416055852436,
+        0.12962997554019207,
+        0.10313999518240931
+      ],
+      "calibration_covered": 32,
+      "audit_count": 16,
+      "audit_covered": 16,
+      "center_covered": true
+    },
+    {
+      "group": 2,
+      "rank": 32,
+      "calibration_count": 32,
+      "q": 2.2481818827516573,
+      "radius": [
+        0.03638255299978146,
+        0.10267010920107518,
+        0.06841397477876851
+      ],
+      "calibration_covered": 32,
+      "audit_count": 16,
+      "audit_covered": 16,
+      "center_covered": true
+    },
+    {
+      "group": 3,
+      "rank": 32,
+      "calibration_count": 32,
+      "q": 1.5493965167027557,
+      "radius": [
+        0.08207366389733321,
+        0.0764201166555651,
+        0.09256274087565489
+      ],
+      "calibration_covered": 32,
+      "audit_count": 16,
+      "audit_covered": 16,
+      "center_covered": true
+    },
+    {
+      "group": 4,
+      "rank": 32,
+      "calibration_count": 32,
+      "q": 2.839015739397516,
+      "radius": [
+        0.0810949300188879,
+        0.09072816089666431,
+        0.058688003371084936
+      ],
+      "calibration_covered": 32,
+      "audit_count": 16,
+      "audit_covered": 16,
+      "center_covered": true
+    },
+    {
+      "group": 5,
+      "rank": 32,
+      "calibration_count": 32,
+      "q": 3.0034774802549924,
+      "radius": [
+        0.352320573560235,
+        0.19879712078268888,
+        0.14687288437127863
+      ],
+      "calibration_covered": 32,
+      "audit_count": 16,
+      "audit_covered": 16,
+      "center_covered": true
+    },
+    {
+      "group": 6,
+      "rank": 32,
+      "calibration_count": 32,
+      "q": 1.2986042581353647,
+      "radius": [
+        0.20070647066925904,
+        0.2188594733335821,
+        0.15983793980674021
+      ],
+      "calibration_covered": 32,
+      "audit_count": 16,
+      "audit_covered": 15,
+      "center_covered": true
+    },
+    {
+      "group": 7,
+      "rank": 32,
+      "calibration_count": 32,
+      "q": 1.7466634270311785,
+      "radius": [
+        0.02464489317528462,
+        0.059363356502111136,
+        0.049626420221831946
+      ],
+      "calibration_covered": 32,
+      "audit_count": 16,
+      "audit_covered": 16,
+      "center_covered": true
+    },
+    {
+      "group": 8,
+      "rank": 32,
+      "calibration_count": 32,
+      "q": 10.496564362898543,
+      "radius": [
+        0.10759147910656228,
+        0.7645346251345521,
+        0.8175951749821363
+      ],
+      "calibration_covered": 32,
+      "audit_count": 16,
+      "audit_covered": 16,
+      "center_covered": true
+    },
+    {
+      "group": 9,
+      "rank": 32,
+      "calibration_count": 32,
+      "q": 2.024788629774936,
+      "radius": [
+        0.11723641580880999,
+        0.0423271124634789,
+        0.11993976442979074
+      ],
+      "calibration_covered": 32,
+      "audit_count": 16,
+      "audit_covered": 16,
+      "center_covered": true
+    },
+    {
+      "group": 10,
+      "rank": 32,
+      "calibration_count": 32,
+      "q": 2.0172829615588252,
+      "radius": [
+        0.046682242851277055,
+        0.07250055574164674,
+        0.07313367787568091
+      ],
+      "calibration_covered": 32,
+      "audit_count": 16,
+      "audit_covered": 14,
+      "center_covered": true
+    },
+    {
+      "group": 11,
+      "rank": 32,
+      "calibration_count": 32,
+      "q": 1.8039380468940491,
+      "radius": [
+        0.06907156627696937,
+        0.05428200245387469,
+        0.07035682658588263
+      ],
+      "calibration_covered": 32,
+      "audit_count": 16,
+      "audit_covered": 16,
+      "center_covered": true
+    },
+    {
+      "group": 12,
+      "rank": 32,
+      "calibration_count": 32,
+      "q": 1.3976625743351843,
+      "radius": [
+        0.08688178662708326,
+        0.07889336508442134,
+        0.1092697663629619
+      ],
+      "calibration_covered": 32,
+      "audit_count": 16,
+      "audit_covered": 14,
+      "center_covered": true
+    },
+    {
+      "group": 13,
+      "rank": 32,
+      "calibration_count": 32,
+      "q": 1.8301439831875421,
+      "radius": [
+        0.1805489647586798,
+        0.2582925045263025,
+        0.21065383587223577
+      ],
+      "calibration_covered": 32,
+      "audit_count": 16,
+      "audit_covered": 15,
+      "center_covered": true
+    },
+    {
+      "group": 14,
+      "rank": 32,
+      "calibration_count": 32,
+      "q": 1.5077910742736356,
+      "radius": [
+        0.03793854940873771,
+        0.054118180976275125,
+        0.055473615519184914
+      ],
+      "calibration_covered": 32,
+      "audit_count": 16,
+      "audit_covered": 16,
+      "center_covered": true
+    }
+  ],
+  "audit_covered": 233,
+  "audit_count": 240,
+  "centers_covered": 15,
+  "runtime_seconds": 1122.1339133039583
+}

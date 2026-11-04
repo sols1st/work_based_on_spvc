@@ -1,0 +1,1 @@
+This preliminary run used an early reset routine that consumed a random scenario draw even when a scenario was supplied. It is not used in the reported matched-start image comparisons. Subsequent v2 and v3 training use the shared perturbation sampler.

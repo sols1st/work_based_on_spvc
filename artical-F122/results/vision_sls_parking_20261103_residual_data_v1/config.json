@@ -1,0 +1,38 @@
+{
+  "output_dir": "results/vision_sls_parking_20261102_error_v1",
+  "projection": "results/vision_sls_parking_20261025_adaptation_v1/projection_adapted.pt",
+  "vision_root": "../VISION-SLS",
+  "dino_repo": "../external/dinov2",
+  "dino_weights": "../external/dinov2_weights/dinov2_vitg14_pretrain.pth",
+  "fit_count": 256,
+  "cal_count": 128,
+  "audit_count": 128,
+  "seed": 20261102,
+  "low": [
+    -3.5,
+    -2.0,
+    -3.141592653589793
+  ],
+  "high": [
+    0.5,
+    1.9,
+    3.141592653589793
+  ],
+  "sampler": "independent uniform poses, speed zero, fixed OpenGL scene",
+  "projection_sha256": "58c4f75c540ca24d40bf3241386922185f3d5b7c5ec9d0993d2b264f27d6a16b",
+  "dino_sha256": "baf8467e50af277596bbbafa06887c177ee899ab46033649c383577d7e9309d3",
+  "marginal_scope": "one new pose from this same uniform simulator distribution",
+  "policy_distribution_coverage": false,
+  "trajectory_coverage": false,
+  "physical_speed_invisible_in_renderer": true,
+  "source_archives": {
+    "results/vision_sls_parking_20261103_feedback_images_v1/feedback_jitter_0.0.npz": "9c572701370595d37fcf625d4ca1dac3ee2b639b6205ae56d92441977d93ee5a",
+    "results/vision_sls_parking_20261103_feedback_images_v1/feedback_jitter_0.04.npz": "39563630cbfba4ee35b7e01ca86bd66c35962e54f96cad6b97fcd431cd21e064",
+    "results/vision_sls_parking_20261103_feedback_images_v1/open_loop_jitter_0.0.npz": "6ac426c32f3d9a43b8214f84a3ac79322e3e36b5b69ca24475a4b1cac42ead9e",
+    "results/vision_sls_parking_20261103_feedback_images_v1/open_loop_jitter_0.04.npz": "9fccd16866058525c1a33252ff75471907bd4b3e074ef3013e9a1cdc26612ec3"
+  },
+  "base_data_sha256": "4f65286cb69729c88ac1a0e59095607a710469003311879215982203270e4052",
+  "samples": 4151,
+  "training_purpose": "development trajectory aggregation; excludes calibration and audit rows",
+  "evaluation_role": "15 original development starts now reused for training; not heldout testing"
+}

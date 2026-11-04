@@ -22,18 +22,22 @@ DOMAIN_LOW = np.array([-3., -1.5])
 DOMAIN_HIGH = np.array([0., 1.5])
 
 
-def cell_ids(states):
+def cell_ids(states, domain_low=DOMAIN_LOW, domain_high=DOMAIN_HIGH):
     states = np.asarray(states, dtype=float)
     if states.ndim != 2 or states.shape[1] != 4 or not np.isfinite(states).all():
         raise ValueError('finite [N,4] states required')
     xy = states[:, :2]
-    valid = ((xy >= DOMAIN_LOW) & (xy <= DOMAIN_HIGH)).all(1)
-    ij = np.floor((xy-DOMAIN_LOW)/(DOMAIN_HIGH-DOMAIN_LOW)*8).astype(int).clip(0, 7)
+    low, high = np.asarray(domain_low), np.asarray(domain_high)
+    if low.shape != (2,) or high.shape != (2,) or not np.isfinite([low, high]).all() or (high <= low).any():
+        raise ValueError('ordered finite 2D spatial domain required')
+    valid = ((xy >= low) & (xy <= high)).all(1)
+    ij = np.floor((xy-low)/(high-low)*8).astype(int).clip(0, 7)
     result = ij[:, 0]*8 + ij[:, 1]
     return np.where(valid, result, -1)
 
 
-def make_split_plan(per_cell=16, seed=7):
+def make_split_plan(per_cell=16, seed=7, domain_low=DOMAIN_LOW, domain_high=DOMAIN_HIGH,
+                    heading_limit=.75*np.pi):
     if not isinstance(per_cell, int) or per_cell < 1:
         raise ValueError('positive integer per_cell required')
     rng = np.random.default_rng(seed)
@@ -43,25 +47,30 @@ def make_split_plan(per_cell=16, seed=7):
     assignment[order[40:52]] = 'validation'
     assignment[order[52:]] = 'test'
     states, cells, splits = [], [], []
-    width = (DOMAIN_HIGH-DOMAIN_LOW)/8
+    domain_low, domain_high = np.asarray(domain_low), np.asarray(domain_high)
+    cell_ids(np.zeros((1, 4)), domain_low, domain_high)
+    if not np.isfinite(heading_limit) or not 0 < heading_limit < np.pi:
+        raise ValueError('heading limit must be positive and below pi')
+    width = (domain_high-domain_low)/8
     for cell in range(64):
         ij = np.array([cell//8, cell % 8])
-        low = DOMAIN_LOW+ij*width
+        low = domain_low+ij*width
         xy = low + rng.uniform(1e-5, 1-1e-5, (per_cell, 2))*width
-        s = np.column_stack([xy, rng.uniform(-.75*np.pi, .75*np.pi, per_cell), np.zeros(per_cell)])
+        s = np.column_stack([xy, rng.uniform(-heading_limit, heading_limit, per_cell), np.zeros(per_cell)])
         states.append(s); cells.extend([cell]*per_cell); splits.extend([assignment[cell]]*per_cell)
     states = np.vstack(states)
     cells, splits = np.asarray(cells), np.asarray(splits)
-    if not np.array_equal(cell_ids(states), cells):
+    if not np.array_equal(cell_ids(states, domain_low, domain_high), cells):
         raise AssertionError('plan/cell coordinates disagree')
     return states, cells, splits
 
 
-def historical_replay_indices(source_states, cells, splits, maximum=512, seed=7):
+def historical_replay_indices(source_states, cells, splits, maximum=512, seed=7,
+                              domain_low=DOMAIN_LOW, domain_high=DOMAIN_HIGH):
     """Never train on historical features from fresh validation/test cells."""
     if not isinstance(maximum, int) or maximum < 1:
         raise ValueError('positive maximum required')
-    candidates = np.flatnonzero(np.isin(cell_ids(source_states), np.unique(cells[splits == 'train'])))
+    candidates = np.flatnonzero(np.isin(cell_ids(source_states, domain_low, domain_high), np.unique(cells[splits == 'train'])))
     if not len(candidates):
         raise ValueError('no historical train-cell samples')
     return np.random.default_rng(seed).choice(candidates, min(maximum, len(candidates)), replace=False)
@@ -139,9 +148,13 @@ def main():
     p.add_argument('--output-dir', type=Path, required=True)
     p.add_argument('--per-cell', type=int, default=16)
     p.add_argument('--epochs', type=int, default=120)
+    p.add_argument('--domain-low', type=float, nargs=2, default=DOMAIN_LOW.tolist())
+    p.add_argument('--domain-high', type=float, nargs=2, default=DOMAIN_HIGH.tolist())
+    p.add_argument('--heading-limit', type=float, default=.75*np.pi)
+    p.add_argument('--initial-checkpoint', type=Path)
     args = p.parse_args()
     data = args.vision_sls_root/'expe/parking_lot/data'
-    checkpoint = data/'unicycle_checkpoint_observability_ft_075w_3pi4_097_300000_post.pt'
+    checkpoint = args.initial_checkpoint or data/'unicycle_checkpoint_observability_ft_075w_3pi4_097_300000_post.pt'
     source_file = data/'unicycle_10000_512small_03width_background4_075w_3pi4_op097_dino_1536_states_large_val.pt'
     bound_file = data/'unicycle_observability_bound_ppoly_097_300000_val_3_0.97_0.04.npz'
     required = [checkpoint, source_file, bound_file, args.dino_weights, args.dino_repo/'hubconf.py']
@@ -151,7 +164,8 @@ def main():
     torch.set_num_threads(1); torch.manual_seed(7)
     torch.backends.cuda.matmul.allow_tf32 = False
     torch.backends.cudnn.allow_tf32 = False
-    states, cells, splits = make_split_plan(args.per_cell)
+    states, cells, splits = make_split_plan(args.per_cell, domain_low=args.domain_low,
+        domain_high=args.domain_high, heading_limit=args.heading_limit)
     sources = {str(f): sha(f) for f in required}
     sources.update({str(f): sha(f) for f in Path(__file__).parent.glob('*.py')})
     scene_files = [f for f in (args.vision_sls_root/'expe/parking_lot/plane_v2').glob('*') if f.is_file()]
@@ -161,7 +175,10 @@ def main():
                   states=len(states), cells=64, xy_grid=[8, 8],
                   split_cells=dict(train=40, validation=12, test=12),
                   split_samples={s: int((splits == s).sum()) for s in np.unique(splits)},
-                  world_domain=dict(x=[-3, 0], y=[-1.5, 1.5], heading=[-.75*np.pi, .75*np.pi], speed=0),
+                  world_domain=dict(x=[args.domain_low[0], args.domain_high[0]],
+                                    y=[args.domain_low[1], args.domain_high[1]],
+                                    heading=[-args.heading_limit, args.heading_limit], speed=0),
+                  initial_checkpoint=str(checkpoint),
                   per_cell=args.per_cell, epochs=args.epochs, learning_rate=1e-4, batch_size=128,
                   objective='new RGB feature MSE to fixed Cx + .25 historical train-cell MSE',
                   replay_max_samples=512, DINO_frozen=True, C_frozen=True,
@@ -179,7 +196,8 @@ def main():
         baseline_state = {k: v.detach().cpu().clone() for k, v in initial.state_dict().items()}
         src_states, src_features = torch.load(source_file, map_location='cpu')
         src_states = np.column_stack([src_states.numpy(), np.zeros(len(src_states))])-RENDER_OFFSET
-        replay_ids = historical_replay_indices(src_states, cells, splits)
+        replay_ids = historical_replay_indices(src_states, cells, splits,
+            domain_low=args.domain_low, domain_high=args.domain_high)
         np.save(args.output_dir/'historical_replay_indices.npy', replay_ids)
         cache = h5py.File(args.output_dir/'paired_data.h5', 'w')
         images = cache.create_dataset('rgb', (len(states), 512, 512, 3), dtype='u1',

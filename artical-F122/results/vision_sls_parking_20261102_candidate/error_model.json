@@ -1,0 +1,98 @@
+{
+  "schema": "parking_joint_error_v1",
+  "low": [
+    -3.5,
+    -2.0,
+    -3.141592653589793
+  ],
+  "high": [
+    0.5,
+    1.9,
+    3.141592653589793
+  ],
+  "coefficients": [
+    [
+      0.43857953153193896,
+      2.3076205649948287,
+      2.3498687536541385
+    ],
+    [
+      0.4642287148828238,
+      1.4273949229903895,
+      1.377989597790127
+    ],
+    [
+      0.470943875412248,
+      2.000612482172718,
+      1.589590746506708
+    ],
+    [
+      0.547600757650665,
+      2.077258193796528,
+      2.153073874600095
+    ],
+    [
+      0.7156727751877504,
+      2.046955306657848,
+      1.9729201298650652
+    ],
+    [
+      0.43110427109006433,
+      2.4172489131258197,
+      2.139906307845393
+    ],
+    [
+      0.31506550718457493,
+      2.1211438891019143,
+      2.085827120534446
+    ],
+    [
+      0.6689443236019943,
+      2.5140507964704493,
+      2.533391316265173
+    ]
+  ],
+  "q": 1.0789654059570726,
+  "floor": 0.01,
+  "degree": 1,
+  "outputs": 3,
+  "units": "unnormalized latent Cx units",
+  "guarantee": "marginal CP under registered uniform-pose protocol; not policy or trajectory safety",
+  "calibration": {
+    "q": 1.0789654059570726,
+    "rank": 123,
+    "n_units": 128,
+    "alpha": 0.05,
+    "unit": "individual observation",
+    "finite": true,
+    "conditional_on_exchangeability": true
+  },
+  "provenance": {
+    "output_dir": "results/vision_sls_parking_20261102_error_v1",
+    "projection": "results/vision_sls_parking_20261025_adaptation_v1/projection_adapted.pt",
+    "vision_root": "../VISION-SLS",
+    "dino_repo": "../external/dinov2",
+    "dino_weights": "../external/dinov2_weights/dinov2_vitg14_pretrain.pth",
+    "fit_count": 256,
+    "cal_count": 128,
+    "audit_count": 128,
+    "seed": 20261102,
+    "low": [
+      -3.5,
+      -2.0,
+      -3.141592653589793
+    ],
+    "high": [
+      0.5,
+      1.9,
+      3.141592653589793
+    ],
+    "sampler": "independent uniform poses, speed zero, fixed OpenGL scene",
+    "projection_sha256": "58c4f75c540ca24d40bf3241386922185f3d5b7c5ec9d0993d2b264f27d6a16b",
+    "dino_sha256": "baf8467e50af277596bbbafa06887c177ee899ab46033649c383577d7e9309d3",
+    "marginal_scope": "one new pose from this same uniform simulator distribution",
+    "policy_distribution_coverage": false,
+    "trajectory_coverage": false,
+    "physical_speed_invisible_in_renderer": true
+  }
+}

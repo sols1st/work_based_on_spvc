@@ -1,0 +1,77 @@
+{
+  "vision_sls_parking_20261025_ppo_v2": {
+    "status": "saved_rollout_replay_and_counts_pass",
+    "paths": {
+      "proxy": {
+        "replayed_transitions": 450,
+        "max_dynamics_replay_error": 4.440892098500626e-16,
+        "max_action_bound_excess": 0.0,
+        "counts_match": true,
+        "upstream_xy_arrival_without_collision_count": 6
+      },
+      "image": {
+        "replayed_transitions": 450,
+        "max_dynamics_replay_error": 2.220446049250313e-16,
+        "max_action_bound_excess": 0.0,
+        "counts_match": true,
+        "upstream_xy_arrival_without_collision_count": 4
+      }
+    },
+    "delayed_capture_state_pairing": true,
+    "registered_domain_frames": 445,
+    "frames": 465,
+    "covered_frames": 445,
+    "covered_development_trajectories": 13,
+    "trajectory_guarantee": false
+  },
+  "vision_sls_parking_20261025_spvc_backend_v2": {
+    "status": "saved_rollout_replay_and_counts_pass",
+    "paths": {
+      "proxy": {
+        "replayed_transitions": 450,
+        "max_dynamics_replay_error": 4.440892098500626e-16,
+        "max_action_bound_excess": 0.0,
+        "counts_match": true,
+        "upstream_xy_arrival_without_collision_count": 7
+      },
+      "image": {
+        "replayed_transitions": 450,
+        "max_dynamics_replay_error": 4.440892098500626e-16,
+        "max_action_bound_excess": 0.0,
+        "counts_match": true,
+        "upstream_xy_arrival_without_collision_count": 5
+      }
+    },
+    "delayed_capture_state_pairing": true,
+    "registered_domain_frames": 450,
+    "frames": 465,
+    "covered_frames": 450,
+    "covered_development_trajectories": 13,
+    "trajectory_guarantee": false
+  },
+  "vision_sls_parking_20261102_migration_v3": {
+    "status": "saved_rollout_replay_and_counts_pass",
+    "paths": {
+      "proxy": {
+        "replayed_transitions": 450,
+        "max_dynamics_replay_error": 2.220446049250313e-16,
+        "max_action_bound_excess": 0.0,
+        "counts_match": true,
+        "upstream_xy_arrival_without_collision_count": 15
+      },
+      "image": {
+        "replayed_transitions": 450,
+        "max_dynamics_replay_error": 4.440892098500626e-16,
+        "max_action_bound_excess": 0.0,
+        "counts_match": true,
+        "upstream_xy_arrival_without_collision_count": 9
+      }
+    },
+    "delayed_capture_state_pairing": true,
+    "registered_domain_frames": 456,
+    "frames": 465,
+    "covered_frames": 456,
+    "covered_development_trajectories": 14,
+    "trajectory_guarantee": false
+  }
+}

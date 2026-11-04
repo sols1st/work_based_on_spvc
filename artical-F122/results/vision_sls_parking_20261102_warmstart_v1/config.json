@@ -1,0 +1,14 @@
+{
+  "load": "results/vision_sls_parking_20261102_migration_v1/ppo.zip",
+  "output_dir": "results/vision_sls_parking_20261102_warmstart_v1",
+  "epochs": 2000,
+  "planner_iterations": 180,
+  "projection": "results/vision_sls_parking_20261025_adaptation_v1/projection_adapted.pt",
+  "training": "offline model-based demonstrations, actor-only behavior cloning",
+  "deployed_input": "unchanged 16D image/history interface",
+  "source_sha256": "7907c74e8d57bc337bbdeaada7b1f9546ab5e02458b8b256f97443c5660575bf",
+  "projection_sha256": "58c4f75c540ca24d40bf3241386922185f3d5b7c5ec9d0993d2b264f27d6a16b",
+  "development_tasks": 15,
+  "independent_test": false,
+  "safety_certificate": false
+}

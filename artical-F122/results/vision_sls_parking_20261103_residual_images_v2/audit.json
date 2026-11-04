@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "records": {
+    "residual_jitter_0.0": {
+      "transitions": 450,
+      "delayed_frames": 465,
+      "exact_delay_pairing": true,
+      "max_dynamics_error": 4.440892098500626e-16,
+      "max_action_replay_error": 4.277702647659254e-08,
+      "max_memory_replay_error": 4.874352921291347e-09,
+      "max_torch_transition_error": 4.470348535789981e-09,
+      "outcome_counts_recomputed": true,
+      "archive_sha256": "628d2ea896c75b8bc9ae14438323f92f54d95ba72b8f042c8554e011d760c11f"
+    },
+    "residual_jitter_0.04": {
+      "transitions": 450,
+      "delayed_frames": 465,
+      "exact_delay_pairing": true,
+      "max_dynamics_error": 2.220446049250313e-16,
+      "max_action_replay_error": 4.324448810155701e-08,
+      "max_memory_replay_error": 6.703937849295016e-09,
+      "max_torch_transition_error": 6.705522581640366e-09,
+      "outcome_counts_recomputed": true,
+      "archive_sha256": "fa187181ecfa71c5dc15cd1bb1bcd91fb201ad864907091605b4adae67fa7286"
+    },
+    "legacy_jitter_0.0": {
+      "transitions": 450,
+      "delayed_frames": 465,
+      "exact_delay_pairing": true,
+      "max_dynamics_error": 4.440892098500626e-16,
+      "max_action_replay_error": 0.0,
+      "max_memory_replay_error": 0.0,
+      "max_torch_transition_error": 0.0,
+      "outcome_counts_recomputed": true,
+      "archive_sha256": "681b0d8da5b739cec739a6da64c83150f5d1d8ed2127e5a3248de31d164d3e5a"
+    },
+    "legacy_jitter_0.04": {
+      "transitions": 450,
+      "delayed_frames": 465,
+      "exact_delay_pairing": true,
+      "max_dynamics_error": 8.881784197001252e-16,
+      "max_action_replay_error": 0.0,
+      "max_memory_replay_error": 0.0,
+      "max_torch_transition_error": 0.0,
+      "outcome_counts_recomputed": true,
+      "archive_sha256": "86963eb13a525cb2b07782895faf3ad33f789f25e9420d6f122e1334e2c7eae3"
+    }
+  },
+  "scope": "numerical interface consistency, not safety verification"
+}

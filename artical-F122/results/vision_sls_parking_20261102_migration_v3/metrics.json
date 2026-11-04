@@ -1,0 +1,513 @@
+{
+  "config": {
+    "load": "results/vision_sls_parking_20261102_migration_v2/ppo.zip",
+    "output_dir": "results/vision_sls_parking_20261102_migration_v3",
+    "timesteps": 2000000,
+    "eval_every": 100000,
+    "seed": 17,
+    "learning_rate": 0.0001,
+    "projection": "results/vision_sls_parking_20261025_adaptation_v1/projection_adapted.pt",
+    "source_sha256": "8f537fead36b21dcf40ad92e5153e4ca663b8f6099d0a6e65ef72ac05d3605d7",
+    "projection_sha256": "58c4f75c540ca24d40bf3241386922185f3d5b7c5ec9d0993d2b264f27d6a16b",
+    "reward_mode": "safety_v2",
+    "physical_dimension": 4,
+    "visual_dimension": 3,
+    "actor_input_dimension": 16,
+    "horizon": 30,
+    "delay": 1,
+    "process_noise": "zero",
+    "training_sensor": "analytic Cx, not actual images",
+    "selection": "development 15 starts: fewer unsafe, more successes, lower final distance",
+    "independent_test": false,
+    "visual_weights_changed": false
+  },
+  "baseline": {
+    "episodes": 15,
+    "success_count": 9,
+    "collision_count": 0,
+    "out_of_bounds_count": 0,
+    "goal_at_horizon_count": 9,
+    "mean_final_goal_distance": 0.22101220139630626,
+    "per_scenario": [
+      {
+        "scenario": 0,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": false,
+        "final_goal_distance": 0.2642456520556823,
+        "return_sum": 18.597050785289948,
+        "steps": 30
+      },
+      {
+        "scenario": 1,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.11147384014795632,
+        "return_sum": 52.35558283976425,
+        "steps": 30
+      },
+      {
+        "scenario": 2,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.07583535635356128,
+        "return_sum": 50.94012241940612,
+        "steps": 30
+      },
+      {
+        "scenario": 3,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.10072077498738888,
+        "return_sum": 48.49973828381793,
+        "steps": 30
+      },
+      {
+        "scenario": 4,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.02120935685659931,
+        "return_sum": 42.893227080762124,
+        "steps": 30
+      },
+      {
+        "scenario": 5,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.03175569044738014,
+        "return_sum": 43.1573895729604,
+        "steps": 30
+      },
+      {
+        "scenario": 6,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.034754052389938866,
+        "return_sum": 47.19293814063248,
+        "steps": 30
+      },
+      {
+        "scenario": 7,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.1978343295201828,
+        "return_sum": 49.88089193765744,
+        "steps": 30
+      },
+      {
+        "scenario": 8,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.19320071009691628,
+        "return_sum": 48.32135570818285,
+        "steps": 30
+      },
+      {
+        "scenario": 9,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": false,
+        "final_goal_distance": 0.30826958590482373,
+        "return_sum": 12.369227726791884,
+        "steps": 30
+      },
+      {
+        "scenario": 10,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": false,
+        "final_goal_distance": 0.2827842216228858,
+        "return_sum": 14.363815460879607,
+        "steps": 30
+      },
+      {
+        "scenario": 11,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": false,
+        "final_goal_distance": 0.5518013215155396,
+        "return_sum": 1.632766424634414,
+        "steps": 30
+      },
+      {
+        "scenario": 12,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": false,
+        "final_goal_distance": 0.5319135545250556,
+        "return_sum": 6.547181254424742,
+        "steps": 30
+      },
+      {
+        "scenario": 13,
+        "success": false,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": false,
+        "final_goal_distance": 0.5564658734095895,
+        "return_sum": 4.020591228288502,
+        "steps": 30
+      },
+      {
+        "scenario": 14,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.05291870111109347,
+        "return_sum": 47.46615835544924,
+        "steps": 30
+      }
+    ]
+  },
+  "proxy": {
+    "episodes": 15,
+    "success_count": 15,
+    "collision_count": 0,
+    "out_of_bounds_count": 0,
+    "goal_at_horizon_count": 15,
+    "mean_final_goal_distance": 0.09260008901244213,
+    "per_scenario": [
+      {
+        "scenario": 0,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.08909038623013461,
+        "return_sum": 54.12438745678241,
+        "steps": 30
+      },
+      {
+        "scenario": 1,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.06921036022598813,
+        "return_sum": 53.19357667945168,
+        "steps": 30
+      },
+      {
+        "scenario": 2,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.049187670365793384,
+        "return_sum": 51.486062402183805,
+        "steps": 30
+      },
+      {
+        "scenario": 3,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.06521669278099188,
+        "return_sum": 48.713218062970824,
+        "steps": 30
+      },
+      {
+        "scenario": 4,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.12009954177755278,
+        "return_sum": 42.157832211049495,
+        "steps": 30
+      },
+      {
+        "scenario": 5,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.13873350443945923,
+        "return_sum": 42.48656332864605,
+        "steps": 30
+      },
+      {
+        "scenario": 6,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.07699207722607276,
+        "return_sum": 47.03911837531666,
+        "steps": 30
+      },
+      {
+        "scenario": 7,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.04758828600326871,
+        "return_sum": 51.83171808839393,
+        "steps": 30
+      },
+      {
+        "scenario": 8,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.1259615729150973,
+        "return_sum": 49.59704152271288,
+        "steps": 30
+      },
+      {
+        "scenario": 9,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.05361541941688166,
+        "return_sum": 48.88532331572432,
+        "steps": 30
+      },
+      {
+        "scenario": 10,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.04523909848368616,
+        "return_sum": 50.051578112735896,
+        "steps": 30
+      },
+      {
+        "scenario": 11,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.17148960481653247,
+        "return_sum": 41.591401620211975,
+        "steps": 30
+      },
+      {
+        "scenario": 12,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.12564123556022794,
+        "return_sum": 46.45035232540539,
+        "steps": 30
+      },
+      {
+        "scenario": 13,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.1351122122784633,
+        "return_sum": 44.02489649614054,
+        "steps": 30
+      },
+      {
+        "scenario": 14,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.07582367266648182,
+        "return_sum": 47.54366797465347,
+        "steps": 30
+      }
+    ]
+  },
+  "last": {
+    "episodes": 15,
+    "success_count": 15,
+    "collision_count": 0,
+    "out_of_bounds_count": 0,
+    "goal_at_horizon_count": 15,
+    "mean_final_goal_distance": 0.09260008901244213,
+    "per_scenario": [
+      {
+        "scenario": 0,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.08909038623013461,
+        "return_sum": 54.12438745678241,
+        "steps": 30
+      },
+      {
+        "scenario": 1,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.06921036022598813,
+        "return_sum": 53.19357667945168,
+        "steps": 30
+      },
+      {
+        "scenario": 2,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.049187670365793384,
+        "return_sum": 51.486062402183805,
+        "steps": 30
+      },
+      {
+        "scenario": 3,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.06521669278099188,
+        "return_sum": 48.713218062970824,
+        "steps": 30
+      },
+      {
+        "scenario": 4,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.12009954177755278,
+        "return_sum": 42.157832211049495,
+        "steps": 30
+      },
+      {
+        "scenario": 5,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.13873350443945923,
+        "return_sum": 42.48656332864605,
+        "steps": 30
+      },
+      {
+        "scenario": 6,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.07699207722607276,
+        "return_sum": 47.03911837531666,
+        "steps": 30
+      },
+      {
+        "scenario": 7,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.04758828600326871,
+        "return_sum": 51.83171808839393,
+        "steps": 30
+      },
+      {
+        "scenario": 8,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.1259615729150973,
+        "return_sum": 49.59704152271288,
+        "steps": 30
+      },
+      {
+        "scenario": 9,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.05361541941688166,
+        "return_sum": 48.88532331572432,
+        "steps": 30
+      },
+      {
+        "scenario": 10,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.04523909848368616,
+        "return_sum": 50.051578112735896,
+        "steps": 30
+      },
+      {
+        "scenario": 11,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.17148960481653247,
+        "return_sum": 41.591401620211975,
+        "steps": 30
+      },
+      {
+        "scenario": 12,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.12564123556022794,
+        "return_sum": 46.45035232540539,
+        "steps": 30
+      },
+      {
+        "scenario": 13,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.1351122122784633,
+        "return_sum": 44.02489649614054,
+        "steps": 30
+      },
+      {
+        "scenario": 14,
+        "success": true,
+        "collision": false,
+        "out_of_bounds": false,
+        "goal_at_horizon": true,
+        "final_goal_distance": 0.07582367266648182,
+        "return_sum": 47.54366797465347,
+        "steps": 30
+      }
+    ]
+  },
+  "best_added_steps": 2000896,
+  "checkpoint_sha256": "54e6e8da2d854e9cb5d1d0761132b3bc95f4c9efcf3a45c3a40c70744ec0dd0f",
+  "source_unchanged": true,
+  "projection_unchanged": true,
+  "runtime_seconds": 301.6546300839982,
+  "image_evaluated": false,
+  "safety_certificate": false,
+  "independent_test": false,
+  "status": "nominal_controller_development_training_complete"
+}

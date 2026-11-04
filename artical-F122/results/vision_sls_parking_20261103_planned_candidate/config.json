@@ -1,0 +1,28 @@
+{
+  "status": "development_candidate_not_certified",
+  "world_domain": {
+    "x": [
+      -3,
+      0
+    ],
+    "y": [
+      -1.5,
+      1.5
+    ],
+    "heading": [
+      -2.356194490192345,
+      2.356194490192345
+    ],
+    "speed": 0
+  },
+  "reference_sha256": "3f3d79e0f9469f1490ba4de77fa6f814aad9a95d85b1209cb04a71a25daf4748",
+  "projection_sha256": "58c4f75c540ca24d40bf3241386922185f3d5b7c5ec9d0993d2b264f27d6a16b",
+  "ppo_sha256": "005fe829e47c64fe6250efa9b121e831eb560e82c518cf08e131c7a3d76fe731",
+  "dino_sha256": "baf8467e50af277596bbbafa06887c177ee899ab46033649c383577d7e9309d3",
+  "actor_input_dimension": 13,
+  "continuous_verifier_dimension": 8,
+  "discrete_verifier_state": "reference index and time",
+  "runtime_inputs": "delayed visual measurement, goal, executed actions; catalogue prior",
+  "safety_certificate": false,
+  "cp_trajectory_coverage_established": false
+}

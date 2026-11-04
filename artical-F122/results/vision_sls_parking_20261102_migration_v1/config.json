@@ -1,0 +1,22 @@
+{
+  "load": "results/vision_sls_parking_20261025_ppo_v2/ppo.zip",
+  "output_dir": "results/vision_sls_parking_20261102_migration_v1",
+  "timesteps": 400000,
+  "eval_every": 25000,
+  "seed": 17,
+  "learning_rate": 0.0001,
+  "projection": "results/vision_sls_parking_20261025_adaptation_v1/projection_adapted.pt",
+  "source_sha256": "1a7837d752e0acbd1e068c24c00263fa1a49647199f7f16d5dd895e76770b242",
+  "projection_sha256": "58c4f75c540ca24d40bf3241386922185f3d5b7c5ec9d0993d2b264f27d6a16b",
+  "reward_mode": "safety_v2",
+  "physical_dimension": 4,
+  "visual_dimension": 3,
+  "actor_input_dimension": 16,
+  "horizon": 30,
+  "delay": 1,
+  "process_noise": "zero",
+  "training_sensor": "analytic Cx, not actual images",
+  "selection": "development 15 starts: fewer unsafe, more successes, lower final distance",
+  "independent_test": false,
+  "visual_weights_changed": false
+}

@@ -1,0 +1,23 @@
+{
+  "candidate": "results/vision_sls_parking_20261103_planned_candidate",
+  "error_model": "results/vision_sls_parking_20261102_error_v1/error_model.json",
+  "output_dir": "results/vision_sls_parking_20261103_backup_images_fresh_v1",
+  "sensor": "images",
+  "bound": 0.02,
+  "jitter": 0.02,
+  "seed": 920731,
+  "backup_library": null,
+  "startup_model": "results/vision_sls_parking_20261103_startup_cp_v2/startup_model.json",
+  "device": "cpu",
+  "threads": 8,
+  "ppo_sha256": "005fe829e47c64fe6250efa9b121e831eb560e82c518cf08e131c7a3d76fe731",
+  "reference_sha256": "3f3d79e0f9469f1490ba4de77fa6f814aad9a95d85b1209cb04a71a25daf4748",
+  "projection_sha256": "58c4f75c540ca24d40bf3241386922185f3d5b7c5ec9d0993d2b264f27d6a16b",
+  "error_model_sha256": "e51ee51ca851614405bfbc3dfd7a80235b5812c3e18e88f8bd2855219b1b91cc",
+  "process_noise": "zero",
+  "numerical_allowance_per_step": 1e-12,
+  "startup_model_sha256": "8268d9a4695cc07642bb6bf7759a55489559c10cdb6030f334a81154354d6a25",
+  "backup_library_sha256": null,
+  "posterior_pruning": "none after startup",
+  "safety_certificate_status": "structural proof and implementation audit pending"
+}

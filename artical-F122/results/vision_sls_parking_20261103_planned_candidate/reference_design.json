@@ -1,0 +1,135 @@
+{
+  "source_policy": "results/vision_sls_parking_20261102_candidate/ppo.zip",
+  "source_sha256": "81e666a578a36ed94b9f8ec6ace1898cbf82e722b36240fabca01f3df37d8884",
+  "references": [
+    {
+      "scenario": 0,
+      "success": true,
+      "optimizer_converged": false,
+      "minimum_clearance": 0.1502531800956346,
+      "objective": 13.876339905824432,
+      "iterations": 300
+    },
+    {
+      "scenario": 1,
+      "success": true,
+      "optimizer_converged": true,
+      "minimum_clearance": 0.14996230113130493,
+      "objective": 10.79360498600456,
+      "iterations": 128
+    },
+    {
+      "scenario": 2,
+      "success": true,
+      "optimizer_converged": false,
+      "minimum_clearance": 0.21033396347269384,
+      "objective": 8.366375483159645,
+      "iterations": 300
+    },
+    {
+      "scenario": 3,
+      "success": true,
+      "optimizer_converged": false,
+      "minimum_clearance": 0.20309326935653715,
+      "objective": 7.1366696195596155,
+      "iterations": 300
+    },
+    {
+      "scenario": 4,
+      "success": true,
+      "optimizer_converged": false,
+      "minimum_clearance": 0.14995956866854648,
+      "objective": 3.921916509364843,
+      "iterations": 300
+    },
+    {
+      "scenario": 5,
+      "success": true,
+      "optimizer_converged": false,
+      "minimum_clearance": 0.14999984716724435,
+      "objective": 6.200686367510831,
+      "iterations": 300
+    },
+    {
+      "scenario": 6,
+      "success": true,
+      "optimizer_converged": false,
+      "minimum_clearance": 0.14991029309806148,
+      "objective": 9.102816422685741,
+      "iterations": 300
+    },
+    {
+      "scenario": 7,
+      "success": true,
+      "optimizer_converged": false,
+      "minimum_clearance": 0.14998882424164967,
+      "objective": 10.96575514235799,
+      "iterations": 300
+    },
+    {
+      "scenario": 8,
+      "success": true,
+      "optimizer_converged": false,
+      "minimum_clearance": 0.14998830470471292,
+      "objective": 9.506578596791938,
+      "iterations": 300
+    },
+    {
+      "scenario": 9,
+      "success": true,
+      "optimizer_converged": false,
+      "minimum_clearance": 0.15001551320665196,
+      "objective": 9.02099303501142,
+      "iterations": 300
+    },
+    {
+      "scenario": 10,
+      "success": true,
+      "optimizer_converged": false,
+      "minimum_clearance": 0.14991068014007553,
+      "objective": 10.667266670913477,
+      "iterations": 300
+    },
+    {
+      "scenario": 11,
+      "success": true,
+      "optimizer_converged": false,
+      "minimum_clearance": 0.14994083222843935,
+      "objective": 6.964557365303514,
+      "iterations": 300
+    },
+    {
+      "scenario": 12,
+      "success": true,
+      "optimizer_converged": false,
+      "minimum_clearance": 0.14998674769243836,
+      "objective": 8.54165834419027,
+      "iterations": 300
+    },
+    {
+      "scenario": 13,
+      "success": true,
+      "optimizer_converged": false,
+      "minimum_clearance": 0.14998403567301322,
+      "objective": 6.0800004106751455,
+      "iterations": 300
+    },
+    {
+      "scenario": 14,
+      "success": true,
+      "optimizer_converged": true,
+      "minimum_clearance": 0.5586465392453912,
+      "objective": 5.862265904721334,
+      "iterations": 71
+    }
+  ],
+  "requested_clearance": 0.15,
+  "speed_margin": 0.15,
+  "runtime_seconds": 47.14059958298458,
+  "selection": "initial visual measurement and goal only; no true scenario ID",
+  "initial_prior": "catalogue of original development initial states; not supplied true runtime state",
+  "planning": "nominal nonlinear trajectory optimization; not robust SLS",
+  "feedback": "finite-horizon LQR with delayed linearized Kalman-style observer",
+  "covariance_role": "design tuning parameters, not calibrated error distribution",
+  "safety_certificate": false
+}
