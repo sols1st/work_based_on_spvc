@@ -1,0 +1,628 @@
+{
+  "certificate_type": "neural SBC on a verified augmented reachable invariant domain",
+  "representation": "fixed ReLU geometric network + bounded trained Tanh/Sigmoid head + linear finite-horizon clock",
+  "controller_changed": true,
+  "online_backup_governor_required": true,
+  "unrestricted_original_8d_sbc_verified": false,
+  "analytic_indicator_is_final_certificate": false,
+  "initial_sbc_upper": 0.305,
+  "unsafe_sbc_lower": 20.0,
+  "nonterminal_drift_upper": -0.005,
+  "proof_domain": "physical state contained in retained belief; checked safe backup suffix; valid clock/reference; unsafe stopped states",
+  "model": "registered RK4, dt=0.15, H=30, zero process noise, per-step enclosure allowance 1e-12",
+  "safety_definition": "original sampled point-center collision and state bounds with original tolerances",
+  "initial_cover": {
+    "passed": true,
+    "initial_box_radius": 0.02,
+    "boxes": 15,
+    "horizon": 30,
+    "subset_coverage": "common speed interval makes braking actions identical after hypothesis deletion",
+    "outward_interval_arithmetic": true,
+    "process_noise": "zero",
+    "numerical_allowance": 1e-12
+  },
+  "reference_cover": [
+    {
+      "scenario": 0,
+      "whole_box_safe": true,
+      "whole_box_in_goal": true
+    },
+    {
+      "scenario": 1,
+      "whole_box_safe": true,
+      "whole_box_in_goal": true
+    },
+    {
+      "scenario": 2,
+      "whole_box_safe": true,
+      "whole_box_in_goal": true
+    },
+    {
+      "scenario": 3,
+      "whole_box_safe": true,
+      "whole_box_in_goal": true
+    },
+    {
+      "scenario": 4,
+      "whole_box_safe": true,
+      "whole_box_in_goal": true
+    },
+    {
+      "scenario": 5,
+      "whole_box_safe": true,
+      "whole_box_in_goal": true
+    },
+    {
+      "scenario": 6,
+      "whole_box_safe": true,
+      "whole_box_in_goal": true
+    },
+    {
+      "scenario": 7,
+      "whole_box_safe": true,
+      "whole_box_in_goal": true
+    },
+    {
+      "scenario": 8,
+      "whole_box_safe": true,
+      "whole_box_in_goal": true
+    },
+    {
+      "scenario": 9,
+      "whole_box_safe": true,
+      "whole_box_in_goal": true
+    },
+    {
+      "scenario": 10,
+      "whole_box_safe": true,
+      "whole_box_in_goal": true
+    },
+    {
+      "scenario": 11,
+      "whole_box_safe": true,
+      "whole_box_in_goal": true
+    },
+    {
+      "scenario": 12,
+      "whole_box_safe": true,
+      "whole_box_in_goal": true
+    },
+    {
+      "scenario": 13,
+      "whole_box_safe": true,
+      "whole_box_in_goal": true
+    },
+    {
+      "scenario": 14,
+      "whole_box_safe": true,
+      "whole_box_in_goal": true
+    }
+  ],
+  "startup_alpha": 0.05,
+  "startup_cp_scope": "marginal over calibration and one future same-group uniform startup draw; not fixed-state or fixed-calibration guarantee",
+  "conditional_safety": "pathwise safety if the true initial state is retained; future image errors arbitrary",
+  "source_learned_sbc_sha256": "650c9f92814b437c48eca2136fac2c18ce3a6149b7a3a45ada909fbe38aa9b04",
+  "geometric_margin": 0.005,
+  "normals": [
+    [
+      1.0,
+      0.0
+    ],
+    [
+      0.9807852804032304,
+      0.19509032201612828
+    ],
+    [
+      0.9238795325112866,
+      0.3826834323650898
+    ],
+    [
+      0.8314696123025453,
+      0.5555702330196022
+    ],
+    [
+      0.7071067811865477,
+      0.7071067811865476
+    ],
+    [
+      0.5555702330196022,
+      0.8314696123025452
+    ],
+    [
+      0.38268343236508984,
+      0.9238795325112866
+    ],
+    [
+      0.19509032201612833,
+      0.9807852804032305
+    ],
+    [
+      6.123233995736766e-17,
+      1.0
+    ],
+    [
+      -0.19509032201612822,
+      0.9807852804032305
+    ],
+    [
+      -0.3826834323650897,
+      0.9238795325112867
+    ],
+    [
+      -0.5555702330196018,
+      0.8314696123025455
+    ],
+    [
+      -0.7071067811865475,
+      0.7071067811865477
+    ],
+    [
+      -0.8314696123025453,
+      0.5555702330196021
+    ],
+    [
+      -0.9238795325112866,
+      0.3826834323650899
+    ],
+    [
+      -0.9807852804032304,
+      0.1950903220161286
+    ],
+    [
+      -1.0,
+      1.2246467991473532e-16
+    ],
+    [
+      -0.9807852804032304,
+      -0.1950903220161284
+    ],
+    [
+      -0.9238795325112867,
+      -0.38268343236508967
+    ],
+    [
+      -0.8314696123025455,
+      -0.5555702330196018
+    ],
+    [
+      -0.7071067811865477,
+      -0.7071067811865475
+    ],
+    [
+      -0.5555702330196021,
+      -0.8314696123025453
+    ],
+    [
+      -0.38268343236509034,
+      -0.9238795325112864
+    ],
+    [
+      -0.1950903220161287,
+      -0.9807852804032304
+    ],
+    [
+      -1.8369701987210297e-16,
+      -1.0
+    ],
+    [
+      0.1950903220161283,
+      -0.9807852804032305
+    ],
+    [
+      0.38268343236509006,
+      -0.9238795325112866
+    ],
+    [
+      0.5555702330196017,
+      -0.8314696123025455
+    ],
+    [
+      0.7071067811865474,
+      -0.7071067811865477
+    ],
+    [
+      0.8314696123025452,
+      -0.5555702330196022
+    ],
+    [
+      0.9238795325112864,
+      -0.3826834323650904
+    ],
+    [
+      0.9807852804032304,
+      -0.19509032201612875
+    ]
+  ],
+  "obstacle_support_radii": [
+    0.40012498047485134,
+    0.35014282800023205,
+    0.40012498047485134
+  ],
+  "evaluations": [
+    {
+      "source": "results/vision_sls_parking_20261103_backup_images_v1",
+      "source_archive_sha256": "350217e47fb7102684c2b5f3e5cb7f71fb000bf2fbc584d39bc3dc5d451a794a",
+      "success_count": 15,
+      "episodes": 15,
+      "collision_count": 0,
+      "out_of_bounds_count": 0,
+      "all_audits_passed": true,
+      "per_scenario": [
+        {
+          "scenario": 0,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246654478370473e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 1,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246513885484533e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 2,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246584181927503e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 3,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.248842334787297e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 4,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246548552223532e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 5,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246866330664355e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 6,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246689145109472e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 7,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246619811631474e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 8,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246619811631474e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 9,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246619811631474e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 10,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246584181927503e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 11,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246584181927503e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 12,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246724774813442e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 13,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246548552223532e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 14,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246584181927503e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "source": "results/vision_sls_parking_20261103_backup_images_fresh_v1",
+      "source_archive_sha256": "abbeded81bad70b93bb21fabe30815f593813a55c93dd160d054ace7df902e8e",
+      "success_count": 15,
+      "episodes": 15,
+      "collision_count": 0,
+      "out_of_bounds_count": 0,
+      "all_audits_passed": true,
+      "per_scenario": [
+        {
+          "scenario": 0,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246654478370473e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 1,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246548552223532e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 2,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246584181927503e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 3,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.249159150263148e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 4,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246513885484533e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 5,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246866330664355e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 6,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246936627107326e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 7,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246689145109472e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 8,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246619811631474e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 9,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246689145109472e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 10,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246584181927503e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 11,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246548552223532e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 12,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246760404517414e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 13,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246513885484533e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        },
+        {
+          "scenario": 14,
+          "interval_replay_exact": true,
+          "every_backup_tail_safe": true,
+          "goal_tail_checks": true,
+          "physical_containment": true,
+          "initial_sbc": 0.3,
+          "minimum_sbc": 9.246584181927503e-30,
+          "maximum_drift": -0.009999999999999953,
+          "maximum_geometric_term": 0.0,
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "interval_and_replay_checks_passed": true,
+  "formal_proof_obligations_document": "docs/current/\u505c\u8f66\u573a\u795e\u7ecfSBC_\u6784\u9020\u8bc1\u660e\u4e0e\u5b9e\u9a8c_20261103.md",
+  "formal_program_verification_claimed": false
+}

@@ -1,0 +1,254 @@
+{
+  "config": {
+    "ppo_dir": "results/vision_sls_parking_20261102_migration_v3",
+    "output_dir": "results/vision_sls_parking_20261102_sbc_error_v1",
+    "error_model": "results/vision_sls_parking_20261102_error_v1/error_model.json",
+    "epochs": 6000,
+    "ppo_sha256": "54e6e8da2d854e9cb5d1d0761132b3bc95f4c9efcf3a45c3a40c70744ec0dd0f",
+    "error_model_sha256": "e51ee51ca851614405bfbc3dfd7a80235b5812c3e18e88f8bd2855219b1b91cc",
+    "nonnegative_output": "ReLU",
+    "augmented_state": 20,
+    "hidden_layers": [
+      64,
+      64
+    ],
+    "initial_threshold": 1,
+    "unsafe_threshold": 20,
+    "finite_horizon": 30,
+    "dynamic_condition": "nonincrease; horizon and unsafe process stopped",
+    "policy_updated": false,
+    "actor_memory_preserved": true,
+    "current_state_coverage": "nominal policy replay points only",
+    "observation_error_coverage": "successor and initial boxes, only at sampled states",
+    "initial_history_set": "independent box superset of repeated single measurement",
+    "continuous_state_verification": false,
+    "outward_rounding": false,
+    "certificate_probability": null
+  },
+  "history": [
+    {
+      "epoch": 200,
+      "initial": 64.310791015625,
+      "unsafe": 107.97415161132812,
+      "successor": 2.230189323425293,
+      "total": 1725.07958984375
+    },
+    {
+      "epoch": 400,
+      "initial": 0.5691152811050415,
+      "unsafe": 14.54029655456543,
+      "successor": 15.010541915893555,
+      "total": 166.1046600341797
+    },
+    {
+      "epoch": 600,
+      "initial": 0.463621586561203,
+      "unsafe": 10.140304565429688,
+      "successor": 16.577695846557617,
+      "total": 122.61695861816406
+    },
+    {
+      "epoch": 800,
+      "initial": 0.21859486401081085,
+      "unsafe": 13.173742294311523,
+      "successor": 18.285907745361328,
+      "total": 152.2092742919922
+    },
+    {
+      "epoch": 1000,
+      "initial": 0.40865960717201233,
+      "unsafe": 10.510169982910156,
+      "successor": 18.4841365814209,
+      "total": 127.67243194580078
+    },
+    {
+      "epoch": 1200,
+      "initial": 0.05693117156624794,
+      "unsafe": 7.484997272491455,
+      "successor": 15.281319618225098,
+      "total": 90.70060729980469
+    },
+    {
+      "epoch": 1400,
+      "initial": 0.05569404736161232,
+      "unsafe": 8.939642906188965,
+      "successor": 15.040583610534668,
+      "total": 104.99394989013672
+    },
+    {
+      "epoch": 1600,
+      "initial": 0.06629601866006851,
+      "unsafe": 10.177573204040527,
+      "successor": 15.013648986816406,
+      "total": 117.45234680175781
+    },
+    {
+      "epoch": 1800,
+      "initial": 0.012579014524817467,
+      "unsafe": 6.1757001876831055,
+      "successor": 14.47308349609375,
+      "total": 76.35588073730469
+    },
+    {
+      "epoch": 2000,
+      "initial": 0.07578027993440628,
+      "unsafe": 7.655218124389648,
+      "successor": 14.229925155639648,
+      "total": 91.5399169921875
+    },
+    {
+      "epoch": 2200,
+      "initial": 0.09347205609083176,
+      "unsafe": 6.551270961761475,
+      "successor": 14.079534530639648,
+      "total": 80.52696990966797
+    },
+    {
+      "epoch": 2400,
+      "initial": 0.0,
+      "unsafe": 7.8687615394592285,
+      "successor": 13.921893119812012,
+      "total": 92.60950469970703
+    },
+    {
+      "epoch": 2600,
+      "initial": 0.20097903907299042,
+      "unsafe": 4.055907726287842,
+      "successor": 13.724188804626465,
+      "total": 56.293060302734375
+    },
+    {
+      "epoch": 2800,
+      "initial": 0.015589658170938492,
+      "unsafe": 5.757149696350098,
+      "successor": 13.533988952636719,
+      "total": 71.26138305664062
+    },
+    {
+      "epoch": 3000,
+      "initial": 0.09374450892210007,
+      "unsafe": 4.008050918579102,
+      "successor": 12.729994773864746,
+      "total": 53.74795150756836
+    },
+    {
+      "epoch": 3200,
+      "initial": 0.03814808279275894,
+      "unsafe": 3.209423542022705,
+      "successor": 13.200495719909668,
+      "total": 45.676212310791016
+    },
+    {
+      "epoch": 3400,
+      "initial": 0.0,
+      "unsafe": 4.1302924156188965,
+      "successor": 12.838534355163574,
+      "total": 54.14146041870117
+    },
+    {
+      "epoch": 3600,
+      "initial": 0.04010261595249176,
+      "unsafe": 3.1007537841796875,
+      "successor": 12.608663558959961,
+      "total": 44.01722717285156
+    },
+    {
+      "epoch": 3800,
+      "initial": 0.01909136027097702,
+      "unsafe": 1.5727944374084473,
+      "successor": 11.48360824584961,
+      "total": 27.4024658203125
+    },
+    {
+      "epoch": 4000,
+      "initial": 0.03109530732035637,
+      "unsafe": 0.17241708934307098,
+      "successor": 11.392677307128906,
+      "total": 13.427801132202148
+    },
+    {
+      "epoch": 4200,
+      "initial": 0.018991118296980858,
+      "unsafe": 2.1446895599365234,
+      "successor": 10.095985412597656,
+      "total": 31.732791900634766
+    },
+    {
+      "epoch": 4400,
+      "initial": 0.06552617251873016,
+      "unsafe": 1.976211428642273,
+      "successor": 10.563246726989746,
+      "total": 30.980621337890625
+    },
+    {
+      "epoch": 4600,
+      "initial": 0.0,
+      "unsafe": 3.447115898132324,
+      "successor": 9.43962574005127,
+      "total": 43.91078567504883
+    },
+    {
+      "epoch": 4800,
+      "initial": 0.11385414004325867,
+      "unsafe": 3.5119802951812744,
+      "successor": 8.270347595214844,
+      "total": 44.52869415283203
+    },
+    {
+      "epoch": 5000,
+      "initial": 0.0,
+      "unsafe": 0.0400983989238739,
+      "successor": 7.939610958099365,
+      "total": 8.340595245361328
+    },
+    {
+      "epoch": 5200,
+      "initial": 0.05334891751408577,
+      "unsafe": 1.2809900045394897,
+      "successor": 7.414121627807617,
+      "total": 20.757511138916016
+    },
+    {
+      "epoch": 5400,
+      "initial": 0.12720127403736115,
+      "unsafe": 1.0071805715560913,
+      "successor": 7.5437331199646,
+      "total": 18.88755226135254
+    },
+    {
+      "epoch": 5600,
+      "initial": 0.009290493093430996,
+      "unsafe": 4.021683692932129,
+      "successor": 6.963665008544922,
+      "total": 47.27340316772461
+    },
+    {
+      "epoch": 5800,
+      "initial": 0.07282806932926178,
+      "unsafe": 2.228485107421875,
+      "successor": 6.608855724334717,
+      "total": 29.62198829650879
+    },
+    {
+      "epoch": 6000,
+      "initial": 9.08685615286231e-06,
+      "unsafe": 0.24504238367080688,
+      "successor": 5.720032215118408,
+      "total": 8.170546531677246
+    }
+  ],
+  "replay_points": 450,
+  "initial_box_upper": 2.1440863609313965,
+  "initial_violations": 1,
+  "unsafe_sample_min": 0.0,
+  "unsafe_sample_count": 4096,
+  "unsafe_violations": 42,
+  "successor_box_not_proven_count": 322,
+  "max_successor_box_gap": 16.08062744140625,
+  "nominal_point_violation_count": 313,
+  "runtime_seconds": 16.545856500044465,
+  "ppo_unchanged": true,
+  "status": "sampled_current_states_with_numeric_successor_box_bounds_not_a_certificate",
+  "safety_certificate": false,
+  "certificate_probability": null
+}

@@ -15,8 +15,17 @@ from .core import (ACTION_HIGH, ACTION_LOW, GOAL_LOW, GOAL_HIGH, HORIZON,
 class ParkingPPOEnv(gym.Env):
     metadata = {'render_modes': []}
 
-    def __init__(self, image_sensor=None, scenario=None):
+    def __init__(self, image_sensor=None, scenario=None, reward_mode='legacy', scenario_weights=None):
         super().__init__()
+        if reward_mode not in ('legacy', 'safety_v2', 'safety_v3'):
+            raise ValueError('unknown parking reward mode')
+        self.reward_mode = reward_mode
+        self.scenario_probabilities = None
+        if scenario_weights is not None:
+            w = np.asarray(scenario_weights, dtype=float)
+            if w.shape != (15,) or not np.isfinite(w).all() or (w <= 0).any():
+                raise ValueError('15 finite positive scenario weights required')
+            self.scenario_probabilities = w/w.sum()
         self.sensor, self.fixed_scenario = image_sensor, scenario
         # The sensor renders the delayed state selected by this original env.
         self.task = ParkingEnv(observation_delay=1, horizon=HORIZON)
@@ -39,12 +48,13 @@ class ParkingPPOEnv(gym.Env):
     def reset(self, *, seed=None, options=None):
         super().reset(seed=seed)
         scenario = (self.fixed_scenario if self.fixed_scenario is not None
-                    else int(self.np_random.integers(15)))
+                    else int(self.np_random.integers(15)) if self.scenario_probabilities is None
+                    else int(self.np_random.choice(15, p=self.scenario_probabilities)))
         if options is not None:
             scenario = options.get('scenario', scenario)
         if self.sensor is not None:
             self.sensor.reset()
-        raw = self.task.reset(scenario=scenario)
+        raw = self.task.reset(scenario=scenario, state=None if options is None else options.get('state'))
         y = self._measurement(raw)
         self.measurements.clear()
         self.actions.clear()
@@ -74,6 +84,22 @@ class ParkingPPOEnv(gym.Env):
                   -20*float(info['collision'])-5*float(bound_excess.sum()))
         if done:
             reward += (30. if info['in_goal'] and not info['unsafe_seen'] else -10*distance)
+        if self.reward_mode in ('safety_v2', 'safety_v3'):
+            # Training-only shaping. Physics, success, sensor and termination
+            # retain the original definitions, including all 30 time steps.
+            goal_violation = np.maximum(GOAL_LOW[self.task.scenario]-x, 0) + np.maximum(
+                x-GOAL_HIGH[self.task.scenario], 0)
+            clearance_weight = 100 if self.reward_mode == 'safety_v3' else 10
+            clearance_margin = .25 if self.reward_mode == 'safety_v3' else .2
+            reward = (20*(old_distance-distance)-distance
+                      -.02*float(normalized@normalized)
+                      -clearance_weight*float(np.maximum(clearance_margin-clearance, 0).sum())
+                      -100*float(info['collision'] or not info['in_bounds'])
+                      -100*float(bound_excess.sum()))
+            if done:
+                reward += (100. if info['in_goal'] and not info['unsafe_seen'] else
+                           -30.-100*float(goal_violation.sum())
+                           -100*float(info['unsafe_seen']))
         self.return_sum += reward
         self.collision_seen |= info['collision']
         self.out_of_bounds_seen |= not info['in_bounds']
@@ -92,12 +118,18 @@ class ParkingPPOEnv(gym.Env):
 class FrozenImageSensor:
     """Actual OpenGL frame -> frozen official DINO-G -> frozen 3D projection."""
     def __init__(self, vision_root, dino_repo, weights, projection, device='cuda'):
+        import json
+        from pathlib import Path
         import torch
         from torchvision import transforms
         from .renderer import ParkingRenderer
         from .perception import load_projection
         self.torch, self.device = torch, device
         self.projection, self.c, self.info = load_projection(projection, device)
+        config_path = Path(projection).parent/'config.json'
+        config = json.loads(config_path.read_text()) if config_path.exists() else {}
+        self.adaptation_domain = config.get('world_domain', dict(
+            x=[-3., 0.], y=[-1.5, 1.5], heading=[-.75*np.pi, .75*np.pi]))
         self.backbone = torch.hub.load(str(dino_repo), 'dinov2_vitg14',
                                        source='local', pretrained=False)
         self.backbone.load_state_dict(torch.load(weights, map_location='cpu'), strict=True)
@@ -123,8 +155,9 @@ class FrozenImageSensor:
             f = self.backbone.forward_features(x)['x_norm_clstoken']
             y = self.projection(f).cpu().numpy()[0].astype(np.float64)
         self.calls += 1
-        self.outside_adaptation_domain += int(not (-3 <= state[0] <= 0 and
-            -1.5 <= state[1] <= 1.5 and abs(state[2]) <= .75*np.pi))
+        self.outside_adaptation_domain += int(not all(
+            self.adaptation_domain[key][0] <= state[j] <= self.adaptation_domain[key][1]
+            for j, key in enumerate(('x', 'y', 'heading'))))
         self.last_state, self.last_y = state.copy(), y.copy()
         return y
 

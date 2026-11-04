@@ -1,0 +1,21 @@
+{
+  "local_tests": {
+    "passed": 59,
+    "failed": 0,
+    "seconds": 5.02
+  },
+  "remote_cpu_tests": {
+    "passed": 59,
+    "failed": 0,
+    "seconds": 15.23
+  },
+  "remote_first_attempt": "58 passed; one legacy learner test failed on CUDA allocation because unrelated jobs occupied GPU; CPU rerun passed all 59",
+  "remote_independent_archive_audit": true,
+  "actual_image_episodes": 30,
+  "actual_image_successes": 30,
+  "collisions": 0,
+  "out_of_bounds": 0,
+  "startup_audit_coverage": "233/240; alpha=0.05 was fixed before collection",
+  "adversarial_regressions": "19/19 safe, 18/19 reached goal; scenario 7 extreme-error trial did not reach goal",
+  "numerical_program_formal_verification": false
+}

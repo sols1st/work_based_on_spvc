@@ -1,0 +1,23 @@
+{
+  "local": {
+    "passed": 49,
+    "failed": 0,
+    "seconds": 2.49,
+    "environment": "../.venv-vision-sls/bin/python"
+  },
+  "gpu": {
+    "passed": 49,
+    "failed": 0,
+    "seconds": 5.39,
+    "environment": "/opt/miniconda3/envs/vt/bin/python"
+  },
+  "test_files": [
+    "test_parking_planning_feedback.py",
+    "test_parking_migration.py",
+    "test_vision_sls_parking.py",
+    "test_parking_projection_adaptation.py",
+    "test_parking_spvc.py",
+    "test_parking_ppo.py"
+  ],
+  "scope": "Regression, delayed observer, no true-speed initialization, actor transition agreement, process disturbance placement; no safety proof"
+}

@@ -71,7 +71,7 @@ class ParkingSPVCSystem:
         self.noise_bounds = (self.noise.copy(), self.noise.copy())
         self.space_split = np.ones(20, dtype=int)  # NOT a verification grid in this pilot.
 
-    def v_next(self, s, a):
+    def v_next(self, s, a, observation_error=None):
         def const(v):
             return torch.as_tensor(v, dtype=s.dtype, device=s.device)
         x = s[:, :4]*const(STATE_SCALE)+const(STATE_CENTER)
@@ -85,10 +85,28 @@ class ParkingSPVCSystem:
         k4 = ode(x+DT*k3)
         nxt = x+DT*(k1+2*k2+2*k3+k4)/6
         # At decision t+1 the newest delayed measurement is C*x_t, NOT C*x_(t+1).
-        delayed_y = (x+const(RENDER_OFFSET)) @ const(C).T / 3.
+        delayed_y = (x+const(RENDER_OFFSET)) @ const(C).T
+        if observation_error is not None:
+            error = const(observation_error)
+            if error.shape != delayed_y.shape or not torch.isfinite(error).all():
+                raise ValueError('finite [batch,3] observation error in latent units required')
+            delayed_y = delayed_y+error
+        delayed_y = delayed_y/3.
         return torch.cat([(nxt-const(STATE_CENTER))/const(STATE_SCALE),
                           s[:, 7:13], delayed_y, s[:, 15:17], a/const(ACTION_HIGH),
                           s[:, 17:19], torch.clamp(s[:, 19:20]+1/HORIZON, max=1.)], 1)
+
+    def successor_observation_box(self, s, a, radius):
+        """Exact successor box at POINT states/actions for a latent error box.
+
+        The error is on the image of x_t received at t+1 (one-frame delay).
+        It does not perturb x_(t+1), old history, actions, goal or clock.
+        This is not a state-cell enclosure or a continuous-state certificate.
+        """
+        r = torch.as_tensor(radius, dtype=s.dtype, device=s.device)
+        if r.shape != (len(s), 3) or not torch.isfinite(r).all() or (r < 0).any():
+            raise ValueError('finite nonnegative [batch,3] radius required')
+        return self.v_next(s, a, -r), self.v_next(s, a, r)
 
     def sample_initial(self, seed, n):
         rng = np.random.default_rng(seed)

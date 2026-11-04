@@ -1,0 +1,88 @@
+{
+  "config": {
+    "output_dir": "results/vision_sls_parking_20261102_error_v1",
+    "projection": "results/vision_sls_parking_20261025_adaptation_v1/projection_adapted.pt",
+    "vision_root": "../VISION-SLS",
+    "dino_repo": "../external/dinov2",
+    "dino_weights": "../external/dinov2_weights/dinov2_vitg14_pretrain.pth",
+    "fit_count": 256,
+    "cal_count": 128,
+    "audit_count": 128,
+    "seed": 20261102,
+    "low": [
+      -3.5,
+      -2.0,
+      -3.141592653589793
+    ],
+    "high": [
+      0.5,
+      1.9,
+      3.141592653589793
+    ],
+    "sampler": "independent uniform poses, speed zero, fixed OpenGL scene",
+    "projection_sha256": "58c4f75c540ca24d40bf3241386922185f3d5b7c5ec9d0993d2b264f27d6a16b",
+    "dino_sha256": "baf8467e50af277596bbbafa06887c177ee899ab46033649c383577d7e9309d3",
+    "marginal_scope": "one new pose from this same uniform simulator distribution",
+    "policy_distribution_coverage": false,
+    "trajectory_coverage": false,
+    "physical_speed_invisible_in_renderer": true
+  },
+  "calibration": {
+    "q": 1.0789654059570726,
+    "rank": 123,
+    "n_units": 128,
+    "alpha": 0.05,
+    "unit": "individual observation",
+    "finite": true,
+    "conditional_on_exchangeability": true
+  },
+  "runtime_seconds": 154.5349195729941,
+  "per_split": {
+    "fit": {
+      "count": 256,
+      "jointly_covered": 248,
+      "mean_radius": [
+        0.5459433067234745,
+        2.287479022986294,
+        2.1877627042721004
+      ],
+      "max_radius": [
+        0.6898950957965361,
+        2.5949004114336596,
+        2.558366009449807
+      ],
+      "latent_rmse": 0.6447834086507722
+    },
+    "calibration": {
+      "count": 128,
+      "jointly_covered": 123,
+      "mean_radius": [
+        0.5512682410852787,
+        2.2981064197377754,
+        2.2089221118682376
+      ],
+      "max_radius": [
+        0.6818469871118309,
+        2.684368567941572,
+        2.6587641661330172
+      ],
+      "latent_rmse": 0.6252875036720057
+    },
+    "audit": {
+      "count": 128,
+      "jointly_covered": 120,
+      "mean_radius": [
+        0.5495976337189247,
+        2.285098484504571,
+        2.192306215065616
+      ],
+      "max_radius": [
+        0.6889352970969016,
+        2.645944501458159,
+        2.653444141454256
+      ],
+      "latent_rmse": 0.6956090145019883
+    }
+  },
+  "safety_certificate": false
+}

@@ -1,0 +1,19 @@
+{
+  "candidate": "results/vision_sls_parking_20261103_planned_candidate",
+  "output_dir": "results/vision_sls_parking_20261103_startup_cp_v2",
+  "bound": 0.02,
+  "seed": 641907,
+  "fit": 16,
+  "calibration": 32,
+  "audit": 16,
+  "alpha": 0.05,
+  "device": "cpu",
+  "threads": 8,
+  "projection_sha256": "58c4f75c540ca24d40bf3241386922185f3d5b7c5ec9d0993d2b264f27d6a16b",
+  "dino_sha256": "baf8467e50af277596bbbafa06887c177ee899ab46033649c383577d7e9309d3",
+  "unit": "independent initial-state draw and one fresh render",
+  "distribution": "uniform +/- bound around each of 15 registered starts; fixed scene and renderer",
+  "control_policy_does_not_affect_sampling": true,
+  "trajectory_frames_reused": false,
+  "probability_scope": "one future initial draw from its same group protocol; not per-state conditional coverage"
+}

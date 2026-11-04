@@ -1,0 +1,28 @@
+{
+  "definition": "B[j,t](s)=max over remaining deterministic rollout of geometric unsafe risk",
+  "initial_values": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "max_nominal_path_gap": 0.0,
+  "nonnegative": true,
+  "unsafe_lower_bound_in_exact_arithmetic": 20,
+  "dynamic_nonincrease": "analytic suffix-max identity for the same zero-observation-error deterministic model",
+  "initial_scope": "15 exact nominal starts; numerical evaluation only",
+  "continuous_initial_set_verified": false,
+  "observation_uncertainty_covered": false,
+  "full_visual_safety_certificate": false
+}

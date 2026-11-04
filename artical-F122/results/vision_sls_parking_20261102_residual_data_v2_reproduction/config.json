@@ -1,0 +1,38 @@
+{
+  "output_dir": "results/vision_sls_parking_20261102_error_v1",
+  "projection": "results/vision_sls_parking_20261025_adaptation_v1/projection_adapted.pt",
+  "vision_root": "../VISION-SLS",
+  "dino_repo": "../external/dinov2",
+  "dino_weights": "../external/dinov2_weights/dinov2_vitg14_pretrain.pth",
+  "fit_count": 256,
+  "cal_count": 128,
+  "audit_count": 128,
+  "seed": 20261102,
+  "low": [
+    -3.5,
+    -2.0,
+    -3.141592653589793
+  ],
+  "high": [
+    0.5,
+    1.9,
+    3.141592653589793
+  ],
+  "sampler": "independent uniform poses, speed zero, fixed OpenGL scene",
+  "projection_sha256": "58c4f75c540ca24d40bf3241386922185f3d5b7c5ec9d0993d2b264f27d6a16b",
+  "dino_sha256": "baf8467e50af277596bbbafa06887c177ee899ab46033649c383577d7e9309d3",
+  "marginal_scope": "one new pose from this same uniform simulator distribution",
+  "policy_distribution_coverage": false,
+  "trajectory_coverage": false,
+  "physical_speed_invisible_in_renderer": true,
+  "source_archives": {
+    "results/vision_sls_parking_20261102_image_eval_v1/vision_sls_parking_20261025_ppo_v2.npz": "c56a11c6f3d1ad749d2401f1052822b3466f134bd3f37d515177a301c8e45f42",
+    "results/vision_sls_parking_20261102_image_eval_v1/vision_sls_parking_20261025_spvc_backend_v2.npz": "5b3606c55ccae90a1b82426ae6b1e2a183752a071ae8b64abbc88b4e8874a5ec",
+    "results/vision_sls_parking_20261102_image_eval_v1/vision_sls_parking_20261102_migration_v3.npz": "8ff8f4138f9bc22c607be301c4b63d68b790f48b626dc2e8c75ce33969a4fe9c",
+    "results/vision_sls_parking_20261102_image_eval_v2/vision_sls_parking_20261102_residual_v1.npz": "2f2c213cfc0124f723a4e254627c4002176c2c80c5d759c71d7f4e1f4f8a5204"
+  },
+  "base_data_sha256": "0dd1c19b4108cb8908f83d3e849ce8478a56f9ba42aeaa579a48ff690fa5687a",
+  "samples": 1976,
+  "training_purpose": "development trajectory aggregation; excludes calibration and audit rows",
+  "evaluation_role": "15 original development starts now reused for training; not heldout testing"
+}

@@ -1,0 +1,154 @@
+{
+  "config": {
+    "candidate": "results/vision_sls_parking_20261103_planned_candidate",
+    "output_dir": "results/vision_sls_parking_20261103_sbc_cp_planned_v1",
+    "epochs": 4000,
+    "error_model": "results/vision_sls_parking_20261102_error_v1/error_model.json",
+    "ppo_sha256": "005fe829e47c64fe6250efa9b121e831eb560e82c518cf08e131c7a3d76fe731",
+    "reference_sha256": "3f3d79e0f9469f1490ba4de77fa6f814aad9a95d85b1209cb04a71a25daf4748",
+    "projection_sha256": "58c4f75c540ca24d40bf3241386922185f3d5b7c5ec9d0993d2b264f27d6a16b",
+    "error_model_sha256": "e51ee51ca851614405bfbc3dfd7a80235b5812c3e18e88f8bd2855219b1b91cc",
+    "continuous_state": 8,
+    "discrete_state": "reference index (15) and time (31)",
+    "neural_input": 24,
+    "network": [
+      24,
+      64,
+      64,
+      1
+    ],
+    "initial_threshold": 1,
+    "unsafe_threshold": 20,
+    "architecture": "geometric nonnegative unsafe-risk lower bound + ReLU neural correction",
+    "initial_sampling": "nominal and +/- .04 physical perturbations; CP initial errors if enabled",
+    "drift_sampling": "independent +/- .08 neighborhoods in physical state and observer memory",
+    "error_sampling": "one random CP-box corner per sampled current state",
+    "initial_reference_selection_included": true,
+    "process_noise": "zero",
+    "policy_updated": false,
+    "safety_certificate": false,
+    "continuous_state_verification": false,
+    "certificate_probability": null
+  },
+  "selected_epoch": 1500,
+  "selection": {
+    "initial_count": 1920,
+    "initial_max": 0.7313313484191895,
+    "initial_violations": 0,
+    "unsafe_count": 5329,
+    "unsafe_min": 20.060081481933594,
+    "unsafe_violations": 0,
+    "drift_count": 5400,
+    "drift_violations_strict": 276,
+    "drift_violations_above_1e_6": 276,
+    "max_drift": 26.98399543762207,
+    "nominal_replay_drift_violations": 0,
+    "max_nominal_replay_drift": 0.0,
+    "continuous_state_verification": false,
+    "safety_certificate": false
+  },
+  "new_seed_audit": {
+    "initial_count": 1920,
+    "initial_max": 0.6643897891044617,
+    "initial_violations": 0,
+    "unsafe_count": 5329,
+    "unsafe_min": 20.060081481933594,
+    "unsafe_violations": 0,
+    "drift_count": 10800,
+    "drift_violations_strict": 586,
+    "drift_violations_above_1e_6": 586,
+    "max_drift": 38.98571014404297,
+    "nominal_replay_drift_violations": 0,
+    "max_nominal_replay_drift": 0.0,
+    "continuous_state_verification": false,
+    "safety_certificate": false
+  },
+  "deterministic_lookahead_initial_values": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "deterministic_lookahead_scope": "nominal dynamics only; initial values numerically evaluated; no image-error certificate",
+  "history": [
+    {
+      "epoch": 500,
+      "loss": 3.4622116800164804e-05,
+      "initial": 0,
+      "drift": 331,
+      "max_drift": 26.98399543762207,
+      "selected_epoch": 500
+    },
+    {
+      "epoch": 1000,
+      "loss": 4.271213401807472e-05,
+      "initial": 0,
+      "drift": 421,
+      "max_drift": 26.98399543762207,
+      "selected_epoch": 500
+    },
+    {
+      "epoch": 1500,
+      "loss": 0.00013324136671144515,
+      "initial": 0,
+      "drift": 276,
+      "max_drift": 26.98399543762207,
+      "selected_epoch": 1500
+    },
+    {
+      "epoch": 2000,
+      "loss": 1.631879604246933e-05,
+      "initial": 0,
+      "drift": 340,
+      "max_drift": 26.98399543762207,
+      "selected_epoch": 1500
+    },
+    {
+      "epoch": 2500,
+      "loss": 0.0003190390707459301,
+      "initial": 0,
+      "drift": 319,
+      "max_drift": 26.98399543762207,
+      "selected_epoch": 1500
+    },
+    {
+      "epoch": 3000,
+      "loss": 1.6749043425079435e-05,
+      "initial": 0,
+      "drift": 356,
+      "max_drift": 26.98399543762207,
+      "selected_epoch": 1500
+    },
+    {
+      "epoch": 3500,
+      "loss": 1.0936098988167942e-05,
+      "initial": 0,
+      "drift": 356,
+      "max_drift": 26.98399543762207,
+      "selected_epoch": 1500
+    },
+    {
+      "epoch": 4000,
+      "loss": 1.736853846523445e-05,
+      "initial": 0,
+      "drift": 318,
+      "max_drift": 26.98399543762207,
+      "selected_epoch": 1500
+    }
+  ],
+  "runtime_seconds": 9.100506749993656,
+  "ppo_unchanged": true,
+  "safety_certificate": false,
+  "certificate_probability": null
+}

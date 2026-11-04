@@ -1,0 +1,214 @@
+{
+  "status": "not_certified",
+  "safety_certificate": false,
+  "certificate_probability": null,
+  "policy_changed": false,
+  "candidate": "results/vision_sls_parking_20261103_planned_candidate",
+  "ppo_sha256": "005fe829e47c64fe6250efa9b121e831eb560e82c518cf08e131c7a3d76fe731",
+  "reference_sha256": "3f3d79e0f9469f1490ba4de77fa6f814aad9a95d85b1209cb04a71a25daf4748",
+  "neural_candidates": {
+    "nominal": {
+      "directory": "results/vision_sls_parking_20261103_sbc_nominal_planned_v2",
+      "checkpoint_sha256": "650c9f92814b437c48eca2136fac2c18ce3a6149b7a3a45ada909fbe38aa9b04",
+      "selected_epoch": 4000,
+      "new_seed_audit": {
+        "initial_count": 1920,
+        "initial_max": 0.4780711233615875,
+        "initial_violations": 0,
+        "unsafe_count": 5329,
+        "unsafe_min": 20.500080108642578,
+        "unsafe_violations": 0,
+        "drift_count": 10800,
+        "drift_violations_strict": 11,
+        "drift_violations_above_1e_6": 11,
+        "max_drift": 25.681289672851562,
+        "nominal_replay_drift_violations": 0,
+        "max_nominal_replay_drift": -0.009999990463256836,
+        "continuous_state_verification": false,
+        "safety_certificate": false
+      }
+    },
+    "cp": {
+      "directory": "results/vision_sls_parking_20261103_sbc_cp_planned_v2",
+      "checkpoint_sha256": "f0745966f333848a8653bce5ef7418b2f19c69f016c089b0d6e8e857e80fb706",
+      "selected_epoch": 4000,
+      "new_seed_audit": {
+        "initial_count": 1920,
+        "initial_max": 0.4026477038860321,
+        "initial_violations": 0,
+        "unsafe_count": 5329,
+        "unsafe_min": 20.488452911376953,
+        "unsafe_violations": 0,
+        "drift_count": 10800,
+        "drift_violations_strict": 131,
+        "drift_violations_above_1e_6": 131,
+        "max_drift": 15.283378601074219,
+        "nominal_replay_drift_violations": 93,
+        "max_nominal_replay_drift": 16.978702545166016,
+        "continuous_state_verification": false,
+        "safety_certificate": false
+      }
+    }
+  },
+  "cp_counterexamples": [
+    {
+      "status": "unsafe_reached",
+      "step": 4,
+      "collision": false,
+      "out_of_bounds": true,
+      "state": [
+        -1.8727150232241867,
+        -1.079199762951868,
+        1.215324938382063,
+        2.3672919061034916
+      ],
+      "maximum_radius_fraction": 1.0,
+      "selected_reference": 0,
+      "scale": 1.0,
+      "scenario": 0,
+      "direction": [
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "archive": "witness_scale_1.0.npz"
+    },
+    {
+      "status": "unsafe_reached",
+      "step": 4,
+      "collision": false,
+      "out_of_bounds": true,
+      "state": [
+        -1.8463556698796675,
+        -1.0985764117688541,
+        1.0907447137810349,
+        2.268980437711333
+      ],
+      "maximum_radius_fraction": 0.5,
+      "selected_reference": 0,
+      "scale": 0.5,
+      "scenario": 0,
+      "direction": [
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "archive": "witness_scale_0.5.npz"
+    },
+    {
+      "status": "unsafe_reached",
+      "step": 4,
+      "collision": false,
+      "out_of_bounds": true,
+      "state": [
+        -1.8402019029893497,
+        -1.1199642189753343,
+        1.0286355988663047,
+        2.07209367977829
+      ],
+      "maximum_radius_fraction": 0.25,
+      "selected_reference": 0,
+      "scale": 0.25,
+      "scenario": 0,
+      "direction": [
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "archive": "witness_scale_0.25.npz"
+    },
+    {
+      "status": "unsafe_reached",
+      "step": 7,
+      "collision": false,
+      "out_of_bounds": true,
+      "state": [
+        -1.2642187061883523,
+        -0.47008774268975784,
+        0.7381845954432965,
+        2.0043218587211555
+      ],
+      "maximum_radius_fraction": 0.1,
+      "selected_reference": 0,
+      "scale": 0.1,
+      "scenario": 0,
+      "direction": [
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "archive": "witness_scale_0.1.npz"
+    }
+  ],
+  "cp_replay_audit": {
+    "passed": true,
+    "records": [
+      {
+        "scale": 1.0,
+        "step": 4,
+        "original_environment_unsafe": true,
+        "max_replay_error": 0.0,
+        "all_errors_within_original_cp_box": true
+      },
+      {
+        "scale": 0.5,
+        "step": 4,
+        "original_environment_unsafe": true,
+        "max_replay_error": 0.0,
+        "all_errors_within_original_cp_box": true
+      },
+      {
+        "scale": 0.25,
+        "step": 4,
+        "original_environment_unsafe": true,
+        "max_replay_error": 0.0,
+        "all_errors_within_original_cp_box": true
+      },
+      {
+        "scale": 0.1,
+        "step": 7,
+        "original_environment_unsafe": true,
+        "max_replay_error": 0.0,
+        "all_errors_within_original_cp_box": true
+      }
+    ],
+    "scope": "abstract admissible errors, not actual rendered images"
+  },
+  "robust_conditions_infeasible_for_current_controller_and_full_cp_box": true,
+  "stochastic_sbc_impossibility_claimed": false,
+  "nominal_lookahead": {
+    "definition": "B[j,t](s)=max over remaining deterministic rollout of geometric unsafe risk",
+    "initial_values": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "max_nominal_path_gap": 0.0,
+    "nonnegative": true,
+    "unsafe_lower_bound_in_exact_arithmetic": 20,
+    "dynamic_nonincrease": "analytic suffix-max identity for the same zero-observation-error deterministic model",
+    "initial_scope": "15 exact nominal starts; numerical evaluation only",
+    "continuous_initial_set_verified": false,
+    "observation_uncertainty_covered": false,
+    "full_visual_safety_certificate": false
+  },
+  "tests": {
+    "local_passed": 52,
+    "local_seconds": 1.98,
+    "gpu_status": "passed",
+    "gpu_passed": 52,
+    "gpu_seconds": 5.64
+  }
+}

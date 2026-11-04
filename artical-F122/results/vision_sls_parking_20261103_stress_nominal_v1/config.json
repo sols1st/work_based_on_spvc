@@ -1,0 +1,27 @@
+{
+  "references": "results/vision_sls_parking_20261103_references_v2/references.npz",
+  "references_sha256": "3f3d79e0f9469f1490ba4de77fa6f814aad9a95d85b1209cb04a71a25daf4748",
+  "residual_policy": "results/vision_sls_parking_20261103_planned_ppo_v3/ppo.zip",
+  "residual_sha256": "005fe829e47c64fe6250efa9b121e831eb560e82c518cf08e131c7a3d76fe731",
+  "legacy_policy": "results/vision_sls_parking_20261102_candidate/ppo.zip",
+  "legacy_sha256": "81e666a578a36ed94b9f8ec6ace1898cbf82e722b36240fabca01f3df37d8884",
+  "sensor": "ideal Cx, NOT real images",
+  "process_noise": "zero",
+  "selection_role": "development stress test, no certificate",
+  "seeds": [
+    1701,
+    1801,
+    1901,
+    2001,
+    2101,
+    2201,
+    2301,
+    2401,
+    2501,
+    2601
+  ],
+  "jitters": [
+    0.04,
+    0.1
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "vision_sls_parking_20261102_residual_v1": {
+    "status": "saved_rollout_replay_and_counts_pass",
+    "paths": {
+      "proxy": {
+        "replayed_transitions": 450,
+        "max_dynamics_replay_error": 4.440892098500626e-16,
+        "max_action_bound_excess": 0.0,
+        "counts_match": true,
+        "upstream_xy_arrival_without_collision_count": 15
+      },
+      "image": {
+        "replayed_transitions": 450,
+        "max_dynamics_replay_error": 4.440892098500626e-16,
+        "max_action_bound_excess": 0.0,
+        "counts_match": true,
+        "upstream_xy_arrival_without_collision_count": 9
+      }
+    },
+    "delayed_capture_state_pairing": true,
+    "registered_domain_frames": 465,
+    "frames": 465,
+    "covered_frames": 465,
+    "covered_development_trajectories": 15,
+    "trajectory_guarantee": false
+  }
+}

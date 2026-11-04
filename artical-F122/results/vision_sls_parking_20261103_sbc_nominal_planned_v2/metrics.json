@@ -1,0 +1,218 @@
+{
+  "config": {
+    "candidate": "results/vision_sls_parking_20261103_planned_candidate",
+    "output_dir": "results/vision_sls_parking_20261103_sbc_nominal_planned_v2",
+    "epochs": 8000,
+    "error_model": null,
+    "ppo_sha256": "005fe829e47c64fe6250efa9b121e831eb560e82c518cf08e131c7a3d76fe731",
+    "reference_sha256": "3f3d79e0f9469f1490ba4de77fa6f814aad9a95d85b1209cb04a71a25daf4748",
+    "projection_sha256": "58c4f75c540ca24d40bf3241386922185f3d5b7c5ec9d0993d2b264f27d6a16b",
+    "error_model_sha256": null,
+    "continuous_state": 8,
+    "discrete_state": "reference index (15) and time (31)",
+    "neural_input": 24,
+    "network": [
+      24,
+      64,
+      64,
+      1
+    ],
+    "initial_threshold": 1,
+    "unsafe_threshold": 20,
+    "architecture": "geometric unsafe-risk + Softplus correction + .01*(30-time)",
+    "initial_sampling": "nominal and +/- .04 physical perturbations; CP initial errors if enabled",
+    "drift_sampling": "independent +/- .08 neighborhoods in physical state and observer memory",
+    "error_sampling": "zero",
+    "initial_reference_selection_included": true,
+    "process_noise": "zero",
+    "policy_updated": false,
+    "safety_certificate": false,
+    "continuous_state_verification": false,
+    "certificate_probability": null
+  },
+  "selected_epoch": 4000,
+  "selection": {
+    "initial_count": 1920,
+    "initial_max": 0.3455507755279541,
+    "initial_violations": 0,
+    "unsafe_count": 5329,
+    "unsafe_min": 20.500080108642578,
+    "unsafe_violations": 0,
+    "drift_count": 5400,
+    "drift_violations_strict": 8,
+    "drift_violations_above_1e_6": 8,
+    "max_drift": 30.793676376342773,
+    "nominal_replay_drift_violations": 0,
+    "max_nominal_replay_drift": -0.009999990463256836,
+    "continuous_state_verification": false,
+    "safety_certificate": false
+  },
+  "new_seed_audit": {
+    "initial_count": 1920,
+    "initial_max": 0.4780711233615875,
+    "initial_violations": 0,
+    "unsafe_count": 5329,
+    "unsafe_min": 20.500080108642578,
+    "unsafe_violations": 0,
+    "drift_count": 10800,
+    "drift_violations_strict": 11,
+    "drift_violations_above_1e_6": 11,
+    "max_drift": 25.681289672851562,
+    "nominal_replay_drift_violations": 0,
+    "max_nominal_replay_drift": -0.009999990463256836,
+    "continuous_state_verification": false,
+    "safety_certificate": false
+  },
+  "deterministic_lookahead_initial_values": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "deterministic_lookahead_scope": "nominal dynamics only; initial values numerically evaluated; no image-error certificate",
+  "history": [
+    {
+      "epoch": 500,
+      "loss": 0.06131558492779732,
+      "initial": 0,
+      "drift": 1207,
+      "max_drift": 31.9069881439209,
+      "selected_epoch": 500
+    },
+    {
+      "epoch": 1000,
+      "loss": 0.033717405050992966,
+      "initial": 2,
+      "drift": 18,
+      "max_drift": 30.808664321899414,
+      "selected_epoch": 500
+    },
+    {
+      "epoch": 1500,
+      "loss": 0.022335145622491837,
+      "initial": 5,
+      "drift": 8,
+      "max_drift": 30.808719635009766,
+      "selected_epoch": 500
+    },
+    {
+      "epoch": 2000,
+      "loss": 0.02496161125600338,
+      "initial": 5,
+      "drift": 8,
+      "max_drift": 30.808719635009766,
+      "selected_epoch": 500
+    },
+    {
+      "epoch": 2500,
+      "loss": 0.0257717277854681,
+      "initial": 8,
+      "drift": 8,
+      "max_drift": 30.808719635009766,
+      "selected_epoch": 500
+    },
+    {
+      "epoch": 3000,
+      "loss": 0.02312276139855385,
+      "initial": 4,
+      "drift": 8,
+      "max_drift": 30.808719635009766,
+      "selected_epoch": 500
+    },
+    {
+      "epoch": 3500,
+      "loss": 0.02631792239844799,
+      "initial": 1,
+      "drift": 9,
+      "max_drift": 30.808107376098633,
+      "selected_epoch": 500
+    },
+    {
+      "epoch": 4000,
+      "loss": 0.023390211164951324,
+      "initial": 0,
+      "drift": 8,
+      "max_drift": 30.793676376342773,
+      "selected_epoch": 4000
+    },
+    {
+      "epoch": 4500,
+      "loss": 0.02181430160999298,
+      "initial": 1,
+      "drift": 8,
+      "max_drift": 30.808685302734375,
+      "selected_epoch": 4000
+    },
+    {
+      "epoch": 5000,
+      "loss": 0.0228317491710186,
+      "initial": 0,
+      "drift": 8,
+      "max_drift": 30.808677673339844,
+      "selected_epoch": 4000
+    },
+    {
+      "epoch": 5500,
+      "loss": 0.02062644623219967,
+      "initial": 7,
+      "drift": 11,
+      "max_drift": 30.808696746826172,
+      "selected_epoch": 4000
+    },
+    {
+      "epoch": 6000,
+      "loss": 0.02127145230770111,
+      "initial": 6,
+      "drift": 11,
+      "max_drift": 30.8087158203125,
+      "selected_epoch": 4000
+    },
+    {
+      "epoch": 6500,
+      "loss": 0.020104199647903442,
+      "initial": 4,
+      "drift": 11,
+      "max_drift": 30.808700561523438,
+      "selected_epoch": 4000
+    },
+    {
+      "epoch": 7000,
+      "loss": 0.01767296902835369,
+      "initial": 4,
+      "drift": 11,
+      "max_drift": 30.808700561523438,
+      "selected_epoch": 4000
+    },
+    {
+      "epoch": 7500,
+      "loss": 0.02147841826081276,
+      "initial": 4,
+      "drift": 11,
+      "max_drift": 30.808696746826172,
+      "selected_epoch": 4000
+    },
+    {
+      "epoch": 8000,
+      "loss": 0.0210591908544302,
+      "initial": 2,
+      "drift": 11,
+      "max_drift": 30.808712005615234,
+      "selected_epoch": 4000
+    }
+  ],
+  "runtime_seconds": 17.85416145803174,
+  "ppo_unchanged": true,
+  "safety_certificate": false,
+  "certificate_probability": null
+}

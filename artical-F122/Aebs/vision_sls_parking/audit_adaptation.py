@@ -28,7 +28,8 @@ def main():
     if choose_epoch(metrics['training']['validation_mse_by_epoch']) != selected['best_epoch']:
         raise ValueError('selected epoch differs from validation minimum')
     state_file = next(Path(k) for k in config['source_sha256'] if k.endswith('states_large_val.pt'))
-    ck = next(Path(k) for k in config['source_sha256'] if k.endswith('300000_post.pt'))
+    ck = (Path(config['initial_checkpoint']) if 'initial_checkpoint' in config else
+          next(Path(k) for k in config['source_sha256'] if k.endswith('300000_post.pt')))
     adapted_state = torch.load(root/'projection_adapted.pt', map_location='cpu')
     original_state = torch.load(ck, map_location='cpu')
     if not torch.equal(adapted_state['C'], original_state['C']): raise ValueError('C changed')
@@ -41,7 +42,9 @@ def main():
     old_states, _ = torch.load(state_file, map_location='cpu')
     old_states = np.column_stack([old_states.numpy(), np.zeros(len(old_states))])-RENDER_OFFSET
     replay = np.load(root/'historical_replay_indices.npy', allow_pickle=False)
-    if not np.isin(cell_ids(old_states[replay]), list(sets['train'])).all():
+    domain = config['world_domain']
+    low, high = [domain['x'][0], domain['y'][0]], [domain['x'][1], domain['y'][1]]
+    if not np.isin(cell_ids(old_states[replay], low, high), list(sets['train'])).all():
         raise ValueError('historical replay leaks into heldout cells')
     rows = np.flatnonzero(splits == 'test')
     saved = np.load(root/'test_predictions.npz', allow_pickle=False)

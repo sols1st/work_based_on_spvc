@@ -1,0 +1,37 @@
+{
+  "output_dir": "results/vision_sls_parking_20261102_error_v1",
+  "projection": "results/vision_sls_parking_20261025_adaptation_v1/projection_adapted.pt",
+  "vision_root": "../VISION-SLS",
+  "dino_repo": "../external/dinov2",
+  "dino_weights": "../external/dinov2_weights/dinov2_vitg14_pretrain.pth",
+  "fit_count": 256,
+  "cal_count": 128,
+  "audit_count": 128,
+  "seed": 20261102,
+  "low": [
+    -3.5,
+    -2.0,
+    -3.141592653589793
+  ],
+  "high": [
+    0.5,
+    1.9,
+    3.141592653589793
+  ],
+  "sampler": "independent uniform poses, speed zero, fixed OpenGL scene",
+  "projection_sha256": "58c4f75c540ca24d40bf3241386922185f3d5b7c5ec9d0993d2b264f27d6a16b",
+  "dino_sha256": "baf8467e50af277596bbbafa06887c177ee899ab46033649c383577d7e9309d3",
+  "marginal_scope": "one new pose from this same uniform simulator distribution",
+  "policy_distribution_coverage": false,
+  "trajectory_coverage": false,
+  "physical_speed_invisible_in_renderer": true,
+  "training_purpose": "development trajectory aggregation; no calibration/audit rows",
+  "source_archives": [
+    "results/vision_sls_parking_20261102_image_eval_v1/vision_sls_parking_20261025_ppo_v2.npz",
+    "results/vision_sls_parking_20261102_image_eval_v1/vision_sls_parking_20261025_spvc_backend_v2.npz",
+    "results/vision_sls_parking_20261102_image_eval_v1/vision_sls_parking_20261102_migration_v3.npz",
+    "results/vision_sls_parking_20261102_image_eval_v2/vision_sls_parking_20261102_residual_v1.npz"
+  ],
+  "samples": 1976,
+  "evaluation_role": "original 15 development starts reused for training, not heldout testing"
+}
