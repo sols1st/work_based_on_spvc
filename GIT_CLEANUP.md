@@ -1,15 +1,16 @@
 # Git 仓库体积审计与清理建议
 
-2026-11-09。**已按确认执行取消跟踪；没有改写历史。** 工作区文件保留，只是移出 Git 索引。
+2026-11-09。**已按确认执行取消跟踪和历史重写，并已 force-push `main`。** 工作区文件保留，只是移出 Git 索引。
 
 ## 1. 当前体积
 
 | 项目 | 大小 |
 |---|---:|
 | 工作区 | 5.5 GB |
-| `.git` | 清理前 2.0 GB → 清理后 **1.5 GB** |
+| `.git` | 清理前 2.0 GB → `git gc` 后 1.5 GB → 历史重写后 **231 MB** |
 | 已跟踪文件（清理前） | **1.70 GB / 3,085 个** |
 | 已跟踪文件（清理后） | **0.35 GB / 2,688 个** |
+| 远程 `main` | force-push 到 `2e3820f`（历史已改写） |
 | `.git` garbage（临时 pack） | 527 MB（已用 `git gc --prune=now` 清掉） |
 | Git pack | 1.44 GiB，1 个 pack，0 loose |
 
@@ -113,26 +114,36 @@ git commit -m "Stop tracking generated artifacts and add gitignore"
 git reset HEAD -- <path>   # 只撤销索引变更
 ```
 
-## 6. 为什么 `.git` 不会马上变小
+## 6. 历史重写结果
 
-即使执行上面的 `git rm --cached`，旧提交里仍然保存这些 blob；`.git` 仍接近 1.5 GB，`git clone` 也仍会下载历史。
-
-要让 **历史** 变小，需要重写历史；这会改写 commit hash，影响远程协作者：
+已执行历史重写，`.git` 从 **1.5 GB** 降到 **231 MB**：
 
 ```bash
-# 先做镜像备份
-git clone --mirror . /tmp/work_based_on_spvc_backup.git
-
-# 删除 20 MB 以上 blob（示例；先 dry-run / 备份）
-git filter-repo --strip-blobs-bigger-than 20M
-
-# 或用路径删除
-git filter-repo --path work --path tmp --path Users --invert-paths
+python3 /tmp/gfr/git_filter_repo.py --force \
+  --strip-blobs-bigger-than 20M \
+  --path work --path tmp --path Users \
+  --path real_aebs_artifact_v1 --path real_aebs_artifact_v2 \
+  --path real_image_aebs_probe_v1 --path VISION-SLS \
+  --invert-paths
+git gc --prune=now
+git push --force origin main
 ```
 
-重写后需要 force-push；`origin/main` 是共享远程，执行前必须确认。
+重写时还删除了本地 DSH 的 `refs/codex/turn-diffs/*` 引用；它们持有旧 tree，如果不删，大 blob 仍会被保留。refs 清单备份在 `/tmp/work_based_on_spvc_codex_refs.txt`，完整仓库镜像备份在 `/tmp/work_based_on_spvc_backup_20261109.git`（约 1.5 GB）。确认新仓库无误后可删除备份。
 
-## 7. 推荐长期结构
+**已 force-push** `main` 到 GitHub；远程旧历史已被替换。GitHub 端可能仍保留一段时间不可达对象，服务端空间回收不由本地控制。
+
+如果以后还要清理新产生的大文件，重复“`.gitignore` + `git rm --cached`”；只有需要缩小 clone 时才再做历史重写。
+
+## 7. 最终状态
+
+- `main`：`2e3820f`，已 force-push 到 `git@github.com:sols1st/work_based_on_spvc.git`
+- `.git`：**231 MB**
+- 已跟踪：**2,688 个 / 0.35 GB**
+- 工作区大文件仍在本地；`.gitignore` 已覆盖，不再被跟踪
+- 备份：`/tmp/work_based_on_spvc_backup_20261109.git`（旧历史，1.5 GB）
+
+## 8. 推荐长期结构
 
 - **代码/文档/小 JSON/README/精选小图**：Git。
 - **大权重、特征、npz、zip、原始图像**：服务器/对象存储/发布包；Git 只留 SHA-256 和下载地址。
