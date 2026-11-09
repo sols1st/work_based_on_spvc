@@ -8,6 +8,7 @@
 |---|---|
 | 当前文档入口（先看这个） | [docs/current/README.md](docs/current/README.md)：主线、最新结论、归档说明 |
 | 看可视化网站 | [site/index.html](site/index.html)：总览、四个实验、图片库、数据/报告入口；本地服务器命令见 [site/README.md](site/README.md) |
+| 仓库太大/怎么清理 | [GIT_CLEANUP.md](GIT_CLEANUP.md)：`.git` 体积、已跟踪大文件、`.gitignore` 与取消跟踪/历史清理建议 |
 | 先看当前做到哪一步、有什么保证 | [当前方案与验证结果](docs/current/当前方案与验证结果.md) |
 | 看 AEBS 真实 RGB 修复后的主结果 | [AEBS RGB 完整实验](docs/current/AEBS真实RGB图像_完整实验_20261108.md)：0.418359 m 轨迹 CP、新神经 SBC、292,024 区间通过 |
 | 看 cGAN / 灰度 / 真实 RGB 前端对比 | [AEBS 前端对比](docs/current/AEBS前端对比_cGAN_灰度_真实RGB_20261108.md)：同一 test 集误差/CP 半径 |
