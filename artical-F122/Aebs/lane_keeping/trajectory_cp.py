@@ -117,11 +117,17 @@ def collect(args, split, actor, observer, renderer, protocol_hash):
             x=np.concatenate([x,np.repeat(x[-1:],pad,axis=0)])
             ks=np.concatenate([ks,np.repeat(ks[-1:],pad)])
         state_trace=[x[:count].copy()];obs_trace=[];action_trace=[];error_trace=[]
+        latent_trace=[]
         digests=[hashlib.sha256() for _ in range(count)]
         for step in range(args.horizon):
             images=np.array([renderer.render(s,float(k),lighting=1.,occluder=False,
                             camera_lateral=0.,camera_height=1.25,blur=0.,noise=0.) for s,k in zip(x,ks)])
-            obs=observer(torch.from_numpy(images)).numpy()
+            if hasattr(observer, 'forward_with_latent'):
+                decoded, latent = observer.forward_with_latent(torch.from_numpy(images))
+                obs=decoded.cpu().numpy()
+                latent_trace.append(latent[:count].cpu().numpy().copy())
+            else:
+                obs=observer(torch.from_numpy(images)).numpy()
             if not np.isfinite(obs).all():raise ValueError('nonfinite observation; collection invalid, do not omit this batch')
             action=actor(torch.tensor(np.c_[obs,ks/core.KAPPA_SCALE],dtype=torch.float32)).numpy().flatten()
             errors=obs-x/[core.E_SCALE,core.THETA_SCALE]
@@ -141,6 +147,8 @@ def collect(args, split, actor, observer, renderer, protocol_hash):
                    unsafe=(abs(states/[core.E_SCALE,core.THETA_SCALE])>1).any(axis=(1,2)),
                    images_sha256=np.array([d.hexdigest() for d in digests]),
                    protocol_sha256=np.array(protocol_hash))
+        if latent_trace:
+            saved['latents']=np.stack(latent_trace,axis=1)
         np.savez_compressed(path,**saved);pieces.append(saved)
     combined={key:np.concatenate([p[key] for p in pieces],axis=0)
               for key in pieces[0] if key!='protocol_sha256'}
