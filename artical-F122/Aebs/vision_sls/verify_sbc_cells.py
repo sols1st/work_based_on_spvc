@@ -13,32 +13,34 @@ import torch
 from torch import nn
 from .sbc_cp import NonnegativeSBC,monotone_box_bounds,load_sbc_checkpoint
 from .deploy import VisionSLSController
-from .conformal import envelope
+from .conformal import envelope,validate_contract_units
 from .cp_ncbf import sequential_bounds
 from .audit_sbc_cp import region_grid
 from .run import sha256
+from .neural_bounds import tanh_affine_bounds
 
 
 @torch.no_grad()
-def actor_box(policy,low,high,radius,subdivisions=32):
+def actor_box(policy,low,high,radius,subdivisions=32,bound_method='ibp'):
     # Union of observation subintervals encloses all possible d+error.
     left=low[:,0]-radius;right=high[:,0]+radius
     edges=left[:,None]+(right-left)[:,None]*torch.linspace(0,1,subdivisions+1,dtype=low.dtype)
     lo=torch.stack([edges[:,:-1]/policy.distance_scale_m,low[:,1,None].expand(-1,subdivisions)],-1).reshape(-1,2)
     hi=torch.stack([edges[:,1:]/policy.distance_scale_m,high[:,1,None].expand(-1,subdivisions)],-1).reshape(-1,2)
     actor=nn.Sequential(*policy.controller_net.mlp_extractor,policy.controller_net.action_net)
-    al,au=sequential_bounds(actor,lo,hi)
+    bound=sequential_bounds if bound_method=='ibp' else tanh_affine_bounds
+    al,au=bound(actor,lo,hi)
     return al.reshape(len(low),-1).amin(1).clamp(-3,3),au.reshape(len(low),-1).amax(1).clamp(-3,3)
 
 
 @torch.no_grad()
-def state_boxes(policy,barrier,scale,contract,low,high,observations=None):
+def state_boxes(policy,barrier,scale,contract,low,high,observations=None,actor_subdivisions=32,successor_subdivisions=16,actor_bound_method='ibp'):
     div=low.new_tensor([scale,1.]);mid=(low+high)/2
     coeff=np.array(contract['coefficients']);q=contract['calibration']['q_hat']
     lip=q*(len(coeff)-1)/11*np.max(np.abs(np.diff(coeff)))
     radius=torch.tensor(envelope(mid[:,0],coeff,q),dtype=low.dtype)+lip*(high[:,0]-low[:,0])/2
     if observations is None:
-        al,au=actor_box(policy,low,high,radius)
+        al,au=actor_box(policy,low,high,radius,actor_subdivisions,actor_bound_method)
     else:
         actor=nn.Sequential(*policy.controller_net.mlp_extractor,policy.controller_net.action_net)
         al,au=sequential_bounds(actor,torch.stack([observations,low[:,1]],1),torch.stack([observations,high[:,1]],1))
@@ -48,12 +50,12 @@ def state_boxes(policy,barrier,scale,contract,low,high,observations=None):
     bl,bu=monotone_box_bounds(barrier,low/div,high/div)
     # Observation uncertainty leaves a nonzero successor-speed width even for
     # arbitrarily small current-state cells. Refine that width explicitly.
-    fractions=torch.linspace(0,1,17,dtype=low.dtype)
+    fractions=torch.linspace(0,1,successor_subdivisions+1,dtype=low.dtype)
     ve=nl[:,1,None]+(nu[:,1]-nl[:,1])[:,None]*fractions
-    sublo=torch.stack([nl[:,0,None].expand(-1,16),ve[:,:-1]],-1).reshape(-1,2)
-    subhi=torch.stack([nu[:,0,None].expand(-1,16),ve[:,1:]],-1).reshape(-1,2)
+    sublo=torch.stack([nl[:,0,None].expand(-1,successor_subdivisions),ve[:,:-1]],-1).reshape(-1,2)
+    subhi=torch.stack([nu[:,0,None].expand(-1,successor_subdivisions),ve[:,1:]],-1).reshape(-1,2)
     _,upper=monotone_box_bounds(barrier,sublo/div,subhi/div)
-    nhi=upper.reshape(len(low),16).amax(1)
+    nhi=upper.reshape(len(low),successor_subdivisions).amax(1)
     return bl,bu,nhi
 
 
@@ -80,8 +82,12 @@ def main(argv=None):
     p.add_argument('--output-dir',type=Path,required=True)
     p.add_argument('--max-depth',type=int,default=14)
     p.add_argument('--max-cells',type=int,default=300000)
+    p.add_argument('--actor-subdivisions',type=int,default=32)
+    p.add_argument('--successor-subdivisions',type=int,default=16)
+    p.add_argument('--actor-bound-method',choices=['ibp','affine'],default='ibp')
     p.add_argument('--observation-model',choices=['tube','replay'],default='tube')
     args=p.parse_args(argv)
+    if min(args.actor_subdivisions,args.successor_subdivisions)<1:p.error('positive subdivision counts required')
     if args.output_dir.exists():p.error('choose a new output directory')
     args.output_dir.mkdir(parents=True);out=args.output_dir
     torch.set_num_threads(1)
@@ -91,7 +97,7 @@ def main(argv=None):
     barrier=barrier.double().eval().requires_grad_(False)
     if metadata.get('policy_sha256') and metadata['policy_sha256']!=sha256(args.artifact_dir/'policy.pt'):
         raise ValueError('SBC was verified against a different policy')
-    scale=cfg['barrier_distance_scale_m'];contract=json.loads(args.perception_contract.read_text())
+    scale=cfg['barrier_distance_scale_m'];contract=validate_contract_units(json.loads(args.perception_contract.read_text()))
     if contract['source_policy_sha256']!=sha256(args.artifact_dir/'policy.pt'):raise ValueError('actor identity mismatch')
     div=torch.tensor([scale,1.],dtype=torch.float64)
     regions={}
@@ -122,7 +128,7 @@ def main(argv=None):
         for begin in range(0,len(low),256):
             l=low[begin:begin+256];u=high[begin:begin+256]
             obs=None if observations is None else observations[begin:begin+256]
-            bl,bu,nhi=state_boxes(policy,barrier,scale,contract,l,u,obs)
+            bl,bu,nhi=state_boxes(policy,barrier,scale,contract,l,u,obs,args.actor_subdivisions,args.successor_subdivisions,args.actor_bound_method)
             inactive=bl>=20
             good=(nhi<=bl)&~inactive
             remaining=~(inactive|good)
@@ -160,6 +166,12 @@ def main(argv=None):
                 expectation_support_assumption_established=args.observation_model=='replay',full_image_certificate=False,
                 floating_point_formal_proof=False,arithmetic='float64 mathematical-network interval model; no outward rounding',
                 source_policy_sha256=sha256(args.artifact_dir/'policy.pt'),source_sbc_sha256=sha256(args.barrier_dir/'sbc.pt'),
+                source_contract_sha256=sha256(args.perception_contract),
+                verifier_sha256=sha256(Path(__file__)),
+                actor_subdivisions=args.actor_subdivisions,successor_subdivisions=args.successor_subdivisions,
+                actor_bound_method=args.actor_bound_method,
+                envelope_units='m',envelope_radius_at_10m=float(envelope([10.],contract['coefficients'],contract['calibration']['q_hat'])[0]),
+                witness_meaning='positive drift for this SBC, not an unsafe rollout or impossibility of another SBC',
                 history=history,witnesses=witnesses)
     (out/'report.json').write_text(json.dumps(result,indent=2))
     np.savez(out/'counterexamples.npz',states=np.array([x['state'] for x in witnesses]).reshape(-1,2),

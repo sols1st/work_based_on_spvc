@@ -54,3 +54,20 @@ def envelope(distance,coefficients,q_hat=1.):
     if not np.isfinite(q_hat) or q_hat<=0:
         raise ValueError('nonfinite/vacuous or nonpositive CP radius')
     return q_hat*(basis(distance,len(coefficients)-1)@coefficients)
+
+
+def validate_contract_units(contract):
+    """Reject constant-envelope contracts whose advertised metres disagree.
+
+    Legacy state-dependent envelopes remain in their original metre units.
+    No implicit multiplication: normalized scores must have metre coefficients.
+    """
+    coeff=np.asarray(contract['coefficients'],dtype=float)
+    q=float(contract['calibration']['q_hat'])
+    if contract.get('envelope_units','m')!='m':raise ValueError('envelope must return metres')
+    if np.allclose(coeff,coeff[0],rtol=0,atol=1e-12):
+        actual=q*coeff[0]
+        expected=contract.get('coverage',{}).get('calibration',{}).get('mean_radius_m')
+        if expected is not None and not np.isclose(actual,expected,rtol=1e-6,atol=1e-9):
+            raise ValueError('CP unit mismatch: envelope %.12g m != reported %.12g m; repair contract explicitly' % (actual,expected))
+    return contract

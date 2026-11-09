@@ -1,32 +1,49 @@
 # 项目文档导航
 
-更新：2026-11-04。本页统一管理阅读入口。AEBS 和停车场分别报告；文件名中的日期标识原始版本，最新补充日期和范围看各文件开头。
+更新：2026-11-09。本页只保留当前主线入口；11/05–11/06 的设计稿、早期探针和被取代的汇总已移到[归档](archive/2026-11-09_current_cleanup/README.md)。
 
 ## 推荐阅读顺序
 
-如果公式暂时看不懂，先读[停车场通俗解释：同一个分数为什么不能既 ≤1 又 ≥20](current/停车场神经SBC_构造证明与实验_20261103.md#contradiction-explained)。该文用真实速度记录和分步例子解释旧反例、状态盒子、后备、新网络及概率保证，再阅读完整流程。
+1. [当前文档入口](current/README.md)：当前主线、最新结论和归档说明。
+2. [可视化网站](../site/index.html)：总览、实验配置/步骤/图片/结果包入口。
+3. [当前方案与验证结果](current/当前方案与验证结果.md)：四个实验的统一状态、保证和边界。
+4. [AEBS RGB 修复后完整实验](current/AEBS真实RGB图像_完整实验_20261108.md)：旧单位错误撤回；轨迹 CP 0.418359 m + 新神经 SBC 通过。
+5. [AEBS 前端对比](current/AEBS前端对比_cGAN_灰度_真实RGB_20261108.md)：cGAN/灰度/真实 RGB 同测试集对比。
+6. [AEBS 状态相关 CP](../artical-F122/results/real_aebs_state_cp_20261109_units_v2/README.md)：参考 10/29 的 Bernstein b0(d) 变体；平均半径 0.3217 m，SBC 41,070 格通过。
+7. [车道状态相关 CP（已撤回）](../artical-F122/results/lane_state_cp_20261109_v1/AUDIT.md)：代码/报告不一致、留出分数误用校准残差；不可引用。
+8. [AEBS 与车道逐步流程](current/AEBS与车道保持实验_逐步流程与保证_20261108.md)：动力学、数据流、输入图像。
+9. [车道轨迹级 CP 与 SBC](current/车道保持_轨迹级CP校准与SBC衔接_20261107.md)：2D latent、199/100 轨迹、证书连接。
+10. [停车场神经 SBC 专题](current/停车场神经SBC_构造证明与实验_20261103.md)。
+11. [移动机器人三维视觉实验](current/移动机器人_三维视觉实验_20261108.md)：图像任务跑通，完整 SBC 未通过。
+12. [VISION-SLS/SPVC 完整技术主文档](current/VISION-SLS_SPVC_SBC当前框架_步骤原理实验与安全保证_20261029.md)：很长，按需查。
+13. [VISION-SLS/SPVC 工作汇报](current/VISION-SLS_SPVC_SBC_20261030.md)：导师汇报版，部分结果已被 11/09 修复更新。
+14. [论文与代码实验对照](references/论文实验与迁移分析_20261107.md)：论文/代码维数与迁移分析。
 
-1. [当前方案与验证结果](current/当前方案与验证结果.md)：先了解两个实验、当前结果和保证边界。
-2. [工作汇报](current/VISION-SLS_SPVC_SBC_20261030.md)：适合向导师介绍；第 1—4 节为 AEBS，第 5 节为扩展设计，第 6 节为停车场最新实测结果。
-3. [完整步骤文档](current/VISION-SLS_SPVC_SBC当前框架_步骤原理实验与安全保证_20261029.md)：每步输入、处理、输出与原理；停车场完整流程在第 17 章，新旧区别在 17.14，保证在 17.15。
-4. [停车场神经 SBC 专题](current/停车场神经SBC_构造证明与实验_20261103.md)：集中核查新受保护闭环的网络、不变域、CP 连接和实验。
-
-## 每份当前文档的职责
+## 当前文档职责
 
 | 文件 | 用途 | 维护原则 |
 |---|---|---|
-| 当前方案与验证结果 | 统一结果与状态总览 | 新结果先更新这里；不堆积完整历史训练日志 |
-| VISION-SLS_SPVC_SBC_20261030 | 导师汇报与扩展设计 | 区分已经完成和后续设计；标题日期不表示只含旧结果 |
-| VISION-SLS_SPVC_SBC当前框架_步骤原理实验与安全保证_20261029 | 完整技术主文档 | 保存完整流程、输入输出、理论和跨版本对比 |
-| 停车场神经SBC_构造证明与实验_20261103 | 最新停车场证明专题 | 保留精确假设、公式及直接证据，供独立查阅 |
-
-主文档与专题中有必要的重叠：前者面向完整流程，后者集中讲证明。它们引用同一冻结结果包，不代表两组不同实验。`current/` 中其余三份早期停车场文件只是归档跳转入口，完整正文已移至阶段归档。
+| [current/README.md](current/README.md) | 当前入口与最新结论 | 只列当前主线；历史移归档 |
+| [当前方案与验证结果](current/当前方案与验证结果.md) | 统一结果与状态总览 | 新结果先更新这里 |
+| [AEBS RGB 修复后完整实验](current/AEBS真实RGB图像_完整实验_20261108.md) | AEBS 真实 RGB 主结果 | 单位、回放、轨迹 CP、新 SBC 以这里为准 |
+| [AEBS 前端对比](current/AEBS前端对比_cGAN_灰度_真实RGB_20261108.md) | 三前端误差/CP 对比 | cGAN 旧检查点要标非同预算 |
+| [AEBS 状态相关 CP](../artical-F122/results/real_aebs_state_cp_20261109_units_v2/README.md) | 参考 10/29 的 Bernstein 变体 | 平均更紧但留出覆盖 92/100；不替换常量包 |
+| [车道状态相关 CP v2（修复）](../artical-F122/results/lane_state_cp_20261109_repaired_v2/README.md) | 99/100 分离拟合/校准；无 cap | 13,000 区间 0/0；旧数据回归 93/100；非新盲测 |
+| [车道状态相关 CP v1（已撤回）](../artical-F122/results/lane_state_cp_20261109_v1/AUDIT.md) | 代码/报告不一致 | **withdrawn / unverified**；不引用 |
+| [AEBS 与车道逐步流程](current/AEBS与车道保持实验_逐步流程与保证_20261108.md) | 两实验动力学/数据流/图像 | 证书与行为证据分开 |
+| [车道轨迹级 CP 与 SBC](current/车道保持_轨迹级CP校准与SBC衔接_20261107.md) | 车道统计校准与证书 | 区分单帧/轨迹、边缘/条件 |
+| [车道 AEBS 同类训练流程](current/车道保持_AEBS同类训练流程与神经SBC_20261106.md) | 车道 SBC 方法与消融 | 区分学习式/几何式 |
+| [停车场神经 SBC 专题](current/停车场神经SBC_构造证明与实验_20261103.md) | 停车场证明域 | 保留精确假设与证据 |
+| [移动机器人三维视觉实验](current/移动机器人_三维视觉实验_20261108.md) | 三维视觉闭环 | 明确证书未通过 |
+| [VISION-SLS/SPVC 完整技术主文档](current/VISION-SLS_SPVC_SBC当前框架_步骤原理实验与安全保证_20261029.md) | 完整技术参考 | 不替代当前结果总览 |
+| [VISION-SLS/SPVC 工作汇报](current/VISION-SLS_SPVC_SBC_20261030.md) | 导师汇报 | 旧数字以最新修复为准 |
 
 ## 模型与实施证据
 
 | 实验 | 运行说明 | 结果依据 | 对应控制结构 |
 |---|---|---|---|
-| AEBS 2026-10-29 | [包说明](../artical-F122/results/vision_sls_spvc_sbc_pass_20261029/README.md) | [汇总](../artical-F122/results/vision_sls_spvc_sbc_pass_20261029/summary.json) | PPO 直接输出；包络/固定图片回放数值验证 |
+| AEBS RGB 2026-11-09（修复） | [发布包](../artical-F122/results/real_aebs_repair_20261109_release/README.md) | [验证报告](../artical-F122/results/real_aebs_repair_20261109_release/verification_report.json) | PPO 直接输出；轨迹 CP + 新非负 SBC |
+| AEBS 2026-10-29（旧版） | [包说明](../artical-F122/results/vision_sls_spvc_sbc_pass_20261029/README.md) | [汇总](../artical-F122/results/vision_sls_spvc_sbc_pass_20261029/summary.json) | 旧灰度/固定图片回放；不与 11/09 RGB 混用 |
 | 停车场 2026-11-03 | [包说明](../artical-F122/results/vision_sls_parking_20261103_neural_sbc_certificate_v1/README.md) | [证书审计](../artical-F122/results/vision_sls_parking_20261103_neural_sbc_certificate_v1/certificate.json)、[测试记录](../artical-F122/results/vision_sls_parking_20261103_neural_sbc_certificate_v1/validation.json) | 参考反馈与 PPO 建议＋在线后备检查；增广可达域神经 SBC |
 
 代码入口与复现命令以对应包和完整步骤文档为准。文档整理没有改写冻结证据。历史候选包中的“未通过”继续针对它自身的闭环，不因最新包通过而改名或覆盖。
@@ -49,7 +66,7 @@
 | 原件 | 用途 |
 | --- | --- |
 | [原 SPVC 论文](references/720_file_Paper.pdf) | 原 SBC 框架依据 |
-| [VISION-SLS 论文](../VISION-SLS-%20Safe%20Perception-Based%20Control%20from%20Learned%20Visual%20Representations%20via%20System%20Level%20Synthesis.pdf) | 视觉低维观测与 SLS 原设计 |
+| [VISION-SLS 论文](<../VISION-SLS- Safe Perception-Based Control from Learned Visual Representations via System Level Synthesis.pdf>) | 视觉低维观测与 SLS 原设计 |
 | [状态相关误差界说明](../VISION_SLS_状态相关误差界计算.pdf) | 包络拟合与 CP 衔接 |
 | [CP-NCBF 论文](references/2503.17395v2.pdf) | CP 校准与神经屏障方法参考 |
 | [硬约束训练论文](<references/Training with hard constraints- Learning neural certificates and controllers for sdes.pdf>) | 神经证书与控制器训练参考 |
@@ -74,3 +91,5 @@
 [根目录比较草稿](../比较.md)和[论文改进思路](references/论文改进思路.md)属于研究想法，尚未实施的比较不写进已完成结果。
 
 当前状态统一从本页及总览进入；方法与结果变化时同步更新主文档/证明专题的范围说明，导师版只保留必要结论。冻结模型包保存其生成时的文档快照和散列，后续编辑使用 `docs/current/`，不修改包内快照来替换历史证据。早期全文归档，旧链接通过跳转页继续可用。
+
+最新修复：[车道状态相关 v2](../artical-F122/results/lane_state_cp_20261109_repaired_v2/README.md)：99/100 分离拟合与校准，无 cap，实际状态集合 SBC 数值通过；旧数据回归不冒充新增盲测，旧 v1 继续撤回。

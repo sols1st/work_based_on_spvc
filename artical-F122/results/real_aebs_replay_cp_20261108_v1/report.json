@@ -1,0 +1,44 @@
+{
+  "protocol": {
+    "binding": {
+      "policy.pt": "d701abdf8713b32c708c3805341c653cce56c15e17b0affcea77b3cab05337c3",
+      "observation.pt": "eee112612932071653c4479a9eb9f8b9d215217c011281b022b7f79e206e9fb6",
+      "observations.npz": "a5ecc92f3bbcbd7831c3b6b90e9bef6debd65334b05aebcba0b590f2761a9191"
+    },
+    "sources": {
+      "replay_trajectory_cp.py": "9b8cda1584de364e98415417cc6be002ef71fa8c9ddd653673b22bf9a40b23f6",
+      "rollout.py": "be7fcde00d490bbe1c83ed4296ca4653ac358ddb3d4b5acf398211e1c1da2516"
+    },
+    "calibration_n": 199,
+    "holdout_n": 100,
+    "calibration_seed": 2026110851,
+    "holdout_seed": 2026110852,
+    "alpha": 0.05,
+    "horizon": 400,
+    "score": "maximum absolute error in metres over all active control steps, including nearest-image mismatch",
+    "initial": "IID uniform [15,16] x [2.5,3]",
+    "appearance": "IID uniform over 12 weather/color groups; fixed throughout each episode",
+    "termination": "original success/unsafe/out-of-domain/stop/time-limit, never discard failures",
+    "distribution": "deterministic frozen-image replay, not new online images",
+    "conditional_on_frozen_library": true
+  },
+  "calibration": {
+    "n": 199,
+    "rank": 190,
+    "radius_m": 0.4183585683531419,
+    "covered": 190,
+    "outcomes": {
+      "success": 199
+    }
+  },
+  "holdout": {
+    "n": 100,
+    "covered": 99,
+    "outcomes": {
+      "success": 100
+    }
+  },
+  "lookup_max_error_m": 0.0030027275199699943,
+  "certificate_passed": false,
+  "claim": "Marginal trajectory coverage over calibration and a new IID episode of the registered frozen replay law; not new-image or live CARLA safety."
+}

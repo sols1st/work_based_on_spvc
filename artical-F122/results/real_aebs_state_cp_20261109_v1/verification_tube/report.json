@@ -1,0 +1,146 @@
+{
+  "regions": {
+    "initial": {
+      "lower": 0.0,
+      "upper": 0.0
+    },
+    "unsafe": {
+      "lower": 25.21363605977684,
+      "upper": 57.046536347895994
+    }
+  },
+  "region_pass": true,
+  "checked_cells": 41070,
+  "proved_cells": 21548,
+  "threshold_excluded_cells": 1035,
+  "actual_witnesses": 0,
+  "unresolved_cells": 0,
+  "continuous_state_numerical_interval_pass": true,
+  "guarantee_scope": "stopped AEBS, all live d in (6,16], v in (1e-6,3], conditional on observation-tube support",
+  "observation_model": "tube",
+  "expectation_support_assumption_established": false,
+  "full_image_certificate": false,
+  "floating_point_formal_proof": false,
+  "arithmetic": "float64 mathematical-network interval model; no outward rounding",
+  "source_policy_sha256": "d701abdf8713b32c708c3805341c653cce56c15e17b0affcea77b3cab05337c3",
+  "source_sbc_sha256": "01cb2c8fb70053e616b653b9cfaf5e55beaaa54ffa5d24031d18953916e02c96",
+  "source_contract_sha256": "0eb71e20fbbf6934f1941daa4dbb40f624dd7feedac0d689a6d509aff8c65054",
+  "verifier_sha256": "829dde6cdfc22905dad3dbd94e4839fb73325a2cf066a44a3885181eb72e1e42",
+  "actor_subdivisions": 8,
+  "successor_subdivisions": 64,
+  "actor_bound_method": "affine",
+  "envelope_units": "m",
+  "envelope_radius_at_10m": 0.3402379033449257,
+  "witness_meaning": "positive drift for this SBC, not an unsafe rollout or impossibility of another SBC",
+  "history": [
+    {
+      "depth": 0,
+      "checked": 4096,
+      "passed": 3563,
+      "threshold_excluded": 391,
+      "actual_witnesses": 0,
+      "unresolved": 142,
+      "seconds": 2.1208345510531217
+    },
+    {
+      "depth": 1,
+      "checked": 4380,
+      "passed": 3592,
+      "threshold_excluded": 421,
+      "actual_witnesses": 0,
+      "unresolved": 225,
+      "seconds": 2.2796592079102993
+    },
+    {
+      "depth": 2,
+      "checked": 4830,
+      "passed": 3616,
+      "threshold_excluded": 436,
+      "actual_witnesses": 0,
+      "unresolved": 411,
+      "seconds": 2.53323853504844
+    },
+    {
+      "depth": 3,
+      "checked": 5652,
+      "passed": 3682,
+      "threshold_excluded": 488,
+      "actual_witnesses": 0,
+      "unresolved": 704,
+      "seconds": 2.9833464638795704
+    },
+    {
+      "depth": 4,
+      "checked": 7060,
+      "passed": 3724,
+      "threshold_excluded": 522,
+      "actual_witnesses": 0,
+      "unresolved": 1332,
+      "seconds": 3.7383851499762386
+    },
+    {
+      "depth": 5,
+      "checked": 9724,
+      "passed": 3839,
+      "threshold_excluded": 623,
+      "actual_witnesses": 0,
+      "unresolved": 2448,
+      "seconds": 5.174502559937537
+    },
+    {
+      "depth": 6,
+      "checked": 14620,
+      "passed": 3928,
+      "threshold_excluded": 697,
+      "actual_witnesses": 0,
+      "unresolved": 4733,
+      "seconds": 7.814312313916162
+    },
+    {
+      "depth": 7,
+      "checked": 24086,
+      "passed": 9318,
+      "threshold_excluded": 907,
+      "actual_witnesses": 0,
+      "unresolved": 3866,
+      "seconds": 12.823045247001573
+    },
+    {
+      "depth": 8,
+      "checked": 31818,
+      "passed": 13356,
+      "threshold_excluded": 946,
+      "actual_witnesses": 0,
+      "unresolved": 3655,
+      "seconds": 16.914670913945884
+    },
+    {
+      "depth": 9,
+      "checked": 39128,
+      "passed": 19663,
+      "threshold_excluded": 1032,
+      "actual_witnesses": 0,
+      "unresolved": 917,
+      "seconds": 20.742128876037896
+    },
+    {
+      "depth": 10,
+      "checked": 40962,
+      "passed": 21440,
+      "threshold_excluded": 1035,
+      "actual_witnesses": 0,
+      "unresolved": 54,
+      "seconds": 21.711607191013172
+    },
+    {
+      "depth": 11,
+      "checked": 41070,
+      "passed": 21548,
+      "threshold_excluded": 1035,
+      "actual_witnesses": 0,
+      "unresolved": 0,
+      "seconds": 21.769939217949286
+    }
+  ],
+  "witnesses": []
+}

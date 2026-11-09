@@ -1,0 +1,497 @@
+{
+  "format": "lane_aebs_learned_sbc_audit_v1",
+  "passed": false,
+  "initial": {
+    "passed": true,
+    "unresolved": 0,
+    "bound": 0.607152542617328,
+    "partition_area_error": 0.0,
+    "history": [
+      {
+        "depth": 0,
+        "unresolved": 0,
+        "accepted": 256
+      }
+    ]
+  },
+  "unsafe": {
+    "passed": true,
+    "unresolved": 0,
+    "bound": 20.14060242826668,
+    "partition_area_error": 0.0,
+    "history": [
+      {
+        "depth": 0,
+        "unresolved": 30,
+        "accepted": 994
+      },
+      {
+        "depth": 1,
+        "unresolved": 5,
+        "accepted": 1049
+      },
+      {
+        "depth": 2,
+        "unresolved": 0,
+        "accepted": 1059
+      }
+    ]
+  },
+  "checks": [
+    {
+      "kappa": -0.01,
+      "passed": true,
+      "unresolved": 0,
+      "actual_witnesses": 0,
+      "partition_area_error": 2.6645352591003757e-15,
+      "history": [
+        {
+          "kappa": -0.01,
+          "depth": 0,
+          "unresolved": 617,
+          "outside": 1122,
+          "plateau": 512,
+          "decreasing": 249
+        },
+        {
+          "kappa": -0.01,
+          "depth": 1,
+          "unresolved": 848,
+          "outside": 1183,
+          "plateau": 628,
+          "decreasing": 458
+        },
+        {
+          "kappa": -0.01,
+          "depth": 2,
+          "unresolved": 1160,
+          "outside": 1245,
+          "plateau": 820,
+          "decreasing": 740
+        },
+        {
+          "kappa": -0.01,
+          "depth": 3,
+          "unresolved": 1779,
+          "outside": 1307,
+          "plateau": 972,
+          "decreasing": 1067
+        },
+        {
+          "kappa": -0.01,
+          "depth": 4,
+          "unresolved": 2497,
+          "outside": 1356,
+          "plateau": 1211,
+          "decreasing": 1840
+        },
+        {
+          "kappa": -0.01,
+          "depth": 5,
+          "unresolved": 2755,
+          "outside": 1388,
+          "plateau": 1422,
+          "decreasing": 3836
+        },
+        {
+          "kappa": -0.01,
+          "depth": 6,
+          "unresolved": 2434,
+          "outside": 1388,
+          "plateau": 1773,
+          "decreasing": 6561
+        },
+        {
+          "kappa": -0.01,
+          "depth": 7,
+          "unresolved": 2335,
+          "outside": 1388,
+          "plateau": 2048,
+          "decreasing": 8819
+        },
+        {
+          "kappa": -0.01,
+          "depth": 8,
+          "unresolved": 1614,
+          "outside": 1388,
+          "plateau": 2455,
+          "decreasing": 11468
+        },
+        {
+          "kappa": -0.01,
+          "depth": 9,
+          "unresolved": 1044,
+          "outside": 1388,
+          "plateau": 2741,
+          "decreasing": 13366
+        },
+        {
+          "kappa": -0.01,
+          "depth": 10,
+          "unresolved": 648,
+          "outside": 1388,
+          "plateau": 2983,
+          "decreasing": 14564
+        },
+        {
+          "kappa": -0.01,
+          "depth": 11,
+          "unresolved": 328,
+          "outside": 1388,
+          "plateau": 3071,
+          "decreasing": 15444
+        },
+        {
+          "kappa": -0.01,
+          "depth": 12,
+          "unresolved": 0,
+          "outside": 1388,
+          "plateau": 3182,
+          "decreasing": 15989
+        }
+      ]
+    },
+    {
+      "kappa": 0.0,
+      "passed": false,
+      "unresolved": 47136,
+      "actual_witnesses": 0,
+      "partition_area_error": 8.881784197001252e-16,
+      "history": [
+        {
+          "kappa": 0.0,
+          "depth": 0,
+          "unresolved": 594,
+          "outside": 1122,
+          "plateau": 514,
+          "decreasing": 270
+        },
+        {
+          "kappa": 0.0,
+          "depth": 1,
+          "unresolved": 856,
+          "outside": 1179,
+          "plateau": 627,
+          "decreasing": 432
+        },
+        {
+          "kappa": 0.0,
+          "depth": 2,
+          "unresolved": 1181,
+          "outside": 1240,
+          "plateau": 817,
+          "decreasing": 712
+        },
+        {
+          "kappa": 0.0,
+          "depth": 3,
+          "unresolved": 1813,
+          "outside": 1306,
+          "plateau": 976,
+          "decreasing": 1036
+        },
+        {
+          "kappa": 0.0,
+          "depth": 4,
+          "unresolved": 2612,
+          "outside": 1362,
+          "plateau": 1228,
+          "decreasing": 1742
+        },
+        {
+          "kappa": 0.0,
+          "depth": 5,
+          "unresolved": 3148,
+          "outside": 1406,
+          "plateau": 1442,
+          "decreasing": 3560
+        },
+        {
+          "kappa": 0.0,
+          "depth": 6,
+          "unresolved": 3082,
+          "outside": 1406,
+          "plateau": 1789,
+          "decreasing": 6427
+        },
+        {
+          "kappa": 0.0,
+          "depth": 7,
+          "unresolved": 3420,
+          "outside": 1406,
+          "plateau": 2088,
+          "decreasing": 8872
+        },
+        {
+          "kappa": 0.0,
+          "depth": 8,
+          "unresolved": 3333,
+          "outside": 1406,
+          "plateau": 2541,
+          "decreasing": 11926
+        },
+        {
+          "kappa": 0.0,
+          "depth": 9,
+          "unresolved": 3776,
+          "outside": 1406,
+          "plateau": 2884,
+          "decreasing": 14473
+        },
+        {
+          "kappa": 0.0,
+          "depth": 10,
+          "unresolved": 3335,
+          "outside": 1406,
+          "plateau": 3408,
+          "decreasing": 18166
+        },
+        {
+          "kappa": 0.0,
+          "depth": 11,
+          "unresolved": 3749,
+          "outside": 1406,
+          "plateau": 3752,
+          "decreasing": 20743
+        },
+        {
+          "kappa": 0.0,
+          "depth": 12,
+          "unresolved": 4498,
+          "outside": 1406,
+          "plateau": 4137,
+          "decreasing": 23358
+        },
+        {
+          "kappa": 0.0,
+          "depth": 13,
+          "unresolved": 6331,
+          "outside": 1406,
+          "plateau": 4362,
+          "decreasing": 25798
+        },
+        {
+          "kappa": 0.0,
+          "depth": 14,
+          "unresolved": 8451,
+          "outside": 1406,
+          "plateau": 4754,
+          "decreasing": 29617
+        },
+        {
+          "kappa": 0.0,
+          "depth": 15,
+          "unresolved": 12544,
+          "outside": 1406,
+          "plateau": 5113,
+          "decreasing": 33616
+        },
+        {
+          "kappa": 0.0,
+          "depth": 16,
+          "unresolved": 18358,
+          "outside": 1406,
+          "plateau": 5732,
+          "decreasing": 39727
+        },
+        {
+          "kappa": 0.0,
+          "depth": 17,
+          "unresolved": 29539,
+          "outside": 1406,
+          "plateau": 6310,
+          "decreasing": 46326
+        },
+        {
+          "kappa": 0.0,
+          "depth": 18,
+          "unresolved": 47136,
+          "outside": 1406,
+          "plateau": 7344,
+          "decreasing": 57234
+        }
+      ]
+    },
+    {
+      "kappa": 0.01,
+      "passed": true,
+      "unresolved": 0,
+      "actual_witnesses": 0,
+      "partition_area_error": 8.881784197001252e-16,
+      "history": [
+        {
+          "kappa": 0.01,
+          "depth": 0,
+          "unresolved": 603,
+          "outside": 1122,
+          "plateau": 512,
+          "decreasing": 263
+        },
+        {
+          "kappa": 0.01,
+          "depth": 1,
+          "unresolved": 890,
+          "outside": 1173,
+          "plateau": 629,
+          "decreasing": 411
+        },
+        {
+          "kappa": 0.01,
+          "depth": 2,
+          "unresolved": 1199,
+          "outside": 1235,
+          "plateau": 829,
+          "decreasing": 730
+        },
+        {
+          "kappa": 0.01,
+          "depth": 3,
+          "unresolved": 1824,
+          "outside": 1301,
+          "plateau": 974,
+          "decreasing": 1093
+        },
+        {
+          "kappa": 0.01,
+          "depth": 4,
+          "unresolved": 2466,
+          "outside": 1364,
+          "plateau": 1216,
+          "decreasing": 1970
+        },
+        {
+          "kappa": 0.01,
+          "depth": 5,
+          "unresolved": 2759,
+          "outside": 1402,
+          "plateau": 1428,
+          "decreasing": 3893
+        },
+        {
+          "kappa": 0.01,
+          "depth": 6,
+          "unresolved": 2483,
+          "outside": 1402,
+          "plateau": 1766,
+          "decreasing": 6590
+        },
+        {
+          "kappa": 0.01,
+          "depth": 7,
+          "unresolved": 2452,
+          "outside": 1402,
+          "plateau": 2037,
+          "decreasing": 8833
+        },
+        {
+          "kappa": 0.01,
+          "depth": 8,
+          "unresolved": 1778,
+          "outside": 1402,
+          "plateau": 2435,
+          "decreasing": 11561
+        },
+        {
+          "kappa": 0.01,
+          "depth": 9,
+          "unresolved": 1004,
+          "outside": 1402,
+          "plateau": 2734,
+          "decreasing": 13814
+        },
+        {
+          "kappa": 0.01,
+          "depth": 10,
+          "unresolved": 82,
+          "outside": 1402,
+          "plateau": 3127,
+          "decreasing": 15347
+        },
+        {
+          "kappa": 0.01,
+          "depth": 11,
+          "unresolved": 0,
+          "outside": 1402,
+          "plateau": 3187,
+          "decreasing": 15451
+        }
+      ]
+    }
+  ],
+  "actor_sha256": "b412c6ed5298540cefb532b1e8e47b046f06fd37df1353b406a04d0957028de2",
+  "sbc_sha256": "a0fdf9c3b1040e95f79f964263adfad59fedbac662e7ee3aa032aabda65c2de8",
+  "metadata": {
+    "actor": "results/lane_keeping_20261105/ppo_image/actor.pt",
+    "output_dir": "results/lane_joint_20261106_r1",
+    "resume": null,
+    "extra_states": null,
+    "epochs": 6000,
+    "seed": 41,
+    "radius": 0.08,
+    "error_splits": 2,
+    "learning_rate": 0.003,
+    "hidden": [
+      16,
+      8
+    ],
+    "drift_weight": 20.0,
+    "bound_method": "ibp",
+    "source_actor_sha256": "b412c6ed5298540cefb532b1e8e47b046f06fd37df1353b406a04d0957028de2",
+    "model_class": "Aebs.vision_sls.sbc_cp.NonnegativeSBC",
+    "features": [
+      2,
+      16,
+      8,
+      1
+    ],
+    "geometric_teacher": false,
+    "actor_updated": false,
+    "verification_thresholds": {
+      "initial": 1,
+      "unsafe": 20,
+      "drift": 0
+    },
+    "training_only_raw_margin": true,
+    "seed_role": "development; not independent final testing",
+    "nonnegative_activation": "relu"
+  },
+  "verification": {
+    "actor": "results/lane_keeping_20261105/ppo_image/actor.pt",
+    "sbc": "results/lane_joint_20261106_r1/sbc.pt",
+    "output_dir": "results/lane_joint_20261106_r1/audit_ibp",
+    "radius": 0.08,
+    "grid": 50,
+    "depth": 18,
+    "error_splits": 8,
+    "method": "ibp",
+    "max_pending": 100000,
+    "stop_on_witness": true
+  },
+  "task": {
+    "speed": 4.0,
+    "dt": 0.1,
+    "safety_halfwidths": [
+      0.85,
+      0.3
+    ],
+    "initial_halfwidths": [
+      0.25,
+      0.06
+    ],
+    "kappas": [
+      -0.01,
+      0.0,
+      0.01
+    ],
+    "successor_coordinate_abs_bounds": [
+      1.1390683325465127,
+      1.2610538798033737
+    ],
+    "unsafe_audited_domain": [
+      -1.3,
+      1.3
+    ],
+    "process_noise": 0
+  },
+  "scope": "Conditional on every normalized observation error in the radius box. Continuous-box numerical audit, no outward-rounded IEEE proof, no unconditional CP trajectory probability."
+}

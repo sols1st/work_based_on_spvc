@@ -1,0 +1,39 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>移动机器人：三维视觉实验 · SPVC</title><link rel="stylesheet" href="assets/style.css"></head>
+<body><nav><div class="nav-inner"><div class="brand">SPVC 实验总览<span>2026-11-09</span></div><a href="index.html" class="">总览</a><a href="aebs.html" class="">AEBS</a><a href="lane.html" class="">车道</a><a href="parking.html" class="">停车场</a><a href="robot.html" class="active">机器人</a><a href="gallery.html" class="">图片库</a><a href="process.html" class="">实验过程</a><a href="data.html" class="">数据与报告</a></div></nav><main class="wrap"><header class="hero"><h1>移动机器人：三维视觉实验</h1><p>图像闭环跑通，但 CP 盒内有实际反例；完整 SBC 证书未通过。</p></header>
+<div class="badges"><span class="badge ok">图像任务跑通</span><span class="badge bad">完整 SBC 证书未通过</span><span class="badge bad">CP 盒内有实际反例</span><span class="badge info">3D 状态 / 2D 动作</span></div>
+<div class="grid">
+<div class="card"><div class="num">24/24 <small>开发图像闭环</small></div><p>安全到达并停稳；距障碍排除边界最小约 0.153 m</p></div>
+<div class="card"><div class="num">39/20 <small>校准/留出轨迹</small></div><p>CP 半宽约 (0.0488,0.0488,0.3254)；留出覆盖 18/20</p></div>
+<div class="card"><div class="num">20/20 <small>留出行为</small></div><p>安全到达并停稳；覆盖 90% 不等于 95% 测试通过</p></div>
+<div class="card"><div class="num">28/32 <small>CP 盒内反例</small></div><p>21 条机器人/障碍物圆重叠；完整证书不成立</p></div>
+</div>
+<div class="section"><h2>1. 任务与配置</h2>
+<div class="kv">
+<div>状态</div><div><code>(x,y,θ)</code>，3D；位置与朝向</div>
+<div>动作</div><div>线速度 + 角速度，2D；120 步，12 s</div>
+<div>动力学</div><div>离散独轮车；dt=0.1；无障碍过程噪声</div>
+<div>视觉</div><div>224×224 渲染图 → DINO ViT-S/14 patch → 空间注意力 → 3D 位姿</div>
+<div>训练</div><div>2,400 张训练 / 400 验证 / 400 开发测试</div>
+<div>控制器</div><div>PPO 直接输出双动作；无在线后备/过滤器</div>
+<div>SBC</div><div>AEBS 同类非负网络；离线证书训练</div>
+<div>CP</div><div>每条 120 步 ×3 坐标的最大残差；39 校准 / 20 留出</div>
+</div></div>
+<div class="section"><h2>2. 一步一步</h2>
+<table class=""><thead><tr><th>步</th><th>输入</th><th>处理</th><th>输出 / 结果</th></tr></thead><tbody><tr><td>1. 场景</td><td>6×4 m 地图，中央障碍</td><td>渲染 224×224；机器人/障碍/目标/地图标记</td><td>2,400+400+400 图像</td></tr><tr><td>2. 观测</td><td>DINO patch</td><td>卷积 + 双空间注意力 → 3D 位姿</td><td>x MAE 2.55 cm、y 1.86 cm、θ 4.49°</td></tr><tr><td>3. PPO</td><td>3D 观测</td><td>30 万步；宽初态 + 绕障距离奖励</td><td>名义 300/300；±0.03 停稳 275/300</td></tr><tr><td>4. 图像闭环</td><td>渲染图 → DINO → PPO</td><td>24 条开发轨迹</td><td>24/24 安全到达并停稳</td></tr><tr><td>5. 轨迹 CP</td><td>39 校准 + 20 留出</td><td>max_t 三维归一化误差；冻结阈值</td><td>半宽约 (0.0488,0.0488,0.3254)；留出 18/20</td></tr><tr><td>6. SBC</td><td>真实状态、CP 盒</td><td>非负网络训练 / 区间审查</td><td>初始 0.179、危险 20.807，但不增条件未通过</td></tr><tr><td>7. 反例</td><td>CP 盒内扰动搜索</td><td>可微搜索 + float64 独立重放</td><td>28/32 违反；21 条圆重叠</td></tr></tbody></table></div>
+<div class="section"><h2>3. 为什么不能继续只训 SBC</h2>
+<div class="badbox">固定当前控制器、动力学和 CP 盒，已经找到盒内实际越界反例。若假设初始 B≤1、危险 B≥20、每步不增，沿该允许轨迹会推出 B≤1 且 B≥20，矛盾。因此<b>不是训练轮数不够</b>；需要改控制器/误差表示/加后备。</div>
+<p>下一步：改进朝向识别；用状态相关/椭球/带相关性的误差集合；把反例用于控制器训练；改完后重新采集轨迹 CP。</p>
+</div>
+<div class="section"><h2>4. 图像与轨迹</h2>
+<figure><img src="assets/img/robot_examples.jpg" alt=""><figcaption>三维视觉输入示例：机器人、障碍物、目标与地图标记。</figcaption></figure>
+<figure><img src="assets/img/robot_traj.jpg" alt=""><figcaption>开发图像闭环轨迹。</figcaption></figure>
+<figure><img src="assets/img/robot_attack.jpg" alt=""><figcaption>CP 盒内反例 / 攻击轨迹示例。</figcaption></figure>
+</div>
+<div class="section"><h2>5. 保证与边界</h2>
+<ul><li>已得到：三维任务、图像闭环开发成功、轨迹 CP、初始/危险区分离的神经候选。</li><li>未得到：完整 CP + 神经 SBC 概率安全保证。</li><li>CP 盒内反例否定的是“对盒内所有误差”的充分条件，不否定 CP 覆盖定理，也不否定其他条件噪声模型。</li><li>数值区间，不是形式化浮点；不是实车。</li></ul>
+<p><a href="../docs/current/移动机器人_三维视觉实验_20261108.md">完整专题</a> · <a href="../artical-F122/results/mobile_robot_20261108_server_attack_cp/report.json">反例 JSON</a> · <a href="../artical-F122/results/mobile_robot_20261108_server_trajectory_cp_r1/report.json">轨迹 CP JSON</a></p>
+</div>
+</main>
+<footer><div class="footer-inner">SPVC 实验静态总览 · 结果与限制以各结果包和 docs/current 为准 · 不复制原始大数据</div></footer></body></html>

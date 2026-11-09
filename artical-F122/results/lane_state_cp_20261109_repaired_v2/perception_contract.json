@@ -1,0 +1,36 @@
+{
+  "format": "lane_state_dependent_cp_v2",
+  "coefficients": [
+    0.005,
+    0.13705924006751394,
+    0.05624370853660142,
+    0.005
+  ],
+  "q_hat": 1.7205338233695184,
+  "rank": 96,
+  "score_units": "dimensionless",
+  "envelope_units": "normalized_observation",
+  "cap": null,
+  "global_radius_bound": 0.23581505834148045,
+  "domain": "normalized safe-state box [-1,1]^2 with clipped extension outside",
+  "basis": "t=((e/0.85,theta/0.30)+1)/2 clipped to [0,1]; order 00,01,10,11",
+  "fit_n": 99,
+  "calibration": {
+    "n": 100,
+    "covered": 96,
+    "fraction": 0.96,
+    "mean_radius": 0.08860430741099423,
+    "observed_max_radius": 0.11103632420482623,
+    "failed_trajectories_removed": 0
+  },
+  "source_binding": {
+    "protocol.json": "f3e6762c1341b0b666f0595741d20afcedeec4e82f647489579a74a2ea680b2e",
+    "calibration.npz": "fb44688b83a0bc32bca565049b21192ba8ab03c4f4573e62967afc1fd9887c77",
+    "holdout.npz": "b6c5b8acb8f0d3291026b91c09a2097f0646de65d1b968ba2106f9686d6c7c30",
+    "actor.pt": "b412c6ed5298540cefb532b1e8e47b046f06fd37df1353b406a04d0957028de2",
+    "sbc.pt": "a0fdf9c3b1040e95f79f964263adfad59fedbac662e7ee3aa032aabda65c2de8",
+    "patch_projection.pt": "490e30cad8cbbc95809ba2fde9db4c99c3f8efd3ae2b6f02fb2f84f6707eb278"
+  },
+  "protocol_sha256": "890819770a9afc4ba3d862bad720983f8b2b5149648e59415cc5d9f1360a7f43",
+  "guarantee": "Split-CP marginal coverage under fixed protocol and exchangeable calibration/new trajectories conditional on disjoint fit data; not fixed-state conditional coverage or fresh empirical confirmation."
+}

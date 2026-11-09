@@ -1,0 +1,34 @@
+{
+  "format": "vision_sls_state_cp_reference_v1",
+  "coefficients": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "envelope_units": "m",
+  "score_units": "m",
+  "calibration": {
+    "q_hat": 0.4183585683531419,
+    "rank": 190,
+    "n": 199,
+    "alpha": 0.05,
+    "marginal_target": 0.95,
+    "confidence": 0.99,
+    "coverage_lower_at_confidence": 0.9079192628657627,
+    "guarantee_scope": "one exchangeable draw, fixed score function; not trajectory safety"
+  },
+  "coverage": {
+    "calibration": {
+      "samples": 199,
+      "covered": 190,
+      "mean_radius_m": 0.4183585683531419
+    }
+  },
+  "source_policy_sha256": "d701abdf8713b32c708c3805341c653cce56c15e17b0affcea77b3cab05337c3",
+  "source_observation_sha256": "eee112612932071653c4479a9eb9f8b9d215217c011281b022b7f79e206e9fb6",
+  "independent_trajectory_calibration": true,
+  "formal_image_certificate": false,
+  "statistical_status": "trajectory-marginal CP for the explicitly frozen replay law only",
+  "protocol_sha256": "0b00262d3a16cf27c578ff5bc9c7dbc7be40b5c363d94c2611da1df9410e9ff9"
+}

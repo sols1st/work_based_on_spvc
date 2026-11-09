@@ -1,0 +1,86 @@
+{
+  "actor": "results/mobile_robot_20261108_ppo_r1/actor.pt",
+  "output_dir": "results/mobile_robot_20261108_sbc_r3",
+  "radius": 0.03,
+  "epochs": 12000,
+  "seed": 41,
+  "resume": null,
+  "extra_states": null,
+  "hidden": [
+    64,
+    32
+  ],
+  "active_level": 1.0,
+  "task": {
+    "state": [
+      "x",
+      "y",
+      "theta"
+    ],
+    "visual_observation_dimension": 3,
+    "action": [
+      "linear_velocity",
+      "angular_velocity"
+    ],
+    "dt": 0.1,
+    "horizon": 120,
+    "scale": [
+      3.0,
+      2.0,
+      1.2
+    ],
+    "center": [
+      3.0,
+      2.0,
+      0.0
+    ],
+    "safe_low": [
+      0.35,
+      0.35,
+      -1.2
+    ],
+    "safe_high": [
+      5.65,
+      3.65,
+      1.2
+    ],
+    "initial_low": [
+      0.8,
+      1.8,
+      -0.1
+    ],
+    "initial_high": [
+      1.2,
+      2.2,
+      0.1
+    ],
+    "goal": [
+      5.0,
+      2.0
+    ],
+    "goal_radius": 0.3,
+    "obstacle": [
+      3.0,
+      2.0
+    ],
+    "obstacle_radius": 0.4,
+    "robot_radius": 0.25,
+    "safety_margin": 0.1,
+    "exclusion_radius": 0.75,
+    "v_max": 0.6,
+    "omega_max": 1.0,
+    "process_noise": 0,
+    "safety_scope": "discrete sample instants; heading operating range is part of safety; velocity commands assumed executed",
+    "online_filter": false,
+    "goal_absorbing": false
+  },
+  "actor_sha256": "4e156023dd34c042e6317576dd1113e40ba046c207e0a03f45edcd0a6b43f487",
+  "model_class": "Aebs.vision_sls.sbc_cp.NonnegativeSBC",
+  "geometric_teacher": false,
+  "actor_updated": false,
+  "thresholds": {
+    "initial": 1,
+    "unsafe": 20,
+    "drift": 0
+  }
+}

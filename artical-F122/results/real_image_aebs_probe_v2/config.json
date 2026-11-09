@@ -1,0 +1,56 @@
+{
+  "features": "/root/work_based_on_spvc/artical-F122/results/dino_expanded_v1/02_dino_h5/features.h5",
+  "train_samples": 7200,
+  "early_samples": 1800,
+  "calibration_samples": 1500,
+  "test_samples": 1500,
+  "epochs": 250,
+  "best_epoch": 175,
+  "distance_scale_m": 3.18272066116333,
+  "fit_groups": [
+    "bin_1",
+    "bin_11",
+    "bin_12",
+    "bin_14",
+    "bin_15",
+    "bin_16",
+    "bin_21",
+    "bin_22",
+    "bin_23",
+    "bin_24",
+    "bin_25",
+    "bin_27",
+    "bin_31",
+    "bin_32",
+    "bin_34",
+    "bin_35",
+    "bin_37",
+    "bin_38",
+    "bin_41",
+    "bin_42",
+    "bin_7",
+    "bin_8"
+  ],
+  "early_groups": [
+    "bin_0",
+    "bin_19",
+    "bin_3",
+    "bin_4"
+  ],
+  "calibration_groups": [
+    "bin_10",
+    "bin_20",
+    "bin_30",
+    "bin_40",
+    "bin_9"
+  ],
+  "test_groups": [
+    "bin_17",
+    "bin_29",
+    "bin_33",
+    "bin_6"
+  ],
+  "seed": 7,
+  "model": "384-128-64-1 GELU, standardized features",
+  "target": "distance_m / 3.1827"
+}

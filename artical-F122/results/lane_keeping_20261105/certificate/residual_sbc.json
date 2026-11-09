@@ -1,0 +1,356 @@
+{
+  "format": "lane_keeping_quadratic_sbc_certificate_v1",
+  "passed": true,
+  "controller": {
+    "type": "discrete LQR + curvature feedforward + bounded residual class",
+    "K": [
+      2.072731009671986,
+      2.764261518426741
+    ],
+    "residual_eps": 0.5,
+    "residual_bound": "eps * clamp(B(x),0,1) * tanh(z)",
+    "feedforward": "atan(L*kappa)/PHI_MAX",
+    "normalized_action_box": [
+      -1,
+      1
+    ]
+  },
+  "sbc": {
+    "type": "quadratic",
+    "P": [
+      [
+        8.923811343424136,
+        1.4117528454061956
+      ],
+      [
+        1.4117528454061954,
+        1.5238857846527618
+      ]
+    ],
+    "nonnegative": true,
+    "note": "B(x)=x^T P x; positive definite"
+  },
+  "initial": {
+    "box": {
+      "e_m": 0.25,
+      "theta_rad": 0.06
+    },
+    "max_B_interval": 0.9989999999999999
+  },
+  "sublevel": {
+    "level": 1.0,
+    "max_abs_e_m": 0.3074287143571786,
+    "max_abs_theta_rad": 0.26278139069534767,
+    "fraction_of_domain": 0.230309,
+    "inside_lane": true
+  },
+  "verification": {
+    "grid": 200,
+    "max_depth": 12,
+    "equilibrium_threshold": 1e-06,
+    "equilibrium_tolerance": 1e-08,
+    "kappas": [
+      -0.01,
+      0.0,
+      0.01
+    ],
+    "checks": [
+      {
+        "passed": true,
+        "certified_cells": 34880,
+        "outside_cells": 30750,
+        "equilibrium_cells": 2406,
+        "depth": 10,
+        "history": [
+          {
+            "depth": 0,
+            "pending": 40000,
+            "certified": 7662,
+            "outside": 30528,
+            "equilibrium": 0,
+            "fail": 1810
+          },
+          {
+            "depth": 1,
+            "pending": 7240,
+            "certified": 5407,
+            "outside": 137,
+            "equilibrium": 0,
+            "fail": 1696
+          },
+          {
+            "depth": 2,
+            "pending": 6784,
+            "certified": 5953,
+            "outside": 85,
+            "equilibrium": 0,
+            "fail": 746
+          },
+          {
+            "depth": 3,
+            "pending": 2984,
+            "certified": 2289,
+            "outside": 0,
+            "equilibrium": 0,
+            "fail": 695
+          },
+          {
+            "depth": 4,
+            "pending": 2780,
+            "certified": 2111,
+            "outside": 0,
+            "equilibrium": 0,
+            "fail": 669
+          },
+          {
+            "depth": 5,
+            "pending": 2676,
+            "certified": 2014,
+            "outside": 0,
+            "equilibrium": 0,
+            "fail": 662
+          },
+          {
+            "depth": 6,
+            "pending": 2648,
+            "certified": 1986,
+            "outside": 0,
+            "equilibrium": 6,
+            "fail": 660
+          },
+          {
+            "depth": 7,
+            "pending": 2640,
+            "certified": 1976,
+            "outside": 0,
+            "equilibrium": 20,
+            "fail": 662
+          },
+          {
+            "depth": 8,
+            "pending": 2648,
+            "certified": 1984,
+            "outside": 0,
+            "equilibrium": 110,
+            "fail": 650
+          },
+          {
+            "depth": 9,
+            "pending": 2600,
+            "certified": 1942,
+            "outside": 0,
+            "equilibrium": 470,
+            "fail": 536
+          },
+          {
+            "depth": 10,
+            "pending": 2144,
+            "certified": 1556,
+            "outside": 0,
+            "equilibrium": 1800,
+            "fail": 0
+          }
+        ]
+      },
+      {
+        "passed": true,
+        "certified_cells": 34796,
+        "outside_cells": 30708,
+        "equilibrium_cells": 2406,
+        "depth": 10,
+        "history": [
+          {
+            "depth": 0,
+            "pending": 40000,
+            "certified": 7722,
+            "outside": 30528,
+            "equilibrium": 0,
+            "fail": 1750
+          },
+          {
+            "depth": 1,
+            "pending": 7000,
+            "certified": 5198,
+            "outside": 96,
+            "equilibrium": 0,
+            "fail": 1706
+          },
+          {
+            "depth": 2,
+            "pending": 6824,
+            "certified": 5994,
+            "outside": 84,
+            "equilibrium": 0,
+            "fail": 746
+          },
+          {
+            "depth": 3,
+            "pending": 2984,
+            "certified": 2288,
+            "outside": 0,
+            "equilibrium": 0,
+            "fail": 696
+          },
+          {
+            "depth": 4,
+            "pending": 2784,
+            "certified": 2112,
+            "outside": 0,
+            "equilibrium": 0,
+            "fail": 672
+          },
+          {
+            "depth": 5,
+            "pending": 2688,
+            "certified": 2024,
+            "outside": 0,
+            "equilibrium": 0,
+            "fail": 664
+          },
+          {
+            "depth": 6,
+            "pending": 2656,
+            "certified": 1992,
+            "outside": 0,
+            "equilibrium": 6,
+            "fail": 662
+          },
+          {
+            "depth": 7,
+            "pending": 2648,
+            "certified": 1984,
+            "outside": 0,
+            "equilibrium": 20,
+            "fail": 662
+          },
+          {
+            "depth": 8,
+            "pending": 2648,
+            "certified": 1984,
+            "outside": 0,
+            "equilibrium": 110,
+            "fail": 650
+          },
+          {
+            "depth": 9,
+            "pending": 2600,
+            "certified": 1942,
+            "outside": 0,
+            "equilibrium": 470,
+            "fail": 536
+          },
+          {
+            "depth": 10,
+            "pending": 2144,
+            "certified": 1556,
+            "outside": 0,
+            "equilibrium": 1800,
+            "fail": 0
+          }
+        ]
+      },
+      {
+        "passed": true,
+        "certified_cells": 34880,
+        "outside_cells": 30750,
+        "equilibrium_cells": 2406,
+        "depth": 10,
+        "history": [
+          {
+            "depth": 0,
+            "pending": 40000,
+            "certified": 7662,
+            "outside": 30528,
+            "equilibrium": 0,
+            "fail": 1810
+          },
+          {
+            "depth": 1,
+            "pending": 7240,
+            "certified": 5407,
+            "outside": 137,
+            "equilibrium": 0,
+            "fail": 1696
+          },
+          {
+            "depth": 2,
+            "pending": 6784,
+            "certified": 5953,
+            "outside": 85,
+            "equilibrium": 0,
+            "fail": 746
+          },
+          {
+            "depth": 3,
+            "pending": 2984,
+            "certified": 2289,
+            "outside": 0,
+            "equilibrium": 0,
+            "fail": 695
+          },
+          {
+            "depth": 4,
+            "pending": 2780,
+            "certified": 2111,
+            "outside": 0,
+            "equilibrium": 0,
+            "fail": 669
+          },
+          {
+            "depth": 5,
+            "pending": 2676,
+            "certified": 2014,
+            "outside": 0,
+            "equilibrium": 0,
+            "fail": 662
+          },
+          {
+            "depth": 6,
+            "pending": 2648,
+            "certified": 1986,
+            "outside": 0,
+            "equilibrium": 6,
+            "fail": 660
+          },
+          {
+            "depth": 7,
+            "pending": 2640,
+            "certified": 1976,
+            "outside": 0,
+            "equilibrium": 20,
+            "fail": 662
+          },
+          {
+            "depth": 8,
+            "pending": 2648,
+            "certified": 1984,
+            "outside": 0,
+            "equilibrium": 110,
+            "fail": 650
+          },
+          {
+            "depth": 9,
+            "pending": 2600,
+            "certified": 1942,
+            "outside": 0,
+            "equilibrium": 470,
+            "fail": 536
+          },
+          {
+            "depth": 10,
+            "pending": 2144,
+            "certified": 1556,
+            "outside": 0,
+            "equilibrium": 1800,
+            "fail": 0
+          }
+        ]
+      }
+    ],
+    "certified_cells": 104556,
+    "equilibrium_cells": 7218,
+    "unresolved_cells": 0
+  },
+  "scope": "2-D semantic state; linear LQR controller; quadratic SBC; all three curvature values; finite-grid numerical interval check, not a formal floating-point proof. Not the PPO policy and not a visual-error certificate.",
+  "conditions": "Every cell intersecting {B<=1} either is outside the sublevel set, satisfies max B(next) <= min B(current), or lies entirely in the numerical equilibrium neighbourhood B<=1e-6 where a 1e-8 tolerance is used because B(0)=B(next(0))=0."
+}

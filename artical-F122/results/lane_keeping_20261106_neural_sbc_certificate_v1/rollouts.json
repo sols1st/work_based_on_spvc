@@ -1,0 +1,66 @@
+{
+  "uniform": {
+    "episodes": 240,
+    "steps": 80,
+    "unsafe_episodes": 0,
+    "max_abs_e": 0.27398560259177784,
+    "max_abs_theta": 0.09544484887176567,
+    "mean_abs_e": 0.02677495830531237,
+    "max_B": 0.0,
+    "max_B_drift": 0.0,
+    "max_action": 0.44999998807907104
+  },
+  "greedy_corners": {
+    "episodes": 240,
+    "steps": 80,
+    "unsafe_episodes": 0,
+    "max_abs_e": 0.27398560259177784,
+    "max_abs_theta": 0.10615842370707691,
+    "mean_abs_e": 0.15138086425122904,
+    "max_B": 0.0,
+    "max_B_drift": 0.0,
+    "max_action": 0.44999998807907104
+  },
+  "alternating": {
+    "episodes": 240,
+    "steps": 80,
+    "unsafe_episodes": 0,
+    "max_abs_e": 0.27398560259177784,
+    "max_abs_theta": 0.11082566557757242,
+    "mean_abs_e": 0.023253400587033696,
+    "max_B": 0.0,
+    "max_B_drift": 0.0,
+    "max_action": 0.44999998807907104
+  },
+  "rendered_images": {
+    "episodes": 12,
+    "steps": 80,
+    "unsafe_episodes": 0,
+    "max_abs_e": 0.24063203318011642,
+    "max_abs_theta": 0.06913561692448089,
+    "mean_abs_e": 0.03501577022363699,
+    "max_B": 0.0,
+    "max_B_drift": 0.0,
+    "max_action": 0.44999998807907104,
+    "radius_used_by_certificate": 0.08,
+    "fraction_frames_in_certificate_box": 0.9979166666666667,
+    "episodes_all_frames_in_certificate_box": 10,
+    "fraction_frames_in_calibrated_box": 0.99375,
+    "max_normalized_error": 0.0996450818855095,
+    "per_episode_mean_abs_e": [
+      0.04891953883483747,
+      0.03785812859905219,
+      0.0467021919082166,
+      0.05063670367096733,
+      0.03676418338588738,
+      0.02091224007061805,
+      0.020738929823938206,
+      0.014060373349798155,
+      0.029201672845541433,
+      0.0389837776474461,
+      0.03432725501333745,
+      0.041084247534003575
+    ]
+  },
+  "scope": "Finite regression experiments, 80 steps, float32 deployed PPO. Image errors outside the certificate box are not certified by CP or by this conditional certificate."
+}

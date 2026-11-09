@@ -1,0 +1,52 @@
+{
+  "method": "original SPVC cGAN + state_net on real 32x32 grayscale",
+  "state_net": "Aebs/controller/state_net_trained.pth",
+  "input": "real RGB -> 32x32 grayscale -> [-1,1] -> state_net",
+  "calibration": {
+    "n": 4908,
+    "mae_m": 2.406638216420755,
+    "rmse_m": 2.852495771768809,
+    "p95_abs_m": 5.2183597158979955,
+    "max_abs_m": 7.188805371075421,
+    "bias_m": 0.2555109030009031
+  },
+  "test": {
+    "n": 4920,
+    "mae_m": 2.7473316072343708,
+    "rmse_m": 3.3202568104257857,
+    "p95_abs_m": 6.480094552970863,
+    "max_abs_m": 8.34191370010376,
+    "bias_m": -0.49181368851289714
+  },
+  "cp": {
+    "q_norm": 1.6405473284940657,
+    "radius_m": 5.2214038780143675,
+    "cal_coverage": 0.9502852485737572,
+    "test_coverage": 0.8764227642276423,
+    "n": 4908,
+    "rank": 4664
+  },
+  "by_weather_test": {
+    "low_sun": {
+      "n": 1230,
+      "mae_m": 3.320790636018197,
+      "p95_abs_m": 8.113694899719398
+    },
+    "original": {
+      "n": 1230,
+      "mae_m": 1.9665827760484762,
+      "p95_abs_m": 3.538668174858207
+    },
+    "overcast": {
+      "n": 1230,
+      "mae_m": 2.799659759116629,
+      "p95_abs_m": 5.328118897343542
+    },
+    "rain": {
+      "n": 1230,
+      "mae_m": 2.9022932577541805,
+      "p95_abs_m": 6.515449294242057
+    }
+  },
+  "limitation": "cGAN/state_net was trained on the old 400-image generated-image library; this is the original front-end applied to the new real-image test set, not a same-budget retrain"
+}

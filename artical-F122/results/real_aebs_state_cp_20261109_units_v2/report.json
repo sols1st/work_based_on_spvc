@@ -1,0 +1,30 @@
+{
+  "calibration": {
+    "n": 199,
+    "covered": 190,
+    "q": 19.702935672278784
+  },
+  "holdout": {
+    "n": 100,
+    "covered": 92
+  },
+  "fit": {
+    "objective": 0.02320116011851343,
+    "degree": 3,
+    "floor_m": 0.01,
+    "gamma": 0.0,
+    "slack_penalty": 20.0,
+    "solver": "HiGHS",
+    "positivity": "nonnegative Bernstein basis on [5,16]"
+  },
+  "radius": {
+    "cal_mean_m": 0.3216568532408029,
+    "cal_max_m": 0.7188553095458842,
+    "test_mean_m": 0.32185857587063205,
+    "test_max_m": 0.7197127716973508
+  },
+  "lookup_max_error_m": 0.0030027275199699943,
+  "source_policy_sha256": "d701abdf8713b32c708c3805341c653cce56c15e17b0affcea77b3cab05337c3",
+  "source_observation_sha256": "eee112612932071653c4479a9eb9f8b9d215217c011281b022b7f79e206e9fb6",
+  "note": "state-dependent CP, not yet an SBC certificate"
+}

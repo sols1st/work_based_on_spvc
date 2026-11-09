@@ -1,0 +1,26 @@
+{
+  "actor": "/tmp/lane_ppo_wide4/actor.pt",
+  "sbc": "/tmp/lane_sbc_zero7/sbc.pt",
+  "observation_radius": 0.0,
+  "grid": 200,
+  "error_splits": 1,
+  "region": {
+    "initial": {
+      "lower": 0.0,
+      "upper": 1.6513186693191528
+    },
+    "unsafe_lower": 22.312164306640625,
+    "initial_pass": false,
+    "unsafe_pass": true
+  },
+  "decrease": {
+    "checked_cells": 120000,
+    "active_cells": 74217,
+    "excluded_cells": 45783,
+    "violations": 26715,
+    "worst_residual": 4.207141399383545,
+    "pass_": false
+  },
+  "continuous_interval_pass": false,
+  "guarantee_scope": "finite grid interval check; not a continuous-domain or formal floating-point proof"
+}

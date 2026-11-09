@@ -1,0 +1,145 @@
+{
+  "status": "real_rgb_aebs_tube_certificate_passed",
+  "scope": "real 640x640 RGB front-end + transferred certified AEBS actor/SBC; conditional CP tube; not a newly trained real-image PPO certificate",
+  "frontend": {
+    "feature_dim": 384,
+    "hidden": 128,
+    "best_epoch": 295,
+    "train_mae_m": 0.007653387263417244,
+    "cal_mae_m": 0.08069096505641937,
+    "test_mae_m": 0.08741459995508194,
+    "cal_max_m": 0.44591617584228516,
+    "test_max_m": 0.5249929428100586
+  },
+  "cp": {
+    "q_norm": 0.07249307632446289,
+    "radius_m": 0.23072521180915828,
+    "calibration": {
+      "samples": 4908,
+      "covered": 4664,
+      "mean_radius_m": 0.23072521180915828,
+      "max_error_m": 0.4459166247676194
+    },
+    "test": {
+      "samples": 4920,
+      "covered": 4592,
+      "fraction": 0.9333333333333333,
+      "max_error_m": 0.5249924708148228
+    }
+  },
+  "certificate": {
+    "regions": {
+      "initial": {
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "unsafe": {
+        "lower": 27.462526010772727,
+        "upper": 56.67414546792057
+      }
+    },
+    "region_pass": true,
+    "checked_cells": 303574,
+    "proved_cells": 150153,
+    "threshold_excluded_cells": 3682,
+    "actual_witnesses": 0,
+    "unresolved_cells": 0,
+    "continuous_state_numerical_interval_pass": true,
+    "guarantee_scope": "stopped AEBS, all live d in (6,16], v in (1e-6,3], conditional on observation-tube support",
+    "replay_400": {
+      "regions": {
+        "initial": {
+          "lower": 0.0,
+          "upper": 0.0
+        },
+        "unsafe": {
+          "lower": 27.462526010772727,
+          "upper": 56.67414546792057
+        }
+      },
+      "region_pass": true,
+      "checked_cells": 159350,
+      "proved_cells": 87047,
+      "threshold_excluded_cells": 4148,
+      "actual_witnesses": 0,
+      "unresolved_cells": 0,
+      "continuous_state_numerical_interval_pass": true,
+      "guarantee_scope": "stopped deterministic nearest-image replay over the frozen 400-image library; all continuous initial states, no new-image claim"
+    }
+  },
+  "behavior": {
+    "nominal": {
+      "episodes": 400,
+      "counts": {
+        "success": 400
+      },
+      "lookup_max_error_m": 0.0,
+      "mode": "nominal_Cx"
+    },
+    "dense_images": {
+      "episodes": 400,
+      "counts": {
+        "success": 400
+      },
+      "lookup_max_error_m": 0.00300276740551908,
+      "mode": "saved_image_nearest_replay"
+    },
+    "test_dense": {
+      "episodes": 400,
+      "counts": {
+        "success": 400
+      },
+      "lookup_max_error_m": 0.8783759833150953,
+      "mode": "saved_image_nearest_replay"
+    }
+  },
+  "artifacts": {
+    "policy.pt": "d701abdf8713b32c708c3805341c653cce56c15e17b0affcea77b3cab05337c3",
+    "observation.pt": "eee112612932071653c4479a9eb9f8b9d215217c011281b022b7f79e206e9fb6",
+    "sbc.pt": "68ebe2b02880d558e4da201375d25fd07e58aa1dbaf42bee429f19ee73fda93f",
+    "perception_contract.json": "dc9f4addccb92318180fcf3abe8f84b0899842169a168d783e504459b665fdde",
+    "observations.npz": "a5ecc92f3bbcbd7831c3b6b90e9bef6debd65334b05aebcba0b590f2761a9191"
+  },
+  "limitations": [
+    "actor/SBC transferred from the prior grayscale AEBS certificate; not retrained on real RGB",
+    "CP test coverage 93.3%, below 95%; the tube proof is conditional on observations inside the tube",
+    "SBC weights scaled by 1.1 to meet the unsafe lower threshold; verification rerun against the real image artifact",
+    "tube proof is float64 numerical interval, not formal floating-point",
+    "no live CARLA or real-vehicle claim; behavior is saved-image nearest replay"
+  ],
+  "deployment_check": {
+    "images": [
+      "000000.png",
+      "010400.png",
+      "020999.png",
+      "007416.png",
+      "009832.png",
+      "019999.png"
+    ],
+    "braking_action": [
+      3.0,
+      3.0,
+      1.7657757997512817,
+      -0.12048238515853882,
+      -1.4175201654434204,
+      -1.8090227842330933
+    ],
+    "finite": true,
+    "observation_norm": [
+      1.5711679458618164,
+      2.200953722000122,
+      3.1484944820404053,
+      4.034447193145752,
+      4.673779010772705,
+      4.893300533294678
+    ],
+    "predicted_distance_m": [
+      5.0005886834519515,
+      7.005020885274121,
+      10.020778439548735,
+      12.840518437997389,
+      14.875333023297799,
+      15.574008708598512
+    ]
+  }
+}

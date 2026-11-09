@@ -1,0 +1,29 @@
+{
+  "format": "lane_keeping_patch_cp_v1",
+  "alpha": 0.05,
+  "n_calibration": 540,
+  "rank": 514,
+  "radius_normalized": 0.07203315198421478,
+  "error_model": {
+    "kind": "global_box",
+    "radius": 0.07203315198421478
+  },
+  "physical": {
+    "e": 0.06122817918658256,
+    "theta": 0.021609945595264433
+  },
+  "coverage": {
+    "calibration": {
+      "n": 540,
+      "fraction_within": 0.9518518518518518,
+      "worst": 0.1353515386581421
+    },
+    "test": {
+      "n": 360,
+      "fraction_within": 0.9361111111111111,
+      "worst": 0.12092998623847961
+    }
+  },
+  "observer": "patch-DINO spatial soft-argmax",
+  "data": "lane_keeping_v2"
+}

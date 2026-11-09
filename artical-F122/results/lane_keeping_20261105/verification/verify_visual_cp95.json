@@ -1,0 +1,26 @@
+{
+  "actor": "results/lane_keeping_20261105/ppo_image/actor.pt",
+  "sbc": "results/lane_keeping_20261105/sbc/sbc.pt",
+  "observation_radius": 0.1337,
+  "grid": 60,
+  "error_splits": 3,
+  "region": {
+    "initial": {
+      "lower": 0.0,
+      "upper": 1.6581833362579346
+    },
+    "unsafe_lower": 17.76560401916504,
+    "initial_pass": false,
+    "unsafe_pass": false
+  },
+  "decrease": {
+    "checked_cells": 97200,
+    "active_cells": 65502,
+    "excluded_cells": 31698,
+    "violations": 51418,
+    "worst_residual": 32.89655685424805,
+    "pass_": false
+  },
+  "continuous_interval_pass": false,
+  "guarantee_scope": "finite grid interval check; not a continuous-domain or formal floating-point proof"
+}

@@ -1,0 +1,71 @@
+{
+  "task": {
+    "state": [
+      "x",
+      "y",
+      "theta"
+    ],
+    "visual_observation_dimension": 3,
+    "action": [
+      "linear_velocity",
+      "angular_velocity"
+    ],
+    "dt": 0.1,
+    "horizon": 120,
+    "scale": [
+      3.0,
+      2.0,
+      1.2
+    ],
+    "center": [
+      3.0,
+      2.0,
+      0.0
+    ],
+    "safe_low": [
+      0.35,
+      0.35,
+      -1.2
+    ],
+    "safe_high": [
+      5.65,
+      3.65,
+      1.2
+    ],
+    "initial_low": [
+      0.8,
+      1.8,
+      -0.1
+    ],
+    "initial_high": [
+      1.2,
+      2.2,
+      0.1
+    ],
+    "goal": [
+      5.0,
+      2.0
+    ],
+    "goal_radius": 0.3,
+    "obstacle": [
+      3.0,
+      2.0
+    ],
+    "obstacle_radius": 0.4,
+    "robot_radius": 0.25,
+    "safety_margin": 0.1,
+    "exclusion_radius": 0.75,
+    "v_max": 0.6,
+    "omega_max": 1.0,
+    "process_noise": 0,
+    "safety_scope": "discrete sample instants; heading operating range is part of safety; velocity commands assumed executed",
+    "online_filter": false,
+    "goal_absorbing": false
+  },
+  "seed": 7,
+  "timesteps_requested": 300000,
+  "training_radius": 0.0,
+  "curriculum": true,
+  "reward": "offline grid distance potential, never supplied to deployment controller",
+  "resume": "None"
+}

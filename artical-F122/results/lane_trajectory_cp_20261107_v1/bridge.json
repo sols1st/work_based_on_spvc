@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "trajectory_radius": 0.09009315804748166,
+  "verified_radius": 0.09009315804748166,
+  "horizon": 80,
+  "nominal_marginal_trajectory_coverage": 0.95,
+  "observer_and_policy_fixed": true,
+  "safety_implication": "All observation errors inside the verified box implies no first exit from the safe set, under the declared numerical model audit.",
+  "probability_scope": "CP marginal probability over fresh calibration sample and new rollout under the fixed registered law. Not a confidence statement for this one fixed calibration set.",
+  "acceptance_scope": "If verification success is data-dependent, the directly justified selection-safe bound is P(audit passes AND new rollout unsafe) <= alpha, assuming sound deterministic verification. Do not assert P(unsafe | audit passes) <= alpha without additional analysis.",
+  "numerical_scope": "The current audit is numerical, not an outward-rounded floating-point execution proof.",
+  "protocol_sha256": "f3e6762c1341b0b666f0595741d20afcedeec4e82f647489579a74a2ea680b2e",
+  "calibration_report_sha256": "d082ceb8941c53ed0ee0125c25bcb7e5b122f90fbe2609d80cfdce17e2ebaee8",
+  "certificate_sha256": "6e900ae1bf473286f6947d436826be3ff7e8af09992f77a70e62440c3bd1701d"
+}

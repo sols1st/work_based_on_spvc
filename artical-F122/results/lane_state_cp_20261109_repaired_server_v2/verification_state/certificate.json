@@ -1,0 +1,216 @@
+{
+  "passed": true,
+  "initial": {
+    "passed": true,
+    "unresolved": 0,
+    "bound": 0.08582801041697322,
+    "partition_area_error": 0.0,
+    "history": [
+      {
+        "depth": 0,
+        "unresolved": 0,
+        "accepted": 256
+      }
+    ]
+  },
+  "unsafe": {
+    "passed": true,
+    "unresolved": 0,
+    "bound": 23.653495792448606,
+    "partition_area_error": 0.0,
+    "history": [
+      {
+        "depth": 0,
+        "unresolved": 0,
+        "accepted": 1024
+      }
+    ]
+  },
+  "checks": [
+    {
+      "kappa": -0.01,
+      "passed": true,
+      "unresolved": 0,
+      "actual_witnesses": 0,
+      "partition_area_error": 8.881784197001252e-16,
+      "history": [
+        {
+          "depth": 0,
+          "checked": 1600,
+          "unresolved": 249,
+          "actual_witnesses": 0
+        },
+        {
+          "depth": 1,
+          "checked": 2098,
+          "unresolved": 246,
+          "actual_witnesses": 0
+        },
+        {
+          "depth": 2,
+          "checked": 2590,
+          "unresolved": 255,
+          "actual_witnesses": 0
+        },
+        {
+          "depth": 3,
+          "checked": 3100,
+          "unresolved": 247,
+          "actual_witnesses": 0
+        },
+        {
+          "depth": 4,
+          "checked": 3594,
+          "unresolved": 116,
+          "actual_witnesses": 0
+        },
+        {
+          "depth": 5,
+          "checked": 3826,
+          "unresolved": 49,
+          "actual_witnesses": 0
+        },
+        {
+          "depth": 6,
+          "checked": 3924,
+          "unresolved": 0,
+          "actual_witnesses": 0
+        }
+      ],
+      "witnesses": []
+    },
+    {
+      "kappa": 0.0,
+      "passed": true,
+      "unresolved": 0,
+      "actual_witnesses": 0,
+      "partition_area_error": 8.881784197001252e-16,
+      "history": [
+        {
+          "depth": 0,
+          "checked": 1600,
+          "unresolved": 240,
+          "actual_witnesses": 0
+        },
+        {
+          "depth": 1,
+          "checked": 2080,
+          "unresolved": 251,
+          "actual_witnesses": 0
+        },
+        {
+          "depth": 2,
+          "checked": 2582,
+          "unresolved": 273,
+          "actual_witnesses": 0
+        },
+        {
+          "depth": 3,
+          "checked": 3128,
+          "unresolved": 287,
+          "actual_witnesses": 0
+        },
+        {
+          "depth": 4,
+          "checked": 3702,
+          "unresolved": 291,
+          "actual_witnesses": 0
+        },
+        {
+          "depth": 5,
+          "checked": 4284,
+          "unresolved": 193,
+          "actual_witnesses": 0
+        },
+        {
+          "depth": 6,
+          "checked": 4670,
+          "unresolved": 122,
+          "actual_witnesses": 0
+        },
+        {
+          "depth": 7,
+          "checked": 4914,
+          "unresolved": 54,
+          "actual_witnesses": 0
+        },
+        {
+          "depth": 8,
+          "checked": 5022,
+          "unresolved": 0,
+          "actual_witnesses": 0
+        }
+      ],
+      "witnesses": []
+    },
+    {
+      "kappa": 0.01,
+      "passed": true,
+      "unresolved": 0,
+      "actual_witnesses": 0,
+      "partition_area_error": 4.440892098500626e-16,
+      "history": [
+        {
+          "depth": 0,
+          "checked": 1600,
+          "unresolved": 234,
+          "actual_witnesses": 0
+        },
+        {
+          "depth": 1,
+          "checked": 2068,
+          "unresolved": 264,
+          "actual_witnesses": 0
+        },
+        {
+          "depth": 2,
+          "checked": 2596,
+          "unresolved": 274,
+          "actual_witnesses": 0
+        },
+        {
+          "depth": 3,
+          "checked": 3144,
+          "unresolved": 267,
+          "actual_witnesses": 0
+        },
+        {
+          "depth": 4,
+          "checked": 3678,
+          "unresolved": 131,
+          "actual_witnesses": 0
+        },
+        {
+          "depth": 5,
+          "checked": 3940,
+          "unresolved": 57,
+          "actual_witnesses": 0
+        },
+        {
+          "depth": 6,
+          "checked": 4054,
+          "unresolved": 0,
+          "actual_witnesses": 0
+        }
+      ],
+      "witnesses": []
+    }
+  ],
+  "contract_sha256": "2d3a0ce67d50f750b15b4264c4a4ce03044a114e2e45d599801f9fe710930265",
+  "binding": {
+    "protocol.json": "f3e6762c1341b0b666f0595741d20afcedeec4e82f647489579a74a2ea680b2e",
+    "calibration.npz": "fb44688b83a0bc32bca565049b21192ba8ab03c4f4573e62967afc1fd9887c77",
+    "holdout.npz": "b6c5b8acb8f0d3291026b91c09a2097f0646de65d1b968ba2106f9686d6c7c30",
+    "actor.pt": "b412c6ed5298540cefb532b1e8e47b046f06fd37df1353b406a04d0957028de2",
+    "sbc.pt": "a0fdf9c3b1040e95f79f964263adfad59fedbac662e7ee3aa032aabda65c2de8",
+    "patch_projection.pt": "490e30cad8cbbc95809ba2fde9db4c99c3f8efd3ae2b6f02fb2f84f6707eb278"
+  },
+  "radius_mode": "uncapped state-dependent; bilinear maximum at four box vertices",
+  "source_sha256": {
+    "verify_state_cp.py": "9f00daf5fffc638e857f088c3ffed68be8781338fe9e71c54a474924f78b63b2",
+    "state_dependent_cp.py": "e332011ba74654c27f151a1f7d6b885c7d686aba44bf8146fe809ad6f9ead9f5",
+    "core.py": "d946db50519f272833ee6aa0e14d80cb590d8a88b733cfcdeb24f7e451097b79",
+    "learned_sbc.py": "eda56ad4cf7cdd3683244c33df2933c08792096cc47acd40d817f18a59b8f0a3"
+  },
+  "scope": "Conditional numerical SBC audit only, not an outward-rounded IEEE proof or CP coverage proof"
+}

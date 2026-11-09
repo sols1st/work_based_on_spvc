@@ -1,0 +1,30 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SPVC 实验总览 · SPVC</title><link rel="stylesheet" href="assets/style.css"></head>
+<body><nav><div class="nav-inner"><div class="brand">SPVC 实验总览<span>2026-11-09</span></div><a href="index.html" class="active">总览</a><a href="aebs.html" class="">AEBS</a><a href="lane.html" class="">车道</a><a href="parking.html" class="">停车场</a><a href="robot.html" class="">机器人</a><a href="gallery.html" class="">图片库</a><a href="process.html" class="">实验过程</a><a href="data.html" class="">数据与报告</a></div></nav><main class="wrap"><header class="hero"><h1>SPVC 实验总览</h1><p>真实图像前端、低维观测、CP 包络与非负 SBC：四个实验的配置、步骤、结果与边界。</p></header>
+<div class="badges"><span class="badge ok">AEBS：条件证书</span><span class="badge ok">车道：证书通过</span><span class="badge ok">停车场：受保护闭环证书</span><span class="badge bad">机器人：任务跑通 / 证书未通过</span></div>
+<p>这个站点把当前 SPVC 改进实验放在一起：每个实验的配置、逐步输入/输出、结果、保证边界和精选图片。原始 24k/3.6k 图片不复制，只放缩略图和完整包链接。</p>
+<div class="grid">
+<div class="card"><h3>AEBS · 真实 RGB 紧急制动</h3><p>24,000 张 640×640 CARLA RGB；DINO 距离观测；冻结回放 CP；新非负 SBC。</p>
+<div class="num">0.4184 <small>m 轨迹 CP</small></div><p>292,024 区间 · 0 见证/0 未解决 · 4,800/4,800 行为</p><img src="assets/img/aebs_real_rgb.jpg" alt="AEBS 真实 RGB 输入示例"></div>
+<div class="card"><h3>车道 · 2D 视觉保持</h3><p>192×192 渲染图；patch-DINO (ê,θ̂)；轨迹 CP；学习式非负 SBC。</p>
+<div class="num">0.09009 <small>归一化 CP</small></div><p>199/100 轨迹 · 95/100 全程覆盖 · SBC 0/0</p><img src="assets/img/lane_inputs.jpg" alt="车道输入图像"></div>
+<div class="card"><h3>停车场 · 三维视觉绕障</h3><p>4D 车辆、3D 视觉观测、在线后备；15 个起点组启动 CP。</p>
+<div class="num">30/30 <small>图像仿真</small></div><p>启动审计 233/240 · 增广可达域神经 SBC</p><img src="assets/img/parking_sbc.jpg" alt="停车场 SBC 结果图"></div>
+<div class="card"><h3>移动机器人 · 三维视觉</h3><p>3D 位姿、双动作、120 步；DINO 三维观测。</p>
+<div class="num">24/24 <small>图像闭环</small></div><p>CP 已算；SBC 未通过；CP 盒内 28/32 反例</p><img src="assets/img/robot_traj.jpg" alt="移动机器人轨迹"></div>
+</div>
+<div class="section"><h2>前端误差对比（AEBS，同一 4,920 张 test）</h2>
+<table class=""><thead><tr><th>前端</th><th>test MAE ↓</th><th>CP95 半径 ↓</th><th>test 覆盖 ↑</th></tr></thead><tbody><tr><td>原 SPVC cGAN + state_net（旧检查点）</td><td>2.747 m</td><td>5.221 m</td><td>87.64%</td></tr><tr><td>32×32 灰度 DINO（同数据）</td><td>0.1017 m</td><td>0.2656 m</td><td>90.47%</td></tr><tr><td><b>真实 RGB DINO（当前）</b></td><td><b>0.0874 m</b></td><td><b>0.2307 m</b></td><td><b>93.33%</b></td></tr></tbody></table>
+<p class="small">cGAN 行是旧 400 图检查点直接应用到新 test，不是同预算重训；灰度 vs 真实 RGB 是受控表示对比。</p>
+</div>
+<div class="section"><h2>详细过程</h2><p><a href="process.html"><b>实验过程页</b></a> 按“输入 → 做了什么 → 输出/产物 → 为什么/检查”逐步展开 AEBS、车道、停车场、移动机器人；不是只列结果数字。</p></div>
+<div class="section"><h2>怎么读</h2><div class="grid three">
+<div class="card"><h3><a href="aebs.html">AEBS</a></h3><p>真实 RGB、CP 单位修复、轨迹 CP、新 SBC、状态相关对照。</p></div>
+<div class="card"><h3><a href="lane.html">车道</a></h3><p>2D latent、轨迹 CP、SBC 审计、状态相关负结果。</p></div>
+<div class="card"><h3><a href="robot.html">机器人</a></h3><p>任务成功与证书失败的边界。</p></div>
+</div></div>
+<div class="section"><h2>统一安全标准</h2><p>非负 SBC `B≥0`；初始 `B≤1`；危险 `B≥20`；允许观测集合内 `B(next)≤B(current)`。满足时给出停止过程风险上界 `B0/20≤5%`。这是条件模型保证，不是新图像/实车/无条件 95%。</p></div>
+<div class="warnbox"><b>最新修复：</b>AEBS 旧 0.2307 m 的 tube 通过结论因单位漏乘已撤回；当前主结果是 0.418359 m 轨迹 CP + 新 SBC。历史文档保留在 <a href="../docs/archive/2026-11-09_current_cleanup/README.md">归档</a>。</div>
+</main>
+<footer><div class="footer-inner">SPVC 实验静态总览 · 结果与限制以各结果包和 docs/current 为准 · 不复制原始大数据</div></footer></body></html>

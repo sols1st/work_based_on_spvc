@@ -1,0 +1,98 @@
+{
+  "task": {
+    "state": [
+      "x",
+      "y",
+      "theta"
+    ],
+    "visual_observation_dimension": 3,
+    "action": [
+      "linear_velocity",
+      "angular_velocity"
+    ],
+    "dt": 0.1,
+    "horizon": 120,
+    "scale": [
+      3.0,
+      2.0,
+      1.2
+    ],
+    "center": [
+      3.0,
+      2.0,
+      0.0
+    ],
+    "safe_low": [
+      0.35,
+      0.35,
+      -1.2
+    ],
+    "safe_high": [
+      5.65,
+      3.65,
+      1.2
+    ],
+    "initial_low": [
+      0.8,
+      1.8,
+      -0.1
+    ],
+    "initial_high": [
+      1.2,
+      2.2,
+      0.1
+    ],
+    "goal": [
+      5.0,
+      2.0
+    ],
+    "goal_radius": 0.3,
+    "obstacle": [
+      3.0,
+      2.0
+    ],
+    "obstacle_radius": 0.4,
+    "robot_radius": 0.25,
+    "safety_margin": 0.1,
+    "exclusion_radius": 0.75,
+    "v_max": 0.6,
+    "omega_max": 1.0,
+    "process_noise": 0,
+    "safety_scope": "discrete sample instants; heading operating range is part of safety; velocity commands assumed executed",
+    "online_filter": false,
+    "goal_absorbing": false
+  },
+  "alpha": 0.05,
+  "shape": [
+    0.03,
+    0.03,
+    0.2
+  ],
+  "batch_size": 16,
+  "device": "cpu",
+  "calibration_episodes": 39,
+  "holdout_episodes": 20,
+  "calibration_seed": 2026110811,
+  "holdout_seed": 2026110812,
+  "binding": {
+    "results/mobile_robot_20261108_ppo_r1/actor.pt": "4e156023dd34c042e6317576dd1113e40ba046c207e0a03f45edcd0a6b43f487",
+    "results/mobile_robot_20261108_perception_r1/observer.pt": "06ca8646b3d5222e3dacdebffc05bd2786962ac4d384354f7576293b87349795",
+    "/root/work_based_on_spvc/external/dinov2_weights/dinov2_vits14_pretrain.pth": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+    "/root/work_based_on_spvc_robot_20261108/artical-F122/Aebs/mobile_robot/trajectory_cp.py": "814b7e470de53bb47408a94cf2751666c6eef7153d525c3c0ba41308cb34f148",
+    "/root/work_based_on_spvc_robot_20261108/artical-F122/Aebs/mobile_robot/core.py": "9268a9de6d0ddde9b271a6da2cc1a833d2b7a5adb3f7551040e070b6f8361634",
+    "/root/work_based_on_spvc_robot_20261108/artical-F122/Aebs/mobile_robot/renderer.py": "8fa0ac949102903affc389336f4f8ec736de53120c562f1029824211d8e73d93",
+    "/root/work_based_on_spvc_robot_20261108/artical-F122/Aebs/mobile_robot/perception.py": "0fbc1f339847799cd75f2b2be1f8281b120e86a8b76b05280a28ecb1c222e541",
+    "/root/work_based_on_spvc_robot_20261108/artical-F122/Aebs/dino_latent/backbone.py": "4dd02c0b77a636192986b492cea98ae40326a39dea9f72e2f55c45a734da2093",
+    "/root/work_based_on_spvc_robot_20261108/artical-F122/Aebs/lane_keeping/policy.py": "d56d4a944217cc11f0e9bb880549f5691850c015bb7f4c0f044b714436e544c7",
+    "/root/work_based_on_spvc_robot_20261108/artical-F122/Aebs/lane_keeping/cp.py": "eccf44a1b20eecf872c670646ac3ec2296b846c1866f3a77df47c4ed9c8e8cdc"
+  },
+  "law": "independent uniform initial poses, fixed nominal renderer, deterministic frozen observer and actor",
+  "score": "max over all 120 frames and 3 coordinates of abs(normalized pose error)/fixed shape",
+  "rules": {
+    "fixed_inference_batch_shape": true,
+    "unsafe_runs_retained": true,
+    "holdout_after_threshold": true,
+    "model_update": false
+  },
+  "scope": "trajectory-marginal coverage under exchangeability; not fixed-calibration conditional coverage or changed scenes"
+}

@@ -1,0 +1,241 @@
+{
+  "regions": {
+    "initial": {
+      "lower": 0.0,
+      "upper": 0.0
+    },
+    "unsafe": {
+      "lower": 25.21363605977684,
+      "upper": 57.046536347895994
+    }
+  },
+  "region_pass": true,
+  "checked_cells": 1910448,
+  "proved_cells": 284597,
+  "threshold_excluded_cells": 1843,
+  "actual_witnesses": 0,
+  "unresolved_cells": 670832,
+  "continuous_state_numerical_interval_pass": false,
+  "guarantee_scope": "stopped AEBS, all live d in (6,16], v in (1e-6,3], conditional on observation-tube support",
+  "observation_model": "tube",
+  "expectation_support_assumption_established": false,
+  "full_image_certificate": false,
+  "floating_point_formal_proof": false,
+  "arithmetic": "float64 mathematical-network interval model; no outward rounding",
+  "source_policy_sha256": "d701abdf8713b32c708c3805341c653cce56c15e17b0affcea77b3cab05337c3",
+  "source_sbc_sha256": "01cb2c8fb70053e616b653b9cfaf5e55beaaa54ffa5d24031d18953916e02c96",
+  "source_contract_sha256": "ddce43b7c602280f8c66fc044cf876bcd2db766c5b48c568a7c901e648935311",
+  "envelope_units": "m",
+  "envelope_radius_at_10m": 0.4183585683531418,
+  "witness_meaning": "positive drift for this SBC, not an unsafe rollout or impossibility of another SBC",
+  "history": [
+    {
+      "depth": 0,
+      "checked": 4096,
+      "passed": 3559,
+      "threshold_excluded": 391,
+      "actual_witnesses": 0,
+      "unresolved": 146,
+      "seconds": 0.6598363108932972
+    },
+    {
+      "depth": 1,
+      "checked": 4388,
+      "passed": 3588,
+      "threshold_excluded": 421,
+      "actual_witnesses": 0,
+      "unresolved": 233,
+      "seconds": 0.7159889319445938
+    },
+    {
+      "depth": 2,
+      "checked": 4854,
+      "passed": 3618,
+      "threshold_excluded": 436,
+      "actual_witnesses": 0,
+      "unresolved": 421,
+      "seconds": 0.8008449298795313
+    },
+    {
+      "depth": 3,
+      "checked": 5696,
+      "passed": 3674,
+      "threshold_excluded": 488,
+      "actual_witnesses": 0,
+      "unresolved": 734,
+      "seconds": 0.951509459875524
+    },
+    {
+      "depth": 4,
+      "checked": 7164,
+      "passed": 3731,
+      "threshold_excluded": 522,
+      "actual_witnesses": 0,
+      "unresolved": 1377,
+      "seconds": 1.2169249749276787
+    },
+    {
+      "depth": 5,
+      "checked": 9918,
+      "passed": 3852,
+      "threshold_excluded": 623,
+      "actual_witnesses": 0,
+      "unresolved": 2532,
+      "seconds": 1.7007009759545326
+    },
+    {
+      "depth": 6,
+      "checked": 14982,
+      "passed": 3957,
+      "threshold_excluded": 697,
+      "actual_witnesses": 0,
+      "unresolved": 4885,
+      "seconds": 2.6017745938152075
+    },
+    {
+      "depth": 7,
+      "checked": 24752,
+      "passed": 4191,
+      "threshold_excluded": 907,
+      "actual_witnesses": 0,
+      "unresolved": 9326,
+      "seconds": 4.316443831892684
+    },
+    {
+      "depth": 8,
+      "checked": 43404,
+      "passed": 10933,
+      "threshold_excluded": 1042,
+      "actual_witnesses": 0,
+      "unresolved": 11775,
+      "seconds": 7.504716397961602
+    },
+    {
+      "depth": 9,
+      "checked": 66954,
+      "passed": 25944,
+      "threshold_excluded": 1281,
+      "actual_witnesses": 0,
+      "unresolved": 8300,
+      "seconds": 11.449312531854957
+    },
+    {
+      "depth": 10,
+      "checked": 83554,
+      "passed": 31876,
+      "threshold_excluded": 1336,
+      "actual_witnesses": 0,
+      "unresolved": 10613,
+      "seconds": 14.2927795459982
+    },
+    {
+      "depth": 11,
+      "checked": 104780,
+      "passed": 43935,
+      "threshold_excluded": 1490,
+      "actual_witnesses": 0,
+      "unresolved": 9013,
+      "seconds": 17.868573259795085
+    },
+    {
+      "depth": 12,
+      "checked": 122806,
+      "passed": 50269,
+      "threshold_excluded": 1539,
+      "actual_witnesses": 0,
+      "unresolved": 11643,
+      "seconds": 20.957780323922634
+    },
+    {
+      "depth": 13,
+      "checked": 146092,
+      "passed": 61565,
+      "threshold_excluded": 1678,
+      "actual_witnesses": 0,
+      "unresolved": 11851,
+      "seconds": 24.867538711987436
+    },
+    {
+      "depth": 14,
+      "checked": 169794,
+      "passed": 66990,
+      "threshold_excluded": 1716,
+      "actual_witnesses": 0,
+      "unresolved": 18239,
+      "seconds": 28.826203085947782
+    },
+    {
+      "depth": 15,
+      "checked": 206272,
+      "passed": 81545,
+      "threshold_excluded": 1812,
+      "actual_witnesses": 0,
+      "unresolved": 21827,
+      "seconds": 34.860215371940285
+    },
+    {
+      "depth": 16,
+      "checked": 249926,
+      "passed": 90730,
+      "threshold_excluded": 1826,
+      "actual_witnesses": 0,
+      "unresolved": 34455,
+      "seconds": 42.17696336982772
+    },
+    {
+      "depth": 17,
+      "checked": 318836,
+      "passed": 115180,
+      "threshold_excluded": 1843,
+      "actual_witnesses": 0,
+      "unresolved": 44443,
+      "seconds": 53.60963309695944
+    },
+    {
+      "depth": 18,
+      "checked": 407722,
+      "passed": 128994,
+      "threshold_excluded": 1843,
+      "actual_witnesses": 0,
+      "unresolved": 75072,
+      "seconds": 68.59512486099266
+    },
+    {
+      "depth": 19,
+      "checked": 557866,
+      "passed": 164626,
+      "threshold_excluded": 1843,
+      "actual_witnesses": 0,
+      "unresolved": 114512,
+      "seconds": 93.78424955997616
+    },
+    {
+      "depth": 20,
+      "checked": 786890,
+      "passed": 186588,
+      "threshold_excluded": 1843,
+      "actual_witnesses": 0,
+      "unresolved": 207062,
+      "seconds": 132.3460348029621
+    },
+    {
+      "depth": 21,
+      "checked": 1201014,
+      "passed": 245995,
+      "threshold_excluded": 1843,
+      "actual_witnesses": 0,
+      "unresolved": 354717,
+      "seconds": 201.61973937787116
+    },
+    {
+      "depth": 22,
+      "checked": 1910448,
+      "passed": 284597,
+      "threshold_excluded": 1843,
+      "actual_witnesses": 0,
+      "unresolved": 670832,
+      "seconds": 320.120961928973
+    }
+  ],
+  "witnesses": []
+}

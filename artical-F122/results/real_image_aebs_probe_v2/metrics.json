@@ -1,0 +1,166 @@
+{
+  "status": "real_rgb_distance_probe_complete",
+  "scope": "development probe; no SBC/PPO/closed-loop certificate",
+  "data": "real 640x640 RGB, frozen DINOv2 CLS 384 cache; no 32x32 grayscale",
+  "config": {
+    "features": "/root/work_based_on_spvc/artical-F122/results/dino_expanded_v1/02_dino_h5/features.h5",
+    "train_samples": 7200,
+    "early_samples": 1800,
+    "calibration_samples": 1500,
+    "test_samples": 1500,
+    "epochs": 250,
+    "best_epoch": 175,
+    "distance_scale_m": 3.18272066116333,
+    "fit_groups": [
+      "bin_1",
+      "bin_11",
+      "bin_12",
+      "bin_14",
+      "bin_15",
+      "bin_16",
+      "bin_21",
+      "bin_22",
+      "bin_23",
+      "bin_24",
+      "bin_25",
+      "bin_27",
+      "bin_31",
+      "bin_32",
+      "bin_34",
+      "bin_35",
+      "bin_37",
+      "bin_38",
+      "bin_41",
+      "bin_42",
+      "bin_7",
+      "bin_8"
+    ],
+    "early_groups": [
+      "bin_0",
+      "bin_19",
+      "bin_3",
+      "bin_4"
+    ],
+    "calibration_groups": [
+      "bin_10",
+      "bin_20",
+      "bin_30",
+      "bin_40",
+      "bin_9"
+    ],
+    "test_groups": [
+      "bin_17",
+      "bin_29",
+      "bin_33",
+      "bin_6"
+    ],
+    "seed": 7,
+    "model": "384-128-64-1 GELU, standardized features",
+    "target": "distance_m / 3.1827"
+  },
+  "results": {
+    "calibration": {
+      "n": 1500,
+      "mae_m": 0.2177615910768509,
+      "rmse_m": 0.2944202125072479,
+      "p95_abs_m": 0.5633210182189939,
+      "max_abs_m": 1.3399639129638672,
+      "bias_m": -0.08185107260942459,
+      "groups": [
+        "bin_10",
+        "bin_20",
+        "bin_30",
+        "bin_40",
+        "bin_9"
+      ]
+    },
+    "test": {
+      "n": 1500,
+      "mae_m": 0.17858818173408508,
+      "rmse_m": 0.23697102069854736,
+      "p95_abs_m": 0.514960479736328,
+      "max_abs_m": 0.8683319091796875,
+      "bias_m": -0.029560470953583717,
+      "groups": [
+        "bin_17",
+        "bin_29",
+        "bin_33",
+        "bin_6"
+      ]
+    },
+    "fit": {
+      "n": 7200,
+      "mae_m": 0.03167363256216049,
+      "rmse_m": 0.040081825107336044,
+      "p95_abs_m": 0.07874636650085444,
+      "max_abs_m": 0.1569976806640625,
+      "bias_m": 0.00228476757183671,
+      "groups": [
+        "bin_1",
+        "bin_11",
+        "bin_12",
+        "bin_14",
+        "bin_15",
+        "bin_16",
+        "bin_21",
+        "bin_22",
+        "bin_23",
+        "bin_24",
+        "bin_25",
+        "bin_27",
+        "bin_31",
+        "bin_32",
+        "bin_34",
+        "bin_35",
+        "bin_37",
+        "bin_38",
+        "bin_41",
+        "bin_42",
+        "bin_7",
+        "bin_8"
+      ]
+    }
+  },
+  "cp": {
+    "alpha": 0.05,
+    "n": 1500,
+    "rank": 1426,
+    "q_norm": 0.17805759608745575,
+    "radius_m": 0.5667075899446203,
+    "cal_coverage": 0.9506666666666667,
+    "test_coverage": 0.9653333333333334,
+    "test_miss": 52,
+    "method": "split conformal, absolute normalized residual, one image = one score"
+  },
+  "by_weather_test": {
+    "low_sun": {
+      "n": 392,
+      "mae_m": 0.18510736525058746,
+      "p95_abs_m": 0.6073040962219238,
+      "max_abs_m": 0.8683319091796875
+    },
+    "original": {
+      "n": 363,
+      "mae_m": 0.1741003841161728,
+      "p95_abs_m": 0.48152313232421856,
+      "max_abs_m": 0.725743293762207
+    },
+    "overcast": {
+      "n": 373,
+      "mae_m": 0.18079431354999542,
+      "p95_abs_m": 0.4627790451049803,
+      "max_abs_m": 0.7540874481201172
+    },
+    "rain": {
+      "n": 372,
+      "mae_m": 0.17388562858104706,
+      "p95_abs_m": 0.5110334873199462,
+      "max_abs_m": 0.7056283950805664
+    }
+  },
+  "all_groups": [
+    "train:bin_0,bin_1,bin_11,bin_12,bin_14,bin_15,bin_16,bin_19,bin_21,bin_22,bin_23,bin_24,bin_25,bin_27,bin_3,bin_31,bin_32,bin_34,bin_35,bin_37,bin_38,bin_4,bin_41,bin_42,bin_7,bin_8",
+    "cal:bin_10,bin_20,bin_30,bin_40,bin_9",
+    "test:bin_17,bin_29,bin_33,bin_6"
+  ]
+}

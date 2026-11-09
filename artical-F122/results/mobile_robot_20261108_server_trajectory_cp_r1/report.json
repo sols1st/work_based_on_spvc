@@ -1,0 +1,46 @@
+{
+  "calibration": {
+    "q": 1.6268814326784709,
+    "finite": true,
+    "rank": 38,
+    "radii": [
+      0.04880644298035412,
+      0.04880644298035412,
+      0.32537628653569417
+    ],
+    "shape": [
+      0.03,
+      0.03,
+      0.2
+    ],
+    "alpha": 0.05,
+    "coverage": {
+      "episodes": 39,
+      "covered": 38,
+      "not_covered": 1,
+      "fraction": 0.9743589743589743
+    },
+    "unsafe": 0,
+    "protocol_sha256": "271e04753acc6a9562daf374f9d15b1a86323b0076d94377e6068112b23429dc",
+    "calibration_sha256": "76736f3b1006e2ee38d9de79d4a64bfad9303407656afdf21788afb43eca5bab"
+  },
+  "holdout": {
+    "coverage": {
+      "episodes": 20,
+      "covered": 18,
+      "not_covered": 2,
+      "fraction": 0.9,
+      "binomial_two_sided_95_interval": [
+        0.6830172859809177,
+        0.9876514728297052
+      ]
+    },
+    "unsafe": 0,
+    "reached": 20,
+    "held": 20
+  },
+  "frozen_models_unchanged": true,
+  "certificate_passed": false,
+  "safety_claim": "None yet. Separately verify a neural SBC at these exact radii.",
+  "cp_claim": "At least 1-alpha marginal coverage for a new complete 120-step rollout under the registered exchangeable law; randomness includes calibration and new rollout."
+}

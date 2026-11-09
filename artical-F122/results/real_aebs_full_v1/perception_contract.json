@@ -1,0 +1,42 @@
+{
+  "format": "vision_sls_state_cp_reference_v1",
+  "coefficients": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "fit": {
+    "degree": 3,
+    "floor_m": 0.01,
+    "note": "constant Bernstein envelope; q is the radius"
+  },
+  "calibration": {
+    "q_hat": 0.07249307632446289,
+    "rank": 4664,
+    "n": 4908,
+    "alpha": 0.05,
+    "marginal_target": 0.95
+  },
+  "coverage": {
+    "calibration": {
+      "samples": 4908,
+      "covered": 4664,
+      "mean_radius_m": 0.23072521180915828,
+      "max_error_m": 0.4459166247676194
+    },
+    "test": {
+      "samples": 4920,
+      "covered": 4592,
+      "fraction": 0.9333333333333333,
+      "max_error_m": 0.5249924708148228
+    }
+  },
+  "source_observation_sha256": "eee112612932071653c4479a9eb9f8b9d215217c011281b022b7f79e206e9fb6",
+  "source_policy_sha256": "d701abdf8713b32c708c3805341c653cce56c15e17b0affcea77b3cab05337c3",
+  "input": "true distance used offline for calibration/replay; deployment uses image only",
+  "statistical_status": "finite real-image library; calibration bins and test bins disjoint at 0.25m-bin level",
+  "independent_trajectory_calibration": false,
+  "formal_image_certificate": false,
+  "note_scope": "real 640x640 RGB CP envelope; controller is the previously certified AEBS actor; SBC transferred and scaled"
+}

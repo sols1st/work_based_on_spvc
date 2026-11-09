@@ -1,0 +1,323 @@
+{
+  "actor": "/tmp/lane_ppo_wide4/actor.pt",
+  "observer": "/tmp/lane_nominal2_proj/projection.pt",
+  "cp": "/tmp/lane_nominal_cp.json",
+  "cp_radius_normalized": 0.13372477889060974,
+  "nominal": {
+    "scene_7": {
+      "scene": {
+        "scene_id": 7,
+        "kappa": -0.01,
+        "lighting": 1.0,
+        "occluder": false,
+        "camera_lateral": 0.0,
+        "camera_height": 1.25,
+        "blur": 0.0,
+        "noise": 0.0,
+        "appearance": "nominal",
+        "split": "test"
+      },
+      "image": {
+        "episodes": 2,
+        "success": 2,
+        "unsafe": 0,
+        "mean_margin": 0.25217924974255446,
+        "mean_abs_e": 0.03921387806395967,
+        "max_abs_e": 0.1876946963894874,
+        "cp_coverage": 0.96875,
+        "mean_residual": 0.06053431168922686
+      },
+      "oracle": {
+        "episodes": 2,
+        "success": 2,
+        "unsafe": 0,
+        "mean_margin": 0.2730230456867277,
+        "mean_abs_e": 0.014360047231300063,
+        "max_abs_e": 0.08378419271305151
+      }
+    },
+    "scene_15": {
+      "scene": {
+        "scene_id": 15,
+        "kappa": 0.0,
+        "lighting": 1.0,
+        "occluder": false,
+        "camera_lateral": 0.0,
+        "camera_height": 1.25,
+        "blur": 0.0,
+        "noise": 0.0,
+        "appearance": "nominal",
+        "split": "test"
+      },
+      "image": {
+        "episodes": 2,
+        "success": 2,
+        "unsafe": 0,
+        "mean_margin": 0.21750836213159383,
+        "mean_abs_e": 0.028918069526169883,
+        "max_abs_e": 0.240300964341309,
+        "cp_coverage": 0.9750000000000001,
+        "mean_residual": 0.06107964360581175
+      },
+      "oracle": {
+        "episodes": 2,
+        "success": 2,
+        "unsafe": 0,
+        "mean_margin": 0.2755461220589396,
+        "mean_abs_e": 0.024131371188616073,
+        "max_abs_e": 0.11161174034019014
+      }
+    },
+    "scene_23": {
+      "scene": {
+        "scene_id": 23,
+        "kappa": 0.01,
+        "lighting": 1.0,
+        "occluder": false,
+        "camera_lateral": 0.0,
+        "camera_height": 1.25,
+        "blur": 0.0,
+        "noise": 0.0,
+        "appearance": "nominal",
+        "split": "test"
+      },
+      "image": {
+        "episodes": 2,
+        "success": 2,
+        "unsafe": 0,
+        "mean_margin": 0.24210831381318884,
+        "mean_abs_e": 0.041024060298505007,
+        "max_abs_e": 0.19312710163679367,
+        "cp_coverage": 0.9375,
+        "mean_residual": 0.07258020456520084
+      },
+      "oracle": {
+        "episodes": 2,
+        "success": 2,
+        "unsafe": 0,
+        "mean_margin": 0.2462879308433259,
+        "mean_abs_e": 0.033575766982831795,
+        "max_abs_e": 0.2010742867994007
+      }
+    }
+  },
+  "stress": {
+    "scene_0": {
+      "scene": {
+        "scene_id": 0,
+        "kappa": -0.01,
+        "lighting": 1.1,
+        "occluder": false,
+        "camera_lateral": 0.0,
+        "camera_height": 1.2,
+        "blur": 0.5,
+        "noise": 2.0,
+        "appearance": "randomized",
+        "split": "train"
+      },
+      "image": {
+        "episodes": 3,
+        "success": 0,
+        "unsafe": 3,
+        "mean_margin": -0.046805333803074146,
+        "mean_abs_e": 0.3129942150132395,
+        "max_abs_e": 0.8102322521449327,
+        "cp_coverage": 0.0,
+        "mean_residual": 0.5865173023126137
+      }
+    },
+    "scene_1": {
+      "scene": {
+        "scene_id": 1,
+        "kappa": 0.0,
+        "lighting": 1.1,
+        "occluder": false,
+        "camera_lateral": -0.1,
+        "camera_height": 1.3,
+        "blur": 0.5,
+        "noise": 0.0,
+        "appearance": "randomized",
+        "split": "train"
+      },
+      "image": {
+        "episodes": 3,
+        "success": 3,
+        "unsafe": 0,
+        "mean_margin": 0.2334559329541782,
+        "mean_abs_e": 0.08573813736458369,
+        "max_abs_e": 0.21666595731913027,
+        "cp_coverage": 0.85,
+        "mean_residual": 0.08342438330619201
+      }
+    },
+    "scene_2": {
+      "scene": {
+        "scene_id": 2,
+        "kappa": 0.01,
+        "lighting": 1.1,
+        "occluder": false,
+        "camera_lateral": 0.0,
+        "camera_height": 1.2,
+        "blur": 0.5,
+        "noise": 0.0,
+        "appearance": "randomized",
+        "split": "calibration"
+      },
+      "image": {
+        "episodes": 3,
+        "success": 3,
+        "unsafe": 0,
+        "mean_margin": 0.2536863464734073,
+        "mean_abs_e": 0.028031417322115035,
+        "max_abs_e": 0.21938913366593749,
+        "cp_coverage": 0.6666666666666666,
+        "mean_residual": 0.11374489302867426
+      }
+    },
+    "scene_3": {
+      "scene": {
+        "scene_id": 3,
+        "kappa": -0.01,
+        "lighting": 1.1,
+        "occluder": true,
+        "camera_lateral": 0.0,
+        "camera_height": 1.2,
+        "blur": 0.0,
+        "noise": 0.0,
+        "appearance": "randomized",
+        "split": "validation"
+      },
+      "image": {
+        "episodes": 3,
+        "success": 3,
+        "unsafe": 0,
+        "mean_margin": 0.23650336204066044,
+        "mean_abs_e": 0.09553676890743457,
+        "max_abs_e": 0.23206041717382545,
+        "cp_coverage": 0.27499999999999997,
+        "mean_residual": 0.20257692852958928
+      }
+    },
+    "scene_4": {
+      "scene": {
+        "scene_id": 4,
+        "kappa": 0.0,
+        "lighting": 1.1,
+        "occluder": false,
+        "camera_lateral": -0.1,
+        "camera_height": 1.3,
+        "blur": 0.5,
+        "noise": 2.0,
+        "appearance": "randomized",
+        "split": "calibration"
+      },
+      "image": {
+        "episodes": 3,
+        "success": 0,
+        "unsafe": 3,
+        "mean_margin": -0.010651318138130065,
+        "mean_abs_e": 0.48872071047904336,
+        "max_abs_e": 0.8637068847253803,
+        "cp_coverage": 0.0,
+        "mean_residual": 0.9336139628675255
+      }
+    },
+    "scene_5": {
+      "scene": {
+        "scene_id": 5,
+        "kappa": 0.01,
+        "lighting": 1.0,
+        "occluder": false,
+        "camera_lateral": 0.1,
+        "camera_height": 1.2,
+        "blur": 0.0,
+        "noise": 0.0,
+        "appearance": "randomized",
+        "split": "test"
+      },
+      "image": {
+        "episodes": 3,
+        "success": 3,
+        "unsafe": 0,
+        "mean_margin": 0.2409834903529793,
+        "mean_abs_e": 0.0716949448311484,
+        "max_abs_e": 0.23417720770517292,
+        "cp_coverage": 0.525,
+        "mean_residual": 0.13610217407337588
+      }
+    },
+    "scene_6": {
+      "scene": {
+        "scene_id": 6,
+        "kappa": -0.01,
+        "lighting": 1.0,
+        "occluder": false,
+        "camera_lateral": 0.1,
+        "camera_height": 1.3,
+        "blur": 0.5,
+        "noise": 0.0,
+        "appearance": "randomized",
+        "split": "train"
+      },
+      "image": {
+        "episodes": 3,
+        "success": 3,
+        "unsafe": 0,
+        "mean_margin": 0.21541304839325304,
+        "mean_abs_e": 0.19770969548739903,
+        "max_abs_e": 0.25254654459603615,
+        "cp_coverage": 0.2625,
+        "mean_residual": 0.16233234920714984
+      }
+    },
+    "scene_7": {
+      "scene": {
+        "scene_id": 7,
+        "kappa": 0.0,
+        "lighting": 1.0,
+        "occluder": false,
+        "camera_lateral": 0.1,
+        "camera_height": 1.3,
+        "blur": 0.5,
+        "noise": 2.0,
+        "appearance": "randomized",
+        "split": "train"
+      },
+      "image": {
+        "episodes": 3,
+        "success": 3,
+        "unsafe": 0,
+        "mean_margin": 0.2185870495449708,
+        "mean_abs_e": 0.02200114601642451,
+        "max_abs_e": 0.18316547825793367,
+        "cp_coverage": 0.0,
+        "mean_residual": 0.3653361613350324
+      }
+    },
+    "scene_8": {
+      "scene": {
+        "scene_id": 8,
+        "kappa": 0.01,
+        "lighting": 0.9,
+        "occluder": false,
+        "camera_lateral": 0.0,
+        "camera_height": 1.3,
+        "blur": 0.0,
+        "noise": 0.0,
+        "appearance": "randomized",
+        "split": "train"
+      },
+      "image": {
+        "episodes": 3,
+        "success": 3,
+        "unsafe": 0,
+        "mean_margin": 0.2269592029851435,
+        "mean_abs_e": 0.08717129470909075,
+        "max_abs_e": 0.1917097151502128,
+        "cp_coverage": 0.35000000000000003,
+        "mean_residual": 0.1595524687578924
+      }
+    }
+  },
+  "scope": "rendered nominal scenes for nominal; randomized scenes are OOD stress, not CP coverage"
+}

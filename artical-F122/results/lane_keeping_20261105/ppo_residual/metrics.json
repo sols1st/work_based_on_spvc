@@ -1,0 +1,73 @@
+{
+  "eps": 0.5,
+  "timesteps": 100000,
+  "seed": 7,
+  "lqr": {
+    "-0.010": {
+      "episodes": 30,
+      "success": 30,
+      "unsafe": 0,
+      "mean_margin": 0.2700764351412735,
+      "mean_abs_e": 0.011723446691281407,
+      "max_abs_e": 0.2456995540809511
+    },
+    "+0.000": {
+      "episodes": 30,
+      "success": 30,
+      "unsafe": 0,
+      "mean_margin": 0.2700835431946595,
+      "mean_abs_e": 0.011729968289109239,
+      "max_abs_e": 0.2456995540809511
+    },
+    "+0.010": {
+      "episodes": 30,
+      "success": 30,
+      "unsafe": 0,
+      "mean_margin": 0.2700874842668683,
+      "mean_abs_e": 0.011736452408115588,
+      "max_abs_e": 0.2456995540809511
+    },
+    "random_kappa": {
+      "episodes": 30,
+      "success": 30,
+      "unsafe": 0,
+      "mean_margin": 0.26717637496741004,
+      "mean_abs_e": 0.012906806956022013,
+      "max_abs_e": 0.2519288583718527
+    }
+  },
+  "residual": {
+    "-0.010": {
+      "episodes": 30,
+      "success": 30,
+      "unsafe": 0,
+      "mean_margin": 0.26989191198597096,
+      "mean_abs_e": 0.011748703854522202,
+      "max_abs_e": 0.2456995540809511
+    },
+    "+0.000": {
+      "episodes": 30,
+      "success": 30,
+      "unsafe": 0,
+      "mean_margin": 0.27109328472065364,
+      "mean_abs_e": 0.012221553907703698,
+      "max_abs_e": 0.2456995540809511
+    },
+    "+0.010": {
+      "episodes": 30,
+      "success": 30,
+      "unsafe": 0,
+      "mean_margin": 0.2713253460009961,
+      "mean_abs_e": 0.012872418129764918,
+      "max_abs_e": 0.2456995540809511
+    },
+    "random_kappa": {
+      "episodes": 30,
+      "success": 30,
+      "unsafe": 0,
+      "mean_margin": 0.26686453488035533,
+      "mean_abs_e": 0.01312887693049401,
+      "max_abs_e": 0.2519288583718527
+    }
+  }
+}

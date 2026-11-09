@@ -1,0 +1,162 @@
+{
+  "scope": "same 4,920 real-image test set, same distance labels, same 0.25m-bin split; no controller retraining",
+  "caveat": "cGAN/state_net checkpoint was trained on the old 400-image generated-image library; grayscale DINO and real RGB DINO are trained on the same 14,172 real-image train bins",
+  "rows": [
+    {
+      "name": "original SPVC cGAN+state_net",
+      "mae_m": 2.7473316072343708,
+      "rmse_m": 3.3202568104257857,
+      "p95_abs_m": 6.480094552970863,
+      "max_abs_m": 8.34191370010376,
+      "cp_radius_m": 5.2214038780143675,
+      "test_coverage": 0.8764227642276423,
+      "tube": {
+        "regions": {
+          "initial": {
+            "lower": 0.0,
+            "upper": 0.0
+          },
+          "unsafe": {
+            "lower": 27.462526010772727,
+            "upper": 56.67414546792057
+          }
+        },
+        "region_pass": true,
+        "checked_cells": 34462,
+        "proved_cells": 6606,
+        "actual_witnesses": 538,
+        "unresolved_cells": 11103,
+        "continuous_state_numerical_interval_pass": false
+      }
+    },
+    {
+      "name": "32x32 grayscale DINO",
+      "mae_m": 0.10172026604413986,
+      "rmse_m": 0.18418018519878387,
+      "p95_abs_m": 0.46695437431335507,
+      "max_abs_m": 0.9650554656982422,
+      "cp_radius_m": 0.2655838729201605,
+      "test_coverage": 0.9046747967479675,
+      "tube": {
+        "regions": {
+          "initial": {
+            "lower": 0.0,
+            "upper": 0.0
+          },
+          "unsafe": {
+            "lower": 27.462526010772727,
+            "upper": 56.67414546792057
+          }
+        },
+        "region_pass": true,
+        "checked_cells": 372442,
+        "proved_cells": 184297,
+        "actual_witnesses": 0,
+        "unresolved_cells": 0,
+        "continuous_state_numerical_interval_pass": true
+      }
+    },
+    {
+      "name": "real RGB 640x640 DINO",
+      "mae_m": 0.08741459995508194,
+      "rmse_m": 0.12110324203968048,
+      "p95_abs_m": 0.2613900661468506,
+      "max_abs_m": 0.5249929428100586,
+      "cp_radius_m": 0.23072521180915828,
+      "test_coverage": 0.9333333333333333,
+      "tube": {
+        "regions": {
+          "initial": {
+            "lower": 0.0,
+            "upper": 0.0
+          },
+          "unsafe": {
+            "lower": 27.462526010772727,
+            "upper": 56.67414546792057
+          }
+        },
+        "region_pass": true,
+        "checked_cells": 303574,
+        "proved_cells": 150153,
+        "actual_witnesses": 0,
+        "unresolved_cells": 0,
+        "continuous_state_numerical_interval_pass": true
+      }
+    }
+  ],
+  "improvement_real_vs_gray": {
+    "mae_ratio": 1.1636530521950441,
+    "cp_ratio": 1.1510830170559565,
+    "coverage_delta_pp": 2.865853658536588
+  },
+  "improvement_real_vs_cgan": {
+    "mae_ratio": 31.428749987371553,
+    "cp_ratio": 22.630400193686643,
+    "coverage_delta_pp": 5.691056910569103
+  },
+  "by_weather": {
+    "cgan": {
+      "low_sun": {
+        "n": 1230,
+        "mae_m": 3.320790636018197,
+        "p95_abs_m": 8.113694899719398
+      },
+      "original": {
+        "n": 1230,
+        "mae_m": 1.9665827760484762,
+        "p95_abs_m": 3.538668174858207
+      },
+      "overcast": {
+        "n": 1230,
+        "mae_m": 2.799659759116629,
+        "p95_abs_m": 5.328118897343542
+      },
+      "rain": {
+        "n": 1230,
+        "mae_m": 2.9022932577541805,
+        "p95_abs_m": 6.515449294242057
+      }
+    },
+    "gray": {
+      "low_sun": {
+        "n": 1230,
+        "mae_m": 0.11686252802610397,
+        "p95_abs_m": 0.5258782863616942
+      },
+      "original": {
+        "n": 1230,
+        "mae_m": 0.0952916368842125,
+        "p95_abs_m": 0.5303320407867431
+      },
+      "overcast": {
+        "n": 1230,
+        "mae_m": 0.12224800884723663,
+        "p95_abs_m": 0.4674869060516353
+      },
+      "rain": {
+        "n": 1230,
+        "mae_m": 0.07247888296842575,
+        "p95_abs_m": 0.3564522266387939
+      }
+    },
+    "real": {
+      "low_sun": {
+        "mae_m": 0.0760948,
+        "p95_abs_m": 0.1839449644
+      },
+      "original": {
+        "mae_m": 0.08169675,
+        "p95_abs_m": 0.2534149647
+      },
+      "overcast": {
+        "mae_m": 0.09513286,
+        "p95_abs_m": 0.2901434898
+      },
+      "rain": {
+        "mae_m": 0.09673399,
+        "p95_abs_m": 0.3537750721
+      }
+    }
+  },
+  "note_tube": "Same certified actor/SBC and same B<=1/B>=20/nonincrease standard; only the observation envelope changes."
+}

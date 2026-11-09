@@ -1,0 +1,138 @@
+{
+  "format": "lane_keeping_visual_sbc_certificate_v1",
+  "passed": true,
+  "controller": {
+    "type": "LQR + bounded neural residual",
+    "K": [
+      2.072731009671992,
+      2.764261518426744
+    ],
+    "eps": 0.5,
+    "residual_bound": "eps * clamp(B(obs),0,1) * tanh(z)"
+  },
+  "sbc": {
+    "type": "flat-bottom quadratic",
+    "P": [
+      [
+        8.92381134342414,
+        1.411752845406194
+      ],
+      [
+        1.4117528454061938,
+        1.5238857846527611
+      ]
+    ],
+    "c": 0.5,
+    "formula": "relu(x^T P x - c)",
+    "nonnegative": true
+  },
+  "initial": {
+    "max_quad": 0.99,
+    "max_flat": 0.49,
+    "level": 0.49
+  },
+  "certified_set": {
+    "level": 0.49,
+    "max_abs_e_m": 0.305727863931966,
+    "max_abs_theta_rad": 0.2615807903951976,
+    "inside_lane": true
+  },
+  "observation": {
+    "radius_e": 0.08,
+    "radius_theta": 0.08,
+    "source": "patch-DINO split CP 95% radius 0.072 (calibration); 0.08 used for margin"
+  },
+  "verification": {
+    "grid": 160,
+    "max_depth": 14,
+    "kappas": [
+      -0.01,
+      0.0,
+      0.01
+    ],
+    "checks": [
+      {
+        "kappa": -0.01,
+        "passed": true,
+        "certified_cells": 6420,
+        "outside_cells": 19615,
+        "plateau_cells": 2814,
+        "depth": 1,
+        "history": [
+          {
+            "depth": 0,
+            "pending": 25600,
+            "certified": 5885,
+            "outside": 19570,
+            "plateau": 2814,
+            "fail": 145
+          },
+          {
+            "depth": 1,
+            "pending": 580,
+            "certified": 535,
+            "outside": 45,
+            "plateau": 0,
+            "fail": 0
+          }
+        ]
+      },
+      {
+        "kappa": 0.0,
+        "passed": true,
+        "certified_cells": 6310,
+        "outside_cells": 19626,
+        "plateau_cells": 2814,
+        "depth": 1,
+        "history": [
+          {
+            "depth": 0,
+            "pending": 25600,
+            "certified": 5918,
+            "outside": 19570,
+            "plateau": 2814,
+            "fail": 112
+          },
+          {
+            "depth": 1,
+            "pending": 448,
+            "certified": 392,
+            "outside": 56,
+            "plateau": 0,
+            "fail": 0
+          }
+        ]
+      },
+      {
+        "kappa": 0.01,
+        "passed": true,
+        "certified_cells": 6420,
+        "outside_cells": 19615,
+        "plateau_cells": 2814,
+        "depth": 1,
+        "history": [
+          {
+            "depth": 0,
+            "pending": 25600,
+            "certified": 5885,
+            "outside": 19570,
+            "plateau": 2814,
+            "fail": 145
+          },
+          {
+            "depth": 1,
+            "pending": 580,
+            "certified": 535,
+            "outside": 45,
+            "plateau": 0,
+            "fail": 0
+          }
+        ]
+      }
+    ],
+    "certified_cells": 19150,
+    "plateau_cells": 8442,
+    "unresolved_cells": 0
+  },
+  "scope": "semantic true state + observation-error box; LQR + bounded residual class; three registered kappas; finite-grid numerical intervals; not a formal floating-point proof."
+}

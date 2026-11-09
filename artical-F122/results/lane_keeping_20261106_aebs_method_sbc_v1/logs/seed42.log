@@ -1,0 +1,24 @@
+{"initial_upper": 8.089313507080078, "unsafe_lower": 13.203498840332031, "positive": 8266, "max_drift": 1.0596389770507812, "sampled_pass": false, "certificate": false, "epoch": 250, "loss": 0.9711682200431824, "seconds": 0.48383516597095877}
+{"initial_upper": 1.347053050994873, "unsafe_lower": 21.934316635131836, "positive": 3255, "max_drift": 4.479459762573242, "sampled_pass": false, "certificate": false, "epoch": 500, "loss": 0.03483360633254051, "seconds": 0.9831659999908879}
+{"initial_upper": 0.0, "unsafe_lower": 24.50544548034668, "positive": 2494, "max_drift": 5.559378623962402, "sampled_pass": false, "certificate": false, "epoch": 750, "loss": 0.0007897164323367178, "seconds": 1.464113499969244}
+{"initial_upper": 3.7925806045532227, "unsafe_lower": 18.977724075317383, "positive": 206, "max_drift": 0.3731973171234131, "sampled_pass": false, "certificate": false, "epoch": 1000, "loss": 0.2836143970489502, "seconds": 1.8565462079131976}
+{"initial_upper": 2.2141971588134766, "unsafe_lower": 20.805267333984375, "positive": 0, "max_drift": 0.0, "sampled_pass": false, "certificate": false, "epoch": 1250, "loss": 0.12811419367790222, "seconds": 2.294264958007261}
+{"initial_upper": 1.230173110961914, "unsafe_lower": 23.710872650146484, "positive": 0, "max_drift": 0.0, "sampled_pass": false, "certificate": false, "epoch": 1500, "loss": 0.027140695601701736, "seconds": 2.7190777079667896}
+{"initial_upper": 0.2865257263183594, "unsafe_lower": 23.81664276123047, "positive": 0, "max_drift": 0.0, "sampled_pass": true, "certificate": false, "epoch": 1750, "loss": 0.005039142910391092, "seconds": 3.1068941249977797}
+{"kappa": -0.01, "depth": 0, "unresolved": 236, "outside": 755, "plateau": 415, "decreasing": 194}
+{"kappa": -0.01, "depth": 1, "unresolved": 189, "outside": 774, "plateau": 432, "decreasing": 441}
+{"kappa": -0.01, "depth": 2, "unresolved": 71, "outside": 780, "plateau": 449, "decreasing": 725}
+{"kappa": -0.01, "depth": 3, "unresolved": 10, "outside": 780, "plateau": 477, "decreasing": 829}
+{"kappa": -0.01, "depth": 4, "unresolved": 0, "outside": 780, "plateau": 483, "decreasing": 843}
+{"kappa": 0.0, "depth": 0, "unresolved": 222, "outside": 755, "plateau": 415, "decreasing": 208}
+{"kappa": 0.0, "depth": 1, "unresolved": 198, "outside": 770, "plateau": 436, "decreasing": 418}
+{"kappa": 0.0, "depth": 2, "unresolved": 96, "outside": 779, "plateau": 455, "decreasing": 690}
+{"kappa": 0.0, "depth": 3, "unresolved": 22, "outside": 779, "plateau": 476, "decreasing": 839}
+{"kappa": 0.0, "depth": 4, "unresolved": 0, "outside": 779, "plateau": 491, "decreasing": 868}
+{"kappa": 0.01, "depth": 0, "unresolved": 218, "outside": 755, "plateau": 413, "decreasing": 214}
+{"kappa": 0.01, "depth": 1, "unresolved": 204, "outside": 772, "plateau": 429, "decreasing": 413}
+{"kappa": 0.01, "depth": 2, "unresolved": 72, "outside": 780, "plateau": 446, "decreasing": 724}
+{"kappa": 0.01, "depth": 3, "unresolved": 7, "outside": 781, "plateau": 474, "decreasing": 832}
+{"kappa": 0.01, "depth": 4, "unresolved": 0, "outside": 781, "plateau": 479, "decreasing": 841}
+{"passed": true, "initial": {"passed": true, "unresolved": 0, "bound": 0.2821526152893393, "partition_area_error": 0.0, "history": [{"depth": 0, "unresolved": 0, "accepted": 256}]}, "unsafe": {"passed": true, "unresolved": 0, "bound": 23.816644918565554, "partition_area_error": 0.0, "history": [{"depth": 0, "unresolved": 0, "accepted": 1024}]}}
+{"passed": true, "rounds": 1, "source_actor_sha256": "b412c6ed5298540cefb532b1e8e47b046f06fd37df1353b406a04d0957028de2", "final_actor_sha256": "b412c6ed5298540cefb532b1e8e47b046f06fd37df1353b406a04d0957028de2", "actor_refinement_triggered": false, "model_class": "AEBS NonnegativeSBC [2,16,8,1], Tanh hidden, ReLU output", "geometric_teacher": false, "scope": "Conditional on every normalized observation error in the radius box. Continuous-box numerical audit, no outward-rounded IEEE proof, no unconditional CP trajectory probability."}

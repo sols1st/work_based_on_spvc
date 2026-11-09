@@ -1,0 +1,20 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>图片库：精选输入与结果 · SPVC</title><link rel="stylesheet" href="assets/style.css"></head>
+<body><nav><div class="nav-inner"><div class="brand">SPVC 实验总览<span>2026-11-09</span></div><a href="index.html" class="">总览</a><a href="aebs.html" class="">AEBS</a><a href="lane.html" class="">车道</a><a href="parking.html" class="">停车场</a><a href="robot.html" class="">机器人</a><a href="gallery.html" class="active">图片库</a><a href="process.html" class="">实验过程</a><a href="data.html" class="">数据与报告</a></div></nav><main class="wrap"><header class="hero"><h1>图片库：精选输入与结果</h1><p>只放缩略图；原始数据在结果包/服务器。</p></header>
+<p>只放精选缩略图；原始 24k/3.6k 图片在服务器/结果包中，不复制进站点。</p>
+<div class="grid">
+<div class="card"><img src="assets/img/aebs_real_rgb.jpg" alt="AEBS real"><h3>AEBS 真实 RGB</h3><p>6 个距离/天气组合；640×640 输入。</p></div>
+<div class="card"><img src="assets/img/aebs_gray.jpg" alt="AEBS gray"><h3>AEBS 32×32 灰度</h3><p>旧前端对照；同一任务。</p></div>
+<div class="card"><img src="assets/img/aebs_compare.jpg" alt="AEBS compare"><h3>前端误差对比</h3><p>cGAN / 灰度 / 真实 RGB 的 MAE、CP、覆盖。</p></div>
+<div class="card"><img src="assets/img/lane_inputs.jpg" alt="Lane inputs"><h3>车道输入</h3><p>不同 (e,θ,κ) 的 192×192 渲染。</p></div>
+<div class="card"><img src="assets/img/lane_closed.jpg" alt="Lane closed"><h3>车道闭环</h3><p>patch-DINO + PPO 的轨迹。</p></div>
+<div class="card"><img src="assets/img/lane_coverage.jpg" alt="Lane CP"><h3>车道轨迹 CP</h3><p>校准/留出最大误差与完整覆盖数。</p></div>
+<div class="card"><img src="assets/img/parking_sbc.jpg" alt="Parking SBC"><h3>停车场 SBC</h3><p>结构化神经 SBC / 安全集。</p></div>
+<div class="card"><img src="assets/img/parking_traj.jpg" alt="Parking trajectory"><h3>停车场轨迹</h3><p>规划反馈闭环对比。</p></div>
+<div class="card"><img src="assets/img/robot_examples.jpg" alt="Robot inputs"><h3>机器人输入</h3><p>三维视觉场景。</p></div>
+<div class="card"><img src="assets/img/robot_traj.jpg" alt="Robot traj"><h3>机器人轨迹</h3><p>开发图像闭环。</p></div>
+<div class="card"><img src="assets/img/robot_attack.jpg" alt="Robot attack"><h3>机器人反例</h3><p>CP 盒内攻击/越界示例。</p></div>
+</div>
+</main>
+<footer><div class="footer-inner">SPVC 实验静态总览 · 结果与限制以各结果包和 docs/current 为准 · 不复制原始大数据</div></footer></body></html>

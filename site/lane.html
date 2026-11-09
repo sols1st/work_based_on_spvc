@@ -1,0 +1,56 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>车道保持：2D 视觉与轨迹 CP · SPVC</title><link rel="stylesheet" href="assets/style.css"></head>
+<body><nav><div class="nav-inner"><div class="brand">SPVC 实验总览<span>2026-11-09</span></div><a href="index.html" class="">总览</a><a href="aebs.html" class="">AEBS</a><a href="lane.html" class="active">车道</a><a href="parking.html" class="">停车场</a><a href="robot.html" class="">机器人</a><a href="gallery.html" class="">图片库</a><a href="process.html" class="">实验过程</a><a href="data.html" class="">数据与报告</a></div></nav><main class="wrap"><header class="hero"><h1>车道保持：2D 视觉与轨迹 CP</h1><p>patch-DINO (ê,θ̂) → PPO → 学习式 SBC；轨迹 CP 0.090093，150+100 轨迹。</p></header>
+<div class="badges"><span class="badge ok">证书通过</span><span class="badge info">2D latent (e,θ)</span><span class="badge warn">名义渲染分布</span><span class="badge warn">数值区间</span></div>
+<div class="grid">
+<div class="card"><div class="num">0.09009 <small>归一化轨迹 CP</small></div><p>199 校准 / 100 留出；95/100 全程覆盖</p></div>
+<div class="card"><div class="num">0/0 <small>SBC 审计</small></div><p>初始 0.0858 / 危险 23.6535；三个曲率</p></div>
+<div class="card"><div class="num">12/12 <small>图像闭环</small></div><p>patch-DINO；CP 覆盖 98.1–100%；OOD 9/9</p></div>
+<div class="card"><div class="num">0.0211 <small>m e-MAE</small></div><p>θ MAE 0.0059 rad；2D 观测</p></div>
+</div>
+<div class="section"><h2>1. 任务与配置</h2>
+<div class="kv">
+<div>物理状态</div><div><code>(e,θ)</code>：横向偏差、航向偏差，2D</div>
+<div>动作</div><div>前轮转角 <code>φ∈[-0.45,0.45]</code>，1D</div>
+<div>动力学</div><div><code>e'=e+vΔt sinθ</code>，<code>θ'=θ+(vΔt/L)tanφ-vΔtκ</code>；v=4，L=2.6，Δt=0.1</div>
+<div>初态 / 安全</div><div><code>|e|≤0.25, |θ|≤0.06</code> / <code>|e|≤0.85, |θ|≤0.30</code>；H=80</div>
+<div>数据</div><div>60 个名义场景 ×60 状态 = 3,600 张 192×192 渲染图；曲率 κ∈(-0.01, 0, 0.01)</div>
+<div>前端</div><div>冻结 DINOv2-S/14 16×16 patch → soft-argmax → <code>(ê,θ̂)</code></div>
+<div>控制器</div><div>原图像 PPO；输入 <code>(ê,θ̂,κ)</code>；本包未重训策略</div>
+<div>SBC</div><div>AEBS 同类非负 <code>[2,16,8,1]</code>，Tanh/ReLU；学习式</div>
+<div>CP</div><div>80 步 ×2 坐标的轨迹最大误差；0.0900931580</div>
+<div>验证</div><div>仿射界 + 普通 IBP；三个曲率；0 实际见证/0 未解决</div>
+</div></div>
+
+<div class="section"><h2>2. 一步一步：输入 / 处理 / 输出</h2>
+<table class=""><thead><tr><th>步</th><th>输入</th><th>处理</th><th>输出 / 结果</th></tr></thead><tbody><tr><td>1. 场景/图像</td><td>60 场景 ×60 状态</td><td>渲染 192×192；按场景划分</td><td>train 2,160 / val 540 / cal 540 / test 360</td></tr><tr><td>2. 观测</td><td>patch-DINO</td><td>16×16 tokens → 空间 soft-argmax → 2D</td><td>e MAE 0.0211 m，θ 0.0059 rad</td></tr><tr><td>3. 策略</td><td>观测 (ê,θ̂,κ)</td><td>原 PPO 80k 步；观测误差扰动训练</td><td>固定 actor；未重训</td></tr><tr><td>4. 单帧 CP</td><td>校验残差</td><td>max-norm split CP</td><td>0.072 参考；证书用 0.08</td></tr><tr><td>5. 轨迹 CP</td><td>199 条轨迹</td><td>每条 80×2 最大误差；冻结 q 后再采 100</td><td>0.090093；留出 95/100</td></tr><tr><td>6. SBC</td><td>真实状态、误差盒</td><td>AEBS 同类学习式 SBC；两轮训练</td><td>初始 0.0858 / 危险 23.6535</td></tr><tr><td>7. 连续域</td><td>SBC、CP 盒、三个曲率</td><td>自适应 40×40 起，深度 18；IBP 复核</td><td>0 见证/0 未解决</td></tr><tr><td>8. 图像闭环</td><td>patch-DINO、PPO、渲染器</td><td>6 个测试场景 ×2 回合</td><td>12/12 成功；CP 覆盖 98.1–100%</td></tr></tbody></table></div>
+
+<div class="section"><h2>3. 结果与状态相关对照</h2>
+<table><thead><tr><th>项目</th><th>常量盒（主结果）</th><th>状态相关 v2（修复版）</th></tr></thead><tbody>
+<tr><td>拟合 / 校准</td><td>—</td><td>99 / 100 条，索引不重叠</td></tr>
+<tr><td>阈值 / 秩</td><td>0.090093，190/199</td><td>q=1.7205338，第 96/100 秩；无 cap</td></tr>
+<tr><td>校准覆盖</td><td>190/199</td><td>96/100</td></tr>
+<tr><td>旧留出回归覆盖</td><td>95/100</td><td><b>93/100</b>（旧数据回归，不是新盲测）</td></tr>
+<tr><td>平均半径</td><td>0.090093</td><td>0.0883927</td></tr>
+<tr><td>观测最大半径</td><td>0.090093</td><td>0.1093692；全状态域解析上界 0.2358151</td></tr>
+<tr><td>SBC</td><td>0/0，原审计</td><td><b>13,000 区间，0 见证/0 未解决，三曲率</b></td></tr>
+<tr><td>同一 100 条校准常量对照</td><td>—</td><td>半径 0.0886653；旧留出 94/100</td></tr>
+</tbody></table>
+<div class="note"><b>修复版 v2 的关键：</b>用前 99 条拟合、后 100 条校准，有限样本秩 96；留出分数只读留出数据自身残差；没有 `min(...,0.0992)` 截断。实际状态相关集合直接验证通过，不是用全域最大半径 0.235815 的扩大盒；本地/服务器各 31 项测试通过；`C` 仍固定，不是联合学习。<br><b>不能说过头：</b>93/100 是旧数据回归，不是新增盲测；状态相关包络也没有明显优于常量盒（同一校准常量 0.0886653、留出 94/100）；`C` 仍固定，不是联合学习新前端。</div>
+<div class="badbox"><b>旧 v1 仍撤回：</b>代码/报告不一致、留出分数误用校准残差、同批拟合+校准且 cap 收缩集合；旧 0.0992 盒上的 SBC 通过不能证明 CP 覆盖。见 <a href="../artical-F122/results/lane_state_cp_20261109_v1/AUDIT.md">v1 审计</a>。</div>
+</div>
+
+<div class="section"><h2>4. 输入图像与结果</h2>
+<figure><img src="assets/img/lane_inputs.jpg" alt=""><figcaption>车道输入图像：6 个不同 (e,θ,κ) 的 192×192 渲染图。</figcaption></figure>
+<figure><img src="assets/img/lane_closed.jpg" alt=""><figcaption>车道闭环轨迹示例。</figcaption></figure>
+<figure><img src="assets/img/lane_coverage.jpg" alt=""><figcaption>轨迹级 CP：校准/留出轨迹最大误差与完整覆盖数。</figcaption></figure>
+</div>
+
+<div class="section"><h2>5. 保证与边界</h2>
+<div class="note"><b>保证：</b>若每个时刻观测误差都在 CP 盒内，非负 SBC 逐后继不增；初始低、危险高；状态不首次越界。轨迹 CP 是边缘覆盖，不是逐状态条件覆盖。</div>
+<ul><li>只验证三个注册曲率 κ；不是连续曲率。</li><li>图像是名义渲染器，不是实车/新相机；CP 只覆盖注册名义分布。</li><li>数值区间，不是形式化浮点；不证明目标到达。</li><li>状态相关盒试验留出覆盖 93/100，低于常量版，不作为主结果。</li></ul>
+<p><a href="../docs/current/车道保持_轨迹级CP校准与SBC衔接_20261107.md">完整报告</a> · <a href="../artical-F122/results/lane_trajectory_cp_20261107_v1/README.md">轨迹 CP 包</a> · <a href="../artical-F122/results/lane_state_cp_20261109_v1/README.md">状态相关试验包</a></p>
+</div>
+</main>
+<footer><div class="footer-inner">SPVC 实验静态总览 · 结果与限制以各结果包和 docs/current 为准 · 不复制原始大数据</div></footer></body></html>

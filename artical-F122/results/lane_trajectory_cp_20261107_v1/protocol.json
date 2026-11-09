@@ -1,0 +1,79 @@
+{
+  "format": "lane_trajectory_cp_protocol_v1",
+  "date": "2026-11-07",
+  "unit": "one complete closed-loop image rollout",
+  "horizon": 80,
+  "alpha": 0.05,
+  "calibration_episodes": 199,
+  "holdout_episodes": 100,
+  "calibration_seed": 2026110701,
+  "holdout_seed": 2026110702,
+  "inference_batch_size": 16,
+  "environment": {
+    "device": "cpu",
+    "dtype": "float32 actor and observer; float64 plant",
+    "threads": 4,
+    "versions": {
+      "numpy": "1.26.4",
+      "torch": "2.3.1",
+      "Pillow": "13.0.0",
+      "scipy": "1.17.1"
+    }
+  },
+  "score": "max over 80 (or registered horizon) frames and two normalized absolute observation errors",
+  "distribution": {
+    "initial": "independent uniform on original initial rectangle",
+    "initial_low": [
+      -0.25,
+      -0.06
+    ],
+    "initial_high": [
+      0.25,
+      0.06
+    ],
+    "curvature": "independent uniform on registered values, constant within each rollout",
+    "kappas": [
+      -0.01,
+      0.0,
+      0.01
+    ],
+    "lighting": 1.0,
+    "camera_lateral": 0.0,
+    "camera_height": 1.25,
+    "occluder": false,
+    "blur": 0.0,
+    "pixel_noise": 0.0,
+    "image_size": [
+      192,
+      192
+    ],
+    "speed": 4.0,
+    "dt": 0.1,
+    "wheelbase": 2.6,
+    "process_noise": 0
+  },
+  "binding": {
+    "actor_sha256": "b412c6ed5298540cefb532b1e8e47b046f06fd37df1353b406a04d0957028de2",
+    "observer_sha256": "490e30cad8cbbc95809ba2fde9db4c99c3f8efd3ae2b6f02fb2f84f6707eb278",
+    "sbc_sha256": "a0fdf9c3b1040e95f79f964263adfad59fedbac662e7ee3aa032aabda65c2de8",
+    "dino_weights_sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+    "source_sha256": {
+      "trajectory_cp.py": "d8bd841102ec264ef3562e2d167aced0ababe39d32046d52d96652bdddbef1b1",
+      "cp.py": "eccf44a1b20eecf872c670646ac3ec2296b846c1866f3a77df47c4ed9c8e8cdc",
+      "core.py": "d946db50519f272833ee6aa0e14d80cb590d8a88b733cfcdeb24f7e451097b79",
+      "renderer.py": "90e3f69cc6ccd0539e39ecd958f16dc0f7076b28d4bb944bc21653665e394a4f",
+      "policy.py": "d56d4a944217cc11f0e9bb880549f5691850c015bb7f4c0f044b714436e544c7",
+      "patch_perception.py": "ab438e203952433fe9e22f2db51030749f578ecf13064d5090eb28fa4e7b027a",
+      "backbone.py": "4dd02c0b77a636192986b492cea98ae40326a39dea9f72e2f55c45a734da2093"
+    }
+  },
+  "rules": {
+    "threshold_uses_calibration_only": true,
+    "holdout_after_threshold_frozen": true,
+    "stop_or_drop_unsafe_rollouts": false,
+    "retrain_actor_or_observer": false,
+    "reuse_previous_12_development_runs": false,
+    "pad_last_inference_batch": true
+  },
+  "scope": "IID rollout generator under registered nominal simulator law; arbitrary within-rollout temporal dependence. No claim for changed policy, camera/weather, real world, fixed-state conditional coverage or longer horizon."
+}

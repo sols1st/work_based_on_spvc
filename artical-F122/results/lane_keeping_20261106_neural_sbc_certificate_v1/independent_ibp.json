@@ -1,0 +1,340 @@
+{
+  "format": "lane_ppo_relu_sbc_audit_v1",
+  "passed": true,
+  "actor": "results/lane_keeping_20261105/ppo_image/actor.pt",
+  "actor_sha256": "b412c6ed5298540cefb532b1e8e47b046f06fd37df1353b406a04d0957028de2",
+  "radius": 0.08,
+  "geometry": {
+    "initial_norm_upper": 0.9989264273886632,
+    "initial_B_upper": 0.0,
+    "unsafe_norm_lower": 1.1404146405324986,
+    "unsafe_B_lower": 28.08292810649973,
+    "facet_witnesses": [
+      {
+        "dim": 0,
+        "sign": -1.0,
+        "rows": [
+          13,
+          14
+        ],
+        "weights": [
+          0.00029699282424350585,
+          0.3620670267653285
+        ],
+        "sum": 0.362364019589572,
+        "residual": 6.386280827811344e-18
+      },
+      {
+        "dim": 0,
+        "sign": 1.0,
+        "rows": [
+          29,
+          30
+        ],
+        "weights": [
+          0.00029699282424246035,
+          0.3620670267653295
+        ],
+        "sum": 0.36236401958957193,
+        "residual": 1.107870152227797e-18
+      },
+      {
+        "dim": 1,
+        "sign": -1.0,
+        "rows": [
+          24,
+          25
+        ],
+        "weights": [
+          0.876874045956984,
+          8.25664478795493e-16
+        ],
+        "sum": 0.8768740459569848,
+        "residual": 1.1102230246251565e-16
+      },
+      {
+        "dim": 1,
+        "sign": 1.0,
+        "rows": [
+          8,
+          9
+        ],
+        "weights": [
+          0.8768740459569846,
+          2.7522149293183133e-16
+        ],
+        "sum": 0.8768740459569848,
+        "residual": 1.5536637137041702e-32
+      }
+    ],
+    "active_sublevel_coordinate_bounds": [
+      0.3986004215485292,
+      0.9645614505526834
+    ]
+  },
+  "checks": [
+    {
+      "kappa": -0.01,
+      "passed": true,
+      "unresolved": 0,
+      "partition_area_error": 4.440892098500626e-16,
+      "terminal_area": 3.9999999999999996,
+      "history": [
+        {
+          "depth": 0,
+          "input_cells": 5625,
+          "unresolved": 198,
+          "outside": 3942,
+          "plateau": 1459,
+          "decreasing": 26
+        },
+        {
+          "depth": 1,
+          "input_cells": 396,
+          "unresolved": 285,
+          "outside": 3982,
+          "plateau": 1505,
+          "decreasing": 51
+        },
+        {
+          "depth": 2,
+          "input_cells": 570,
+          "unresolved": 382,
+          "outside": 4031,
+          "plateau": 1557,
+          "decreasing": 138
+        },
+        {
+          "depth": 3,
+          "input_cells": 764,
+          "unresolved": 394,
+          "outside": 4071,
+          "plateau": 1605,
+          "decreasing": 420
+        },
+        {
+          "depth": 4,
+          "input_cells": 788,
+          "unresolved": 189,
+          "outside": 4129,
+          "plateau": 1670,
+          "decreasing": 896
+        },
+        {
+          "depth": 5,
+          "input_cells": 378,
+          "unresolved": 122,
+          "outside": 4149,
+          "plateau": 1675,
+          "decreasing": 1127
+        },
+        {
+          "depth": 6,
+          "input_cells": 244,
+          "unresolved": 31,
+          "outside": 4172,
+          "plateau": 1675,
+          "decreasing": 1317
+        },
+        {
+          "depth": 7,
+          "input_cells": 62,
+          "unresolved": 4,
+          "outside": 4179,
+          "plateau": 1675,
+          "decreasing": 1368
+        },
+        {
+          "depth": 8,
+          "input_cells": 8,
+          "unresolved": 0,
+          "outside": 4181,
+          "plateau": 1675,
+          "decreasing": 1374
+        }
+      ],
+      "unresolved_examples": []
+    },
+    {
+      "kappa": 0.0,
+      "passed": true,
+      "unresolved": 0,
+      "partition_area_error": 8.881784197001252e-16,
+      "terminal_area": 3.999999999999999,
+      "history": [
+        {
+          "depth": 0,
+          "input_cells": 5625,
+          "unresolved": 194,
+          "outside": 3942,
+          "plateau": 1461,
+          "decreasing": 28
+        },
+        {
+          "depth": 1,
+          "input_cells": 388,
+          "unresolved": 286,
+          "outside": 3981,
+          "plateau": 1501,
+          "decreasing": 51
+        },
+        {
+          "depth": 2,
+          "input_cells": 572,
+          "unresolved": 385,
+          "outside": 4030,
+          "plateau": 1563,
+          "decreasing": 127
+        },
+        {
+          "depth": 3,
+          "input_cells": 770,
+          "unresolved": 331,
+          "outside": 4071,
+          "plateau": 1614,
+          "decreasing": 474
+        },
+        {
+          "depth": 4,
+          "input_cells": 662,
+          "unresolved": 37,
+          "outside": 4131,
+          "plateau": 1666,
+          "decreasing": 987
+        },
+        {
+          "depth": 5,
+          "input_cells": 74,
+          "unresolved": 4,
+          "outside": 4141,
+          "plateau": 1667,
+          "decreasing": 1046
+        },
+        {
+          "depth": 6,
+          "input_cells": 8,
+          "unresolved": 0,
+          "outside": 4145,
+          "plateau": 1667,
+          "decreasing": 1050
+        }
+      ],
+      "unresolved_examples": []
+    },
+    {
+      "kappa": 0.01,
+      "passed": true,
+      "unresolved": 0,
+      "partition_area_error": 0.0,
+      "terminal_area": 4.0,
+      "history": [
+        {
+          "depth": 0,
+          "input_cells": 5625,
+          "unresolved": 199,
+          "outside": 3942,
+          "plateau": 1457,
+          "decreasing": 27
+        },
+        {
+          "depth": 1,
+          "input_cells": 398,
+          "unresolved": 285,
+          "outside": 3982,
+          "plateau": 1504,
+          "decreasing": 53
+        },
+        {
+          "depth": 2,
+          "input_cells": 570,
+          "unresolved": 372,
+          "outside": 4030,
+          "plateau": 1558,
+          "decreasing": 149
+        },
+        {
+          "depth": 3,
+          "input_cells": 744,
+          "unresolved": 388,
+          "outside": 4068,
+          "plateau": 1601,
+          "decreasing": 424
+        },
+        {
+          "depth": 4,
+          "input_cells": 776,
+          "unresolved": 202,
+          "outside": 4126,
+          "plateau": 1665,
+          "decreasing": 876
+        },
+        {
+          "depth": 5,
+          "input_cells": 404,
+          "unresolved": 122,
+          "outside": 4146,
+          "plateau": 1672,
+          "decreasing": 1131
+        },
+        {
+          "depth": 6,
+          "input_cells": 244,
+          "unresolved": 31,
+          "outside": 4169,
+          "plateau": 1672,
+          "decreasing": 1321
+        },
+        {
+          "depth": 7,
+          "input_cells": 62,
+          "unresolved": 4,
+          "outside": 4176,
+          "plateau": 1672,
+          "decreasing": 1372
+        },
+        {
+          "depth": 8,
+          "input_cells": 8,
+          "unresolved": 0,
+          "outside": 4178,
+          "plateau": 1672,
+          "decreasing": 1378
+        }
+      ],
+      "unresolved_examples": []
+    }
+  ],
+  "verification": {
+    "method": "ibp",
+    "grid": 75,
+    "depth": 16,
+    "error_splits": 8
+  },
+  "task": {
+    "speed": 4.0,
+    "dt": 0.1,
+    "wheelbase": 2.6,
+    "safety_halfwidths": [
+      0.85,
+      0.3
+    ],
+    "initial_halfwidths": [
+      0.25,
+      0.06
+    ],
+    "action_limit": 0.45,
+    "kappas": [
+      -0.01,
+      0.0,
+      0.01
+    ],
+    "observation_scaling": [
+      0.85,
+      0.3
+    ],
+    "process_noise": 0
+  },
+  "controller": "original PPO deterministic actor with final Tanh restored; no online filter",
+  "certificate": "finite affine/ReLU max-facet network; geometrically synthesized weights, not a trained Tanh SBC",
+  "scope": "float64 numerical continuous-box audit; registered three kappas; every observation inside radius box; no claim of unconditional CP trajectory or real-world safety"
+}

@@ -1,0 +1,54 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AEBS：真实 RGB 紧急制动 · SPVC</title><link rel="stylesheet" href="assets/style.css"></head>
+<body><nav><div class="nav-inner"><div class="brand">SPVC 实验总览<span>2026-11-09</span></div><a href="index.html" class="">总览</a><a href="aebs.html" class="active">AEBS</a><a href="lane.html" class="">车道</a><a href="parking.html" class="">停车场</a><a href="robot.html" class="">机器人</a><a href="gallery.html" class="">图片库</a><a href="process.html" class="">实验过程</a><a href="data.html" class="">数据与报告</a></div></nav><main class="wrap"><header class="hero"><h1>AEBS：真实 RGB 紧急制动</h1><p>640×640 真实 CARLA RGB → DINO 距离 → CP → 新非负 SBC；条件证书与单位修复。</p></header>
+<div class="badges"><span class="badge ok">条件证书：通过</span><span class="badge info">真实 RGB 640×640</span><span class="badge warn">冻结图片回放</span><span class="badge warn">数值区间，非形式化浮点</span></div>
+<div class="grid">
+<div class="card"><div class="num">0.4184 <small>m 轨迹 CP</small></div><p>199 校准 / 100 留出；留出 99/100 全程覆盖</p></div>
+<div class="card"><div class="num">292,024 <small>验证区间</small></div><p>0 正漂移见证 / 0 未解决；初始 0，危险下界 25.2136</p></div>
+<div class="card"><div class="num">4,800/4,800 <small>行为</small></div><p>12 组天气/颜色 ×400；全库与 test 库均成功</p></div>
+<div class="card"><div class="num">0.0874 <small>m test MAE</small></div><p>DINO 距离头；max 0.525 m；不是实车/在线渲染</p></div>
+</div>
+
+<div class="section"><h2>1. 任务与配置</h2>
+<div class="kv">
+<div>物理状态</div><div><code>x=(d,v)</code>：距离 m、速度 m/s，2D</div>
+<div>动作</div><div><code>a∈[-3,3]</code>，正值为制动，1D</div>
+<div>动力学</div><div><code>d' = d - 0.05 v</code>，<code>v' = clip(v - 0.05 a, 0, 3)</code>，Δt=0.05 s</div>
+<div>初态 / 危险</div><div><code>[15,16]×[2.5,3]</code> / <code>[5,6]×[0.5,3]</code></div>
+<div>数据</div><div>24,000 张 CARLA 640×640 RGB；4 天气 ×3 颜色；距离 5–16 m；train 14,172 / validation 4,908 / test 4,920</div>
+<div>前端</div><div>冻结 DINOv2-S/14 CLS 384 → 384-128-128-1 → 归一化距离</div>
+<div>控制器</div><div>原已认证 AEBS PPO；输入 <code>[d̂/S, v]</code>，S=3.18272066</div>
+<div>SBC</div><div>非负 <code>[2,16,8,1]</code>，Tanh 隐藏层 + ReLU 输出；v2 新训练</div>
+<div>CP</div><div>冻结回放轨迹的米制最大误差；常量 0.418359 m</div>
+<div>验证</div><div>连续域 tube 292,024 区间 + 400 图冻结回放；float64 数值区间</div>
+</div></div>
+
+<div class="section"><h2>2. 一步一步：输入 / 处理 / 输出</h2>
+<table class=""><thead><tr><th>步</th><th>输入</th><th>处理</th><th>输出 / 当前结果</th></tr></thead><tbody><tr><td>1. 数据</td><td>24k RGB PNG + labels.csv</td><td>按 0.25 m 距离 bin 分组划分；同组不跨集合</td><td>train 14,172 / val 4,908 / test 4,920</td></tr><tr><td>2. 前端</td><td>真实 RGB</td><td>冻结 DINO CLS，训练距离头；不在线渲染</td><td>test MAE 0.0874 m，max 0.525 m</td></tr><tr><td>3. 静态 CP</td><td>校验图片的 |d̂-d|</td><td>对 q 做 split CP；单位修正为 r=S·q</td><td>静态半径 0.2307 m，test 覆盖 93.33%</td></tr><tr><td>4. 回放</td><td>图片库 + PPO + 400 初态</td><td>12 组天气/颜色分别固定；最近邻查图</td><td>全库 4,800/4,800；test 4,800/4,800 成功</td></tr><tr><td>5. 轨迹 CP</td><td>199 条回放轨迹</td><td>每条取 max_t 米制误差；冻结 q 后再采 100 条</td><td>半径 0.418359 m；留出 99/100 覆盖</td></tr><tr><td>6. 新 SBC</td><td>原 actor、前端、轨迹 CP、反例</td><td>固定 actor/前端，热启动训练非负 SBC</td><td>初始 0；危险下界 25.213636；v2 通过</td></tr><tr><td>7. tube 验证</td><td>SBC v2、全部 live 状态、CP 球</td><td>自适应区间 + 仿射 actor 界；不缩小半径</td><td>292,024 区间；0 见证/0 未解决；深度 29</td></tr><tr><td>8. 行为/对照</td><td>冻结模型、12 组图片</td><td>全库/test 回放；cGAN/灰度/RGB 对比</td><td>4,800/4,800；见下表</td></tr></tbody></table></div>
+
+<div class="section"><h2>3. 当前结果与对照</h2>
+<h3>主证书（常量 CP）</h3>
+<table class=""><thead><tr><th>项目</th><th>数值</th></tr></thead><tbody><tr><td>轨迹 CP 半径</td><td>0.4183585684 m（第 190/199）</td></tr><tr><td>校准 / 留出覆盖</td><td>190/199；99/100</td></tr><tr><td>初始上界 / 危险下界</td><td>0 / 25.2136360598</td></tr><tr><td>SBC 验证</td><td>292,024 区间；0 实际反例；0 未解决；深度 29</td></tr><tr><td>行为</td><td>全库 4,800/4,800；仅 test 4,800/4,800；OOD 12 组全部成功</td></tr></tbody></table>
+<h3>旧 0.2307 m 结论为什么撤回</h3>
+<div class="badbox">旧合同把归一化 q=0.072493 直接当米；实际验证只有 ±0.07249 m。正确半径 0.230725 m 下，旧 SBC 有 <b>212 个正漂移见证 / 150,033 未解决</b>，旧 tube 通过结论撤回。旧报告保留，不作为当前证据。</div>
+<h3>状态相关 CP 对照（参考 10/29）</h3>
+<table class=""><thead><tr><th>项目</th><th>状态相关</th><th>常量主结果</th></tr></thead><tbody><tr><td>平均半径</td><td>0.3217 m</td><td>0.4184 m</td></tr><tr><td>最大半径</td><td>0.7189 m（d≈16）</td><td>0.4184 m</td></tr><tr><td>校准 / 留出覆盖</td><td>190/199；92/100</td><td>190/199；99/100</td></tr><tr><td>SBC 验证</td><td>41,070 区间；0/0；深度 11</td><td>292,024 区间；0/0；深度 29</td></tr></tbody></table>
+<p><b>注意：`C` 仍是固定 `[1,0]`，这里只学习误差尺度 `b0(d)`；不是联合学习视觉投影和 `C` 的新前端。</b> 状态相关把危险区附近半径压小、远距离放大；SBC 远距离在零平台，所以验证更省。但留出覆盖 92/100 低于常量版，<b>不替换主发布包</b>。<a href="../artical-F122/results/real_aebs_state_cp_20261109_v1/README.md">状态相关包</a></p>
+<h3>前端误差/CP 对比（同一 4,920 test）</h3>
+<table class=""><thead><tr><th>前端</th><th>test MAE</th><th>CP95 半径</th><th>test 覆盖</th></tr></thead><tbody><tr><td>cGAN+state_net（旧 400 图检查点）</td><td>2.747 m</td><td>5.221 m</td><td>87.64%</td></tr><tr><td>32×32 灰度 DINO（同数据）</td><td>0.1017 m</td><td>0.2656 m</td><td>90.47%</td></tr><tr><td><b>真实 RGB DINO（当前）</b></td><td><b>0.0874 m</b></td><td><b>0.2307 m</b></td><td><b>93.33%</b></td></tr></tbody></table>
+<p class="small">cGAN 旧检查点非同预算重训，不能写成架构因果；灰度 vs RGB 是受控表示对比。</p>
+</div>
+
+<div class="section"><h2>4. 输入图像与结果图</h2>
+<figure><img src="assets/img/aebs_real_rgb.jpg" alt=""><figcaption>真实 RGB 输入示例：6 个距离/天气组合；上方为标签。</figcaption></figure>
+<figure><img src="assets/img/aebs_compare.jpg" alt=""><figcaption>cGAN / 32×32 灰度 / 真实 RGB 的距离误差、CP 半径与 test 覆盖。</figcaption></figure>
+</div>
+
+<div class="section"><h2>5. 保证与边界</h2>
+<div class="note"><b>保证：</b>在冻结回放分布和 CP 球内观测条件下，非负 SBC 逐步不增；初始 B≤1、危险 B≥20；支持停止过程风险上界 B0/20≤5%。</div>
+<ul><li>不覆盖新图像、实车、在线 CARLA 或任意固定初态的条件覆盖。</li><li>CP test 覆盖 93.33%，低于 95%；tube 论证只覆盖包络内。</li><li>数值区间不是完整浮点形式化证明；不证明目标到达。</li><li>旧 0.2307 m tube 通过已撤回；当前以 0.418359 m + 新 SBC 为准。</li></ul>
+<p><a href="../docs/current/AEBS真实RGB图像_完整实验_20261108.md">完整报告</a> · <a href="../artical-F122/results/real_aebs_repair_20261109_release/README.md">修复发布包</a> · <a href="../artical-F122/results/real_aebs_repair_20261109_release/verification_report.json">验证 JSON</a></p>
+</div>
+</main>
+<footer><div class="footer-inner">SPVC 实验静态总览 · 结果与限制以各结果包和 docs/current 为准 · 不复制原始大数据</div></footer></body></html>

@@ -1,0 +1,32 @@
+{
+  "state": "finished",
+  "device": "cpu",
+  "artifact": "results/real_aebs_full_v1",
+  "results": {
+    "rgb": {
+      "radius_m": 0.23072521180915828,
+      "passed": false,
+      "actual_drift_witnesses": 212,
+      "unresolved": 150033,
+      "statistics_sha256": "8d1b85bca841bc3971246278bf3058167abbf0bfe8c98d68962f5e1ca10c0107",
+      "contract_sha256": "ad00ac192532b98c1a364b162345c758f97ce5b0965140c2041214eb0b981eed"
+    },
+    "gray": {
+      "radius_m": 0.2655838729201605,
+      "passed": false,
+      "actual_drift_witnesses": 202,
+      "unresolved": 128858,
+      "statistics_sha256": "948a3ec67a0675df2811b62b8c4469533fac52a7e65e262328062336970a49d1",
+      "contract_sha256": "962d406555401d9f5ce1e06d4b3f15030c723ef1edca1ab578c9c7c3e49cc04d"
+    },
+    "cgan": {
+      "radius_m": 5.2214038780143675,
+      "passed": false,
+      "actual_drift_witnesses": 624,
+      "unresolved": 59278,
+      "statistics_sha256": "c85bef30001eec07e2f95af6bdebc6fd993510b7cb57b7cd7003c7a5d64d280b",
+      "contract_sha256": "c088c63e21c297905298541399ed45b4188cb581c2af51e26015975a00e9331a"
+    }
+  },
+  "safety_claim": "No new-image probabilistic safety claim; see corrected tube results and empirical replay."
+}

@@ -1,0 +1,31 @@
+{
+  "state_dependent_sbc_passed": true,
+  "server_vt_passed": true,
+  "fit_episodes": 99,
+  "calibration_episodes": 100,
+  "rank": 96,
+  "cap": null,
+  "global_radius_bound": 0.23581505834148045,
+  "holdout_regression": {
+    "n": 100,
+    "covered": 93,
+    "fraction": 0.93,
+    "mean_radius": 0.08839272655034779,
+    "observed_max_radius": 0.10936915359782616,
+    "failed_trajectories_removed": 0
+  },
+  "fresh_independent_test": false,
+  "constant_same_calibration": {
+    "n": 100,
+    "rank": 96,
+    "radius": 0.08866529194406379,
+    "holdout_covered": 94
+  },
+  "checked_cells": 13000,
+  "actual_witnesses": 0,
+  "unresolved": 0,
+  "tests_local": 31,
+  "tests_server_vt": 31,
+  "scope": "Repaired retrospective experiment. Disjoint fit/calibration and no cap. Numerical conditional safety verified for the actual state-dependent set. Previously inspected data reused; not a fresh blinded 95% deployment guarantee.",
+  "frontend_joint_C_learning": false
+}

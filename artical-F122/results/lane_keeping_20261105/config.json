@@ -1,0 +1,107 @@
+{
+  "format": "lane_keeping_experiment_config_v1",
+  "date": "2026-11-05",
+  "task": {
+    "state": [
+      "e",
+      "theta"
+    ],
+    "action": "front_wheel_angle",
+    "speed": 4.0,
+    "dt": 0.1,
+    "wheelbase": 2.6,
+    "horizon": 80,
+    "e_max": 0.85,
+    "theta_max": 0.3,
+    "phi_max": 0.45,
+    "initial_e": 0.25,
+    "initial_theta": 0.06,
+    "kappas": [
+      -0.01,
+      0.0,
+      0.01
+    ]
+  },
+  "observation": {
+    "image_size": 192,
+    "backbone": "dinov2_vits14",
+    "feature_dim": 384,
+    "projection": "384-128-128-2",
+    "output": [
+      "e",
+      "theta"
+    ],
+    "policy_input": [
+      "e_hat",
+      "theta_hat",
+      "kappa"
+    ]
+  },
+  "certificate": {
+    "file": "certificate/residual_sbc.json",
+    "passed": true,
+    "controller": "LQR + eps*clamp(B(x),0,1)*tanh(residual)",
+    "epsilon": 0.5,
+    "sbc": "quadratic B(x)=x^T P x",
+    "initial_max_B": 0.999,
+    "sublevel": {
+      "max_abs_e_m": 0.3074287143571786,
+      "max_abs_theta_rad": 0.26278139069534767
+    },
+    "verification": "adaptive interval grid 200 depth 12; 0 unresolved",
+    "scope": "semantic 2D, three registered kappas; not original PPO, not visual error"
+  },
+  "environment": {
+    "python": "3.11.14",
+    "torch": "2.3.1",
+    "platform": "macOS-15.5-arm64-arm-64bit"
+  },
+  "data": {
+    "scenes": 24,
+    "states_per_scene": 40,
+    "total": 960,
+    "splits": {
+      "train": 600,
+      "validation": 120,
+      "calibration": 120,
+      "test": 120
+    }
+  },
+  "residual_policy": {
+    "file": "ppo_residual/residual.pt",
+    "timesteps": 100000,
+    "semantic_success": "30/30",
+    "image_success": "6/6",
+    "image_cp_coverage": 1.0,
+    "ood": "8/9"
+  },
+  "visual_certificate": {
+    "file": "certificate/visual_sbc.json",
+    "passed": true,
+    "observation": "patch-DINO 16x16 soft-argmax",
+    "cp_radius": 0.08,
+    "sbc": "relu(x^T P x - 0.5)",
+    "initial_level": 0.49,
+    "epsilon": 0.5,
+    "certified_set": {
+      "max_abs_e_m": 0.305727863931966,
+      "max_abs_theta_rad": 0.2615807903951976
+    },
+    "verification": "adaptive 160x160 depth 14, 0 unresolved",
+    "scope": "visual CP box; LQR + bounded tanh residual class; three kappas; numerical interval"
+  },
+  "patch_perception": {
+    "file": "patch_perception_v2/patch_projection.pt",
+    "data": "lane_keeping_v2",
+    "test_mae_e_m": 0.021106618512809903,
+    "test_mae_theta_rad": 0.005883906627487806,
+    "cp95_radius": 0.07203315198421478
+  },
+  "flat_residual_policy": {
+    "file": "ppo_residual_flat/residual.pt",
+    "timesteps": 100000,
+    "image_success": "12/12",
+    "image_cp_coverage": "98.1-100%",
+    "ood": "9/9"
+  }
+}

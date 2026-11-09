@@ -1,0 +1,140 @@
+{
+  "initial": {
+    "passed": true,
+    "unresolved": 0,
+    "partition_volume_error": 0.0,
+    "history": [
+      {
+        "depth": 0,
+        "unresolved": 0,
+        "extreme": 0.17931392763889234
+      }
+    ]
+  },
+  "unsafe": {
+    "passed": true,
+    "unresolved": 0,
+    "partition_volume_error": 2.220446049250313e-16,
+    "history": [
+      {
+        "depth": 0,
+        "unresolved": 0,
+        "extreme": 20.807036049709286
+      }
+    ]
+  },
+  "dynamics": {
+    "passed": false,
+    "unresolved": 7360,
+    "partition_volume_error": 6.938893903907228e-16,
+    "history": [
+      {
+        "depth": 0,
+        "unresolved": 154
+      },
+      {
+        "depth": 1,
+        "unresolved": 292
+      },
+      {
+        "depth": 2,
+        "unresolved": 375
+      },
+      {
+        "depth": 3,
+        "unresolved": 632
+      },
+      {
+        "depth": 4,
+        "unresolved": 1156
+      },
+      {
+        "depth": 5,
+        "unresolved": 1521
+      },
+      {
+        "depth": 6,
+        "unresolved": 2656
+      },
+      {
+        "depth": 7,
+        "unresolved": 4922
+      },
+      {
+        "depth": 8,
+        "unresolved": 7360
+      }
+    ]
+  },
+  "passed": false,
+  "task": {
+    "state": [
+      "x",
+      "y",
+      "theta"
+    ],
+    "visual_observation_dimension": 3,
+    "action": [
+      "linear_velocity",
+      "angular_velocity"
+    ],
+    "dt": 0.1,
+    "horizon": 120,
+    "scale": [
+      3.0,
+      2.0,
+      1.2
+    ],
+    "center": [
+      3.0,
+      2.0,
+      0.0
+    ],
+    "safe_low": [
+      0.35,
+      0.35,
+      -1.2
+    ],
+    "safe_high": [
+      5.65,
+      3.65,
+      1.2
+    ],
+    "initial_low": [
+      0.8,
+      1.8,
+      -0.1
+    ],
+    "initial_high": [
+      1.2,
+      2.2,
+      0.1
+    ],
+    "goal": [
+      5.0,
+      2.0
+    ],
+    "goal_radius": 0.3,
+    "obstacle": [
+      3.0,
+      2.0
+    ],
+    "obstacle_radius": 0.4,
+    "robot_radius": 0.25,
+    "safety_margin": 0.1,
+    "exclusion_radius": 0.75,
+    "v_max": 0.6,
+    "omega_max": 1.0,
+    "process_noise": 0,
+    "safety_scope": "discrete sample instants; heading operating range is part of safety; velocity commands assumed executed",
+    "online_filter": false,
+    "goal_absorbing": false
+  },
+  "radius": 0.03,
+  "active_level": 1.0,
+  "actor_sha256": "4e156023dd34c042e6317576dd1113e40ba046c207e0a03f45edcd0a6b43f487",
+  "sbc_sha256": "412bfc9a00f27b8577a1ea13e6457e5532631e1b7f39d47c5521914674337591",
+  "seconds": 11.728708128910512,
+  "scope": "conditional sampled-time safety under all errors in registered box; float64 numerical audit, not formal rounding proof; no CP guarantee unless separately calibrated",
+  "unresolved_meaning": "unproved boxes; not automatically real counterexamples"
+}

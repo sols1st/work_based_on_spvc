@@ -1,0 +1,36 @@
+{
+  "format": "lane_state_dependent_bernstein_cp_v1",
+  "domain": "normalized state (e/0.85, theta/0.30) in [-1,1]^2",
+  "basis": "tensor-product Bernstein degree 1 (2x2 coefficients)",
+  "coefficients": [
+    0.051119993897533085,
+    0.08790842129228744,
+    0.04059579880861649,
+    0.005
+  ],
+  "q_hat": 1.729031577336735,
+  "radius_formula": "min(q_hat * b(e,theta), 0.0992)",
+  "cap_normalized": 0.0992,
+  "calibration": {
+    "n": 199,
+    "covered": 190,
+    "fraction": 0.9547738693467337,
+    "mean_radius": 0.08888486706913748,
+    "max_radius": 0.0992
+  },
+  "holdout": {
+    "n": 100,
+    "covered": 93,
+    "fraction": 0.93,
+    "mean_radius": 0.08878929595090594,
+    "max_radius": 0.09871593789505215
+  },
+  "verification": {
+    "radius": 0.0992,
+    "passed": true,
+    "note": "SBC verified at the cap; the state-dependent box is a subset"
+  },
+  "source": "lane_trajectory_cp_20261107_v1 calibration/holdout; fit on all 199 calibration trajectories",
+  "status": "withdrawn_unverified",
+  "audit": "AUDIT.md"
+}

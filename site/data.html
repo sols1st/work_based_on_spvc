@@ -1,0 +1,25 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>数据、配置与报告 · SPVC</title><link rel="stylesheet" href="assets/style.css"></head>
+<body><nav><div class="nav-inner"><div class="brand">SPVC 实验总览<span>2026-11-09</span></div><a href="index.html" class="">总览</a><a href="aebs.html" class="">AEBS</a><a href="lane.html" class="">车道</a><a href="parking.html" class="">停车场</a><a href="robot.html" class="">机器人</a><a href="gallery.html" class="">图片库</a><a href="process.html" class="">实验过程</a><a href="data.html" class="active">数据与报告</a></div></nav><main class="wrap"><header class="hero"><h1>数据、配置与报告</h1><p>实验配置、结果包、关键 JSON 和完整报告入口。</p></header>
+<p>这里只列配置、结果包、关键 JSON 和完整报告入口；原始图片/大文件仍在服务器和结果包中。</p>
+<div class="section"><h2>实验配置与结果包</h2>
+<table class=""><thead><tr><th>实验</th><th>数据</th><th>状态/观测/动作</th><th>结果包</th><th>关键文件</th></tr></thead><tbody><tr><td>AEBS RGB</td><td>24,000 张 640×640 RGB；4 天气×3 颜色；5–16 m</td><td>2D / 1D 距离 + 实测速度 / 1D</td><td><a href="../artical-F122/results/real_aebs_repair_20261109_release/README.md">release</a></td><td><a href="../artical-F122/results/real_aebs_repair_20261109_release/perception_contract.json">CP contract</a> · <a href="../artical-F122/results/real_aebs_repair_20261109_release/verification_report.json">verification</a></td></tr><tr><td>AEBS 状态相关 CP</td><td>同上</td><td>1D 距离</td><td><a href="../artical-F122/results/real_aebs_state_cp_20261109_v1/README.md">state CP</a></td><td><a href="../artical-F122/results/real_aebs_state_cp_20261109_v1/perception_contract.json">contract</a> · <a href="../artical-F122/results/real_aebs_state_cp_20261109_v1/verification_tube/report.json">verify</a></td></tr><tr><td>AEBS 前端对比</td><td>同一 4,920 test</td><td>1D</td><td><a href="../artical-F122/results/real_aebs_baselines/README.md">baselines</a></td><td><a href="../artical-F122/results/real_aebs_baselines/comparison.json">comparison JSON</a></td></tr><tr><td>车道</td><td>3,600 张 192×192 渲染；60 场景</td><td>2D / 2D (ê,θ̂)+κ / 1D</td><td><a href="../artical-F122/results/lane_trajectory_cp_20261107_v1/README.md">trajectory CP</a></td><td><a href="../artical-F122/results/lane_repair_20261109_audit/bridge.json">audit bridge</a></td></tr><tr><td>车道状态相关 CP v2</td><td>复用 199 条轨迹；99/100 分离</td><td>2D</td><td><a href="../artical-F122/results/lane_state_cp_20261109_repaired_v2/README.md">repaired v2</a></td><td><a href="../artical-F122/results/lane_state_cp_20261109_repaired_v2/perception_contract.json">contract</a> · <a href="../artical-F122/results/lane_state_cp_20261109_repaired_v2/verification_state/certificate.json">state cert</a></td></tr><tr><td>车道状态相关 v1（已撤回）</td><td>旧错误版</td><td>2D</td><td><a href="../artical-F122/results/lane_state_cp_20261109_v1/AUDIT.md">audit</a></td><td>不可引用；代码/报告不一致</td></tr><tr><td>停车场</td><td>15 起点组；启动 975 张图像</td><td>4D / 3D / 2D</td><td><a href="../artical-F122/results/vision_sls_parking_20261103_neural_sbc_certificate_v1/README.md">package</a></td><td><a href="../artical-F122/results/vision_sls_parking_20261103_neural_sbc_certificate_v1/certificate.json">certificate</a></td></tr><tr><td>移动机器人</td><td>2,400+400+400 张 224×224 渲染</td><td>3D / 3D / 2D</td><td><a href="../artical-F122/results/mobile_robot_20261108_server_trajectory_cp_r1/report.json">trajectory CP</a></td><td><a href="../artical-F122/results/mobile_robot_20261108_server_attack_cp/report.json">attack</a> · <a href="../artical-F122/results/mobile_robot_20261108_server_sbc_r6/report.json">SBC summary</a></td></tr></tbody></table></div>
+<div class="section"><h2>完整文档</h2><ul>
+<li><a href="../docs/current/README.md">docs/current 当前入口</a></li>
+<li><a href="../docs/current/当前方案与验证结果.md">当前方案与验证结果</a></li>
+<li><a href="../docs/current/AEBS真实RGB图像_完整实验_20261108.md">AEBS RGB 修复后完整实验</a></li>
+<li><a href="../docs/current/AEBS前端对比_cGAN_灰度_真实RGB_20261108.md">AEBS 前端对比</a></li>
+<li><a href="../docs/current/车道保持_轨迹级CP校准与SBC衔接_20261107.md">车道轨迹 CP 与 SBC</a></li>
+<li><a href="../docs/current/停车场神经SBC_构造证明与实验_20261103.md">停车场神经 SBC 专题</a></li>
+<li><a href="../docs/current/移动机器人_三维视觉实验_20261108.md">移动机器人专题</a></li>
+</ul></div>
+<div class="section"><h2>原始数据位置</h2><div class="kv">
+<div>AEBS RGB</div><div><code>/root/work_based_on_spvc/carla_data_spvc_expanded/full01</code>（服务器，约 17 GB）</div>
+<div>车道</div><div>由 <code>Aebs/lane_keeping/renderer.py</code> 在结果包中复现；完整 v2 数据在服务器</div>
+<div>停车场</div><div>结果包 <code>vision_sls_parking_20261103_neural_sbc_certificate_v1/</code></div>
+<div>移动机器人</div><div><code>/root/work_based_on_spvc_robot_20261108</code>（服务器）</div>
+</div></div>
+<div class="warnbox">站点不复制 24,000 张原图和 17 GB 数据；只提供缩略图、配置和结果包链接。</div>
+</main>
+<footer><div class="footer-inner">SPVC 实验静态总览 · 结果与限制以各结果包和 docs/current 为准 · 不复制原始大数据</div></footer></body></html>

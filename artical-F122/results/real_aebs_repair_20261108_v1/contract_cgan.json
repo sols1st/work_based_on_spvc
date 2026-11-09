@@ -1,0 +1,45 @@
+{
+  "format": "vision_sls_state_cp_reference_v1",
+  "coefficients": [
+    3.18272066116333,
+    3.18272066116333,
+    3.18272066116333,
+    3.18272066116333
+  ],
+  "fit": {
+    "degree": 3,
+    "floor_m": 0.01,
+    "note": "constant metre coefficients; radius = normalized q * distance scale"
+  },
+  "calibration": {
+    "q_hat": 1.6405473284940657,
+    "rank": 4664,
+    "n": 4908,
+    "alpha": 0.05,
+    "marginal_target": 0.95
+  },
+  "coverage": {
+    "calibration": {
+      "samples": 4908,
+      "mean_radius_m": 5.2214038780143675,
+      "fraction": 0.9502852485737572
+    },
+    "test": {
+      "samples": 4920,
+      "fraction": 0.8764227642276423
+    }
+  },
+  "source_observation_sha256": "eee112612932071653c4479a9eb9f8b9d215217c011281b022b7f79e206e9fb6",
+  "source_policy_sha256": "d701abdf8713b32c708c3805341c653cce56c15e17b0affcea77b3cab05337c3",
+  "input": "true distance used offline for calibration/replay; deployment uses image only",
+  "statistical_status": "distance-bin held-out empirical envelope; ordinary image-level exchangeability NOT established",
+  "independent_trajectory_calibration": false,
+  "formal_image_certificate": false,
+  "note_scope": "Controller artifact stays fixed. Gray/cGAN are radius sensitivity comparisons, not RGB encoder identities.",
+  "envelope_units": "m",
+  "score_units": "normalized_distance",
+  "distance_scale_m": 3.18272066116333,
+  "evaluation_frontend": "cgan",
+  "evaluation_role": "fixed actor/SBC sensitivity to empirical error radius",
+  "source_statistics_sha256": "c85bef30001eec07e2f95af6bdebc6fd993510b7cb57b7cd7003c7a5d64d280b"
+}

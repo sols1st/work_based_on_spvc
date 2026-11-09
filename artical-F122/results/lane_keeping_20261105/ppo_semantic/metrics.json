@@ -1,0 +1,40 @@
+{
+  "mode": "semantic",
+  "timesteps": 50000,
+  "seed": 7,
+  "cp": null,
+  "evaluation": {
+    "-0.010": {
+      "episodes": 30,
+      "success": 30,
+      "unsafe": 0,
+      "mean_margin": 0.26834666569606186,
+      "mean_abs_e": 0.02971045923609518,
+      "max_abs_e": 0.2456995540809511
+    },
+    "+0.000": {
+      "episodes": 30,
+      "success": 30,
+      "unsafe": 0,
+      "mean_margin": 0.2694365961461024,
+      "mean_abs_e": 0.028223740646779554,
+      "max_abs_e": 0.2456995540809511
+    },
+    "+0.010": {
+      "episodes": 30,
+      "success": 30,
+      "unsafe": 0,
+      "mean_margin": 0.26786385633581483,
+      "mean_abs_e": 0.06841408763766034,
+      "max_abs_e": 0.2456995540809511
+    },
+    "random_kappa": {
+      "episodes": 30,
+      "success": 30,
+      "unsafe": 0,
+      "mean_margin": 0.2644122274077935,
+      "mean_abs_e": 0.040951752754849816,
+      "max_abs_e": 0.2519288583718527
+    }
+  }
+}

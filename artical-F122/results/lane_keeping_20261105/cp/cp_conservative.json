@@ -1,0 +1,36 @@
+{
+  "format": "lane_keeping_cp_v1",
+  "alpha": 0.05,
+  "n_calibration": 120,
+  "rank": 115,
+  "radius_normalized": 0.3,
+  "error_model": {
+    "kind": "global_box",
+    "radius": 0.3
+  },
+  "physical": {
+    "e": 0.255,
+    "theta": 0.09
+  },
+  "coverage": {
+    "calibration": {
+      "n": 120,
+      "fraction_within": 1.0,
+      "max_norm_quantile_95": 0.13210758566856384,
+      "worst": 0.24680489301681519
+    },
+    "test": {
+      "n": 120,
+      "fraction_within": 1.0,
+      "max_norm_quantile_95": 0.09803074896335601,
+      "worst": 0.23459702730178833
+    }
+  },
+  "residual": {
+    "mean_e": -0.0010562852257862687,
+    "mean_theta": 0.0017634328687563539,
+    "std_e": 0.04950481653213501,
+    "std_theta": 0.032284196466207504
+  },
+  "note": "conservative empirical envelope for verification, not a 95% split-CP radius; coverage fields are at radius 0.30"
+}

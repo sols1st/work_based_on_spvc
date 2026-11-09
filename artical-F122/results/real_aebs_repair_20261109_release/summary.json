@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-09",
+  "runtime": "server root@10.11.154.191:20147 conda vt CPU",
+  "neural_sbc_numerical_audit_pass": true,
+  "radius_m": 0.4183585683531419,
+  "checked_cells": 292024,
+  "unresolved": 0,
+  "actual_drift_witnesses": 0,
+  "initial_upper": 0,
+  "unsafe_lower": 25.21363605977684,
+  "actor_changed": false,
+  "observer_changed": false,
+  "sbc_retrained": true,
+  "trajectory_cp": {
+    "calibration_n": 199,
+    "holdout_n": 100,
+    "covered_holdout": 99,
+    "successful_holdout": 100,
+    "law": "frozen RGB image replay; IID initial state and fixed-per-episode appearance"
+  },
+  "tests": {
+    "aebs_local": 13,
+    "aebs_server_vt": 13,
+    "lane_local": 27,
+    "lane_server_vt": 27
+  },
+  "safety_scope": "Numerical robust SBC for the stopped AEBS model conditional on the observation tube. CP is trajectory-marginal for the fixed registered replay law only; no new-image, real-vehicle, arrival or formal floating-point guarantee.",
+  "probability_scope": "If the deterministic audit is sound, covered trajectories are safe; selection-safe P(audit accepted AND unsafe new registered-law trajectory)<=0.05. Not P(unsafe|audit accepted)<=0.05."
+}

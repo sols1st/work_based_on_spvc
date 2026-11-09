@@ -1,0 +1,40 @@
+{
+  "mode": "noisy",
+  "timesteps": 80000,
+  "seed": 7,
+  "cp": "/tmp/lane_cp_cons.json",
+  "evaluation": {
+    "-0.010": {
+      "episodes": 10,
+      "success": 10,
+      "unsafe": 0,
+      "mean_margin": 0.16779928548487075,
+      "mean_abs_e": 0.05720884269101395,
+      "max_abs_e": 0.24320676450682935
+    },
+    "+0.000": {
+      "episodes": 10,
+      "success": 10,
+      "unsafe": 0,
+      "mean_margin": 0.16541346191142328,
+      "mean_abs_e": 0.059131591403983684,
+      "max_abs_e": 0.24124986516548863
+    },
+    "+0.010": {
+      "episodes": 10,
+      "success": 10,
+      "unsafe": 0,
+      "mean_margin": 0.16738063793107008,
+      "mean_abs_e": 0.06239406377695552,
+      "max_abs_e": 0.24150517620771403
+    },
+    "random_kappa": {
+      "episodes": 10,
+      "success": 10,
+      "unsafe": 0,
+      "mean_margin": 0.16857591710187947,
+      "mean_abs_e": 0.06887363082814621,
+      "max_abs_e": 0.2447781706860761
+    }
+  }
+}

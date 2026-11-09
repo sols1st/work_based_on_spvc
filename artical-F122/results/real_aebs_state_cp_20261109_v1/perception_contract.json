@@ -1,0 +1,56 @@
+{
+  "format": "vision_sls_state_cp_reference_v1",
+  "coefficients": [
+    0.011726636977615815,
+    0.017215496020676412,
+    0.01464028390488681,
+    0.036534183170161966
+  ],
+  "envelope_units": "m",
+  "score_units": "dimensionless",
+  "fit": {
+    "objective": 0.02320116011851343,
+    "degree": 3,
+    "floor_m": 0.01,
+    "gamma": 0.0,
+    "slack_penalty": 20.0,
+    "solver": "HiGHS",
+    "positivity": "nonnegative Bernstein basis on [5,16]"
+  },
+  "calibration": {
+    "q_hat": 19.702935672278784,
+    "rank": 190,
+    "n": 199,
+    "alpha": 0.05,
+    "marginal_target": 0.95,
+    "coverage_lower_at_confidence": 0.9079192628657627
+  },
+  "coverage": {
+    "calibration": {
+      "samples": 199,
+      "covered": 190,
+      "mean_radius_m": 0.3216568532408029,
+      "max_radius_m": 0.7188553095458842
+    },
+    "holdout": {
+      "samples": 100,
+      "covered": 92,
+      "mean_radius_m": 0.32185857587063205,
+      "max_radius_m": 0.7197127716973508
+    }
+  },
+  "source_policy_sha256": "d701abdf8713b32c708c3805341c653cce56c15e17b0affcea77b3cab05337c3",
+  "source_observation_sha256": "eee112612932071653c4479a9eb9f8b9d215217c011281b022b7f79e206e9fb6",
+  "protocol": {
+    "calibration_seed": 2026110851,
+    "holdout_seed": 2026110852,
+    "horizon": 400,
+    "initial": "IID uniform [15,16]x[2.5,3]",
+    "appearance": "12 weather/color groups, fixed per episode",
+    "distribution": "frozen-image nearest replay",
+    "state_envelope": "b0(d) degree 3 nonnegative Bernstein"
+  },
+  "independent_trajectory_calibration": true,
+  "formal_image_certificate": false,
+  "statistical_status": "trajectory-marginal CP for the frozen replay law; state-dependent scale b0(d)"
+}

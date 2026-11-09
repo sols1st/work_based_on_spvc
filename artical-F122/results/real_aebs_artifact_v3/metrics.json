@@ -1,0 +1,127 @@
+{
+  "status": "real_rgb_artifact_complete",
+  "scope": "observation+PPO+CP; SBC not trained; no certificate",
+  "data": {
+    "images": 24000,
+    "train": 14172,
+    "calibration": 4908,
+    "test": 4920,
+    "train_bins": [
+      "bin_0",
+      "bin_1",
+      "bin_11",
+      "bin_12",
+      "bin_14",
+      "bin_15",
+      "bin_16",
+      "bin_19",
+      "bin_21",
+      "bin_22",
+      "bin_23",
+      "bin_24",
+      "bin_25",
+      "bin_27",
+      "bin_3",
+      "bin_31",
+      "bin_32",
+      "bin_34",
+      "bin_35",
+      "bin_37",
+      "bin_38",
+      "bin_4",
+      "bin_41",
+      "bin_42",
+      "bin_7",
+      "bin_8"
+    ],
+    "calibration_bins": [
+      "bin_10",
+      "bin_17",
+      "bin_20",
+      "bin_29",
+      "bin_30",
+      "bin_33",
+      "bin_40",
+      "bin_6",
+      "bin_9"
+    ],
+    "test_bins": [
+      "bin_13",
+      "bin_18",
+      "bin_2",
+      "bin_26",
+      "bin_28",
+      "bin_36",
+      "bin_39",
+      "bin_43",
+      "bin_5"
+    ]
+  },
+  "observation": {
+    "feature_dim": 384,
+    "hidden": 128,
+    "best_epoch": 295,
+    "train_mae_m": 0.007653387263417244,
+    "cal_mae_m": 0.08069096505641937,
+    "test_mae_m": 0.08741459995508194,
+    "cal_max_m": 0.44591617584228516,
+    "test_max_m": 0.5249929428100586
+  },
+  "cp": {
+    "q_norm": 0.07249307632446289,
+    "radius_m": 0.23072521180915828,
+    "cal_coverage": 0.9502852485737572,
+    "test_coverage": 0.9333333333333333,
+    "n": 4908,
+    "rank": 4664
+  },
+  "behavior": {
+    "nominal": {
+      "episodes": 400,
+      "counts": {
+        "success": 400
+      },
+      "lookup_max_error_m": 0.0,
+      "mode": "nominal_Cx"
+    },
+    "train_images": {
+      "episodes": 400,
+      "counts": {
+        "success": 400
+      },
+      "lookup_max_error_m": 0.3783685652016402,
+      "mode": "saved_image_nearest_replay"
+    },
+    "calibration_images": {
+      "episodes": 400,
+      "counts": {
+        "unsafe": 400
+      },
+      "lookup_max_error_m": 1.002522321237393,
+      "mode": "saved_image_nearest_replay"
+    },
+    "test_images_dense": {
+      "episodes": 400,
+      "counts": {
+        "success": 400
+      },
+      "lookup_max_error_m": 0.0030030758675820834,
+      "mode": "saved_image_nearest_replay"
+    },
+    "test_images_only": {
+      "episodes": 400,
+      "counts": {
+        "unsafe": 400
+      },
+      "lookup_max_error_m": 0.8783438990320747,
+      "mode": "saved_image_nearest_replay"
+    }
+  },
+  "config": {
+    "ppo_steps": 100000,
+    "epochs": 300,
+    "seed": 7,
+    "features": "/root/work_based_on_spvc/artical-F122/results/dino_expanded_v1/02_dino_h5/features.h5",
+    "test_features": "results/real_aebs_artifact_v2/test_features.h5"
+  }
+}

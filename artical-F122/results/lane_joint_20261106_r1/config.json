@@ -1,0 +1,34 @@
+{
+  "actor": "results/lane_keeping_20261105/ppo_image/actor.pt",
+  "output_dir": "results/lane_joint_20261106_r1",
+  "resume": null,
+  "extra_states": null,
+  "epochs": 6000,
+  "seed": 41,
+  "radius": 0.08,
+  "error_splits": 2,
+  "learning_rate": 0.003,
+  "hidden": [
+    16,
+    8
+  ],
+  "drift_weight": 20.0,
+  "bound_method": "ibp",
+  "source_actor_sha256": "b412c6ed5298540cefb532b1e8e47b046f06fd37df1353b406a04d0957028de2",
+  "model_class": "Aebs.vision_sls.sbc_cp.NonnegativeSBC",
+  "features": [
+    2,
+    16,
+    8,
+    1
+  ],
+  "geometric_teacher": false,
+  "actor_updated": false,
+  "verification_thresholds": {
+    "initial": 1,
+    "unsafe": 20,
+    "drift": 0
+  },
+  "training_only_raw_margin": true,
+  "seed_role": "development; not independent final testing"
+}

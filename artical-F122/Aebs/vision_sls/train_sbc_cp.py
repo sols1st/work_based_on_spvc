@@ -8,6 +8,7 @@ Tube robustness is conditional; marginal CP does not certify the image tail.
 import argparse
 import copy
 import json
+import os
 import time
 from pathlib import Path
 import numpy as np
@@ -15,7 +16,7 @@ import torch
 from Aebs.VT.utils import MLP
 from Aebs.system.env import Aebs
 from .deploy import VisionSLSController
-from .conformal import envelope
+from .conformal import envelope,validate_contract_units
 from .cp_ncbf import action_bounds,successors
 from .sbc_cp import barrier_bounds, successor_upper, NonnegativeSBC
 from .audit_sbc_cp import region_grid
@@ -78,8 +79,8 @@ def main(argv=None):
     if args.output_dir.exists():p.error('choose a new output directory')
     if args.epsilon<=0 or args.epochs<1:p.error('positive epsilon and training budget required')
     args.output_dir.mkdir(parents=True)
-    torch.set_num_threads(1);torch.manual_seed(args.seed)
-    contract=json.loads(args.perception_contract.read_text())
+    torch.set_num_threads(int(os.environ.get('OMP_NUM_THREADS','1')));torch.manual_seed(args.seed)
+    contract=validate_contract_units(json.loads(args.perception_contract.read_text()))
     source=args.artifact_dir
     for field,name in [('source_policy_sha256','policy.pt'),('source_observation_sha256','observation.pt')]:
         if contract[field]!=sha256(source/name):raise ValueError('model identity mismatch')

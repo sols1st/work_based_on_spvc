@@ -6,6 +6,7 @@ success, and keep observation/plant uncertainty in the SBC loss.
 import argparse
 import copy
 import json
+import os
 import shutil
 from pathlib import Path
 import numpy as np
@@ -43,7 +44,7 @@ def main(argv=None):
     args=p.parse_args(argv)
     if args.output_dir.exists():p.error('choose a new output directory')
     args.output_dir.mkdir(parents=True);out=args.output_dir
-    torch.set_num_threads(1);torch.manual_seed(61)
+    torch.set_num_threads(int(os.environ.get('OMP_NUM_THREADS','1')));torch.manual_seed(61)
     controller=VisionSLSController(args.artifact_dir);policy=controller.policy
     original=copy.deepcopy(policy).eval().requires_grad_(False)
     cfg=json.loads((args.barrier_dir/'config.json').read_text())

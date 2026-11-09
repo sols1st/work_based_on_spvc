@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "model": "AEBS NonnegativeSBC [2,16,8,1], Tanh/Tanh/ReLU",
+  "geometric_teacher": false,
+  "source_actor_unchanged": true,
+  "actor_feedback_triggered": false,
+  "actor_feedback_implemented_and_regression_tested": true,
+  "sbc_training_seeds": [
+    41,
+    42
+  ],
+  "ppo_seeds": 1,
+  "primary_initial_upper": 0.08582801041697322,
+  "primary_unsafe_lower": 23.653495792448613,
+  "ibp_initial_upper": 0.607152542617328,
+  "ibp_unsafe_lower": 20.14060242826668,
+  "regression_error_episodes": 720,
+  "image_episodes": 12,
+  "image_full_box_episodes": 10,
+  "tests": 13,
+  "scope": "Conditional on every normalized observation error in the radius box. Continuous-box numerical audit, no outward-rounded IEEE proof, no unconditional CP trajectory probability."
+}
