@@ -5,6 +5,7 @@ the axis-aligned raw-latent box [-q,q]^2. Under the explicit inverse actor
 interface, the semantic verifier sees precisely the delta box.
 """
 import argparse
+import importlib.metadata as metadata
 import json
 import shutil
 import subprocess
@@ -79,6 +80,7 @@ def main(argv=None):
         horizon=args.horizon,alpha=args.alpha,calibration_episodes=args.calibration_episodes,
         holdout_episodes=args.holdout_episodes,calibration_seed=args.calibration_seed,
         holdout_seed=args.holdout_seed,batch_size=args.batch_size,device='cpu',threads=4,
+        versions={name:metadata.version(name) for name in ['numpy','torch','Pillow','scipy']},
         C=C.tolist(),state_scales=[core.E_SCALE,core.THETA_SCALE],
         controller='pi_latent(y,k)=pi_old(solve(C,y),k); coordinate adaptation, no PPO retraining',
         score='max_t ||solve(C,p(DINO(I_t)))-x_t||_infinity',
@@ -91,10 +93,11 @@ def main(argv=None):
         bindings={name:sha256(args.output_dir/name) for name in ['joint_observation.pt','actor.pt','sbc.pt']},
         dino_weights_sha256=sha256(args.dino_weights),
         source_sha256={name:sha256(source/name) for name in ['joint_trajectory_cp.py','joint_observation.py',
-            'trajectory_cp.py','core.py','renderer.py','policy.py','cp.py']},
+            'trajectory_cp.py','core.py','renderer.py','policy.py','cp.py',
+            'patch_perception.py','../dino_latent/backbone.py']},
         rules=dict(fresh_rollouts=True,holdout_after_threshold_frozen=True,unsafe_rollouts_retained=True,
                    threshold_never_capped=True,model_frozen_before_calibration=True),
-        scope='Registered nominal renderer law, fresh 80-step rollouts, marginal split CP; no changed camera, real-world or longer-horizon guarantee')
+        scope='Registered nominal renderer law and horizon, fresh rollouts, marginal split CP; no changed camera, real-world or longer-horizon guarantee')
     freeze_json(args.output_dir/'protocol.json',protocol)
     protocol_hash=sha256(args.output_dir/'protocol.json')
     renderer=RoadRenderer(192,192)
@@ -110,6 +113,10 @@ def main(argv=None):
     threshold_hash=sha256(args.output_dir/'perception_contract.json')
     print(json.dumps(dict(event='threshold_frozen',q=contract['radius'],rank=rank)),flush=True)
     hold=collect(args,'holdout',actor,decoded,renderer,protocol_hash)
+    if any(sha256(args.output_dir/name)!=digest for name,digest in protocol['bindings'].items()):
+        raise ValueError('frozen model changed during collection')
+    if any(sha256(source/name)!=digest for name,digest in protocol['source_sha256'].items()):
+        raise ValueError('collection source changed during collection')
     if sha256(args.output_dir/'perception_contract.json')!=threshold_hash:
         raise ValueError('threshold changed during holdout')
     roundtrip={}
@@ -139,6 +146,10 @@ def main(argv=None):
         if (cert['actor_sha256']!=protocol['bindings']['actor.pt'] or
             cert['sbc_sha256']!=protocol['bindings']['sbc.pt'] or cert['verification']['radius']!=q):
             raise ValueError('audit/model/radius mismatch')
+        if cert['source_sha256']['core.py']!=protocol['source_sha256']['core.py']:
+            raise ValueError('audit plant differs from collection plant')
+        if cert['source_sha256']['policy.py']!=protocol['source_sha256']['policy.py']:
+            raise ValueError('audit actor implementation differs from collection')
         report['certificate_status']='passed_numerical' if cert['passed'] else 'not_passed'
         report['certificate_sha256']=sha256(audit/'certificate.json')
         report['bridge']='For e_y=C*delta: pi_latent(C*x+e_y,k)=pi_old(x+delta,k); audit uses this exact real-arithmetic identity. Not an outward-rounded floating-point proof.'

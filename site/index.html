@@ -1,7 +1,7 @@
 <!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SPVC 实验总览 · SPVC</title><link rel="stylesheet" href="assets/style.css"></head>
-<body><nav><div class="nav-inner"><div class="brand">SPVC 实验总览<span>2026-11-09</span></div><a href="index.html" class="active">总览</a><a href="aebs.html" class="">AEBS</a><a href="lane.html" class="">车道</a><a href="parking.html" class="">停车场</a><a href="robot.html" class="">机器人</a><a href="gallery.html" class="">图片库</a><a href="process.html" class="">实验过程</a><a href="data.html" class="">数据与报告</a></div></nav><main class="wrap"><header class="hero"><h1>SPVC 实验总览</h1><p>真实图像前端、低维观测、CP 包络与非负 SBC：四个实验的配置、步骤、结果与边界。</p></header>
+<body><nav><div class="nav-inner"><div class="brand">SPVC 实验总览<span>2026-11-09</span></div><a href="index.html" class="active">总览</a><a href="aebs.html" class="">AEBS</a><a href="lane.html" class="">车道</a><a href="parking.html" class="">停车场</a><a href="robot.html" class="">机器人</a><a href="gallery.html" class="">图片库</a><a href="process.html" class="">实验过程</a><a href="compare.html" class="">方法对比</a><a href="data.html" class="">数据与报告</a></div></nav><main class="wrap"><header class="hero"><h1>SPVC 实验总览</h1><p>真实图像前端、低维观测、CP 包络与非负 SBC：四个实验的配置、步骤、结果与边界。</p></header>
 <div class="badges"><span class="badge ok">AEBS：条件证书</span><span class="badge ok">车道：证书通过</span><span class="badge ok">停车场：受保护闭环证书</span><span class="badge bad">机器人：任务跑通 / 证书未通过</span></div>
 <p>这个站点把当前 SPVC 改进实验放在一起：每个实验的配置、逐步输入/输出、结果、保证边界和精选图片。原始 24k/3.6k 图片不复制，只放缩略图和完整包链接。</p>
 <div class="grid">
@@ -15,10 +15,11 @@
 <div class="num">24/24 <small>图像闭环</small></div><p>CP 已算；SBC 未通过；CP 盒内 28/32 反例</p><img src="assets/img/robot_traj.jpg" alt="移动机器人轨迹"></div>
 </div>
 <div class="section"><h2>前端误差对比（AEBS，同一 4,920 张 test）</h2>
-<table class=""><thead><tr><th>前端</th><th>test MAE ↓</th><th>CP95 半径 ↓</th><th>test 覆盖 ↑</th></tr></thead><tbody><tr><td>原 SPVC cGAN + state_net（旧检查点）</td><td>2.747 m</td><td>5.221 m</td><td>87.64%</td></tr><tr><td>32×32 灰度 DINO（同数据）</td><td>0.1017 m</td><td>0.2656 m</td><td>90.47%</td></tr><tr><td><b>真实 RGB DINO（当前）</b></td><td><b>0.0874 m</b></td><td><b>0.2307 m</b></td><td><b>93.33%</b></td></tr></tbody></table>
-<p class="small">cGAN 行是旧 400 图检查点直接应用到新 test，不是同预算重训；灰度 vs 真实 RGB 是受控表示对比。</p>
+<table class=""><thead><tr><th>前端</th><th>test MAE ↓</th><th>RMSE</th><th>静态 CP95 ↓</th><th>test 覆盖 ↑</th></tr></thead><tbody><tr><td>原 SPVC cGAN + state_net（旧 400 图检查点）</td><td>2.747 m</td><td>3.320 m</td><td>5.221 m</td><td>87.64%</td></tr><tr><td>32×32 灰度 DINO（历史运行）</td><td>0.1017 m</td><td>0.1842 m</td><td>0.2656 m</td><td>90.47%</td></tr><tr><td>32×32 灰度 DINO（本轮重训，可重载）</td><td>0.1079 m</td><td>0.2010 m</td><td>0.2797 m</td><td>90.75%</td></tr><tr><td><b>真实 RGB DINO（当前）</b></td><td><b>0.0874 m</b></td><td><b>0.1211 m</b></td><td><b>0.2307 m</b></td><td><b>93.33%</b></td></tr></tbody></table>
+<p class="small">这是<b>同一 4,920 test 的静态图片级</b>比较；CP 不是轨迹级 0.418359 m。cGAN 是旧 400 图检查点，非同预算；灰度 A1 同时改了颜色和源分辨率（32×32→224）；rain 分组灰度 MAE 反而低于 RGB。原 10/29 的 400 图灰度包不在本表。</p>
+<p><a href="compare.html"><b>打开“方法对比”页</b></a>：前端误差、CP/SBC 和四个实验的完整口径表。</p>
 </div>
-<div class="section"><h2>详细过程</h2><p><a href="process.html"><b>实验过程页</b></a> 按“输入 → 做了什么 → 输出/产物 → 为什么/检查”逐步展开 AEBS、车道、停车场、移动机器人；不是只列结果数字。</p></div>
+<div class="section"><h2>详细过程与方法对比</h2><p><a href="process.html"><b>实验过程页</b></a> 按“输入 → 做了什么 → 输出/产物 → 为什么/检查”逐步展开 AEBS、车道、停车场、移动机器人；不是只列结果数字。</p><p><a href="compare.html"><b>方法对比页</b></a> 把同一 test 的前端误差、原 10/29 灰度实现、CP/SBC 敏感性和四个实验放在同一口径下比较。更完整的原理说明见 <a href="../docs/current/SPVC当前框架_逐步流程与安全保证_20261109.md">完整框架文档</a>。</p></div>
 <div class="section"><h2>怎么读</h2><div class="grid three">
 <div class="card"><h3><a href="aebs.html">AEBS</a></h3><p>真实 RGB、CP 单位修复、轨迹 CP、新 SBC、状态相关对照。</p></div>
 <div class="card"><h3><a href="lane.html">车道</a></h3><p>2D latent、轨迹 CP、SBC 审计、状态相关负结果。</p></div>

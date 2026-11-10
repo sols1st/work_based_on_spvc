@@ -1,0 +1,1658 @@
+{
+  "format": "lane_frontend_benefit_5seed_v1",
+  "n_pairs": 5,
+  "external_seeds": {
+    "calibration": 202611100101,
+    "holdout": 202611100102
+  },
+  "fixed": {
+    "q_mean": 0.08526332851806456,
+    "q_median": 0.08574926924014051,
+    "q_std": 0.00297210949848928,
+    "coverage_mean": 0.9559999999999998,
+    "coverage_values": [
+      96,
+      96,
+      94,
+      98,
+      94
+    ],
+    "unsafe_total": 0,
+    "cert_passed": 5,
+    "action_mean": 0.08483738777309482,
+    "action_change_mean": 0.11524006749798332,
+    "test_e_mae_mean": 0.01792702414095402,
+    "test_theta_mae_mean": 0.005104309041053056,
+    "C_change_mean": 0.0,
+    "condition_mean": 1.0
+  },
+  "joint": {
+    "q_mean": 0.08569863631669097,
+    "q_median": 0.08597986623690934,
+    "q_std": 0.0007768919805041625,
+    "coverage_mean": 0.95,
+    "coverage_values": [
+      95,
+      97,
+      94,
+      97,
+      92
+    ],
+    "unsafe_total": 0,
+    "cert_passed": 5,
+    "action_mean": 0.0837372413439094,
+    "action_change_mean": 0.11376254584368531,
+    "test_e_mae_mean": 0.01801179312169552,
+    "test_theta_mae_mean": 0.005124019179493189,
+    "C_change_mean": 0.0013816865626722573,
+    "condition_mean": 1.0016491289127465
+  },
+  "q_difference_mean": 0.0004353077986264081,
+  "q_difference_median": -0.0012521681774126103,
+  "q_difference_std": 0.002907251915205401,
+  "q_ratio_mean": 1.006035165928306,
+  "q_ratio_median": 0.9853973312133317,
+  "joint_smaller_pairs": 3,
+  "coverage_difference_mean": -0.005999999999999983,
+  "coverage_difference_values": [
+    -0.010000000000000009,
+    0.010000000000000009,
+    0.0,
+    -0.010000000000000009,
+    -0.019999999999999907
+  ],
+  "paired_coverage": {
+    "both": 461,
+    "fixed_only": 17,
+    "joint_only": 14,
+    "neither": 8
+  },
+  "pairs": [
+    {
+      "seed": "20261109",
+      "fixed": {
+        "q": 0.0886902335387609,
+        "rank": 190,
+        "n_cal": 199,
+        "cal_covered": 190,
+        "cal_fraction": 0.9547738693467337,
+        "holdout_n": 100,
+        "holdout_covered": 96,
+        "holdout_fraction": 0.96,
+        "holdout_interval": [
+          0.9007428432873401,
+          0.9889955060138118
+        ],
+        "holdout_score_mean": 0.058832971603265734,
+        "holdout_score_max": 0.10708240372732442,
+        "holdout_frame_error_mean": 0.02266131701664628,
+        "holdout_frame_error_max": 0.10708240372732442,
+        "unsafe_holdout": 0,
+        "mean_abs_action": 0.08686105944414158,
+        "mean_abs_action_change": 0.11873602173406088,
+        "certificate_status": "passed_numerical",
+        "certificate_sha256": "5bf7713aa074b5a98c1489c74a8d68a2b6bb60ee07fe9e96a3a1e01562dba742",
+        "report": {
+          "format": "lane_joint_full_experiment_v1",
+          "contract": {
+            "format": "lane_joint_latent_cp_v1",
+            "protocol_sha256": "ae58b6f953318dfca624b558601649b7fe383c167a986dae5b6f9727a4e088e4",
+            "calibration_sha256": "a5594e3c689b15f2e0eec3ee6e1bea3837458950b4f82f88a6a7a67674750307",
+            "alpha": 0.05,
+            "n": 199,
+            "rank": 190,
+            "radius": 0.0886902335387609,
+            "finite_radius": true,
+            "C": [
+              [
+                0.8660253882408142,
+                0.5
+              ],
+              [
+                -0.5,
+                0.8660253882408142
+              ]
+            ],
+            "latent_set": "p(DINO(I))-C*x in {C*delta: ||delta||_infinity<=q}",
+            "score": "max_t ||solve(C,p(DINO(I_t)))-x_t||_infinity",
+            "numerical_bridge_max_action_error": 7.152557373046875e-07,
+            "coverage": {
+              "episodes": 199,
+              "covered": 190,
+              "not_covered": 9,
+              "fraction": 0.9547738693467337
+            },
+            "claim": "Under exchangeability of frozen-controller rollout scores, marginal probability of a new full registered-horizon rollout lying in this tube is at least 1-alpha."
+          },
+          "holdout": {
+            "episodes": 100,
+            "covered": 96,
+            "not_covered": 4,
+            "fraction": 0.96,
+            "binomial_two_sided_95_interval": [
+              0.9007428432873401,
+              0.9889955060138118
+            ]
+          },
+          "unsafe_calibration": 0,
+          "unsafe_holdout": 0,
+          "raw_latent_to_decoded_error_roundoff": {
+            "calibration": 3.342842757464437e-08,
+            "holdout": 2.4587691195565586e-08
+          },
+          "certificate_status": "passed_numerical",
+          "scope": "Registered nominal renderer law and horizon, fresh rollouts, marginal split CP; no changed camera, real-world or longer-horizon guarantee",
+          "certificate_sha256": "5bf7713aa074b5a98c1489c74a8d68a2b6bb60ee07fe9e96a3a1e01562dba742",
+          "bridge": "For e_y=C*delta: pi_latent(C*x+e_y,k)=pi_old(x+delta,k); audit uses this exact real-arithmetic identity. Not an outward-rounded floating-point proof."
+        }
+      },
+      "joint": {
+        "q": 0.086438559888329,
+        "rank": 190,
+        "n_cal": 199,
+        "cal_covered": 190,
+        "cal_fraction": 0.9547738693467337,
+        "holdout_n": 100,
+        "holdout_covered": 95,
+        "holdout_fraction": 0.95,
+        "holdout_interval": [
+          0.8871650888945373,
+          0.9835681208179479
+        ],
+        "holdout_score_mean": 0.0592582280907899,
+        "holdout_score_max": 0.11004110378816884,
+        "holdout_frame_error_mean": 0.022016404262914784,
+        "holdout_frame_error_max": 0.11004110378816884,
+        "unsafe_holdout": 0,
+        "mean_abs_action": 0.0834907873445336,
+        "mean_abs_action_change": 0.1126980256793661,
+        "certificate_status": "passed_numerical",
+        "certificate_sha256": "5fc3cff3e64da239e23dcf6bffb08deb7ec559b9eca5b62b156b9b3bd3174315",
+        "report": {
+          "format": "lane_joint_full_experiment_v1",
+          "contract": {
+            "format": "lane_joint_latent_cp_v1",
+            "protocol_sha256": "484f3d998efee104a28fcc7efd0e5cbf132424b93d8b20c3b00ea7a0948698c5",
+            "calibration_sha256": "cd8e68371ae5844227298007dcf28dff544f49f3b41c7ffc2953216a3691fa95",
+            "alpha": 0.05,
+            "n": 199,
+            "rank": 190,
+            "radius": 0.086438559888329,
+            "finite_radius": true,
+            "C": [
+              [
+                0.8658639788627625,
+                0.5002795457839966
+              ],
+              [
+                -0.4989135265350342,
+                0.8666517734527588
+              ]
+            ],
+            "latent_set": "p(DINO(I))-C*x in {C*delta: ||delta||_infinity<=q}",
+            "score": "max_t ||solve(C,p(DINO(I_t)))-x_t||_infinity",
+            "numerical_bridge_max_action_error": 4.842877388000488e-07,
+            "coverage": {
+              "episodes": 199,
+              "covered": 190,
+              "not_covered": 9,
+              "fraction": 0.9547738693467337
+            },
+            "claim": "Under exchangeability of frozen-controller rollout scores, marginal probability of a new full registered-horizon rollout lying in this tube is at least 1-alpha."
+          },
+          "holdout": {
+            "episodes": 100,
+            "covered": 95,
+            "not_covered": 5,
+            "fraction": 0.95,
+            "binomial_two_sided_95_interval": [
+              0.8871650888945373,
+              0.9835681208179479
+            ]
+          },
+          "unsafe_calibration": 0,
+          "unsafe_holdout": 0,
+          "raw_latent_to_decoded_error_roundoff": {
+            "calibration": 2.9042097785675347e-08,
+            "holdout": 2.6121255328886983e-08
+          },
+          "certificate_status": "passed_numerical",
+          "scope": "Registered nominal renderer law and horizon, fresh rollouts, marginal split CP; no changed camera, real-world or longer-horizon guarantee",
+          "certificate_sha256": "5fc3cff3e64da239e23dcf6bffb08deb7ec559b9eca5b62b156b9b3bd3174315",
+          "bridge": "For e_y=C*delta: pi_latent(C*x+e_y,k)=pi_old(x+delta,k); audit uses this exact real-arithmetic identity. Not an outward-rounded floating-point proof."
+        }
+      },
+      "fixed_certificate": {
+        "passed": true,
+        "checked_cells": 6199,
+        "actual_witnesses": 0,
+        "unresolved_cells": 0,
+        "initial": {
+          "passed": true,
+          "unresolved": 0,
+          "bound": 0.08582801041697322,
+          "partition_area_error": 0.0,
+          "history": [
+            {
+              "depth": 0,
+              "unresolved": 0,
+              "accepted": 256
+            }
+          ]
+        },
+        "unsafe": {
+          "passed": true,
+          "unresolved": 0,
+          "bound": 23.653495792448606,
+          "partition_area_error": 0.0,
+          "history": [
+            {
+              "depth": 0,
+              "unresolved": 0,
+              "accepted": 1024
+            }
+          ]
+        },
+        "checks": [
+          {
+            "kappa": -0.01,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2042
+          },
+          {
+            "kappa": 0.0,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2070
+          },
+          {
+            "kappa": 0.01,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2087
+          }
+        ]
+      },
+      "joint_certificate": {
+        "passed": true,
+        "checked_cells": 6135,
+        "actual_witnesses": 0,
+        "unresolved_cells": 0,
+        "initial": {
+          "passed": true,
+          "unresolved": 0,
+          "bound": 0.08582801041697322,
+          "partition_area_error": 0.0,
+          "history": [
+            {
+              "depth": 0,
+              "unresolved": 0,
+              "accepted": 256
+            }
+          ]
+        },
+        "unsafe": {
+          "passed": true,
+          "unresolved": 0,
+          "bound": 23.653495792448606,
+          "partition_area_error": 0.0,
+          "history": [
+            {
+              "depth": 0,
+              "unresolved": 0,
+              "accepted": 1024
+            }
+          ]
+        },
+        "checks": [
+          {
+            "kappa": -0.01,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2026
+          },
+          {
+            "kappa": 0.0,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2051
+          },
+          {
+            "kappa": 0.01,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2058
+          }
+        ]
+      },
+      "static": {
+        "fixed_test_mae": [
+          0.017917659133672714,
+          0.005138937849551439
+        ],
+        "joint_test_mae": [
+          0.01801818422973156,
+          0.005139972548931837
+        ],
+        "fixed_best_epoch": 21,
+        "joint_best_epoch": 29,
+        "fixed_C": [
+          [
+            0.8660253882408142,
+            0.5
+          ],
+          [
+            -0.5,
+            0.8660253882408142
+          ]
+        ],
+        "joint_C": [
+          [
+            0.8658639788627625,
+            0.5002795457839966
+          ],
+          [
+            -0.4989135265350342,
+            0.8666517734527588
+          ]
+        ],
+        "fixed_C_change": 0.0,
+        "joint_C_change": 0.0012949833180755377,
+        "fixed_condition": 1.0,
+        "joint_condition": 1.001578149613411
+      },
+      "q_difference": -0.0022516736504318985,
+      "q_ratio": 0.9746119323335886,
+      "holdout_coverage_difference": -0.010000000000000009,
+      "paired": {
+        "calibration_initial": true,
+        "holdout_initial": true,
+        "kappas": true,
+        "seeds": true
+      },
+      "paired_coverage": {
+        "both": 92,
+        "fixed_only": 4,
+        "joint_only": 3,
+        "neither": 1
+      }
+    },
+    {
+      "seed": "20261111",
+      "fixed": {
+        "q": 0.0874465443021431,
+        "rank": 190,
+        "n_cal": 199,
+        "cal_covered": 190,
+        "cal_fraction": 0.9547738693467337,
+        "holdout_n": 100,
+        "holdout_covered": 96,
+        "holdout_fraction": 0.96,
+        "holdout_interval": [
+          0.9007428432873401,
+          0.9889955060138118
+        ],
+        "holdout_score_mean": 0.06008409641560035,
+        "holdout_score_max": 0.11916824303921647,
+        "holdout_frame_error_mean": 0.022518584164550496,
+        "holdout_frame_error_max": 0.11916824303921647,
+        "unsafe_holdout": 0,
+        "mean_abs_action": 0.08412610039519496,
+        "mean_abs_action_change": 0.11493711527796532,
+        "certificate_status": "passed_numerical",
+        "certificate_sha256": "9e0b3253419ff74ba50dcc245621c32e45471b632d086d441abf254023a1eb39",
+        "report": {
+          "format": "lane_joint_full_experiment_v1",
+          "contract": {
+            "format": "lane_joint_latent_cp_v1",
+            "protocol_sha256": "b86a9637137f053826dffab30b3830f4509abaed5c9f5246977dbba54a15207f",
+            "calibration_sha256": "1f3fcaa235e44076c4a157b4e89bdf54b52aa201378ba085da55407849ff7d0c",
+            "alpha": 0.05,
+            "n": 199,
+            "rank": 190,
+            "radius": 0.0874465443021431,
+            "finite_radius": true,
+            "C": [
+              [
+                0.8660253882408142,
+                0.5
+              ],
+              [
+                -0.5,
+                0.8660253882408142
+              ]
+            ],
+            "latent_set": "p(DINO(I))-C*x in {C*delta: ||delta||_infinity<=q}",
+            "score": "max_t ||solve(C,p(DINO(I_t)))-x_t||_infinity",
+            "numerical_bridge_max_action_error": 7.152557373046875e-07,
+            "coverage": {
+              "episodes": 199,
+              "covered": 190,
+              "not_covered": 9,
+              "fraction": 0.9547738693467337
+            },
+            "claim": "Under exchangeability of frozen-controller rollout scores, marginal probability of a new full registered-horizon rollout lying in this tube is at least 1-alpha."
+          },
+          "holdout": {
+            "episodes": 100,
+            "covered": 96,
+            "not_covered": 4,
+            "fraction": 0.96,
+            "binomial_two_sided_95_interval": [
+              0.9007428432873401,
+              0.9889955060138118
+            ]
+          },
+          "unsafe_calibration": 0,
+          "unsafe_holdout": 0,
+          "raw_latent_to_decoded_error_roundoff": {
+            "calibration": 3.0024222918631494e-08,
+            "holdout": 3.5858746572775546e-08
+          },
+          "certificate_status": "passed_numerical",
+          "scope": "Registered nominal renderer law and horizon, fresh rollouts, marginal split CP; no changed camera, real-world or longer-horizon guarantee",
+          "certificate_sha256": "9e0b3253419ff74ba50dcc245621c32e45471b632d086d441abf254023a1eb39",
+          "bridge": "For e_y=C*delta: pi_latent(C*x+e_y,k)=pi_old(x+delta,k); audit uses this exact real-arithmetic identity. Not an outward-rounded floating-point proof."
+        }
+      },
+      "joint": {
+        "q": 0.08597986623690934,
+        "rank": 190,
+        "n_cal": 199,
+        "cal_covered": 190,
+        "cal_fraction": 0.9547738693467337,
+        "holdout_n": 100,
+        "holdout_covered": 97,
+        "holdout_fraction": 0.97,
+        "holdout_interval": [
+          0.91482394702572,
+          0.9937700284616936
+        ],
+        "holdout_score_mean": 0.05905079752792544,
+        "holdout_score_max": 0.10348896635368626,
+        "holdout_frame_error_mean": 0.022648721949572938,
+        "holdout_frame_error_max": 0.10348896635368626,
+        "unsafe_holdout": 0,
+        "mean_abs_action": 0.08115315915150859,
+        "mean_abs_action_change": 0.10815775969053937,
+        "certificate_status": "passed_numerical",
+        "certificate_sha256": "3c1e8338fa1f5d31f9442f9e844ef0908313ea12c1fc5a7a38f8e2db092500c8",
+        "report": {
+          "format": "lane_joint_full_experiment_v1",
+          "contract": {
+            "format": "lane_joint_latent_cp_v1",
+            "protocol_sha256": "1ac1277bbf92a495856d9c522606891a73c9a3c878f774166263078dca5b84cc",
+            "calibration_sha256": "fc8eae16c632e41dfb424ab6efbcf834c0de8a210b0b26807bed4054d2245aa1",
+            "alpha": 0.05,
+            "n": 199,
+            "rank": 190,
+            "radius": 0.08597986623690934,
+            "finite_radius": true,
+            "C": [
+              [
+                0.8658309578895569,
+                0.5003367066383362
+              ],
+              [
+                -0.498806893825531,
+                0.8667131662368774
+              ]
+            ],
+            "latent_set": "p(DINO(I))-C*x in {C*delta: ||delta||_infinity<=q}",
+            "score": "max_t ||solve(C,p(DINO(I_t)))-x_t||_infinity",
+            "numerical_bridge_max_action_error": 5.364418029785156e-07,
+            "coverage": {
+              "episodes": 199,
+              "covered": 190,
+              "not_covered": 9,
+              "fraction": 0.9547738693467337
+            },
+            "claim": "Under exchangeability of frozen-controller rollout scores, marginal probability of a new full registered-horizon rollout lying in this tube is at least 1-alpha."
+          },
+          "holdout": {
+            "episodes": 100,
+            "covered": 97,
+            "not_covered": 3,
+            "fraction": 0.97,
+            "binomial_two_sided_95_interval": [
+              0.91482394702572,
+              0.9937700284616936
+            ]
+          },
+          "unsafe_calibration": 0,
+          "unsafe_holdout": 0,
+          "raw_latent_to_decoded_error_roundoff": {
+            "calibration": 3.546334810880514e-08,
+            "holdout": 3.419697396089827e-08
+          },
+          "certificate_status": "passed_numerical",
+          "scope": "Registered nominal renderer law and horizon, fresh rollouts, marginal split CP; no changed camera, real-world or longer-horizon guarantee",
+          "certificate_sha256": "3c1e8338fa1f5d31f9442f9e844ef0908313ea12c1fc5a7a38f8e2db092500c8",
+          "bridge": "For e_y=C*delta: pi_latent(C*x+e_y,k)=pi_old(x+delta,k); audit uses this exact real-arithmetic identity. Not an outward-rounded floating-point proof."
+        }
+      },
+      "fixed_certificate": {
+        "passed": true,
+        "checked_cells": 6164,
+        "actual_witnesses": 0,
+        "unresolved_cells": 0,
+        "initial": {
+          "passed": true,
+          "unresolved": 0,
+          "bound": 0.08582801041697322,
+          "partition_area_error": 0.0,
+          "history": [
+            {
+              "depth": 0,
+              "unresolved": 0,
+              "accepted": 256
+            }
+          ]
+        },
+        "unsafe": {
+          "passed": true,
+          "unresolved": 0,
+          "bound": 23.653495792448606,
+          "partition_area_error": 0.0,
+          "history": [
+            {
+              "depth": 0,
+              "unresolved": 0,
+              "accepted": 1024
+            }
+          ]
+        },
+        "checks": [
+          {
+            "kappa": -0.01,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2034
+          },
+          {
+            "kappa": 0.0,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2058
+          },
+          {
+            "kappa": 0.01,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2072
+          }
+        ]
+      },
+      "joint_certificate": {
+        "passed": true,
+        "checked_cells": 6118,
+        "actual_witnesses": 0,
+        "unresolved_cells": 0,
+        "initial": {
+          "passed": true,
+          "unresolved": 0,
+          "bound": 0.08582801041697322,
+          "partition_area_error": 0.0,
+          "history": [
+            {
+              "depth": 0,
+              "unresolved": 0,
+              "accepted": 256
+            }
+          ]
+        },
+        "unsafe": {
+          "passed": true,
+          "unresolved": 0,
+          "bound": 23.653495792448606,
+          "partition_area_error": 0.0,
+          "history": [
+            {
+              "depth": 0,
+              "unresolved": 0,
+              "accepted": 1024
+            }
+          ]
+        },
+        "checks": [
+          {
+            "kappa": -0.01,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2022
+          },
+          {
+            "kappa": 0.0,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2042
+          },
+          {
+            "kappa": 0.01,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2054
+          }
+        ]
+      },
+      "static": {
+        "fixed_test_mae": [
+          0.017873089760541916,
+          0.0050465441308915615
+        ],
+        "joint_test_mae": [
+          0.017988810315728188,
+          0.00513808336108923
+        ],
+        "fixed_best_epoch": 26,
+        "joint_best_epoch": 23,
+        "fixed_C": [
+          [
+            0.8660253882408142,
+            0.5
+          ],
+          [
+            -0.5,
+            0.8660253882408142
+          ]
+        ],
+        "joint_C": [
+          [
+            0.8658309578895569,
+            0.5003367066383362
+          ],
+          [
+            -0.498806893825531,
+            0.8667131662368774
+          ]
+        ],
+        "fixed_C_change": 0.0,
+        "joint_C_change": 0.0014309841208159924,
+        "fixed_condition": 1.0,
+        "joint_condition": 1.0017675224916192
+      },
+      "q_difference": -0.0014666780652337619,
+      "q_ratio": 0.9832277184085613,
+      "holdout_coverage_difference": 0.010000000000000009,
+      "paired": {
+        "calibration_initial": true,
+        "holdout_initial": true,
+        "kappas": true,
+        "seeds": true
+      },
+      "paired_coverage": {
+        "both": 95,
+        "fixed_only": 1,
+        "joint_only": 2,
+        "neither": 2
+      }
+    },
+    {
+      "seed": "20261112",
+      "fixed": {
+        "q": 0.08215825019390921,
+        "rank": 190,
+        "n_cal": 199,
+        "cal_covered": 190,
+        "cal_fraction": 0.9547738693467337,
+        "holdout_n": 100,
+        "holdout_covered": 94,
+        "holdout_fraction": 0.94,
+        "holdout_interval": [
+          0.8739700654191771,
+          0.9776651139286836
+        ],
+        "holdout_score_mean": 0.05955871775758765,
+        "holdout_score_max": 0.112824595995696,
+        "holdout_frame_error_mean": 0.02232748252687783,
+        "holdout_frame_error_max": 0.112824595995696,
+        "unsafe_holdout": 0,
+        "mean_abs_action": 0.08413052656156651,
+        "mean_abs_action_change": 0.11438342282722433,
+        "certificate_status": "passed_numerical",
+        "certificate_sha256": "0534e1d43595ff3957064611b167f50ced2147502d2f99eb0a3521325d04f09a",
+        "report": {
+          "format": "lane_joint_full_experiment_v1",
+          "contract": {
+            "format": "lane_joint_latent_cp_v1",
+            "protocol_sha256": "d4a546d8a28d98d32194d98c9e9aa610b5f9195681aec0ffcf66acbfecb0cc43",
+            "calibration_sha256": "3d03cfd07c03c069cb2a1c3efe9ba2b3d138d45b311f0fa2ea9908f4c51dd2e6",
+            "alpha": 0.05,
+            "n": 199,
+            "rank": 190,
+            "radius": 0.08215825019390921,
+            "finite_radius": true,
+            "C": [
+              [
+                0.8660253882408142,
+                0.5
+              ],
+              [
+                -0.5,
+                0.8660253882408142
+              ]
+            ],
+            "latent_set": "p(DINO(I))-C*x in {C*delta: ||delta||_infinity<=q}",
+            "score": "max_t ||solve(C,p(DINO(I_t)))-x_t||_infinity",
+            "numerical_bridge_max_action_error": 7.152557373046875e-07,
+            "coverage": {
+              "episodes": 199,
+              "covered": 190,
+              "not_covered": 9,
+              "fraction": 0.9547738693467337
+            },
+            "claim": "Under exchangeability of frozen-controller rollout scores, marginal probability of a new full registered-horizon rollout lying in this tube is at least 1-alpha."
+          },
+          "holdout": {
+            "episodes": 100,
+            "covered": 94,
+            "not_covered": 6,
+            "fraction": 0.94,
+            "binomial_two_sided_95_interval": [
+              0.8739700654191771,
+              0.9776651139286836
+            ]
+          },
+          "unsafe_calibration": 0,
+          "unsafe_holdout": 0,
+          "raw_latent_to_decoded_error_roundoff": {
+            "calibration": 3.207951050979152e-08,
+            "holdout": 2.8023701307416937e-08
+          },
+          "certificate_status": "passed_numerical",
+          "scope": "Registered nominal renderer law and horizon, fresh rollouts, marginal split CP; no changed camera, real-world or longer-horizon guarantee",
+          "certificate_sha256": "0534e1d43595ff3957064611b167f50ced2147502d2f99eb0a3521325d04f09a",
+          "bridge": "For e_y=C*delta: pi_latent(C*x+e_y,k)=pi_old(x+delta,k); audit uses this exact real-arithmetic identity. Not an outward-rounded floating-point proof."
+        }
+      },
+      "joint": {
+        "q": 0.08619361830500129,
+        "rank": 190,
+        "n_cal": 199,
+        "cal_covered": 190,
+        "cal_fraction": 0.9547738693467337,
+        "holdout_n": 100,
+        "holdout_covered": 94,
+        "holdout_fraction": 0.94,
+        "holdout_interval": [
+          0.8739700654191771,
+          0.9776651139286836
+        ],
+        "holdout_score_mean": 0.059754317285783565,
+        "holdout_score_max": 0.10040366957528829,
+        "holdout_frame_error_mean": 0.02287862876921723,
+        "holdout_frame_error_max": 0.10040366957528829,
+        "unsafe_holdout": 0,
+        "mean_abs_action": 0.08538075704460789,
+        "mean_abs_action_change": 0.11797653837847123,
+        "certificate_status": "passed_numerical",
+        "certificate_sha256": "78b440811fd14f0390d929bd4db2ec5ddf63a32b62148b1be217a0b52d3beb0f",
+        "report": {
+          "format": "lane_joint_full_experiment_v1",
+          "contract": {
+            "format": "lane_joint_latent_cp_v1",
+            "protocol_sha256": "fd488821f367a1cae1773759378df981cd29163d8bba563b38f5c3d804863258",
+            "calibration_sha256": "059176a27bcfe7da998de320dfa144df292c63e0d04c36317547aaef39116c04",
+            "alpha": 0.05,
+            "n": 199,
+            "rank": 190,
+            "radius": 0.08619361830500129,
+            "finite_radius": true,
+            "C": [
+              [
+                0.8658773899078369,
+                0.5002561807632446
+              ],
+              [
+                -0.49879390001296997,
+                0.8667206168174744
+              ]
+            ],
+            "latent_set": "p(DINO(I))-C*x in {C*delta: ||delta||_infinity<=q}",
+            "score": "max_t ||solve(C,p(DINO(I_t)))-x_t||_infinity",
+            "numerical_bridge_max_action_error": 4.76837158203125e-07,
+            "coverage": {
+              "episodes": 199,
+              "covered": 190,
+              "not_covered": 9,
+              "fraction": 0.9547738693467337
+            },
+            "claim": "Under exchangeability of frozen-controller rollout scores, marginal probability of a new full registered-horizon rollout lying in this tube is at least 1-alpha."
+          },
+          "holdout": {
+            "episodes": 100,
+            "covered": 94,
+            "not_covered": 6,
+            "fraction": 0.94,
+            "binomial_two_sided_95_interval": [
+              0.8739700654191771,
+              0.9776651139286836
+            ]
+          },
+          "unsafe_calibration": 0,
+          "unsafe_holdout": 0,
+          "raw_latent_to_decoded_error_roundoff": {
+            "calibration": 3.0198062744846155e-08,
+            "holdout": 2.3323330690383504e-08
+          },
+          "certificate_status": "passed_numerical",
+          "scope": "Registered nominal renderer law and horizon, fresh rollouts, marginal split CP; no changed camera, real-world or longer-horizon guarantee",
+          "certificate_sha256": "78b440811fd14f0390d929bd4db2ec5ddf63a32b62148b1be217a0b52d3beb0f",
+          "bridge": "For e_y=C*delta: pi_latent(C*x+e_y,k)=pi_old(x+delta,k); audit uses this exact real-arithmetic identity. Not an outward-rounded floating-point proof."
+        }
+      },
+      "fixed_certificate": {
+        "passed": true,
+        "checked_cells": 6025,
+        "actual_witnesses": 0,
+        "unresolved_cells": 0,
+        "initial": {
+          "passed": true,
+          "unresolved": 0,
+          "bound": 0.08582801041697322,
+          "partition_area_error": 0.0,
+          "history": [
+            {
+              "depth": 0,
+              "unresolved": 0,
+              "accepted": 256
+            }
+          ]
+        },
+        "unsafe": {
+          "passed": true,
+          "unresolved": 0,
+          "bound": 23.653495792448606,
+          "partition_area_error": 0.0,
+          "history": [
+            {
+              "depth": 0,
+              "unresolved": 0,
+              "accepted": 1024
+            }
+          ]
+        },
+        "checks": [
+          {
+            "kappa": -0.01,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 1988
+          },
+          {
+            "kappa": 0.0,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2009
+          },
+          {
+            "kappa": 0.01,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2028
+          }
+        ]
+      },
+      "joint_certificate": {
+        "passed": true,
+        "checked_cells": 6125,
+        "actual_witnesses": 0,
+        "unresolved_cells": 0,
+        "initial": {
+          "passed": true,
+          "unresolved": 0,
+          "bound": 0.08582801041697322,
+          "partition_area_error": 0.0,
+          "history": [
+            {
+              "depth": 0,
+              "unresolved": 0,
+              "accepted": 256
+            }
+          ]
+        },
+        "unsafe": {
+          "passed": true,
+          "unresolved": 0,
+          "bound": 23.653495792448606,
+          "partition_area_error": 0.0,
+          "history": [
+            {
+              "depth": 0,
+              "unresolved": 0,
+              "accepted": 1024
+            }
+          ]
+        },
+        "checks": [
+          {
+            "kappa": -0.01,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2023
+          },
+          {
+            "kappa": 0.0,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2045
+          },
+          {
+            "kappa": 0.01,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2057
+          }
+        ]
+      },
+      "static": {
+        "fixed_test_mae": [
+          0.017976034432649612,
+          0.005111535079777241
+        ],
+        "joint_test_mae": [
+          0.01814345456659794,
+          0.005113756749778986
+        ],
+        "fixed_best_epoch": 28,
+        "joint_best_epoch": 27,
+        "fixed_C": [
+          [
+            0.8660253882408142,
+            0.5
+          ],
+          [
+            -0.5,
+            0.8660253882408142
+          ]
+        ],
+        "joint_C": [
+          [
+            0.8658773899078369,
+            0.5002561807632446
+          ],
+          [
+            -0.49879390001296997,
+            0.8667206168174744
+          ]
+        ],
+        "fixed_C_change": 0.0,
+        "joint_C_change": 0.0014232188696041703,
+        "fixed_condition": 1.0,
+        "joint_condition": 1.0016894124670972
+      },
+      "q_difference": 0.0040353681110920775,
+      "q_ratio": 1.0491170162651693,
+      "holdout_coverage_difference": 0.0,
+      "paired": {
+        "calibration_initial": true,
+        "holdout_initial": true,
+        "kappas": true,
+        "seeds": true
+      },
+      "paired_coverage": {
+        "both": 89,
+        "fixed_only": 5,
+        "joint_only": 5,
+        "neither": 1
+      }
+    },
+    {
+      "seed": "20261113",
+      "fixed": {
+        "q": 0.08574926924014051,
+        "rank": 190,
+        "n_cal": 199,
+        "cal_covered": 190,
+        "cal_fraction": 0.9547738693467337,
+        "holdout_n": 100,
+        "holdout_covered": 98,
+        "holdout_fraction": 0.98,
+        "holdout_interval": [
+          0.9296160675289299,
+          0.9975686631760574
+        ],
+        "holdout_score_mean": 0.05727592006569988,
+        "holdout_score_max": 0.09594714913999533,
+        "holdout_frame_error_mean": 0.022636518459024087,
+        "holdout_frame_error_max": 0.09594714913999533,
+        "unsafe_holdout": 0,
+        "mean_abs_action": 0.08393265691390843,
+        "mean_abs_action_change": 0.11290709200917885,
+        "certificate_status": "passed_numerical",
+        "certificate_sha256": "57bef218c3f4dcab277d7c65386411ad040722f91303776026a3ec2950f671fc",
+        "report": {
+          "format": "lane_joint_full_experiment_v1",
+          "contract": {
+            "format": "lane_joint_latent_cp_v1",
+            "protocol_sha256": "a99c66f4b06ec4538b6f586c807255c1bde048b368368abe9bdf04668a9b8fc6",
+            "calibration_sha256": "93cb84cd1aee3d09c0588f871c239689a0300c83edcff7bc6cc507ea6bccb8df",
+            "alpha": 0.05,
+            "n": 199,
+            "rank": 190,
+            "radius": 0.08574926924014051,
+            "finite_radius": true,
+            "C": [
+              [
+                0.8660253882408142,
+                0.5
+              ],
+              [
+                -0.5,
+                0.8660253882408142
+              ]
+            ],
+            "latent_set": "p(DINO(I))-C*x in {C*delta: ||delta||_infinity<=q}",
+            "score": "max_t ||solve(C,p(DINO(I_t)))-x_t||_infinity",
+            "numerical_bridge_max_action_error": 7.152557373046875e-07,
+            "coverage": {
+              "episodes": 199,
+              "covered": 190,
+              "not_covered": 9,
+              "fraction": 0.9547738693467337
+            },
+            "claim": "Under exchangeability of frozen-controller rollout scores, marginal probability of a new full registered-horizon rollout lying in this tube is at least 1-alpha."
+          },
+          "holdout": {
+            "episodes": 100,
+            "covered": 98,
+            "not_covered": 2,
+            "fraction": 0.98,
+            "binomial_two_sided_95_interval": [
+              0.9296160675289299,
+              0.9975686631760574
+            ]
+          },
+          "unsafe_calibration": 0,
+          "unsafe_holdout": 0,
+          "raw_latent_to_decoded_error_roundoff": {
+            "calibration": 3.149661942456611e-08,
+            "holdout": 2.6508605466095403e-08
+          },
+          "certificate_status": "passed_numerical",
+          "scope": "Registered nominal renderer law and horizon, fresh rollouts, marginal split CP; no changed camera, real-world or longer-horizon guarantee",
+          "certificate_sha256": "57bef218c3f4dcab277d7c65386411ad040722f91303776026a3ec2950f671fc",
+          "bridge": "For e_y=C*delta: pi_latent(C*x+e_y,k)=pi_old(x+delta,k); audit uses this exact real-arithmetic identity. Not an outward-rounded floating-point proof."
+        }
+      },
+      "joint": {
+        "q": 0.0844971010627279,
+        "rank": 190,
+        "n_cal": 199,
+        "cal_covered": 190,
+        "cal_fraction": 0.9547738693467337,
+        "holdout_n": 100,
+        "holdout_covered": 97,
+        "holdout_fraction": 0.97,
+        "holdout_interval": [
+          0.91482394702572,
+          0.9937700284616936
+        ],
+        "holdout_score_mean": 0.05828005487238382,
+        "holdout_score_max": 0.11196722043350499,
+        "holdout_frame_error_mean": 0.022346069171711384,
+        "holdout_frame_error_max": 0.11196722043350499,
+        "unsafe_holdout": 0,
+        "mean_abs_action": 0.08347735864426067,
+        "mean_abs_action_change": 0.11305814723045082,
+        "certificate_status": "passed_numerical",
+        "certificate_sha256": "36ff32e0af8a736ab304ba5831cd7ab49f6133ac584dae715afa3d6ee2eabb74",
+        "report": {
+          "format": "lane_joint_full_experiment_v1",
+          "contract": {
+            "format": "lane_joint_latent_cp_v1",
+            "protocol_sha256": "825ba7747376d5f5874614437a195d95d9f55dc5fcc5465e0d8dffc358a3db3e",
+            "calibration_sha256": "19d675bc01874bd71a4ae47543ed4d9ca5d70a95d3381c0ef141a528d428c22a",
+            "alpha": 0.05,
+            "n": 199,
+            "rank": 190,
+            "radius": 0.0844971010627279,
+            "finite_radius": true,
+            "C": [
+              [
+                0.8658781051635742,
+                0.5002551674842834
+              ],
+              [
+                -0.4989522695541382,
+                0.8666294813156128
+              ]
+            ],
+            "latent_set": "p(DINO(I))-C*x in {C*delta: ||delta||_infinity<=q}",
+            "score": "max_t ||solve(C,p(DINO(I_t)))-x_t||_infinity",
+            "numerical_bridge_max_action_error": 4.76837158203125e-07,
+            "coverage": {
+              "episodes": 199,
+              "covered": 190,
+              "not_covered": 9,
+              "fraction": 0.9547738693467337
+            },
+            "claim": "Under exchangeability of frozen-controller rollout scores, marginal probability of a new full registered-horizon rollout lying in this tube is at least 1-alpha."
+          },
+          "holdout": {
+            "episodes": 100,
+            "covered": 97,
+            "not_covered": 3,
+            "fraction": 0.97,
+            "binomial_two_sided_95_interval": [
+              0.91482394702572,
+              0.9937700284616936
+            ]
+          },
+          "unsafe_calibration": 0,
+          "unsafe_holdout": 0,
+          "raw_latent_to_decoded_error_roundoff": {
+            "calibration": 2.5568915081562726e-08,
+            "holdout": 2.183069905392892e-08
+          },
+          "certificate_status": "passed_numerical",
+          "scope": "Registered nominal renderer law and horizon, fresh rollouts, marginal split CP; no changed camera, real-world or longer-horizon guarantee",
+          "certificate_sha256": "36ff32e0af8a736ab304ba5831cd7ab49f6133ac584dae715afa3d6ee2eabb74",
+          "bridge": "For e_y=C*delta: pi_latent(C*x+e_y,k)=pi_old(x+delta,k); audit uses this exact real-arithmetic identity. Not an outward-rounded floating-point proof."
+        }
+      },
+      "fixed_certificate": {
+        "passed": true,
+        "checked_cells": 6111,
+        "actual_witnesses": 0,
+        "unresolved_cells": 0,
+        "initial": {
+          "passed": true,
+          "unresolved": 0,
+          "bound": 0.08582801041697322,
+          "partition_area_error": 0.0,
+          "history": [
+            {
+              "depth": 0,
+              "unresolved": 0,
+              "accepted": 256
+            }
+          ]
+        },
+        "unsafe": {
+          "passed": true,
+          "unresolved": 0,
+          "bound": 23.653495792448606,
+          "partition_area_error": 0.0,
+          "history": [
+            {
+              "depth": 0,
+              "unresolved": 0,
+              "accepted": 1024
+            }
+          ]
+        },
+        "checks": [
+          {
+            "kappa": -0.01,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2019
+          },
+          {
+            "kappa": 0.0,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2040
+          },
+          {
+            "kappa": 0.01,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2052
+          }
+        ]
+      },
+      "joint_certificate": {
+        "passed": true,
+        "checked_cells": 6074,
+        "actual_witnesses": 0,
+        "unresolved_cells": 0,
+        "initial": {
+          "passed": true,
+          "unresolved": 0,
+          "bound": 0.08582801041697322,
+          "partition_area_error": 0.0,
+          "history": [
+            {
+              "depth": 0,
+              "unresolved": 0,
+              "accepted": 256
+            }
+          ]
+        },
+        "unsafe": {
+          "passed": true,
+          "unresolved": 0,
+          "bound": 23.653495792448606,
+          "partition_area_error": 0.0,
+          "history": [
+            {
+              "depth": 0,
+              "unresolved": 0,
+              "accepted": 1024
+            }
+          ]
+        },
+        "checks": [
+          {
+            "kappa": -0.01,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2004
+          },
+          {
+            "kappa": 0.0,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2025
+          },
+          {
+            "kappa": 0.01,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2045
+          }
+        ]
+      },
+      "static": {
+        "fixed_test_mae": [
+          0.01793130673468113,
+          0.005083754193037748
+        ],
+        "joint_test_mae": [
+          0.017953108996152878,
+          0.005091952625662088
+        ],
+        "fixed_best_epoch": 18,
+        "joint_best_epoch": 18,
+        "fixed_C": [
+          [
+            0.8660253882408142,
+            0.5
+          ],
+          [
+            -0.5,
+            0.8660253882408142
+          ]
+        ],
+        "joint_C": [
+          [
+            0.8658781051635742,
+            0.5002551674842834
+          ],
+          [
+            -0.4989522695541382,
+            0.8666294813156128
+          ]
+        ],
+        "fixed_C_change": 0.0,
+        "joint_C_change": 0.001244777231477201,
+        "fixed_condition": 1.0,
+        "joint_condition": 1.001505163238116
+      },
+      "q_difference": -0.0012521681774126103,
+      "q_ratio": 0.9853973312133317,
+      "holdout_coverage_difference": -0.010000000000000009,
+      "paired": {
+        "calibration_initial": true,
+        "holdout_initial": true,
+        "kappas": true,
+        "seeds": true
+      },
+      "paired_coverage": {
+        "both": 96,
+        "fixed_only": 2,
+        "joint_only": 1,
+        "neither": 1
+      }
+    },
+    {
+      "seed": "20261114",
+      "fixed": {
+        "q": 0.08227234531536913,
+        "rank": 190,
+        "n_cal": 199,
+        "cal_covered": 190,
+        "cal_fraction": 0.9547738693467337,
+        "holdout_n": 100,
+        "holdout_covered": 94,
+        "holdout_fraction": 0.94,
+        "holdout_interval": [
+          0.8739700654191771,
+          0.9776651139286836
+        ],
+        "holdout_score_mean": 0.0588686234802977,
+        "holdout_score_max": 0.10878279852443246,
+        "holdout_frame_error_mean": 0.022339402571518643,
+        "holdout_frame_error_max": 0.10878279852443246,
+        "unsafe_holdout": 0,
+        "mean_abs_action": 0.08513659555066261,
+        "mean_abs_action_change": 0.11523668564148719,
+        "certificate_status": "passed_numerical",
+        "certificate_sha256": "ec1c1191154a20cd3eff3e56742086baac3d0c723b384b51b07ab43f508de3b6",
+        "report": {
+          "format": "lane_joint_full_experiment_v1",
+          "contract": {
+            "format": "lane_joint_latent_cp_v1",
+            "protocol_sha256": "4db885d904b66f87c21825267c4d0928f3f5d7e03ae9e5edf2d7f7913453bad5",
+            "calibration_sha256": "d8a0a5f01838b85a830391dfcbf9940c3b7b739be74c6d49ac5c386983ab57e1",
+            "alpha": 0.05,
+            "n": 199,
+            "rank": 190,
+            "radius": 0.08227234531536913,
+            "finite_radius": true,
+            "C": [
+              [
+                0.8660253882408142,
+                0.5
+              ],
+              [
+                -0.5,
+                0.8660253882408142
+              ]
+            ],
+            "latent_set": "p(DINO(I))-C*x in {C*delta: ||delta||_infinity<=q}",
+            "score": "max_t ||solve(C,p(DINO(I_t)))-x_t||_infinity",
+            "numerical_bridge_max_action_error": 7.152557373046875e-07,
+            "coverage": {
+              "episodes": 199,
+              "covered": 190,
+              "not_covered": 9,
+              "fraction": 0.9547738693467337
+            },
+            "claim": "Under exchangeability of frozen-controller rollout scores, marginal probability of a new full registered-horizon rollout lying in this tube is at least 1-alpha."
+          },
+          "holdout": {
+            "episodes": 100,
+            "covered": 94,
+            "not_covered": 6,
+            "fraction": 0.94,
+            "binomial_two_sided_95_interval": [
+              0.8739700654191771,
+              0.9776651139286836
+            ]
+          },
+          "unsafe_calibration": 0,
+          "unsafe_holdout": 0,
+          "raw_latent_to_decoded_error_roundoff": {
+            "calibration": 3.221580012729552e-08,
+            "holdout": 2.7093366727209967e-08
+          },
+          "certificate_status": "passed_numerical",
+          "scope": "Registered nominal renderer law and horizon, fresh rollouts, marginal split CP; no changed camera, real-world or longer-horizon guarantee",
+          "certificate_sha256": "ec1c1191154a20cd3eff3e56742086baac3d0c723b384b51b07ab43f508de3b6",
+          "bridge": "For e_y=C*delta: pi_latent(C*x+e_y,k)=pi_old(x+delta,k); audit uses this exact real-arithmetic identity. Not an outward-rounded floating-point proof."
+        }
+      },
+      "joint": {
+        "q": 0.08538403609048736,
+        "rank": 190,
+        "n_cal": 199,
+        "cal_covered": 190,
+        "cal_fraction": 0.9547738693467337,
+        "holdout_n": 100,
+        "holdout_covered": 92,
+        "holdout_fraction": 0.92,
+        "holdout_interval": [
+          0.848442364135579,
+          0.9648284374818372
+        ],
+        "holdout_score_mean": 0.05897439272040273,
+        "holdout_score_max": 0.11504009129177231,
+        "holdout_frame_error_mean": 0.022345625055987462,
+        "holdout_frame_error_max": 0.11504009129177231,
+        "unsafe_holdout": 0,
+        "mean_abs_action": 0.08518414453463628,
+        "mean_abs_action_change": 0.11692225823959902,
+        "certificate_status": "passed_numerical",
+        "certificate_sha256": "33dc87843cbce8bf3bbf29d961f51a8522c836b9e27fd8e51ca48cd23067c7a7",
+        "report": {
+          "format": "lane_joint_full_experiment_v1",
+          "contract": {
+            "format": "lane_joint_latent_cp_v1",
+            "protocol_sha256": "e356c28625049b753d9e1ce309d15fef5e1b4815af71d400e6a4372cce2d9ba5",
+            "calibration_sha256": "f2d46f7656d64660a5f28aaad7c0d566a4314fa28b2b64a8edb480c693c5391a",
+            "alpha": 0.05,
+            "n": 199,
+            "rank": 190,
+            "radius": 0.08538403609048736,
+            "finite_radius": true,
+            "C": [
+              [
+                0.8659238219261169,
+                0.500175952911377
+              ],
+              [
+                -0.49869975447654724,
+                0.86677485704422
+              ]
+            ],
+            "latent_set": "p(DINO(I))-C*x in {C*delta: ||delta||_infinity<=q}",
+            "score": "max_t ||solve(C,p(DINO(I_t)))-x_t||_infinity",
+            "numerical_bridge_max_action_error": 4.917383193969727e-07,
+            "coverage": {
+              "episodes": 199,
+              "covered": 190,
+              "not_covered": 9,
+              "fraction": 0.9547738693467337
+            },
+            "claim": "Under exchangeability of frozen-controller rollout scores, marginal probability of a new full registered-horizon rollout lying in this tube is at least 1-alpha."
+          },
+          "holdout": {
+            "episodes": 100,
+            "covered": 92,
+            "not_covered": 8,
+            "fraction": 0.92,
+            "binomial_two_sided_95_interval": [
+              0.848442364135579,
+              0.9648284374818372
+            ]
+          },
+          "unsafe_calibration": 0,
+          "unsafe_holdout": 0,
+          "raw_latent_to_decoded_error_roundoff": {
+            "calibration": 3.4085721137971925e-08,
+            "holdout": 2.9525451450060358e-08
+          },
+          "certificate_status": "passed_numerical",
+          "scope": "Registered nominal renderer law and horizon, fresh rollouts, marginal split CP; no changed camera, real-world or longer-horizon guarantee",
+          "certificate_sha256": "33dc87843cbce8bf3bbf29d961f51a8522c836b9e27fd8e51ca48cd23067c7a7",
+          "bridge": "For e_y=C*delta: pi_latent(C*x+e_y,k)=pi_old(x+delta,k); audit uses this exact real-arithmetic identity. Not an outward-rounded floating-point proof."
+        }
+      },
+      "fixed_certificate": {
+        "passed": true,
+        "checked_cells": 6027,
+        "actual_witnesses": 0,
+        "unresolved_cells": 0,
+        "initial": {
+          "passed": true,
+          "unresolved": 0,
+          "bound": 0.08582801041697322,
+          "partition_area_error": 0.0,
+          "history": [
+            {
+              "depth": 0,
+              "unresolved": 0,
+              "accepted": 256
+            }
+          ]
+        },
+        "unsafe": {
+          "passed": true,
+          "unresolved": 0,
+          "bound": 23.653495792448606,
+          "partition_area_error": 0.0,
+          "history": [
+            {
+              "depth": 0,
+              "unresolved": 0,
+              "accepted": 1024
+            }
+          ]
+        },
+        "checks": [
+          {
+            "kappa": -0.01,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 1988
+          },
+          {
+            "kappa": 0.0,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2010
+          },
+          {
+            "kappa": 0.01,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2029
+          }
+        ]
+      },
+      "joint_certificate": {
+        "passed": true,
+        "checked_cells": 6101,
+        "actual_witnesses": 0,
+        "unresolved_cells": 0,
+        "initial": {
+          "passed": true,
+          "unresolved": 0,
+          "bound": 0.08582801041697322,
+          "partition_area_error": 0.0,
+          "history": [
+            {
+              "depth": 0,
+              "unresolved": 0,
+              "accepted": 256
+            }
+          ]
+        },
+        "unsafe": {
+          "passed": true,
+          "unresolved": 0,
+          "bound": 23.653495792448606,
+          "partition_area_error": 0.0,
+          "history": [
+            {
+              "depth": 0,
+              "unresolved": 0,
+              "accepted": 1024
+            }
+          ]
+        },
+        "checks": [
+          {
+            "kappa": -0.01,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2015
+          },
+          {
+            "kappa": 0.0,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2036
+          },
+          {
+            "kappa": 0.01,
+            "passed": true,
+            "witnesses": 0,
+            "unresolved": 0,
+            "checked": 2050
+          }
+        ]
+      },
+      "static": {
+        "fixed_test_mae": [
+          0.017937030643224716,
+          0.005140773952007294
+        ],
+        "joint_test_mae": [
+          0.01795540750026703,
+          0.005136330612003803
+        ],
+        "fixed_best_epoch": 26,
+        "joint_best_epoch": 26,
+        "fixed_C": [
+          [
+            0.8660253882408142,
+            0.5
+          ],
+          [
+            -0.5,
+            0.8660253882408142
+          ]
+        ],
+        "joint_C": [
+          [
+            0.8659238219261169,
+            0.500175952911377
+          ],
+          [
+            -0.49869975447654724,
+            0.86677485704422
+          ]
+        ],
+        "fixed_C_change": 0.0,
+        "joint_C_change": 0.0015144692733883858,
+        "fixed_condition": 1.0,
+        "joint_condition": 1.0017053967534895
+      },
+      "q_difference": 0.0031116907751182338,
+      "q_ratio": 1.037821831420879,
+      "holdout_coverage_difference": -0.019999999999999907,
+      "paired": {
+        "calibration_initial": true,
+        "holdout_initial": true,
+        "kappas": true,
+        "seeds": true
+      },
+      "paired_coverage": {
+        "both": 89,
+        "fixed_only": 5,
+        "joint_only": 3,
+        "neither": 3
+      }
+    }
+  ],
+  "scope": "5 training-seed pairs, one common external condition set per split; closed-loop trajectories generated independently per model. Pilot-level paired evidence, not a powered population claim.",
+  "notes": [
+    "q is normalized lane state; physical halfwidths are 0.85q m and 0.30q rad.",
+    "Both certificate passes are numerical audits, not outward-rounded floating-point proofs.",
+    "C learning is small; q differences may be sampling/training noise; do not claim architecture causality from one pair."
+  ]
+}

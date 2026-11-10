@@ -1,0 +1,53 @@
+{
+  "format": "lane_joint_full_experiment_v1",
+  "contract": {
+    "format": "lane_joint_latent_cp_v1",
+    "protocol_sha256": "607f85fc53389a55b539eacb885aef03fde6d5b3b38997e12ef67744c5dcc31e",
+    "calibration_sha256": "d31809bf1412bf948c4aafbe528cef3c74a906ba07e899d20304b6634824629e",
+    "alpha": 0.05,
+    "n": 199,
+    "rank": 190,
+    "radius": 0.08433817690941091,
+    "finite_radius": true,
+    "C": [
+      [
+        0.8658639788627625,
+        0.5002795457839966
+      ],
+      [
+        -0.4989135265350342,
+        0.8666517734527588
+      ]
+    ],
+    "latent_set": "p(DINO(I))-C*x in {C*delta: ||delta||_infinity<=q}",
+    "score": "max_t ||solve(C,p(DINO(I_t)))-x_t||_infinity",
+    "numerical_bridge_max_action_error": 4.842877388000488e-07,
+    "coverage": {
+      "episodes": 199,
+      "covered": 190,
+      "not_covered": 9,
+      "fraction": 0.9547738693467337
+    },
+    "claim": "Under exchangeability of frozen-controller rollout scores, marginal probability of a new full registered-horizon rollout lying in this tube is at least 1-alpha."
+  },
+  "holdout": {
+    "episodes": 100,
+    "covered": 93,
+    "not_covered": 7,
+    "fraction": 0.93,
+    "binomial_two_sided_95_interval": [
+      0.8610802715441427,
+      0.9713947110925613
+    ]
+  },
+  "unsafe_calibration": 0,
+  "unsafe_holdout": 0,
+  "raw_latent_to_decoded_error_roundoff": {
+    "calibration": 2.8277970895440596e-08,
+    "holdout": 2.9369144817492643e-08
+  },
+  "certificate_status": "passed_numerical",
+  "scope": "Registered nominal renderer law and horizon, fresh rollouts, marginal split CP; no changed camera, real-world or longer-horizon guarantee",
+  "certificate_sha256": "cbc5d4c10a457025bd8dd76480f5bf03353753e7db4e8b5941ff6988ac0ba59d",
+  "bridge": "For e_y=C*delta: pi_latent(C*x+e_y,k)=pi_old(x+delta,k); audit uses this exact real-arithmetic identity. Not an outward-rounded floating-point proof."
+}

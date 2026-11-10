@@ -1,0 +1,206 @@
+{
+  "format": "aebs_cgan_vs_dino_error_benefit_v1",
+  "static": {
+    "cgan_native": {
+      "n": 5000,
+      "mae": 0.22194573058776054,
+      "rmse": 0.5089562574911017,
+      "p95": 1.5083789592030559,
+      "max": 1.983852984030488,
+      "bins": [
+        {
+          "center": 5.5,
+          "n": 446,
+          "mae": 0.018359761495832305,
+          "p95": 0.049358509854779964
+        },
+        {
+          "center": 6.5,
+          "n": 517,
+          "mae": 0.019890333032441185,
+          "p95": 0.039959056883176025
+        },
+        {
+          "center": 7.5,
+          "n": 450,
+          "mae": 0.021093204096073626,
+          "p95": 0.05193928459294241
+        },
+        {
+          "center": 8.5,
+          "n": 430,
+          "mae": 0.03502055547711213,
+          "p95": 0.07451746211025219
+        },
+        {
+          "center": 9.5,
+          "n": 426,
+          "mae": 0.030838270312843155,
+          "p95": 0.07367150374327691
+        },
+        {
+          "center": 10.5,
+          "n": 463,
+          "mae": 0.06395002805296376,
+          "p95": 0.07117882837857063
+        },
+        {
+          "center": 11.5,
+          "n": 455,
+          "mae": 0.03580589665681215,
+          "p95": 0.057517806076686634
+        },
+        {
+          "center": 12.5,
+          "n": 458,
+          "mae": 0.033103901319333426,
+          "p95": 0.060930789019710385
+        },
+        {
+          "center": 13.5,
+          "n": 437,
+          "mae": 0.09701369371947509,
+          "p95": 0.1354012874706701
+        },
+        {
+          "center": 14.5,
+          "n": 422,
+          "mae": 0.498276683173574,
+          "p95": 0.9243890234532784
+        },
+        {
+          "center": 15.5,
+          "n": 496,
+          "mae": 1.491611161403108,
+          "p95": 1.9469289311308948
+        }
+      ]
+    },
+    "dino_real": {
+      "n": 4920,
+      "mae": 0.08741459995508194,
+      "rmse": 0.12110324203968048,
+      "p95": 0.2613900661468506,
+      "max": 0.5249929428100586,
+      "bins": [
+        {
+          "center": 5.5,
+          "n": 600,
+          "mae": 0.04961508885025978,
+          "p95": 0.12235617637634277
+        },
+        {
+          "center": 6.5,
+          "n": 600,
+          "mae": 0.07522892951965332,
+          "p95": 0.15519318580627442
+        },
+        {
+          "center": 7.5,
+          "n": 0,
+          "mae": null,
+          "p95": null
+        },
+        {
+          "center": 8.5,
+          "n": 600,
+          "mae": 0.049491554498672485,
+          "p95": 0.1395771503448486
+        },
+        {
+          "center": 9.5,
+          "n": 600,
+          "mae": 0.09946586936712265,
+          "p95": 0.1910670757293701
+        },
+        {
+          "center": 10.5,
+          "n": 0,
+          "mae": null,
+          "p95": null
+        },
+        {
+          "center": 11.5,
+          "n": 504,
+          "mae": 0.043762486428022385,
+          "p95": 0.10515861511230463
+        },
+        {
+          "center": 12.5,
+          "n": 504,
+          "mae": 0.1030217707157135,
+          "p95": 0.2722614288330076
+        },
+        {
+          "center": 13.5,
+          "n": 0,
+          "mae": null,
+          "p95": null
+        },
+        {
+          "center": 14.5,
+          "n": 1008,
+          "mae": 0.07241828739643097,
+          "p95": 0.18582992553710936
+        },
+        {
+          "center": 15.5,
+          "n": 504,
+          "mae": 0.23575803637504578,
+          "p95": 0.430755615234375
+        }
+      ]
+    }
+  },
+  "trajectory": {
+    "cgan_native": {
+      "q": 1.9156446668812546,
+      "holdout_covered": 92,
+      "holdout_n": 100,
+      "success": 100,
+      "unsafe": 0,
+      "frame_mean": 0.13280579075825685,
+      "frame_max": 1.975401916381582
+    },
+    "cgan_matched_new_actor": {
+      "q": 1.9156446668812546,
+      "holdout_covered": 92,
+      "holdout_n": 100,
+      "success": 100,
+      "unsafe": 0,
+      "frame_mean": 0.08285029525217223,
+      "frame_max": 1.975401916381582
+    },
+    "dino_real": {
+      "q": 0.4183585683531419,
+      "holdout_covered": 99,
+      "holdout_n": 100,
+      "behavior": "4800/4800",
+      "static_mae": 0.08741459995508194,
+      "static_p95": 0.2613900661468506,
+      "static_max": 0.5249929428100586
+    },
+    "dino_verification": {
+      "checked": 292024,
+      "witnesses": 0,
+      "unresolved": 0,
+      "passed": true
+    },
+    "dino400_matched": {
+      "q": 4.020491507084387,
+      "holdout_covered": 94,
+      "holdout_n": 100,
+      "success": 100,
+      "unsafe": 0,
+      "static_mae": 0.129266,
+      "scope": "Same 400-image data budget and same actor as cGAN matched; DINO backbone pretraining not matched."
+    }
+  },
+  "notes": [
+    "cGAN native = generator -> state_net -> original PPO; generated images, not real camera.",
+    "cGAN transferred = old state_net on real 24k grayscale; q=5.221 m is a transfer result, not native cGAN.",
+    "DINO = real saved RGB -> frozen DINO -> projection; q=0.418359 m trajectory CP.",
+    "Different training data/budget and actor/SBC; overall system-level comparison, not architecture-only.",
+    "DINO-400 uses the existing 400-image DINO projection with the same new actor; same data budget as cGAN, but DINO pretraining/total compute not matched."
+  ]
+}

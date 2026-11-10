@@ -6,6 +6,7 @@
 - `aebs.html`、`lane.html`、`parking.html`、`robot.html`：配置、逐步输入/输出、结果、保证边界、精选图片
 - `gallery.html`：精选输入/结果缩略图
 - `process.html`：四个实验逐步详细过程（输入/操作/输出/为什么）
+- `compare.html`：所有方法对比（同一 test 前端误差、原灰度实现、CP/SBC、四实验状态）
 - `data.html`：数据/配置/结果包/完整报告链接
 
 ## 本地打开

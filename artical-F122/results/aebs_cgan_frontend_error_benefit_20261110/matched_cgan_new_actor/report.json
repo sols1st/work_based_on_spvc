@@ -1,0 +1,39 @@
+{
+  "format": "aebs_cgan_native_comparison_v1",
+  "mode": "matched",
+  "cgan": "Aebs/cGAN/mlp_supervised_ld4/mlp_supervised.pth",
+  "state_net": "Aebs/controller/state_net_trained.pth",
+  "actor": "new policy.pt actor, cGAN observation",
+  "input": "native cGAN generated 32x32 image -> state_net -> normalized distance",
+  "calibration": {
+    "n": 199,
+    "covered": 190,
+    "q": 1.9156446668812546,
+    "rank": 190
+  },
+  "holdout": {
+    "n": 100,
+    "covered": 92,
+    "fraction": 0.92,
+    "interval": [
+      0.848442364135579,
+      0.9648284374818372
+    ],
+    "unsafe": 0,
+    "success": 100,
+    "timeouts": 0
+  },
+  "cal_behavior": {
+    "unsafe": 0,
+    "success": 199,
+    "timeouts": 0
+  },
+  "frame_error": {
+    "cal_mean": 0.07950845785323195,
+    "cal_max": 1.9823453543711107,
+    "hold_mean": 0.08285029525217223,
+    "hold_max": 1.975401916381582
+  },
+  "physical_radius_m": 1.9156446668812546,
+  "scope": "Native/matched cGAN synthetic observation closed loop; generated images, not real camera or live CARLA. CP is trajectory max distance error under deterministic z=0 generation."
+}

@@ -1,0 +1,30 @@
+{
+  "format": "lane_joint_latent_cp_v1",
+  "protocol_sha256": "a99c66f4b06ec4538b6f586c807255c1bde048b368368abe9bdf04668a9b8fc6",
+  "calibration_sha256": "93cb84cd1aee3d09c0588f871c239689a0300c83edcff7bc6cc507ea6bccb8df",
+  "alpha": 0.05,
+  "n": 199,
+  "rank": 190,
+  "radius": 0.08574926924014051,
+  "finite_radius": true,
+  "C": [
+    [
+      0.8660253882408142,
+      0.5
+    ],
+    [
+      -0.5,
+      0.8660253882408142
+    ]
+  ],
+  "latent_set": "p(DINO(I))-C*x in {C*delta: ||delta||_infinity<=q}",
+  "score": "max_t ||solve(C,p(DINO(I_t)))-x_t||_infinity",
+  "numerical_bridge_max_action_error": 7.152557373046875e-07,
+  "coverage": {
+    "episodes": 199,
+    "covered": 190,
+    "not_covered": 9,
+    "fraction": 0.9547738693467337
+  },
+  "claim": "Under exchangeability of frozen-controller rollout scores, marginal probability of a new full registered-horizon rollout lying in this tube is at least 1-alpha."
+}

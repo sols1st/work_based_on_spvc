@@ -1,0 +1,70 @@
+{
+  "protocol": {
+    "format": "aebs_joint_latent_replay_protocol_v1",
+    "C": [
+      [
+        0.9999980926513672,
+        0.001930680824443698
+      ]
+    ],
+    "visual_scale_m": 3.2378063201904297,
+    "plant_scale_m": 3.18272066116333,
+    "calibration_n": 199,
+    "holdout_n": 100,
+    "calibration_seed": 202611090301,
+    "holdout_seed": 202611090302,
+    "alpha": 0.05,
+    "horizon": 400,
+    "initial": "IID uniform [15,16] m x [2.5,3] m/s",
+    "appearance": "uniform weather/color group, fixed per episode",
+    "groups": [
+      [
+        "gray",
+        "gray"
+      ]
+    ],
+    "score": "max_t |S/C_d * (p(DINO(I_t))-C_d*d_t/S-C_v*v_t)| including nearest-image mismatch",
+    "controller": "pi_new(y,v)=pi_old((y-C_v*v)/C_d,v); no PPO retraining",
+    "bridge": "if e_y = C_d*delta_m/S then decoded observation = d/S+delta_m/S; verifier uses the same semantic actor with physical radius q_m",
+    "bindings": {
+      "results/vision_sls_spvc_sbc_pass_20261029/policy.pt": "e2a2f3566e49590a9f66196502c4077a7125b9b0ab6001b157f5d9be0c829ba5",
+      "results/vision_sls_spvc_sbc_pass_20261029/observation.pt": "6a9767a737d3551c8d7bf0f2754e1d3f0a20e6f3a157355ef2fff14f31eec451",
+      "results/vision_sls_spvc_sbc_pass_20261029/sbc.pt": "8a6ad2258013bdd799794b5e72f28dd5ef9c68b81fddd6e54142d8548cc12a0c",
+      "results/vision_sls_spvc_sbc_pass_20261029/config.json": "9e4aa768dfe9a23229ca6952916530342dda44c685e29a8f5fbc7addedb8a23f",
+      "results/gray_aebs_vision_sls_joint_C_20261109_cp_v2/joint_observation.pt": "222686c0fd54b624085cd90063c067dd7471cf447f989e1a69cdf124bdf49638",
+      "results/gray_aebs_vision_sls_joint_C_20261109_cp_v2/observations.npz": "b4d36484f0e4b9b8c4e616a499992f8e7e154decaeb632f125ecb984a24c47db"
+    },
+    "source_sha256": {
+      "joint_replay_cp.py": "28c6a85fabc808c0aebceeccc56783cc093b0fb979f28de47e05dc565199332a",
+      "joint_observation.py": "869109e7425dea16f137ca7f67bc01cfa8d79ff9ec503edfdd97a27a5cb99793",
+      "rollout.py": "be7fcde00d490bbe1c83ed4296ca4653ac358ddb3d4b5acf398211e1c1da2516",
+      "model.py": "63793f8d35f9ef1e6d3d81c73060ceb8b9a82dedc8361c719083c4c4b7d3dcdd",
+      "conformal.py": "3db865523574d63aafd42f7657cfc7a04a243a19ea414f0454546af586d96928"
+    },
+    "distribution": "frozen image-library nearest replay; NOT fresh CARLA rendering",
+    "termination": "original stopped AEBS events or 400-step time limit; failures retained",
+    "rules": "freeze frontend/controller/library before calibration; freeze q before holdout; no threshold cap"
+  },
+  "radius_m": 3.5159164544151564,
+  "rank": 190,
+  "calibration": {
+    "n": 199,
+    "covered": 190,
+    "outcomes": {
+      "success": 199
+    }
+  },
+  "holdout": {
+    "n": 100,
+    "covered": 95,
+    "outcomes": {
+      "success": 100
+    }
+  },
+  "lookup_max_error_m": 0.015074040890340257,
+  "certificate_status": "not_passed",
+  "claim": "New joint-frontend trajectory CP for the frozen-library law; no inherited old certificate or live-CARLA claim",
+  "certificate_sha256": "e34b23c3e3f2bda1df01d1131322775ed9170a6e2544b2d91944133c0f97adea",
+  "certificate_path": "verification_witness/report.json",
+  "verification_note": "Depth-0 audit retained 78 actual point witnesses; larger audit intentionally stopped once failure was established. No certificate claimed."
+}

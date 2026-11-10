@@ -1,0 +1,288 @@
+{
+  "format": "lane_frontend_benefit_stage1_v1",
+  "fixed": {
+    "q": 0.0886902335387609,
+    "rank": 190,
+    "n_cal": 199,
+    "cal_covered": 190,
+    "cal_fraction": 0.9547738693467337,
+    "holdout_n": 100,
+    "holdout_covered": 96,
+    "holdout_fraction": 0.96,
+    "holdout_interval": [
+      0.9007428432873401,
+      0.9889955060138118
+    ],
+    "holdout_score_mean": 0.058832971603265734,
+    "holdout_score_max": 0.10708240372732442,
+    "holdout_frame_error_mean": 0.02266131701664628,
+    "holdout_frame_error_max": 0.10708240372732442,
+    "unsafe_holdout": 0,
+    "mean_abs_action": 0.08686105944414158,
+    "mean_abs_action_change": 0.11873602173406088,
+    "certificate_status": "passed_numerical",
+    "certificate_sha256": "5bf7713aa074b5a98c1489c74a8d68a2b6bb60ee07fe9e96a3a1e01562dba742",
+    "report": {
+      "format": "lane_joint_full_experiment_v1",
+      "contract": {
+        "format": "lane_joint_latent_cp_v1",
+        "protocol_sha256": "ae58b6f953318dfca624b558601649b7fe383c167a986dae5b6f9727a4e088e4",
+        "calibration_sha256": "a5594e3c689b15f2e0eec3ee6e1bea3837458950b4f82f88a6a7a67674750307",
+        "alpha": 0.05,
+        "n": 199,
+        "rank": 190,
+        "radius": 0.0886902335387609,
+        "finite_radius": true,
+        "C": [
+          [
+            0.8660253882408142,
+            0.5
+          ],
+          [
+            -0.5,
+            0.8660253882408142
+          ]
+        ],
+        "latent_set": "p(DINO(I))-C*x in {C*delta: ||delta||_infinity<=q}",
+        "score": "max_t ||solve(C,p(DINO(I_t)))-x_t||_infinity",
+        "numerical_bridge_max_action_error": 7.152557373046875e-07,
+        "coverage": {
+          "episodes": 199,
+          "covered": 190,
+          "not_covered": 9,
+          "fraction": 0.9547738693467337
+        },
+        "claim": "Under exchangeability of frozen-controller rollout scores, marginal probability of a new full registered-horizon rollout lying in this tube is at least 1-alpha."
+      },
+      "holdout": {
+        "episodes": 100,
+        "covered": 96,
+        "not_covered": 4,
+        "fraction": 0.96,
+        "binomial_two_sided_95_interval": [
+          0.9007428432873401,
+          0.9889955060138118
+        ]
+      },
+      "unsafe_calibration": 0,
+      "unsafe_holdout": 0,
+      "raw_latent_to_decoded_error_roundoff": {
+        "calibration": 3.342842757464437e-08,
+        "holdout": 2.4587691195565586e-08
+      },
+      "certificate_status": "passed_numerical",
+      "scope": "Registered nominal renderer law and horizon, fresh rollouts, marginal split CP; no changed camera, real-world or longer-horizon guarantee",
+      "certificate_sha256": "5bf7713aa074b5a98c1489c74a8d68a2b6bb60ee07fe9e96a3a1e01562dba742",
+      "bridge": "For e_y=C*delta: pi_latent(C*x+e_y,k)=pi_old(x+delta,k); audit uses this exact real-arithmetic identity. Not an outward-rounded floating-point proof."
+    }
+  },
+  "joint": {
+    "q": 0.086438559888329,
+    "rank": 190,
+    "n_cal": 199,
+    "cal_covered": 190,
+    "cal_fraction": 0.9547738693467337,
+    "holdout_n": 100,
+    "holdout_covered": 95,
+    "holdout_fraction": 0.95,
+    "holdout_interval": [
+      0.8871650888945373,
+      0.9835681208179479
+    ],
+    "holdout_score_mean": 0.0592582280907899,
+    "holdout_score_max": 0.11004110378816884,
+    "holdout_frame_error_mean": 0.022016404262914784,
+    "holdout_frame_error_max": 0.11004110378816884,
+    "unsafe_holdout": 0,
+    "mean_abs_action": 0.0834907873445336,
+    "mean_abs_action_change": 0.1126980256793661,
+    "certificate_status": "passed_numerical",
+    "certificate_sha256": "5fc3cff3e64da239e23dcf6bffb08deb7ec559b9eca5b62b156b9b3bd3174315",
+    "report": {
+      "format": "lane_joint_full_experiment_v1",
+      "contract": {
+        "format": "lane_joint_latent_cp_v1",
+        "protocol_sha256": "484f3d998efee104a28fcc7efd0e5cbf132424b93d8b20c3b00ea7a0948698c5",
+        "calibration_sha256": "cd8e68371ae5844227298007dcf28dff544f49f3b41c7ffc2953216a3691fa95",
+        "alpha": 0.05,
+        "n": 199,
+        "rank": 190,
+        "radius": 0.086438559888329,
+        "finite_radius": true,
+        "C": [
+          [
+            0.8658639788627625,
+            0.5002795457839966
+          ],
+          [
+            -0.4989135265350342,
+            0.8666517734527588
+          ]
+        ],
+        "latent_set": "p(DINO(I))-C*x in {C*delta: ||delta||_infinity<=q}",
+        "score": "max_t ||solve(C,p(DINO(I_t)))-x_t||_infinity",
+        "numerical_bridge_max_action_error": 4.842877388000488e-07,
+        "coverage": {
+          "episodes": 199,
+          "covered": 190,
+          "not_covered": 9,
+          "fraction": 0.9547738693467337
+        },
+        "claim": "Under exchangeability of frozen-controller rollout scores, marginal probability of a new full registered-horizon rollout lying in this tube is at least 1-alpha."
+      },
+      "holdout": {
+        "episodes": 100,
+        "covered": 95,
+        "not_covered": 5,
+        "fraction": 0.95,
+        "binomial_two_sided_95_interval": [
+          0.8871650888945373,
+          0.9835681208179479
+        ]
+      },
+      "unsafe_calibration": 0,
+      "unsafe_holdout": 0,
+      "raw_latent_to_decoded_error_roundoff": {
+        "calibration": 2.9042097785675347e-08,
+        "holdout": 2.6121255328886983e-08
+      },
+      "certificate_status": "passed_numerical",
+      "scope": "Registered nominal renderer law and horizon, fresh rollouts, marginal split CP; no changed camera, real-world or longer-horizon guarantee",
+      "certificate_sha256": "5fc3cff3e64da239e23dcf6bffb08deb7ec559b9eca5b62b156b9b3bd3174315",
+      "bridge": "For e_y=C*delta: pi_latent(C*x+e_y,k)=pi_old(x+delta,k); audit uses this exact real-arithmetic identity. Not an outward-rounded floating-point proof."
+    }
+  },
+  "fixed_certificate": {
+    "passed": true,
+    "checked_cells": 6199,
+    "actual_witnesses": 0,
+    "unresolved_cells": 0,
+    "initial": {
+      "passed": true,
+      "unresolved": 0,
+      "bound": 0.08582801041697322,
+      "partition_area_error": 0.0,
+      "history": [
+        {
+          "depth": 0,
+          "unresolved": 0,
+          "accepted": 256
+        }
+      ]
+    },
+    "unsafe": {
+      "passed": true,
+      "unresolved": 0,
+      "bound": 23.653495792448606,
+      "partition_area_error": 0.0,
+      "history": [
+        {
+          "depth": 0,
+          "unresolved": 0,
+          "accepted": 1024
+        }
+      ]
+    },
+    "checks": [
+      {
+        "kappa": -0.01,
+        "passed": true,
+        "witnesses": 0,
+        "unresolved": 0,
+        "checked": 2042
+      },
+      {
+        "kappa": 0.0,
+        "passed": true,
+        "witnesses": 0,
+        "unresolved": 0,
+        "checked": 2070
+      },
+      {
+        "kappa": 0.01,
+        "passed": true,
+        "witnesses": 0,
+        "unresolved": 0,
+        "checked": 2087
+      }
+    ]
+  },
+  "joint_certificate": {
+    "passed": true,
+    "checked_cells": 6135,
+    "actual_witnesses": 0,
+    "unresolved_cells": 0,
+    "initial": {
+      "passed": true,
+      "unresolved": 0,
+      "bound": 0.08582801041697322,
+      "partition_area_error": 0.0,
+      "history": [
+        {
+          "depth": 0,
+          "unresolved": 0,
+          "accepted": 256
+        }
+      ]
+    },
+    "unsafe": {
+      "passed": true,
+      "unresolved": 0,
+      "bound": 23.653495792448606,
+      "partition_area_error": 0.0,
+      "history": [
+        {
+          "depth": 0,
+          "unresolved": 0,
+          "accepted": 1024
+        }
+      ]
+    },
+    "checks": [
+      {
+        "kappa": -0.01,
+        "passed": true,
+        "witnesses": 0,
+        "unresolved": 0,
+        "checked": 2026
+      },
+      {
+        "kappa": 0.0,
+        "passed": true,
+        "witnesses": 0,
+        "unresolved": 0,
+        "checked": 2051
+      },
+      {
+        "kappa": 0.01,
+        "passed": true,
+        "witnesses": 0,
+        "unresolved": 0,
+        "checked": 2058
+      }
+    ]
+  },
+  "paired_external_conditions": {
+    "calibration": {
+      "initial_states_equal": true,
+      "kappas_equal": true,
+      "episode_seeds_equal": true
+    },
+    "holdout": {
+      "initial_states_equal": true,
+      "kappas_equal": true,
+      "episode_seeds_equal": true
+    },
+    "holdout_coverage_table": {
+      "both_covered": 92,
+      "fixed_only": 4,
+      "joint_only": 3,
+      "neither": 1
+    }
+  },
+  "q_difference": -0.0022516736504318985,
+  "q_ratio": 0.9746119323335886,
+  "holdout_coverage_difference": -0.010000000000000009,
+  "scope": "One paired checkpoint pair with new common external seeds; pilot evidence, not a 5-seed population claim. q units are normalized lane coordinates; physical halfwidths are 0.85*q m and 0.30*q rad.",
+  "note": "Each method uses its own closed-loop trajectories; only the initial conditions/kappas/seeds are shared. Do not interpret q difference as proof of architecture superiority."
+}

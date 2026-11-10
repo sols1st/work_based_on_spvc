@@ -1,7 +1,7 @@
 <!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>车道保持：2D 视觉与轨迹 CP · SPVC</title><link rel="stylesheet" href="assets/style.css"></head>
-<body><nav><div class="nav-inner"><div class="brand">SPVC 实验总览<span>2026-11-09</span></div><a href="index.html" class="">总览</a><a href="aebs.html" class="">AEBS</a><a href="lane.html" class="active">车道</a><a href="parking.html" class="">停车场</a><a href="robot.html" class="">机器人</a><a href="gallery.html" class="">图片库</a><a href="process.html" class="">实验过程</a><a href="data.html" class="">数据与报告</a></div></nav><main class="wrap"><header class="hero"><h1>车道保持：2D 视觉与轨迹 CP</h1><p>patch-DINO (ê,θ̂) → PPO → 学习式 SBC；轨迹 CP 0.090093，150+100 轨迹。</p></header>
+<body><nav><div class="nav-inner"><div class="brand">SPVC 实验总览<span>2026-11-09</span></div><a href="index.html" class="">总览</a><a href="aebs.html" class="">AEBS</a><a href="lane.html" class="active">车道</a><a href="parking.html" class="">停车场</a><a href="robot.html" class="">机器人</a><a href="gallery.html" class="">图片库</a><a href="process.html" class="">实验过程</a><a href="compare.html" class="">方法对比</a><a href="data.html" class="">数据与报告</a></div></nav><main class="wrap"><header class="hero"><h1>车道保持：2D 视觉与轨迹 CP</h1><p>patch-DINO (ê,θ̂) → PPO → 学习式 SBC；轨迹 CP 0.090093，150+100 轨迹。</p></header>
 <div class="badges"><span class="badge ok">证书通过</span><span class="badge info">2D latent (e,θ)</span><span class="badge warn">名义渲染分布</span><span class="badge warn">数值区间</span></div>
 <div class="grid">
 <div class="card"><div class="num">0.09009 <small>归一化轨迹 CP</small></div><p>199 校准 / 100 留出；95/100 全程覆盖</p></div>
@@ -37,7 +37,7 @@
 <tr><td>SBC</td><td>0/0，原审计</td><td><b>13,000 区间，0 见证/0 未解决，三曲率</b></td></tr>
 <tr><td>同一 100 条校准常量对照</td><td>—</td><td>半径 0.0886653；旧留出 94/100</td></tr>
 </tbody></table>
-<div class="note"><b>修复版 v2 的关键：</b>用前 99 条拟合、后 100 条校准，有限样本秩 96；留出分数只读留出数据自身残差；没有 `min(...,0.0992)` 截断。实际状态相关集合直接验证通过，不是用全域最大半径 0.235815 的扩大盒；本地/服务器各 31 项测试通过；`C` 仍固定，不是联合学习。<br><b>不能说过头：</b>93/100 是旧数据回归，不是新增盲测；状态相关包络也没有明显优于常量盒（同一校准常量 0.0886653、留出 94/100）；`C` 仍固定，不是联合学习新前端。</div>
+<div class="note"><b>修复版 v2 的关键：</b>用前 99 条拟合、后 100 条校准，有限样本秩 96；留出分数只读留出数据自身残差；没有 `min(...,0.0992)` 截断。实际状态相关集合直接验证通过，不是用全域最大半径 0.235815 的扩大盒；本地/服务器各 31 项测试通过；这里的 `C` 仍固定。联合学习 C 是另一个独立实验，见<a href="compare.html">方法对比</a>。<br><b>不能说过头：</b>93/100 是旧数据回归，不是新增盲测；状态相关包络也没有明显优于常量盒（同一校准常量 0.0886653、留出 94/100）；`C` 仍固定，不是联合学习新前端。</div>
 <div class="badbox"><b>旧 v1 仍撤回：</b>代码/报告不一致、留出分数误用校准残差、同批拟合+校准且 cap 收缩集合；旧 0.0992 盒上的 SBC 通过不能证明 CP 覆盖。见 <a href="../artical-F122/results/lane_state_cp_20261109_v1/AUDIT.md">v1 审计</a>。</div>
 </div>
 

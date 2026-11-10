@@ -1,0 +1,90 @@
+{
+  "format": "aebs_joint_latent_replay_protocol_v1",
+  "C": [
+    [
+      1.0,
+      -8.438191798632033e-06
+    ]
+  ],
+  "visual_scale_m": 3.18272066116333,
+  "plant_scale_m": 3.18272066116333,
+  "calibration_n": 199,
+  "holdout_n": 100,
+  "calibration_seed": 202611090201,
+  "holdout_seed": 202611090202,
+  "alpha": 0.05,
+  "horizon": 400,
+  "initial": "IID uniform [15,16] m x [2.5,3] m/s",
+  "appearance": "uniform weather/color group, fixed per episode",
+  "groups": [
+    [
+      "low_sun",
+      "220,220,220"
+    ],
+    [
+      "low_sun",
+      "255,0,0"
+    ],
+    [
+      "low_sun",
+      "40,80,160"
+    ],
+    [
+      "original",
+      "220,220,220"
+    ],
+    [
+      "original",
+      "255,0,0"
+    ],
+    [
+      "original",
+      "40,80,160"
+    ],
+    [
+      "overcast",
+      "220,220,220"
+    ],
+    [
+      "overcast",
+      "255,0,0"
+    ],
+    [
+      "overcast",
+      "40,80,160"
+    ],
+    [
+      "rain",
+      "220,220,220"
+    ],
+    [
+      "rain",
+      "255,0,0"
+    ],
+    [
+      "rain",
+      "40,80,160"
+    ]
+  ],
+  "score": "max_t |S/C_d * (p(DINO(I_t))-C_d*d_t/S-C_v*v_t)| including nearest-image mismatch",
+  "controller": "pi_new(y,v)=pi_old((y-C_v*v)/C_d,v); no PPO retraining",
+  "bridge": "if e_y = C_d*delta_m/S then decoded observation = d/S+delta_m/S; verifier uses the same semantic actor with physical radius q_m",
+  "bindings": {
+    "results/real_aebs_repair_20261109_release/policy.pt": "d701abdf8713b32c708c3805341c653cce56c15e17b0affcea77b3cab05337c3",
+    "results/real_aebs_repair_20261109_release/observation.pt": "eee112612932071653c4479a9eb9f8b9d215217c011281b022b7f79e206e9fb6",
+    "results/real_aebs_repair_20261109_release/sbc.pt": "01cb2c8fb70053e616b653b9cfaf5e55beaaa54ffa5d24031d18953916e02c96",
+    "results/real_aebs_repair_20261109_release/config.json": "8321d015f8fdd3e1088dc1679d23ef0cde5f385155cf16002419ffda873c622a",
+    "results/rgb_aebs_vision_sls_joint_C_20261109_cp_v1/joint_observation.pt": "e7691e9615b4c3263126d00cd83fb59242922eb0ba3e78a73bc9e97892d707ae",
+    "results/rgb_aebs_vision_sls_joint_C_20261109_cp_v1/observations.npz": "8d1a3d5ea9e40077c75780564832cb01c0a36493e406bf25a94227cd64a013e0"
+  },
+  "source_sha256": {
+    "joint_replay_cp.py": "28c6a85fabc808c0aebceeccc56783cc093b0fb979f28de47e05dc565199332a",
+    "joint_observation.py": "869109e7425dea16f137ca7f67bc01cfa8d79ff9ec503edfdd97a27a5cb99793",
+    "rollout.py": "be7fcde00d490bbe1c83ed4296ca4653ac358ddb3d4b5acf398211e1c1da2516",
+    "model.py": "63793f8d35f9ef1e6d3d81c73060ceb8b9a82dedc8361c719083c4c4b7d3dcdd",
+    "conformal.py": "3db865523574d63aafd42f7657cfc7a04a243a19ea414f0454546af586d96928"
+  },
+  "distribution": "frozen image-library nearest replay; NOT fresh CARLA rendering",
+  "termination": "original stopped AEBS events or 400-step time limit; failures retained",
+  "rules": "freeze frontend/controller/library before calibration; freeze q before holdout; no threshold cap"
+}

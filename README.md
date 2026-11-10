@@ -7,7 +7,11 @@
 | 阅读目的 | 入口 |
 |---|---|
 | 当前文档入口（先看这个） | [docs/current/README.md](docs/current/README.md)：主线、最新结论、归档说明 |
-| 看可视化网站 | [site/index.html](site/index.html)：总览、四个实验、图片库、数据/报告入口；本地服务器命令见 [site/README.md](site/README.md) |
+| 准备汇报 | [汇报稿](docs/current/汇报稿_SPVC前端替换_收益与边界_20261110.md) · [PPT 大纲](docs/current/PPT大纲_SPVC前端替换_收益与边界_20261110.md)：16 页主 PPT + 备份，含逐页讲法 |
+| 看原 SPVC cGAN 对照 | [原 cGAN 生成图 vs DINO 真实图](docs/current/SPVC前端替换_收益证明_原SPVC_cGAN误差对照_20261110.md)：轨迹 q 1.9156→0.4184 m，覆盖 92/100→99/100；行为都成功 |
+| 看前端替换收益证明 | [阶段一至二：5 对固定/联合 C 配对](docs/current/SPVC前端替换_收益证明_阶段一至二结果_20261110.md)：联合 C 无稳定 q/覆盖优势，整体前端收益仍未建立 |
+| 看完整框架文档 | [当前框架：逐步流程与安全保证](docs/current/SPVC当前框架_逐步流程与安全保证_20261109.md)：从图像/DINO/CP/SBC 到条件证书，含每步输入输出和不能讲的结论 |
+| 看可视化网站 | [site/index.html](site/index.html)：总览、四个实验、图片库、数据/报告入口；[方法对比页](site/compare.html) 汇总前端误差/CP/SBC；本地服务器命令见 [site/README.md](site/README.md) |
 | 仓库太大/怎么清理 | [GIT_CLEANUP.md](GIT_CLEANUP.md)：`.git` 体积、已跟踪大文件、`.gitignore` 与取消跟踪/历史清理建议 |
 | 先看当前做到哪一步、有什么保证 | [当前方案与验证结果](docs/current/当前方案与验证结果.md) |
 | 看 AEBS 真实 RGB 修复后的主结果 | [AEBS RGB 完整实验](docs/current/AEBS真实RGB图像_完整实验_20261108.md)：0.418359 m 轨迹 CP、新神经 SBC、292,024 区间通过 |

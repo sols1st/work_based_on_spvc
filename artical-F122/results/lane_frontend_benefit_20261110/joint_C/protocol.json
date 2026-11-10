@@ -1,0 +1,92 @@
+{
+  "format": "lane_joint_trajectory_cp_protocol_v1",
+  "horizon": 80,
+  "alpha": 0.05,
+  "calibration_episodes": 199,
+  "holdout_episodes": 100,
+  "calibration_seed": 202611100101,
+  "holdout_seed": 202611100102,
+  "batch_size": 16,
+  "device": "cpu",
+  "threads": 4,
+  "versions": {
+    "numpy": "1.24.4",
+    "torch": "2.3.1",
+    "Pillow": "10.4.0",
+    "scipy": "1.10.1"
+  },
+  "C": [
+    [
+      0.8658639788627625,
+      0.5002795457839966
+    ],
+    [
+      -0.4989135265350342,
+      0.8666517734527588
+    ]
+  ],
+  "state_scales": [
+    0.85,
+    0.3
+  ],
+  "controller": "pi_latent(y,k)=pi_old(solve(C,y),k); coordinate adaptation, no PPO retraining",
+  "score": "max_t ||solve(C,p(DINO(I_t)))-x_t||_infinity",
+  "latent_set": "p(DINO(I))-C*x in {C*delta: ||delta||_infinity<=q}",
+  "initial_low": [
+    -0.25,
+    -0.06
+  ],
+  "initial_high": [
+    0.25,
+    0.06
+  ],
+  "initial_law": "independent uniform; curvature independent uniform, constant per episode",
+  "kappas": [
+    -0.01,
+    0.0,
+    0.01
+  ],
+  "renderer": {
+    "size": [
+      192,
+      192
+    ],
+    "lighting": 1.0,
+    "camera_height": 1.25,
+    "camera_lateral": 0.0,
+    "blur": 0.0,
+    "noise": 0.0,
+    "occluder": false
+  },
+  "dynamics": {
+    "speed": 4.0,
+    "dt": 0.1,
+    "wheelbase": 2.6,
+    "action_limit": 0.45
+  },
+  "bindings": {
+    "joint_observation.pt": "e84f86972b8c0fce49bc28e43bac75ed602155184423de81be3c535786660cd0",
+    "actor.pt": "b412c6ed5298540cefb532b1e8e47b046f06fd37df1353b406a04d0957028de2",
+    "sbc.pt": "a0fdf9c3b1040e95f79f964263adfad59fedbac662e7ee3aa032aabda65c2de8"
+  },
+  "dino_weights_sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+  "source_sha256": {
+    "joint_trajectory_cp.py": "589678f7f9d9a2a9f1a746abec3e6a897d199befe0b37438b6025338e52db78b",
+    "joint_observation.py": "87248c0bad67a8cc9e4ea5b2166da6ee95a118d5b47b66bdd9d787e0a9d9e8d3",
+    "trajectory_cp.py": "0c02c50574df5b849bf0c684df6029ccd0382f120ceaa214b660c78202e31f92",
+    "core.py": "d946db50519f272833ee6aa0e14d80cb590d8a88b733cfcdeb24f7e451097b79",
+    "renderer.py": "90e3f69cc6ccd0539e39ecd958f16dc0f7076b28d4bb944bc21653665e394a4f",
+    "policy.py": "d56d4a944217cc11f0e9bb880549f5691850c015bb7f4c0f044b714436e544c7",
+    "cp.py": "eccf44a1b20eecf872c670646ac3ec2296b846c1866f3a77df47c4ed9c8e8cdc",
+    "patch_perception.py": "ab438e203952433fe9e22f2db51030749f578ecf13064d5090eb28fa4e7b027a",
+    "../dino_latent/backbone.py": "4dd02c0b77a636192986b492cea98ae40326a39dea9f72e2f55c45a734da2093"
+  },
+  "rules": {
+    "fresh_rollouts": true,
+    "holdout_after_threshold_frozen": true,
+    "unsafe_rollouts_retained": true,
+    "threshold_never_capped": true,
+    "model_frozen_before_calibration": true
+  },
+  "scope": "Registered nominal renderer law and horizon, fresh rollouts, marginal split CP; no changed camera, real-world or longer-horizon guarantee"
+}

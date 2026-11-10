@@ -1,0 +1,71 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>方法对比：前端、包络与证书 · SPVC</title><link rel="stylesheet" href="assets/style.css"></head>
+<body><nav><div class="nav-inner"><div class="brand">SPVC 实验总览<span>2026-11-09</span></div><a href="index.html" class="">总览</a><a href="aebs.html" class="">AEBS</a><a href="lane.html" class="">车道</a><a href="parking.html" class="">停车场</a><a href="robot.html" class="">机器人</a><a href="gallery.html" class="">图片库</a><a href="process.html" class="">实验过程</a><a href="compare.html" class="active">方法对比</a><a href="data.html" class="">数据与报告</a></div></nav><main class="wrap"><header class="hero"><h1>方法对比：前端、包络与证书</h1><p>同一 test 的前端误差、历史灰度实现、CP/SBC 敏感性，以及四个实验的最终状态。</p></header>
+<p>不同实验的任务、数据和证明域不同，不能用一个分数横比。本页把比较分成三层：<b>同一 test 的前端误差</b>、<b>同一 actor/SBC 的包络敏感性</b>、<b>四个实验的最终状态</b>。</p>
+<div class="warnbox"><b>读表规则：</b>AEBS 前端表的 CP 是静态图片级 95% 半径，不是轨迹级 0.418359 m；cGAN 是旧 400 图检查点；灰度 A1 同时改了颜色和源分辨率；原 10/29 灰度包是 400 图早期实现，不在 24k 同一 test 表内。所有实验都不能用平均误差直接推出安全证书。</div>
+
+<div class="section"><h2>1. AEBS 前端误差：同一 4,920 张 test 的正确版本</h2>
+<table class=""><thead><tr><th>方法</th><th>训练/数据</th><th>test MAE ↓</th><th>RMSE</th><th>P95 abs</th><th>max abs</th><th>静态 CP95 ↓</th><th>test 覆盖</th></tr></thead><tbody><tr><td>cGAN + state_net</td><td>旧 400 图生成库检查点</td><td>2.747 m</td><td>3.320 m</td><td>6.480 m</td><td>8.342 m</td><td>5.221 m</td><td>87.64%</td></tr><tr><td>32×32 灰度 DINO</td><td>24k，历史运行</td><td>0.1017 m</td><td>0.1842 m</td><td>0.4670 m</td><td>0.9651 m</td><td>0.2656 m</td><td>90.47%</td></tr><tr><td>32×32 灰度 DINO</td><td>24k，本轮重训可重载</td><td>0.1079 m</td><td>0.2010 m</td><td>0.5514 m</td><td>1.1607 m</td><td>0.2797 m</td><td>90.75%</td></tr><tr><td><b>真实 RGB DINO</b></td><td>24k，当前</td><td><b>0.0874 m</b></td><td><b>0.1211 m</b></td><td><b>0.2614 m</b></td><td><b>0.5250 m</b></td><td><b>0.2307 m</b></td><td><b>93.33%</b></td></tr></tbody></table>
+<p class="small">同一 0.25 m bin 划分，train/val/test=14,172/4,908/4,920。RGB 相对灰度历史 MAE 低约 16.4%，相对灰度重训低约 19.0%；这是单次运行描述，不是多种子显著性。rain 分组灰度 MAE 约 0.0725 m，RGB 约 0.0967 m，RGB 并非所有天气都更好。</p>
+</div>
+
+<div class="section"><h2>1.1 原 SPVC cGAN 原生闭环 vs DINO</h2>
+<table><thead><tr><th>项目</th><th>原生 cGAN</th><th>原生 cGAN + 新 actor</th><th>新 DINO</th></tr></thead><tbody>
+<tr><td>轨迹 q</td><td><b>1.9156 m</b></td><td>1.9156 m</td><td><b>0.4184 m</b></td></tr>
+<tr><td>留出覆盖</td><td>92/100</td><td>92/100</td><td><b>99/100</b></td></tr>
+<tr><td>留出行为</td><td>100/100 成功</td><td>100/100 成功</td><td>4800/4800 成功</td></tr>
+<tr><td>静态误差</td><td>MAE 0.2219 m / max 1.9839 m（生成图）</td><td>同左</td><td>MAE 0.0874 m / max 0.5250 m（真实图）</td></tr>
+</tbody></table>
+<p class="small"><b>5.221 m 不是原生 cGAN 的 q</b>，那是旧 state_net 迁移到 24k 真实灰度图的跨库结果。原生 cGAN q=1.9156 m。两边行为都成功，收益在误差包络/覆盖，不在任务成功率。</p>
+<table><thead><tr><th>同 400 图预算、同 actor</th><th>cGAN 400</th><th>DINO 400</th><th>结论</th></tr></thead><tbody>
+<tr><td>轨迹 q / 留出覆盖</td><td>1.9156 m / 92/100</td><td>4.0205 m / 94/100</td><td>cGAN q 更小；DINO 覆盖高 2pp；没有 DINO 架构胜出</td></tr>
+</tbody></table>
+<p class="small">24k DINO 的 q=0.4184/99 是数据规模收益；要判定同预算架构胜负，需要把 cGAN 也重训到 24k。</p>
+<img src="../artical-F122/results/aebs_cgan_frontend_error_benefit_20261110/error_by_distance.png" alt="cGAN vs DINO error by distance" style="max-width:100%;border:1px solid #d9dee3;border-radius:8px">
+<p><a href="../docs/current/SPVC前端替换_收益证明_原SPVC_cGAN误差对照_20261110.md">完整原 SPVC cGAN 对照</a></p>
+</div>
+
+<div class="section"><h2>2. 原来的 10/29 灰度实现：单独的历史基线</h2>
+<table class=""><thead><tr><th>项目</th><th>原 10/29 灰度包</th></tr></thead><tbody><tr><td>数据</td><td>400 张 32×32 灰度图；240 / 80 / 80</td></tr><tr><td>观测</td><td>冻结 DINOv2 ViT-S/14 CLS 384 → 128 → 128 → 1；最佳 epoch 243</td></tr><tr><td>test 误差</td><td>MAE 0.129266 m；RMSE 0.165444 m；max 0.414889 m（80 test）</td></tr><tr><td>CP</td><td>状态相关 Bernstein b0(d)；q=2.522199；均值半径约 0.4316 m；40 条校准</td></tr><tr><td>SBC</td><td>非负 [2,16,8,1]；初始 0；危险下界 24.965932</td></tr><tr><td>连续域 / 回放</td><td>4,971,398 / 105,608 区间；均 0 反例、0 未解决</td></tr><tr><td>行为</td><td>名义 / 全图 / 留出各 1441/1441；32 项测试</td></tr></tbody></table>
+<p>这个包不能和 24k test 横比，也不能把它的 24.9659 危险下界套到当前 RGB 包。它作为“早期灰度链路能闭合”的历史证据保留。 <a href="../artical-F122/results/vision_sls_spvc_sbc_pass_20261029/README.md">原灰度包</a></p>
+</div>
+
+<div class="section"><h2>3. AEBS 包络与 SBC：固定 actor 的敏感性</h2>
+<table class=""><thead><tr><th>误差集合</th><th>半径 / 统计</th><th>同一旧 SBC</th><th>结论</th></tr></thead><tbody><tr><td>RGB 静态</td><td>0.230725 m</td><td>212 见证；150,033 未解决</td><td>不通过</td></tr><tr><td>灰度历史静态</td><td>0.265584 m</td><td>202 见证；128,858 未解决</td><td>不通过</td></tr><tr><td>灰度重训静态</td><td>0.279712 m</td><td>179 见证；141,107 未解决</td><td>不通过</td></tr><tr><td>cGAN 旧检查点</td><td>5.221404 m</td><td>624 见证；59,278 未解决</td><td>不通过</td></tr><tr><td><b>RGB 轨迹 CP + 新 SBC v2</b></td><td>0.418359 m</td><td><b>292,024 区间；0/0；深度 29</b></td><td><b>通过</b></td></tr><tr><td>RGB 状态相关 CP（C 固定）</td><td>均值 0.3217 / max 0.7189 m</td><td>41,070 区间；0/0；深度 11</td><td>通过；留出 92/100；不替换常量</td></tr></tbody></table>
+<p class="small">旧 SBC 对四种误差集合都失败；新 SBC v2 是针对 RGB 轨迹半径重训的，不能反过来说灰度/cGAN 也已通过。状态相关只学 b(d)，C 仍是 [1,0]，不是联合学习新前端。</p>
+</div>
+
+<div class="section"><h2>4. 车道：常量盒与状态相关 v2</h2>
+<table class=""><thead><tr><th>项目</th><th>常量盒（主结果）</th><th>状态相关 v2（修复对照）</th></tr></thead><tbody><tr><td>拟合 / 校准</td><td>—</td><td>99 / 100 条，索引不重叠</td></tr><tr><td>阈值</td><td>0.090093，190/199</td><td>q=1.7205338，第 96/100 秩；无 cap</td></tr><tr><td>校准覆盖</td><td>190/199</td><td>96/100</td></tr><tr><td>旧留出回归</td><td>95/100</td><td>93/100（旧数据回归，不是新盲测）</td></tr><tr><td>平均 / 观测最大半径</td><td>0.090093 / 0.090093</td><td>0.0883927 / 0.1093692</td></tr><tr><td>SBC</td><td>原审计 0/0</td><td>13,000 区间；三曲率 0/0</td></tr><tr><td>同一 100 条校准常量对照</td><td>—</td><td>0.0886653；旧留出 94/100</td></tr></tbody></table>
+<p class="small">v2 已修复 v1 的留出残差误用、同批拟合+校准和 cap 问题；但它是旧数据回归，且没有明显优于常量盒。v1 仍为 withdrawn/unverified。</p>
+</div>
+
+<div class="section"><h2>5. 联合学习视觉投影与 C（11/09 独立版）</h2>
+<table><thead><tr><th>实验</th><th>训练</th><th>新 CP</th><th>SBC / 当前状态</th></tr></thead><tbody>
+<tr><td>车道联合 C</td><td>5 对训练种子；每对固定/联合 C 同预算、同初始化</td><td>q 均值：固定 <b>0.085263</b>，联合 <b>0.085699</b>；留出覆盖 95.6% vs 95.0%</td><td>两边各 5/5 通过数值 SBC；3/5 对联合 q 更小；<b>无稳定优势</b>。[阶段结果](../docs/current/SPVC前端替换_收益证明_阶段一至二结果_20261110.md)</td></tr>
+<tr><td>RGB AEBS 联合 C</td><td>C≈[1.0,−8.44×10⁻⁶]；速度项接近零</td><td>q=0.394521 m；校准 190/199；<b>留出 91/100</b>；299 条成功</td><td>102,338 区间，0/0，数值 SBC 通过；但留出未达 95/100</td></tr>
+<tr><td>灰度 AEBS 联合 C v2</td><td>C≈[0.999998,0.0019307]；视觉尺度 3.237806 m</td><td>q=3.515916 m；校准 190/199；留出 95/100；299 条成功</td><td><b>未通过</b>：4,096 个深度 0 区间中 78 个见证、74 个未解决</td></tr>
+</tbody></table>
+<p class="small">联合版把视觉投影和 C 一起训练，但使用独立 CP/SBC；不继承固定 C 版任何证书。车道已完成 <b>5 对训练种子配对</b>：q 均值固定 0.085263 / 联合 0.085699，留出覆盖 95.6% / 95.0%，两边各 5/5 通过 SBC；联合 C <b>没有稳定优势</b>。RGB 联合版“SBC 通过”不等于“留出覆盖 95%”；灰度联合版已经失败。详见 <a href="../docs/current/SPVC前端替换_收益证明_阶段一至二结果_20261110.md">阶段结果</a>。</p>
+<img src="../artical-F122/results/lane_frontend_benefit_20261110/summary_5seed/q_coverage.png" alt="5-seed q/coverage" style="max-width:100%;border:1px solid #d9dee3;border-radius:8px;margin-top:8px">
+</div>
+
+<div class="section"><h2>6. 四个实验放在一起看</h2>
+<table class=""><thead><tr><th>实验</th><th>任务 / 观测</th><th>CP / 误差集合</th><th>SBC / 验证</th><th>行为</th><th>当前状态</th></tr></thead><tbody><tr><td>AEBS RGB</td><td>2D 状态；1D 距离；24k 真实 RGB</td><td>轨迹 0.418359 m</td><td>292,024 区间；0/0</td><td>4,800/4,800</td><td>条件证书；C 固定</td></tr><tr><td>AEBS 10/29 灰度</td><td>2D；400 张 32×32；DINO</td><td>状态相关；4,971,398 区间</td><td>0/0；105,608 回放 0/0</td><td>1441/1441</td><td>历史小数据包；非当前同测</td></tr><tr><td>车道</td><td>2D (e,θ)；3,600 渲染</td><td>0.090093 轨迹 CP</td><td>0 见证/0 未解决</td><td>12/12 图像闭环</td><td>证书通过；三个曲率</td></tr><tr><td>停车场</td><td>4D / 3D；15 起点</td><td>启动 CP；233/240 审计</td><td>增广可达域神经 SBC</td><td>30/30</td><td>受保护闭环；必须在线后备</td></tr><tr><td>移动机器人</td><td>3D / 3D；2,400 图</td><td>约 (0.0488,0.0488,0.3254)</td><td>SBC 未通过；7,360 未解决</td><td>24/24</td><td>任务跑通；完整证书失败</td></tr></tbody></table>
+</div>
+
+<div class="section"><h2>7. 不能从这张页推出的结论</h2>
+<ul>
+<li>不能把 cGAN 旧检查点当作同预算架构对比；它只说明迁移参考。</li>
+<li>不能把 32×32 灰度 vs 640×640 RGB 的差异全归因于颜色；源分辨率和预处理同时变了。</li>
+<li>不能把静态 CP 0.2307 m 和轨迹 CP 0.418359 m 混成一个“前端 CP”。</li>
+<li>不能把原 10/29 灰度包的 24.9659 或 1441/1441 直接套到当前 24k RGB 包。</li>
+<li>不能把“新 SBC 在 RGB 轨迹半径通过”推成灰度/cGAN 也通过；需要各自重训/验证。</li>
+<li>不能把状态相关 CP 的平均半径更小写成覆盖更好；AEBS 92/100、车道 93/100 都低于常量对照。</li>
+<li>不能把联合 C 版和固定 C 版混用；联合 C 版有自己的 CP/SBC。车道 5 对配对已完成，但联合 C 没有稳定优势。</li>
+</ul>
+<p>完整证据：<a href="../docs/current/AEBS前端对比_cGAN_灰度_真实RGB_20261108.md">AEBS 前端对比文档</a> · <a href="../artical-F122/results/real_aebs_baselines/README.md">基线与 JSON</a> · <a href="../artical-F122/results/vision_sls_spvc_sbc_pass_20261029/README.md">原灰度包</a></p>
+</div>
+</main>
+<footer><div class="footer-inner">SPVC 实验静态总览 · 结果与限制以各结果包和 docs/current 为准 · 不复制原始大数据</div></footer></body></html>

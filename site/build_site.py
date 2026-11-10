@@ -2,7 +2,7 @@ from pathlib import Path
 import html
 
 ROOT=Path(__file__).resolve().parent
-PAGES=[('index.html','总览'),('aebs.html','AEBS'),('lane.html','车道'),('parking.html','停车场'),('robot.html','机器人'),('gallery.html','图片库'),('process.html','实验过程'),('data.html','数据与报告')]
+PAGES=[('index.html','总览'),('aebs.html','AEBS'),('lane.html','车道'),('parking.html','停车场'),('robot.html','机器人'),('gallery.html','图片库'),('process.html','实验过程'),('compare.html','方法对比'),('data.html','数据与报告')]
 
 def nav(active):
     links=''.join(f'<a href="{u}" class="{"active" if u==active else ""}">{html.escape(n)}</a>' for u,n in PAGES)
@@ -48,13 +48,15 @@ index_body=f'''
 <div class="num">24/24 <small>图像闭环</small></div><p>CP 已算；SBC 未通过；CP 盒内 28/32 反例</p><img src="assets/img/robot_traj.jpg" alt="移动机器人轨迹"></div>
 </div>
 <div class="section"><h2>前端误差对比（AEBS，同一 4,920 张 test）</h2>
-{table(['前端','test MAE ↓','CP95 半径 ↓','test 覆盖 ↑'],[
- ['原 SPVC cGAN + state_net（旧检查点）','2.747 m','5.221 m','87.64%'],
- ['32×32 灰度 DINO（同数据）','0.1017 m','0.2656 m','90.47%'],
- ['<b>真实 RGB DINO（当前）</b>','<b>0.0874 m</b>','<b>0.2307 m</b>','<b>93.33%</b>']])}
-<p class="small">cGAN 行是旧 400 图检查点直接应用到新 test，不是同预算重训；灰度 vs 真实 RGB 是受控表示对比。</p>
+{table(['前端','test MAE ↓','RMSE','静态 CP95 ↓','test 覆盖 ↑'],[
+ ['原 SPVC cGAN + state_net（旧 400 图检查点）','2.747 m','3.320 m','5.221 m','87.64%'],
+ ['32×32 灰度 DINO（历史运行）','0.1017 m','0.1842 m','0.2656 m','90.47%'],
+ ['32×32 灰度 DINO（本轮重训，可重载）','0.1079 m','0.2010 m','0.2797 m','90.75%'],
+ ['<b>真实 RGB DINO（当前）</b>','<b>0.0874 m</b>','<b>0.1211 m</b>','<b>0.2307 m</b>','<b>93.33%</b>']])}
+<p class="small">这是<b>同一 4,920 test 的静态图片级</b>比较；CP 不是轨迹级 0.418359 m。cGAN 是旧 400 图检查点，非同预算；灰度 A1 同时改了颜色和源分辨率（32×32→224）；rain 分组灰度 MAE 反而低于 RGB。原 10/29 的 400 图灰度包不在本表。</p>
+<p><a href="compare.html"><b>打开“方法对比”页</b></a>：前端误差、CP/SBC 和四个实验的完整口径表。</p>
 </div>
-<div class="section"><h2>详细过程</h2><p><a href="process.html"><b>实验过程页</b></a> 按“输入 → 做了什么 → 输出/产物 → 为什么/检查”逐步展开 AEBS、车道、停车场、移动机器人；不是只列结果数字。</p></div>
+<div class="section"><h2>详细过程与方法对比</h2><p><a href="process.html"><b>实验过程页</b></a> 按“输入 → 做了什么 → 输出/产物 → 为什么/检查”逐步展开 AEBS、车道、停车场、移动机器人；不是只列结果数字。</p><p><a href="compare.html"><b>方法对比页</b></a> 把同一 test 的前端误差、原 10/29 灰度实现、CP/SBC 敏感性和四个实验放在同一口径下比较。更完整的原理说明见 <a href="../docs/current/SPVC当前框架_逐步流程与安全保证_20261109.md">完整框架文档</a>。</p></div>
 <div class="section"><h2>怎么读</h2><div class="grid three">
 <div class="card"><h3><a href="aebs.html">AEBS</a></h3><p>真实 RGB、CP 单位修复、轨迹 CP、新 SBC、状态相关对照。</p></div>
 <div class="card"><h3><a href="lane.html">车道</a></h3><p>2D latent、轨迹 CP、SBC 审计、状态相关负结果。</p></div>
@@ -118,13 +120,28 @@ aebs_body=f'''
  ['校准 / 留出覆盖','190/199；92/100','190/199；99/100'],
  ['SBC 验证','41,070 区间；0/0；深度 11','292,024 区间；0/0；深度 29'],
 ])}
-<p><b>注意：`C` 仍是固定 `[1,0]`，这里只学习误差尺度 `b0(d)`；不是联合学习视觉投影和 `C` 的新前端。</b> 状态相关把危险区附近半径压小、远距离放大；SBC 远距离在零平台，所以验证更省。但留出覆盖 92/100 低于常量版，<b>不替换主发布包</b>。<a href="../artical-F122/results/real_aebs_state_cp_20261109_v1/README.md">状态相关包</a></p>
+<p><b>注意：这里的 `C` 仍是固定 `[1,0]`，只学习误差尺度 `b0(d)`；联合学习视觉投影和 `C` 是另一个独立实验，见<a href="compare.html">方法对比</a>。</b> 状态相关把危险区附近半径压小、远距离放大；SBC 远距离在零平台，所以验证更省。但留出覆盖 92/100 低于常量版，<b>不替换主发布包</b>。<a href="../artical-F122/results/real_aebs_state_cp_20261109_units_v2/README.md">状态相关包</a></p>
 <h3>前端误差/CP 对比（同一 4,920 test）</h3>
-{table(['前端','test MAE','CP95 半径','test 覆盖'],[
- ['cGAN+state_net（旧 400 图检查点）','2.747 m','5.221 m','87.64%'],
- ['32×32 灰度 DINO（同数据）','0.1017 m','0.2656 m','90.47%'],
- ['<b>真实 RGB DINO（当前）</b>','<b>0.0874 m</b>','<b>0.2307 m</b>','<b>93.33%</b>']])}
-<p class="small">cGAN 旧检查点非同预算重训，不能写成架构因果；灰度 vs RGB 是受控表示对比。</p>
+{table(['前端','test MAE','RMSE','静态 CP95','test 覆盖'],[
+ ['cGAN+state_net（旧 400 图检查点）','2.747 m','3.320 m','5.221 m','87.64%'],
+ ['32×32 灰度 DINO（历史）','0.1017 m','0.1842 m','0.2656 m','90.47%'],
+ ['32×32 灰度 DINO（重训，可重载）','0.1079 m','0.2010 m','0.2797 m','90.75%'],
+ ['<b>真实 RGB DINO（当前）</b>','<b>0.0874 m</b>','<b>0.1211 m</b>','<b>0.2307 m</b>','<b>93.33%</b>']])}
+<p class="small">这是静态图片级 CP，不是轨迹级 0.418359 m；cGAN 旧检查点非同预算；灰度同时改颜色和源分辨率；rain 分组灰度 MAE 反而更低。原 10/29 的 400 图灰度包是独立历史基线，不能与本表横比。</p>
+<p><a href="compare.html">完整方法对比与口径 →</a>。原生 cGAN 闭环 q=1.9156 m/92，新 DINO q=0.4184 m/99；5.221 m 是迁移口径，不是原生 q。</p>
+</div>
+
+<div class="section"><h2>3.1 原来的 10/29 灰度实现（历史基线）</h2>
+<table><thead><tr><th>项目</th><th>原 10/29 灰度包</th></tr></thead><tbody>
+<tr><td>数据</td><td>400 张 32×32 灰度图；240 train / 80 validation / 80 test</td></tr>
+<tr><td>观测</td><td>冻结 DINOv2 ViT-S/14 CLS 384 → 128 → 128 → 1；投影最佳 epoch 243</td></tr>
+<tr><td>test 误差</td><td>MAE 0.129266 m；RMSE 0.165444 m；max 0.414889 m（仅 80 test 图）</td></tr>
+<tr><td>CP</td><td>状态相关 Bernstein b0(d)；q=2.522199；均值半径约 0.4316 m；40 条校准</td></tr>
+<tr><td>SBC</td><td>同包非负 [2,16,8,1]；初始 0；危险下界 24.965932</td></tr>
+<tr><td>连续域</td><td>CP tube 4,971,398 区间；0 反例/0 未解决；冻结回放 105,608 区间 0/0</td></tr>
+<tr><td>行为</td><td>名义 / 全图 / 留出各 1441/1441 成功；32 项软件测试</td></tr>
+</tbody></table>
+<div class="warnbox">这个包只有 400 张 32×32 图和 80 张 test，使用状态相关 CP，SBC 与策略配套训练；<b>不能把它和 24k test 的 A1/A2 横比</b>。它证明早期灰度链路能闭合，不是当前前端排名的证据。<a href="../artical-F122/results/vision_sls_spvc_sbc_pass_20261029/README.md">原灰度包</a></div>
 </div>
 
 <div class="section"><h2>4. 输入图像与结果图</h2>
@@ -185,7 +202,7 @@ lane_body=f'''
 <tr><td>SBC</td><td>0/0，原审计</td><td><b>13,000 区间，0 见证/0 未解决，三曲率</b></td></tr>
 <tr><td>同一 100 条校准常量对照</td><td>—</td><td>半径 0.0886653；旧留出 94/100</td></tr>
 </tbody></table>
-<div class="note"><b>修复版 v2 的关键：</b>用前 99 条拟合、后 100 条校准，有限样本秩 96；留出分数只读留出数据自身残差；没有 `min(...,0.0992)` 截断。实际状态相关集合直接验证通过，不是用全域最大半径 0.235815 的扩大盒；本地/服务器各 31 项测试通过；`C` 仍固定，不是联合学习。<br><b>不能说过头：</b>93/100 是旧数据回归，不是新增盲测；状态相关包络也没有明显优于常量盒（同一校准常量 0.0886653、留出 94/100）；`C` 仍固定，不是联合学习新前端。</div>
+<div class="note"><b>修复版 v2 的关键：</b>用前 99 条拟合、后 100 条校准，有限样本秩 96；留出分数只读留出数据自身残差；没有 `min(...,0.0992)` 截断。实际状态相关集合直接验证通过，不是用全域最大半径 0.235815 的扩大盒；本地/服务器各 31 项测试通过；这里的 `C` 仍固定。联合学习 C 是另一个独立实验，见<a href="compare.html">方法对比</a>。<br><b>不能说过头：</b>93/100 是旧数据回归，不是新增盲测；状态相关包络也没有明显优于常量盒（同一校准常量 0.0886653、留出 94/100）；`C` 仍固定，不是联合学习新前端。</div>
 <div class="badbox"><b>旧 v1 仍撤回：</b>代码/报告不一致、留出分数误用校准残差、同批拟合+校准且 cap 收缩集合；旧 0.0992 盒上的 SBC 通过不能证明 CP 覆盖。见 <a href="../artical-F122/results/lane_state_cp_20261109_v1/AUDIT.md">v1 审计</a>。</div>
 </div>
 
@@ -307,7 +324,7 @@ gallery_body=f'''
 
 # ---------------- process ----------------
 process_body=f"""
-<p>按“输入 → 做了什么 → 输出/产物 → 为什么/检查”展开。这里只写当前版本，历史失败版本在数据与报告页链接里。</p>
+<p>按“输入 → 做了什么 → 输出/产物 → 为什么/检查”展开。这里只写当前版本，历史失败版本在数据与报告页链接里。</p><p><a href="../docs/current/SPVC当前框架_逐步流程与安全保证_20261109.md"><b>完整框架文档（推荐先读）</b></a>：更详细地解释 CP、SBC、验证器和保证边界。</p>
 
 <div class="section"><h2>AEBS RGB：从 24k 真实图到条件证书</h2>
 {table(['步','输入','做了什么','输出 / 产物','检查 / 为什么'],[
@@ -324,6 +341,7 @@ process_body=f"""
  ['10. 状态相关对照','同一 actor/SBC、Bernstein b(d)','5,000 train 残差拟合 b(d)；199 条轨迹取 q；半径 q·b(d)；直接验证','状态相关包','平均 0.3217、max 0.7189；41,070 区间 0/0；留出 92/100，低于常量版；不替换主包'],
 ])}</div>
 
+<div class="warnbox"><b>历史灰度实现：</b>原 10/29 的 400 张 32×32 灰度包（DINO + 状态相关 CP + 配套 SBC，4,971,398 区间 0/0、1441/1441）是独立早期链路；不能与上面的 24k 同测试表横比。详见<a href="compare.html">方法对比页</a>。</div>
 <div class="section"><h2>车道保持：从渲染图到轨迹 CP + SBC</h2>
 {table(['步','输入','做了什么','输出 / 产物','检查 / 为什么'],[
  ['0. 协议','任务需求','固定 <code>(e,θ)</code>、前轮转角 φ、v=4、L=2.6、dt=0.1、H=80；初态 ±0.25/±0.06；安全 ±0.85/±0.30；κ∈{-0.01,0,0.01}','协议','先固定任务和曲率集合'],
@@ -364,14 +382,124 @@ process_body=f"""
 <div class="warnbox"><b>读法：</b>每个实验的“通过”都只在其声明的模型、数据分布和数值验证范围内成立；步骤表里的输出不是无条件安全率。完整证据在“数据与报告”页链接的结果包中。</div>
 """
 
+# ---------------- compare ----------------
+compare_body=f"""
+<p>不同实验的任务、数据和证明域不同，不能用一个分数横比。本页把比较分成三层：<b>同一 test 的前端误差</b>、<b>同一 actor/SBC 的包络敏感性</b>、<b>四个实验的最终状态</b>。</p>
+<div class="warnbox"><b>读表规则：</b>AEBS 前端表的 CP 是静态图片级 95% 半径，不是轨迹级 0.418359 m；cGAN 是旧 400 图检查点；灰度 A1 同时改了颜色和源分辨率；原 10/29 灰度包是 400 图早期实现，不在 24k 同一 test 表内。所有实验都不能用平均误差直接推出安全证书。</div>
+
+<div class="section"><h2>1. AEBS 前端误差：同一 4,920 张 test 的正确版本</h2>
+{table(['方法','训练/数据','test MAE ↓','RMSE','P95 abs','max abs','静态 CP95 ↓','test 覆盖'],[
+ ['cGAN + state_net','旧 400 图生成库检查点','2.747 m','3.320 m','6.480 m','8.342 m','5.221 m','87.64%'],
+ ['32×32 灰度 DINO','24k，历史运行','0.1017 m','0.1842 m','0.4670 m','0.9651 m','0.2656 m','90.47%'],
+ ['32×32 灰度 DINO','24k，本轮重训可重载','0.1079 m','0.2010 m','0.5514 m','1.1607 m','0.2797 m','90.75%'],
+ ['<b>真实 RGB DINO</b>','24k，当前','<b>0.0874 m</b>','<b>0.1211 m</b>','<b>0.2614 m</b>','<b>0.5250 m</b>','<b>0.2307 m</b>','<b>93.33%</b>']])}
+<p class="small">同一 0.25 m bin 划分，train/val/test=14,172/4,908/4,920。RGB 相对灰度历史 MAE 低约 16.4%，相对灰度重训低约 19.0%；这是单次运行描述，不是多种子显著性。rain 分组灰度 MAE 约 0.0725 m，RGB 约 0.0967 m，RGB 并非所有天气都更好。</p>
+</div>
+
+<div class="section"><h2>1.1 原 SPVC cGAN 原生闭环 vs DINO</h2>
+<table><thead><tr><th>项目</th><th>原生 cGAN</th><th>原生 cGAN + 新 actor</th><th>新 DINO</th></tr></thead><tbody>
+<tr><td>轨迹 q</td><td><b>1.9156 m</b></td><td>1.9156 m</td><td><b>0.4184 m</b></td></tr>
+<tr><td>留出覆盖</td><td>92/100</td><td>92/100</td><td><b>99/100</b></td></tr>
+<tr><td>留出行为</td><td>100/100 成功</td><td>100/100 成功</td><td>4800/4800 成功</td></tr>
+<tr><td>静态误差</td><td>MAE 0.2219 m / max 1.9839 m（生成图）</td><td>同左</td><td>MAE 0.0874 m / max 0.5250 m（真实图）</td></tr>
+</tbody></table>
+<p class="small"><b>5.221 m 不是原生 cGAN 的 q</b>，那是旧 state_net 迁移到 24k 真实灰度图的跨库结果。原生 cGAN q=1.9156 m。两边行为都成功，收益在误差包络/覆盖，不在任务成功率。</p>
+<table><thead><tr><th>同 400 图预算、同 actor</th><th>cGAN 400</th><th>DINO 400</th><th>结论</th></tr></thead><tbody>
+<tr><td>轨迹 q / 留出覆盖</td><td>1.9156 m / 92/100</td><td>4.0205 m / 94/100</td><td>cGAN q 更小；DINO 覆盖高 2pp；没有 DINO 架构胜出</td></tr>
+</tbody></table>
+<p class="small">24k DINO 的 q=0.4184/99 是数据规模收益；要判定同预算架构胜负，需要把 cGAN 也重训到 24k。</p>
+<img src="../artical-F122/results/aebs_cgan_frontend_error_benefit_20261110/error_by_distance.png" alt="cGAN vs DINO error by distance" style="max-width:100%;border:1px solid #d9dee3;border-radius:8px">
+<p><a href="../docs/current/SPVC前端替换_收益证明_原SPVC_cGAN误差对照_20261110.md">完整原 SPVC cGAN 对照</a></p>
+</div>
+
+<div class="section"><h2>2. 原来的 10/29 灰度实现：单独的历史基线</h2>
+{table(['项目','原 10/29 灰度包'],[
+ ['数据','400 张 32×32 灰度图；240 / 80 / 80'],
+ ['观测','冻结 DINOv2 ViT-S/14 CLS 384 → 128 → 128 → 1；最佳 epoch 243'],
+ ['test 误差','MAE 0.129266 m；RMSE 0.165444 m；max 0.414889 m（80 test）'],
+ ['CP','状态相关 Bernstein b0(d)；q=2.522199；均值半径约 0.4316 m；40 条校准'],
+ ['SBC','非负 [2,16,8,1]；初始 0；危险下界 24.965932'],
+ ['连续域 / 回放','4,971,398 / 105,608 区间；均 0 反例、0 未解决'],
+ ['行为','名义 / 全图 / 留出各 1441/1441；32 项测试'],
+])}
+<p>这个包不能和 24k test 横比，也不能把它的 24.9659 危险下界套到当前 RGB 包。它作为“早期灰度链路能闭合”的历史证据保留。 <a href="../artical-F122/results/vision_sls_spvc_sbc_pass_20261029/README.md">原灰度包</a></p>
+</div>
+
+<div class="section"><h2>3. AEBS 包络与 SBC：固定 actor 的敏感性</h2>
+{table(['误差集合','半径 / 统计','同一旧 SBC','结论'],[
+ ['RGB 静态','0.230725 m','212 见证；150,033 未解决','不通过'],
+ ['灰度历史静态','0.265584 m','202 见证；128,858 未解决','不通过'],
+ ['灰度重训静态','0.279712 m','179 见证；141,107 未解决','不通过'],
+ ['cGAN 旧检查点','5.221404 m','624 见证；59,278 未解决','不通过'],
+ ['<b>RGB 轨迹 CP + 新 SBC v2</b>','0.418359 m','<b>292,024 区间；0/0；深度 29</b>','<b>通过</b>'],
+ ['RGB 状态相关 CP（C 固定）','均值 0.3217 / max 0.7189 m','41,070 区间；0/0；深度 11','通过；留出 92/100；不替换常量'],
+])}
+<p class="small">旧 SBC 对四种误差集合都失败；新 SBC v2 是针对 RGB 轨迹半径重训的，不能反过来说灰度/cGAN 也已通过。状态相关只学 b(d)，C 仍是 [1,0]，不是联合学习新前端。</p>
+</div>
+
+<div class="section"><h2>4. 车道：常量盒与状态相关 v2</h2>
+{table(['项目','常量盒（主结果）','状态相关 v2（修复对照）'],[
+ ['拟合 / 校准','—','99 / 100 条，索引不重叠'],
+ ['阈值','0.090093，190/199','q=1.7205338，第 96/100 秩；无 cap'],
+ ['校准覆盖','190/199','96/100'],
+ ['旧留出回归','95/100','93/100（旧数据回归，不是新盲测）'],
+ ['平均 / 观测最大半径','0.090093 / 0.090093','0.0883927 / 0.1093692'],
+ ['SBC','原审计 0/0','13,000 区间；三曲率 0/0'],
+ ['同一 100 条校准常量对照','—','0.0886653；旧留出 94/100'],
+])}
+<p class="small">v2 已修复 v1 的留出残差误用、同批拟合+校准和 cap 问题；但它是旧数据回归，且没有明显优于常量盒。v1 仍为 withdrawn/unverified。</p>
+</div>
+
+<div class="section"><h2>5. 联合学习视觉投影与 C（11/09 独立版）</h2>
+<table><thead><tr><th>实验</th><th>训练</th><th>新 CP</th><th>SBC / 当前状态</th></tr></thead><tbody>
+<tr><td>车道联合 C</td><td>5 对训练种子；每对固定/联合 C 同预算、同初始化</td><td>q 均值：固定 <b>0.085263</b>，联合 <b>0.085699</b>；留出覆盖 95.6% vs 95.0%</td><td>两边各 5/5 通过数值 SBC；3/5 对联合 q 更小；<b>无稳定优势</b>。[阶段结果](../docs/current/SPVC前端替换_收益证明_阶段一至二结果_20261110.md)</td></tr>
+<tr><td>RGB AEBS 联合 C</td><td>C≈[1.0,−8.44×10⁻⁶]；速度项接近零</td><td>q=0.394521 m；校准 190/199；<b>留出 91/100</b>；299 条成功</td><td>102,338 区间，0/0，数值 SBC 通过；但留出未达 95/100</td></tr>
+<tr><td>灰度 AEBS 联合 C v2</td><td>C≈[0.999998,0.0019307]；视觉尺度 3.237806 m</td><td>q=3.515916 m；校准 190/199；留出 95/100；299 条成功</td><td><b>未通过</b>：4,096 个深度 0 区间中 78 个见证、74 个未解决</td></tr>
+</tbody></table>
+<p class="small">联合版把视觉投影和 C 一起训练，但使用独立 CP/SBC；不继承固定 C 版任何证书。车道已完成 <b>5 对训练种子配对</b>：q 均值固定 0.085263 / 联合 0.085699，留出覆盖 95.6% / 95.0%，两边各 5/5 通过 SBC；联合 C <b>没有稳定优势</b>。RGB 联合版“SBC 通过”不等于“留出覆盖 95%”；灰度联合版已经失败。详见 <a href="../docs/current/SPVC前端替换_收益证明_阶段一至二结果_20261110.md">阶段结果</a>。</p>
+<img src="../artical-F122/results/lane_frontend_benefit_20261110/summary_5seed/q_coverage.png" alt="5-seed q/coverage" style="max-width:100%;border:1px solid #d9dee3;border-radius:8px;margin-top:8px">
+</div>
+
+<div class="section"><h2>6. 四个实验放在一起看</h2>
+{table(['实验','任务 / 观测','CP / 误差集合','SBC / 验证','行为','当前状态'],[
+ ['AEBS RGB','2D 状态；1D 距离；24k 真实 RGB','轨迹 0.418359 m','292,024 区间；0/0','4,800/4,800','条件证书；C 固定'],
+ ['AEBS 10/29 灰度','2D；400 张 32×32；DINO','状态相关；4,971,398 区间','0/0；105,608 回放 0/0','1441/1441','历史小数据包；非当前同测'],
+ ['车道','2D (e,θ)；3,600 渲染','0.090093 轨迹 CP','0 见证/0 未解决','12/12 图像闭环','证书通过；三个曲率'],
+ ['停车场','4D / 3D；15 起点','启动 CP；233/240 审计','增广可达域神经 SBC','30/30','受保护闭环；必须在线后备'],
+ ['移动机器人','3D / 3D；2,400 图','约 (0.0488,0.0488,0.3254)','SBC 未通过；7,360 未解决','24/24','任务跑通；完整证书失败'],
+])}
+</div>
+
+<div class="section"><h2>7. 不能从这张页推出的结论</h2>
+<ul>
+<li>不能把 cGAN 旧检查点当作同预算架构对比；它只说明迁移参考。</li>
+<li>不能把 32×32 灰度 vs 640×640 RGB 的差异全归因于颜色；源分辨率和预处理同时变了。</li>
+<li>不能把静态 CP 0.2307 m 和轨迹 CP 0.418359 m 混成一个“前端 CP”。</li>
+<li>不能把原 10/29 灰度包的 24.9659 或 1441/1441 直接套到当前 24k RGB 包。</li>
+<li>不能把“新 SBC 在 RGB 轨迹半径通过”推成灰度/cGAN 也通过；需要各自重训/验证。</li>
+<li>不能把状态相关 CP 的平均半径更小写成覆盖更好；AEBS 92/100、车道 93/100 都低于常量对照。</li>
+<li>不能把联合 C 版和固定 C 版混用；联合 C 版有自己的 CP/SBC。车道 5 对配对已完成，但联合 C 没有稳定优势。</li>
+</ul>
+<p>完整证据：<a href="../docs/current/AEBS前端对比_cGAN_灰度_真实RGB_20261108.md">AEBS 前端对比文档</a> · <a href="../artical-F122/results/real_aebs_baselines/README.md">基线与 JSON</a> · <a href="../artical-F122/results/vision_sls_spvc_sbc_pass_20261029/README.md">原灰度包</a></p>
+</div>
+"""
+
 # ---------------- data ----------------
 data_body=f'''
-<p>这里只列配置、结果包、关键 JSON 和完整报告入口；原始图片/大文件仍在服务器和结果包中。</p>
+<p>这里只列配置、结果包、关键 JSON 和完整报告入口；原始图片/大文件仍在服务器和结果包中。方法层面的统一比较见 <a href="compare.html">方法对比页</a>；联合 C 专题见 <a href="../docs/current/联合学习视觉投影与C_实验步骤与结果_20261109.md">联合学习视觉投影与 C</a>。</p>
 <div class="section"><h2>实验配置与结果包</h2>
 {table(['实验','数据','状态/观测/动作','结果包','关键文件'],[
  ['AEBS RGB','24,000 张 640×640 RGB；4 天气×3 颜色；5–16 m','2D / 1D 距离 + 实测速度 / 1D','<a href="../artical-F122/results/real_aebs_repair_20261109_release/README.md">release</a>','<a href="../artical-F122/results/real_aebs_repair_20261109_release/perception_contract.json">CP contract</a> · <a href="../artical-F122/results/real_aebs_repair_20261109_release/verification_report.json">verification</a>'],
- ['AEBS 状态相关 CP','同上','1D 距离','<a href="../artical-F122/results/real_aebs_state_cp_20261109_v1/README.md">state CP</a>','<a href="../artical-F122/results/real_aebs_state_cp_20261109_v1/perception_contract.json">contract</a> · <a href="../artical-F122/results/real_aebs_state_cp_20261109_v1/verification_tube/report.json">verify</a>'],
- ['AEBS 前端对比','同一 4,920 test','1D','<a href="../artical-F122/results/real_aebs_baselines/README.md">baselines</a>','<a href="../artical-F122/results/real_aebs_baselines/comparison.json">comparison JSON</a>'],
+ ['AEBS 状态相关 CP','同上','1D 距离','<a href="../artical-F122/results/real_aebs_state_cp_20261109_units_v2/README.md">state CP</a>','<a href="../artical-F122/results/real_aebs_state_cp_20261109_units_v2/perception_contract.json">contract</a> · <a href="../artical-F122/results/real_aebs_state_cp_20261109_units_v2/verification_tube/report.json">verify</a>'],
+ ['AEBS 前端对比','同一 4,920 test','1D','<a href="../artical-F122/results/real_aebs_baselines/CORRECTION.md">baselines（tube 已更正）</a>','<a href="../artical-F122/results/real_aebs_baselines/comparison.json">comparison JSON</a><br><span class="small">前端误差可用；其中旧 tube 字段已被修复版 status.json 取代</span>'],
+ ['原 SPVC cGAN 原生','400 图生成体系；cGAN 生成图','2D / 1D 距离 / 1D','<a href="../artical-F122/results/aebs_cgan_frontend_error_benefit_20261110/native_cgan/report.json">native cGAN</a>','q=1.9156 m；留出92/100；行为100/100'],
+ ['DINO-400 同预算','与 cGAN 同 400 图；同新 actor','2D / 1D','<a href="../artical-F122/results/aebs_cgan_frontend_error_benefit_20261110/dino400_matched/report.json">DINO-400</a>','q=4.0205 m；留出94/100；行为100/100'],
+ ['AEBS 原 10/29 灰度','400 张 32×32；240/80/80','2D / 1D 距离 / 1D','<a href="../artical-F122/results/vision_sls_spvc_sbc_pass_20261029/README.md">原灰度包</a>','<a href="../artical-F122/results/vision_sls_spvc_sbc_pass_20261029/perception_contract.json">state CP</a> · <a href="../artical-F122/results/vision_sls_spvc_sbc_pass_20261029/summary.json">summary</a>'],
+ ['AEBS 灰度重训','24k 灰度，可重载','1D','<a href="../artical-F122/results/real_aebs_repair_20261108_v1/gray_retrained.json">gray_retrained.json</a>','<a href="../artical-F122/results/real_aebs_repair_20261108_v1/gray_retrained.pt">weights</a> · <a href="../artical-F122/results/real_aebs_repair_20261108_v1/tube_gray_retrained/report.json">tube</a>'],
+ ['联合 C：车道训练','3,600 渲染；C 可训练','2D','<a href="../artical-F122/results/lane_vision_sls_joint_C_20261109_v1/report.json">lane joint train</a>','<a href="../artical-F122/results/lane_vision_sls_joint_C_20261109_cp_v1/perception_contract.json">单对历史 q=0.084338</a>'],
+ ['前端收益 5 对配对','固定/联合 C；同数据/预算/外部条件','2D','<a href="../artical-F122/results/lane_frontend_benefit_20261110/README.md">benefit 5-seed</a>','<a href="../artical-F122/results/lane_frontend_benefit_20261110/summary_5seed/report.md">summary</a>'],
+ ['联合 C：RGB AEBS','24k RGB；C 可训练','2D / 1D','<a href="../artical-F122/results/rgb_aebs_vision_sls_joint_C_20261109_cp_v1/report.json">RGB joint CP</a>','<a href="../artical-F122/results/rgb_aebs_vision_sls_joint_C_20261109_cp_v1/verification/report.json">SBC 102,338 0/0</a>；留出 91/100'],
+ ['联合 C：灰度 AEBS v2','24k 灰度；C 可训练','2D / 1D','<a href="../artical-F122/results/gray_aebs_vision_sls_joint_C_20261109_cp_v2/README.md">gray joint</a>','<a href="../artical-F122/results/gray_aebs_vision_sls_joint_C_20261109_cp_v2/verification_witness/report.json">SBC 未通过</a>；78 见证/74 未解决'],
  ['车道','3,600 张 192×192 渲染；60 场景','2D / 2D (ê,θ̂)+κ / 1D','<a href="../artical-F122/results/lane_trajectory_cp_20261107_v1/README.md">trajectory CP</a>','<a href="../artical-F122/results/lane_repair_20261109_audit/bridge.json">audit bridge</a>'],
  ['车道状态相关 CP v2','复用 199 条轨迹；99/100 分离','2D','<a href="../artical-F122/results/lane_state_cp_20261109_repaired_v2/README.md">repaired v2</a>','<a href="../artical-F122/results/lane_state_cp_20261109_repaired_v2/perception_contract.json">contract</a> · <a href="../artical-F122/results/lane_state_cp_20261109_repaired_v2/verification_state/certificate.json">state cert</a>'],
  ['车道状态相关 v1（已撤回）','旧错误版','2D','<a href="../artical-F122/results/lane_state_cp_20261109_v1/AUDIT.md">audit</a>','不可引用；代码/报告不一致'],
@@ -396,6 +524,7 @@ data_body=f'''
 <div class="warnbox">站点不复制 24,000 张原图和 17 GB 数据；只提供缩略图、配置和结果包链接。</div>
 '''
 
+page('compare.html','方法对比：前端、包络与证书','compare.html',compare_body,'同一 test 的前端误差、历史灰度实现、CP/SBC 敏感性，以及四个实验的最终状态。')
 page('process.html','实验过程：逐步输入/输出','process.html',process_body,'四个实验从协议、数据、观测、CP、SBC 到验证和行为的详细步骤。')
 page('index.html','SPVC 实验总览','index.html',index_body,'真实图像前端、低维观测、CP 包络与非负 SBC：四个实验的配置、步骤、结果与边界。')
 page('aebs.html','AEBS：真实 RGB 紧急制动','aebs.html',aebs_body,'640×640 真实 CARLA RGB → DINO 距离 → CP → 新非负 SBC；条件证书与单位修复。')

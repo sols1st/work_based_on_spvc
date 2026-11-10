@@ -6,6 +6,7 @@ does not implement the commented-out Gramian regularizer or SLS controller.
 import argparse
 import copy
 import json
+import shutil
 from pathlib import Path
 
 import numpy as np
@@ -31,10 +32,14 @@ def main(argv=None):
     p.add_argument('--lr', type=float, default=1e-4)
     p.add_argument('--seed', type=int, default=20261109)
     p.add_argument('--max-condition', type=float, default=10.)
+    p.add_argument('--fixed-C', action='store_true', help='registered matched-budget ablation only')
     args = p.parse_args(argv)
     if args.epochs < 1 or args.batch_size < 1 or args.lr <= 0 or args.max_condition < 1:
         raise ValueError('invalid training parameters')
     args.output_dir.mkdir(parents=True, exist_ok=False)
+    snapshot=args.output_dir/'source_snapshot';snapshot.mkdir()
+    for src in [Path(__file__),Path(__file__).with_name('joint_observation.py')]:
+        shutil.copyfile(src,snapshot/src.name)
     torch.set_num_threads(4); torch.manual_seed(args.seed)
     saved = torch.load(args.warm_start, map_location='cpu', weights_only=False)
     if saved.get('format') != 'lane_keeping_dino_patch_projection_v1':
@@ -58,6 +63,7 @@ def main(argv=None):
         model.visual.out.weight.copy_(C0 @ model.visual.out.weight.clone())
         model.visual.out.bias.copy_(C0 @ model.visual.out.bias.clone())
     initial = copy.deepcopy(model.state_dict())
+    if args.fixed_C:model.raw_C.requires_grad_(False)
     protocol = dict(format='lane_joint_training_protocol_v1',
         config={k: str(v) if isinstance(v, Path) else v for k,v in vars(args).items()},
         bindings={k:sha256(v) for k,v in dict(dataset=args.dataset,features=args.features,
@@ -69,7 +75,8 @@ def main(argv=None):
         state_scale=[core.E_SCALE,core.THETA_SCALE],initial_C=C0.tolist(),
         selection='minimum decoded normalized-state validation MSE among condition<=max_condition checkpoints',
         calibration_and_test_used_for_selection=False,
-        scope='warm-start joint observation fitting; fixed DINO; no SLS synthesis or Gramian regularizer')
+        mode='fixed-C matched-budget ablation' if args.fixed_C else 'joint-C training',
+        scope='warm-start observation fitting; fixed DINO; no SLS synthesis or Gramian regularizer')
     write(args.output_dir/'protocol.json',protocol)
     optimizer=torch.optim.Adam(model.parameters(),lr=args.lr)
     best=None; history=[]
@@ -78,7 +85,8 @@ def main(argv=None):
         for ids in tr[torch.randperm(len(tr))].split(args.batch_size):
             loss=(model(features[ids])-model.nominal(x[ids])).norm(dim=1).mean()
             optimizer.zero_grad();loss.backward()
-            grad+=float(model.raw_C.grad.norm());optimizer.step();total+=float(loss.detach())*len(ids)
+            grad+=float(model.raw_C.grad.norm()) if model.raw_C.grad is not None else 0.
+            optimizer.step();total+=float(loss.detach())*len(ids)
         model.eval()
         with torch.no_grad():
             C=model.matrix();sv=torch.linalg.svdvals(C);cond=float(sv[0]/sv[-1])
@@ -111,6 +119,7 @@ def main(argv=None):
         metrics[name]=dict(n=len(ids),decoded_mae_physical=(e.abs().mean(0)*torch.tensor([core.E_SCALE,core.THETA_SCALE])).tolist(),
                           max_normalized_error=float(e.abs().max()))
     report=dict(format='lane_joint_training_report_v1',best_epoch=best[2],
+        mode=protocol['mode'],
         C_initial=C0.tolist(),C_final=C.tolist(),C_change_frobenius=float((C-C0).norm()),
         C_gradient_nonzero=any(h['C_gradient_norm_sum']>0 for h in history),
         visual_parameter_change_l2=float(sum((model.state_dict()[k]-v).square().sum()

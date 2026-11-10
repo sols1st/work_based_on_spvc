@@ -1,0 +1,29 @@
+{
+  "format": "vision_sls_state_cp_reference_v1",
+  "coefficients": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "envelope_units": "m",
+  "score_units": "m",
+  "calibration": {
+    "q_hat": 0.39452104906078794,
+    "rank": 190,
+    "n": 199,
+    "alpha": 0.05,
+    "marginal_target": 0.95,
+    "confidence": 0.99,
+    "coverage_lower_at_confidence": 0.9079192628657627,
+    "guarantee_scope": "one exchangeable draw, fixed score function; not trajectory safety"
+  },
+  "source_policy_sha256": "d701abdf8713b32c708c3805341c653cce56c15e17b0affcea77b3cab05337c3",
+  "source_observation_sha256": "e7691e9615b4c3263126d00cd83fb59242922eb0ba3e78a73bc9e97892d707ae",
+  "observer_kind": "joint latent frontend plus explicit measured-speed decoder",
+  "semantic_verifier_observation_sha256": "eee112612932071653c4479a9eb9f8b9d215217c011281b022b7f79e206e9fb6",
+  "independent_trajectory_calibration": true,
+  "formal_image_certificate": false,
+  "statistical_status": "trajectory marginal CP under frozen-library law only",
+  "protocol_sha256": "9f522560fffdcb32cbcce31836d1dc37c8705a5cf54e62b699cc09588fc090ba"
+}

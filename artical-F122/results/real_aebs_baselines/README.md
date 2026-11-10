@@ -1,3 +1,5 @@
+> **2026-11-09 更正：**本页下方 “grayscale passes / real RGB passes” 的 tube 字段已作废；正确修复版见 [CORRECTION.md](CORRECTION.md) 和 `../real_aebs_repair_20261108_v1/status.json`。前端误差数字仍可用。
+
 # AEBS front-end baselines: cGAN / 32x32 gray / real RGB
 
 2026-11-08. Same 4,920 real-image test set and distance labels.

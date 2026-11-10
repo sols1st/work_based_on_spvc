@@ -1,0 +1,120 @@
+{
+  "rgb": [
+    {
+      "filename": "000000.png",
+      "sha256": "0be8708e0bed221346428cfe5dcdca959c57de3654868ed74ef34fbe37b334a5",
+      "distance_m": 5.0,
+      "weather": "original",
+      "color": "red",
+      "split": "train",
+      "fixed_prediction_m": 5.0005886834519515,
+      "joint_latent": 1.5706686973571777,
+      "source": "/root/work_based_on_spvc/carla_data_spvc_expanded/full01/000000.png"
+    },
+    {
+      "filename": "010400.png",
+      "sha256": "1bb906afd73ac1278c6c6d8eb86de011bb736ec1899ab9a1f7301a9c2465b3ba",
+      "distance_m": 7.002002239227295,
+      "weather": "overcast",
+      "color": "blue",
+      "split": "train",
+      "fixed_prediction_m": 7.005020126454383,
+      "joint_latent": 2.2000112533569336,
+      "source": "/root/work_based_on_spvc/carla_data_spvc_expanded/full01/010400.png"
+    },
+    {
+      "filename": "020999.png",
+      "sha256": "d16aa9e830ad6850a5b39a0f04d8f2c0439c3e1f89337e478c6d022aa2b31fda",
+      "distance_m": 10.0,
+      "weather": "low_sun",
+      "color": "gray",
+      "split": "validation",
+      "fixed_prediction_m": 10.020776163089522,
+      "joint_latent": 3.147976875305176,
+      "source": "/root/work_based_on_spvc/carla_data_spvc_expanded/full01/020999.png"
+    },
+    {
+      "filename": "007416.png",
+      "sha256": "dd6ca7732167809001ff2ac31b198623944bb0f94050ef1cb58e808e9d2956fc",
+      "distance_m": 12.498498916625977,
+      "weather": "rain",
+      "color": "red",
+      "split": "validation",
+      "fixed_prediction_m": 12.84052450855529,
+      "joint_latent": 4.039539813995361,
+      "source": "/root/work_based_on_spvc/carla_data_spvc_expanded/full01/007416.png"
+    },
+    {
+      "filename": "009833.png",
+      "sha256": "0aac499b49ccfb7249af6ce52aae8d8c348bb6b57c89189fb63df92070718269",
+      "distance_m": 15.003003120422363,
+      "weather": "original",
+      "color": "blue",
+      "split": "validation",
+      "fixed_prediction_m": 14.85997906472494,
+      "joint_latent": 4.668269634246826,
+      "source": "/root/work_based_on_spvc/carla_data_spvc_expanded/full01/009833.png"
+    },
+    {
+      "filename": "019999.png",
+      "sha256": "c1b483269f3d5947c85d96c8956308f7e9e24b1eeea5b705fd11807302e39184",
+      "distance_m": 16.0,
+      "weather": "overcast",
+      "color": "gray",
+      "split": "test",
+      "fixed_prediction_m": 15.574007190959037,
+      "joint_latent": 4.895558834075928,
+      "source": "/root/work_based_on_spvc/carla_data_spvc_expanded/full01/019999.png"
+    }
+  ],
+  "lane": {
+    "source": "/root/work_based_on_spvc/artical-F122/data/lane_keeping_v2/dataset.npz",
+    "rows": [
+      1080,
+      1151,
+      2303,
+      2375,
+      3527,
+      3599
+    ],
+    "selection": "six evenly spaced test rows, no performance-based selection"
+  },
+  "display": "Original archived RGB/dataset images; gray32 follows encode_gray_features.py. Not AI-generated.",
+  "gray400": {
+    "source": "/Users/johann/project/work_based_on_spvc/artical-F122/Aebs/data/Downsampled.h5",
+    "sha256": "41cc88359f64d52ffb25a8ec57ea9efddd9b8463d37e63bc972b2854dbed1bf1",
+    "rows": [
+      0,
+      80,
+      159,
+      233,
+      299,
+      382
+    ],
+    "tail_rows": [
+      138,
+      322,
+      326,
+      285,
+      137,
+      390
+    ]
+  },
+  "predictions": {
+    "reference_speed_mps": 1.5,
+    "gray": "gray_aebs_vision_sls_joint_C_20261109_v1 and v2",
+    "rgb": "real_aebs_repair_20261109_release and rgb_aebs_vision_sls_joint_C_20261109_v1",
+    "lane": "lane_vision_sls_joint_C_20261109_v1 cached feature outputs"
+  },
+  "figures": {
+    "gray24k.png": "21787765e71d3666ac071d29bd71d9e13d8e7180c220901171ad65f495b28f5e",
+    "gray400.png": "d864ecfd2ec357fe9cc5d233a4ee800521c5cba572ad38e3cca5e448948ea0a5",
+    "gray_joint.png": "d7e8eac13ecf44c639ecfb12a1217ddfdfa585e6d15d49bd329fd104e60b1064",
+    "gray_joint_tail.png": "000e7335aa16f41828547730aef989923a28ab25f2987721b661421140a30c7b",
+    "lane_early.png": "b98cb2b53a398a11e36ef179d695e26cff136a6734e26c748a4454426f936d80",
+    "lane_joint.png": "48d49ac9d20954b62f1626e567dfba6f4d94cf3dd3a2ad8719391a4892499714",
+    "lane_v2.png": "e669c1912cea104d30282d0113faace3ef4d3bd7451bb562aa822653c6a4febc",
+    "rgb24k.png": "7ab44aa2f2d1c8f983f009351eca07876df7c02c4206873f927efb90eb574fba",
+    "rgb_joint.png": "d4c5e9b591f90a26787abe0630905817c01a386ec9261786a0d3991d03d72453"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "format": "aebs_dino400_matched_v1",
+  "mode": "DINO-400 real image nearest replay -> new actor",
+  "data": "400-image Downsampled.h5 DINO projection (gray)",
+  "actor": "new policy.pt",
+  "calibration": {
+    "n": 199,
+    "q": 4.020491507084387,
+    "rank": 190,
+    "covered": 190
+  },
+  "holdout": {
+    "n": 100,
+    "covered": 94,
+    "fraction": 0.94,
+    "interval": [
+      0.8739700654191771,
+      0.9776651139286836
+    ],
+    "unsafe": 0,
+    "success": 100,
+    "timeouts": 0
+  },
+  "scope": "Same 400-image data budget and same actor as cGAN matched; DINO backbone pretraining not matched."
+}
