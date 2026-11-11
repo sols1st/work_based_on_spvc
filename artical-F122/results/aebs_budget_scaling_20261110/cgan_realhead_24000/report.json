@@ -1,0 +1,34 @@
+{
+  "format": "aebs_cgan_realhead_budget_v1",
+  "budget": "24000",
+  "epochs": 100,
+  "seed": 20261110,
+  "validation": {
+    "n": 4908,
+    "mae": 0.011719179522631707,
+    "rmse": 0.01518688203129348,
+    "p95": 0.03070254325866699,
+    "max": 0.04964733123779297,
+    "bias": -0.0019552271445786554
+  },
+  "test": {
+    "n": 4920,
+    "mae": 0.024746667854185028,
+    "rmse": 0.05525214491474187,
+    "p95": 0.1413596630096436,
+    "max": 0.3588905334472656,
+    "bias": -0.020309755278796686
+  },
+  "cp": {
+    "q": 0.0307464599609375,
+    "rank": 4664,
+    "n": 4908,
+    "test_covered": 4382
+  },
+  "counts": {
+    "train": 14172,
+    "validation": 4908,
+    "test": 4920
+  },
+  "scope": "cGAN/state_net perception head trained on REAL 32x32 grayscale images; generator not used for this head"
+}

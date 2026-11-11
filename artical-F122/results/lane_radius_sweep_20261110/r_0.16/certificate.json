@@ -1,0 +1,222 @@
+{
+  "format": "lane_aebs_learned_sbc_audit_v1",
+  "passed": false,
+  "initial": {
+    "passed": true,
+    "unresolved": 0,
+    "bound": 0.08582801041697322,
+    "partition_area_error": 0.0,
+    "history": [
+      {
+        "depth": 0,
+        "unresolved": 0,
+        "accepted": 256
+      }
+    ]
+  },
+  "unsafe": {
+    "passed": true,
+    "unresolved": 0,
+    "bound": 23.653495792448606,
+    "partition_area_error": 0.0,
+    "history": [
+      {
+        "depth": 0,
+        "unresolved": 0,
+        "accepted": 1024
+      }
+    ]
+  },
+  "checks": [
+    {
+      "kappa": -0.01,
+      "passed": false,
+      "unresolved": 635,
+      "actual_witnesses": 28,
+      "partition_area_error": 0.0,
+      "history": [
+        {
+          "kappa": -0.01,
+          "depth": 0,
+          "unresolved": 339,
+          "outside": 755,
+          "plateau": 369,
+          "decreasing": 137
+        },
+        {
+          "kappa": -0.01,
+          "depth": 1,
+          "unresolved": 475,
+          "outside": 779,
+          "plateau": 408,
+          "decreasing": 277
+        },
+        {
+          "kappa": -0.01,
+          "depth": 2,
+          "unresolved": 635,
+          "outside": 803,
+          "plateau": 472,
+          "decreasing": 504
+        }
+      ]
+    },
+    {
+      "kappa": 0.0,
+      "passed": false,
+      "unresolved": 653,
+      "actual_witnesses": 41,
+      "partition_area_error": 0.0,
+      "history": [
+        {
+          "kappa": 0.0,
+          "depth": 0,
+          "unresolved": 335,
+          "outside": 755,
+          "plateau": 364,
+          "decreasing": 146
+        },
+        {
+          "kappa": 0.0,
+          "depth": 1,
+          "unresolved": 476,
+          "outside": 779,
+          "plateau": 413,
+          "decreasing": 267
+        },
+        {
+          "kappa": 0.0,
+          "depth": 2,
+          "unresolved": 653,
+          "outside": 802,
+          "plateau": 471,
+          "decreasing": 485
+        }
+      ]
+    },
+    {
+      "kappa": 0.01,
+      "passed": false,
+      "unresolved": 662,
+      "actual_witnesses": 32,
+      "partition_area_error": 0.0,
+      "history": [
+        {
+          "kappa": 0.01,
+          "depth": 0,
+          "unresolved": 329,
+          "outside": 755,
+          "plateau": 365,
+          "decreasing": 151
+        },
+        {
+          "kappa": 0.01,
+          "depth": 1,
+          "unresolved": 491,
+          "outside": 778,
+          "plateau": 412,
+          "decreasing": 248
+        },
+        {
+          "kappa": 0.01,
+          "depth": 2,
+          "unresolved": 662,
+          "outside": 801,
+          "plateau": 473,
+          "decreasing": 484
+        }
+      ]
+    }
+  ],
+  "actor_sha256": "b412c6ed5298540cefb532b1e8e47b046f06fd37df1353b406a04d0957028de2",
+  "sbc_sha256": "a0fdf9c3b1040e95f79f964263adfad59fedbac662e7ee3aa032aabda65c2de8",
+  "metadata": {
+    "actor": "results/lane_keeping_20261105/ppo_image/actor.pt",
+    "output_dir": "results/lane_joint_20261106_r1",
+    "resume": null,
+    "extra_states": null,
+    "epochs": 6000,
+    "seed": 41,
+    "radius": 0.08,
+    "error_splits": 2,
+    "learning_rate": 0.003,
+    "hidden": [
+      16,
+      8
+    ],
+    "drift_weight": 20.0,
+    "bound_method": "ibp",
+    "source_actor_sha256": "b412c6ed5298540cefb532b1e8e47b046f06fd37df1353b406a04d0957028de2",
+    "model_class": "Aebs.vision_sls.sbc_cp.NonnegativeSBC",
+    "features": [
+      2,
+      16,
+      8,
+      1
+    ],
+    "geometric_teacher": false,
+    "actor_updated": false,
+    "verification_thresholds": {
+      "initial": 1,
+      "unsafe": 20,
+      "drift": 0
+    },
+    "training_only_raw_margin": true,
+    "seed_role": "development; not independent final testing",
+    "nonnegative_activation": "relu"
+  },
+  "verification": {
+    "actor": "results/lane_vision_sls_joint_C_20261109_cp_v1/actor.pt",
+    "sbc": "results/lane_vision_sls_joint_C_20261109_cp_v1/sbc.pt",
+    "output_dir": "results/lane_radius_sweep_20261110/r_0.16",
+    "radius": 0.16,
+    "grid": 40,
+    "depth": 18,
+    "error_splits": 8,
+    "method": "affine",
+    "max_pending": 100000,
+    "stop_on_witness": true
+  },
+  "task": {
+    "speed": 4.0,
+    "dt": 0.1,
+    "safety_halfwidths": [
+      0.85,
+      0.3
+    ],
+    "initial_halfwidths": [
+      0.25,
+      0.06
+    ],
+    "kappas": [
+      -0.01,
+      0.0,
+      0.01
+    ],
+    "wheelbase": 2.6,
+    "action_limit": 0.45,
+    "observation_scaling": [
+      0.85,
+      0.3
+    ],
+    "successor_coordinate_abs_bounds": [
+      1.1390683325465127,
+      1.2610538798033737
+    ],
+    "unsafe_audited_domain": [
+      -1.3,
+      1.3
+    ],
+    "process_noise": 0
+  },
+  "source_sha256": {
+    "verify_learned.py": "9ee48af12e2a86bd572753489c951adffb4c7aee7530d1e8190fac3919eca839",
+    "core.py": "d946db50519f272833ee6aa0e14d80cb590d8a88b733cfcdeb24f7e451097b79",
+    "learned_sbc.py": "eda56ad4cf7cdd3683244c33df2933c08792096cc47acd40d817f18a59b8f0a3",
+    "verify.py": "bd72e1df16ab76311347a9cd3f653b17f27154438e39c3a95db50c71c8e2b8ae",
+    "policy.py": "d56d4a944217cc11f0e9bb880549f5691850c015bb7f4c0f044b714436e544c7",
+    "sbc_cp.py": "59eafe66a27678de8ca5e6bde6c3318b5311af509d531a09f1c68f0ca52a1177",
+    "neural_bounds.py": "969d2d6cf0feb411e84f678e88381c53cafacec14f92daeec5cbc3139563a636"
+  },
+  "scope": "Conditional on every normalized observation error in the radius box. Continuous-box numerical audit, no outward-rounded IEEE proof, no unconditional CP trajectory probability."
+}

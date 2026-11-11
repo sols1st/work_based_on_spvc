@@ -8,6 +8,8 @@
 |---|---|
 | 当前文档入口（先看这个） | [docs/current/README.md](docs/current/README.md)：主线、最新结论、归档说明 |
 | 准备汇报 | [汇报稿](docs/current/汇报稿_SPVC前端替换_收益与边界_20261110.md) · [PPT 大纲](docs/current/PPT大纲_SPVC前端替换_收益与边界_20261110.md)：16 页主 PPT + 备份，含逐页讲法 |
+| 看车道共同半径扫描 | [Stage 3.1](docs/current/SPVC前端替换_收益证明_共同半径扫描_20261110.md)：同一 actor/SBC 下 r_cert=0.12；0.16 失败 |
+| 看 AEBS 数据预算 | [400/10k/24k 总包量](docs/current/SPVC前端替换_收益证明_AEBS数据预算400_10k_24k_20261110.md)：400 DINO 好；10k/24k cGAN realhead q 更小；无单向赢家 |
 | 看原 SPVC cGAN 对照 | [原 cGAN 生成图 vs DINO 真实图](docs/current/SPVC前端替换_收益证明_原SPVC_cGAN误差对照_20261110.md)：轨迹 q 1.9156→0.4184 m，覆盖 92/100→99/100；行为都成功 |
 | 看前端替换收益证明 | [阶段一至二：5 对固定/联合 C 配对](docs/current/SPVC前端替换_收益证明_阶段一至二结果_20261110.md)：联合 C 无稳定 q/覆盖优势，整体前端收益仍未建立 |
 | 看完整框架文档 | [当前框架：逐步流程与安全保证](docs/current/SPVC当前框架_逐步流程与安全保证_20261109.md)：从图像/DINO/CP/SBC 到条件证书，含每步输入输出和不能讲的结论 |

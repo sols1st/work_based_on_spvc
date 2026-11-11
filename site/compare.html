@@ -18,10 +18,13 @@
 <tr><td>静态误差</td><td>MAE 0.2219 m / max 1.9839 m（生成图）</td><td>同左</td><td>MAE 0.0874 m / max 0.5250 m（真实图）</td></tr>
 </tbody></table>
 <p class="small"><b>5.221 m 不是原生 cGAN 的 q</b>，那是旧 state_net 迁移到 24k 真实灰度图的跨库结果。原生 cGAN q=1.9156 m。两边行为都成功，收益在误差包络/覆盖，不在任务成功率。</p>
-<table><thead><tr><th>同 400 图预算、同 actor</th><th>cGAN 400</th><th>DINO 400</th><th>结论</th></tr></thead><tbody>
-<tr><td>轨迹 q / 留出覆盖</td><td>1.9156 m / 92/100</td><td>4.0205 m / 94/100</td><td>cGAN q 更小；DINO 覆盖高 2pp；没有 DINO 架构胜出</td></tr>
+<table><thead><tr><th>总包量</th><th>cGAN real MAE / q / 覆盖</th><th>DINO real MAE / q / 覆盖</th></tr></thead><tbody>
+<tr><td>400（新严格 split）</td><td>0.694 / 4.169 / 71/72</td><td><b>0.298 / 0.865 / 69/72</b></td></tr>
+<tr><td>10k</td><td><b>0.0085 / 0.0209 / 1894/2000</b></td><td>0.0205 / 0.0557 / 1893/2000</td></tr>
+<tr><td>24k</td><td><b>0.0247 / 0.0307 / 4382/4920</b></td><td>0.0874 / 0.2307 / 4592/4920</td></tr>
 </tbody></table>
-<p class="small">24k DINO 的 q=0.4184/99 是数据规模收益；要判定同预算架构胜负，需要把 cGAN 也重训到 24k。</p>
+<p class="small">cGAN realhead 是在真实 32×32 灰度图上训练的 state_net；不是 generated-trained 迁移。每档内部共用 test；三档 test 不同，不能画 scaling。400 DINO 胜；10k/24k cGAN MAE/q 胜；24k cGAN 覆盖 89.1% 低于 DINO 93.3%；没有单向赢家。400 对 split/检查点敏感，不能单 pair 定架构。</p>
+<p class="small"><a href="../docs/current/SPVC前端替换_收益证明_AEBS数据预算400_10k_24k_20261110.md">完整数据预算报告</a></p>
 <img src="../artical-F122/results/aebs_cgan_frontend_error_benefit_20261110/error_by_distance.png" alt="cGAN vs DINO error by distance" style="max-width:100%;border:1px solid #d9dee3;border-radius:8px">
 <p><a href="../docs/current/SPVC前端替换_收益证明_原SPVC_cGAN误差对照_20261110.md">完整原 SPVC cGAN 对照</a></p>
 </div>

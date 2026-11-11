@@ -1,0 +1,139 @@
+{
+  "format": "aebs_budget_scaling_strict_total_v2",
+  "budget_definition": "400/10k/24k total images; each own train/val/test; same test within a budget; cGAN realhead is state_net trained on REAL 32x32 gray images.",
+  "rows": [
+    {
+      "total": 400,
+      "test_n": 72,
+      "cgan_generated_trained": {
+        "real": {
+          "mae": 2.2211315433184304,
+          "p95": 5.980573892593385,
+          "max": 7.013976097106934,
+          "q": 6.820305824279785,
+          "covered": 71,
+          "n": 72,
+          "fraction": 0.9861111111111112
+        },
+        "native": {
+          "mae": 1.597800572713216,
+          "p95": 5.6666836738586435,
+          "max": 6.635048866271973,
+          "q": 6.33433723449707,
+          "covered": 71,
+          "n": 72,
+          "fraction": 0.9861111111111112
+        }
+      },
+      "cgan_realhead": {
+        "mae": 0.6937021480666267,
+        "p95": 3.5024150848388675,
+        "max": 4.477693557739258,
+        "q": 4.16901969909668,
+        "covered": 71,
+        "n": 72,
+        "fraction": 0.9861111111111112
+      },
+      "dino": {
+        "mae": 0.2977576322025723,
+        "p95": 0.7219078302383427,
+        "max": 1.0234994888305664,
+        "q": 0.8648738861083984,
+        "covered": 69,
+        "n": 72,
+        "fraction": 0.9583333333333334
+      }
+    },
+    {
+      "total": 10000,
+      "test_n": 2000,
+      "cgan_generated_trained": {
+        "real": {
+          "mae": 1.1145542637109755,
+          "p95": 2.7093140602111814,
+          "max": 4.348732948303223,
+          "q": 2.663365364074707,
+          "covered": 1884,
+          "n": 2000,
+          "fraction": 0.942
+        },
+        "native": {
+          "mae": 0.03084820079803467,
+          "p95": 0.04740333557128906,
+          "max": 0.11034393310546875,
+          "q": 0.047359466552734375,
+          "covered": 1897,
+          "n": 2000,
+          "fraction": 0.9485
+        }
+      },
+      "cgan_realhead": {
+        "mae": 0.008512811183929443,
+        "p95": 0.021282672882080078,
+        "max": 0.06850528717041016,
+        "q": 0.02093505859375,
+        "covered": 1894,
+        "n": 2000,
+        "fraction": 0.947
+      },
+      "dino": {
+        "mae": 0.020495742082595827,
+        "p95": 0.0572789192199707,
+        "max": 0.10860824584960938,
+        "q": 0.05570697784423828,
+        "covered": 1893,
+        "n": 2000,
+        "fraction": 0.9465
+      }
+    },
+    {
+      "total": 24000,
+      "test_n": 4920,
+      "cgan_generated_trained": {
+        "real": {
+          "mae": 1.1498402382784743,
+          "p95": 2.6977810859680176,
+          "max": 3.867277145385742,
+          "q": 2.719029426574707,
+          "covered": 4686,
+          "n": 4920,
+          "fraction": 0.9524390243902439
+        },
+        "native": {
+          "mae": 0.024030814132070154,
+          "p95": 0.1300363540649414,
+          "max": 0.2286376953125,
+          "q": 0.04732322692871094,
+          "covered": 4452,
+          "n": 4920,
+          "fraction": 0.9048780487804878
+        }
+      },
+      "cgan_realhead": {
+        "mae": 0.024746667854185028,
+        "p95": 0.1413596630096436,
+        "max": 0.3588905334472656,
+        "q": 0.0307464599609375,
+        "covered": 4382,
+        "n": 4920,
+        "fraction": 0.890650406504065
+      },
+      "dino": {
+        "mae": 0.08741459575443493,
+        "p95": 0.2613904893107872,
+        "max": 0.5249926196997876,
+        "q": 0.23072536199720162,
+        "covered": 4592,
+        "n": 4920,
+        "fraction": 0.9333333333333333
+      }
+    }
+  ],
+  "notes": [
+    "cGAN generated-trained real = old state_net trained on generated images, then applied to real images; it is a transfer baseline, not the cGAN real-image head.",
+    "cGAN realhead = cGAN/state_net perception head trained on real 32x32 gray images; generator not used for this head.",
+    "cGAN native = generator -> state_net; not a real-image input.",
+    "DINO = real RGB. Test sets differ across budgets; compare within a budget only.",
+    "Single training seed; not a multi-seed architecture claim."
+  ]
+}

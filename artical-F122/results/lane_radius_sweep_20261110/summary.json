@@ -1,0 +1,211 @@
+{
+  "format": "lane_common_radius_sweep_v1",
+  "actor": "lane_vision_sls_joint_C_20261109_cp_v1/actor.pt",
+  "sbc": ".../sbc.pt",
+  "grid": 40,
+  "depth": 18,
+  "error_splits": 8,
+  "method": "affine",
+  "rows": [
+    {
+      "radius": 0.04,
+      "passed": true,
+      "checks": [
+        {
+          "kappa": -0.01,
+          "passed": true,
+          "witnesses": 0,
+          "unresolved": 0
+        },
+        {
+          "kappa": 0.0,
+          "passed": true,
+          "witnesses": 0,
+          "unresolved": 0
+        },
+        {
+          "kappa": 0.01,
+          "passed": true,
+          "witnesses": 0,
+          "unresolved": 0
+        }
+      ]
+    },
+    {
+      "radius": 0.06,
+      "passed": true,
+      "checks": [
+        {
+          "kappa": -0.01,
+          "passed": true,
+          "witnesses": 0,
+          "unresolved": 0
+        },
+        {
+          "kappa": 0.0,
+          "passed": true,
+          "witnesses": 0,
+          "unresolved": 0
+        },
+        {
+          "kappa": 0.01,
+          "passed": true,
+          "witnesses": 0,
+          "unresolved": 0
+        }
+      ]
+    },
+    {
+      "radius": 0.08,
+      "passed": true,
+      "checks": [
+        {
+          "kappa": -0.01,
+          "passed": true,
+          "witnesses": 0,
+          "unresolved": 0
+        },
+        {
+          "kappa": 0.0,
+          "passed": true,
+          "witnesses": 0,
+          "unresolved": 0
+        },
+        {
+          "kappa": 0.01,
+          "passed": true,
+          "witnesses": 0,
+          "unresolved": 0
+        }
+      ]
+    },
+    {
+      "radius": 0.0843381769,
+      "passed": true,
+      "checks": [
+        {
+          "kappa": -0.01,
+          "passed": true,
+          "witnesses": 0,
+          "unresolved": 0
+        },
+        {
+          "kappa": 0.0,
+          "passed": true,
+          "witnesses": 0,
+          "unresolved": 0
+        },
+        {
+          "kappa": 0.01,
+          "passed": true,
+          "witnesses": 0,
+          "unresolved": 0
+        }
+      ]
+    },
+    {
+      "radius": 0.090093158,
+      "passed": true,
+      "checks": [
+        {
+          "kappa": -0.01,
+          "passed": true,
+          "witnesses": 0,
+          "unresolved": 0
+        },
+        {
+          "kappa": 0.0,
+          "passed": true,
+          "witnesses": 0,
+          "unresolved": 0
+        },
+        {
+          "kappa": 0.01,
+          "passed": true,
+          "witnesses": 0,
+          "unresolved": 0
+        }
+      ]
+    },
+    {
+      "radius": 0.1,
+      "passed": true,
+      "checks": [
+        {
+          "kappa": -0.01,
+          "passed": true,
+          "witnesses": 0,
+          "unresolved": 0
+        },
+        {
+          "kappa": 0.0,
+          "passed": true,
+          "witnesses": 0,
+          "unresolved": 0
+        },
+        {
+          "kappa": 0.01,
+          "passed": true,
+          "witnesses": 0,
+          "unresolved": 0
+        }
+      ]
+    },
+    {
+      "radius": 0.12,
+      "passed": true,
+      "checks": [
+        {
+          "kappa": -0.01,
+          "passed": true,
+          "witnesses": 0,
+          "unresolved": 0
+        },
+        {
+          "kappa": 0.0,
+          "passed": true,
+          "witnesses": 0,
+          "unresolved": 0
+        },
+        {
+          "kappa": 0.01,
+          "passed": true,
+          "witnesses": 0,
+          "unresolved": 0
+        }
+      ]
+    },
+    {
+      "radius": 0.16,
+      "passed": false,
+      "checks": [
+        {
+          "kappa": -0.01,
+          "passed": false,
+          "witnesses": 28,
+          "unresolved": 635
+        },
+        {
+          "kappa": 0.0,
+          "passed": false,
+          "witnesses": 41,
+          "unresolved": 653
+        },
+        {
+          "kappa": 0.01,
+          "passed": false,
+          "witnesses": 32,
+          "unresolved": 662
+        }
+      ]
+    }
+  ],
+  "r_cert_lower_bound": 0.12,
+  "fail_radius": 0.16,
+  "q": {
+    "constant": 0.090093158,
+    "joint": 0.0843381769,
+    "state_v2_q": 0.0843381769
+  },
+  "note": "Same actor/SBC; shared scan for fixed C and joint C. r_cert is the largest tested passing radius, not a theoretical maximum; .14/.15 not tested."
+}

@@ -404,10 +404,13 @@ compare_body=f"""
 <tr><td>静态误差</td><td>MAE 0.2219 m / max 1.9839 m（生成图）</td><td>同左</td><td>MAE 0.0874 m / max 0.5250 m（真实图）</td></tr>
 </tbody></table>
 <p class="small"><b>5.221 m 不是原生 cGAN 的 q</b>，那是旧 state_net 迁移到 24k 真实灰度图的跨库结果。原生 cGAN q=1.9156 m。两边行为都成功，收益在误差包络/覆盖，不在任务成功率。</p>
-<table><thead><tr><th>同 400 图预算、同 actor</th><th>cGAN 400</th><th>DINO 400</th><th>结论</th></tr></thead><tbody>
-<tr><td>轨迹 q / 留出覆盖</td><td>1.9156 m / 92/100</td><td>4.0205 m / 94/100</td><td>cGAN q 更小；DINO 覆盖高 2pp；没有 DINO 架构胜出</td></tr>
+<table><thead><tr><th>总包量</th><th>cGAN real MAE / q / 覆盖</th><th>DINO real MAE / q / 覆盖</th></tr></thead><tbody>
+<tr><td>400（新严格 split）</td><td>0.694 / 4.169 / 71/72</td><td><b>0.298 / 0.865 / 69/72</b></td></tr>
+<tr><td>10k</td><td><b>0.0085 / 0.0209 / 1894/2000</b></td><td>0.0205 / 0.0557 / 1893/2000</td></tr>
+<tr><td>24k</td><td><b>0.0247 / 0.0307 / 4382/4920</b></td><td>0.0874 / 0.2307 / 4592/4920</td></tr>
 </tbody></table>
-<p class="small">24k DINO 的 q=0.4184/99 是数据规模收益；要判定同预算架构胜负，需要把 cGAN 也重训到 24k。</p>
+<p class="small">cGAN realhead 是在真实 32×32 灰度图上训练的 state_net；不是 generated-trained 迁移。每档内部共用 test；三档 test 不同，不能画 scaling。400 DINO 胜；10k/24k cGAN MAE/q 胜；24k cGAN 覆盖 89.1% 低于 DINO 93.3%；没有单向赢家。400 对 split/检查点敏感，不能单 pair 定架构。</p>
+<p class="small"><a href="../docs/current/SPVC前端替换_收益证明_AEBS数据预算400_10k_24k_20261110.md">完整数据预算报告</a></p>
 <img src="../artical-F122/results/aebs_cgan_frontend_error_benefit_20261110/error_by_distance.png" alt="cGAN vs DINO error by distance" style="max-width:100%;border:1px solid #d9dee3;border-radius:8px">
 <p><a href="../docs/current/SPVC前端替换_收益证明_原SPVC_cGAN误差对照_20261110.md">完整原 SPVC cGAN 对照</a></p>
 </div>
@@ -493,6 +496,7 @@ data_body=f'''
  ['AEBS 状态相关 CP','同上','1D 距离','<a href="../artical-F122/results/real_aebs_state_cp_20261109_units_v2/README.md">state CP</a>','<a href="../artical-F122/results/real_aebs_state_cp_20261109_units_v2/perception_contract.json">contract</a> · <a href="../artical-F122/results/real_aebs_state_cp_20261109_units_v2/verification_tube/report.json">verify</a>'],
  ['AEBS 前端对比','同一 4,920 test','1D','<a href="../artical-F122/results/real_aebs_baselines/CORRECTION.md">baselines（tube 已更正）</a>','<a href="../artical-F122/results/real_aebs_baselines/comparison.json">comparison JSON</a><br><span class="small">前端误差可用；其中旧 tube 字段已被修复版 status.json 取代</span>'],
  ['原 SPVC cGAN 原生','400 图生成体系；cGAN 生成图','2D / 1D 距离 / 1D','<a href="../artical-F122/results/aebs_cgan_frontend_error_benefit_20261110/native_cgan/report.json">native cGAN</a>','q=1.9156 m；留出92/100；行为100/100'],
+ ['AEBS 数据预算 400/10k/24k','严格总包；每档独立 split' ,'2D / 1D','<a href="../artical-F122/results/aebs_budget_scaling_20261110/README.md">budget scaling</a>','<a href="../artical-F122/results/aebs_budget_scaling_20261110/summary/report.md">summary</a>'],
  ['DINO-400 同预算','与 cGAN 同 400 图；同新 actor','2D / 1D','<a href="../artical-F122/results/aebs_cgan_frontend_error_benefit_20261110/dino400_matched/report.json">DINO-400</a>','q=4.0205 m；留出94/100；行为100/100'],
  ['AEBS 原 10/29 灰度','400 张 32×32；240/80/80','2D / 1D 距离 / 1D','<a href="../artical-F122/results/vision_sls_spvc_sbc_pass_20261029/README.md">原灰度包</a>','<a href="../artical-F122/results/vision_sls_spvc_sbc_pass_20261029/perception_contract.json">state CP</a> · <a href="../artical-F122/results/vision_sls_spvc_sbc_pass_20261029/summary.json">summary</a>'],
  ['AEBS 灰度重训','24k 灰度，可重载','1D','<a href="../artical-F122/results/real_aebs_repair_20261108_v1/gray_retrained.json">gray_retrained.json</a>','<a href="../artical-F122/results/real_aebs_repair_20261108_v1/gray_retrained.pt">weights</a> · <a href="../artical-F122/results/real_aebs_repair_20261108_v1/tube_gray_retrained/report.json">tube</a>'],
@@ -501,6 +505,7 @@ data_body=f'''
  ['联合 C：RGB AEBS','24k RGB；C 可训练','2D / 1D','<a href="../artical-F122/results/rgb_aebs_vision_sls_joint_C_20261109_cp_v1/report.json">RGB joint CP</a>','<a href="../artical-F122/results/rgb_aebs_vision_sls_joint_C_20261109_cp_v1/verification/report.json">SBC 102,338 0/0</a>；留出 91/100'],
  ['联合 C：灰度 AEBS v2','24k 灰度；C 可训练','2D / 1D','<a href="../artical-F122/results/gray_aebs_vision_sls_joint_C_20261109_cp_v2/README.md">gray joint</a>','<a href="../artical-F122/results/gray_aebs_vision_sls_joint_C_20261109_cp_v2/verification_witness/report.json">SBC 未通过</a>；78 见证/74 未解决'],
  ['车道','3,600 张 192×192 渲染；60 场景','2D / 2D (ê,θ̂)+κ / 1D','<a href="../artical-F122/results/lane_trajectory_cp_20261107_v1/README.md">trajectory CP</a>','<a href="../artical-F122/results/lane_repair_20261109_audit/bridge.json">audit bridge</a>'],
+ ['车道共同半径扫描','同一 actor/SBC；误差半径网格','2D','<a href="../artical-F122/results/lane_radius_sweep_20261110/README.md">radius sweep</a>','r_cert=0.12；0.16 失败；q 约 1.42× 余量'],
  ['车道状态相关 CP v2','复用 199 条轨迹；99/100 分离','2D','<a href="../artical-F122/results/lane_state_cp_20261109_repaired_v2/README.md">repaired v2</a>','<a href="../artical-F122/results/lane_state_cp_20261109_repaired_v2/perception_contract.json">contract</a> · <a href="../artical-F122/results/lane_state_cp_20261109_repaired_v2/verification_state/certificate.json">state cert</a>'],
  ['车道状态相关 v1（已撤回）','旧错误版','2D','<a href="../artical-F122/results/lane_state_cp_20261109_v1/AUDIT.md">audit</a>','不可引用；代码/报告不一致'],
  ['停车场','15 起点组；启动 975 张图像','4D / 3D / 2D','<a href="../artical-F122/results/vision_sls_parking_20261103_neural_sbc_certificate_v1/README.md">package</a>','<a href="../artical-F122/results/vision_sls_parking_20261103_neural_sbc_certificate_v1/certificate.json">certificate</a>'],
