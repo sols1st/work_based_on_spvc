@@ -24,9 +24,9 @@
 <tr><td>24k</td><td><b>0.0247 / 0.0307 / 4382/4920</b></td><td>0.0874 / 0.2307 / 4592/4920</td></tr>
 </tbody></table>
 <p class="small">cGAN realhead 是在真实 32×32 灰度图上训练的 state_net；不是 generated-trained 迁移。每档内部共用 test；三档 test 不同，不能画 scaling。400 DINO 胜；10k/24k cGAN MAE/q 胜；24k cGAN 覆盖 89.1% 低于 DINO 93.3%；没有单向赢家。400 对 split/检查点敏感，不能单 pair 定架构。</p>
-<p class="small"><a href="../docs/current/SPVC前端替换_收益证明_AEBS数据预算400_10k_24k_20261110.md">完整数据预算报告</a></p>
+<p class="small"><a href="../docs/details/SPVC前端替换_收益证明_AEBS数据预算400_10k_24k_20261110.md">完整数据预算报告</a></p>
 <img src="../artical-F122/results/aebs_cgan_frontend_error_benefit_20261110/error_by_distance.png" alt="cGAN vs DINO error by distance" style="max-width:100%;border:1px solid #d9dee3;border-radius:8px">
-<p><a href="../docs/current/SPVC前端替换_收益证明_原SPVC_cGAN误差对照_20261110.md">完整原 SPVC cGAN 对照</a></p>
+<p><a href="../docs/details/SPVC前端替换_收益证明_原SPVC_cGAN误差对照_20261110.md">完整原 SPVC cGAN 对照</a></p>
 </div>
 
 <div class="section"><h2>2. 原来的 10/29 灰度实现：单独的历史基线</h2>
@@ -46,11 +46,11 @@
 
 <div class="section"><h2>5. 联合学习视觉投影与 C（11/09 独立版）</h2>
 <table><thead><tr><th>实验</th><th>训练</th><th>新 CP</th><th>SBC / 当前状态</th></tr></thead><tbody>
-<tr><td>车道联合 C</td><td>5 对训练种子；每对固定/联合 C 同预算、同初始化</td><td>q 均值：固定 <b>0.085263</b>，联合 <b>0.085699</b>；留出覆盖 95.6% vs 95.0%</td><td>两边各 5/5 通过数值 SBC；3/5 对联合 q 更小；<b>无稳定优势</b>。[阶段结果](../docs/current/SPVC前端替换_收益证明_阶段一至二结果_20261110.md)</td></tr>
+<tr><td>车道联合 C</td><td>5 对训练种子；每对固定/联合 C 同预算、同初始化</td><td>q 均值：固定 <b>0.085263</b>，联合 <b>0.085699</b>；留出覆盖 95.6% vs 95.0%</td><td>两边各 5/5 通过数值 SBC；3/5 对联合 q 更小；<b>无稳定优势</b>。[阶段结果](../docs/details/SPVC前端替换_收益证明_阶段一至二结果_20261110.md)</td></tr>
 <tr><td>RGB AEBS 联合 C</td><td>C≈[1.0,−8.44×10⁻⁶]；速度项接近零</td><td>q=0.394521 m；校准 190/199；<b>留出 91/100</b>；299 条成功</td><td>102,338 区间，0/0，数值 SBC 通过；但留出未达 95/100</td></tr>
 <tr><td>灰度 AEBS 联合 C v2</td><td>C≈[0.999998,0.0019307]；视觉尺度 3.237806 m</td><td>q=3.515916 m；校准 190/199；留出 95/100；299 条成功</td><td><b>未通过</b>：4,096 个深度 0 区间中 78 个见证、74 个未解决</td></tr>
 </tbody></table>
-<p class="small">联合版把视觉投影和 C 一起训练，但使用独立 CP/SBC；不继承固定 C 版任何证书。车道已完成 <b>5 对训练种子配对</b>：q 均值固定 0.085263 / 联合 0.085699，留出覆盖 95.6% / 95.0%，两边各 5/5 通过 SBC；联合 C <b>没有稳定优势</b>。RGB 联合版“SBC 通过”不等于“留出覆盖 95%”；灰度联合版已经失败。详见 <a href="../docs/current/SPVC前端替换_收益证明_阶段一至二结果_20261110.md">阶段结果</a>。</p>
+<p class="small">联合版把视觉投影和 C 一起训练，但使用独立 CP/SBC；不继承固定 C 版任何证书。车道已完成 <b>5 对训练种子配对</b>：q 均值固定 0.085263 / 联合 0.085699，留出覆盖 95.6% / 95.0%，两边各 5/5 通过 SBC；联合 C <b>没有稳定优势</b>。RGB 联合版“SBC 通过”不等于“留出覆盖 95%”；灰度联合版已经失败。详见 <a href="../docs/details/SPVC前端替换_收益证明_阶段一至二结果_20261110.md">阶段结果</a>。</p>
 <img src="../artical-F122/results/lane_frontend_benefit_20261110/summary_5seed/q_coverage.png" alt="5-seed q/coverage" style="max-width:100%;border:1px solid #d9dee3;border-radius:8px;margin-top:8px">
 </div>
 
@@ -68,7 +68,7 @@
 <li>不能把状态相关 CP 的平均半径更小写成覆盖更好；AEBS 92/100、车道 93/100 都低于常量对照。</li>
 <li>不能把联合 C 版和固定 C 版混用；联合 C 版有自己的 CP/SBC。车道 5 对配对已完成，但联合 C 没有稳定优势。</li>
 </ul>
-<p>完整证据：<a href="../docs/current/AEBS前端对比_cGAN_灰度_真实RGB_20261108.md">AEBS 前端对比文档</a> · <a href="../artical-F122/results/real_aebs_baselines/README.md">基线与 JSON</a> · <a href="../artical-F122/results/vision_sls_spvc_sbc_pass_20261029/README.md">原灰度包</a></p>
+<p>完整证据：<a href="../docs/details/AEBS前端对比_cGAN_灰度_真实RGB_20261108.md">AEBS 前端对比文档</a> · <a href="../artical-F122/results/real_aebs_baselines/README.md">基线与 JSON</a> · <a href="../artical-F122/results/vision_sls_spvc_sbc_pass_20261029/README.md">原灰度包</a></p>
 </div>
 </main>
 <footer><div class="footer-inner">SPVC 实验静态总览 · 结果与限制以各结果包和 docs/current 为准 · 不复制原始大数据</div></footer></body></html>

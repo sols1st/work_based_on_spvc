@@ -255,7 +255,7 @@ parking_body=f'''
 <div class="section"><h2>4. 保证与边界</h2>
 <div class="note"><b>保证：</b>在启动 CP 覆盖事件和注册模型/后备条件下，增广闭环不碰撞、不越界；匹配启动分布时支持单次新实验至少 95% 的模型安全概率。</div>
 <ul><li>必须使用在线后备；仅加载 PPO/SBC 权重不提供本包闭环保证。</li><li>不是原无过滤器 SPVC 的任意八维安全状态域。</li><li>初始抖动 ±0.02、30 步、零过程扰动；不是实车。</li><li>任务到达和安全性分开；20/19 对抗回归中有一个极端误差 trial 未到达。</li></ul>
-<p><a href="../docs/current/停车场神经SBC_构造证明与实验_20261103.md">完整专题</a> · <a href="../artical-F122/results/vision_sls_parking_20261103_neural_sbc_certificate_v1/README.md">结果包</a> · <a href="../artical-F122/results/vision_sls_parking_20261103_neural_sbc_certificate_v1/certificate.json">证书 JSON</a></p>
+<p><a href="../docs/topics/停车场神经SBC_构造证明与实验_20261103.md">完整专题</a> · <a href="../artical-F122/results/vision_sls_parking_20261103_neural_sbc_certificate_v1/README.md">结果包</a> · <a href="../artical-F122/results/vision_sls_parking_20261103_neural_sbc_certificate_v1/certificate.json">证书 JSON</a></p>
 </div>
 '''
 
@@ -300,7 +300,7 @@ robot_body=f'''
 </div>
 <div class="section"><h2>5. 保证与边界</h2>
 <ul><li>已得到：三维任务、图像闭环开发成功、轨迹 CP、初始/危险区分离的神经候选。</li><li>未得到：完整 CP + 神经 SBC 概率安全保证。</li><li>CP 盒内反例否定的是“对盒内所有误差”的充分条件，不否定 CP 覆盖定理，也不否定其他条件噪声模型。</li><li>数值区间，不是形式化浮点；不是实车。</li></ul>
-<p><a href="../docs/current/移动机器人_三维视觉实验_20261108.md">完整专题</a> · <a href="../artical-F122/results/mobile_robot_20261108_server_attack_cp/report.json">反例 JSON</a> · <a href="../artical-F122/results/mobile_robot_20261108_server_trajectory_cp_r1/report.json">轨迹 CP JSON</a></p>
+<p><a href="../docs/topics/移动机器人_三维视觉实验_20261108.md">完整专题</a> · <a href="../artical-F122/results/mobile_robot_20261108_server_attack_cp/report.json">反例 JSON</a> · <a href="../artical-F122/results/mobile_robot_20261108_server_trajectory_cp_r1/report.json">轨迹 CP JSON</a></p>
 </div>
 '''
 
@@ -410,9 +410,9 @@ compare_body=f"""
 <tr><td>24k</td><td><b>0.0247 / 0.0307 / 4382/4920</b></td><td>0.0874 / 0.2307 / 4592/4920</td></tr>
 </tbody></table>
 <p class="small">cGAN realhead 是在真实 32×32 灰度图上训练的 state_net；不是 generated-trained 迁移。每档内部共用 test；三档 test 不同，不能画 scaling。400 DINO 胜；10k/24k cGAN MAE/q 胜；24k cGAN 覆盖 89.1% 低于 DINO 93.3%；没有单向赢家。400 对 split/检查点敏感，不能单 pair 定架构。</p>
-<p class="small"><a href="../docs/current/SPVC前端替换_收益证明_AEBS数据预算400_10k_24k_20261110.md">完整数据预算报告</a></p>
+<p class="small"><a href="../docs/details/SPVC前端替换_收益证明_AEBS数据预算400_10k_24k_20261110.md">完整数据预算报告</a></p>
 <img src="../artical-F122/results/aebs_cgan_frontend_error_benefit_20261110/error_by_distance.png" alt="cGAN vs DINO error by distance" style="max-width:100%;border:1px solid #d9dee3;border-radius:8px">
-<p><a href="../docs/current/SPVC前端替换_收益证明_原SPVC_cGAN误差对照_20261110.md">完整原 SPVC cGAN 对照</a></p>
+<p><a href="../docs/details/SPVC前端替换_收益证明_原SPVC_cGAN误差对照_20261110.md">完整原 SPVC cGAN 对照</a></p>
 </div>
 
 <div class="section"><h2>2. 原来的 10/29 灰度实现：单独的历史基线</h2>
@@ -455,11 +455,11 @@ compare_body=f"""
 
 <div class="section"><h2>5. 联合学习视觉投影与 C（11/09 独立版）</h2>
 <table><thead><tr><th>实验</th><th>训练</th><th>新 CP</th><th>SBC / 当前状态</th></tr></thead><tbody>
-<tr><td>车道联合 C</td><td>5 对训练种子；每对固定/联合 C 同预算、同初始化</td><td>q 均值：固定 <b>0.085263</b>，联合 <b>0.085699</b>；留出覆盖 95.6% vs 95.0%</td><td>两边各 5/5 通过数值 SBC；3/5 对联合 q 更小；<b>无稳定优势</b>。[阶段结果](../docs/current/SPVC前端替换_收益证明_阶段一至二结果_20261110.md)</td></tr>
+<tr><td>车道联合 C</td><td>5 对训练种子；每对固定/联合 C 同预算、同初始化</td><td>q 均值：固定 <b>0.085263</b>，联合 <b>0.085699</b>；留出覆盖 95.6% vs 95.0%</td><td>两边各 5/5 通过数值 SBC；3/5 对联合 q 更小；<b>无稳定优势</b>。[阶段结果](../docs/details/SPVC前端替换_收益证明_阶段一至二结果_20261110.md)</td></tr>
 <tr><td>RGB AEBS 联合 C</td><td>C≈[1.0,−8.44×10⁻⁶]；速度项接近零</td><td>q=0.394521 m；校准 190/199；<b>留出 91/100</b>；299 条成功</td><td>102,338 区间，0/0，数值 SBC 通过；但留出未达 95/100</td></tr>
 <tr><td>灰度 AEBS 联合 C v2</td><td>C≈[0.999998,0.0019307]；视觉尺度 3.237806 m</td><td>q=3.515916 m；校准 190/199；留出 95/100；299 条成功</td><td><b>未通过</b>：4,096 个深度 0 区间中 78 个见证、74 个未解决</td></tr>
 </tbody></table>
-<p class="small">联合版把视觉投影和 C 一起训练，但使用独立 CP/SBC；不继承固定 C 版任何证书。车道已完成 <b>5 对训练种子配对</b>：q 均值固定 0.085263 / 联合 0.085699，留出覆盖 95.6% / 95.0%，两边各 5/5 通过 SBC；联合 C <b>没有稳定优势</b>。RGB 联合版“SBC 通过”不等于“留出覆盖 95%”；灰度联合版已经失败。详见 <a href="../docs/current/SPVC前端替换_收益证明_阶段一至二结果_20261110.md">阶段结果</a>。</p>
+<p class="small">联合版把视觉投影和 C 一起训练，但使用独立 CP/SBC；不继承固定 C 版任何证书。车道已完成 <b>5 对训练种子配对</b>：q 均值固定 0.085263 / 联合 0.085699，留出覆盖 95.6% / 95.0%，两边各 5/5 通过 SBC；联合 C <b>没有稳定优势</b>。RGB 联合版“SBC 通过”不等于“留出覆盖 95%”；灰度联合版已经失败。详见 <a href="../docs/details/SPVC前端替换_收益证明_阶段一至二结果_20261110.md">阶段结果</a>。</p>
 <img src="../artical-F122/results/lane_frontend_benefit_20261110/summary_5seed/q_coverage.png" alt="5-seed q/coverage" style="max-width:100%;border:1px solid #d9dee3;border-radius:8px;margin-top:8px">
 </div>
 
@@ -483,13 +483,13 @@ compare_body=f"""
 <li>不能把状态相关 CP 的平均半径更小写成覆盖更好；AEBS 92/100、车道 93/100 都低于常量对照。</li>
 <li>不能把联合 C 版和固定 C 版混用；联合 C 版有自己的 CP/SBC。车道 5 对配对已完成，但联合 C 没有稳定优势。</li>
 </ul>
-<p>完整证据：<a href="../docs/current/AEBS前端对比_cGAN_灰度_真实RGB_20261108.md">AEBS 前端对比文档</a> · <a href="../artical-F122/results/real_aebs_baselines/README.md">基线与 JSON</a> · <a href="../artical-F122/results/vision_sls_spvc_sbc_pass_20261029/README.md">原灰度包</a></p>
+<p>完整证据：<a href="../docs/details/AEBS前端对比_cGAN_灰度_真实RGB_20261108.md">AEBS 前端对比文档</a> · <a href="../artical-F122/results/real_aebs_baselines/README.md">基线与 JSON</a> · <a href="../artical-F122/results/vision_sls_spvc_sbc_pass_20261029/README.md">原灰度包</a></p>
 </div>
 """
 
 # ---------------- data ----------------
 data_body=f'''
-<p>这里只列配置、结果包、关键 JSON 和完整报告入口；原始图片/大文件仍在服务器和结果包中。方法层面的统一比较见 <a href="compare.html">方法对比页</a>；联合 C 专题见 <a href="../docs/current/联合学习视觉投影与C_实验步骤与结果_20261109.md">联合学习视觉投影与 C</a>。</p>
+<p>这里只列配置、结果包、关键 JSON 和完整报告入口；原始图片/大文件仍在服务器和结果包中。方法层面的统一比较见 <a href="compare.html">方法对比页</a>；联合 C 专题见 <a href="../docs/details/联合学习视觉投影与C_实验步骤与结果_20261109.md">联合学习视觉投影与 C</a>。</p>
 <div class="section"><h2>实验配置与结果包</h2>
 {table(['实验','数据','状态/观测/动作','结果包','关键文件'],[
  ['AEBS RGB','24,000 张 640×640 RGB；4 天气×3 颜色；5–16 m','2D / 1D 距离 + 实测速度 / 1D','<a href="../artical-F122/results/real_aebs_repair_20261109_release/README.md">release</a>','<a href="../artical-F122/results/real_aebs_repair_20261109_release/perception_contract.json">CP contract</a> · <a href="../artical-F122/results/real_aebs_repair_20261109_release/verification_report.json">verification</a>'],
@@ -515,10 +515,10 @@ data_body=f'''
 <li><a href="../docs/current/README.md">docs/current 当前入口</a></li>
 <li><a href="../docs/current/当前方案与验证结果.md">当前方案与验证结果</a></li>
 <li><a href="../docs/current/AEBS真实RGB图像_完整实验_20261108.md">AEBS RGB 修复后完整实验</a></li>
-<li><a href="../docs/current/AEBS前端对比_cGAN_灰度_真实RGB_20261108.md">AEBS 前端对比</a></li>
+<li><a href="../docs/details/AEBS前端对比_cGAN_灰度_真实RGB_20261108.md">AEBS 前端对比</a></li>
 <li><a href="../docs/current/车道保持_轨迹级CP校准与SBC衔接_20261107.md">车道轨迹 CP 与 SBC</a></li>
-<li><a href="../docs/current/停车场神经SBC_构造证明与实验_20261103.md">停车场神经 SBC 专题</a></li>
-<li><a href="../docs/current/移动机器人_三维视觉实验_20261108.md">移动机器人专题</a></li>
+<li><a href="../docs/topics/停车场神经SBC_构造证明与实验_20261103.md">停车场神经 SBC 专题</a></li>
+<li><a href="../docs/topics/移动机器人_三维视觉实验_20261108.md">移动机器人专题</a></li>
 </ul></div>
 <div class="section"><h2>原始数据位置</h2><div class="kv">
 <div>AEBS RGB</div><div><code>/root/work_based_on_spvc/carla_data_spvc_expanded/full01</code>（服务器，约 17 GB）</div>

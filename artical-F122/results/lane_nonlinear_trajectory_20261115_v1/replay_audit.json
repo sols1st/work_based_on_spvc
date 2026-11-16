@@ -1,0 +1,14 @@
+{
+  "first_episode_all_80_image_hash_matches": true,
+  "sampled_steps": [
+    0,
+    20,
+    40,
+    60
+  ],
+  "cpu_vs_recorded_gpu_latent_max_abs": 0.00044029951095581055,
+  "cpu_vs_recorded_gpu_decoded_max_abs": 0.000522613525390625,
+  "scope": "Re-render all frames of episode zero; CPU inference spot check on four frames. Not full IEEE proof or a new calibration.",
+  "registered_gpu_batch8_replay_max_decoded_difference": 0.0,
+  "cross_environment_note": "Local macOS Pillow 13 reconstruction did not match server image digest; server Pillow 10.4 re-render matched all 80 frames. Frozen server distribution only."
+}

@@ -1,0 +1,71 @@
+{
+  "format": "lane_nonlinear_training_report_v1",
+  "best_epoch": 27,
+  "mode": "joint visual + C + invertible nonlinear coupling training",
+  "C_initial": [
+    [
+      0.8660253882408142,
+      0.5
+    ],
+    [
+      -0.5,
+      0.8660253882408142
+    ]
+  ],
+  "C_final": [
+    [
+      0.8658319711685181,
+      0.5003349184989929
+    ],
+    [
+      -0.4991367757320404,
+      0.8665231466293335
+    ]
+  ],
+  "C_change_frobenius": 0.00106887798756361,
+  "nonlinear_parameter_change_l2": 0.06340992450714111,
+  "nonlinear_max_nominal_shift": 0.0007539093494415283,
+  "C_gradient_nonzero": true,
+  "visual_parameter_change_l2": 0.7093402147293091,
+  "singular_values": [
+    1.0006913451625656,
+    0.9993081352697318
+  ],
+  "condition": 1.001384167549542,
+  "metrics": {
+    "calibration": {
+      "n": 540,
+      "decoded_mae_physical": [
+        0.018223922699689865,
+        0.004698152653872967
+      ],
+      "max_normalized_error": 0.13493448495864868
+    },
+    "test": {
+      "n": 360,
+      "decoded_mae_physical": [
+        0.017980700358748436,
+        0.0050748311914503574
+      ],
+      "max_normalized_error": 0.1182808130979538
+    },
+    "train": {
+      "n": 2160,
+      "decoded_mae_physical": [
+        0.0029468683060258627,
+        0.0010047865798696876
+      ],
+      "max_normalized_error": 0.03194403648376465
+    },
+    "validation": {
+      "n": 540,
+      "decoded_mae_physical": [
+        0.018675174564123154,
+        0.004999320022761822
+      ],
+      "max_normalized_error": 0.12850213050842285
+    }
+  },
+  "safety_status": "not certified; new trajectory CP and SBC audit required",
+  "joint_checkpoint_sha256": "1635820561807532736f8548233d9aeb0293e13c8aeab9c043e7fd9c6ff1cdb6"
+}
