@@ -1,0 +1,546 @@
+{
+  "contracts_sha256": "2a93bd741b6586bbc96567fc33e7021a3f5524ef3cccc632fece86471721ed6f",
+  "audit_source": "905a70c9e26b658bdbd8f4c853eb6113b02dfe54c67b33eb0bf987773e3fb350",
+  "first_exit_bound": [
+    1.1390683325465127,
+    1.2610538798033735
+  ],
+  "initial": {
+    "passed": true,
+    "unresolved": 0,
+    "bound": 0.2145080641624925,
+    "partition_area_error": 0.0,
+    "history": [
+      {
+        "depth": 0,
+        "unresolved": 0,
+        "accepted": 256
+      }
+    ]
+  },
+  "unsafe": {
+    "passed": true,
+    "unresolved": 0,
+    "bound": 23.546546645239726,
+    "partition_area_error": 0.0,
+    "history": [
+      {
+        "depth": 0,
+        "unresolved": 0,
+        "accepted": 1024
+      }
+    ]
+  },
+  "runs": {
+    "uniform": {
+      "0.0": {
+        "status": "pass",
+        "curvatures": {
+          "-0.01": {
+            "status": "pass",
+            "checked": 3196,
+            "depth": 5,
+            "unresolved": 0,
+            "area_error": 8.881784197001252e-16
+          },
+          "0.0": {
+            "status": "pass",
+            "checked": 3366,
+            "depth": 5,
+            "unresolved": 0,
+            "area_error": 0.0
+          },
+          "0.01": {
+            "status": "pass",
+            "checked": 3330,
+            "depth": 5,
+            "unresolved": 0,
+            "area_error": 8.881784197001252e-16
+          }
+        },
+        "seconds": 1.7960822549648583
+      },
+      "0.05": {
+        "status": "pass",
+        "curvatures": {
+          "-0.01": {
+            "status": "pass",
+            "checked": 3772,
+            "depth": 5,
+            "unresolved": 0,
+            "area_error": 0.0
+          },
+          "0.0": {
+            "status": "pass",
+            "checked": 4134,
+            "depth": 7,
+            "unresolved": 0,
+            "area_error": 0.0
+          },
+          "0.01": {
+            "status": "pass",
+            "checked": 3954,
+            "depth": 5,
+            "unresolved": 0,
+            "area_error": 8.881784197001252e-16
+          }
+        },
+        "seconds": 2.1390203940682113
+      },
+      "0.1": {
+        "status": "pass",
+        "curvatures": {
+          "-0.01": {
+            "status": "pass",
+            "checked": 4666,
+            "depth": 7,
+            "unresolved": 0,
+            "area_error": 0.0
+          },
+          "0.0": {
+            "status": "pass",
+            "checked": 5370,
+            "depth": 9,
+            "unresolved": 0,
+            "area_error": 0.0
+          },
+          "0.01": {
+            "status": "pass",
+            "checked": 5056,
+            "depth": 7,
+            "unresolved": 0,
+            "area_error": 8.881784197001252e-16
+          }
+        },
+        "seconds": 2.856565531808883
+      },
+      "0.15": {
+        "status": "pass",
+        "curvatures": {
+          "-0.01": {
+            "status": "pass",
+            "checked": 6226,
+            "depth": 9,
+            "unresolved": 0,
+            "area_error": 4.440892098500626e-16
+          },
+          "0.0": {
+            "status": "pass",
+            "checked": 9868,
+            "depth": 16,
+            "unresolved": 0,
+            "area_error": 0.0
+          },
+          "0.01": {
+            "status": "pass",
+            "checked": 7190,
+            "depth": 9,
+            "unresolved": 0,
+            "area_error": 4.440892098500626e-16
+          }
+        },
+        "seconds": 4.299978237133473
+      },
+      "0.2": {
+        "status": "witness",
+        "curvatures": {
+          "-0.01": {
+            "status": "witness",
+            "checked": 13330,
+            "depth": 14,
+            "witness": {
+              "x": [
+                0.4455078125,
+                -0.29902343749999993
+              ],
+              "kappa": -0.01,
+              "error": [
+                0.09682281207320706,
+                0.09682281207320706
+              ],
+              "additive_action": -0.2,
+              "action_difference": -0.5763207456836064,
+              "before": 0.01371718823527246,
+              "after": 0.014264717652123338,
+              "next_state": [
+                0.4033493361151687,
+                -0.5334106506367069
+              ]
+            }
+          }
+        },
+        "seconds": 2.485240265727043
+      },
+      "0.25": {
+        "status": "witness_by_inclusion",
+        "from_margin": 0.2
+      },
+      "0.3": {
+        "status": "witness_by_inclusion",
+        "from_margin": 0.2
+      }
+    },
+    "diagonal": {
+      "0.0": {
+        "status": "pass",
+        "curvatures": {
+          "-0.01": {
+            "status": "pass",
+            "checked": 2858,
+            "depth": 4,
+            "unresolved": 0,
+            "area_error": 8.881784197001252e-16
+          },
+          "0.0": {
+            "status": "pass",
+            "checked": 2924,
+            "depth": 4,
+            "unresolved": 0,
+            "area_error": 4.440892098500626e-16
+          },
+          "0.01": {
+            "status": "pass",
+            "checked": 2958,
+            "depth": 4,
+            "unresolved": 0,
+            "area_error": 8.881784197001252e-16
+          }
+        },
+        "seconds": 1.4175942027941346
+      },
+      "0.05": {
+        "status": "pass",
+        "curvatures": {
+          "-0.01": {
+            "status": "pass",
+            "checked": 3240,
+            "depth": 5,
+            "unresolved": 0,
+            "area_error": 0.0
+          },
+          "0.0": {
+            "status": "pass",
+            "checked": 3424,
+            "depth": 5,
+            "unresolved": 0,
+            "area_error": 4.440892098500626e-16
+          },
+          "0.01": {
+            "status": "pass",
+            "checked": 3396,
+            "depth": 5,
+            "unresolved": 0,
+            "area_error": 0.0
+          }
+        },
+        "seconds": 1.79107616096735
+      },
+      "0.1": {
+        "status": "pass",
+        "curvatures": {
+          "-0.01": {
+            "status": "pass",
+            "checked": 3794,
+            "depth": 5,
+            "unresolved": 0,
+            "area_error": 0.0
+          },
+          "0.0": {
+            "status": "pass",
+            "checked": 4092,
+            "depth": 6,
+            "unresolved": 0,
+            "area_error": 0.0
+          },
+          "0.01": {
+            "status": "pass",
+            "checked": 4142,
+            "depth": 6,
+            "unresolved": 0,
+            "area_error": 8.881784197001252e-16
+          }
+        },
+        "seconds": 2.0933991610072553
+      },
+      "0.15": {
+        "status": "pass",
+        "curvatures": {
+          "-0.01": {
+            "status": "pass",
+            "checked": 4662,
+            "depth": 6,
+            "unresolved": 0,
+            "area_error": 8.881784197001252e-16
+          },
+          "0.0": {
+            "status": "pass",
+            "checked": 5282,
+            "depth": 8,
+            "unresolved": 0,
+            "area_error": 8.881784197001252e-16
+          },
+          "0.01": {
+            "status": "pass",
+            "checked": 5390,
+            "depth": 8,
+            "unresolved": 0,
+            "area_error": 4.440892098500626e-16
+          }
+        },
+        "seconds": 2.6829587160609663
+      },
+      "0.2": {
+        "status": "witness",
+        "curvatures": {
+          "-0.01": {
+            "status": "pass",
+            "checked": 6138,
+            "depth": 8,
+            "unresolved": 0,
+            "area_error": 4.440892098500626e-16
+          },
+          "0.0": {
+            "status": "pass",
+            "checked": 7816,
+            "depth": 11,
+            "unresolved": 0,
+            "area_error": 4.440892098500626e-16
+          },
+          "0.01": {
+            "status": "witness",
+            "checked": 7956,
+            "depth": 8,
+            "witness": {
+              "x": [
+                -0.3921874999999999,
+                -0.6203125
+              ],
+              "kappa": 0.01,
+              "error": [
+                -0.10679527137868507,
+                -0.07010684518996343
+              ],
+              "additive_action": -0.2,
+              "action_difference": 0.0,
+              "before": 19.99660428190583,
+              "after": 20.001060122571452,
+              "next_state": [
+                -0.4792564457935122,
+                -0.4406187299271656
+              ]
+            }
+          }
+        },
+        "seconds": 3.937841664068401
+      },
+      "0.25": {
+        "status": "witness_by_inclusion",
+        "from_margin": 0.2
+      },
+      "0.3": {
+        "status": "witness_by_inclusion",
+        "from_margin": 0.2
+      }
+    },
+    "joint": {
+      "0.0": {
+        "status": "pass",
+        "curvatures": {
+          "-0.01": {
+            "status": "pass",
+            "checked": 2408,
+            "depth": 3,
+            "unresolved": 0,
+            "area_error": 8.881784197001252e-16
+          },
+          "0.0": {
+            "status": "pass",
+            "checked": 2410,
+            "depth": 4,
+            "unresolved": 0,
+            "area_error": 8.881784197001252e-16
+          },
+          "0.01": {
+            "status": "pass",
+            "checked": 2498,
+            "depth": 4,
+            "unresolved": 0,
+            "area_error": 4.440892098500626e-16
+          }
+        },
+        "seconds": 1.3404358578845859
+      },
+      "0.05": {
+        "status": "pass",
+        "curvatures": {
+          "-0.01": {
+            "status": "pass",
+            "checked": 2646,
+            "depth": 4,
+            "unresolved": 0,
+            "area_error": 4.440892098500626e-16
+          },
+          "0.0": {
+            "status": "pass",
+            "checked": 2686,
+            "depth": 4,
+            "unresolved": 0,
+            "area_error": 0.0
+          },
+          "0.01": {
+            "status": "pass",
+            "checked": 2790,
+            "depth": 5,
+            "unresolved": 0,
+            "area_error": 4.440892098500626e-16
+          }
+        },
+        "seconds": 1.5750110857188702
+      },
+      "0.1": {
+        "status": "pass",
+        "curvatures": {
+          "-0.01": {
+            "status": "pass",
+            "checked": 2996,
+            "depth": 4,
+            "unresolved": 0,
+            "area_error": 8.881784197001252e-16
+          },
+          "0.0": {
+            "status": "pass",
+            "checked": 3028,
+            "depth": 5,
+            "unresolved": 0,
+            "area_error": 0.0
+          },
+          "0.01": {
+            "status": "pass",
+            "checked": 3254,
+            "depth": 6,
+            "unresolved": 0,
+            "area_error": 1.7763568394002505e-15
+          }
+        },
+        "seconds": 1.8565529519692063
+      },
+      "0.15": {
+        "status": "pass",
+        "curvatures": {
+          "-0.01": {
+            "status": "pass",
+            "checked": 3474,
+            "depth": 6,
+            "unresolved": 0,
+            "area_error": 0.0
+          },
+          "0.0": {
+            "status": "pass",
+            "checked": 3540,
+            "depth": 6,
+            "unresolved": 0,
+            "area_error": 0.0
+          },
+          "0.01": {
+            "status": "pass",
+            "checked": 4118,
+            "depth": 8,
+            "unresolved": 0,
+            "area_error": 4.440892098500626e-16
+          }
+        },
+        "seconds": 2.2764210463501513
+      },
+      "0.2": {
+        "status": "witness",
+        "curvatures": {
+          "-0.01": {
+            "status": "pass",
+            "checked": 4194,
+            "depth": 6,
+            "unresolved": 0,
+            "area_error": 0.0
+          },
+          "0.0": {
+            "status": "pass",
+            "checked": 4570,
+            "depth": 9,
+            "unresolved": 0,
+            "area_error": 0.0
+          },
+          "0.01": {
+            "status": "witness",
+            "checked": 5782,
+            "depth": 8,
+            "witness": {
+              "x": [
+                -0.3921874999999999,
+                -0.6203125
+              ],
+              "kappa": 0.01,
+              "error": [
+                -0.19838796590344285,
+                -0.1302338037404935
+              ],
+              "additive_action": -0.2,
+              "action_difference": 0.0,
+              "before": 19.99660428190583,
+              "after": 20.001060122571452,
+              "next_state": [
+                -0.4792564457935122,
+                -0.4406187299271656
+              ]
+            }
+          }
+        },
+        "seconds": 2.925836210139096
+      },
+      "0.25": {
+        "status": "witness_by_inclusion",
+        "from_margin": 0.2
+      },
+      "0.3": {
+        "status": "witness_by_inclusion",
+        "from_margin": 0.2
+      }
+    }
+  },
+  "summary": {
+    "uniform": {
+      "largest_grid_pass": 0.15,
+      "statuses": {
+        "0.0": "pass",
+        "0.05": "pass",
+        "0.1": "pass",
+        "0.15": "pass",
+        "0.2": "witness",
+        "0.25": "witness_by_inclusion",
+        "0.3": "witness_by_inclusion"
+      }
+    },
+    "diagonal": {
+      "largest_grid_pass": 0.15,
+      "statuses": {
+        "0.0": "pass",
+        "0.05": "pass",
+        "0.1": "pass",
+        "0.15": "pass",
+        "0.2": "witness",
+        "0.25": "witness_by_inclusion",
+        "0.3": "witness_by_inclusion"
+      }
+    },
+    "joint": {
+      "largest_grid_pass": 0.15,
+      "statuses": {
+        "0.0": "pass",
+        "0.05": "pass",
+        "0.1": "pass",
+        "0.15": "pass",
+        "0.2": "witness",
+        "0.25": "witness_by_inclusion",
+        "0.3": "witness_by_inclusion"
+      }
+    }
+  }
+}

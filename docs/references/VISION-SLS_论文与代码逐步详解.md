@@ -1,6 +1,6 @@
 # VISION-SLS：从图像到安全控制的论文与代码逐步详解
 
-> CP 专题阅读入口（2026-10-26）：[CP 加入 VISION-SLS 的完整说明与可行性分析](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-29_主线更新前文档/current/VISION-SLS_CP完整说明与可行性分析.md>)。本文件保留原论文/视觉前端及独立专题内容；其中 CP 阶段记录不再作为当前实验结论入口。
+> CP 专题阅读入口（2026-10-26）：[CP 加入 VISION-SLS 的完整说明与可行性分析](../archive/2026-10-29_主线更新前文档/current/VISION-SLS_CP完整说明与可行性分析.md)。本文件保留原论文/视觉前端及独立专题内容；其中 CP 阶段记录不再作为当前实验结论入口。
 
 
 > 阅读主线：停车场小车实验。对每一步分别回答：为什么需要、输入是什么、代码怎样计算、理论依据是什么、输出有什么作用。
@@ -2485,7 +2485,7 @@ main_parking_lot.py::main
 
 论文文件：
 
-[VISION-SLS 论文 PDF](</Users/johann/project/work_based_on_spvc/VISION-SLS- Safe Perception-Based Control from Learned Visual Representations via System Level Synthesis.pdf>)。
+[VISION-SLS 论文 PDF](<VISION-SLS- Safe Perception-Based Control from Learned Visual Representations via System Level Synthesis.pdf>)。
 
 本地源码根目录：`/Users/johann/project/work_based_on_spvc/VISION-SLS/`。
 
@@ -2685,9 +2685,9 @@ $$s_i=\max_t\|r_{{\rm vis},i,t}\|_2,$$
 
 ### 20.4 对照图、代码与详细实验记录
 
-[实验复现与直接 CP 替换综合报告](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-29_主线更新前文档/current/VISION-SLS_CP完整说明与可行性分析.md>)中记录了服务器环境、全部种子、协议、逐文件修改、残差计算、配对指标和复跑步骤。
+[实验复现与直接 CP 替换综合报告](../archive/2026-10-29_主线更新前文档/current/VISION-SLS_CP完整说明与可行性分析.md)中记录了服务器环境、全部种子、协议、逐文件修改、残差计算、配对指标和复跑步骤。
 
-[停车场配对轨迹与误差图](</Users/johann/Documents/Codex/2026-10-22/jian/outputs/vision_sls_parking_direct_cp_20261025/direct_cp_comparison.png>)展示了原路线绕行、直接 CP 路线更直接、而视觉误差分布也随路线改变的实际现象。
+[停车场配对轨迹与误差图](../assets/vision_sls_cp/direct_cp_comparison.png)展示了原路线绕行、直接 CP 路线更直接、而视觉误差分布也随路线改变的实际现象。
 
 阅读本文时，先用第 19 节掌握每个计算环节，再用这份实测报告检查代码在哪些条件下运行有效，会比直接把“成功率”当作所有理论前提成立更清楚。
 

@@ -1,0 +1,54 @@
+{
+  "inputs": {
+    "gray_400": {
+      "path": "results/aebs_budget_scaling_20261110/cgan_realhead_400/state_net.pt",
+      "sha256": "5fc499322885200c608bc1b70806be9e247f3f664991bc591e14b8893839be33"
+    },
+    "dino_400": {
+      "path": "results/aebs_budget_scaling_20261110/dino_400/observation.pt",
+      "sha256": "a34acd8adcbd8cacda842953863f411f2e99c58b689975e097c6e25e400a4940"
+    },
+    "gray_10000": {
+      "path": "results/aebs_budget_scaling_20261110/cgan_realhead_10000/state_net.pt",
+      "sha256": "d6e00cf722f6a3b05f4b518dce04019838cad9f4e370a90b150a33dc33174d31"
+    },
+    "dino_10000": {
+      "path": "results/aebs_budget_scaling_20261110/dino_10000/observation.pt",
+      "sha256": "309cbd41c8b7587f66471643555c7ad84d5e6007c355cfc74e92c9a1138396f3"
+    },
+    "gray_24000": {
+      "path": "results/aebs_budget_scaling_20261110/cgan_realhead_24000/state_net.pt",
+      "sha256": "813e3e6fc2ce2db1597fa862a3f30ffb9144cecdd4f658479f2b6560fd174390"
+    },
+    "dino_24000": {
+      "path": "results/real_aebs_full_v1/observation.pt",
+      "sha256": "eee112612932071653c4479a9eb9f8b9d215217c011281b022b7f79e206e9fb6"
+    },
+    "protocol": {
+      "path": "results/aebs_budget_scaling_20261110/protocol.json",
+      "sha256": "dc3fb06f1870a2e90b4c9d81a013359eeeb305f227004cedfd1ff8ab709a0984"
+    },
+    "backbone": {
+      "path": "../external/dinov2_weights/dinov2_vits14_pretrain.pth",
+      "sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9"
+    },
+    "source": {
+      "path": "/root/work_based_on_spvc/artical-F122/Aebs/experiments/matched_aebs_library.py",
+      "sha256": "43aad6d0218e59439ef4643e4b6ea5bfd0968c8db09cf54b84ca18e52529e3db"
+    }
+  },
+  "outputs": {
+    "predictions.npz": "788138eb2924096f8784515636d2e83fb939ea84da74d6caf9328747e0739a93",
+    "libraries.json": "5d4f58057cf235833acc1857f391f9b159691c8c6b4c674e727ffb54d8b944a8",
+    "image_hashes.npz": "d676ad8329c2cf0ad437a1bd13f0306b26ab766acd188e37ac50d791f7bea878"
+  },
+  "device": "cuda:0",
+  "torch": "2.3.1",
+  "scale": 3.18272066116333,
+  "library_sizes": {
+    "strict_400": 72,
+    "strict_10000": 2000,
+    "strict_24000": 4920,
+    "common": 3229
+  }
+}

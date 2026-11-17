@@ -1,0 +1,80 @@
+[
+  {
+    "regions": {
+      "initial": {
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "unsafe": {
+        "lower": 24.239124298095703,
+        "upper": 33.29098892211914
+      }
+    },
+    "active": 6818,
+    "positive": 2,
+    "training_band_positive": 2,
+    "positive_training_margin": 2107,
+    "verification_condition": "nonnegative supermartingale: B(next)<=B(now); positive epsilon is a training margin only",
+    "max_drift": 0.0009784698486328125,
+    "region_pass": true,
+    "sampled_tube_pass": false,
+    "formal_certificate": false,
+    "epoch": 500,
+    "loss": 1.3610886335372925,
+    "seconds": 4.184762484859675,
+    "rejected_region_blocks": 0,
+    "feedback_samples": 2
+  },
+  {
+    "regions": {
+      "initial": {
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "unsafe": {
+        "lower": 25.03441619873047,
+        "upper": 33.409324645996094
+      }
+    },
+    "active": 6820,
+    "positive": 1,
+    "training_band_positive": 1,
+    "positive_training_margin": 2193,
+    "verification_condition": "nonnegative supermartingale: B(next)<=B(now); positive epsilon is a training margin only",
+    "max_drift": 0.04133331775665283,
+    "region_pass": true,
+    "sampled_tube_pass": false,
+    "formal_certificate": false,
+    "epoch": 1000,
+    "loss": 1.1315993070602417,
+    "seconds": 8.161395270843059,
+    "rejected_region_blocks": 0,
+    "feedback_samples": 1
+  },
+  {
+    "regions": {
+      "initial": {
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "unsafe": {
+        "lower": 23.911470413208008,
+        "upper": 33.19096374511719
+      }
+    },
+    "active": 6828,
+    "positive": 0,
+    "training_band_positive": 0,
+    "positive_training_margin": 2200,
+    "verification_condition": "nonnegative supermartingale: B(next)<=B(now); positive epsilon is a training margin only",
+    "max_drift": 0.0,
+    "region_pass": true,
+    "sampled_tube_pass": true,
+    "formal_certificate": false,
+    "epoch": 1500,
+    "loss": 1.67842435836792,
+    "seconds": 12.10611878382042,
+    "rejected_region_blocks": 0,
+    "feedback_samples": 0
+  }
+]

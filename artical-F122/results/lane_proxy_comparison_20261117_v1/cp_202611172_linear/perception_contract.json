@@ -1,0 +1,19 @@
+{
+  "radius": 0.0934239577063652,
+  "finite_radius": true,
+  "n": 199,
+  "alpha": 0.05,
+  "rank": 190,
+  "latent_set": "{h(x+delta)-h(x): ||delta||inf<=q}; h=Cx for linear arm",
+  "score": "max_t ||h_inverse(p(DINO(I_t)))-x_t||inf",
+  "calibration_sha256": "3753bb126febf277fac67fd309d8a19924dfbb444e601cc1cfbee71d9bf065cd",
+  "protocol_sha256": "e727f3e91197266838b90303e46f72f6f49a3ea4062a8d0442aae6072a337d44",
+  "inverse_coordinate_max_error": 1.7881393432617188e-07,
+  "inverse_action_max_error": 4.172325134277344e-07,
+  "coverage": {
+    "episodes": 199,
+    "covered": 190,
+    "not_covered": 9,
+    "fraction": 0.9547738693467337
+  }
+}

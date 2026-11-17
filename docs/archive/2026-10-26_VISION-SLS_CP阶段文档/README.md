@@ -2,7 +2,7 @@
 
 整理日期：2026 年 10 月 26 日。这里用于追溯历史，不是日常阅读入口。
 
-**现在只需阅读 [CP 加入 VISION-SLS 统一主报告](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-29_主线更新前文档/current/VISION-SLS_CP完整说明与可行性分析.md>)。** 主报告已经整合方法来由、符号、手算例子、代码链路、全部 22 项尝试、12 个回顾参数点、19 个图像批次及可行性分析。
+**现在只需阅读 [CP 加入 VISION-SLS 统一主报告](../2026-10-29_主线更新前文档/current/VISION-SLS_CP完整说明与可行性分析.md)。** 主报告已经整合方法来由、符号、手算例子、代码链路、全部 22 项尝试、12 个回顾参数点、19 个图像批次及可行性分析。
 
 本次移入 16 份重复/阶段说明：3 份原 current CP 文档，10 份复现/CP 阶段导出稿，以及 3 份逐步详解导出副本、备份和修订说明。逐步详解的现行参考版本仍在 docs/references，未删除独有内容。
 
@@ -16,22 +16,22 @@
 
 | 原位置 | 归档文件 |
 |---|---|
-| docs/current/VISION-SLS_CP误差界可行性.md | [VISION-SLS_CP误差界可行性.md](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-26_VISION-SLS_CP阶段文档/project_docs/current/VISION-SLS_CP误差界可行性.md>) |
-| docs/current/VISION-SLS_CP误差界可行性_导师汇报稿.md | [VISION-SLS_CP误差界可行性_导师汇报稿.md](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-26_VISION-SLS_CP阶段文档/project_docs/current/VISION-SLS_CP误差界可行性_导师汇报稿.md>) |
-| docs/current/VISION-SLS_CP全部尝试结果总账.md | [VISION-SLS_CP全部尝试结果总账.md](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-26_VISION-SLS_CP阶段文档/project_docs/current/VISION-SLS_CP全部尝试结果总账.md>) |
-| outputs/vision_sls_10server_20261024/实验运行报告.md | [实验运行报告.md](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-26_VISION-SLS_CP阶段文档/exports/vision_sls_10server_20261024/实验运行报告.md>) |
-| outputs/vision_sls_CP可行性_导师汇报_20261026/关于用CP计算VISION-SLS感知误差界的可行性_导师汇报稿.md | [关于用CP计算VISION-SLS感知误差界的可行性_导师汇报稿.md](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-26_VISION-SLS_CP阶段文档/exports/vision_sls_CP可行性_导师汇报_20261026/关于用CP计算VISION-SLS感知误差界的可行性_导师汇报稿.md>) |
-| outputs/vision_sls_parking_direct_cp_20261025/停车场_直接CP实验报告.md | [停车场_直接CP实验报告.md](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-26_VISION-SLS_CP阶段文档/exports/vision_sls_parking_direct_cp_20261025/停车场_直接CP实验报告.md>) |
-| outputs/vision_sls_quad_10server_20261024/无人机实验运行报告.md | [无人机实验运行报告.md](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-26_VISION-SLS_CP阶段文档/exports/vision_sls_quad_10server_20261024/无人机实验运行报告.md>) |
-| outputs/vision_sls_全部尝试结果汇总_20261026/VISION-SLS_CP全部尝试_完整结果总账.md | [VISION-SLS_CP全部尝试_完整结果总账.md](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-26_VISION-SLS_CP阶段文档/exports/vision_sls_全部尝试结果汇总_20261026/VISION-SLS_CP全部尝试_完整结果总账.md>) |
-| outputs/vision_sls_复现与CP替换_综合报告_20261025/VISION-SLS_实验复现与直接CP替换_详细报告.md | [VISION-SLS_实验复现与直接CP替换_详细报告.md](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-26_VISION-SLS_CP阶段文档/exports/vision_sls_复现与CP替换_综合报告_20261025/VISION-SLS_实验复现与直接CP替换_详细报告.md>) |
-| outputs/vision_sls_建议原方案CP验证_20261026/VISION-SLS_按建议原公式CP_详细实验报告.md | [VISION-SLS_按建议原公式CP_详细实验报告.md](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-26_VISION-SLS_CP阶段文档/exports/vision_sls_建议原方案CP验证_20261026/VISION-SLS_按建议原公式CP_详细实验报告.md>) |
-| outputs/vision_sls_状态相关CP验证_20261026/VISION-SLS_状态相关CP_服务器验证与导师汇报.md | [VISION-SLS_状态相关CP_服务器验证与导师汇报.md](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-26_VISION-SLS_CP阶段文档/exports/vision_sls_状态相关CP验证_20261026/VISION-SLS_状态相关CP_服务器验证与导师汇报.md>) |
-| outputs/vision_sls_状态相关CP验证_20261026/此前汇报稿_常数CP实验阶段_保留.md | [此前汇报稿_常数CP实验阶段_保留.md](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-26_VISION-SLS_CP阶段文档/exports/vision_sls_状态相关CP验证_20261026/此前汇报稿_常数CP实验阶段_保留.md>) |
-| outputs/vision_sls_覆盖率解释补充_20261026/CP_轨迹覆盖率与95%_从头解释.md | [CP_轨迹覆盖率与95%_从头解释.md](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-26_VISION-SLS_CP阶段文档/exports/vision_sls_覆盖率解释补充_20261026/CP_轨迹覆盖率与95%_从头解释.md>) |
-| outputs/vision_sls_逐步详解_易读扩充_20261026/VISION-SLS_论文与代码逐步详解.md | [VISION-SLS_论文与代码逐步详解.md](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-26_VISION-SLS_CP阶段文档/exports/vision_sls_逐步详解_易读扩充_20261026/VISION-SLS_论文与代码逐步详解.md>) |
-| outputs/vision_sls_逐步详解_易读扩充_20261026/修订前备份.md | [修订前备份.md](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-26_VISION-SLS_CP阶段文档/exports/vision_sls_逐步详解_易读扩充_20261026/修订前备份.md>) |
-| outputs/vision_sls_逐步详解_易读扩充_20261026/本次补充说明.md | [本次补充说明.md](</Users/johann/project/work_based_on_spvc/docs/archive/2026-10-26_VISION-SLS_CP阶段文档/exports/vision_sls_逐步详解_易读扩充_20261026/本次补充说明.md>) |
+| docs/current/VISION-SLS_CP误差界可行性.md | [VISION-SLS_CP误差界可行性.md](project_docs/current/VISION-SLS_CP误差界可行性.md) |
+| docs/current/VISION-SLS_CP误差界可行性_导师汇报稿.md | [VISION-SLS_CP误差界可行性_导师汇报稿.md](project_docs/current/VISION-SLS_CP误差界可行性_导师汇报稿.md) |
+| docs/current/VISION-SLS_CP全部尝试结果总账.md | [VISION-SLS_CP全部尝试结果总账.md](project_docs/current/VISION-SLS_CP全部尝试结果总账.md) |
+| outputs/vision_sls_10server_20261024/实验运行报告.md | [实验运行报告.md](exports/vision_sls_10server_20261024/实验运行报告.md) |
+| outputs/vision_sls_CP可行性_导师汇报_20261026/关于用CP计算VISION-SLS感知误差界的可行性_导师汇报稿.md | [关于用CP计算VISION-SLS感知误差界的可行性_导师汇报稿.md](exports/vision_sls_CP可行性_导师汇报_20261026/关于用CP计算VISION-SLS感知误差界的可行性_导师汇报稿.md) |
+| outputs/vision_sls_parking_direct_cp_20261025/停车场_直接CP实验报告.md | [停车场_直接CP实验报告.md](exports/vision_sls_parking_direct_cp_20261025/停车场_直接CP实验报告.md) |
+| outputs/vision_sls_quad_10server_20261024/无人机实验运行报告.md | [无人机实验运行报告.md](exports/vision_sls_quad_10server_20261024/无人机实验运行报告.md) |
+| outputs/vision_sls_全部尝试结果汇总_20261026/VISION-SLS_CP全部尝试_完整结果总账.md | [VISION-SLS_CP全部尝试_完整结果总账.md](exports/vision_sls_全部尝试结果汇总_20261026/VISION-SLS_CP全部尝试_完整结果总账.md) |
+| outputs/vision_sls_复现与CP替换_综合报告_20261025/VISION-SLS_实验复现与直接CP替换_详细报告.md | [VISION-SLS_实验复现与直接CP替换_详细报告.md](exports/vision_sls_复现与CP替换_综合报告_20261025/VISION-SLS_实验复现与直接CP替换_详细报告.md) |
+| outputs/vision_sls_建议原方案CP验证_20261026/VISION-SLS_按建议原公式CP_详细实验报告.md | [VISION-SLS_按建议原公式CP_详细实验报告.md](exports/vision_sls_建议原方案CP验证_20261026/VISION-SLS_按建议原公式CP_详细实验报告.md) |
+| outputs/vision_sls_状态相关CP验证_20261026/VISION-SLS_状态相关CP_服务器验证与导师汇报.md | [VISION-SLS_状态相关CP_服务器验证与导师汇报.md](exports/vision_sls_状态相关CP验证_20261026/VISION-SLS_状态相关CP_服务器验证与导师汇报.md) |
+| outputs/vision_sls_状态相关CP验证_20261026/此前汇报稿_常数CP实验阶段_保留.md | [此前汇报稿_常数CP实验阶段_保留.md](exports/vision_sls_状态相关CP验证_20261026/此前汇报稿_常数CP实验阶段_保留.md) |
+| outputs/vision_sls_覆盖率解释补充_20261026/CP_轨迹覆盖率与95%_从头解释.md | [CP_轨迹覆盖率与95%_从头解释.md](exports/vision_sls_覆盖率解释补充_20261026/CP_轨迹覆盖率与95%_从头解释.md) |
+| outputs/vision_sls_逐步详解_易读扩充_20261026/VISION-SLS_论文与代码逐步详解.md | [VISION-SLS_论文与代码逐步详解.md](exports/vision_sls_逐步详解_易读扩充_20261026/VISION-SLS_论文与代码逐步详解.md) |
+| outputs/vision_sls_逐步详解_易读扩充_20261026/修订前备份.md | [修订前备份.md](exports/vision_sls_逐步详解_易读扩充_20261026/修订前备份.md) |
+| outputs/vision_sls_逐步详解_易读扩充_20261026/本次补充说明.md | [本次补充说明.md](exports/vision_sls_逐步详解_易读扩充_20261026/本次补充说明.md) |
 
 ## 保留在现行目录的其他专题
 

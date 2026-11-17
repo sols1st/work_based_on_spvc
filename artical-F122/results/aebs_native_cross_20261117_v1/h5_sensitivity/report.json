@@ -1,0 +1,75 @@
+{
+  "published_ppo__h5_native": {
+    "q": {
+      "max_truth_m": 1.970736811369079,
+      "max_proxy_m": 0.7485498713815559
+    },
+    "physical_covered": 465,
+    "outcomes": {
+      "unsafe": 500
+    },
+    "mean_peak_m": 1.53981062802605
+  },
+  "published_ppo__h5_dino": {
+    "q": {
+      "max_truth_m": 0.6670321449030325,
+      "max_proxy_m": 0.6670321449030325
+    },
+    "physical_covered": 465,
+    "outcomes": {
+      "success": 500
+    },
+    "mean_peak_m": 0.4441754829722429
+  },
+  "published_ppo_paired": {
+    "mean_m": 1.095635145053807,
+    "bootstrap95": [
+      1.0768609265176898,
+      1.11465942189981
+    ],
+    "favorable": 500
+  },
+  "robust_actor__h5_native": {
+    "q": {
+      "max_truth_m": 1.970736811369079,
+      "max_proxy_m": 0.7494452786720558
+    },
+    "physical_covered": 465,
+    "outcomes": {
+      "success": 500
+    },
+    "mean_peak_m": 1.53981062802605
+  },
+  "robust_actor__h5_dino": {
+    "q": {
+      "max_truth_m": 0.6670321449030325,
+      "max_proxy_m": 0.6670321449030325
+    },
+    "physical_covered": 465,
+    "outcomes": {
+      "success": 500
+    },
+    "mean_peak_m": 0.45973112786466047
+  },
+  "robust_actor_paired": {
+    "mean_m": 1.0800795001613894,
+    "bootstrap95": [
+      1.0606908027638218,
+      1.099992498640827
+    ],
+    "favorable": 500
+  },
+  "flagged_rows": {
+    "train": [],
+    "validation": [
+      138
+    ],
+    "test": [
+      59
+    ]
+  },
+  "frame_mae_m": {
+    "h5_native": 0.2920015151622736,
+    "h5_dino": 0.12684891285085206
+  }
+}

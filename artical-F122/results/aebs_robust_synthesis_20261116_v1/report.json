@@ -1,0 +1,50 @@
+{
+  "status": "development_not_certified",
+  "audit": {
+    "regions": {
+      "initial": {
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "unsafe": {
+        "lower": 0.0,
+        "upper": 0.0
+      }
+    },
+    "region_pass": false,
+    "checked_cells": 4096,
+    "proved_cells": 4096,
+    "threshold_excluded_cells": 0,
+    "actual_witnesses": 0,
+    "unresolved_cells": 0,
+    "continuous_state_numerical_interval_pass": false,
+    "guarantee_scope": "stopped AEBS, all live d in (6,16], v in (1e-6,3], conditional on observation-tube support",
+    "observation_model": "tube",
+    "expectation_support_assumption_established": false,
+    "full_image_certificate": false,
+    "floating_point_formal_proof": false,
+    "arithmetic": "float64 mathematical-network interval model; no outward rounding",
+    "source_policy_sha256": "2b825f3aca9163ca66f1e5d6ebb90ecd17b9fa9a3ee41d3a0ff50ddb306d3d7e",
+    "source_sbc_sha256": "5ef2e4060073c2b258fe164da72188dc85fff9c4c9d9141948d815502b5c468f",
+    "source_contract_sha256": "648615c7f5ecdff4001d602ca9e56142d2c8b8e451128f13ffd13fcd0d807d3f",
+    "verifier_sha256": "829dde6cdfc22905dad3dbd94e4839fb73325a2cf066a44a3885181eb72e1e42",
+    "actor_subdivisions": 32,
+    "successor_subdivisions": 16,
+    "actor_bound_method": "affine",
+    "envelope_units": "m",
+    "envelope_radius_at_10m": 0.4499999999999999,
+    "witness_meaning": "positive drift for this SBC, not an unsafe rollout or impossibility of another SBC",
+    "history": [
+      {
+        "depth": 0,
+        "checked": 4096,
+        "passed": 4096,
+        "threshold_excluded": 0,
+        "actual_witnesses": 0,
+        "unresolved": 0,
+        "seconds": 5.444989214884117
+      }
+    ],
+    "witnesses": []
+  }
+}

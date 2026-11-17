@@ -1,0 +1,32 @@
+{
+  "inputs": {
+    "results/aebs_native_cross_20261117_v1/full_release_bank/estimates.npz": "80f2928bee004430cfb82993323e6f62652adfa264b5198e930dcf2a6034ec91",
+    "results/aebs_native_cross_20261117_v1/full_release_bank/protocol.json": "a494d397a7e19e6c96adf4f81c6ec88396a612b86a4df9f59cea85b2726a5d4c",
+    "results/aebs_native_cross_20261117_v1/full_release_bank/groups.json": "a9366a9da17f0d15e57cc7ec4f794dd21728115cefc908d3c2522414e9afbbb6",
+    "/root/work_based_on_spvc/artical-F122/Aebs/experiments/native_spvc_fixed_tube_confidence.py": "1067791601e1c6f5c5d7cb05578ae563ac078b38b2a001f669c31d3ccc1fefb4",
+    "/root/work_based_on_spvc/artical-F122/Aebs/experiments/native_spvc_camera_cross.py": "3f4bd19906c4429202abc5a80bee9f936011419b1f48030c35508d870c583f74",
+    "results/aebs_robust_synthesis_20261117_release/package/sbc.pt": "856104931b3e2cfc8b47cee2e62ef891ec119e8f461742e1a8b86d04a45b6aa3",
+    "results/aebs_robust_synthesis_20261117_release/package/policy.pt": "230807a1759bbededeaa7703ede1ab676ee792e4e8b0a92b01428f9b5ae38c8c",
+    "results/aebs_robust_synthesis_20261117_release/package/observation.pt": "eee112612932071653c4479a9eb9f8b9d215217c011281b022b7f79e206e9fb6",
+    "results/aebs_robust_synthesis_20261117_release/package/observations.npz": "a5ecc92f3bbcbd7831c3b6b90e9bef6debd65334b05aebcba0b590f2761a9191",
+    "results/aebs_robust_synthesis_20261117_release/development_certificate.json": "e2b4ef502dcef3bf463017ea28af994a857048fe086717007bdd4a1691170a90",
+    "results/aebs_robust_synthesis_20261117_release/development_contract.json": "0b3058010ce00514dd2d6aa1cbd568c50a55373f16e332200d387df5c95d086c",
+    "Aebs/system/outcomes.py": "17ed40612a60015cc733ae874fa5aabf2658602f29b0ffb1d42fb890902f3a93",
+    "results/aebs_budget_scaling_20261110/cgan_24000_gray.npz": "fd783a3bd15dd17eadf2c22bd2f9a39597a42e9900d71328e9cfa7313e5ecf9c"
+  },
+  "seed": 202611170521,
+  "n": 2000,
+  "batch": 200,
+  "methods": [
+    "rgb_native",
+    "rgb_dino"
+  ],
+  "fixed_threshold_m": 0.45,
+  "max_steps": 400,
+  "stop": "the existing five AEBS episode outcomes",
+  "law": "fresh iid uniform initial d[15,16] and v[2.5,3], iid uniform appearance among the 12 fixed release pairs per trajectory; all images in the fixed 24k library",
+  "primary": "per-trajectory maximum absolute physical-distance error <= 0.45m for the entire stopped episode up to 400 steps; no threshold fitting or trial selection",
+  "model": "fixed common robust actor and its certified tube; frozen original gray estimator or frozen RGB DINO",
+  "intervals": "per-arm one-sided 95% exact binomial lower; additional simultaneous one-sided contrast: DINO lower at 97.5%, native upper at 97.5% by Bonferroni",
+  "claim": "marginal over the declared episode draw for this fixed library and numerical model; distinct from calibration-marginal split conformal coverage"
+}

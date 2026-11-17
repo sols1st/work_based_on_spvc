@@ -1,0 +1,56 @@
+{
+  "rgb_native": {
+    "q": {
+      "max_truth_m": 8.05839395703265,
+      "max_proxy_m": 6.270166951338524
+    },
+    "covered": {
+      "max_truth_m": 487,
+      "max_proxy_m": 486
+    },
+    "episodes": 500,
+    "outcomes": {
+      "unsafe": 500
+    },
+    "max_lookup_m": 0.003003112772262284,
+    "mean_trajectory_peak_m": 5.501937799555868,
+    "barrier": {
+      "status": "positive_drift_witness",
+      "d_m": 6.00001,
+      "v_mps": 0.13208503144654088,
+      "error_m": 6.043795467774489,
+      "barrier": 0.0,
+      "successor_barrier": 0.5935472328487252,
+      "drift": 0.5935472328487252
+    }
+  },
+  "rgb_dino": {
+    "q": {
+      "max_truth_m": 0.40956991815096444,
+      "max_proxy_m": 0.40956991815096444
+    },
+    "covered": {
+      "max_truth_m": 483,
+      "max_proxy_m": 483
+    },
+    "episodes": 500,
+    "outcomes": {
+      "success": 500
+    },
+    "max_lookup_m": 0.0030030755769985262,
+    "mean_trajectory_peak_m": 0.2832941936657165,
+    "barrier": {
+      "status": "pass_by_inclusion",
+      "outer_m": 0.45,
+      "checked_cells": 782400
+    }
+  },
+  "paired": {
+    "mean_peak_reduction_m": 5.2186436058901515,
+    "favorable": 500,
+    "bootstrap95": [
+      5.083663277242175,
+      5.355195191476372
+    ]
+  }
+}

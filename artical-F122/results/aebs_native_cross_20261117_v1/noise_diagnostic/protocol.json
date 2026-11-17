@@ -1,0 +1,16 @@
+{
+  "inputs": {
+    "results/aebs_native_cross_20261117_v1/protocol.json": "642ddd305065b03e95b884c99ec5b1e234803e2057b378d1f4133e37c0a19417",
+    "results/aebs_native_cross_20261117_v1/frame_estimates.npz": "d444f54d8f2506710631fa109e497ab2d3cba76d3b73d872c78ceede2eac810a",
+    "Aebs/cGAN/mlp_supervised_ld4/mlp_supervised.pth": "02fc87c1c6dd7fb36971c58eebc5d22245fa2353b7dbf7cc0e1638ccea9fbfdc",
+    "Aebs/controller/state_net_trained.pth": "386ef3cc4282a07cf8f77930aefd4aeab51110eee776b1f75d21ff1122358884",
+    "Aebs/data/Downsampled.h5": "41cc88359f64d52ffb25a8ec57ea9efddd9b8463d37e63bc972b2854dbed1bf1",
+    "results/aebs_budget_scaling_20261110/cgan_24000_gray.npz": "fd783a3bd15dd17eadf2c22bd2f9a39597a42e9900d71328e9cfa7313e5ecf9c",
+    "results/vision_sls_spvc_sbc_pass_20261029/splits.npz": "b4ed46b4af8c6fa32d7fbedd1a010105a3d47d477126930c7bd5ff67222c828a",
+    "/root/work_based_on_spvc/artical-F122/Aebs/experiments/native_spvc_noise_at_camera_states.py": "fa2d4232285319b3384bcd6d732d591e738a358b5584fc3ea7a69833e89cb1c1"
+  },
+  "rng": 202611170514,
+  "draws": 64,
+  "law": "independent U[-1,1]^4 draws per frame at the exact image label",
+  "statistic": "count observed frozen state_net(camera) within min/max of 64 generated state_net outputs; diagnostic only"
+}

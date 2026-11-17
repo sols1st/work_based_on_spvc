@@ -1,0 +1,95 @@
+{
+  "scope": "Replace each learned h by its best affine fit on a deterministic state grid, retaining its learned visual head. Static diagnostic only, no new CP/certificate. This is not a separately trained affine-control arm.",
+  "rows": [
+    {
+      "seed": 202611171,
+      "affine_matrix": [
+        [
+          0.8657971094992273,
+          0.5003984158565229
+        ],
+        [
+          -0.4983404355143724,
+          0.8669737733639291
+        ]
+      ],
+      "affine_bias": [
+        0.0004041522853438384,
+        0.0003724907615706642
+      ],
+      "test_decoded_mse_with_affine_inverse": 0.0007233014534367385,
+      "test_mae_physical_with_affine_inverse": [
+        0.018018150798945406,
+        0.005071995220512145
+      ],
+      "max_decoded_change_from_neural_inverse": [
+        4.956403705047574e-05,
+        0.00010503216102686341
+      ],
+      "mean_decoded_change_from_neural_inverse": [
+        1.2979356020942945e-05,
+        1.9561250491229587e-05
+      ]
+    },
+    {
+      "seed": 202611172,
+      "affine_matrix": [
+        [
+          0.8659269714272314,
+          0.5001704772409917
+        ],
+        [
+          -0.49843789438165853,
+          0.8669194851587101
+        ]
+      ],
+      "affine_bias": [
+        0.00045833015947683724,
+        0.00040661515300297095
+      ],
+      "test_decoded_mse_with_affine_inverse": 0.0007222562759122438,
+      "test_mae_physical_with_affine_inverse": [
+        0.017904065886783952,
+        0.0050863044003731815
+      ],
+      "max_decoded_change_from_neural_inverse": [
+        4.412872319625727e-05,
+        8.279345843931196e-05
+      ],
+      "mean_decoded_change_from_neural_inverse": [
+        8.213351606256611e-06,
+        1.4545718524751308e-05
+      ]
+    },
+    {
+      "seed": 202611173,
+      "affine_matrix": [
+        [
+          0.8659044760646492,
+          0.5002120668101797
+        ],
+        [
+          -0.49891546553771093,
+          0.8666466770478589
+        ]
+      ],
+      "affine_bias": [
+        0.0004031575517374795,
+        0.00025444189369615527
+      ],
+      "test_decoded_mse_with_affine_inverse": 0.0007243351107609895,
+      "test_mae_physical_with_affine_inverse": [
+        0.017761360872517173,
+        0.005107918941271607
+      ],
+      "max_decoded_change_from_neural_inverse": [
+        2.7189002183458655e-05,
+        5.3240020711498026e-05
+      ],
+      "mean_decoded_change_from_neural_inverse": [
+        6.645742441692584e-06,
+        1.0323521453878928e-05
+      ]
+    }
+  ]
+}

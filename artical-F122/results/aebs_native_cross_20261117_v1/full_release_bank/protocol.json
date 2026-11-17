@@ -1,0 +1,39 @@
+{
+  "inputs": {
+    "/root/work_based_on_spvc/artical-F122/Aebs/experiments/native_spvc_full_release_bank.py": "a67070a2a2c9fb9f4505f12ebc2e385ebb97fdab5b0a110902b749423fc27154",
+    "/root/work_based_on_spvc/artical-F122/Aebs/experiments/native_spvc_camera_cross.py": "3f4bd19906c4429202abc5a80bee9f936011419b1f48030c35508d870c583f74",
+    "Aebs/cGAN/mlp_supervised_ld4/mlp_supervised.pth": "02fc87c1c6dd7fb36971c58eebc5d22245fa2353b7dbf7cc0e1638ccea9fbfdc",
+    "Aebs/controller/state_net_trained.pth": "386ef3cc4282a07cf8f77930aefd4aeab51110eee776b1f75d21ff1122358884",
+    "Aebs/data/Downsampled.h5": "41cc88359f64d52ffb25a8ec57ea9efddd9b8463d37e63bc972b2854dbed1bf1",
+    "results/aebs_budget_scaling_20261110/cgan_24000_gray.npz": "fd783a3bd15dd17eadf2c22bd2f9a39597a42e9900d71328e9cfa7313e5ecf9c",
+    "results/aebs_robust_synthesis_20261117_release/package/observations.npz": "a5ecc92f3bbcbd7831c3b6b90e9bef6debd65334b05aebcba0b590f2761a9191",
+    "results/aebs_robust_synthesis_20261117_release/package/observation.pt": "eee112612932071653c4479a9eb9f8b9d215217c011281b022b7f79e206e9fb6",
+    "results/aebs_robust_synthesis_20261117_release/package/policy.pt": "230807a1759bbededeaa7703ede1ab676ee792e4e8b0a92b01428f9b5ae38c8c",
+    "results/aebs_robust_synthesis_20261117_release/package/sbc.pt": "856104931b3e2cfc8b47cee2e62ef891ec119e8f461742e1a8b86d04a45b6aa3",
+    "results/aebs_robust_synthesis_20261117_release/package/config.json": "e81f5f94e5ab10f9c4d61bcbf6452de59f46eb7aaddb8bea7da7d1281a747bc6",
+    "results/aebs_robust_synthesis_20261117_release/development_certificate.json": "e2b4ef502dcef3bf463017ea28af994a857048fe086717007bdd4a1691170a90",
+    "results/aebs_robust_synthesis_20261117_release/development_contract.json": "0b3058010ce00514dd2d6aa1cbd568c50a55373f16e332200d387df5c95d086c",
+    "Aebs/system/outcomes.py": "17ed40612a60015cc733ae874fa5aabf2658602f29b0ffb1d42fb890902f3a93",
+    "Aebs/vision_sls/verify_sbc_cells.py": "7b87df96982c99c60211d916ed25e24381c13f6f1cabf3bce56630c3131dc99f"
+  },
+  "calibration_n": 199,
+  "holdout_n": 500,
+  "rank": 190,
+  "alpha": 0.05,
+  "seeds": [
+    202611170515,
+    202611170516
+  ],
+  "arms": [
+    "rgb_native",
+    "rgb_dino"
+  ],
+  "actor": "release robust_actor",
+  "horizon": 400,
+  "initial": "iid uniform [15,16] x [2.5,3]",
+  "appearance": "one iid uniform pair among 12 fixed weather/colors per episode",
+  "renderer": "all 24,000 train/val/test images; nearest distance within fixed appearance, same file ties as release",
+  "metrics": "maximum active-frame abs error vs current physical state and vs own nominal observation; all failures retained",
+  "proof": "physical distance tube for frozen release actor and B; check inclusion or search actual witness",
+  "scope": "conditional on frozen deployment bank, containing model-fitting images; no fresh-image generalization"
+}

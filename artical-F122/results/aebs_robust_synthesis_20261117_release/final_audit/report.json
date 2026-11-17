@@ -1,0 +1,30 @@
+{
+  "continuous_state_numerical_interval_pass": true,
+  "region_pass": true,
+  "regions": {
+    "initial": {
+      "lower": 0.0,
+      "upper": 0.0
+    },
+    "unsafe": {
+      "lower": 25.039446320554333,
+      "upper": 32.81330886476853
+    }
+  },
+  "actual_witnesses": 0,
+  "unresolved_cells": 0,
+  "checked_cells": 0,
+  "parent_checked_cells": 782400,
+  "verification_route": "constant tube inclusion into already audited superset",
+  "verified_superset_radius_m": 0.45,
+  "envelope_radius_at_10m": 0.4051930459038431,
+  "source_policy_sha256": "230807a1759bbededeaa7703ede1ab676ee792e4e8b0a92b01428f9b5ae38c8c",
+  "source_sbc_sha256": "856104931b3e2cfc8b47cee2e62ef891ec119e8f461742e1a8b86d04a45b6aa3",
+  "observation_model": "tube",
+  "full_image_certificate": false,
+  "floating_point_formal_proof": false,
+  "guarantee_scope": "stopped AEBS, all live d in (6,16], v in (1e-6,3], conditional on observation-tube support",
+  "arithmetic": "float64 mathematical-network interval model; no outward rounding",
+  "parent_report_sha256": "e2b4ef502dcef3bf463017ea28af994a857048fe086717007bdd4a1691170a90",
+  "source_contract_sha256": "0b5051d32d06fb09273dc5e8a97c1d15caa6037ac4f5004be4dabfdc2bd0d738"
+}

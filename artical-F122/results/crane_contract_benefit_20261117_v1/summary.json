@@ -1,0 +1,1337 @@
+{
+  "protocol": "49b8ce56d3c071708c7e0a6e982883d98256205a42d7277faf14ebaee0631f0b",
+  "rows": [
+    {
+      "scale": 1.0,
+      "performance": {
+        "n": 200,
+        "safe": 200,
+        "settled": 183,
+        "mean_final_load_m": 0.07336592196477668,
+        "mean_last_second_sway_m": 0.012638765138016898
+      },
+      "methods": {
+        "box": {
+          "q": 0.18049047361548934,
+          "visual_halfwidths": [
+            0.18049047361548934,
+            0.18049047361548934,
+            0.18049047361548934,
+            0.18049047361548934
+          ],
+          "action_halfwidths": [
+            0.5305427226690501,
+            0.5305427226690501
+          ],
+          "upper": 0.7694529075563501,
+          "upper_exact": "13861231310999691081423/18014398509481984000000",
+          "passes": true,
+          "constraints": {
+            "trolley_position": {
+              "ratio": 0.4846339215586577,
+              "step": 1
+            },
+            "trolley_speed": {
+              "ratio": 0.3037151545761704,
+              "step": 3
+            },
+            "sway": {
+              "ratio": 0.5132247198974934,
+              "step": 17
+            },
+            "sway_rate": {
+              "ratio": 0.5145437635984141,
+              "step": 11
+            },
+            "payload_position": {
+              "ratio": 0.5533777001507394,
+              "step": 2
+            },
+            "payload_diagonal": {
+              "ratio": 0.6597964886412663,
+              "step": 2
+            },
+            "axis_accel": {
+              "ratio": 0.6074628217550132,
+              "step": 0
+            },
+            "total_accel": {
+              "ratio": 0.7694529075563501,
+              "step": 0
+            }
+          },
+          "rank": 190,
+          "covered": 174
+        },
+        "per_axis": {
+          "q": 0.1971416566268795,
+          "visual_halfwidths": [
+            0.0690169877930811,
+            0.053091881222698804,
+            0.1971416566268795,
+            0.1710469096695126
+          ],
+          "action_halfwidths": [
+            0.36035642146543556,
+            0.3010453534754632
+          ],
+          "upper": 0.7028389624901498,
+          "upper_exact": "151934653899461021727401/216172782113783808000000",
+          "passes": true,
+          "constraints": {
+            "trolley_position": {
+              "ratio": 0.4827586206896552,
+              "step": 0
+            },
+            "trolley_speed": {
+              "ratio": 0.2802349152181205,
+              "step": 3
+            },
+            "sway": {
+              "ratio": 0.45901788009156913,
+              "step": 6
+            },
+            "sway_rate": {
+              "ratio": 0.4501010000811604,
+              "step": 2
+            },
+            "payload_position": {
+              "ratio": 0.5530960692716509,
+              "step": 2
+            },
+            "payload_diagonal": {
+              "ratio": 0.6594021853279706,
+              "step": 2
+            },
+            "axis_accel": {
+              "ratio": 0.5626769530172199,
+              "step": 0
+            },
+            "total_accel": {
+              "ratio": 0.7028389624901498,
+              "step": 0
+            }
+          },
+          "rank": 190,
+          "covered": 179
+        },
+        "box_and_action": {
+          "q": 0.10129967343219742,
+          "visual_halfwidths": [
+            0.20259934686439485,
+            0.20259934686439485,
+            0.20259934686439485,
+            0.20259934686439485
+          ],
+          "action_halfwidths": [
+            0.2977653250702727,
+            0.2977653250702727
+          ],
+          "upper": 0.6918604416900909,
+          "upper_exact": "6231724854775760355499/9007199254740992000000",
+          "passes": true,
+          "constraints": {
+            "trolley_position": {
+              "ratio": 0.4827586206896552,
+              "step": 0
+            },
+            "trolley_speed": {
+              "ratio": 0.2715993557480144,
+              "step": 3
+            },
+            "sway": {
+              "ratio": 0.4478622909007465,
+              "step": 6
+            },
+            "sway_rate": {
+              "ratio": 0.4414708051393381,
+              "step": 2
+            },
+            "payload_position": {
+              "ratio": 0.552992491102455,
+              "step": 2
+            },
+            "payload_diagonal": {
+              "ratio": 0.6593372009298502,
+              "step": 2
+            },
+            "axis_accel": {
+              "ratio": 0.5462056118605981,
+              "step": 0
+            },
+            "total_accel": {
+              "ratio": 0.6918604416900909,
+              "step": 0
+            }
+          },
+          "rank": 190,
+          "covered": 185
+        },
+        "per_axis_and_action": {
+          "q": 0.17176772000695886,
+          "visual_halfwidths": [
+            0.1202677388209518,
+            0.09251693979383797,
+            0.3435354400139177,
+            0.2980632119144172
+          ],
+          "action_halfwidths": [
+            0.31397524989929043,
+            0.26229805952700347
+          ],
+          "upper": 0.6886508849043823,
+          "upper_exact": "74433788847449725923913/108086391056891904000000",
+          "passes": true,
+          "constraints": {
+            "trolley_position": {
+              "ratio": 0.4827586206896552,
+              "step": 0
+            },
+            "trolley_speed": {
+              "ratio": 0.2738358043473994,
+              "step": 3
+            },
+            "sway": {
+              "ratio": 0.4507513801262328,
+              "step": 6
+            },
+            "sway_rate": {
+              "ratio": 0.44370586442610144,
+              "step": 2
+            },
+            "payload_position": {
+              "ratio": 0.553019315913543,
+              "step": 2
+            },
+            "payload_diagonal": {
+              "ratio": 0.6593182028225686,
+              "step": 2
+            },
+            "axis_accel": {
+              "ratio": 0.5504713815524449,
+              "step": 0
+            },
+            "total_accel": {
+              "ratio": 0.6886508849043823,
+              "step": 0
+            }
+          },
+          "rank": 190,
+          "covered": 181
+        }
+      },
+      "certificate": "f2c57784796c66dd6414ae76ff9d0fe8028108b60665e34c90b388223432b131",
+      "holdout": "7bed747783f1f3d1266be5dad0bed85556754e32d4df6774ad89a1ca0dc06360"
+    },
+    {
+      "scale": 1.2,
+      "performance": {
+        "n": 200,
+        "safe": 200,
+        "settled": 187,
+        "mean_final_load_m": 0.07190810955441411,
+        "mean_last_second_sway_m": 0.012465775341577511
+      },
+      "methods": {
+        "box": {
+          "q": 0.18927172825895403,
+          "visual_halfwidths": [
+            0.18927172825895403,
+            0.18927172825895403,
+            0.18927172825895403,
+            0.18927172825895403
+          ],
+          "action_halfwidths": [
+            0.5563547816307824,
+            0.5563547816307824
+          ],
+          "upper": 0.8965779938769275,
+          "upper_exact": "242269699147963043805289/270215977642229760000000",
+          "passes": true,
+          "constraints": {
+            "trolley_position": {
+              "ratio": 0.5802371397149604,
+              "step": 1
+            },
+            "trolley_speed": {
+              "ratio": 0.35246236922138857,
+              "step": 3
+            },
+            "sway": {
+              "ratio": 0.5686771254896085,
+              "step": 6
+            },
+            "sway_rate": {
+              "ratio": 0.5776094262366462,
+              "step": 11
+            },
+            "payload_position": {
+              "ratio": 0.6635769398676664,
+              "step": 2
+            },
+            "payload_diagonal": {
+              "ratio": 0.7911878898422177,
+              "step": 2
+            },
+            "axis_accel": {
+              "ratio": 0.7078247320081006,
+              "step": 0
+            },
+            "total_accel": {
+              "ratio": 0.8965779938769275,
+              "step": 0
+            }
+          },
+          "rank": 190,
+          "covered": 190
+        },
+        "per_axis": {
+          "q": 0.21095658925910205,
+          "visual_halfwidths": [
+            0.07385343409851577,
+            0.05681235702146786,
+            0.21095658925910205,
+            0.18303322232643884
+          ],
+          "action_halfwidths": [
+            0.3856088200265168,
+            0.3221414594363588
+          ],
+          "upper": 0.8290847799104792,
+          "upper_exact": "896127817407212199302531/1080863910568919040000000",
+          "passes": true,
+          "constraints": {
+            "trolley_position": {
+              "ratio": 0.5793103448275863,
+              "step": 0
+            },
+            "trolley_speed": {
+              "ratio": 0.3289049147169164,
+              "step": 3
+            },
+            "sway": {
+              "ratio": 0.5382451325488942,
+              "step": 6
+            },
+            "sway_rate": {
+              "ratio": 0.5315637341220592,
+              "step": 2
+            },
+            "payload_position": {
+              "ratio": 0.6632943828408826,
+              "step": 2
+            },
+            "payload_diagonal": {
+              "ratio": 0.7907883819333932,
+              "step": 2
+            },
+            "axis_accel": {
+              "ratio": 0.6628915842175044,
+              "step": 0
+            },
+            "total_accel": {
+              "ratio": 0.8290847799104792,
+              "step": 0
+            }
+          },
+          "rank": 190,
+          "covered": 193
+        },
+        "box_and_action": {
+          "q": 0.10461196821630678,
+          "visual_halfwidths": [
+            0.20922393643261356,
+            0.20922393643261356,
+            0.20922393643261356,
+            0.20922393643261356
+          ],
+          "action_halfwidths": [
+            0.30750164997342294,
+            0.30750164997342294
+          ],
+          "upper": 0.8136269499911409,
+          "upper_exact": "219855001727921743664539/270215977642229760000000",
+          "passes": true,
+          "constraints": {
+            "trolley_position": {
+              "ratio": 0.5793103448275863,
+              "step": 0
+            },
+            "trolley_speed": {
+              "ratio": 0.318128635806945,
+              "step": 3
+            },
+            "sway": {
+              "ratio": 0.5243241189838181,
+              "step": 6
+            },
+            "sway_rate": {
+              "ratio": 0.520794149584723,
+              "step": 2
+            },
+            "payload_position": {
+              "ratio": 0.6631651280723754,
+              "step": 2
+            },
+            "payload_diagonal": {
+              "ratio": 0.790696883470909,
+              "step": 2
+            },
+            "axis_accel": {
+              "ratio": 0.6423370657824797,
+              "step": 0
+            },
+            "total_accel": {
+              "ratio": 0.8136269499911409,
+              "step": 0
+            }
+          },
+          "rank": 190,
+          "covered": 195
+        },
+        "per_axis_and_action": {
+          "q": 0.18236087289145556,
+          "visual_halfwidths": [
+            0.12768481663016676,
+            0.09822258744173246,
+            0.3647217457829111,
+            0.3164451824786515
+          ],
+          "action_halfwidths": [
+            0.3333385378558197,
+            0.27847434367261475
+          ],
+          "upper": 0.8130952135880725,
+          "upper_exact": "146474212037279070785151/180143985094819840000000",
+          "passes": true,
+          "constraints": {
+            "trolley_position": {
+              "ratio": 0.5793103448275863,
+              "step": 0
+            },
+            "trolley_speed": {
+              "ratio": 0.32169329587332696,
+              "step": 3
+            },
+            "sway": {
+              "ratio": 0.5289290184629019,
+              "step": 6
+            },
+            "sway_rate": {
+              "ratio": 0.5243565952352568,
+              "step": 2
+            },
+            "payload_position": {
+              "ratio": 0.6632078839545807,
+              "step": 2
+            },
+            "payload_diagonal": {
+              "ratio": 0.7906937360004309,
+              "step": 2
+            },
+            "axis_accel": {
+              "ratio": 0.649136246804163,
+              "step": 0
+            },
+            "total_accel": {
+              "ratio": 0.8130952135880725,
+              "step": 0
+            }
+          },
+          "rank": 190,
+          "covered": 194
+        }
+      },
+      "certificate": "5339ef15753f4d3c1f40abdd1d683b2f7242a3470afc1ba6e6042e210de76aa5",
+      "holdout": "a266243c1bd0859b001c01a9a9309e1771bf0a21bbe746e8703772ef99943da2"
+    },
+    {
+      "scale": 1.3,
+      "performance": {
+        "n": 200,
+        "safe": 200,
+        "settled": 187,
+        "mean_final_load_m": 0.07364561141425917,
+        "mean_last_second_sway_m": 0.012159133983797976
+      },
+      "methods": {
+        "box": {
+          "q": 0.17963786723857314,
+          "visual_halfwidths": [
+            0.17963786723857314,
+            0.17963786723857314,
+            0.17963786723857314,
+            0.17963786723857314
+          ],
+          "action_halfwidths": [
+            0.5280365288544239,
+            0.5280365288544239
+          ],
+          "upper": 0.9463991096181412,
+          "upper_exact": "85244053548400604610087/90071992547409920000000",
+          "passes": true,
+          "constraints": {
+            "trolley_position": {
+              "ratio": 0.6275862068965518,
+              "step": 0
+            },
+            "trolley_speed": {
+              "ratio": 0.37114835064274865,
+              "step": 3
+            },
+            "sway": {
+              "ratio": 0.6009932363671036,
+              "step": 6
+            },
+            "sway_rate": {
+              "ratio": 0.5918068446653679,
+              "step": 11
+            },
+            "payload_position": {
+              "ratio": 0.718608340188072,
+              "step": 2
+            },
+            "payload_diagonal": {
+              "ratio": 0.8568022517627012,
+              "step": 2
+            },
+            "axis_accel": {
+              "ratio": 0.7471571918037957,
+              "step": 0
+            },
+            "total_accel": {
+              "ratio": 0.9463991096181412,
+              "step": 0
+            }
+          },
+          "rank": 190,
+          "covered": 192
+        },
+        "per_axis": {
+          "q": 0.1975719220708134,
+          "visual_halfwidths": [
+            0.06916761869169415,
+            0.05320775527100715,
+            0.1975719220708134,
+            0.17142022282808955
+          ],
+          "action_halfwidths": [
+            0.3611429062617448,
+            0.30170239072914984
+          ],
+          "upper": 0.8808611494984825,
+          "upper_exact": "476045513357581474807397/540431955284459520000000",
+          "passes": true,
+          "constraints": {
+            "trolley_position": {
+              "ratio": 0.6275862068965518,
+              "step": 0
+            },
+            "trolley_speed": {
+              "ratio": 0.34812239509818504,
+              "step": 3
+            },
+            "sway": {
+              "ratio": 0.5712478444593176,
+              "step": 6
+            },
+            "sway_rate": {
+              "ratio": 0.5671807608477778,
+              "step": 2
+            },
+            "payload_position": {
+              "ratio": 0.7183321581610074,
+              "step": 2
+            },
+            "payload_diagonal": {
+              "ratio": 0.8564143174526083,
+              "step": 2
+            },
+            "axis_accel": {
+              "ratio": 0.7032378174373013,
+              "step": 0
+            },
+            "total_accel": {
+              "ratio": 0.8808611494984825,
+              "step": 0
+            }
+          },
+          "rank": 190,
+          "covered": 187
+        },
+        "box_and_action": {
+          "q": 0.09396624671952572,
+          "visual_halfwidths": [
+            0.18793249343905144,
+            0.18793249343905144,
+            0.18793249343905144,
+            0.18793249343905144
+          ],
+          "action_halfwidths": [
+            0.2762090839197099,
+            0.2762090839197099
+          ],
+          "upper": 0.8624566279732366,
+          "upper_exact": "233049560901808977923761/270215977642229760000000",
+          "passes": true,
+          "constraints": {
+            "trolley_position": {
+              "ratio": 0.6275862068965518,
+              "step": 0
+            },
+            "trolley_speed": {
+              "ratio": 0.3364042575978049,
+              "step": 3
+            },
+            "sway": {
+              "ratio": 0.5561101190475084,
+              "step": 6
+            },
+            "sway_rate": {
+              "ratio": 0.55546990281554,
+              "step": 2
+            },
+            "payload_position": {
+              "ratio": 0.7181916063840349,
+              "step": 2
+            },
+            "payload_diagonal": {
+              "ratio": 0.8563053768425031,
+              "step": 2
+            },
+            "axis_accel": {
+              "ratio": 0.6808868115578184,
+              "step": 0
+            },
+            "total_accel": {
+              "ratio": 0.8624566279732366,
+              "step": 0
+            }
+          },
+          "rank": 190,
+          "covered": 187
+        },
+        "per_axis_and_action": {
+          "q": 0.16810904100278315,
+          "visual_halfwidths": [
+            0.11770601738175428,
+            0.09054631466624945,
+            0.3362180820055663,
+            0.2917144193979637
+          ],
+          "action_halfwidths": [
+            0.30728752851257807,
+            0.2567110702883468
+          ],
+          "upper": 0.8643866998001541,
+          "upper_exact": "58392774286859804989409/67553994410557440000000",
+          "passes": true,
+          "constraints": {
+            "trolley_position": {
+              "ratio": 0.6275862068965518,
+              "step": 0
+            },
+            "trolley_speed": {
+              "ratio": 0.3406920840136536,
+              "step": 3
+            },
+            "sway": {
+              "ratio": 0.5616492193434824,
+              "step": 6
+            },
+            "sway_rate": {
+              "ratio": 0.5597550655746606,
+              "step": 2
+            },
+            "payload_position": {
+              "ratio": 0.7182430361971838,
+              "step": 2
+            },
+            "payload_diagonal": {
+              "ratio": 0.8563168013830479,
+              "step": 2
+            },
+            "axis_accel": {
+              "ratio": 0.6890653496085731,
+              "step": 0
+            },
+            "total_accel": {
+              "ratio": 0.8643866998001541,
+              "step": 0
+            }
+          },
+          "rank": 190,
+          "covered": 193
+        }
+      },
+      "certificate": "07d28e3b71c86a00f683f8a1e554501105d3054ef3d4839ab10f9694074a7a4e",
+      "holdout": "671f4c278c738186bd9aa0d8db2d23c54ef61d15db52e59e5439279ec33f7c06"
+    },
+    {
+      "scale": 1.4,
+      "performance": {
+        "n": 200,
+        "safe": 200,
+        "settled": 191,
+        "mean_final_load_m": 0.07033249937742105,
+        "mean_last_second_sway_m": 0.012211222418006625
+      },
+      "methods": {
+        "box": {
+          "q": 0.18345948904179282,
+          "visual_halfwidths": [
+            0.18345948904179282,
+            0.18345948904179282,
+            0.18345948904179282,
+            0.18345948904179282
+          ],
+          "action_halfwidths": [
+            0.5392699950638979,
+            0.5392699950638979
+          ],
+          "upper": 1.009404131687966,
+          "upper_exact": "136378562140084878585679/135107988821114880000000",
+          "passes": false,
+          "constraints": {
+            "trolley_position": {
+              "ratio": 0.6758620689655173,
+              "step": 0
+            },
+            "trolley_speed": {
+              "ratio": 0.39529119799422013,
+              "step": 3
+            },
+            "sway": {
+              "ratio": 0.6403586362682514,
+              "step": 6
+            },
+            "sway_rate": {
+              "ratio": 0.6307317463423796,
+              "step": 2
+            },
+            "payload_position": {
+              "ratio": 0.7737051922240896,
+              "step": 2
+            },
+            "payload_diagonal": {
+              "ratio": 0.9224946522671837,
+              "step": 2
+            },
+            "axis_accel": {
+              "ratio": 0.7968979987010257,
+              "step": 0
+            },
+            "total_accel": {
+              "ratio": 1.009404131687966,
+              "step": 0
+            }
+          },
+          "rank": 190,
+          "covered": 193
+        },
+        "per_axis": {
+          "q": 0.19511868610914798,
+          "visual_halfwidths": [
+            0.06830876947982888,
+            0.0525470785042774,
+            0.19511868610914798,
+            0.1692917105840884
+          ],
+          "action_halfwidths": [
+            0.35665862147241056,
+            0.2979561744302979
+          ],
+          "upper": 0.9387499326504514,
+          "upper_exact": "1014660923250876295838557/1080863910568919040000000",
+          "passes": true,
+          "constraints": {
+            "trolley_position": {
+              "ratio": 0.6758620689655173,
+              "step": 0
+            },
+            "trolley_speed": {
+              "ratio": 0.37009669801915795,
+              "step": 3
+            },
+            "sway": {
+              "ratio": 0.6078118751043758,
+              "step": 6
+            },
+            "sway_rate": {
+              "ratio": 0.6055528975371322,
+              "step": 2
+            },
+            "payload_position": {
+              "ratio": 0.7734029998542431,
+              "step": 2
+            },
+            "payload_diagonal": {
+              "ratio": 0.9220764337582655,
+              "step": 2
+            },
+            "axis_accel": {
+              "ratio": 0.748842374071687,
+              "step": 0
+            },
+            "total_accel": {
+              "ratio": 0.9387499326504514,
+              "step": 0
+            }
+          },
+          "rank": 190,
+          "covered": 185
+        },
+        "box_and_action": {
+          "q": 0.09550131381945241,
+          "visual_halfwidths": [
+            0.19100262763890483,
+            0.19100262763890483,
+            0.19100262763890483,
+            0.19100262763890483
+          ],
+          "action_halfwidths": [
+            0.2807213369065894,
+            0.2807213369065894
+          ],
+          "upper": 0.9232212456355298,
+          "upper_exact": "498938262938963658856091/540431955284459520000000",
+          "passes": true,
+          "constraints": {
+            "trolley_position": {
+              "ratio": 0.6758620689655173,
+              "step": 0
+            },
+            "trolley_speed": {
+              "ratio": 0.3596197935609514,
+              "step": 3
+            },
+            "sway": {
+              "ratio": 0.5942775994697926,
+              "step": 6
+            },
+            "sway_rate": {
+              "ratio": 0.5950825014760349,
+              "step": 2
+            },
+            "payload_position": {
+              "ratio": 0.7732773358962357,
+              "step": 2
+            },
+            "payload_diagonal": {
+              "ratio": 0.921984515876281,
+              "step": 2
+            },
+            "axis_accel": {
+              "ratio": 0.728858878133313,
+              "step": 0
+            },
+            "total_accel": {
+              "ratio": 0.9232212456355298,
+              "step": 0
+            }
+          },
+          "rank": 190,
+          "covered": 188
+        },
+        "per_axis_and_action": {
+          "q": 0.1611399308953811,
+          "visual_halfwidths": [
+            0.11282640953589401,
+            0.0867926365001946,
+            0.3222798617907622,
+            0.27962113817659495
+          ],
+          "action_halfwidths": [
+            0.2945486501746774,
+            0.24606888409802224
+          ],
+          "upper": 0.9219639710751575,
+          "upper_exact": "8636485720892852213698867501/9367487224930631680000000000",
+          "passes": true,
+          "constraints": {
+            "trolley_position": {
+              "ratio": 0.6758620689655173,
+              "step": 0
+            },
+            "trolley_speed": {
+              "ratio": 0.3615275183479483,
+              "step": 3
+            },
+            "sway": {
+              "ratio": 0.5967420366711759,
+              "step": 6
+            },
+            "sway_rate": {
+              "ratio": 0.5969890411581624,
+              "step": 2
+            },
+            "payload_position": {
+              "ratio": 0.7733002178694827,
+              "step": 2
+            },
+            "payload_diagonal": {
+              "ratio": 0.9219639710751575,
+              "step": 2
+            },
+            "axis_accel": {
+              "ratio": 0.7324976447828099,
+              "step": 0
+            },
+            "total_accel": {
+              "ratio": 0.9197503890454499,
+              "step": 0
+            }
+          },
+          "rank": 190,
+          "covered": 186
+        }
+      },
+      "certificate": "e7b35dd777593ad76a752663c39938a3e17b83084ee528cba8d38d30318f92ec",
+      "holdout": "e59518548e96419271986151a554a83e99e48c7e7dcc3de63b807151d61b9211"
+    },
+    {
+      "scale": 1.5,
+      "performance": {
+        "n": 200,
+        "safe": 200,
+        "settled": 191,
+        "mean_final_load_m": 0.06917673041635519,
+        "mean_last_second_sway_m": 0.012132727239894678
+      },
+      "methods": {
+        "box": {
+          "q": 0.19096724999006282,
+          "visual_halfwidths": [
+            0.19096724999006282,
+            0.19096724999006282,
+            0.19096724999006282,
+            0.19096724999006282
+          ],
+          "action_halfwidths": [
+            0.5613386829832901,
+            0.5613386829832901
+          ],
+          "upper": 1.0760208943277634,
+          "upper_exact": "9691934597474766027811/9007199254740992000000",
+          "passes": false,
+          "constraints": {
+            "trolley_position": {
+              "ratio": 0.7241379310344828,
+              "step": 0
+            },
+            "trolley_speed": {
+              "ratio": 0.42092895767087357,
+              "step": 3
+            },
+            "sway": {
+              "ratio": 0.6816551939402139,
+              "step": 6
+            },
+            "sway_rate": {
+              "ratio": 0.6727650639977044,
+              "step": 2
+            },
+            "payload_position": {
+              "ratio": 0.8288199748044207,
+              "step": 2
+            },
+            "payload_diagonal": {
+              "ratio": 0.9882084314975785,
+              "step": 2
+            },
+            "axis_accel": {
+              "ratio": 0.8494901797324448,
+              "step": 0
+            },
+            "total_accel": {
+              "ratio": 1.0760208943277634,
+              "step": 0
+            }
+          },
+          "rank": 190,
+          "covered": 191
+        },
+        "per_axis": {
+          "q": 0.23961305859686569,
+          "visual_halfwidths": [
+            0.08388572878608903,
+            0.0645297816001909,
+            0.23961305859686569,
+            0.20789656478855803
+          ],
+          "action_halfwidths": [
+            0.4379901529171855,
+            0.3659013480806626
+          ],
+          "upper": 1.0228899168329748,
+          "upper_exact": "221120959117921080786589/216172782113783808000000",
+          "passes": false,
+          "constraints": {
+            "trolley_position": {
+              "ratio": 0.7241379310344828,
+              "step": 0
+            },
+            "trolley_speed": {
+              "ratio": 0.4039108252481552,
+              "step": 3
+            },
+            "sway": {
+              "ratio": 0.6596708286237494,
+              "step": 6
+            },
+            "sway_rate": {
+              "ratio": 0.6557575034728503,
+              "step": 2
+            },
+            "payload_position": {
+              "ratio": 0.8286158528820855,
+              "step": 2
+            },
+            "payload_diagonal": {
+              "ratio": 0.9878939369807921,
+              "step": 2
+            },
+            "axis_accel": {
+              "ratio": 0.8170300402413646,
+              "step": 0
+            },
+            "total_accel": {
+              "ratio": 1.0228899168329748,
+              "step": 0
+            }
+          },
+          "rank": 190,
+          "covered": 194
+        },
+        "box_and_action": {
+          "q": 0.10143862719782296,
+          "visual_halfwidths": [
+            0.2028772543956459,
+            0.2028772543956459,
+            0.2028772543956459,
+            0.2028772543956459
+          ],
+          "action_halfwidths": [
+            0.2981737727166407,
+            0.2981737727166407
+          ],
+          "upper": 0.9882992575722136,
+          "upper_exact": "53410850017593106172141/54043195528445952000000",
+          "passes": true,
+          "constraints": {
+            "trolley_position": {
+              "ratio": 0.7241379310344828,
+              "step": 0
+            },
+            "trolley_speed": {
+              "ratio": 0.3846206588242599,
+              "step": 3
+            },
+            "sway": {
+              "ratio": 0.6347514041449398,
+              "step": 6
+            },
+            "sway_rate": {
+              "ratio": 0.6364793203655817,
+              "step": 2
+            },
+            "payload_position": {
+              "ratio": 0.8283844793238827,
+              "step": 2
+            },
+            "payload_diagonal": {
+              "ratio": 0.9876891868861678,
+              "step": 2
+            },
+            "axis_accel": {
+              "ratio": 0.7802362559780633,
+              "step": 0
+            },
+            "total_accel": {
+              "ratio": 0.9882992575722136,
+              "step": 0
+            }
+          },
+          "rank": 190,
+          "covered": 189
+        },
+        "per_axis_and_action": {
+          "q": 0.18818066537777806,
+          "visual_halfwidths": [
+            0.13175969916751903,
+            0.10135722409551068,
+            0.3763613307555561,
+            0.3265440883794715
+          ],
+          "action_halfwidths": [
+            0.3439765715921998,
+            0.28736146330108964
+          ],
+          "upper": 0.9941310058155483,
+          "upper_exact": "107452032656360627443757/108086391056891904000000",
+          "passes": true,
+          "constraints": {
+            "trolley_position": {
+              "ratio": 0.7241379310344828,
+              "step": 0
+            },
+            "trolley_speed": {
+              "ratio": 0.3909399728540069,
+              "step": 3
+            },
+            "sway": {
+              "ratio": 0.6429148209481819,
+              "step": 6
+            },
+            "sway_rate": {
+              "ratio": 0.6427947087505614,
+              "step": 2
+            },
+            "payload_position": {
+              "ratio": 0.8284602755684736,
+              "step": 2
+            },
+            "payload_diagonal": {
+              "ratio": 0.9877237063498082,
+              "step": 2
+            },
+            "axis_accel": {
+              "ratio": 0.7922896241032105,
+              "step": 0
+            },
+            "total_accel": {
+              "ratio": 0.9941310058155483,
+              "step": 0
+            }
+          },
+          "rank": 190,
+          "covered": 195
+        }
+      },
+      "certificate": "d021a19799ba109bcf2236890f25cc86cc63d6088efa3bc5f92e10e829aeeecd",
+      "holdout": "fb9ec2d39d93f0f9507a4461813bbb3cb33e4e23558ddbf1f2db02705652872c"
+    },
+    {
+      "scale": 1.6,
+      "performance": {
+        "n": 200,
+        "safe": 200,
+        "settled": 189,
+        "mean_final_load_m": 0.07073616431682969,
+        "mean_last_second_sway_m": 0.012954031645171091
+      },
+      "methods": {
+        "box": {
+          "q": 0.18278603788426653,
+          "visual_halfwidths": [
+            0.18278603788426653,
+            0.18278603788426653,
+            0.18278603788426653,
+            0.18278603788426653
+          ],
+          "action_halfwidths": [
+            0.5372904190589073,
+            0.5372904190589073
+          ],
+          "upper": 1.1272653396863024,
+          "upper_exact": "304605105825534430652177/270215977642229760000000",
+          "passes": false,
+          "constraints": {
+            "trolley_position": {
+              "ratio": 0.7724137931034483,
+              "step": 0
+            },
+            "trolley_speed": {
+              "ratio": 0.44020406030581855,
+              "step": 3
+            },
+            "sway": {
+              "ratio": 0.714732343435427,
+              "step": 6
+            },
+            "sway_rate": {
+              "ratio": 0.7084396771813631,
+              "step": 2
+            },
+            "payload_position": {
+              "ratio": 0.8838584412676684,
+              "step": 2
+            },
+            "payload_diagonal": {
+              "ratio": 1.0538312184345278,
+              "step": 2
+            },
+            "axis_accel": {
+              "ratio": 0.8899463208049756,
+              "step": 0
+            },
+            "total_accel": {
+              "ratio": 1.1272653396863024,
+              "step": 0
+            }
+          },
+          "rank": 190,
+          "covered": 187
+        },
+        "per_axis": {
+          "q": 0.20309561136718973,
+          "visual_halfwidths": [
+            0.07110139769742864,
+            0.0546953305559676,
+            0.20309561136718973,
+            0.17621276642483905
+          ],
+          "action_halfwidths": [
+            0.37123969119389344,
+            0.3101373457009623
+          ],
+          "upper": 1.0617313728158093,
+          "upper_exact": "573793561797701274587479/540431955284459520000000",
+          "passes": false,
+          "constraints": {
+            "trolley_position": {
+              "ratio": 0.7724137931034483,
+              "step": 0
+            },
+            "trolley_speed": {
+              "ratio": 0.4172943971409544,
+              "step": 3
+            },
+            "sway": {
+              "ratio": 0.6851371803597672,
+              "step": 6
+            },
+            "sway_rate": {
+              "ratio": 0.6855442458142701,
+              "step": 2
+            },
+            "payload_position": {
+              "ratio": 0.8835836540954273,
+              "step": 2
+            },
+            "payload_diagonal": {
+              "ratio": 1.0534433077613983,
+              "step": 2
+            },
+            "axis_accel": {
+              "ratio": 0.8462487608404983,
+              "step": 0
+            },
+            "total_accel": {
+              "ratio": 1.0617313728158093,
+              "step": 0
+            }
+          },
+          "rank": 190,
+          "covered": 183
+        },
+        "box_and_action": {
+          "q": 0.09629204426548818,
+          "visual_halfwidths": [
+            0.19258408853097636,
+            0.19258408853097636,
+            0.19258408853097636,
+            0.19258408853097636
+          ],
+          "action_halfwidths": [
+            0.2830456495161892,
+            0.2830456495161892
+          ],
+          "upper": 1.05332957394693,
+          "upper_exact": "4933525663794746041446612547/4683743612465315840000000000",
+          "passes": false,
+          "constraints": {
+            "trolley_position": {
+              "ratio": 0.7724137931034483,
+              "step": 0
+            },
+            "trolley_speed": {
+              "ratio": 0.4051264541637535,
+              "step": 3
+            },
+            "sway": {
+              "ratio": 0.6694183871975053,
+              "step": 6
+            },
+            "sway_rate": {
+              "ratio": 0.6733838617305586,
+              "step": 2
+            },
+            "payload_position": {
+              "ratio": 0.8834377071812961,
+              "step": 2
+            },
+            "payload_diagonal": {
+              "ratio": 1.05332957394693,
+              "step": 2
+            },
+            "axis_accel": {
+              "ratio": 0.8230398025042603,
+              "step": 0
+            },
+            "total_accel": {
+              "ratio": 1.0425170831720632,
+              "step": 0
+            }
+          },
+          "rank": 190,
+          "covered": 181
+        },
+        "per_axis_and_action": {
+          "q": 0.1582146005577253,
+          "visual_halfwidths": [
+            0.11077816167535338,
+            0.0852170051143031,
+            0.3164292011154506,
+            0.27454490291937056
+          ],
+          "action_halfwidths": [
+            0.2892014212322065,
+            0.24160175563516845
+          ],
+          "upper": 1.0532947608571788,
+          "upper_exact": "9866725216415986943095605119/9367487224930631680000000000",
+          "passes": false,
+          "constraints": {
+            "trolley_position": {
+              "ratio": 0.7724137931034483,
+              "step": 0
+            },
+            "trolley_speed": {
+              "ratio": 0.4059757527988573,
+              "step": 3
+            },
+            "sway": {
+              "ratio": 0.6705155282346719,
+              "step": 6
+            },
+            "sway_rate": {
+              "ratio": 0.6742326327696723,
+              "step": 2
+            },
+            "payload_position": {
+              "ratio": 0.8834478939906197,
+              "step": 2
+            },
+            "payload_diagonal": {
+              "ratio": 1.0532947608571788,
+              "step": 2
+            },
+            "axis_accel": {
+              "ratio": 0.824659742429528,
+              "step": 0
+            },
+            "total_accel": {
+              "ratio": 1.0366357294778958,
+              "step": 0
+            }
+          },
+          "rank": 190,
+          "covered": 180
+        }
+      },
+      "certificate": "d98b84e3eb17cd0094006a6f1deb1e3f2d378b756ffeb368c08ab39e04c50476",
+      "holdout": "cf12ac523fc9a61502012fd6d6ad74f3ad12d5c6206812e6c254d52b0a15f109"
+    }
+  ]
+}

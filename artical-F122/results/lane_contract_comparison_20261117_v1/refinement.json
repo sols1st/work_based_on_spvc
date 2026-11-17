@@ -1,0 +1,565 @@
+{
+  "coarse": "468e113d51010c0ff0088c9965f3668019a8ba17c0e3014d66d0d295d293b7b2",
+  "source": "8fa818cdf7b2f1aef667b2533917803b86235645ad4e38dfb6a1ffb5361d2dd0",
+  "levels": [
+    0.155,
+    0.16,
+    0.165,
+    0.17,
+    0.175,
+    0.18,
+    0.185,
+    0.19,
+    0.195
+  ],
+  "arms": {
+    "uniform": {
+      "largest_pass": 0.15,
+      "first_witness": 0.16,
+      "runs": {
+        "0.155": {
+          "status": "unresolved",
+          "curvatures": {
+            "-0.01": {
+              "status": "pass",
+              "checked": 6456,
+              "depth": 10,
+              "unresolved": 0,
+              "area_error": 4.440892098500626e-16
+            },
+            "0.0": {
+              "status": "unresolved",
+              "checked": 13276,
+              "depth": 16,
+              "unresolved": 605,
+              "area_error": 8.881784197001252e-16
+            },
+            "0.01": {
+              "status": "pass",
+              "checked": 7508,
+              "depth": 9,
+              "unresolved": 0,
+              "area_error": 4.440892098500626e-16
+            }
+          }
+        },
+        "0.16": {
+          "status": "witness",
+          "curvatures": {
+            "-0.01": {
+              "status": "pass",
+              "checked": 6712,
+              "depth": 10,
+              "unresolved": 0,
+              "area_error": 0.0
+            },
+            "0.0": {
+              "status": "witness",
+              "checked": 9308,
+              "depth": 10,
+              "witness": {
+                "x": [
+                  0.44453125,
+                  -0.2835937499999999
+                ],
+                "kappa": 0.0,
+                "error": [
+                  0.09682281207320706,
+                  0.09682281207320706
+                ],
+                "additive_action": -0.16,
+                "action_difference": -0.596509990432778,
+                "before": 0.0020206367259199,
+                "after": 0.006769518843372957,
+                "next_state": [
+                  0.4045427674180846,
+                  -0.5304950843383662
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "diagonal": {
+      "largest_pass": 0.19,
+      "first_witness": 0.2,
+      "runs": {
+        "0.155": {
+          "status": "pass",
+          "curvatures": {
+            "-0.01": {
+              "status": "pass",
+              "checked": 4762,
+              "depth": 6,
+              "unresolved": 0,
+              "area_error": 0.0
+            },
+            "0.0": {
+              "status": "pass",
+              "checked": 5418,
+              "depth": 8,
+              "unresolved": 0,
+              "area_error": 0.0
+            },
+            "0.01": {
+              "status": "pass",
+              "checked": 5608,
+              "depth": 9,
+              "unresolved": 0,
+              "area_error": 4.440892098500626e-16
+            }
+          }
+        },
+        "0.16": {
+          "status": "pass",
+          "curvatures": {
+            "-0.01": {
+              "status": "pass",
+              "checked": 4882,
+              "depth": 7,
+              "unresolved": 0,
+              "area_error": 4.440892098500626e-16
+            },
+            "0.0": {
+              "status": "pass",
+              "checked": 5600,
+              "depth": 8,
+              "unresolved": 0,
+              "area_error": 0.0
+            },
+            "0.01": {
+              "status": "pass",
+              "checked": 5886,
+              "depth": 10,
+              "unresolved": 0,
+              "area_error": 0.0
+            }
+          }
+        },
+        "0.165": {
+          "status": "pass",
+          "curvatures": {
+            "-0.01": {
+              "status": "pass",
+              "checked": 5038,
+              "depth": 7,
+              "unresolved": 0,
+              "area_error": 8.881784197001252e-16
+            },
+            "0.0": {
+              "status": "pass",
+              "checked": 5780,
+              "depth": 8,
+              "unresolved": 0,
+              "area_error": 8.881784197001252e-16
+            },
+            "0.01": {
+              "status": "pass",
+              "checked": 6144,
+              "depth": 10,
+              "unresolved": 0,
+              "area_error": 1.3322676295501878e-15
+            }
+          }
+        },
+        "0.17": {
+          "status": "pass",
+          "curvatures": {
+            "-0.01": {
+              "status": "pass",
+              "checked": 5142,
+              "depth": 7,
+              "unresolved": 0,
+              "area_error": 1.3322676295501878e-15
+            },
+            "0.0": {
+              "status": "pass",
+              "checked": 5988,
+              "depth": 9,
+              "unresolved": 0,
+              "area_error": 0.0
+            },
+            "0.01": {
+              "status": "pass",
+              "checked": 6486,
+              "depth": 10,
+              "unresolved": 0,
+              "area_error": 1.7763568394002505e-15
+            }
+          }
+        },
+        "0.175": {
+          "status": "pass",
+          "curvatures": {
+            "-0.01": {
+              "status": "pass",
+              "checked": 5302,
+              "depth": 8,
+              "unresolved": 0,
+              "area_error": 8.881784197001252e-16
+            },
+            "0.0": {
+              "status": "pass",
+              "checked": 6210,
+              "depth": 9,
+              "unresolved": 0,
+              "area_error": 4.440892098500626e-16
+            },
+            "0.01": {
+              "status": "pass",
+              "checked": 6906,
+              "depth": 11,
+              "unresolved": 0,
+              "area_error": 8.881784197001252e-16
+            }
+          }
+        },
+        "0.18": {
+          "status": "pass",
+          "curvatures": {
+            "-0.01": {
+              "status": "pass",
+              "checked": 5442,
+              "depth": 8,
+              "unresolved": 0,
+              "area_error": 8.881784197001252e-16
+            },
+            "0.0": {
+              "status": "pass",
+              "checked": 6454,
+              "depth": 9,
+              "unresolved": 0,
+              "area_error": 8.881784197001252e-16
+            },
+            "0.01": {
+              "status": "pass",
+              "checked": 7436,
+              "depth": 12,
+              "unresolved": 0,
+              "area_error": 4.440892098500626e-16
+            }
+          }
+        },
+        "0.185": {
+          "status": "pass",
+          "curvatures": {
+            "-0.01": {
+              "status": "pass",
+              "checked": 5598,
+              "depth": 8,
+              "unresolved": 0,
+              "area_error": 1.3322676295501878e-15
+            },
+            "0.0": {
+              "status": "pass",
+              "checked": 6720,
+              "depth": 10,
+              "unresolved": 0,
+              "area_error": 4.440892098500626e-16
+            },
+            "0.01": {
+              "status": "pass",
+              "checked": 8304,
+              "depth": 13,
+              "unresolved": 0,
+              "area_error": 4.440892098500626e-16
+            }
+          }
+        },
+        "0.19": {
+          "status": "pass",
+          "curvatures": {
+            "-0.01": {
+              "status": "pass",
+              "checked": 5736,
+              "depth": 8,
+              "unresolved": 0,
+              "area_error": 8.881784197001252e-16
+            },
+            "0.0": {
+              "status": "pass",
+              "checked": 7050,
+              "depth": 10,
+              "unresolved": 0,
+              "area_error": 4.440892098500626e-16
+            },
+            "0.01": {
+              "status": "pass",
+              "checked": 10218,
+              "depth": 16,
+              "unresolved": 0,
+              "area_error": 4.440892098500626e-16
+            }
+          }
+        },
+        "0.195": {
+          "status": "unresolved",
+          "curvatures": {
+            "-0.01": {
+              "status": "pass",
+              "checked": 5928,
+              "depth": 8,
+              "unresolved": 0,
+              "area_error": 0.0
+            },
+            "0.0": {
+              "status": "pass",
+              "checked": 7396,
+              "depth": 10,
+              "unresolved": 0,
+              "area_error": 8.881784197001252e-16
+            },
+            "0.01": {
+              "status": "unresolved",
+              "checked": 16486,
+              "depth": 16,
+              "unresolved": 1345,
+              "area_error": 8.881784197001252e-16
+            }
+          }
+        }
+      }
+    },
+    "joint": {
+      "largest_pass": 0.19,
+      "first_witness": 0.2,
+      "runs": {
+        "0.155": {
+          "status": "pass",
+          "curvatures": {
+            "-0.01": {
+              "status": "pass",
+              "checked": 3520,
+              "depth": 6,
+              "unresolved": 0,
+              "area_error": 8.881784197001252e-16
+            },
+            "0.0": {
+              "status": "pass",
+              "checked": 3592,
+              "depth": 6,
+              "unresolved": 0,
+              "area_error": 8.881784197001252e-16
+            },
+            "0.01": {
+              "status": "pass",
+              "checked": 4258,
+              "depth": 9,
+              "unresolved": 0,
+              "area_error": 0.0
+            }
+          }
+        },
+        "0.16": {
+          "status": "pass",
+          "curvatures": {
+            "-0.01": {
+              "status": "pass",
+              "checked": 3576,
+              "depth": 6,
+              "unresolved": 0,
+              "area_error": 8.881784197001252e-16
+            },
+            "0.0": {
+              "status": "pass",
+              "checked": 3656,
+              "depth": 7,
+              "unresolved": 0,
+              "area_error": 4.440892098500626e-16
+            },
+            "0.01": {
+              "status": "pass",
+              "checked": 4440,
+              "depth": 10,
+              "unresolved": 0,
+              "area_error": 0.0
+            }
+          }
+        },
+        "0.165": {
+          "status": "pass",
+          "curvatures": {
+            "-0.01": {
+              "status": "pass",
+              "checked": 3644,
+              "depth": 6,
+              "unresolved": 0,
+              "area_error": 1.3322676295501878e-15
+            },
+            "0.0": {
+              "status": "pass",
+              "checked": 3760,
+              "depth": 7,
+              "unresolved": 0,
+              "area_error": 0.0
+            },
+            "0.01": {
+              "status": "pass",
+              "checked": 4646,
+              "depth": 10,
+              "unresolved": 0,
+              "area_error": 8.881784197001252e-16
+            }
+          }
+        },
+        "0.17": {
+          "status": "pass",
+          "curvatures": {
+            "-0.01": {
+              "status": "pass",
+              "checked": 3688,
+              "depth": 6,
+              "unresolved": 0,
+              "area_error": 1.7763568394002505e-15
+            },
+            "0.0": {
+              "status": "pass",
+              "checked": 3858,
+              "depth": 7,
+              "unresolved": 0,
+              "area_error": 8.881784197001252e-16
+            },
+            "0.01": {
+              "status": "pass",
+              "checked": 4888,
+              "depth": 10,
+              "unresolved": 0,
+              "area_error": 1.3322676295501878e-15
+            }
+          }
+        },
+        "0.175": {
+          "status": "pass",
+          "curvatures": {
+            "-0.01": {
+              "status": "pass",
+              "checked": 3774,
+              "depth": 6,
+              "unresolved": 0,
+              "area_error": 8.881784197001252e-16
+            },
+            "0.0": {
+              "status": "pass",
+              "checked": 3942,
+              "depth": 8,
+              "unresolved": 0,
+              "area_error": 0.0
+            },
+            "0.01": {
+              "status": "pass",
+              "checked": 5210,
+              "depth": 11,
+              "unresolved": 0,
+              "area_error": 1.3322676295501878e-15
+            }
+          }
+        },
+        "0.18": {
+          "status": "pass",
+          "curvatures": {
+            "-0.01": {
+              "status": "pass",
+              "checked": 3848,
+              "depth": 6,
+              "unresolved": 0,
+              "area_error": 8.881784197001252e-16
+            },
+            "0.0": {
+              "status": "pass",
+              "checked": 4068,
+              "depth": 8,
+              "unresolved": 0,
+              "area_error": 0.0
+            },
+            "0.01": {
+              "status": "pass",
+              "checked": 5652,
+              "depth": 12,
+              "unresolved": 0,
+              "area_error": 1.3322676295501878e-15
+            }
+          }
+        },
+        "0.185": {
+          "status": "pass",
+          "curvatures": {
+            "-0.01": {
+              "status": "pass",
+              "checked": 3912,
+              "depth": 6,
+              "unresolved": 0,
+              "area_error": 0.0
+            },
+            "0.0": {
+              "status": "pass",
+              "checked": 4162,
+              "depth": 8,
+              "unresolved": 0,
+              "area_error": 0.0
+            },
+            "0.01": {
+              "status": "pass",
+              "checked": 6442,
+              "depth": 13,
+              "unresolved": 0,
+              "area_error": 0.0
+            }
+          }
+        },
+        "0.19": {
+          "status": "pass",
+          "curvatures": {
+            "-0.01": {
+              "status": "pass",
+              "checked": 3984,
+              "depth": 6,
+              "unresolved": 0,
+              "area_error": 0.0
+            },
+            "0.0": {
+              "status": "pass",
+              "checked": 4274,
+              "depth": 8,
+              "unresolved": 0,
+              "area_error": 8.881784197001252e-16
+            },
+            "0.01": {
+              "status": "pass",
+              "checked": 8238,
+              "depth": 16,
+              "unresolved": 0,
+              "area_error": 0.0
+            }
+          }
+        },
+        "0.195": {
+          "status": "unresolved",
+          "curvatures": {
+            "-0.01": {
+              "status": "pass",
+              "checked": 4096,
+              "depth": 6,
+              "unresolved": 0,
+              "area_error": 0.0
+            },
+            "0.0": {
+              "status": "pass",
+              "checked": 4412,
+              "depth": 8,
+              "unresolved": 0,
+              "area_error": 0.0
+            },
+            "0.01": {
+              "status": "unresolved",
+              "checked": 14392,
+              "depth": 16,
+              "unresolved": 1345,
+              "area_error": 8.881784197001252e-16
+            }
+          }
+        }
+      }
+    }
+  }
+}

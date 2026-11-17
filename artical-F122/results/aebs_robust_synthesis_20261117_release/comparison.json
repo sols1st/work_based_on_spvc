@@ -1,0 +1,95 @@
+{
+  "task": "aebs",
+  "status": "passed_numerical",
+  "actor": {
+    "changed": true,
+    "l2": 0.08822957851962715,
+    "max_abs": 0.010899893939495087,
+    "old_sha256": "d701abdf8713b32c708c3805341c653cce56c15e17b0affcea77b3cab05337c3",
+    "new_sha256": "230807a1759bbededeaa7703ede1ab676ee792e4e8b0a92b01428f9b5ae38c8c"
+  },
+  "barrier": {
+    "changed": true,
+    "l2": 46.43511209629594,
+    "max_abs": 15.416164875030518,
+    "old_sha256": "01cb2c8fb70053e616b653b9cfaf5e55beaaa54ffa5d24031d18953916e02c96",
+    "new_sha256": "856104931b3e2cfc8b47cee2e62ef891ec119e8f461742e1a8b86d04a45b6aa3"
+  },
+  "frontend_identical": true,
+  "cp": {
+    "protocol": {
+      "binding": {
+        "policy.pt": "230807a1759bbededeaa7703ede1ab676ee792e4e8b0a92b01428f9b5ae38c8c",
+        "observation.pt": "eee112612932071653c4479a9eb9f8b9d215217c011281b022b7f79e206e9fb6",
+        "observations.npz": "a5ecc92f3bbcbd7831c3b6b90e9bef6debd65334b05aebcba0b590f2761a9191"
+      },
+      "sources": {
+        "robust_replay_cp.py": "9cf0b5812e4875bbe7d7d56fe452b804344c135a1b2950f6f258ff77aa674aed",
+        "rollout.py": "be7fcde00d490bbe1c83ed4296ca4653ac358ddb3d4b5acf398211e1c1da2516"
+      },
+      "calibration_n": 199,
+      "holdout_n": 100,
+      "calibration_seed": 202611160201,
+      "holdout_seed": 202611160202,
+      "alpha": 0.05,
+      "horizon": 400,
+      "score": "maximum absolute error in metres over all active control steps, including nearest-image mismatch",
+      "initial": "IID uniform [15,16] x [2.5,3]",
+      "appearance": "IID uniform over 12 weather/color groups; fixed throughout each episode",
+      "termination": "original success/unsafe/out-of-domain/stop/time-limit, never discard failures",
+      "distribution": "deterministic frozen-image replay, not new online images",
+      "conditional_on_frozen_library": true
+    },
+    "calibration": {
+      "n": 199,
+      "rank": 190,
+      "radius_m": 0.4051930459038431,
+      "covered": 190,
+      "outcomes": {
+        "success": 199
+      }
+    },
+    "holdout": {
+      "n": 100,
+      "covered": 98,
+      "outcomes": {
+        "success": 100
+      }
+    },
+    "lookup_max_error_m": 0.003002703139713958,
+    "certificate_passed": false,
+    "claim": "Marginal trajectory coverage over calibration and a new IID episode of the registered frozen replay law; not new-image or live CARLA safety."
+  },
+  "audit": {
+    "continuous_state_numerical_interval_pass": true,
+    "region_pass": true,
+    "regions": {
+      "initial": {
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "unsafe": {
+        "lower": 25.039446320554333,
+        "upper": 32.81330886476853
+      }
+    },
+    "actual_witnesses": 0,
+    "unresolved_cells": 0,
+    "checked_cells": 0,
+    "parent_checked_cells": 782400,
+    "verification_route": "constant tube inclusion into already audited superset",
+    "verified_superset_radius_m": 0.45,
+    "envelope_radius_at_10m": 0.4051930459038431,
+    "source_policy_sha256": "230807a1759bbededeaa7703ede1ab676ee792e4e8b0a92b01428f9b5ae38c8c",
+    "source_sbc_sha256": "856104931b3e2cfc8b47cee2e62ef891ec119e8f461742e1a8b86d04a45b6aa3",
+    "observation_model": "tube",
+    "full_image_certificate": false,
+    "floating_point_formal_proof": false,
+    "guarantee_scope": "stopped AEBS, all live d in (6,16], v in (1e-6,3], conditional on observation-tube support",
+    "arithmetic": "float64 mathematical-network interval model; no outward rounding",
+    "parent_report_sha256": "e2b4ef502dcef3bf463017ea28af994a857048fe086717007bdd4a1691170a90",
+    "source_contract_sha256": "0b5051d32d06fb09273dc5e8a97c1d15caa6037ac4f5004be4dabfdc2bd0d738"
+  },
+  "training_checkpoints": "new random barrier lineage; old barrier used only for initial actor feedback",
+  "code_manifest_sha256": "57473e7b690a29de4e11b0c2da5076826fcf461fdbea4cbdc034e68ef61da06b"
+}

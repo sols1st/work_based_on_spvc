@@ -16,18 +16,23 @@ from .learned_sbc import (load_sbc_checkpoint, save_actor, sha256, raw, bounds,
                          error_boxes, transitions, task_panel, retention_failures)
 
 
-def feedback_loss(actor, original, barrier, states, kappas, radius, splits=2):
+def feedback_loss(actor, original, barrier, states, kappas, radius, splits=2, task_weight=0.):
+    # Freeze only the affine-strip extremum selector: enclosure values are unchanged,
+    # while acosh(1) no longer sends an infinite derivative into actor training.
     current=barrier(states).flatten().detach()
     active=current<=20
     next_upper=torch.zeros_like(current)
+    tracking_upper=torch.zeros_like(current)
     for el,eh in error_boxes(radius,splits,states.dtype):
-        lo,hi=transitions(actor,states,states,kappas,el,eh)
-        next_upper=torch.maximum(next_upper,bounds(barrier,lo,hi,'affine')[1])
+        lo,hi=transitions(actor,states,states,kappas,el,eh,detach_root=True)
+        next_upper=torch.maximum(next_upper,bounds(barrier,lo,hi,'affine',detach_root=True)[1])
+        if task_weight:
+            tracking_upper=torch.maximum(tracking_upper,torch.maximum(lo.square(),hi.square()).sum(1))
     drift=torch.relu(next_upper-current)
     safety=(drift[active].mean()+drift[active].max())/20 if active.any() else current.sum()*0
     obs=torch.cat([states,(kappas/core.KAPPA_SCALE)[:,None]],1)
     imitation=(actor(obs)-original(obs).detach()).square().mean()
-    return safety+.02*imitation,safety
+    return safety+.02*imitation+task_weight*tracking_upper.mean(),safety
 
 
 def main(argv=None):
@@ -41,9 +46,10 @@ def main(argv=None):
     p.add_argument('--steps-per-round',type=int,default=100)
     p.add_argument('--learning-rate',type=float,default=3e-5)
     p.add_argument('--seed',type=int,default=61)
+    p.add_argument('--task-weight',type=float,default=0.,help='Optional worst-case one-step normalized tracking cost')
     args=p.parse_args(argv)
     if (args.rounds<1 or args.steps_per_round<1 or not np.isfinite(args.radius)
-            or args.radius<0 or args.learning_rate<=0):
+            or args.radius<0 or args.learning_rate<=0 or args.task_weight<0):
         raise ValueError('invalid refinement settings')
     if args.output_dir.exists():raise FileExistsError(args.output_dir)
     args.output_dir.mkdir(parents=True);torch.set_num_threads(4);torch.manual_seed(args.seed)
@@ -77,8 +83,10 @@ def main(argv=None):
         for step in range(args.steps_per_round):
             ids=torch.randint(len(states),(128,))
             x,k=states[ids],kappas[ids]
-            loss,safety=feedback_loss(actor,original,barrier,x,k,args.radius)
-            optimizer.zero_grad();loss.backward();torch.nn.utils.clip_grad_norm_(actor.parameters(),1.)
+            loss,safety=feedback_loss(actor,original,barrier,x,k,args.radius,task_weight=args.task_weight)
+            if not torch.isfinite(loss): raise FloatingPointError("nonfinite robust actor loss")
+            optimizer.zero_grad();loss.backward()
+            torch.nn.utils.clip_grad_norm_(actor.parameters(),1.,error_if_nonfinite=True)
             optimizer.step()
         candidate=copy.deepcopy(actor.state_dict())
         panel=task_panel(actor,args.radius);reasons=retention_failures(baseline,panel)

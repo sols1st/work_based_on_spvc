@@ -1,23 +1,26 @@
 # SPVC 改进项目
 
-把原 SPVC 的 cGAN 视觉前端替换为 **DINO + 低维视觉观测**，保留 PPO 控制、CP 误差包络和非负 SBC 验证。实验覆盖 AEBS、车道保持、停车场、移动机器人；安全结论均限定在各自数据分布、动力学和数值验证范围内。
+项目沿用 SPVC 的视觉反馈控制与非负神经屏障表示，将 cGAN 前端换为 DINO 低维观测。AEBS、车道保持和五维弯道遇障制动采用**轨迹级 CP 感知误差校准与确定性鲁棒屏障证书**。CP 估计新轨迹的视觉误差全程落入包络的概率下界。验证器检查包络内的每个允许后继，由此推导登记模型在采样时刻避险的条件。原 SPVC 的随机屏障证书（SBC）使用后继屏障值的条件期望。
 
 ## 入口
 
-- **[当前文档](docs/current/README.md)**：只有 6 篇，先读这里。
-- [当前框架](docs/current/SPVC当前框架_逐步流程与安全保证_20261109.md)：图像→DINO→CP→SBC→验证。
-- [当前方案与验证结果](docs/current/当前方案与验证结果.md)：四个实验的统一状态。
-- [收益证明总览](docs/current/收益证明_总览.md)：当前方案相对原 SPVC 的收益与边界。
+- **[项目文档总入口](docs/README.md)** 按问题和实验找完整步骤、原论文、导师汇报与历史版本。
+- [当前实验与早期基线](docs/experiments/README.md) 可核对最新报告和对应的实验版本。
+- [当前框架](docs/framework/SPVC当前框架_逐步流程与安全保证_20261109.md)：图像→DINO→CP→鲁棒屏障→验证。
+- [当前方案与验证结果](docs/experiments/当前方案与验证结果.md)：四个实验的统一状态。
+- [收益证明总览](docs/experiments/跨实验对照/收益证明_总览.md)：当前方案相对原 SPVC 的收益与边界。
 - [可视化网站](site/index.html)：总览、实验配置、图片、方法对比。
 
-## 当前主结果
+11 月 17 日的实验包括 AEBS 与车道鲁棒综合、五维弯道制动、六维无人机悬停及八维起重机消摆。[近期报告与结果](docs/experiments/README.md)
+
+## 早期基线结果
 
 | 实验 | 结论 | 主文档 |
 |---|---|---|
-| AEBS 真实 RGB | 轨迹 CP 0.418359 m；留出 99/100；SBC 292,024 区间 0/0；行为 4,800/4,800 | [AEBS](docs/current/AEBS真实RGB图像_完整实验_20261108.md) |
-| 车道保持 | 轨迹 CP 0.090093；留出 95/100；SBC 0/0；图像闭环 12/12 | [车道](docs/current/车道保持_轨迹级CP校准与SBC衔接_20261107.md) |
-| 停车场 | 受保护闭环 30/30；启动审计 233/240；依赖在线后备 | [专题](docs/topics/停车场神经SBC_构造证明与实验_20261103.md) |
-| 移动机器人 | 行为 24/24；CP 盒内 28/32 反例；完整 SBC 未通过 | [专题](docs/topics/移动机器人_三维视觉实验_20261108.md) |
+| AEBS 真实 RGB | 轨迹 CP 0.418359 m；留出 99/100；鲁棒屏障 292,024 区间 0/0；行为 4,800/4,800 | [AEBS](docs/experiments/AEBS/AEBS真实RGB图像_完整实验_20261108.md) |
+| 车道保持 | 轨迹 CP 0.090093；留出 95/100；鲁棒屏障 0/0；图像闭环 12/12 | [车道](docs/experiments/车道保持/车道保持_轨迹级CP校准与SBC衔接_20261107.md) |
+| 停车场 | 受保护闭环 30/30；启动审计 233/240；依赖在线后备 | [专题](docs/experiments/停车场/停车场神经SBC_构造证明与实验_20261103.md) |
+| 移动机器人 | 行为 24/24；CP 盒内 28/32 反例；完整鲁棒屏障未通过 | [专题](docs/experiments/三维移动机器人/移动机器人_三维视觉实验_20261108.md) |
 
 ## 收益证明的一句话
 
@@ -28,13 +31,11 @@
 
 ## 文档分区
 
-- [docs/current/](docs/current/README.md)：6 篇当前结论；
-- [docs/details/](docs/details/README.md)：收益证明、数据预算、cGAN 对照、C 消融、半径扫描；
-- [docs/topics/](docs/topics/README.md)：停车场、移动机器人；
-- [docs/presentation/](docs/presentation/README.md)：汇报稿、PPT 大纲；
-- [docs/archive/](docs/archive/)：历史报告与整理前快照；
-- [docs/references/](docs/references/)：论文与代码学习资料。
+- [框架与安全保证](docs/framework/README.md) 收录方法流程、误差定义、CP 与屏障理论。
+- [按任务查实验](docs/experiments/README.md) 收录七个场景及跨实验对照。[实验报告导读](docs/experiments/实验报告导读.md) 按研究问题列出前端、后端和数据预算对照。
+- [论文原件与阅读笔记](docs/references/README.md) 和[导师汇报材料](docs/presentation/README.md) 分别用于查出处和准备组会。
+- [历史归档](docs/archive/README.md) 可追溯各阶段报告和整理前的快照。
 
 ## 范围
 
-性能、模型安全条件和 CP 概率前提分别报告；没有宣称真实车辆或完整浮点程序的无条件安全保证。详细条件见[当前框架](docs/current/SPVC当前框架_逐步流程与安全保证_20261109.md)。
+性能、模型安全条件和 CP 概率前提分别报告；没有宣称真实车辆或完整浮点程序的无条件安全保证。详细条件见[当前框架](docs/framework/SPVC当前框架_逐步流程与安全保证_20261109.md)。

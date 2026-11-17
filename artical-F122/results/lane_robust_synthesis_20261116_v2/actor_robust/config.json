@@ -1,0 +1,17 @@
+{
+  "actor": "results/lane_trajectory_cp_20261107_v1/actor.pt",
+  "sbc": "results/lane_trajectory_cp_20261107_v1/sbc.pt",
+  "output_dir": "results/lane_robust_synthesis_20261116_v2/actor_robust",
+  "feedback": null,
+  "radius": 0.1,
+  "rounds": 6,
+  "steps_per_round": 100,
+  "learning_rate": 3e-05,
+  "seed": 161,
+  "task_weight": 0.01,
+  "source_actor_sha256": "b412c6ed5298540cefb532b1e8e47b046f06fd37df1353b406a04d0957028de2",
+  "source_sbc_sha256": "a0fdf9c3b1040e95f79f964263adfad59fedbac662e7ee3aa032aabda65c2de8",
+  "online_filter": false,
+  "verification_required_after_actor_change": true,
+  "retention_panel": "development only; nominal/uniform/alternating, 192 episodes each"
+}

@@ -498,17 +498,17 @@ flowchart TD
 
 | 功能 | 代码位置 |
 | --- | --- |
-| PPO-Barrier 配置与 Trainer | [ppo_barrier.py](/Users/johann/project/work_based_on_spvc/srlnbc/srlnbc/agents/safety/ppo_barrier/ppo_barrier.py) |
-| 屏障损失、策略损失、轨迹处理、乘子更新 | [ppo_barrier_tf_policy.py](/Users/johann/project/work_based_on_spvc/srlnbc/srlnbc/agents/safety/ppo_barrier/ppo_barrier_tf_policy.py) |
-| 策略、价值、屏障三个输出分支 | [safety_certificate_fcnet.py](/Users/johann/project/work_based_on_spvc/srlnbc/srlnbc/models/tf/safety_certificate_fcnet.py) |
-| 分支构造与输出层 | [misc.py](/Users/johann/project/work_based_on_spvc/srlnbc/srlnbc/models/tf/misc.py) |
-| GAE 和训练字段 | [mixin.py](/Users/johann/project/work_based_on_spvc/srlnbc/srlnbc/agents/safety/mixin.py) |
-| 采样、乘子更新、网络训练的执行顺序 | [ppo_lagrangian.py](/Users/johann/project/work_based_on_spvc/srlnbc/srlnbc/agents/safety/ppo_lagrangian/ppo_lagrangian.py)、[execution_ops.py](/Users/johann/project/work_based_on_spvc/srlnbc/srlnbc/agents/safety/execution_ops.py) |
-| 紧急制动与机器人环境 | [car_brake.py](/Users/johann/project/work_based_on_spvc/srlnbc/srlnbc/env/car_brake.py)、[unicycle.py](/Users/johann/project/work_based_on_spvc/srlnbc/srlnbc/env/unicycle.py) |
-| Safety Gym 观测与标签 | [simple_safety_gym.py](/Users/johann/project/work_based_on_spvc/srlnbc/srlnbc/env/simple_safety_gym.py) |
-| MetaDrive 环境与标签规则 | [my_metadrive.py](/Users/johann/project/work_based_on_spvc/srlnbc/srlnbc/env/my_metadrive.py)、[metadrive_rules.py](/Users/johann/project/work_based_on_spvc/srlnbc/srlnbc/env/metadrive_rules.py) |
-| Safety Gym 与驾驶训练入口 | [ppo_barrier_safety_gym.py](/Users/johann/project/work_based_on_spvc/srlnbc/examples/ppo_barrier_safety_gym.py)、[ppo_barrier_metadrive.py](/Users/johann/project/work_based_on_spvc/srlnbc/examples/ppo_barrier_metadrive.py) |
-| 屏障图、学习曲线和消融绘图 | [examples/plot](/Users/johann/project/work_based_on_spvc/srlnbc/examples/plot) |
+| PPO-Barrier 配置与 Trainer | [ppo_barrier.py](https://github.com/jjyyxx/srlnbc/blob/4d2217b833e62e40f8a401a09b2283493e7e9958/srlnbc/agents/safety/ppo_barrier/ppo_barrier.py) |
+| 屏障损失、策略损失、轨迹处理、乘子更新 | [ppo_barrier_tf_policy.py](https://github.com/jjyyxx/srlnbc/blob/4d2217b833e62e40f8a401a09b2283493e7e9958/srlnbc/agents/safety/ppo_barrier/ppo_barrier_tf_policy.py) |
+| 策略、价值、屏障三个输出分支 | [safety_certificate_fcnet.py](https://github.com/jjyyxx/srlnbc/blob/4d2217b833e62e40f8a401a09b2283493e7e9958/srlnbc/models/tf/safety_certificate_fcnet.py) |
+| 分支构造与输出层 | [misc.py](https://github.com/jjyyxx/srlnbc/blob/4d2217b833e62e40f8a401a09b2283493e7e9958/srlnbc/models/tf/misc.py) |
+| GAE 和训练字段 | [mixin.py](https://github.com/jjyyxx/srlnbc/blob/4d2217b833e62e40f8a401a09b2283493e7e9958/srlnbc/agents/safety/mixin.py) |
+| 采样、乘子更新、网络训练的执行顺序 | [ppo_lagrangian.py](https://github.com/jjyyxx/srlnbc/blob/4d2217b833e62e40f8a401a09b2283493e7e9958/srlnbc/agents/safety/ppo_lagrangian/ppo_lagrangian.py)、[execution_ops.py](https://github.com/jjyyxx/srlnbc/blob/4d2217b833e62e40f8a401a09b2283493e7e9958/srlnbc/agents/safety/execution_ops.py) |
+| 紧急制动与机器人环境 | [car_brake.py](https://github.com/jjyyxx/srlnbc/blob/4d2217b833e62e40f8a401a09b2283493e7e9958/srlnbc/env/car_brake.py)、[unicycle.py](https://github.com/jjyyxx/srlnbc/blob/4d2217b833e62e40f8a401a09b2283493e7e9958/srlnbc/env/unicycle.py) |
+| Safety Gym 观测与标签 | [simple_safety_gym.py](https://github.com/jjyyxx/srlnbc/blob/4d2217b833e62e40f8a401a09b2283493e7e9958/srlnbc/env/simple_safety_gym.py) |
+| MetaDrive 环境与标签规则 | [my_metadrive.py](https://github.com/jjyyxx/srlnbc/blob/4d2217b833e62e40f8a401a09b2283493e7e9958/srlnbc/env/my_metadrive.py)、[metadrive_rules.py](https://github.com/jjyyxx/srlnbc/blob/4d2217b833e62e40f8a401a09b2283493e7e9958/srlnbc/env/metadrive_rules.py) |
+| Safety Gym 与驾驶训练入口 | [ppo_barrier_safety_gym.py](https://github.com/jjyyxx/srlnbc/blob/4d2217b833e62e40f8a401a09b2283493e7e9958/examples/ppo_barrier_safety_gym.py)、[ppo_barrier_metadrive.py](https://github.com/jjyyxx/srlnbc/blob/4d2217b833e62e40f8a401a09b2283493e7e9958/examples/ppo_barrier_metadrive.py) |
+| 屏障图、学习曲线和消融绘图 | [examples/plot](https://github.com/jjyyxx/srlnbc/tree/4d2217b833e62e40f8a401a09b2283493e7e9958/examples/plot) |
 
 `PPOBarrierTrainer` 继承 `PPOLagrangianTrainer`，复用 PPO 的采样和训练组织方式，但使用专门的 `PPOBarrierTFPolicy` 和屏障网络。它不是简单地调用原有的成本价值网络完成安全学习。
 
@@ -787,13 +787,13 @@ $$
 
 ## 15. 来源与核对位置
 
-- [用户提供的论文 PDF](/Users/johann/project/work_based_on_spvc/Model-Free_Safe_Reinforcement_Learning_Through_Neural_Barrier_Certificate.pdf)：主要依据。
+- [用户提供的论文 PDF](Model-Free_Safe_Reinforcement_Learning_Through_Neural_Barrier_Certificate.pdf)：主要依据。
 - PDF 第 3 页，印刷页 1297：问题定义、持续可行性、屏障三个性质、式（1）—（8）。
 - PDF 第 4 页，印刷页 1298：多步损失、PPO 与拉格朗日目标、Algorithm 1、式（9）—（15）。
 - PDF 第 5 页，印刷页 1299：经典控制图、Safety Gym 任务、表 I 超参数。
 - PDF 第 6 页，印刷页 1300：Safety Gym 学习曲线、屏障可视化、三次运行与置信区间。
 - PDF 第 7 页，印刷页 1301：多步消融、MetaDrive 实验、局限性。
-- [本地项目说明](/Users/johann/project/work_based_on_spvc/srlnbc/README.md)与[官方源码仓库](https://github.com/jjyyxx/srlnbc)：仓库出处；本文的实现细节以本地源码为准。
+- [对应版本的项目说明](https://github.com/jjyyxx/srlnbc/blob/4d2217b833e62e40f8a401a09b2283493e7e9958/README.md)与[官方源码仓库](https://github.com/jjyyxx/srlnbc)：仓库出处；本文的实现细节以本地源码为准。
 - 第 9 节列出的源码文件：网络结构、损失裕量、标签规则、乘子和轨迹处理的核对位置。
 
 本文没有从曲线中估读精确终值，没有重新训练验证指标，也没有把本地示例配置等同于论文全部实验的实际运行配置。

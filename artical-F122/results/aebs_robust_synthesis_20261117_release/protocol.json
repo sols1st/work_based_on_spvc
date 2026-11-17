@@ -1,0 +1,24 @@
+{
+  "task": "aebs",
+  "source": "results/real_aebs_repair_20261109_release",
+  "date": "2026-11-16",
+  "development_radius": 0.45,
+  "actor_initialization": "existing PPO checkpoint; interval robust fine-tuning, not new PPO interaction training",
+  "barrier_initialization": "random for first barrier stage; subsequent rounds may resume",
+  "frontend": "frozen original linear version; no nonlinear proxy",
+  "final_cp": "fresh independent streams after freezing final actor, never inherit old actor CP",
+  "online_filter": false,
+  "device": "cuda:0",
+  "bindings": {
+    "policy.pt": "d701abdf8713b32c708c3805341c653cce56c15e17b0affcea77b3cab05337c3",
+    "sbc.pt": "01cb2c8fb70053e616b653b9cfaf5e55beaaa54ffa5d24031d18953916e02c96",
+    "observation.pt": "eee112612932071653c4479a9eb9f8b9d215217c011281b022b7f79e206e9fb6",
+    "observations.npz": "a5ecc92f3bbcbd7831c3b6b90e9bef6debd65334b05aebcba0b590f2761a9191"
+  },
+  "selected_actor_dir": "results/aebs_robust_synthesis_20261116_v3/actor_01",
+  "selected_barrier_dir": "results/aebs_robust_synthesis_20261116_v3/barrier_margin_repair",
+  "parent_audit": "results/aebs_robust_synthesis_20261116_v3/development_audit_margin_repair",
+  "parent_audit_sha256": "e2b4ef502dcef3bf463017ea28af994a857048fe086717007bdd4a1691170a90",
+  "selection": "development-only certificate; final CP not consulted",
+  "finalizer_sha256": "8989556ebff6dcce1f8e4f67ab1662fc40962965c797060d7bbb570733c2e8a9"
+}

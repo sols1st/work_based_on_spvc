@@ -1,0 +1,93 @@
+{
+  "regions": {
+    "initial": {
+      "lower": 0.0,
+      "upper": 0.0
+    },
+    "unsafe": {
+      "lower": 25.376059436214085,
+      "upper": 33.163166578341766
+    }
+  },
+  "region_pass": true,
+  "checked_cells": 23468,
+  "proved_cells": 6973,
+  "threshold_excluded_cells": 813,
+  "actual_witnesses": 1,
+  "unresolved_cells": 5995,
+  "continuous_state_numerical_interval_pass": false,
+  "guarantee_scope": "stopped AEBS, all live d in (6,16], v in (1e-6,3], conditional on observation-tube support",
+  "observation_model": "tube",
+  "expectation_support_assumption_established": false,
+  "full_image_certificate": false,
+  "floating_point_formal_proof": false,
+  "arithmetic": "float64 mathematical-network interval model; no outward rounding",
+  "source_policy_sha256": "230807a1759bbededeaa7703ede1ab676ee792e4e8b0a92b01428f9b5ae38c8c",
+  "source_sbc_sha256": "e9bf035638777e179a3b6fa8bee75d0780fbb5b79f911fcc0f2b80458222e68a",
+  "source_contract_sha256": "0b3058010ce00514dd2d6aa1cbd568c50a55373f16e332200d387df5c95d086c",
+  "verifier_sha256": "7b87df96982c99c60211d916ed25e24381c13f6f1cabf3bce56630c3131dc99f",
+  "actor_subdivisions": 32,
+  "successor_subdivisions": 16,
+  "actor_bound_method": "affine",
+  "stop_on_witness": true,
+  "envelope_units": "m",
+  "envelope_radius_at_10m": 0.4499999999999999,
+  "witness_meaning": "positive drift for this SBC, not an unsafe rollout or impossibility of another SBC",
+  "history": [
+    {
+      "depth": 0,
+      "checked": 4096,
+      "passed": 2288,
+      "threshold_excluded": 643,
+      "actual_witnesses": 0,
+      "unresolved": 1165,
+      "seconds": 5.865524212829769
+    },
+    {
+      "depth": 1,
+      "checked": 6426,
+      "passed": 2760,
+      "threshold_excluded": 671,
+      "actual_witnesses": 0,
+      "unresolved": 1830,
+      "seconds": 9.120788122992963
+    },
+    {
+      "depth": 2,
+      "checked": 10086,
+      "passed": 3775,
+      "threshold_excluded": 697,
+      "actual_witnesses": 0,
+      "unresolved": 2619,
+      "seconds": 14.340287236962467
+    },
+    {
+      "depth": 3,
+      "checked": 15324,
+      "passed": 4887,
+      "threshold_excluded": 751,
+      "actual_witnesses": 0,
+      "unresolved": 4072,
+      "seconds": 21.743434321600944
+    },
+    {
+      "depth": 4,
+      "checked": 23468,
+      "passed": 6973,
+      "threshold_excluded": 813,
+      "actual_witnesses": 1,
+      "unresolved": 5995,
+      "seconds": 33.26584992557764
+    }
+  ],
+  "witnesses": [
+    {
+      "state": [
+        6.01953125,
+        0.275391548871994
+      ],
+      "residual": 0.003600164300273434,
+      "observation": 2.0327047010262262
+    }
+  ]
+}
