@@ -1,0 +1,97 @@
+{
+  "arm": "linear",
+  "seed": 202611173,
+  "best_epoch": 22,
+  "validation_mse": 0.0007560139638371766,
+  "metrics": {
+    "calibration": {
+      "n": 540,
+      "decoded_mae_physical": [
+        0.018329737707972527,
+        0.00472392188385129
+      ],
+      "decoded_mse": 0.0006977005978114903,
+      "decoded_score_quantiles": [
+        0.021783262491226196,
+        0.0653321199119091,
+        0.09894650638103489,
+        0.1331126093864441
+      ],
+      "raw_latent_l2_mean": 0.02919742465019226,
+      "raw_latent_max_abs": 0.11884051561355591
+    },
+    "test": {
+      "n": 360,
+      "decoded_mae_physical": [
+        0.018099471926689148,
+        0.0050991373136639595
+      ],
+      "decoded_mse": 0.0007249255431815982,
+      "decoded_score_quantiles": [
+        0.021808266639709473,
+        0.06783100664615632,
+        0.08900061279535304,
+        0.11801777780056
+      ],
+      "raw_latent_l2_mean": 0.0300662349909544,
+      "raw_latent_max_abs": 0.11106032133102417
+    },
+    "train": {
+      "n": 2160,
+      "decoded_mae_physical": [
+        0.0030015092343091965,
+        0.0009815652156248689
+      ],
+      "decoded_mse": 2.3860486180637963e-05,
+      "decoded_score_quantiles": [
+        0.0035841092467308044,
+        0.012867103517055486,
+        0.019405719339847558,
+        0.028933405876159668
+      ],
+      "raw_latent_l2_mean": 0.0053338417783379555,
+      "raw_latent_max_abs": 0.030302226543426514
+    },
+    "validation": {
+      "n": 540,
+      "decoded_mae_physical": [
+        0.01867685094475746,
+        0.005022876430302858
+      ],
+      "decoded_mse": 0.0007560139638371766,
+      "decoded_score_quantiles": [
+        0.02341686189174652,
+        0.06878197193145752,
+        0.10036817431449904,
+        0.13309425115585327
+      ],
+      "raw_latent_l2_mean": 0.030388478189706802,
+      "raw_latent_max_abs": 0.15813079476356506
+    }
+  },
+  "geometry": {
+    "best_affine_fit_rmse": 2.0495720654069474e-16,
+    "best_affine_fit_max_abs": 6.661338147750939e-16,
+    "max_shift_from_Cx": 0.0,
+    "inverse_roundtrip_max_abs": 3.3306690738754696e-16,
+    "condition": 1.0016566673823895,
+    "C": [
+      [
+        0.8659386983542804,
+        0.5001501481480284
+      ],
+      [
+        -0.49871607884768837,
+        0.8667654081115527
+      ]
+    ],
+    "domain": "normalized [-1,1]^2, deterministic 41x41 diagnostic grid"
+  },
+  "optimization_seconds": 42.71209333604202,
+  "optimizer_updates": 1020,
+  "minibatch_sequence_sha256": "08a78713797e6c68e7ad08c6bd2331e776456e4fe26d0fec4076fd392bad630c",
+  "visual_change_l2": 0.6298748254776001,
+  "neural_change_l2": 0.0,
+  "checkpoint_sha256": "788e1d8afbbb0606be4b80705f435488d487eb709049bb019e3c3059431381f1",
+  "scope": "static held-out errors, not trajectory coverage or certificate"
+}

@@ -1,0 +1,48 @@
+{
+  "kind": "linear",
+  "contract": {
+    "radius": 0.08503195902791483,
+    "finite_radius": true,
+    "n": 199,
+    "alpha": 0.05,
+    "rank": 190,
+    "latent_set": "{h(x+delta)-h(x): ||delta||inf<=q}; h=Cx for linear arm",
+    "score": "max_t ||h_inverse(p(DINO(I_t)))-x_t||inf",
+    "calibration_sha256": "c5bdd893176f125766dda130557f0c6722c7d82e552ce46a307819f23a827382",
+    "protocol_sha256": "76bee4f7e29cb32cde983054965a5cec11cb44c7c72ddc5b39e05c78e48ebdf7",
+    "inverse_coordinate_max_error": 1.7881393432617188e-07,
+    "inverse_action_max_error": 4.76837158203125e-07,
+    "coverage": {
+      "episodes": 199,
+      "covered": 190,
+      "not_covered": 9,
+      "fraction": 0.9547738693467337
+    }
+  },
+  "holdout": {
+    "episodes": 100,
+    "covered": 96,
+    "not_covered": 4,
+    "fraction": 0.96,
+    "binomial_two_sided_95_interval": [
+      0.9007428432873401,
+      0.9889955060138118
+    ]
+  },
+  "unsafe_calibration": 0,
+  "unsafe_holdout": 0,
+  "residual_diagnostics": {
+    "calibration": {
+      "raw_latent_max_abs": 0.10242144763469696,
+      "decoded_max_abs": 0.10450057140702387
+    },
+    "holdout": {
+      "raw_latent_max_abs": 0.07950820028781891,
+      "decoded_max_abs": 0.09492300889059527
+    }
+  },
+  "certificate_status": "passed_numerical",
+  "scope": "Registered renderer law and 80 or specified steps; marginal CP plus conditional numerical SBC. No IEEE outward-rounding proof.",
+  "certificate_sha256": "a8559bce82de93762a4e13cff5d292c762378e4b48966ac7563a9100e03b0edc",
+  "bridge": "For e=h(x+delta)-h(x), inverse(h(x)+e)=x+delta. The verifier covers all delta in the new calibrated box."
+}

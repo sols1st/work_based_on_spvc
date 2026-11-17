@@ -1,0 +1,17 @@
+{
+  "task": "lane",
+  "source": "results/lane_trajectory_cp_20261107_v1",
+  "date": "2026-11-16",
+  "development_radius": 0.1,
+  "actor_initialization": "existing PPO checkpoint; interval robust fine-tuning, not new PPO interaction training",
+  "barrier_initialization": "random for first barrier stage; subsequent rounds may resume",
+  "frontend": "frozen original linear version; no nonlinear proxy",
+  "final_cp": "fresh independent streams after freezing final actor, never inherit old actor CP",
+  "online_filter": false,
+  "device": "cuda:0",
+  "bindings": {
+    "actor.pt": "b412c6ed5298540cefb532b1e8e47b046f06fd37df1353b406a04d0957028de2",
+    "sbc.pt": "a0fdf9c3b1040e95f79f964263adfad59fedbac662e7ee3aa032aabda65c2de8",
+    "patch_projection.pt": "490e30cad8cbbc95809ba2fde9db4c99c3f8efd3ae2b6f02fb2f84f6707eb278"
+  }
+}

@@ -1,0 +1,15 @@
+[
+  "/opt/miniconda3/envs/vt/bin/python",
+  "-m",
+  "Aebs.lane_keeping.compare_proxy_train",
+  "--dataset",
+  "data/lane_keeping_v2/dataset.npz",
+  "--warm-start",
+  "results/lane_keeping_20261105/patch_perception_v2/patch_projection.pt",
+  "--output",
+  "/root/work_based_on_spvc/artical-F122/results/lane_proxy_comparison_20261117_v1",
+  "--dino-repo",
+  "../external/dinov2",
+  "--dino-weights",
+  "../external/dinov2_weights/dinov2_vits14_pretrain.pth"
+]

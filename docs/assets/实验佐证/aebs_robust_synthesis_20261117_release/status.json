@@ -1,0 +1,21 @@
+[
+  {
+    "stage": "final_cp",
+    "state": "complete",
+    "command": [
+      "/opt/miniconda3/envs/vt/bin/python",
+      "-m",
+      "Aebs.vision_sls.robust_replay_cp",
+      "--artifact-dir",
+      "results/aebs_robust_synthesis_20261117_release/package",
+      "--output-dir",
+      "results/aebs_robust_synthesis_20261117_release/final_cp"
+    ],
+    "returncode": 0
+  },
+  {
+    "stage": "final_audit",
+    "state": "complete",
+    "method": "constant tube inclusion into already audited superset"
+  }
+]

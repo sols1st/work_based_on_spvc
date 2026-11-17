@@ -1,0 +1,20 @@
+[
+  "/opt/miniconda3/envs/vt/bin/python",
+  "-m",
+  "Aebs.vision_sls.verify_sbc_cells",
+  "--artifact-dir",
+  "/root/work_based_on_spvc/artical-F122/results/aebs_robust_synthesis_20261116_v3/actor_01",
+  "--barrier-dir",
+  "/root/work_based_on_spvc/artical-F122/results/aebs_robust_synthesis_20261116_v3/barrier_margin",
+  "--perception-contract",
+  "/root/work_based_on_spvc/artical-F122/results/aebs_robust_synthesis_20261116_v3/actor_01/perception_contract.json",
+  "--output-dir",
+  "/root/work_based_on_spvc/artical-F122/results/aebs_robust_synthesis_20261116_v3/development_audit_margin",
+  "--max-depth",
+  "20",
+  "--max-cells",
+  "1000000",
+  "--actor-bound-method",
+  "affine",
+  "--stop-on-witness"
+]

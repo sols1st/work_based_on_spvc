@@ -1,0 +1,228 @@
+{
+  "regions": {
+    "initial": {
+      "lower": 0.0,
+      "upper": 0.0
+    },
+    "unsafe": {
+      "lower": 25.141171102437852,
+      "upper": 36.12186719129981
+    }
+  },
+  "region_pass": true,
+  "checked_cells": 938892,
+  "proved_cells": 469220,
+  "threshold_excluded_cells": 1467,
+  "actual_witnesses": 0,
+  "unresolved_cells": 807,
+  "continuous_state_numerical_interval_pass": false,
+  "guarantee_scope": "stopped AEBS, all live d in (6,16], v in (1e-6,3], conditional on observation-tube support",
+  "observation_model": "tube",
+  "expectation_support_assumption_established": false,
+  "full_image_certificate": false,
+  "floating_point_formal_proof": false,
+  "arithmetic": "float64 mathematical-network interval model; no outward rounding",
+  "source_policy_sha256": "230807a1759bbededeaa7703ede1ab676ee792e4e8b0a92b01428f9b5ae38c8c",
+  "source_sbc_sha256": "b627bd9ecdcedfa3f5c6845754c2fa69e7160f66720c10dbd1c2a1ff9eb2bb1e",
+  "source_contract_sha256": "0b3058010ce00514dd2d6aa1cbd568c50a55373f16e332200d387df5c95d086c",
+  "verifier_sha256": "7b87df96982c99c60211d916ed25e24381c13f6f1cabf3bce56630c3131dc99f",
+  "actor_subdivisions": 32,
+  "successor_subdivisions": 16,
+  "actor_bound_method": "affine",
+  "stop_on_witness": true,
+  "envelope_units": "m",
+  "envelope_radius_at_10m": 0.4499999999999999,
+  "witness_meaning": "positive drift for this SBC, not an unsafe rollout or impossibility of another SBC",
+  "history": [
+    {
+      "depth": 0,
+      "checked": 4096,
+      "passed": 2676,
+      "threshold_excluded": 642,
+      "actual_witnesses": 0,
+      "unresolved": 778,
+      "seconds": 5.64102117693983
+    },
+    {
+      "depth": 1,
+      "checked": 5652,
+      "passed": 2967,
+      "threshold_excluded": 670,
+      "actual_witnesses": 0,
+      "unresolved": 1237,
+      "seconds": 7.79178936383687
+    },
+    {
+      "depth": 2,
+      "checked": 8126,
+      "passed": 3546,
+      "threshold_excluded": 697,
+      "actual_witnesses": 0,
+      "unresolved": 1868,
+      "seconds": 11.094622424803674
+    },
+    {
+      "depth": 3,
+      "checked": 11862,
+      "passed": 4243,
+      "threshold_excluded": 750,
+      "actual_witnesses": 0,
+      "unresolved": 2986,
+      "seconds": 16.164463736815378
+    },
+    {
+      "depth": 4,
+      "checked": 17834,
+      "passed": 5208,
+      "threshold_excluded": 803,
+      "actual_witnesses": 0,
+      "unresolved": 4954,
+      "seconds": 24.17991065699607
+    },
+    {
+      "depth": 5,
+      "checked": 27742,
+      "passed": 6877,
+      "threshold_excluded": 911,
+      "actual_witnesses": 0,
+      "unresolved": 8131,
+      "seconds": 37.298251506872475
+    },
+    {
+      "depth": 6,
+      "checked": 44004,
+      "passed": 7408,
+      "threshold_excluded": 1012,
+      "actual_witnesses": 0,
+      "unresolved": 15630,
+      "seconds": 59.10405714181252
+    },
+    {
+      "depth": 7,
+      "checked": 75264,
+      "passed": 9501,
+      "threshold_excluded": 1231,
+      "actual_witnesses": 0,
+      "unresolved": 28948,
+      "seconds": 100.53849796392024
+    },
+    {
+      "depth": 8,
+      "checked": 133160,
+      "passed": 20156,
+      "threshold_excluded": 1325,
+      "actual_witnesses": 0,
+      "unresolved": 47147,
+      "seconds": 177.64930050284602
+    },
+    {
+      "depth": 9,
+      "checked": 227454,
+      "passed": 49770,
+      "threshold_excluded": 1419,
+      "actual_witnesses": 0,
+      "unresolved": 64586,
+      "seconds": 301.8195180478506
+    },
+    {
+      "depth": 10,
+      "checked": 356626,
+      "passed": 100394,
+      "threshold_excluded": 1467,
+      "actual_witnesses": 0,
+      "unresolved": 78500,
+      "seconds": 472.12445977679454
+    },
+    {
+      "depth": 11,
+      "checked": 513626,
+      "passed": 204554,
+      "threshold_excluded": 1467,
+      "actual_witnesses": 0,
+      "unresolved": 52840,
+      "seconds": 679.5723366530146
+    },
+    {
+      "depth": 12,
+      "checked": 619306,
+      "passed": 257906,
+      "threshold_excluded": 1467,
+      "actual_witnesses": 0,
+      "unresolved": 52328,
+      "seconds": 821.1175071906764
+    },
+    {
+      "depth": 13,
+      "checked": 723962,
+      "passed": 319231,
+      "threshold_excluded": 1467,
+      "actual_witnesses": 0,
+      "unresolved": 43331,
+      "seconds": 966.0917338479776
+    },
+    {
+      "depth": 14,
+      "checked": 810624,
+      "passed": 369243,
+      "threshold_excluded": 1467,
+      "actual_witnesses": 0,
+      "unresolved": 36650,
+      "seconds": 1087.6446634598542
+    },
+    {
+      "depth": 15,
+      "checked": 883924,
+      "passed": 425293,
+      "threshold_excluded": 1467,
+      "actual_witnesses": 0,
+      "unresolved": 17250,
+      "seconds": 1193.205486899009
+    },
+    {
+      "depth": 16,
+      "checked": 918424,
+      "passed": 456173,
+      "threshold_excluded": 1467,
+      "actual_witnesses": 0,
+      "unresolved": 3620,
+      "seconds": 1242.1104640949052
+    },
+    {
+      "depth": 17,
+      "checked": 925664,
+      "passed": 460630,
+      "threshold_excluded": 1467,
+      "actual_witnesses": 0,
+      "unresolved": 2783,
+      "seconds": 1252.2817153858487
+    },
+    {
+      "depth": 18,
+      "checked": 931230,
+      "passed": 463805,
+      "threshold_excluded": 1467,
+      "actual_witnesses": 0,
+      "unresolved": 2391,
+      "seconds": 1259.9364471740555
+    },
+    {
+      "depth": 19,
+      "checked": 936012,
+      "passed": 467147,
+      "threshold_excluded": 1467,
+      "actual_witnesses": 0,
+      "unresolved": 1440,
+      "seconds": 1266.4344336779322
+    },
+    {
+      "depth": 20,
+      "checked": 938892,
+      "passed": 469220,
+      "threshold_excluded": 1467,
+      "actual_witnesses": 0,
+      "unresolved": 807,
+      "seconds": 1270.394177729031
+    }
+  ],
+  "witnesses": []
+}

@@ -19,7 +19,7 @@
 <p class="small">这是<b>同一 4,920 test 的静态图片级</b>比较；CP 不是轨迹级 0.418359 m。cGAN 是旧 400 图检查点，非同预算；灰度 A1 同时改了颜色和源分辨率（32×32→224）；rain 分组灰度 MAE 反而低于 RGB。原 10/29 的 400 图灰度包不在本表。</p>
 <p><a href="compare.html"><b>打开“方法对比”页</b></a>：前端误差、CP/SBC 和四个实验的完整口径表。</p>
 </div>
-<div class="section"><h2>详细过程与方法对比</h2><p><a href="process.html"><b>实验过程页</b></a> 按“输入 → 做了什么 → 输出/产物 → 为什么/检查”逐步展开 AEBS、车道、停车场、移动机器人；不是只列结果数字。</p><p><a href="compare.html"><b>方法对比页</b></a> 把同一 test 的前端误差、原 10/29 灰度实现、CP/SBC 敏感性和四个实验放在同一口径下比较。更完整的原理说明见 <a href="../docs/current/SPVC当前框架_逐步流程与安全保证_20261109.md">完整框架文档</a>。</p></div>
+<div class="section"><h2>详细过程与方法对比</h2><p><a href="process.html"><b>实验过程页</b></a> 按“输入 → 做了什么 → 输出/产物 → 为什么/检查”逐步展开 AEBS、车道、停车场、移动机器人；不是只列结果数字。</p><p><a href="compare.html"><b>方法对比页</b></a> 把同一 test 的前端误差、原 10/29 灰度实现、CP/SBC 敏感性和四个实验放在同一口径下比较。更完整的原理说明见 <a href="../docs/framework/SPVC当前框架_逐步流程与安全保证_20261109.md">完整框架文档</a>。</p></div>
 <div class="section"><h2>怎么读</h2><div class="grid three">
 <div class="card"><h3><a href="aebs.html">AEBS</a></h3><p>真实 RGB、CP 单位修复、轨迹 CP、新 SBC、状态相关对照。</p></div>
 <div class="card"><h3><a href="lane.html">车道</a></h3><p>2D latent、轨迹 CP、SBC 审计、状态相关负结果。</p></div>
@@ -28,4 +28,4 @@
 <div class="section"><h2>统一安全标准</h2><p>非负 SBC `B≥0`；初始 `B≤1`；危险 `B≥20`；允许观测集合内 `B(next)≤B(current)`。满足时给出停止过程风险上界 `B0/20≤5%`。这是条件模型保证，不是新图像/实车/无条件 95%。</p></div>
 <div class="warnbox"><b>最新修复：</b>AEBS 旧 0.2307 m 的 tube 通过结论因单位漏乘已撤回；当前主结果是 0.418359 m 轨迹 CP + 新 SBC。历史文档保留在 <a href="../docs/archive/2026-11-09_current_cleanup/README.md">归档</a>。</div>
 </main>
-<footer><div class="footer-inner">SPVC 实验静态总览 · 结果与限制以各结果包和 docs/current 为准 · 不复制原始大数据</div></footer></body></html>
+<footer><div class="footer-inner">SPVC 实验静态总览 · 结果与限制以各结果包和 docs/experiments 为准 · 不复制原始大数据</div></footer></body></html>
