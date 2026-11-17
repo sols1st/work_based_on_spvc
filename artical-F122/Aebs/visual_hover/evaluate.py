@@ -1,5 +1,6 @@
 """Frozen image-feedback trajectories, split CP, independent certificate and controls."""
 import argparse
+import hashlib
 import json
 from pathlib import Path
 
@@ -18,15 +19,17 @@ TEST_SEED = 171702
 
 
 @torch.inference_mode()
-def collect(scenario, design, encoder, frontend, model, batch):
+def collect(scenario, design, encoder, frontend, model, batch, record_observations=False):
     initial, winds, lights = scenario
     all_states, all_errors, all_raw, all_actions = [], [], [], []
+    latents, image_digests = [], []
     for first in range(0, len(initial), batch):
         # Pad the last batch for the same inference shape in calibration and holdout.
         ids = np.minimum(np.arange(first, first+batch), len(initial)-1)
         count = min(len(initial)-first, batch)
         state = initial[ids].copy()
         states, errors, raw, actions = [state], [], [], []
+        ys, fingerprints = [], []
         for k in range(plant.HORIZON):
             images = [render(s[:3], light) for s,light in zip(state, lights[ids])]
             features = encoder(images)
@@ -34,8 +37,15 @@ def collect(scenario, design, encoder, frontend, model, batch):
             latent = model.head(coords)
             obs = model.decode(latent).numpy().astype(np.float64)
             error = obs - state[:,:3]
-            # In exact arithmetic raw = C @ decoded_error; log the actual latent too.
-            raw.append(latent.numpy() - state[:,:3] @ model.matrix().numpy().T)
+            if record_observations or model.kind != 'linear':
+                nominal = model.nominal(torch.as_tensor(state[:, :3], dtype=latent.dtype))
+                raw.append((latent - nominal).numpy())
+            else:
+                # Original linear benchmark records Cx with its float64 plant states.
+                raw.append(latent.numpy() - state[:, :3] @ model.matrix().numpy().T)
+            if record_observations:
+                ys.append(latent.numpy())
+                fingerprints.append([hashlib.sha256(im.tobytes()).hexdigest() for im in images])
             errors.append(error)
             action = plant.control(obs, state[:,3:], design)
             actions.append(action)
@@ -43,11 +53,17 @@ def collect(scenario, design, encoder, frontend, model, batch):
             states.append(state)
         for dest, items in [(all_states,states),(all_errors,errors),(all_raw,raw),(all_actions,actions)]:
             dest.append(np.stack(items, axis=1)[:count])
+        if record_observations:
+            latents.append(np.stack(ys, axis=1)[:count])
+            image_digests.append(np.stack(fingerprints, axis=1)[:count].astype('S64'))
     states, errors, raw, actions = [np.concatenate(v) for v in (all_states,all_errors,all_raw,all_actions)]
     if not all(np.isfinite(v).all() for v in (states, errors, raw, actions)):
         raise ValueError('nonfinite image rollout')
-    return dict(states=states, errors=errors, raw=raw, actions=actions, winds=winds, lights=lights,
-                scores=np.abs(errors).max(axis=(1,2)))
+    records = dict(states=states, errors=errors, raw=raw, actions=actions, winds=winds, lights=lights,
+                   scores=np.abs(errors).max(axis=(1,2)))
+    if record_observations:
+        records.update(latent=np.concatenate(latents), images_sha256=np.concatenate(image_digests))
+    return records
 
 
 def baseline(scenario, design, use_position):

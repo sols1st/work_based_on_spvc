@@ -1,0 +1,43 @@
+{
+  "family": "linear",
+  "seed": 817732,
+  "warm_start": "3182afeaa4baefa240a27efb05519a88616c4c93651d050291841a6b7eb7c9bc",
+  "features_manifest": "09a5d677237c31c4728de233a88cdb41977919edd6e83c31d5348ccdf8c70303",
+  "checkpoint": "1d56e3a66d9cc3312bcb279594fc510b77d27354b8bfc2f2ed8f9d5d430c8da3",
+  "batch_order": "acb00842ebb968da9fe36cf0e33c9e6e18fe8928a1f9fc73ec595fb1c2de3763",
+  "epochs": 12,
+  "batch": 32,
+  "updates": 768,
+  "lr": 0.0002,
+  "device": "cpu",
+  "init_max_delta": 0.0,
+  "n_parameters": 25066,
+  "best_epoch": 12,
+  "validation_mse": 0.0011466410682072989,
+  "validation_curve": [
+    0.0011806973289879988,
+    0.0011842691063874565,
+    0.0012971693081428658,
+    0.0012458735516544465,
+    0.0012960385279699848,
+    0.0012488463546554104,
+    0.001157172790442618,
+    0.0012737296059343705,
+    0.001255743794306772,
+    0.0011738511129378922,
+    0.0011898042435690313,
+    0.0011466410682072989
+  ],
+  "test_count": 256,
+  "physical_test_mae_m": [
+    0.011475004255771637,
+    0.009690267033874989,
+    0.017203031107783318,
+    0.014737469144165516
+  ],
+  "raw_latent_test_mae": 0.020921627059578896,
+  "normalized_decoded_test_rmse": 0.031224088743329048,
+  "best_affine_test_rmse": 2.3538690436458767e-08,
+  "best_affine_test_max_abs": 1.5160059474439436e-07,
+  "inverse_roundtrip_max": 2.384185791015625e-07
+}

@@ -1,0 +1,127 @@
+{
+  "arms": {
+    "20261117501_linear": {
+      "q": 0.12991362785747373,
+      "covered": 95,
+      "unsafe": 0,
+      "success": 86,
+      "stopped": 100,
+      "lateral_mae_m": 0.03909581600133569,
+      "final_center_target_mae_m": 0.3011337902720746,
+      "decoded_mae_physical": [
+        0.022397130014924674,
+        0.007267476779237998,
+        0.06361341969446876
+      ],
+      "raw_latent_mean_l2": 0.06741242855787277,
+      "score_mean": 0.08758946142045074,
+      "min_lane_margin_m": 0.8769028477133805,
+      "min_obstacle_margin_m": 2.3633283641067124,
+      "passed": true,
+      "holdout_sha256": "d028defd4889d7af0453854b85ce70cf0ae1f996aaed4bbe21b23f3ce3510446"
+    },
+    "20261117501_neural": {
+      "q": 0.1299901036401363,
+      "covered": 95,
+      "unsafe": 0,
+      "success": 86,
+      "stopped": 100,
+      "lateral_mae_m": 0.0390965470009722,
+      "final_center_target_mae_m": 0.3011084548250485,
+      "decoded_mae_physical": [
+        0.022238566523568586,
+        0.007286648119646977,
+        0.06257849600487113
+      ],
+      "raw_latent_mean_l2": 0.06674623489379883,
+      "score_mean": 0.08706395986968682,
+      "min_lane_margin_m": 0.8769054483210098,
+      "min_obstacle_margin_m": 2.363365983239511,
+      "passed": true,
+      "holdout_sha256": "69b81dff536da99c6d630516566469984005856b01f627fe6a9db077eb53cc42"
+    },
+    "20261117502_linear": {
+      "q": 0.13075377041390263,
+      "covered": 92,
+      "unsafe": 0,
+      "success": 88,
+      "stopped": 100,
+      "lateral_mae_m": 0.03910659029204003,
+      "final_center_target_mae_m": 0.3004584609766715,
+      "decoded_mae_physical": [
+        0.023837878464244087,
+        0.007884180783391889,
+        0.0600274954736864
+      ],
+      "raw_latent_mean_l2": 0.06945274025201797,
+      "score_mean": 0.09083974759864961,
+      "min_lane_margin_m": 0.876890492661067,
+      "min_obstacle_margin_m": 2.371249748583865,
+      "passed": true,
+      "holdout_sha256": "cae51345cf840601054bdd350754d393eb0ef0998715efe9b497db8c2e9afded"
+    },
+    "20261117502_neural": {
+      "q": 0.13456580668915097,
+      "covered": 96,
+      "unsafe": 0,
+      "success": 88,
+      "stopped": 100,
+      "lateral_mae_m": 0.039108050432562776,
+      "final_center_target_mae_m": 0.30064826452919885,
+      "decoded_mae_physical": [
+        0.023313708231989406,
+        0.007694745319775526,
+        0.06028396813953811
+      ],
+      "raw_latent_mean_l2": 0.06825882941484451,
+      "score_mean": 0.08962433943484094,
+      "min_lane_margin_m": 0.8769006911107071,
+      "min_obstacle_margin_m": 2.371586984544475,
+      "passed": true,
+      "holdout_sha256": "5b2750ad597d75607b1a5da07fd62d894f9940952a0e2099bda68b2af8cb8a4d"
+    },
+    "20261117503_linear": {
+      "q": 0.1319635539383668,
+      "covered": 95,
+      "unsafe": 0,
+      "success": 87,
+      "stopped": 100,
+      "lateral_mae_m": 0.03911515072746759,
+      "final_center_target_mae_m": 0.30083699327493885,
+      "decoded_mae_physical": [
+        0.023326415400660286,
+        0.007692934485216457,
+        0.06239790832720979
+      ],
+      "raw_latent_mean_l2": 0.06926941871643066,
+      "score_mean": 0.08976760531641163,
+      "min_lane_margin_m": 0.8764726332443807,
+      "min_obstacle_margin_m": 2.367481402854347,
+      "passed": true,
+      "holdout_sha256": "6a53336ba3ef51722785466c15807dbc87d7bc2057be206b456c1d1e5f661352"
+    },
+    "20261117503_neural": {
+      "q": 0.13249971815596284,
+      "covered": 95,
+      "unsafe": 0,
+      "success": 87,
+      "stopped": 100,
+      "lateral_mae_m": 0.03911076030322383,
+      "final_center_target_mae_m": 0.30090995416899896,
+      "decoded_mae_physical": [
+        0.023609514100145,
+        0.0077982876693925415,
+        0.06183882397873046
+      ],
+      "raw_latent_mean_l2": 0.06953027844429016,
+      "score_mean": 0.0908559753203507,
+      "min_lane_margin_m": 0.876483521876215,
+      "min_obstacle_margin_m": 2.3679084755221567,
+      "passed": true,
+      "holdout_sha256": "547f0662bb05104a38cb413cddd87d483ef20c00e87e759d7d1b5aa69d856ff9"
+    }
+  },
+  "useful_camera_frames": 25116,
+  "unique_closed_loop_rasters": 6120,
+  "closed_loop_dino_frame_slots_with_padding": 11184
+}

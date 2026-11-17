@@ -1,0 +1,75 @@
+{
+  "source": {
+    "overhead_crane_proxy/features.py": "28aff81e17fea891243a291b86fb4424f0dc899250a423adf70a939f0da3ad37",
+    "overhead_crane_proxy/train.py": "27ef2c6b677e824ceeb29a11f17a2b645486e6396ee8493c6bd4feaf34e8ca9c",
+    "overhead_crane_proxy/evaluate.py": "3f189d6f9befe17b47f1ccc842c142475a507c892f1191f6d7ac133247e97ce9",
+    "overhead_crane/camera.py": "bfb9cc0648f2bae196dcf6976beb6dceb5b591e95a736956f5e5711e5de7e5f4",
+    "overhead_crane/plant.py": "7ed9770dbb89de9b6eb09a9307c5cd89dcb31610c5c0a97f57e88c11000a7096",
+    "overhead_crane/evaluate.py": "eff07033a8f982c13d54ab0ee53670ef6f90615cfc84dcac949a3c8b190a08bd",
+    "overhead_crane/certificate.py": "f65c13598879885c60d9d240fcac48abfd2291557ada9471fbdc0c8f3aae4ca0",
+    "vision_sls/observation_coupling.py": "c100b22533b4c3b1ad789d028ddd058bfeaddf4bf0ac3bbe9a0c101cd041d51b",
+    "dino_latent/backbone.py": "4dd02c0b77a636192986b492cea98ae40326a39dea9f72e2f55c45a734da2093",
+    "lane_keeping/cp.py": "eccf44a1b20eecf872c670646ac3ec2296b846c1866f3a77df47c4ed9c8e8cdc",
+    "experiments/analyze_crane_fixed_contracts.py": "67b09cee7714e572f79011e64a8e42eab1d0d4a0a704c565afa3814180931548",
+    "curve_braking/evaluate.py": "664b5a4d2bec81f78bc791667b11678d66177a1660de89727dd4b1c6f3b450e7"
+  },
+  "weights": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+  "features_manifest": "09a5d677237c31c4728de233a88cdb41977919edd6e83c31d5348ccdf8c70303",
+  "models": {
+    "linear_817731": {
+      "checkpoint": "f182e791fc1409f3d84f2b7a1fd34902c3f11954f0025d844c5631f002929033",
+      "training": "d03aa4adfeea6cac707b53066cc514a47331dd2231306e8669f13ca978db71ee"
+    },
+    "neural_817731": {
+      "checkpoint": "eb5d28e3f498e7a9314f3aef24ddd5cd60f5ce05a024b877826e72b149c57da1",
+      "training": "4ae7ff6bc6524c924a835d0e75c52acc223e1e033895d367d88195227f895904"
+    },
+    "linear_817732": {
+      "checkpoint": "1d56e3a66d9cc3312bcb279594fc510b77d27354b8bfc2f2ed8f9d5d430c8da3",
+      "training": "01d212701e6a8f0a1019bf358215b5fa9f25becf70bab20e779ae3fdc6ed2ac1"
+    },
+    "neural_817732": {
+      "checkpoint": "7c14d2536f22a3d3d559d717582289e191e28cdfa8fb8dad2ab3d01e30b265de",
+      "training": "9afd7f7e2f6166e3143cdc1cb4f57ea96b01678d0b9082cc6758e0b86c17dc89"
+    },
+    "linear_817733": {
+      "checkpoint": "96c0ab40f0bbc65fd7e60d6a370362fc8e33ce7bca14b34bb7a8280ab93cb806",
+      "training": "72c7116537464cc65b70de91b1479ee37aeb016968cc2906e66b8d82e9e77c44"
+    },
+    "neural_817733": {
+      "checkpoint": "4c6fb0bc9d39a5af78c9fb8d0516aec0bd8b0a7ab8b5c75efd8db438e6b5b05f",
+      "training": "d57ccd2739b8e0c79deca27bf6a5095ebc0d4eb485dbd5d3a10e79c42c336290"
+    }
+  },
+  "synthesis": "b739a1a55a8c1757777abd50df19097d6231187bd6c7bb43ed46e4e647112370",
+  "gains": [
+    1.7103,
+    2.3227,
+    -2.4583,
+    -0.4332
+  ],
+  "alpha": 0.05,
+  "splits": {
+    "calibration": [
+      199,
+      817741
+    ],
+    "holdout": [
+      100,
+      817742
+    ]
+  },
+  "sensors": "render state to 176x176 RGB on every observation, frozen DINOv2; velocity sensors unchanged",
+  "primary": "trajectory max absolute decoded-coordinate error, uniform decoded four-coordinate box",
+  "secondaries": [
+    "raw latent residual",
+    "exact barrier ratio and geometric scale supremum at fixed q",
+    "safe and settled",
+    "final payload Euclidean position error",
+    "last-second sway"
+  ],
+  "ct": 40,
+  "camera_batch": 8,
+  "init_scale": 1,
+  "updates_each": 768
+}

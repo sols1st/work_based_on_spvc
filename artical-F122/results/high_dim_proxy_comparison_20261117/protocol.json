@@ -1,0 +1,15 @@
+{
+  "purpose": "Matched linear versus invertible neural state observation proxies in three closed-loop camera benchmarks",
+  "tasks": {
+    "braking": {"state_dimensions": 5, "visual_dimensions": 3, "horizon": 14, "endpoint_m": "absolute difference between final obstacle distance and the 4 m target center"},
+    "hover": {"state_dimensions": 6, "visual_dimensions": 3, "horizon": 24, "endpoint_m": "norm of final physical displacement from the hover reference"},
+    "crane": {"state_dimensions": 8, "visual_dimensions": 4, "horizon": 40, "endpoint_m": "norm of final load position relative to the goal"}
+  },
+  "design": "Three paired optimization seeds per task. Same exogenous scenarios across the six frozen systems within each task. Sample each arm from the images rendered at that arm's actual state.",
+  "primary": "Trajectory calibration radius q for maximum absolute error after each observer's own inverse on normalized physical coordinates; compare within task. Independently recompute and audit each arm against the same task-specific backend.",
+  "secondary": ["certification acceptance and fraction of certificate radius budget used", "whole-trajectory coverage and observed safety and target attainment", "terminal physical distance from target"],
+  "calibration": {"alpha": 0.05, "n": 199, "rank_one_based": 190},
+  "holdout": {"n": 100, "score": "same score as calibration including every observed time and coordinate"},
+  "paired_estimation": "Average each difference over the three frozen seed pairs for the same scenario, then bootstrap the 100 scenario indices. Per-contrast 95% percentile intervals with 10000 draws; do not treat three control outputs on the same scenario as three independent observations, and do not infer variability across training runs.",
+  "scope": "The q budget is the largest radius accepted by the chosen sufficient model check, not the empirical collision threshold. A different physical benchmark has a different radius unit and backend."
+}

@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "exact_margins": {
+    "initial_position": "11/25",
+    "initial_transformed_velocity": "39/500",
+    "unsafe_velocity_separation": "83/80",
+    "actuator_no_clipping": "2068746645049432421/900719925474099200",
+    "position_update": "7/400",
+    "transformed_velocity_update": "71700937311097313/720575940379279360"
+  },
+  "margins": {
+    "initial_position": 0.44,
+    "initial_transformed_velocity": 0.078,
+    "unsafe_velocity_separation": 1.0375,
+    "actuator_no_clipping": 2.296770157449926,
+    "position_update": 0.0175,
+    "transformed_velocity_update": 0.09950503936248149
+  },
+  "q": 0.21711406078582002,
+  "design": {
+    "l": 0.7,
+    "m": 1.0,
+    "s_limit": 0.63
+  },
+  "levels": [
+    0,
+    20
+  ],
+  "method": "rational inequalities on real discrete-time model",
+  "floating_point_implementation_certified": false,
+  "contract": "4f2b91dfb6c10cdc0bfb161495e9066e5a0770bcc1abe7f34dc19cca2f9ee908"
+}

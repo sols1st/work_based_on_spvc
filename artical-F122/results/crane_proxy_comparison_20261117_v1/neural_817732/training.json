@@ -1,0 +1,43 @@
+{
+  "family": "neural",
+  "seed": 817732,
+  "warm_start": "3182afeaa4baefa240a27efb05519a88616c4c93651d050291841a6b7eb7c9bc",
+  "features_manifest": "09a5d677237c31c4728de233a88cdb41977919edd6e83c31d5348ccdf8c70303",
+  "checkpoint": "7c14d2536f22a3d3d559d717582289e191e28cdfa8fb8dad2ab3d01e30b265de",
+  "batch_order": "acb00842ebb968da9fe36cf0e33c9e6e18fe8928a1f9fc73ec595fb1c2de3763",
+  "epochs": 12,
+  "batch": 32,
+  "updates": 768,
+  "lr": 0.0002,
+  "device": "cpu",
+  "init_max_delta": 0.0,
+  "n_parameters": 25310,
+  "best_epoch": 10,
+  "validation_mse": 0.0011480578086515987,
+  "validation_curve": [
+    0.0011819963889265132,
+    0.0011865531040633364,
+    0.0013026208351657302,
+    0.0012479753019495295,
+    0.0012895185327621915,
+    0.0012367537612547443,
+    0.001157692698993484,
+    0.001266298594295296,
+    0.0012140796740485547,
+    0.0011480578086515987,
+    0.0011971274622743996,
+    0.0011616200750613982
+  ],
+  "test_count": 256,
+  "physical_test_mae_m": [
+    0.011112556792795658,
+    0.009886672720313072,
+    0.016992267221212387,
+    0.014645260758697987
+  ],
+  "raw_latent_test_mae": 0.020664982497692108,
+  "normalized_decoded_test_rmse": 0.030743880197405815,
+  "best_affine_test_rmse": 0.00012490250525492406,
+  "best_affine_test_max_abs": 0.0009440858927362294,
+  "inverse_roundtrip_max": 2.384185791015625e-07
+}

@@ -1,0 +1,311 @@
+{
+  "arms": {
+    "617201_linear": {
+      "seed": 617201,
+      "kind": "linear",
+      "training": "3d877fdb4c0b85e8bcfa23f5cee266f7db84dd24234e3e1f0812321c082fc37d",
+      "chosen_epoch": 1,
+      "trainable": 492,
+      "normalized_static_mse": 0.0035203148145228624,
+      "static_test_mae_m": [
+        0.02692549768835306,
+        0.02195290606468916,
+        0.030808325856924057
+      ],
+      "geometry": {
+        "affine_rmse": 1.4169491343484885e-16,
+        "affine_max": 4.440892098500626e-16,
+        "inverse_max": 4.440892098500626e-16,
+        "condition": 1.0014191841204998
+      },
+      "q": 0.23017460291747135,
+      "q_raw": 0.23017257452011108,
+      "covered": 91,
+      "safe": 100,
+      "hover": 100,
+      "mean_final_m": 0.06254654126950505,
+      "mean_tracking_distance_m": 0.1493612847820627,
+      "physical_q_m": [
+        0.1726309521881035,
+        0.1496134918963564,
+        0.11508730145873568
+      ],
+      "certificate_passed": true,
+      "transformed_velocity_margin": 0.09721944448944252
+    },
+    "617201_neural": {
+      "seed": 617201,
+      "kind": "neural",
+      "training": "e3678d56f59341b57fd44f8fd2559bef312d2c79870437407b208f6a04e0542c",
+      "chosen_epoch": 1,
+      "trainable": 639,
+      "normalized_static_mse": 0.0035186996683478355,
+      "static_test_mae_m": [
+        0.026918775402009487,
+        0.021931110695004464,
+        0.03079833835363388
+      ],
+      "geometry": {
+        "affine_rmse": 1.757506029795728e-05,
+        "affine_max": 0.00012136828788777976,
+        "inverse_max": 3.3306690738754696e-16,
+        "condition": 1.0012852934891505
+      },
+      "q": 0.2225313070094152,
+      "q_raw": 0.2224995344877243,
+      "covered": 89,
+      "safe": 100,
+      "hover": 100,
+      "mean_final_m": 0.06259555826715299,
+      "mean_tracking_distance_m": 0.14935118248950838,
+      "physical_q_m": [
+        0.1668984802570614,
+        0.14464534955611988,
+        0.1112656535047076
+      ],
+      "certificate_passed": true,
+      "transformed_velocity_margin": 0.09855702127335234
+    },
+    "617202_linear": {
+      "seed": 617202,
+      "kind": "linear",
+      "training": "f6e83dd38248a8e354d192136107c9737ad5510283d127aebac19cf1860ac171",
+      "chosen_epoch": 2,
+      "trainable": 492,
+      "normalized_static_mse": 0.003533444367349148,
+      "static_test_mae_m": [
+        0.026968058198690414,
+        0.021940941736102105,
+        0.03084491565823555
+      ],
+      "geometry": {
+        "affine_rmse": 1.7049765590052359e-16,
+        "affine_max": 4.440892098500626e-16,
+        "inverse_max": 4.440892098500626e-16,
+        "condition": 1.0007433550113682
+      },
+      "q": 0.21711406078582002,
+      "q_raw": 0.21712729334831238,
+      "covered": 89,
+      "safe": 100,
+      "hover": 100,
+      "mean_final_m": 0.0621768603667459,
+      "mean_tracking_distance_m": 0.14884341530186554,
+      "physical_q_m": [
+        0.16283554558936503,
+        0.141124139510783,
+        0.10855703039291001
+      ],
+      "certificate_passed": true,
+      "transformed_velocity_margin": 0.09950503936248149
+    },
+    "617202_neural": {
+      "seed": 617202,
+      "kind": "neural",
+      "training": "0b334aa0ff9cc40c5d57349e749d24ccc7e82b927ca27a9344209471f7388177",
+      "chosen_epoch": 2,
+      "trainable": 639,
+      "normalized_static_mse": 0.003531853435561061,
+      "static_test_mae_m": [
+        0.026960888877511024,
+        0.021907533146440984,
+        0.030848771333694458
+      ],
+      "geometry": {
+        "affine_rmse": 1.579095853552848e-05,
+        "affine_max": 5.9817532261696726e-05,
+        "inverse_max": 3.3306690738754696e-16,
+        "condition": 1.0007370068213666
+      },
+      "q": 0.2230825957776717,
+      "q_raw": 0.2230909764766693,
+      "covered": 92,
+      "safe": 100,
+      "hover": 100,
+      "mean_final_m": 0.06241955623876068,
+      "mean_tracking_distance_m": 0.14894237974201685,
+      "physical_q_m": [
+        0.1673119468332538,
+        0.1450036872554866,
+        0.11154129788883585
+      ],
+      "certificate_passed": true,
+      "transformed_velocity_margin": 0.09846054573890745
+    },
+    "617203_linear": {
+      "seed": 617203,
+      "kind": "linear",
+      "training": "55166f2698b1fedbef5cd08e8a90358160ac4d8f3d78acff08d395f1fdad070b",
+      "chosen_epoch": 2,
+      "trainable": 492,
+      "normalized_static_mse": 0.0035600459668785334,
+      "static_test_mae_m": [
+        0.02703315205872059,
+        0.022117232158780097,
+        0.030735015869140625
+      ],
+      "geometry": {
+        "affine_rmse": 2.915164261335616e-16,
+        "affine_max": 9.992007221626409e-16,
+        "inverse_max": 3.3306690738754696e-16,
+        "condition": 1.0016705994971644
+      },
+      "q": 0.22989031602312876,
+      "q_raw": 0.22989699244499207,
+      "covered": 94,
+      "safe": 100,
+      "hover": 100,
+      "mean_final_m": 0.06233617175833997,
+      "mean_tracking_distance_m": 0.14878369640683586,
+      "physical_q_m": [
+        0.17241773701734658,
+        0.1494287054150337,
+        0.11494515801156438
+      ],
+      "certificate_passed": true,
+      "transformed_velocity_margin": 0.09726919469595247
+    },
+    "617203_neural": {
+      "seed": 617203,
+      "kind": "neural",
+      "training": "823a48785db5cc4bcfe797f4be981b00c0f55d083f7fafdcde4047b46d51de74",
+      "chosen_epoch": 2,
+      "trainable": 639,
+      "normalized_static_mse": 0.003558937693014741,
+      "static_test_mae_m": [
+        0.027026116847991943,
+        0.022096596658229828,
+        0.03072766587138176
+      ],
+      "geometry": {
+        "affine_rmse": 1.5956294452545457e-05,
+        "affine_max": 9.307413176484758e-05,
+        "inverse_max": 4.440892098500626e-16,
+        "condition": 1.00145273014945
+      },
+      "q": 0.22103981142844054,
+      "q_raw": 0.22100786864757538,
+      "covered": 93,
+      "safe": 100,
+      "hover": 100,
+      "mean_final_m": 0.062173167377550416,
+      "mean_tracking_distance_m": 0.14870678089238024,
+      "physical_q_m": [
+        0.1657798585713304,
+        0.14367587742848636,
+        0.11051990571422027
+      ],
+      "certificate_passed": true,
+      "transformed_velocity_margin": 0.09881803300002291
+    }
+  },
+  "paired": {
+    "617201": {
+      "final_distance_m": {
+        "neural_minus_linear_mean": 4.901699764795216e-05,
+        "interval_95": [
+          -0.0003160860131763585,
+          0.0004400048336030077
+        ],
+        "lower": 52,
+        "higher": 48,
+        "n": 100
+      },
+      "trajectory_mean_distance_m": {
+        "neural_minus_linear_mean": -1.0102292554350773e-05,
+        "interval_95": [
+          -9.622229655880779e-05,
+          7.62497916324845e-05
+        ],
+        "lower": 57,
+        "higher": 43,
+        "n": 100
+      },
+      "decoded_peak": {
+        "neural_minus_linear_mean": -0.0009595474258596849,
+        "interval_95": [
+          -0.0036129663537828906,
+          0.0015229124106708471
+        ],
+        "lower": 38,
+        "higher": 62,
+        "n": 100
+      }
+    },
+    "617202": {
+      "final_distance_m": {
+        "neural_minus_linear_mean": 0.0002426958720147985,
+        "interval_95": [
+          -0.00018068193457249584,
+          0.0006496223874241478
+        ],
+        "lower": 44,
+        "higher": 56,
+        "n": 100
+      },
+      "trajectory_mean_distance_m": {
+        "neural_minus_linear_mean": 9.896444015129582e-05,
+        "interval_95": [
+          -3.316779810668765e-05,
+          0.0002352129236541032
+        ],
+        "lower": 45,
+        "higher": 55,
+        "n": 100
+      },
+      "decoded_peak": {
+        "neural_minus_linear_mean": -0.00021549679624042833,
+        "interval_95": [
+          -0.0028661005608467812,
+          0.0022699953150249496
+        ],
+        "lower": 64,
+        "higher": 36,
+        "n": 100
+      }
+    },
+    "617203": {
+      "final_distance_m": {
+        "neural_minus_linear_mean": -0.0001630043807895649,
+        "interval_95": [
+          -0.0006069600953544798,
+          0.00029060465089497895
+        ],
+        "lower": 55,
+        "higher": 45,
+        "n": 100
+      },
+      "trajectory_mean_distance_m": {
+        "neural_minus_linear_mean": -7.69155144555836e-05,
+        "interval_95": [
+          -0.0002152622457708899,
+          6.138331393716112e-05
+        ],
+        "lower": 60,
+        "higher": 40,
+        "n": 100
+      },
+      "decoded_peak": {
+        "neural_minus_linear_mean": 0.0008792927099617201,
+        "interval_95": [
+          -0.0017665128662908347,
+          0.004190940157658232
+        ],
+        "lower": 47,
+        "higher": 53,
+        "n": 100
+      }
+    }
+  },
+  "calibration": [
+    199,
+    617211
+  ],
+  "holdout": [
+    100,
+    617212
+  ],
+  "signed_difference": "neural minus linear, paired by entire scenario; bootstrap conditional on fitted models",
+  "verified_image_digests": 288,
+  "oracle": "exact rational coefficient inequalities for frozen PD and normalized decoded box"
+}

@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "method": "global sufficient inequalities for structured neural barrier; numerical scalar checks",
+  "radius": 0.13249971815596284,
+  "coefficients": [
+    0.19517535530310534,
+    0.054105207768838384,
+    0.025394633333215257,
+    1.018306874486942
+  ],
+  "initial_upper": 0.0,
+  "unsafe_lower_by_separation": 20,
+  "horizon_if_tube_holds": "until absorbing stop, including all later sampled states",
+  "domain": "0<=v<=2.6, |delta|<=0.07, kappa in {-0.02,+0.02}",
+  "checks": {
+    "finite_radius": true,
+    "brake_floor_guard_slack_m": 1.085000563688074,
+    "lateral_step_slack": 0.006316460326604739,
+    "yaw_and_steering_step_slack": 0.002811504273702317,
+    "obstacle_progress_step_slack": 0.005135648549758454,
+    "forward_progress_cosine": 0.9820042351172704,
+    "steering_weight": 0.025394633333215257,
+    "body_lane_slack_m": 0.06579035898636319,
+    "body_station_slack_m": 0.08565781381988846,
+    "initial_level_slack": 1.0,
+    "braking_reserve_support": 0.2799999999999998,
+    "minimum_frenet_denominator": 0.952071501606854
+  },
+  "outward_rounded": false,
+  "continuous_time_collision_claim": false,
+  "contract_sha256": "48a13d11c52debf625d09a0c31e2052c3629aa60ece7a2a993a8b92f77ee36e7",
+  "actor_sha256": "9015d427fed9be1b3e584c031bad54bcb032964c98aca812504ac6b380e15ccf",
+  "barrier_sha256": "de6c1992dfab0dc63d264aab971ad34db6b5fbf5e2c75dede80a1356e7586421"
+}

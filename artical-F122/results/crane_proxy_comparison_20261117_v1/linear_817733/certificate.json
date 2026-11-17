@@ -1,0 +1,63 @@
+{
+  "protocol": "1fbc446fbf85e15bcb9fe166a90debe7969e3be44ee702580ec28c1dc3a79e6d",
+  "calibration": "9fee7347d7083b6b672da1b7de1f7ade6e8ff73f95e7e00ce3197274244d5d45",
+  "checkpoint": "96c0ab40f0bbc65fd7e60d6a370362fc8e33ce7bca14b34bb7a8280ab93cb806",
+  "q": 0.19720717875188915,
+  "rank": 190,
+  "raw_q": 0.19739368557929993,
+  "raw_rank": 190,
+  "geometry": {
+    "upper": 0.7858322138607469,
+    "upper_exact": "21234441993113948589247/27021597764222976000000",
+    "passes": true,
+    "scale_supremum": 1.3614003690020562,
+    "scale_supremum_exact": "21800298721375638844225/16013142950266611433472",
+    "active_at_supremum": [
+      {
+        "constraint": "total_accel",
+        "step": 0
+      }
+    ]
+  },
+  "audit": {
+    "passed": true,
+    "initial_upper": 0.7858322138607469,
+    "unsafe_lower": 1,
+    "mode": "exact rational",
+    "initial_upper_exact": "21234441993113948589247/27021597764222976000000",
+    "worst_ratio": {
+      "trolley_position": {
+        "ratio": 0.48539640650731064,
+        "step": 1
+      },
+      "trolley_speed": {
+        "ratio": 0.3104946079721153,
+        "step": 3
+      },
+      "sway": {
+        "ratio": 0.5372081910890418,
+        "step": 17
+      },
+      "sway_rate": {
+        "ratio": 0.5352069763044544,
+        "step": 11
+      },
+      "payload_position": {
+        "ratio": 0.55345901548107,
+        "step": 2
+      },
+      "payload_diagonal": {
+        "ratio": 0.6598934415351219,
+        "step": 2
+      },
+      "axis_accel": {
+        "ratio": 0.620393853047958,
+        "step": 0
+      },
+      "total_accel": {
+        "ratio": 0.7858322138607469,
+        "step": 0
+      }
+    }
+  }
+}

@@ -3,6 +3,7 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 from . import plant
+from ..vision_sls.observation_coupling import make_shears, apply_shears
 
 class Proxy(nn.Module):
     def __init__(self,kind,n):
@@ -11,17 +12,11 @@ class Proxy(nn.Module):
         self.head=nn.Linear(n,3)
         self.C=nn.Parameter(torch.eye(3))
         self.bias=nn.Parameter(torch.zeros(3),requires_grad=(kind!='linear'))
-        self.nets=nn.ModuleList([nn.Sequential(nn.Linear(2,12),nn.Tanh(),nn.Linear(12,1),nn.Tanh()) for _ in range(3)] if kind=='neural' else [])
-        for net in self.nets:
-            nn.init.zeros_(net[2].weight);nn.init.zeros_(net[2].bias)
+        self.nets=make_shears(3) if kind=='neural' else nn.ModuleList()
     def matrix(self):
         return F.normalize(self.C,dim=1)
     def coupling(self,z,inverse):
-        cols=list(z.split(1,dim=1))
-        for i in (reversed(range(len(self.nets))) if inverse else range(len(self.nets))):
-            others=torch.cat([cols[j] for j in range(3) if j!=i],dim=1)
-            cols[i]=cols[i]+(-.25 if inverse else .25)*self.nets[i](others)
-        return torch.cat(cols,dim=1)
+        return apply_shears(z,self.nets,inverse=inverse)
     def nominal(self,x):
         return self.coupling(x@self.matrix().T+self.bias,False)
     def decode(self,y):

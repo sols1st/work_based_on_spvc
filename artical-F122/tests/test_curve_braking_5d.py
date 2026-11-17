@@ -43,3 +43,21 @@ def test_nonlinear_coordinates_and_actuator_contract():
     near=x.clone();near[:,2]=1.75
     u=Actor()(near,torch.rand(20),torch.zeros(20),torch.full((20,),.02))
     assert (u[:,0]<=-1.2).all() and (u[:,1].abs()<=.16).all()
+
+
+def test_matched_comparison_caches_only_equal_pixels_at_fixed_batch_shape():
+    from Aebs.curve_braking.compare_proxy import ImageCache
+
+    calls = []
+    def encode(images):
+        calls.append(len(images))
+        return torch.tensor([int(im.sum()) for im in images])[:, None]
+    cache = ImageCache(encode)
+    black = np.zeros((2, 2, 3), dtype=np.uint8)
+    brighter = black.copy()
+    brighter[0, 0, 0] = 1
+    assert cache([black, brighter, black]).flatten().tolist() == [0, 1, 0]
+    assert cache([brighter, black.copy()]).flatten().tolist() == [1, 0]
+    assert calls == [8]
+    assert len(cache.features) == 2
+    assert cache.calls[1] == [cache.calls[0][1], cache.calls[0][0]]

@@ -1,0 +1,57 @@
+{
+  "source": "results/curve_braking_5d_20261117",
+  "bindings": {
+    "features.pt": "4408d54587113fb76226e8fc67514508a73163485630e04ae31c0b031147d6ef",
+    "static.npz": "f57b6e194b7eb0098b3b816b0be0c7a3a666c04a7bf78117b34fbc4e1831982d",
+    "pca.pt": "a5d0768109aad4529a4933838fd62b902ec8ff9034f5ef18543ad6b48beaa692",
+    "actor.pt": "9015d427fed9be1b3e584c031bad54bcb032964c98aca812504ac6b380e15ccf",
+    "barrier.pt": "de6c1992dfab0dc63d264aab971ad34db6b5fbf5e2c75dede80a1356e7586421"
+  },
+  "dino_sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+  "software": {
+    "torch": "2.3.1",
+    "numpy": "1.24.4"
+  },
+  "code": {
+    "compare_proxy.py": "3b0d3c00c6d098ba3f564de109e46dc34d2813dd9d4e601c07e178931778cd9f",
+    "evaluate.py": "664b5a4d2bec81f78bc791667b11678d66177a1660de89727dd4b1c6f3b450e7",
+    "models.py": "0135caba3d73d07465526b21fa24e7c6b33fc3723145ed54eff9be9a6ee7e84b",
+    "verify.py": "d1a7644d7cf68177abcf12849742ea7c2ecd350d20bd00bf042e1dd3d8152e33",
+    "plant.py": "5ae91746eb4dd840aaa5940260ea4124eaba6e100b39c5f8729fd3c244a277c3",
+    "vision.py": "37cd036d7cf86e9981cef0059c2fdad6f9c4374f456363d7dcff54edc2ad3757",
+    "backbone.py": "4dd02c0b77a636192986b492cea98ae40326a39dea9f72e2f55c45a734da2093"
+  },
+  "device": "cuda:0",
+  "train_seeds": [
+    20261117501,
+    20261117502,
+    20261117503
+  ],
+  "arms": [
+    "linear",
+    "neural"
+  ],
+  "n_cal": 199,
+  "n_hold": 100,
+  "alpha": 0.05,
+  "cp_rank": 190,
+  "calibration_seed": 202611175081,
+  "blind_seed": 202611175082,
+  "horizon": 14,
+  "curvatures": [
+    -0.02,
+    0.02
+  ],
+  "training": "same train-only PCA, ridge visual start, C=I, bias fixed zero, neural initialized as identity; Adam 0.00015, 35 epochs, batch 96, select lowest val decode MSE with cond(C)<10",
+  "image_law": "render the actual state at every step; exact SHA256 memoization only for frozen DINO; fixed 8-frame inference shape",
+  "score": "max over all 14 time instants and all 3 normalized decoded residuals",
+  "outcomes": [
+    "trajectory CP radius",
+    "holdout trajectory coverage",
+    "goal stop and hazard counts",
+    "mean absolute lateral offset",
+    "terminal distance error from center of target interval",
+    "geometry after removing affine part"
+  ],
+  "fixed_components": "actor, barrier, dynamics, PCA, backbone, camera, scenario law"
+}
