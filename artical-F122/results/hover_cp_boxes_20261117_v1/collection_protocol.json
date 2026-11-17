@@ -1,0 +1,47 @@
+{
+  "splits": {
+    "calibration": [
+      199,
+      661721
+    ],
+    "holdout": [
+      100,
+      661722
+    ]
+  },
+  "design": {
+    "l": 0.7,
+    "m": 1.0,
+    "s_limit": 0.63
+  },
+  "batch": 8,
+  "device": "cuda:1",
+  "source_model_protocol": "bbedc2791d66106ffdbcf23002fe70060f0dbbf26d06c39788f6578e9a1eb335",
+  "source_extra": {
+    "dino_latent/backbone.py": "4dd02c0b77a636192986b492cea98ae40326a39dea9f72e2f55c45a734da2093",
+    "vision_sls/observation_coupling.py": "c100b22533b4c3b1ad789d028ddd058bfeaddf4bf0ac3bbe9a0c101cd041d51b"
+  },
+  "weights": {
+    "617201_linear": "3d877fdb4c0b85e8bcfa23f5cee266f7db84dd24234e3e1f0812321c082fc37d",
+    "617201_neural": "e3678d56f59341b57fd44f8fd2559bef312d2c79870437407b208f6a04e0542c",
+    "617202_linear": "f6e83dd38248a8e354d192136107c9737ad5510283d127aebac19cf1860ac171",
+    "617202_neural": "0b334aa0ff9cc40c5d57349e749d24ccc7e82b927ca27a9344209471f7388177",
+    "617203_linear": "55166f2698b1fedbef5cd08e8a90358160ac4d8f3d78acff08d395f1fdad070b",
+    "617203_neural": "823a48785db5cc4bcfe797f4be981b00c0f55d083f7fafdcde4047b46d51de74"
+  },
+  "development": {
+    "617201_linear": "356e336cae42abdda632cea96693d7748e106720931bd33bc21fb92940e591eb",
+    "617201_neural": "a02a9cdde5645eeae4f8937516baaee9f1526ad5e966bf4eca9daf2d0e5af7b6",
+    "617202_linear": "a692044ac3b156aef00b5a29fb69be622cc1d632eafe6f0d90432163a90da55b",
+    "617202_neural": "2bbc6ecd56f5e39a30c25fce4b468ce7658d24c44674c8acc0cf00f876740526",
+    "617203_linear": "902f6c2e3d177f5facf0a8f93f733b9ec2d04bf25f052eaea7b831c65d523c89",
+    "617203_neural": "eb7225fe99ee8c1384b7f3e6fe17283209310c030ffc5b84b229322f5e3cf6a4"
+  },
+  "collection_source": "e7c0b558b31816ea8ab15298d399505ea1533c17b591f480b86c48a5247c88f0",
+  "features": [
+    "true normalized height relative to hover reference",
+    "infinity norm of v+0.7*p"
+  ],
+  "selection": "fixed six systems; same new external scenarios across arms; no retraining",
+  "calibration_unit": "whole trajectory; 24 image/control steps, no exclusion"
+}

@@ -1,5 +1,6 @@
 """Continuous-domain support of state-conditioned perception boxes for the frozen hover PD."""
 from bisect import bisect_right
+from decimal import Decimal, ROUND_CEILING, localcontext
 from fractions import Fraction as F
 from itertools import product
 
@@ -41,6 +42,31 @@ def interpolation(knots, values, x):
     return (1 - weight)*values[i, 0] + weight*values[i + 1, 0]
 
 
+def loglinear_upper(shape, z, t, q):
+    reg = shape['regression']
+    intervals = []
+    for (a,b), low, high in zip([z,t], reg['low'], reg['high']):
+        # Only the denominator is precomputed from stored float coefficients in widths().
+        span = exact(max(high-low,1e-10))
+        low,high = exact(low),exact(high)
+        intervals.append([(min(max(x,low),high)-low)/span - F(1,2) for x in (a,b)])
+    upper = []
+    for i, base in enumerate(reg['base']):
+        log_w = exact(reg['coefficients'][0][i])
+        for k,(lo,hi) in enumerate(intervals):
+            slope = exact(reg['coefficients'][k+1][i])
+            log_w += max(slope*lo,slope*hi)
+        log_w = min(max(log_w,F(-3)),F(2))
+        with localcontext() as ctx:
+            ctx.prec = 35
+            ctx.rounding = ROUND_CEILING
+            log_upper = Decimal(log_w.numerator)/Decimal(log_w.denominator)
+            # Decimal.exp is correctly rounded to nearest. next_plus is an upper bound.
+            exp_upper = F(log_upper.exp().next_plus())
+        upper.append(q * exact(base) * exp_upper)
+    return upper, upper
+
+
 def cell_max_widths(kind, z, t, knots, values):
     # All breakpoints occur on cell boundaries. A step's open cell is constant;
     # taking its closure is conservative, and the adjoining cell covers the boundary itself.
@@ -68,7 +94,10 @@ def audit(shape, q):
     culprit = [None]*3
     headroom = None
     for z,t in product(zcells,tcells):
-        neg,pos = cell_max_widths(shape['name'], z, t, knots, values)
+        if shape['name'] == 'state_loglinear':
+            neg,pos = loglinear_upper(shape,z,t,exact(q))
+        else:
+            neg,pos = cell_max_widths(shape['name'], z, t, knots, values)
         height_min = max(F(0), z[0], -z[1])
         # r=max(1,N) >= max(1, |height|, t/S). This convex piecewise-linear
         # wind allowance attains its minimum at the clipped kink, or at an endpoint.

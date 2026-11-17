@@ -1,0 +1,436 @@
+{
+  "boxes": {
+    "fixed_uniform": {
+      "q": 0.18433108330645734,
+      "rank": 475,
+      "n": 499,
+      "shape": {
+        "name": "fixed_uniform",
+        "xcuts": [],
+        "ycuts": [],
+        "centers": [],
+        "halfwidths": [
+          [
+            [
+              [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ]
+          ]
+        ],
+        "regression": {},
+        "development_frames": [
+          [
+            7960
+          ]
+        ]
+      },
+      "audit": {
+        "passed": true,
+        "certification_metric": 1.38,
+        "unit": "initial_box_scale",
+        "nominal": {
+          "passed": true,
+          "scale": 1.0,
+          "worst_ratio": 0.7732166666666667,
+          "limiting": [
+            "total_accel",
+            0
+          ],
+          "max_positive_action_error": [
+            0.541834,
+            0.541834
+          ],
+          "max_negative_action_error": [
+            0.541834,
+            0.541834
+          ]
+        },
+        "accepted_scale": {
+          "passed": true,
+          "scale": 1.38,
+          "worst_ratio": 0.998407,
+          "limiting": [
+            "total_accel",
+            0
+          ],
+          "max_positive_action_error": [
+            0.541834,
+            0.541834
+          ],
+          "max_negative_action_error": [
+            0.541834,
+            0.541834
+          ]
+        },
+        "certified_scale_attained": true,
+        "search_grid": 0.01,
+        "search_max": 2.0,
+        "initial_partition": "3x3 trolley initial coordinates",
+        "certificate": "directional support of closed-loop reachable sets at every step; no saturation on passed domain"
+      },
+      "global_wrapper_audit": {
+        "passed": true,
+        "certification_metric": 1.38,
+        "unit": "initial_box_scale",
+        "nominal": {
+          "passed": true,
+          "scale": 1.0,
+          "worst_ratio": 0.7732166666666667,
+          "limiting": [
+            "total_accel",
+            0
+          ],
+          "max_positive_action_error": [
+            0.541834,
+            0.541834
+          ],
+          "max_negative_action_error": [
+            0.541834,
+            0.541834
+          ]
+        },
+        "accepted_scale": {
+          "passed": true,
+          "scale": 1.38,
+          "worst_ratio": 0.998407,
+          "limiting": [
+            "total_accel",
+            0
+          ],
+          "max_positive_action_error": [
+            0.541834,
+            0.541834
+          ],
+          "max_negative_action_error": [
+            0.541834,
+            0.541834
+          ]
+        },
+        "certified_scale_attained": true,
+        "search_grid": 0.01,
+        "search_max": 2.0,
+        "initial_partition": "3x3 trolley initial coordinates",
+        "certificate": "directional support of closed-loop reachable sets at every step; no saturation on passed domain"
+      }
+    },
+    "fixed_axis": {
+      "q": 2.545447379719336,
+      "rank": 475,
+      "n": 499,
+      "shape": {
+        "name": "fixed_axis",
+        "xcuts": [],
+        "ycuts": [],
+        "centers": [],
+        "halfwidths": [
+          [
+            [
+              [
+                0.02836563106689307,
+                0.02088359154446371,
+                0.09896188836414517,
+                0.06961413898126698
+              ],
+              [
+                0.02836563106689307,
+                0.02088359154446371,
+                0.09896188836414517,
+                0.06961413898126698
+              ]
+            ]
+          ]
+        ],
+        "regression": {},
+        "development_frames": [
+          [
+            7960
+          ]
+        ]
+      },
+      "audit": {
+        "passed": true,
+        "certification_metric": 1.47,
+        "unit": "initial_box_scale",
+        "nominal": {
+          "passed": true,
+          "scale": 1.0,
+          "worst_ratio": 0.716245,
+          "limiting": [
+            "total_accel",
+            0
+          ],
+          "max_positive_action_error": [
+            0.433116,
+            0.308722
+          ],
+          "max_negative_action_error": [
+            0.433116,
+            0.308722
+          ]
+        },
+        "accepted_scale": {
+          "passed": true,
+          "scale": 1.47,
+          "worst_ratio": 0.9947696666666667,
+          "limiting": [
+            "total_accel",
+            0
+          ],
+          "max_positive_action_error": [
+            0.433116,
+            0.308722
+          ],
+          "max_negative_action_error": [
+            0.433116,
+            0.308722
+          ]
+        },
+        "certified_scale_attained": true,
+        "search_grid": 0.01,
+        "search_max": 2.0,
+        "initial_partition": "3x3 trolley initial coordinates",
+        "certificate": "directional support of closed-loop reachable sets at every step; no saturation on passed domain"
+      },
+      "global_wrapper_audit": {
+        "passed": true,
+        "certification_metric": 1.47,
+        "unit": "initial_box_scale",
+        "nominal": {
+          "passed": true,
+          "scale": 1.0,
+          "worst_ratio": 0.716245,
+          "limiting": [
+            "total_accel",
+            0
+          ],
+          "max_positive_action_error": [
+            0.433116,
+            0.308722
+          ],
+          "max_negative_action_error": [
+            0.433116,
+            0.308722
+          ]
+        },
+        "accepted_scale": {
+          "passed": true,
+          "scale": 1.47,
+          "worst_ratio": 0.9947696666666667,
+          "limiting": [
+            "total_accel",
+            0
+          ],
+          "max_positive_action_error": [
+            0.433116,
+            0.308722
+          ],
+          "max_negative_action_error": [
+            0.433116,
+            0.308722
+          ]
+        },
+        "certified_scale_attained": true,
+        "search_grid": 0.01,
+        "search_max": 2.0,
+        "initial_partition": "3x3 trolley initial coordinates",
+        "certificate": "directional support of closed-loop reachable sets at every step; no saturation on passed domain"
+      }
+    },
+    "state_bins": {
+      "q": 2.510643155051614,
+      "rank": 475,
+      "n": 499,
+      "shape": {
+        "name": "state_bins",
+        "xcuts": [
+          0.04614986400603775,
+          0.06716748590727903,
+          0.2814168536277696
+        ],
+        "ycuts": [],
+        "centers": [],
+        "halfwidths": [
+          [
+            [
+              [
+                0.03195106439769754,
+                0.02069733866524401,
+                0.11488217594294083,
+                0.06767009277697619
+              ],
+              [
+                0.03195106439769754,
+                0.02069733866524401,
+                0.11488217594294083,
+                0.06767009277697619
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                0.021080779832263297,
+                0.018077422972654165,
+                0.10114814971903716,
+                0.07271396128085751
+              ],
+              [
+                0.021080779832263297,
+                0.018077422972654165,
+                0.10114814971903716,
+                0.07271396128085751
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                0.029129790809217817,
+                0.02344076703589943,
+                0.09526175613042714,
+                0.07704608174899807
+              ],
+              [
+                0.029129790809217817,
+                0.02344076703589943,
+                0.09526175613042714,
+                0.07704608174899807
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                0.026914490905966634,
+                0.020250817969858278,
+                0.06801732626456206,
+                0.06176245632335478
+              ],
+              [
+                0.026914490905966634,
+                0.020250817969858278,
+                0.06801732626456206,
+                0.06176245632335478
+              ]
+            ]
+          ]
+        ],
+        "regression": {},
+        "development_frames": [
+          [
+            1990
+          ],
+          [
+            1990
+          ],
+          [
+            1990
+          ],
+          [
+            1990
+          ]
+        ]
+      },
+      "audit": {
+        "passed": true,
+        "certification_metric": 1.51,
+        "unit": "initial_box_scale",
+        "nominal": {
+          "passed": true,
+          "scale": 1.0,
+          "worst_ratio": 0.7188508333333333,
+          "limiting": [
+            "total_accel",
+            0
+          ],
+          "max_positive_action_error": [
+            0.491719,
+            0.338416
+          ],
+          "max_negative_action_error": [
+            0.491719,
+            0.338416
+          ]
+        },
+        "accepted_scale": {
+          "passed": true,
+          "scale": 1.51,
+          "worst_ratio": 0.9953383333333333,
+          "limiting": [
+            "total_accel",
+            0
+          ],
+          "max_positive_action_error": [
+            0.491719,
+            0.338416
+          ],
+          "max_negative_action_error": [
+            0.491719,
+            0.338416
+          ]
+        },
+        "certified_scale_attained": true,
+        "search_grid": 0.01,
+        "search_max": 2.0,
+        "initial_partition": "3x3 trolley initial coordinates",
+        "certificate": "directional support of closed-loop reachable sets at every step; no saturation on passed domain"
+      },
+      "global_wrapper_audit": {
+        "passed": true,
+        "certification_metric": 1.45,
+        "unit": "initial_box_scale",
+        "nominal": {
+          "passed": true,
+          "scale": 1.0,
+          "worst_ratio": 0.7309611666666667,
+          "limiting": [
+            "total_accel",
+            0
+          ],
+          "max_positive_action_error": [
+            0.491719,
+            0.338416
+          ],
+          "max_negative_action_error": [
+            0.491719,
+            0.338416
+          ]
+        },
+        "accepted_scale": {
+          "passed": true,
+          "scale": 1.45,
+          "worst_ratio": 0.9976338333333333,
+          "limiting": [
+            "total_accel",
+            0
+          ],
+          "max_positive_action_error": [
+            0.491719,
+            0.338416
+          ],
+          "max_negative_action_error": [
+            0.491719,
+            0.338416
+          ]
+        },
+        "certified_scale_attained": true,
+        "search_grid": 0.01,
+        "search_max": 2.0,
+        "initial_partition": "3x3 trolley initial coordinates",
+        "certificate": "directional support of closed-loop reachable sets at every step; no saturation on passed domain"
+      }
+    }
+  },
+  "calibration": "87a750add5c88cc5e82cf55531c2cf8dcb34ccc6e54b4c47b75f2e6ccee0decd",
+  "protocol": "6dfd0b602bb2073a4de457ef0abe3f77ce0017d4c7d9d29bf3d0691078ab6eda"
+}

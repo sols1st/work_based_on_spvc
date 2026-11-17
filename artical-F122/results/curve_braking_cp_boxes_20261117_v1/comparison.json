@@ -1,0 +1,2495 @@
+{
+  "contracts_sha256": "fb6bd9903574bc8b6c8d32671a5c8af31b1077d701b02d9089a7f63aec9500eb",
+  "arms": {
+    "20261117501_linear": {
+      "holdout_sha256": "6b7c5e0a85629846927e874df0ecc3710e55ee6a1897865f55796a2a14899ad1",
+      "safe": 100,
+      "success": 85,
+      "boxes": {
+        "fixed_uniform": {
+          "q": 0.1263572290206394,
+          "covered": 91,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.016139507095476735,
+          "mean_equivalent_halfwidth": 0.1263572290206394,
+          "mean_axis_fullwidth": [
+            0.252714458041282,
+            0.252714458041282,
+            0.252714458041282
+          ],
+          "max_negative": [
+            0.1263572290206394,
+            0.1263572290206394,
+            0.1263572290206394
+          ],
+          "max_positive": [
+            0.1263572290206394,
+            0.1263572290206394,
+            0.1263572290206394
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.0972855419587209,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.402714458041279,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.0972855419587209,
+            "cells": 1,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.0
+        },
+        "fixed_axis": {
+          "q": 1.6339524478740393,
+          "covered": 90,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.014904575031627957,
+          "mean_equivalent_halfwidth": 0.12304856035202175,
+          "mean_axis_fullwidth": [
+            0.22392346240970548,
+            0.2704612920736092,
+            0.24610185002495655
+          ],
+          "max_negative": [
+            0.11196173120485367,
+            0.13523064603680746,
+            0.12305092501247827
+          ],
+          "max_positive": [
+            0.11196173120485367,
+            0.13523064603680746,
+            0.12305092501247827
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.103898149975043,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.396101850024957,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.103898149975043,
+            "cells": 1,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 0.9234839046481859
+        },
+        "fixed_signed": {
+          "q": 2.8064404056612338,
+          "covered": 89,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.03234132799197059,
+          "mean_equivalent_halfwidth": 0.15930251070950302,
+          "mean_axis_fullwidth": [
+            0.30399076998956925,
+            0.3584617467704898,
+            0.29679367038623394
+          ],
+          "max_negative": [
+            0.13671962881242464,
+            0.19159896901151674,
+            0.10093708447123363
+          ],
+          "max_positive": [
+            0.1672711411771426,
+            0.16686277775896402,
+            0.19585658591499297
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.9582868281700136,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.541713171829986,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 0.9582868281700136,
+            "cells": 1,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 2.003860948209167
+        },
+        "state_bins": {
+          "q": 1.6549869215316557,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.0146062789048224,
+          "mean_equivalent_halfwidth": 0.12222213545148237,
+          "mean_axis_fullwidth": [
+            0.2307510082111708,
+            0.27306688007922925,
+            0.2342950712753668
+          ],
+          "max_negative": [
+            0.12614511840971898,
+            0.14449342144963598,
+            0.13635703393159518
+          ],
+          "max_positive": [
+            0.12614511840971898,
+            0.14449342144963598,
+            0.13635703393159518
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.110560350845307,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.389439649154693,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.0772859321368093,
+            "cells": 4,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 0.9050015479664779
+        },
+        "state_signed": {
+          "q": 2.6101198319773107,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.023283336252376732,
+          "mean_equivalent_halfwidth": 0.14277485936845624,
+          "mean_axis_fullwidth": [
+            0.2820438190789212,
+            0.3323258516719357,
+            0.24947542844680987
+          ],
+          "max_negative": [
+            0.13735744407248432,
+            0.1819968011703348,
+            0.15793517689631814
+          ],
+          "max_positive": [
+            0.16639924401524336,
+            0.17338594144226083,
+            0.21324177437842085
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1181576147293706,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.381842385270629,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 0.9235164512431577,
+            "cells": 4,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.4426299461711647
+        },
+        "state_interp": {
+          "q": 1.641941847519316,
+          "covered": 91,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.014392398639260047,
+          "mean_equivalent_halfwidth": 0.12162263197216719,
+          "mean_axis_fullwidth": [
+            0.2289836834133356,
+            0.27050080195479087,
+            0.23385673868690804
+          ],
+          "max_negative": [
+            0.12513860958130696,
+            0.14334251594325062,
+            0.13528139122195995
+          ],
+          "max_positive": [
+            0.12513860958130696,
+            0.14334251594325062,
+            0.13528139122195995
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1124476817384243,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.387552318261576,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.079435541389424,
+            "cells": 5,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 0.891749577860012
+        },
+        "state_grid": {
+          "q": 1.7226413250143466,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.016375839230738452,
+          "mean_equivalent_halfwidth": 0.12697099599804215,
+          "mean_axis_fullwidth": [
+            0.23374926118722336,
+            0.2817274829098028,
+            0.24825480686944462
+          ],
+          "max_negative": [
+            0.12699692268381613,
+            0.1621290802650696,
+            0.14563436119009818
+          ],
+          "max_positive": [
+            0.12699692268381613,
+            0.1621290802650696,
+            0.14563436119009818
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1040413939784814,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.3959586060215186,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.0587312776198035,
+            "cells": 3,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.014643082583851
+        },
+        "state_loglinear": {
+          "q": 4.524511724831163,
+          "covered": 91,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.016383220104575855,
+          "mean_equivalent_halfwidth": 0.1269900691404301,
+          "mean_axis_fullwidth": [
+            0.24167302636085553,
+            0.2781480580059602,
+            0.24285529812800916
+          ],
+          "max_negative": [
+            0.12583933937453423,
+            0.1446471796644096,
+            0.13361651782018896
+          ],
+          "max_positive": [
+            0.12583933937453423,
+            0.1446471796644096,
+            0.13361651782018896
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1173669050797201,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.38263309492028,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.0817683552203334,
+            "cells": 258,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.015100399761739
+        }
+      }
+    },
+    "20261117501_neural": {
+      "holdout_sha256": "c345aa9496b24f72f0cd4eaa7319459f1a0870d09d84d8168d0d4880d0f839f8",
+      "safe": 100,
+      "success": 85,
+      "boxes": {
+        "fixed_uniform": {
+          "q": 0.1264226258423915,
+          "covered": 91,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.016164579317372228,
+          "mean_equivalent_halfwidth": 0.12642262584239153,
+          "mean_axis_fullwidth": [
+            0.25284525168478794,
+            0.25284525168478794,
+            0.25284525168478794
+          ],
+          "max_negative": [
+            0.1264226258423915,
+            0.1264226258423915,
+            0.1264226258423915
+          ],
+          "max_positive": [
+            0.1264226258423915,
+            0.1264226258423915,
+            0.1264226258423915
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.0971547483152166,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.402845251684783,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.0971547483152166,
+            "cells": 1,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.0
+        },
+        "fixed_axis": {
+          "q": 1.62804249953848,
+          "covered": 90,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.015095170963970398,
+          "mean_equivalent_halfwidth": 0.1235708449703615,
+          "mean_axis_fullwidth": [
+            0.23014686253218897,
+            0.27332128875360673,
+            0.23997141784712486
+          ],
+          "max_negative": [
+            0.115073431266091,
+            0.13666064437680253,
+            0.11998570892355964
+          ],
+          "max_positive": [
+            0.115073431266091,
+            0.13666064437680253,
+            0.11998570892355964
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1100285821528804,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.38997141784712,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.1100285821528804,
+            "cells": 1,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 0.9338424877996964
+        },
+        "fixed_signed": {
+          "q": 2.837690441346889,
+          "covered": 90,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.033701674098669,
+          "mean_equivalent_halfwidth": 0.16150544269226735,
+          "mean_axis_fullwidth": [
+            0.3117515333181584,
+            0.363109467741137,
+            0.29771814441119543
+          ],
+          "max_negative": [
+            0.14244985517346131,
+            0.19376056387767235,
+            0.1008462768002869
+          ],
+          "max_positive": [
+            0.16930167814469466,
+            0.16934890386345935,
+            0.196871867610914
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.9562562647781716,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.543743735221828,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 0.9562562647781716,
+            "cells": 1,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 2.0849088266992193
+        },
+        "state_bins": {
+          "q": 1.672289847371174,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.015422357238551603,
+          "mean_equivalent_halfwidth": 0.12445726623378574,
+          "mean_axis_fullwidth": [
+            0.23817189127476032,
+            0.2785514141614439,
+            0.23493764688454385
+          ],
+          "max_negative": [
+            0.1287808153386288,
+            0.14782706304188803,
+            0.13800635394153346
+          ],
+          "max_positive": [
+            0.1287808153386288,
+            0.14782706304188803,
+            0.13800635394153346
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.107353358893004,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.392646641106996,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.0739872921169331,
+            "cells": 4,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 0.9540834274590152
+        },
+        "state_signed": {
+          "q": 2.571030866559453,
+          "covered": 90,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.02224149610330719,
+          "mean_equivalent_halfwidth": 0.14061273969200103,
+          "mean_axis_fullwidth": [
+            0.2814199959714908,
+            0.32668802115535145,
+            0.24311338075895517
+          ],
+          "max_negative": [
+            0.14194276912605377,
+            0.17828820071540055,
+            0.1553256519792717
+          ],
+          "max_positive": [
+            0.16299187515714886,
+            0.16983827333580684,
+            0.21077935951980958
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1219583345513007,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.378041665448699,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 0.9284412809603806,
+            "cells": 4,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.3759402992569092
+        },
+        "state_interp": {
+          "q": 1.6431929210846232,
+          "covered": 90,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.014772667041278107,
+          "mean_equivalent_halfwidth": 0.12268448404836119,
+          "mean_axis_fullwidth": [
+            0.23392483478952458,
+            0.2734966433734551,
+            0.2322737243728929
+          ],
+          "max_negative": [
+            0.1265291248575485,
+            0.1452454992849039,
+            0.135559113378836
+          ],
+          "max_positive": [
+            0.1265291248575485,
+            0.1452454992849039,
+            0.135559113378836
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1115752773846266,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.388424722615373,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.0787897618730273,
+            "cells": 5,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 0.913891215554356
+        },
+        "state_grid": {
+          "q": 1.6891604272607517,
+          "covered": 91,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.015867996254707917,
+          "mean_equivalent_halfwidth": 0.1256446596090168,
+          "mean_axis_fullwidth": [
+            0.23761975753748982,
+            0.2796873486321461,
+            0.23914384579449746
+          ],
+          "max_negative": [
+            0.1354912148557486,
+            0.1593256728443902,
+            0.14116174487537772
+          ],
+          "max_positive": [
+            0.1354912148557486,
+            0.1593256728443902,
+            0.14116174487537772
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1094335126715746,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.390566487328425,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.0676765102492443,
+            "cells": 3,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 0.9816522869639069
+        },
+        "state_loglinear": {
+          "q": 4.526799762802743,
+          "covered": 91,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.016741107927358563,
+          "mean_equivalent_halfwidth": 0.1279081064664296,
+          "mean_axis_fullwidth": [
+            0.24341932241932812,
+            0.2822179851275852,
+            0.24284476960746446
+          ],
+          "max_negative": [
+            0.1269917539655224,
+            0.14518270207383369,
+            0.13297118620980988
+          ],
+          "max_positive": [
+            0.1269917539655224,
+            0.14518270207383369,
+            0.13297118620980988
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.118676006999042,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.381323993000958,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.0830359098848819,
+            "cells": 258,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.0356661685198782
+        }
+      }
+    },
+    "20261117502_linear": {
+      "holdout_sha256": "d9cd5db09e375412e66b0e7196b9eb196022f1fb92cbe3ca10cd0306e3f98634",
+      "safe": 100,
+      "success": 84,
+      "boxes": {
+        "fixed_uniform": {
+          "q": 0.12862055978683232,
+          "covered": 92,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.01702241495907952,
+          "mean_equivalent_halfwidth": 0.12862055978683234,
+          "mean_axis_fullwidth": [
+            0.2572411195736727,
+            0.2572411195736727,
+            0.2572411195736727
+          ],
+          "max_negative": [
+            0.12862055978683232,
+            0.12862055978683232,
+            0.12862055978683232
+          ],
+          "max_positive": [
+            0.12862055978683232,
+            0.12862055978683232,
+            0.12862055978683232
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.0927588804263353,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.407241119573665,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.0927588804263353,
+            "cells": 1,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.0
+        },
+        "fixed_axis": {
+          "q": 1.6450127034613458,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.014731704612600285,
+          "mean_equivalent_halfwidth": 0.1225709837456173,
+          "mean_axis_fullwidth": [
+            0.2334110741118664,
+            0.27031322256806234,
+            0.2334878332501208
+          ],
+          "max_negative": [
+            0.11670553705593095,
+            0.1351566112840293,
+            0.11674391662506091
+          ],
+          "max_positive": [
+            0.11670553705593095,
+            0.1351566112840293,
+            0.11674391662506091
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.116512166749878,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.383487833250122,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.116512166749878,
+            "cells": 1,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 0.8654297670462203
+        },
+        "fixed_signed": {
+          "q": 2.65828041206396,
+          "covered": 89,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.027488467935862845,
+          "mean_equivalent_halfwidth": 0.15089916944354892,
+          "mean_axis_fullwidth": [
+            0.29143378123812347,
+            0.3454805296015584,
+            0.273015351204791
+          ],
+          "max_negative": [
+            0.1330048773670537,
+            0.18868652578584338,
+            0.09776570009556007
+          ],
+          "max_positive": [
+            0.15842890387106232,
+            0.15679400381571013,
+            0.17524965110923402
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.9995006977815315,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.5004993022184685,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 0.9995006977815315,
+            "cells": 1,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.614839492630326
+        },
+        "state_bins": {
+          "q": 1.659684737776348,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.014603888064585268,
+          "mean_equivalent_halfwidth": 0.12221546641217407,
+          "mean_axis_fullwidth": [
+            0.2329783337474276,
+            0.27431978663080686,
+            0.2298227422438654
+          ],
+          "max_negative": [
+            0.1253383892716492,
+            0.14902527540802696,
+            0.12809953106300612
+          ],
+          "max_positive": [
+            0.1253383892716492,
+            0.14902527540802696,
+            0.12809953106300612
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1217679175199855,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.3782320824800145,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.0938009378739872,
+            "cells": 4,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 0.8579210470248675
+        },
+        "state_signed": {
+          "q": 2.465805884074063,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.02000553851636548,
+          "mean_equivalent_halfwidth": 0.13573340787878893,
+          "mean_axis_fullwidth": [
+            0.2670322523712381,
+            0.31584171231919533,
+            0.23632591800411948
+          ],
+          "max_negative": [
+            0.12997504538424462,
+            0.19124052069391118,
+            0.14672568823954996
+          ],
+          "max_positive": [
+            0.15549353556818843,
+            0.16417249140283383,
+            0.1887563966317717
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1366027396239184,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.3633972603760816,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 0.9724872067364565,
+            "cells": 4,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.1752467886875713
+        },
+        "state_interp": {
+          "q": 1.659684737776348,
+          "covered": 92,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.014683045063438992,
+          "mean_equivalent_halfwidth": 0.12243588221280378,
+          "mean_axis_fullwidth": [
+            0.23326971446310601,
+            0.2742575657144903,
+            0.23037551127117853
+          ],
+          "max_negative": [
+            0.12530903114203207,
+            0.1490031025298887,
+            0.12802603722879635
+          ],
+          "max_positive": [
+            0.12530903114203207,
+            0.1490031025298887,
+            0.12802603722879635
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1217679175199855,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.3782320824800145,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.0938009378739872,
+            "cells": 5,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 0.86257120971001
+        },
+        "state_grid": {
+          "q": 1.7032701585577406,
+          "covered": 94,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.016176091556289848,
+          "mean_equivalent_halfwidth": 0.1264526309969306,
+          "mean_axis_fullwidth": [
+            0.2427654078490332,
+            0.2777283008065361,
+            0.23833258508546756
+          ],
+          "max_negative": [
+            0.13655835074662803,
+            0.16186993969467783,
+            0.1413696756164702
+          ],
+          "max_positive": [
+            0.13655835074662803,
+            0.16186993969467783,
+            0.1413696756164702
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.114308494612252,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.385691505387748,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.0672606487670588,
+            "cells": 3,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 0.95028182518026
+        },
+        "state_loglinear": {
+          "q": 4.4840372259980095,
+          "covered": 94,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.01620258854383963,
+          "mean_equivalent_halfwidth": 0.12652163790067855,
+          "mean_axis_fullwidth": [
+            0.24479444201813177,
+            0.2824125821990036,
+            0.2337274228946267
+          ],
+          "max_negative": [
+            0.1288171731486804,
+            0.14911891657021864,
+            0.1219583995947112
+          ],
+          "max_positive": [
+            0.1288171731486804,
+            0.14911891657021864,
+            0.1219583995947112
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1312103464381718,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.368789653561828,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.1055062496505332,
+            "cells": 258,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 0.9518384190956051
+        }
+      }
+    },
+    "20261117502_neural": {
+      "holdout_sha256": "f0605be34def71299d641e11a735bc8420f46a73070b6f7b5710e39b777173c6",
+      "safe": 100,
+      "success": 84,
+      "boxes": {
+        "fixed_uniform": {
+          "q": 0.12501968859643847,
+          "covered": 89,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.01563238438664797,
+          "mean_equivalent_halfwidth": 0.12501968859643847,
+          "mean_axis_fullwidth": [
+            0.250039377192877,
+            0.250039377192877,
+            0.250039377192877
+          ],
+          "max_negative": [
+            0.12501968859643847,
+            0.12501968859643847,
+            0.12501968859643847
+          ],
+          "max_positive": [
+            0.12501968859643847,
+            0.12501968859643847,
+            0.12501968859643847
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.0999606228071226,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.400039377192877,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.0999606228071226,
+            "cells": 1,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.0
+        },
+        "fixed_axis": {
+          "q": 1.6429302559539734,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.015012449475901236,
+          "mean_equivalent_halfwidth": 0.12334470878046666,
+          "mean_axis_fullwidth": [
+            0.2343556885222668,
+            0.27451790210146054,
+            0.23334870114442846
+          ],
+          "max_negative": [
+            0.11717784426113113,
+            0.13725895105072666,
+            0.11667435057221272
+          ],
+          "max_positive": [
+            0.11717784426113113,
+            0.13725895105072666,
+            0.11667435057221272
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1166512988555741,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.383348701144426,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.1166512988555741,
+            "cells": 1,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 0.960342907683601
+        },
+        "fixed_signed": {
+          "q": 2.6141102120004054,
+          "covered": 89,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.02809990766468707,
+          "mean_equivalent_halfwidth": 0.1520098166860203,
+          "mean_axis_fullwidth": [
+            0.2933055618524518,
+            0.3450516837548358,
+            0.2776517680922969
+          ],
+          "max_negative": [
+            0.13189274606766258,
+            0.1913959557394042,
+            0.09884504077201006
+          ],
+          "max_positive": [
+            0.16141281578479713,
+            0.15365572801544125,
+            0.17880672732028177
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.9923865453594365,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.5076134546405635,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 0.9923865453594365,
+            "cells": 1,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.7975445696363466
+        },
+        "state_bins": {
+          "q": 1.6426735077694778,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.014463802243432551,
+          "mean_equivalent_halfwidth": 0.12182343176998646,
+          "mean_axis_fullwidth": [
+            0.23120546972499945,
+            0.2762548258059051,
+            0.22732779069219702
+          ],
+          "max_negative": [
+            0.12244491322306882,
+            0.14850807828703125,
+            0.1264907670760526
+          ],
+          "max_positive": [
+            0.12244491322306882,
+            0.14850807828703125,
+            0.1264907670760526
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.123586641850486,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.376413358149514,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.0970184658478948,
+            "cells": 4,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 0.9252460715965035
+        },
+        "state_signed": {
+          "q": 2.3801687729898764,
+          "covered": 94,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.018677499079414562,
+          "mean_equivalent_halfwidth": 0.13266089172457116,
+          "mean_axis_fullwidth": [
+            0.2639250151746788,
+            0.3111994210148157,
+            0.22719587484763418
+          ],
+          "max_negative": [
+            0.12531987219082366,
+            0.18354547241596014,
+            0.14318837616475616
+          ],
+          "max_positive": [
+            0.1591791854958373,
+            0.15838129570758144,
+            0.18249903936900994
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1446869101425818,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.355313089857418,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 0.98500192126198,
+            "cells": 4,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.194795279942547
+        },
+        "state_interp": {
+          "q": 1.6311679731013273,
+          "covered": 90,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.014263710109298524,
+          "mean_equivalent_halfwidth": 0.12125905302241712,
+          "mean_axis_fullwidth": [
+            0.2302876149053889,
+            0.2744526499496438,
+            0.22625624877058959
+          ],
+          "max_negative": [
+            0.12156867042127553,
+            0.14744516239206593,
+            0.1255275150625235
+          ],
+          "max_positive": [
+            0.12156867042127553,
+            0.14744516239206593,
+            0.1255275150625235
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1251724753890446,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.374827524610955,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.0987903869252245,
+            "cells": 5,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 0.9124462242293334
+        },
+        "state_grid": {
+          "q": 1.6506596630614023,
+          "covered": 94,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.015643086355443044,
+          "mean_equivalent_halfwidth": 0.12504821168385913,
+          "mean_axis_fullwidth": [
+            0.23934929678017614,
+            0.2793660318725754,
+            0.23274711713859647
+          ],
+          "max_negative": [
+            0.13256901489308304,
+            0.1571290553461772,
+            0.13818990866981884
+          ],
+          "max_positive": [
+            0.13256901489308304,
+            0.1571290553461772,
+            0.13818990866981884
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1181302173588694,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.381869782641131,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.0736201826603615,
+            "cells": 3,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.0006846024592522
+        },
+        "state_loglinear": {
+          "q": 4.4382120520693595,
+          "covered": 91,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.01580205928134653,
+          "mean_equivalent_halfwidth": 0.1254703857611277,
+          "mean_axis_fullwidth": [
+            0.24520991807780515,
+            0.27774517387202213,
+            0.2312798519546191
+          ],
+          "max_negative": [
+            0.12912976511464197,
+            0.14822259326641904,
+            0.12279656061114386
+          ],
+          "max_positive": [
+            0.12912976511464197,
+            0.14822259326641904,
+            0.12279656061114386
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1312082098479443,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.368791790152056,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.1032685432875953,
+            "cells": 258,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.0108540636221486
+        }
+      }
+    },
+    "20261117503_linear": {
+      "holdout_sha256": "56efd799e041a021f39197d0a69d75825338f10917d2cc1f13ea7387d201db11",
+      "safe": 100,
+      "success": 84,
+      "boxes": {
+        "fixed_uniform": {
+          "q": 0.1212223005966272,
+          "covered": 89,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.014250744469310146,
+          "mean_equivalent_halfwidth": 0.12122230059662721,
+          "mean_axis_fullwidth": [
+            0.24244460119325587,
+            0.24244460119325587,
+            0.24244460119325587
+          ],
+          "max_negative": [
+            0.1212223005966272,
+            0.1212223005966272,
+            0.1212223005966272
+          ],
+          "max_positive": [
+            0.1212223005966272,
+            0.1212223005966272,
+            0.1212223005966272
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1075553988067455,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.3924446011932545,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.1075553988067455,
+            "cells": 1,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.0
+        },
+        "fixed_axis": {
+          "q": 1.6159629611359494,
+          "covered": 92,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.014635882596135725,
+          "mean_equivalent_halfwidth": 0.12230465212562605,
+          "mean_axis_fullwidth": [
+            0.22661095199617334,
+            0.2669940673871448,
+            0.24190030188916836
+          ],
+          "max_negative": [
+            0.11330547599808383,
+            0.1334970336935711,
+            0.12095015094458317
+          ],
+          "max_positive": [
+            0.11330547599808383,
+            0.1334970336935711,
+            0.12095015094458317
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1080996981108333,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.391900301889167,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.1080996981108333,
+            "cells": 1,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.0270258250475965
+        },
+        "fixed_signed": {
+          "q": 2.839628563653845,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.03293304509095527,
+          "mean_equivalent_halfwidth": 0.16026817832898935,
+          "mean_axis_fullwidth": [
+            0.3013183664598386,
+            0.359427011328421,
+            0.3040854026722812
+          ],
+          "max_negative": [
+            0.1304230542651117,
+            0.20169501799200987,
+            0.10140379103837915
+          ],
+          "max_positive": [
+            0.1708953121947252,
+            0.1577319933364096,
+            0.20268161163389248
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.9446367767322146,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.555363223267785,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 0.9446367767322146,
+            "cells": 1,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 2.3109701504983553
+        },
+        "state_bins": {
+          "q": 1.643100824635485,
+          "covered": 92,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.014492693207890543,
+          "mean_equivalent_halfwidth": 0.1219044905757237,
+          "mean_axis_fullwidth": [
+            0.2302829195287568,
+            0.2707243381897828,
+            0.23286458212012137
+          ],
+          "max_negative": [
+            0.12650791075087964,
+            0.1482550114078379,
+            0.1365738104769583
+          ],
+          "max_positive": [
+            0.12650791075087964,
+            0.1482550114078379,
+            0.1365738104769583
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1196147849153695,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.3803852150846305,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.076852379046083,
+            "cells": 4,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.0169779718597474
+        },
+        "state_signed": {
+          "q": 2.475831947406704,
+          "covered": 94,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.02022469627901086,
+          "mean_equivalent_halfwidth": 0.13622725547791276,
+          "mean_axis_fullwidth": [
+            0.26992652834948133,
+            0.3207461349968221,
+            0.23364907372424015
+          ],
+          "max_negative": [
+            0.1401857358932401,
+            0.1930999235408881,
+            0.14372514556872432
+          ],
+          "max_positive": [
+            0.17050653210139693,
+            0.15718067466430838,
+            0.20471044989396495
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1352666036087422,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.364733396391258,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 0.9405791002120694,
+            "cells": 4,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.4192027877958227
+        },
+        "state_interp": {
+          "q": 1.643100824635485,
+          "covered": 92,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.014715553051247934,
+          "mean_equivalent_halfwidth": 0.12252617253144632,
+          "mean_axis_fullwidth": [
+            0.23163024367926477,
+            0.27159101214720677,
+            0.23422420551029383
+          ],
+          "max_negative": [
+            0.12650752189047082,
+            0.14825468741801515,
+            0.13645240756933372
+          ],
+          "max_positive": [
+            0.12650752189047082,
+            0.14825468741801515,
+            0.13645240756933372
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1196147849153695,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.3803852150846305,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.076852379046083,
+            "cells": 5,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.0326164421050972
+        },
+        "state_grid": {
+          "q": 1.6575650367658445,
+          "covered": 94,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.014897065322484823,
+          "mean_equivalent_halfwidth": 0.12302789076708515,
+          "mean_axis_fullwidth": [
+            0.23023413797019096,
+            0.2728479675357981,
+            0.2349350582254694
+          ],
+          "max_negative": [
+            0.13524057155122624,
+            0.14979123470162145,
+            0.14048460244807828
+          ],
+          "max_positive": [
+            0.13524057155122624,
+            0.14979123470162145,
+            0.14048460244807828
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1149579723768444,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.385042027623156,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.069030795103843,
+            "cells": 3,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.0453534799228608
+        },
+        "state_loglinear": {
+          "q": 4.421438161650495,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.015359012337046724,
+          "mean_equivalent_halfwidth": 0.12428663620671912,
+          "mean_axis_fullwidth": [
+            0.23725805506907205,
+            0.27544127089800585,
+            0.23399176956337975
+          ],
+          "max_negative": [
+            0.1263257737297403,
+            0.14769158555445844,
+            0.12783365690679188
+          ],
+          "max_positive": [
+            0.1263257737297403,
+            0.14769158555445844,
+            0.12783365690679188
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1241755022340518,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.375824497765948,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.0931380144013527,
+            "cells": 258,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.0777691207728342
+        }
+      }
+    },
+    "20261117503_neural": {
+      "holdout_sha256": "bb01d4de739f2b62f756b57e45f34441ed19523cbc2fec60ab9a50bdd539306d",
+      "safe": 100,
+      "success": 84,
+      "boxes": {
+        "fixed_uniform": {
+          "q": 0.12099416202482977,
+          "covered": 89,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.014170436727905187,
+          "mean_equivalent_halfwidth": 0.12099416202482978,
+          "mean_axis_fullwidth": [
+            0.2419883240496577,
+            0.2419883240496577,
+            0.2419883240496577
+          ],
+          "max_negative": [
+            0.12099416202482977,
+            0.12099416202482977,
+            0.12099416202482977
+          ],
+          "max_positive": [
+            0.12099416202482977,
+            0.12099416202482977,
+            0.12099416202482977
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1080116759503404,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.3919883240496596,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.1080116759503404,
+            "cells": 1,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.0
+        },
+        "fixed_axis": {
+          "q": 1.5964696864258379,
+          "covered": 92,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.014689291320138378,
+          "mean_equivalent_halfwidth": 0.12245324140785888,
+          "mean_axis_fullwidth": [
+            0.22629876313710043,
+            0.26697867682201937,
+            0.24313198024933796
+          ],
+          "max_negative": [
+            0.11314938156855392,
+            0.13348933841100688,
+            0.12156599012466707
+          ],
+          "max_positive": [
+            0.11314938156855392,
+            0.13348933841100688,
+            0.12156599012466707
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1068680197506655,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.3931319802493345,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.1068680197506655,
+            "cells": 1,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.03661528590798
+        },
+        "fixed_signed": {
+          "q": 2.8371656585697607,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.034601382338533666,
+          "mean_equivalent_halfwidth": 0.16293003624574903,
+          "mean_axis_fullwidth": [
+            0.3089895874297202,
+            0.36680533628782536,
+            0.30529097066615124
+          ],
+          "max_negative": [
+            0.13378704954844883,
+            0.20752550987627394,
+            0.10071947869195474
+          ],
+          "max_positive": [
+            0.17520253788126552,
+            0.15927982641155058,
+            0.20457149197420227
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.940857016051595,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.559142983948405,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 0.940857016051595,
+            "cells": 1,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 2.4418007012017324
+        },
+        "state_bins": {
+          "q": 1.64477749856598,
+          "covered": 92,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.014835354009095343,
+          "mean_equivalent_halfwidth": 0.12285777402776277,
+          "mean_axis_fullwidth": [
+            0.23447768711172676,
+            0.27219511955570386,
+            0.23326936402749668
+          ],
+          "max_negative": [
+            0.12603836175815858,
+            0.15037152895576752,
+            0.13912064786367256
+          ],
+          "max_positive": [
+            0.12603836175815858,
+            0.15037152895576752,
+            0.13912064786367256
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1181795219892043,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.381820478010796,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.0717587042726544,
+            "cells": 4,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.0469228502944277
+        },
+        "state_signed": {
+          "q": 2.7116660618888204,
+          "covered": 96,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.02693083464285832,
+          "mean_equivalent_halfwidth": 0.14987180647931161,
+          "mean_axis_fullwidth": [
+            0.30206883330915135,
+            0.34724562341252513,
+            0.25723444887160984
+          ],
+          "max_negative": [
+            0.1532867965658621,
+            0.2171394814254198,
+            0.1578225595688789
+          ],
+          "max_positive": [
+            0.19554449497022483,
+            0.1703080761423925,
+            0.22798094283528167
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.117739086305316,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.382260913694684,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 0.8940381143294367,
+            "cells": 4,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.9004943291426346
+        },
+        "state_interp": {
+          "q": 1.6517337114487203,
+          "covered": 92,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.015295509240561635,
+          "mean_equivalent_halfwidth": 0.12411510849284589,
+          "mean_axis_fullwidth": [
+            0.23689230008135265,
+            0.2741202072514545,
+            0.2361233518788179
+          ],
+          "max_negative": [
+            0.12656002026410348,
+            0.151003038373508,
+            0.1396093019641494
+          ],
+          "max_positive": [
+            0.12656002026410348,
+            0.151003038373508,
+            0.1396093019641494
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1171990899264923,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.382800910073508,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.0705819459040988,
+            "cells": 5,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.0793957542918133
+        },
+        "state_grid": {
+          "q": 1.6717065428566862,
+          "covered": 94,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.015832284734888378,
+          "mean_equivalent_halfwidth": 0.12555033280766179,
+          "mean_axis_fullwidth": [
+            0.23425541769928726,
+            0.27883199484791765,
+            0.2415805031742627
+          ],
+          "max_negative": [
+            0.1309698431061382,
+            0.15438375386188344,
+            0.14081262281425633
+          ],
+          "max_positive": [
+            0.1309698431061382,
+            0.15438375386188344,
+            0.14081262281425633
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1113042064631458,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.388695793536854,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.0683747543714865,
+            "cells": 3,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.1172757084974374
+        },
+        "state_loglinear": {
+          "q": 4.3666589638737285,
+          "covered": 91,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.015450589748709158,
+          "mean_equivalent_halfwidth": 0.1245331646853197,
+          "mean_axis_fullwidth": [
+            0.23672765772951096,
+            0.2779154336246985,
+            0.2338748722025716
+          ],
+          "max_negative": [
+            0.1261168847797463,
+            0.1447490576574258,
+            0.12658250072215982
+          ],
+          "max_positive": [
+            0.1261168847797463,
+            0.1447490576574258,
+            0.12658250072215982
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 1.1284284693622304,
+            "unit": "m",
+            "direction": "larger",
+            "name": "guaranteed spare positive camera-distance bias below brake guard",
+            "maximum_perceived_distance_upper_m": 6.37157153063777,
+            "active_distance_cell_m": [
+              6.15,
+              6.15
+            ],
+            "global_envelope_slack_m": 1.0955428859278804,
+            "cells": 258,
+            "nominal_checkpoint_passed": true,
+            "other_unchanged_checks": {
+              "lateral_step_slack": 0.006316460326604767,
+              "yaw_and_steering_step_slack": 0.002811504273702317,
+              "obstacle_progress_step_slack": 0.005135648549758454,
+              "forward_progress_cosine": 0.9820042351172703,
+              "steering_weight": 0.025394633333215257,
+              "body_lane_slack_m": 0.06579035898636325,
+              "body_station_slack_m": 0.08565781381988846,
+              "initial_level_slack": 1.0,
+              "braking_reserve_support": 0.2799999999999998,
+              "minimum_frenet_denominator": 0.952071501606854
+            },
+            "condition": "All states in the safe sublevel, both curvatures and arbitrary allowed errors. Measured d<=7.50 ensures commanded brake >=1.20 m/s^2; remaining component errors enter only through steering/brake outputs confined by actuator bounds."
+          },
+          "volume_relative_to_uniform": 1.090339701265736
+        }
+      }
+    }
+  }
+}

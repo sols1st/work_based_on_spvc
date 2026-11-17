@@ -1,0 +1,26 @@
+{
+  "task": "braking",
+  "features": [
+    "obstacle distance (m)",
+    "absolute heading (rad)"
+  ],
+  "methods": [
+    "fixed_uniform",
+    "fixed_axis",
+    "fixed_signed",
+    "state_bins",
+    "state_signed",
+    "state_interp",
+    "state_grid",
+    "state_loglinear"
+  ],
+  "error": "normalized decoded camera observation minus true physical coordinate",
+  "score": "max over all times, axes and both signs of error / applicable half-width",
+  "shape_fit": "old frozen-system calibration split reassigned as development only",
+  "calibration_trajectories": 199,
+  "rank": 190,
+  "alpha": 0.05,
+  "holdout_trajectories": 100,
+  "feature_definition": "def features(states):\n    \"\"\"True obstacle distance and absolute heading are available in the offline proof.\"\"\"\n    states = np.asarray(states)\n    return np.stack([states[..., 2], np.abs(states[..., 1])], axis=-1)\n",
+  "method_sha256": "05835352ae6c959dc512a1d2a397ee9801f99b033061a37db0aa3dc4beeb50c7"
+}

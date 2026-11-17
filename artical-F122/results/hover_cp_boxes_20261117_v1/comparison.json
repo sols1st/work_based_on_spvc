@@ -1,0 +1,4799 @@
+{
+  "contracts_sha256": "8500775521aae162264f87c54bf3edfea38138b6320ab5b59ec2f2d31310d4d7",
+  "arms": {
+    "617201_linear": {
+      "holdout_sha256": "4a747429b22ff86d8107f396514e90beb4e0cbb78bc1edba377d74df90b0baf4",
+      "safe": 100,
+      "success": 100,
+      "boxes": {
+        "fixed_uniform": {
+          "q": 0.20946132611611484,
+          "covered": 99,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.0735193287653899,
+          "mean_equivalent_halfwidth": 0.20946132611611487,
+          "mean_axis_fullwidth": [
+            0.4189226522322473,
+            0.4189226522322473,
+            0.4189226522322473
+          ],
+          "max_negative": [
+            0.20946132611611484,
+            0.20946132611611484,
+            0.20946132611611484
+          ],
+          "max_positive": [
+            0.20946132611611484,
+            0.20946132611611484,
+            0.20946132611611484
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.48337707171871963,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "435387360014373431/900719925474099200",
+            "wind_per_axis": [
+              0.48337707171871963,
+              0.48337707171871963,
+              0.48337707171871963
+            ],
+            "wind_margin_above_nominal": 0.4033770717187196,
+            "thrust_headroom": 2.3021270717187194,
+            "exact_thrust_headroom": "2073571724470391351/900719925474099200",
+            "original_wind": 0.08,
+            "state_cells": 8,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.20946132611611484,
+                  0.20946132611611484
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.20946132611611484,
+                  0.20946132611611484
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.20946132611611484,
+                  0.20946132611611484
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 1.0
+        },
+        "fixed_axis": {
+          "q": 2.187169953235755,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.018722034768903637,
+          "mean_equivalent_halfwidth": 0.13276624941658977,
+          "mean_axis_fullwidth": [
+            0.18650158349397705,
+            0.20693017053433796,
+            0.48511723940404305
+          ],
+          "max_negative": [
+            0.09325079174699137,
+            0.10346508526716634,
+            0.2425586197020202
+          ],
+          "max_positive": [
+            0.09325079174699137,
+            0.10346508526716634,
+            0.2425586197020202
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.46020896620858587,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "1866829351183125762872737122255921/4056481920730334084789450257203200",
+            "wind_per_axis": [
+              0.564724445777106,
+              0.5575744403129835,
+              0.46020896620858587
+            ],
+            "wind_margin_above_nominal": 0.38020896620858585,
+            "thrust_headroom": 2.278958966208586,
+            "exact_thrust_headroom": "9244555844511420879583549777544241/4056481920730334084789450257203200",
+            "original_wind": 0.08,
+            "state_cells": 8,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.09325079174699137,
+                  0.09325079174699137
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10346508526716634,
+                  0.10346508526716634
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.2425586197020202,
+                  0.2425586197020202
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.2546545933335188
+        },
+        "fixed_signed": {
+          "q": 3.1861832546562923,
+          "covered": 94,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.026074627118155894,
+          "mean_equivalent_halfwidth": 0.14826638762441097,
+          "mean_axis_fullwidth": [
+            0.2011299350039621,
+            0.23187500953674411,
+            0.559097368801461
+          ],
+          "max_negative": [
+            0.12005935747534706,
+            0.10628517607732688,
+            0.27475102795354533
+          ],
+          "max_positive": [
+            0.0810705775286141,
+            0.12558983345942198,
+            0.28434634084790705
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.4309575614064651,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "218521444555919781484860178016847/507060240091291760598681282150400",
+            "wind_per_axis": [
+              0.545958449767257,
+              0.5420871165784046,
+              0.4309575614064651
+            ],
+            "wind_margin_above_nominal": 0.35095756140646506,
+            "thrust_headroom": 2.249707561406465,
+            "exact_thrust_headroom": "1140737256221956671073711759927887/507060240091291760598681282150400",
+            "original_wind": 0.08,
+            "state_cells": 8,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.12005935747534706,
+                  0.0810705775286141
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10628517607732688,
+                  0.12558983345942198
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.27475102795354533,
+                  0.28434634084790705
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.35466356339247257
+        },
+        "state_bins": {
+          "q": 2.1372244667149674,
+          "covered": 94,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.018056461693826565,
+          "mean_equivalent_halfwidth": 0.13117393734950905,
+          "mean_axis_fullwidth": [
+            0.18475091846587688,
+            0.2045693522267045,
+            0.474297916521695
+          ],
+          "max_negative": [
+            0.10400033522317899,
+            0.10902670684062658,
+            0.2502249605786188
+          ],
+          "max_positive": [
+            0.10400033522317899,
+            0.10902670684062658,
+            0.2502249605786188
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.4548425275949668,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "922530244984135484558187743385703/2028240960365167042394725128601600",
+            "wind_per_axis": [
+              0.5571997653437747,
+              0.5536813052115613,
+              0.4548425275949668
+            ],
+            "wind_margin_above_nominal": 0.37484252759496683,
+            "thrust_headroom": 2.2735925275949667,
+            "exact_thrust_headroom": "4611393491648283042913594071029863/2028240960365167042394725128601600",
+            "original_wind": 0.08,
+            "state_cells": 14,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10400033522317899,
+                  0.10400033522317899
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10902670684062658,
+                  0.10902670684062658
+                ]
+              },
+              {
+                "height": [
+                  0.09080252483631315,
+                  1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.2502249605786188,
+                  0.2502249605786188
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.24560155808069428
+        },
+        "state_signed": {
+          "q": 3.1526603714640657,
+          "covered": 89,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.023546884498191412,
+          "mean_equivalent_halfwidth": 0.14331153756762358,
+          "mean_axis_fullwidth": [
+            0.19647362799595533,
+            0.22653215854907477,
+            0.5292884163547549
+          ],
+          "max_negative": [
+            0.1372031333710367,
+            0.11736291630992408,
+            0.3132741688551139
+          ],
+          "max_positive": [
+            0.09223281804924047,
+            0.1336344110059138,
+            0.3431000762132309
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.3898299466507384,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "49416816585874715145450987142473/126765060022822940149670320537600",
+            "wind_per_axis": [
+              0.5339578066402743,
+              0.5364559122958603,
+              0.3898299466507384
+            ],
+            "wind_margin_above_nominal": 0.3098299466507384,
+            "thrust_headroom": 2.2085799466507385,
+            "exact_thrust_headroom": "279970769502383937542663882620233/126765060022822940149670320537600",
+            "original_wind": 0.08,
+            "state_cells": 14,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.1372031333710367,
+                  0.08587081162751066
+                ]
+              },
+              {
+                "height": [
+                  -0.07956148682527514,
+                  0.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.08844315221609898,
+                  0.1336344110059138
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.18163238873807047,
+                  0.3431000762132309
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.3202815489968998
+        },
+        "state_interp": {
+          "q": 2.1236000805718533,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.017586060091440536,
+          "mean_equivalent_halfwidth": 0.130024798256074,
+          "mean_axis_fullwidth": [
+            0.18312249740981396,
+            0.20317942813212916,
+            0.469821541043046
+          ],
+          "max_negative": [
+            0.10333735351575365,
+            0.10833168300151062,
+            0.24862982560863198
+          ],
+          "max_positive": [
+            0.10333735351575365,
+            0.10833168300151062,
+            0.24862982560863198
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.4559591220739576,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "924794967642542246292064374781303/2028240960365167042394725128601600",
+            "wind_per_axis": [
+              0.5576638525389724,
+              0.5541678218989425,
+              0.4559591220739576
+            ],
+            "wind_margin_above_nominal": 0.3759591220739576,
+            "thrust_headroom": 2.2747091220739577,
+            "exact_thrust_headroom": "4613658214306689804647470702425463/2028240960365167042394725128601600",
+            "original_wind": 0.08,
+            "state_cells": 16,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10333735351575365,
+                  0.10333735351575365
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10833168300151062,
+                  0.10833168300151062
+                ]
+              },
+              {
+                "height": [
+                  0.040545630408648864,
+                  0.17338866251829366
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.24862982560863198,
+                  0.24862982560863198
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.23920321889172882
+        },
+        "state_grid": {
+          "q": 2.1602659700316207,
+          "covered": 96,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.01837458204533492,
+          "mean_equivalent_halfwidth": 0.13193980182223855,
+          "mean_axis_fullwidth": [
+            0.18544178297520567,
+            0.20494510750214534,
+            0.4761569919838678
+          ],
+          "max_negative": [
+            0.10919818513237933,
+            0.12208846170954672,
+            0.2754812603346597
+          ],
+          "max_positive": [
+            0.10919818513237933,
+            0.12208846170954672,
+            0.2754812603346597
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.43716311776573824,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "1773344283626823019266710803354191/4056481920730334084789450257203200",
+            "wind_per_axis": [
+              0.5535612704073345,
+              0.5445380768033173,
+              0.43716311776573824
+            ],
+            "wind_margin_above_nominal": 0.3571631177657382,
+            "thrust_headroom": 2.255913117765738,
+            "exact_thrust_headroom": "9151070776955118135977523458642511/4056481920730334084789450257203200",
+            "original_wind": 0.08,
+            "state_cells": 24,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.08267013010236113,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10919818513237933,
+                  0.10919818513237933
+                ]
+              },
+              {
+                "height": [
+                  -0.04958953808636354,
+                  0.0
+                ],
+                "transformed_speed": [
+                  0.08267013010236113,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.12208846170954672,
+                  0.12208846170954672
+                ]
+              },
+              {
+                "height": [
+                  0.05424506386632174,
+                  1.0
+                ],
+                "transformed_speed": [
+                  0.08267013010236113,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.2754812603346597,
+                  0.2754812603346597
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.24992858822161845
+        },
+        "state_loglinear": {
+          "q": 5.702847277320809,
+          "covered": 94,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.016509062935205078,
+          "mean_equivalent_halfwidth": 0.12731438564947276,
+          "mean_axis_fullwidth": [
+            0.17600223339062257,
+            0.1977089646266211,
+            0.46945630044958847
+          ],
+          "max_negative": [
+            0.10716545232620309,
+            0.11783066379780176,
+            0.27776665025476677
+          ],
+          "max_positive": [
+            0.10716545232620309,
+            0.11783066379780176,
+            0.27776665025476677
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.43556334482166326,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "35337096672038185886247712403605412662288583571688237920389783575023/81129638414606681695789005144064000000000000000000000000000000000000",
+            "wind_per_axis": [
+              0.5549841833716579,
+              0.5475185353415387,
+              0.43556334482166326
+            ],
+            "wind_margin_above_nominal": 0.35556334482166324,
+            "thrust_headroom": 2.2543133448216635,
+            "exact_thrust_headroom": "182891626538604088220463965509371812662288583571688237920389783575023/81129638414606681695789005144064000000000000000000000000000000000000",
+            "original_wind": 0.08,
+            "state_cells": 24,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.2623739845789977,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10716545232620307,
+                  0.10716545232620307
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.2623739845789977,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.11783066379780177,
+                  0.11783066379780177
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.2623739845789977,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.2777666502547668,
+                  0.2777666502547668
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.22455404874393953
+        }
+      }
+    },
+    "617201_neural": {
+      "holdout_sha256": "7ac6708589ef4112050180e2123257e1cc94b124305ae1f1b6b92a8b37488378",
+      "safe": 100,
+      "success": 100,
+      "boxes": {
+        "fixed_uniform": {
+          "q": 0.20770273045770438,
+          "covered": 99,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.07168307126132566,
+          "mean_equivalent_halfwidth": 0.2077027304577044,
+          "mean_axis_fullwidth": [
+            0.4154054609153964,
+            0.4154054609153964,
+            0.4154054609153964
+          ],
+          "max_negative": [
+            0.20770273045770438,
+            0.20770273045770438,
+            0.20770273045770438
+          ],
+          "max_positive": [
+            0.20770273045770438,
+            0.20770273045770438,
+            0.20770273045770438
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.4846080886796069,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "3410126261872197/7036874417766400",
+            "wind_per_axis": [
+              0.4846080886796069,
+              0.4846080886796069,
+              0.4846080886796069
+            ],
+            "wind_margin_above_nominal": 0.40460808867960696,
+            "thrust_headroom": 2.303358088679607,
+            "exact_thrust_headroom": "16208441609184837/7036874417766400",
+            "original_wind": 0.08,
+            "state_cells": 8,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.20770273045770438,
+                  0.20770273045770438
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.20770273045770438,
+                  0.20770273045770438
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.20770273045770438,
+                  0.20770273045770438
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 1.0
+        },
+        "fixed_axis": {
+          "q": 2.1805300004962316,
+          "covered": 92,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.01864197357952777,
+          "mean_equivalent_halfwidth": 0.1325767292134101,
+          "mean_axis_fullwidth": [
+            0.1843134841607985,
+            0.20744581776687052,
+            0.4875622759302339
+          ],
+          "max_negative": [
+            0.09215674208040524,
+            0.10372290888343261,
+            0.2437811379651019
+          ],
+          "max_positive": [
+            0.09215674208040524,
+            0.10372290888343261,
+            0.2437811379651019
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.4593532034244287,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "931678982460379154297982119343903/2028240960365167042394725128601600",
+            "wind_per_axis": [
+              0.5654902805437163,
+              0.5573939637815972,
+              0.4593532034244287
+            ],
+            "wind_margin_above_nominal": 0.3793532034244287,
+            "thrust_headroom": 2.2781032034244286,
+            "exact_thrust_headroom": "4620542229124526712653388446988063/2028240960365167042394725128601600",
+            "original_wind": 0.08,
+            "state_cells": 8,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.09215674208040524,
+                  0.09215674208040524
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10372290888343261,
+                  0.10372290888343261
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.2437811379651019,
+                  0.2437811379651019
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.26006103326079805
+        },
+        "fixed_signed": {
+          "q": 3.2027143244385425,
+          "covered": 94,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.026727887902961635,
+          "mean_equivalent_halfwidth": 0.14949438632284703,
+          "mean_axis_fullwidth": [
+            0.2036334477370614,
+            0.2322496073009004,
+            0.5651458443173164
+          ],
+          "max_negative": [
+            0.12138309875024088,
+            0.10729716108215254,
+            0.2796730426066383
+          ],
+          "max_positive": [
+            0.08225034898682954,
+            0.12495244621874564,
+            0.2854728017106716
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.4301690388025299,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "1744972928760408057673494029432991/4056481920730334084789450257203200",
+            "wind_per_axis": [
+              0.5450318308748314,
+              0.542533287646878,
+              0.4301690388025299
+            ],
+            "wind_margin_above_nominal": 0.35016903880252986,
+            "thrust_headroom": 2.24891903880253,
+            "exact_thrust_headroom": "9122699422088703174384306684721311/4056481920730334084789450257203200",
+            "original_wind": 0.08,
+            "state_cells": 8,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.12138309875024088,
+                  0.08225034898682954
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10729716108215254,
+                  0.12495244621874564
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.2796730426066383,
+                  0.2854728017106716
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.3728619244775834
+        },
+        "state_bins": {
+          "q": 2.1467495268520262,
+          "covered": 92,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.01829904867824164,
+          "mean_equivalent_halfwidth": 0.13175876288379965,
+          "mean_axis_fullwidth": [
+            0.18449551148936671,
+            0.206279490968665,
+            0.47848626340746486
+          ],
+          "max_negative": [
+            0.10327389991062566,
+            0.10883755197776825,
+            0.25270231313824826
+          ],
+          "max_positive": [
+            0.10327389991062566,
+            0.10883755197776825,
+            0.25270231313824826
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.45310838080322624,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "919012977429841390224122033264253/2028240960365167042394725128601600",
+            "wind_per_axis": [
+              0.5577082700625621,
+              0.5538137136155622,
+              0.45310838080322624
+            ],
+            "wind_margin_above_nominal": 0.3731083808032262,
+            "thrust_headroom": 2.271858380803226,
+            "exact_thrust_headroom": "4607876224093988948579528360908413/2028240960365167042394725128601600",
+            "original_wind": 0.08,
+            "state_cells": 14,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10327389991062566,
+                  0.10327389991062566
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10883755197776825,
+                  0.10883755197776825
+                ]
+              },
+              {
+                "height": [
+                  0.09054065822691024,
+                  1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.25270231313824826,
+                  0.25270231313824826
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.25527712968004923
+        },
+        "state_signed": {
+          "q": 3.182778662897971,
+          "covered": 91,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.0242711069444123,
+          "mean_equivalent_halfwidth": 0.14476598587604153,
+          "mean_axis_fullwidth": [
+            0.19806349825117656,
+            0.2298024716672656,
+            0.5339602030491498
+          ],
+          "max_negative": [
+            0.13606241743497446,
+            0.12248660785315414,
+            0.31499003915907936
+          ],
+          "max_positive": [
+            0.09409113675746131,
+            0.1348544333376509,
+            0.343097714244448
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.3898316000288864,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "1581344837646556468532472286426321/4056481920730334084789450257203200",
+            "wind_per_axis": [
+              0.5347563077955179,
+              0.5356018966636443,
+              0.3898316000288864
+            ],
+            "wind_margin_above_nominal": 0.3098316000288864,
+            "thrust_headroom": 2.2085816000288863,
+            "exact_thrust_headroom": "8959071330974851585243284941714641/4056481920730334084789450257203200",
+            "original_wind": 0.08,
+            "state_cells": 14,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.13606241743497446,
+                  0.08769796640436064
+                ]
+              },
+              {
+                "height": [
+                  -0.07979873639525382,
+                  0.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.09047838340261377,
+                  0.1348544333376509
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.1815104972395048,
+                  0.343097714244448
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.3385891050333248
+        },
+        "state_interp": {
+          "q": 2.102357741414841,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.01709416308471359,
+          "mean_equivalent_halfwidth": 0.12880101496677296,
+          "mean_axis_fullwidth": [
+            0.18035203048453272,
+            0.20195068482198364,
+            0.4674621329765917
+          ],
+          "max_negative": [
+            0.10113833973057218,
+            0.10658694323442293,
+            0.24747678182963614
+          ],
+          "max_positive": [
+            0.10113833973057218,
+            0.10658694323442293,
+            0.24747678182963614
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.4567662527192547,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "463216011538849877802946832803269/1014120480182583521197362564300800",
+            "wind_per_axis": [
+              0.5592031621885994,
+              0.555389139735904,
+              0.4567662527192547
+            ],
+            "wind_margin_above_nominal": 0.3767662527192547,
+            "thrust_headroom": 2.2755162527192545,
+            "exact_thrust_headroom": "2307647634870923656980649996625349/1014120480182583521197362564300800",
+            "original_wind": 0.08,
+            "state_cells": 16,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10113833973057218,
+                  0.10113833973057218
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10658694323442293,
+                  0.10658694323442293
+                ]
+              },
+              {
+                "height": [
+                  0.04087176869793177,
+                  0.17303558411975906
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.24747678182963614,
+                  0.24747678182963614
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.2384686200511083
+        },
+        "state_grid": {
+          "q": 2.1150264929682927,
+          "covered": 95,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.017108495399849755,
+          "mean_equivalent_halfwidth": 0.12883700193001837,
+          "mean_axis_fullwidth": [
+            0.17906210665748729,
+            0.2003537299641583,
+            0.46839430723229875
+          ],
+          "max_negative": [
+            0.1055694529875544,
+            0.12071804226369288,
+            0.2715385201192078
+          ],
+          "max_positive": [
+            0.1055694529875544,
+            0.12071804226369288,
+            0.2715385201192078
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.4399230359165545,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "1784539841708304913808339560663041/4056481920730334084789450257203200",
+            "wind_per_axis": [
+              0.5561013829087119,
+              0.545497370415415,
+              0.4399230359165545
+            ],
+            "wind_margin_above_nominal": 0.35992303591655456,
+            "thrust_headroom": 2.2586730359165546,
+            "exact_thrust_headroom": "9162266335036600030519152215951361/4056481920730334084789450257203200",
+            "original_wind": 0.08,
+            "state_cells": 24,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.08216750519544266,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.1055694529875544,
+                  0.1055694529875544
+                ]
+              },
+              {
+                "height": [
+                  -0.04952398549852978,
+                  0.0
+                ],
+                "transformed_speed": [
+                  0.08216750519544266,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.12071804226369288,
+                  0.12071804226369288
+                ]
+              },
+              {
+                "height": [
+                  0.0539599770978387,
+                  1.0
+                ],
+                "transformed_speed": [
+                  0.08216750519544266,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.2715385201192078,
+                  0.2715385201192078
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.2386685600771699
+        },
+        "state_loglinear": {
+          "q": 5.831779725537309,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.017374860557064685,
+          "mean_equivalent_halfwidth": 0.12950219024302714,
+          "mean_axis_fullwidth": [
+            0.17883118802535794,
+            0.2007487863308139,
+            0.4789039721377663
+          ],
+          "max_negative": [
+            0.10829670805493027,
+            0.12128489349947931,
+            0.2815485556707764
+          ],
+          "max_positive": [
+            0.10829670805493027,
+            0.12128489349947931,
+            0.2815485556707764
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.4329160110304565,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "878057985969870332321301651572636203074173042416750868695085735729/2028240960365167042394725128601600000000000000000000000000000000000",
+            "wind_per_axis": [
+              0.5541923043615488,
+              0.5451005745503645,
+              0.4329160110304565
+            ],
+            "wind_margin_above_nominal": 0.3529160110304565,
+            "thrust_headroom": 2.2516660110304567,
+            "exact_thrust_headroom": "4566921232634017890676707979216796203074173042416750868695085735729/2028240960365167042394725128601600000000000000000000000000000000000",
+            "original_wind": 0.08,
+            "state_cells": 24,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.2624506523571916,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10829670805493027,
+                  0.10829670805493027
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.2624506523571916,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.12128489349947931,
+                  0.12128489349947931
+                ]
+              },
+              {
+                "height": [
+                  0.0,
+                  0.33409161370015295
+                ],
+                "transformed_speed": [
+                  0.2624506523571916,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.2815485556707764,
+                  0.2815485556707764
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.24238443263296314
+        }
+      }
+    },
+    "617202_linear": {
+      "holdout_sha256": "2aadf5c28c2a71bdd7ffd8dee66fbf5e2e7b682bcd4a10cf3500c7a72aa046ad",
+      "safe": 100,
+      "success": 100,
+      "boxes": {
+        "fixed_uniform": {
+          "q": 0.2018725579535335,
+          "covered": 97,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.06581453923577658,
+          "mean_equivalent_halfwidth": 0.20187255795353354,
+          "mean_axis_fullwidth": [
+            0.40374511590707685,
+            0.40374511590707685,
+            0.40374511590707685
+          ],
+          "max_negative": [
+            0.2018725579535335,
+            0.2018725579535335,
+            0.2018725579535335
+          ],
+          "max_positive": [
+            0.2018725579535335,
+            0.2018725579535335,
+            0.2018725579535335
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.48868920943252653,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "880344216600123527/1801439850948198400",
+            "wind_per_axis": [
+              0.48868920943252653,
+              0.48868920943252653,
+              0.48868920943252653
+            ],
+            "wind_margin_above_nominal": 0.40868920943252657,
+            "thrust_headroom": 2.3074392094325265,
+            "exact_thrust_headroom": "4156712945512159367/1801439850948198400",
+            "original_wind": 0.08,
+            "state_cells": 8,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.2018725579535335,
+                  0.2018725579535335
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.2018725579535335,
+                  0.2018725579535335
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.2018725579535335,
+                  0.2018725579535335
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 1.0
+        },
+        "fixed_axis": {
+          "q": 2.2114696217722765,
+          "covered": 92,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.018614209390591992,
+          "mean_equivalent_halfwidth": 0.1325108793501746,
+          "mean_axis_fullwidth": [
+            0.1831961769268125,
+            0.2071615423543003,
+            0.4904774587427223
+          ],
+          "max_negative": [
+            0.09159808846340936,
+            0.10358077117715286,
+            0.2452387293713602
+          ],
+          "max_positive": [
+            0.09159808846340936,
+            0.10358077117715286,
+            0.2452387293713602
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.45833288944004785,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "1859219079689649192480727023392991/4056481920730334084789450257203200",
+            "wind_per_axis": [
+              0.5658813380756135,
+              0.557493460175993,
+              0.45833288944004785
+            ],
+            "wind_margin_above_nominal": 0.37833288944004784,
+            "thrust_headroom": 2.277082889440048,
+            "exact_thrust_headroom": "9236945573017944309191539678681311/4056481920730334084789450257203200",
+            "original_wind": 0.08,
+            "state_cells": 8,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.09159808846340936,
+                  0.09159808846340936
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10358077117715286,
+                  0.10358077117715286
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.2452387293713602,
+                  0.2452387293713602
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.28282822620557624
+        },
+        "fixed_signed": {
+          "q": 3.104669107832699,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.02416197975748803,
+          "mean_equivalent_halfwidth": 0.14454869540414128,
+          "mean_axis_fullwidth": [
+            0.19747174569836354,
+            0.22613737152778743,
+            0.5410721876585061
+          ],
+          "max_negative": [
+            0.11397355283966717,
+            0.10206118443015856,
+            0.2628270312459405
+          ],
+          "max_positive": [
+            0.083498192858703,
+            0.12407618709763817,
+            0.2782451564125324
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.43522839051122736,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "1765496097497355381614374786895601/4056481920730334084789450257203200",
+            "wind_per_axis": [
+              0.550218513012233,
+              0.5431466690316533,
+              0.43522839051122736
+            ],
+            "wind_margin_above_nominal": 0.35522839051122734,
+            "thrust_headroom": 2.2539783905112274,
+            "exact_thrust_headroom": "9143222590825650498325187442183921/4056481920730334084789450257203200",
+            "original_wind": 0.08,
+            "state_cells": 8,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.11397355283966717,
+                  0.083498192858703
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10206118443015856,
+                  0.12407618709763817
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.2628270312459405,
+                  0.2782451564125324
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.3671222200755552
+        },
+        "state_bins": {
+          "q": 2.215531638323226,
+          "covered": 95,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.019101844228454637,
+          "mean_equivalent_halfwidth": 0.13365804487549732,
+          "mean_axis_fullwidth": [
+            0.1848250641213518,
+            0.20798384669848238,
+            0.4923110334066624
+          ],
+          "max_negative": [
+            0.10466073938414597,
+            0.11071542365096326,
+            0.2602011894119585
+          ],
+          "max_positive": [
+            0.10466073938414597,
+            0.11071542365096326,
+            0.2602011894119585
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.44785916741162907,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "1816732615638613233908195810220441/4056481920730334084789450257203200",
+            "wind_per_axis": [
+              0.5567374824310978,
+              0.5524992034443257,
+              0.44785916741162907
+            ],
+            "wind_margin_above_nominal": 0.36785916741162905,
+            "thrust_headroom": 2.266609167411629,
+            "exact_thrust_headroom": "9194459108966908350619008465508761/4056481920730334084789450257203200",
+            "original_wind": 0.08,
+            "state_cells": 14,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10466073938414597,
+                  0.10466073938414597
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.11071542365096326,
+                  0.11071542365096326
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.2602011894119585,
+                  0.2602011894119585
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.29023745285252917
+        },
+        "state_signed": {
+          "q": 3.121170500855748,
+          "covered": 90,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.02298706826258625,
+          "mean_equivalent_halfwidth": 0.142166694618932,
+          "mean_axis_fullwidth": [
+            0.19399864149726256,
+            0.2242113996053879,
+            0.5275371081964569
+          ],
+          "max_negative": [
+            0.13331297497648434,
+            0.11251852110926207,
+            0.302499577511693
+          ],
+          "max_positive": [
+            0.09975593620405546,
+            0.13135528373367675,
+            0.3503569883985159
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.3847501081210388,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "780365928796017662564826200306823/2028240960365167042394725128601600",
+            "wind_per_axis": [
+              0.536680917516461,
+              0.5380513013864263,
+              0.3847501081210388
+            ],
+            "wind_margin_above_nominal": 0.3047501081210388,
+            "thrust_headroom": 2.203500108121039,
+            "exact_thrust_headroom": "4469229175460165220920232527950983/2028240960365167042394725128601600",
+            "original_wind": 0.08,
+            "state_cells": 14,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.13331297497648434,
+                  0.08543545684130072
+                ]
+              },
+              {
+                "height": [
+                  -0.08205465370754514,
+                  0.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.0851412700120578,
+                  0.13135528373367675
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.18043557719856465,
+                  0.3503569883985159
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.3492703668445733
+        },
+        "state_interp": {
+          "q": 2.2198479447455313,
+          "covered": 95,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.01912513891145942,
+          "mean_equivalent_halfwidth": 0.1337123547623724,
+          "mean_axis_fullwidth": [
+            0.1846611047932983,
+            0.2084419378074073,
+            0.492839317678929
+          ],
+          "max_negative": [
+            0.10486463979962768,
+            0.11093111982333413,
+            0.2607081142716731
+          ],
+          "max_positive": [
+            0.10486463979962768,
+            0.11093111982333413,
+            0.2607081142716731
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.4475043200098288,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "113455823973037032156740762022051/253530120045645880299340641075200",
+            "wind_per_axis": [
+              0.5565947521402607,
+              0.5523482161236661,
+              0.4475043200098288
+            ],
+            "wind_margin_above_nominal": 0.3675043200098288,
+            "thrust_headroom": 2.266254320009829,
+            "exact_thrust_headroom": "574563729806055476951166552977571/253530120045645880299340641075200",
+            "original_wind": 0.08,
+            "state_cells": 16,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10486463979962768,
+                  0.10486463979962768
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.11093111982333413,
+                  0.11093111982333413
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.2607081142716731,
+                  0.2607081142716731
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.29059139718269206
+        },
+        "state_grid": {
+          "q": 2.0709957172895908,
+          "covered": 91,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.015206635152206414,
+          "mean_equivalent_halfwidth": 0.12387425237984703,
+          "mean_axis_fullwidth": [
+            0.17282621203274562,
+            0.19221510646651488,
+            0.4491187708555726
+          ],
+          "max_negative": [
+            0.10015478625742087,
+            0.11542118315351237,
+            0.2586943756048382
+          ],
+          "max_positive": [
+            0.10015478625742087,
+            0.11542118315351237,
+            0.2586943756048382
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.44891393707661326,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "1821011269715156506773522416622621/4056481920730334084789450257203200",
+            "wind_per_axis": [
+              0.5598916496198054,
+              0.5492051717925414,
+              0.44891393707661326
+            ],
+            "wind_margin_above_nominal": 0.36891393707661324,
+            "thrust_headroom": 2.2731596113314136,
+            "exact_thrust_headroom": "9221030866300271678719119516470811/4056481920730334084789450257203200",
+            "original_wind": 0.08,
+            "state_cells": 24,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.08173785609558468,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10015478625742087,
+                  0.10015478625742087
+                ]
+              },
+              {
+                "height": [
+                  -0.0521571213662202,
+                  0.0
+                ],
+                "transformed_speed": [
+                  0.08173785609558468,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.11542118315351237,
+                  0.11542118315351237
+                ]
+              },
+              {
+                "height": [
+                  -0.0521571213662202,
+                  0.0
+                ],
+                "transformed_speed": [
+                  0.08173785609558468,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.2586943756048382,
+                  0.2586943756048382
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.23105282402311697
+        },
+        "state_loglinear": {
+          "q": 5.5731837512954865,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.015029041857828022,
+          "mean_equivalent_halfwidth": 0.12339013394561255,
+          "mean_axis_fullwidth": [
+            0.1691646615669619,
+            0.19331238907800793,
+            0.4545719103509978
+          ],
+          "max_negative": [
+            0.10136472056186946,
+            0.11551136108936193,
+            0.27468421736406834
+          ],
+          "max_positive": [
+            0.10136472056186946,
+            0.11551136108936193,
+            0.27468421736406834
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.43772104784515214,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "3551215033813994610842023127921307163974312370616253128960716597767/8112963841460668169578900514406400000000000000000000000000000000000",
+            "wind_per_axis": [
+              0.5590446956066913,
+              0.5491420472374466,
+              0.43772104784515214
+            ],
+            "wind_margin_above_nominal": 0.3577210478451522,
+            "thrust_headroom": 2.256471047845152,
+            "exact_thrust_headroom": "18306668020470584844263648438497947163974312370616253128960716597767/8112963841460668169578900514406400000000000000000000000000000000000",
+            "original_wind": 0.08,
+            "state_cells": 24,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.26274521833298,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10136472056186947,
+                  0.10136472056186947
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.26274521833298,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.11551136108936193,
+                  0.11551136108936193
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.26274521833298,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.27468421736406834,
+                  0.27468421736406834
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.22835443402539662
+        }
+      }
+    },
+    "617202_neural": {
+      "holdout_sha256": "fded59ebbd4ad49c38934bf7e7eb66cb4475c631c3ed3395247d84744b10da05",
+      "safe": 100,
+      "success": 100,
+      "boxes": {
+        "fixed_uniform": {
+          "q": 0.20111803251611537,
+          "covered": 95,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.0650793223799605,
+          "mean_equivalent_halfwidth": 0.20111803251611537,
+          "mean_axis_fullwidth": [
+            0.40223606503221293,
+            0.40223606503221293,
+            0.40223606503221293
+          ],
+          "max_negative": [
+            0.20111803251611537,
+            0.20111803251611537,
+            0.20111803251611537
+          ],
+          "max_positive": [
+            0.20111803251611537,
+            0.20111803251611537,
+            0.20111803251611537
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.4892173772387192,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "220323919783546733/450359962737049600",
+            "wind_per_axis": [
+              0.4892173772387192,
+              0.4892173772387192,
+              0.4892173772387192
+            ],
+            "wind_margin_above_nominal": 0.40921737723871926,
+            "thrust_headroom": 2.307967377238719,
+            "exact_thrust_headroom": "1039416102011555693/450359962737049600",
+            "original_wind": 0.08,
+            "state_cells": 8,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.20111803251611537,
+                  0.20111803251611537
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.20111803251611537,
+                  0.20111803251611537
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.20111803251611537,
+                  0.20111803251611537
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 1.0
+        },
+        "fixed_axis": {
+          "q": 2.2364033175093483,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.019182299341400862,
+          "mean_equivalent_halfwidth": 0.13384543360209647,
+          "mean_axis_fullwidth": [
+            0.18595693861453888,
+            0.20842604148218383,
+            0.4949214718178426
+          ],
+          "max_negative": [
+            0.09297846930727117,
+            0.1042130207410853,
+            0.24746073590891546
+          ],
+          "max_positive": [
+            0.09297846930727117,
+            0.1042130207410853,
+            0.24746073590891546
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.4567774848637592,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "926454804573256482393005517992373/2028240960365167042394725128601600",
+            "wind_per_axis": [
+              0.5649150714849102,
+              0.5570508854812403,
+              0.4567774848637592
+            ],
+            "wind_margin_above_nominal": 0.37677748486375917,
+            "thrust_headroom": 2.275527484863759,
+            "exact_thrust_headroom": "4615318051237404040748411845636533/2028240960365167042394725128601600",
+            "original_wind": 0.08,
+            "state_cells": 8,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.09297846930727117,
+                  0.09297846930727117
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.1042130207410853,
+                  0.1042130207410853
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.24746073590891546,
+                  0.24746073590891546
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.2947525979051613
+        },
+        "fixed_signed": {
+          "q": 3.0921476557512784,
+          "covered": 94,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.023664412887765128,
+          "mean_equivalent_halfwidth": 0.1435495765437869,
+          "mean_axis_fullwidth": [
+            0.19581693198273364,
+            0.22497322760027097,
+            0.5371735908831908
+          ],
+          "max_negative": [
+            0.11392614706875742,
+            0.10279615899692379,
+            0.26128152185137093
+          ],
+          "max_positive": [
+            0.08189078491397829,
+            0.12217706860333646,
+            0.2758920690318419
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.4368755516777107,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "443044444247431037477358035861529/1014120480182583521197362564300800",
+            "wind_per_axis": [
+              0.5502516970518698,
+              0.5444760519776645,
+              0.4368755516777107
+            ],
+            "wind_margin_above_nominal": 0.3568755516777107,
+            "thrust_headroom": 2.255625551677711,
+            "exact_thrust_headroom": "2287476067579504816655061199683609/1014120480182583521197362564300800",
+            "original_wind": 0.08,
+            "state_cells": 8,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.11392614706875742,
+                  0.08189078491397829
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10279615899692379,
+                  0.12217706860333646
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.26128152185137093,
+                  0.2758920690318419
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.36362414392704207
+        },
+        "state_bins": {
+          "q": 2.2237038265207967,
+          "covered": 94,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.019103492767932957,
+          "mean_equivalent_halfwidth": 0.1336618897786837,
+          "mean_axis_fullwidth": [
+            0.1846709863655333,
+            0.20860191290410976,
+            0.4927425328003765
+          ],
+          "max_negative": [
+            0.10274858777149976,
+            0.11122932685937718,
+            0.2558756521718742
+          ],
+          "max_positive": [
+            0.10274858777149976,
+            0.11122932685937718,
+            0.2558756521718742
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.4508870434796881,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "457253785041726695068659348257599/1014120480182583521197362564300800",
+            "wind_per_axis": [
+              0.5580759885599502,
+              0.552139471198436,
+              0.4508870434796881
+            ],
+            "wind_margin_above_nominal": 0.3708870434796881,
+            "thrust_headroom": 2.269637043479688,
+            "exact_thrust_headroom": "2301685408373800474246362512079679/1014120480182583521197362564300800",
+            "original_wind": 0.08,
+            "state_cells": 14,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10274858777149976,
+                  0.10274858777149976
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.11122932685937718,
+                  0.11122932685937718
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.2558756521718742,
+                  0.2558756521718742
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.2935416668354154
+        },
+        "state_signed": {
+          "q": 3.1413186870377863,
+          "covered": 92,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.023027537946301798,
+          "mean_equivalent_halfwidth": 0.14225007581988397,
+          "mean_axis_fullwidth": [
+            0.19443851196336034,
+            0.2253502812583936,
+            0.5250198702541816
+          ],
+          "max_negative": [
+            0.13316568052255132,
+            0.11407964209334186,
+            0.30735279628720885
+          ],
+          "max_positive": [
+            0.09724124651095545,
+            0.13122994876257318,
+            0.34660186589864567
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.38737869387094803,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "3142789336327262850714434863384407/8112963841460668169578900514406400",
+            "wind_per_axis": [
+              0.5367840236342141,
+              0.5381390358661988,
+              0.38737869387094803
+            ],
+            "wind_margin_above_nominal": 0.30737869387094807,
+            "thrust_headroom": 2.206128693870948,
+            "exact_thrust_headroom": "17898242322983853084136060173961047/8112963841460668169578900514406400",
+            "original_wind": 0.08,
+            "state_cells": 14,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.13316568052255132,
+                  0.08493823839469418
+                ]
+              },
+              {
+                "height": [
+                  -0.08186844911397106,
+                  0.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.08700491125494011,
+                  0.13122994876257318
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.174549743255558,
+                  0.34660186589864567
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.35383801035692
+        },
+        "state_interp": {
+          "q": 2.2171487884186303,
+          "covered": 94,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.018872810622246525,
+          "mean_equivalent_halfwidth": 0.1331217030571952,
+          "mean_axis_fullwidth": [
+            0.18358886377006098,
+            0.20813022230474537,
+            0.49105127231207146
+          ],
+          "max_negative": [
+            0.10244570530138243,
+            0.11090144485146505,
+            0.2551213814684651
+          ],
+          "max_positive": [
+            0.10244570530138243,
+            0.11090144485146505,
+            0.2551213814684651
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.45141503297207447,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "457789229999276907386860696475929/1014120480182583521197362564300800",
+            "wind_per_axis": [
+              0.5582880062890323,
+              0.5523689886039744,
+              0.45141503297207447
+            ],
+            "wind_margin_above_nominal": 0.37141503297207445,
+            "thrust_headroom": 2.2701650329720744,
+            "exact_thrust_headroom": "2302220853331350686564563860298009/1014120480182583521197362564300800",
+            "original_wind": 0.08,
+            "state_cells": 16,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10244570530138243,
+                  0.10244570530138243
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.11090144485146505,
+                  0.11090144485146505
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.2551213814684651,
+                  0.2551213814684651
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.28999703641748303
+        },
+        "state_grid": {
+          "q": 2.164747461350956,
+          "covered": 94,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.017186319475924982,
+          "mean_equivalent_halfwidth": 0.12903206010615473,
+          "mean_axis_fullwidth": [
+            0.17980142206657806,
+            0.19963996353922417,
+            0.4700851961561684
+          ],
+          "max_negative": [
+            0.10470163883719923,
+            0.1194099090540504,
+            0.26649599175827177
+          ],
+          "max_positive": [
+            0.10470163883719923,
+            0.1194099090540504,
+            0.26649599175827177
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.44345280576920976,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "56214321540623117355272727085343/126765060022822940149670320537600",
+            "wind_per_axis": [
+              0.5567088528139605,
+              0.5464130636621647,
+              0.44345280576920976
+            ],
+            "wind_margin_above_nominal": 0.36345280576920974,
+            "thrust_headroom": 2.264715585148223,
+            "exact_thrust_headroom": "574173614171874173538343474356021/253530120045645880299340641075200",
+            "original_wind": 0.08,
+            "state_cells": 24,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.08148088745659797,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10470163883719923,
+                  0.10470163883719923
+                ]
+              },
+              {
+                "height": [
+                  -0.0520201906582072,
+                  0.0
+                ],
+                "transformed_speed": [
+                  0.08148088745659797,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.1194099090540504,
+                  0.1194099090540504
+                ]
+              },
+              {
+                "height": [
+                  -0.0520201906582072,
+                  0.0
+                ],
+                "transformed_speed": [
+                  0.08148088745659797,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.26649599175827177,
+                  0.26649599175827177
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.2640826432639235
+        },
+        "state_loglinear": {
+          "q": 5.572038916966419,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.015057195816739283,
+          "mean_equivalent_halfwidth": 0.12346713494613362,
+          "mean_axis_fullwidth": [
+            0.16898782182145805,
+            0.1930964752278372,
+            0.4565924146732522
+          ],
+          "max_negative": [
+            0.10174194321986586,
+            0.11484714090337458,
+            0.27316287225853547
+          ],
+          "max_positive": [
+            0.10174194321986586,
+            0.11484714090337458,
+            0.27316287225853547
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.43878598941902514,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "55622732285876475596241852123878481659746478936170396694910504117/126765060022822940149670320537600000000000000000000000000000000000",
+            "wind_per_axis": [
+              0.5587806397460939,
+              0.5496070013676377,
+              0.43878598941902514
+            ],
+            "wind_margin_above_nominal": 0.3587859894190252,
+            "thrust_headroom": 2.2575359894190252,
+            "exact_thrust_headroom": "286176685202385697993454747601638481659746478936170396694910504117/126765060022822940149670320537600000000000000000000000000000000000",
+            "original_wind": 0.08,
+            "state_cells": 24,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.2627009890788534,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10174194321986586,
+                  0.10174194321986586
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.2627009890788534,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.11484714090337458,
+                  0.11484714090337458
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.2627009890788534,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.27316287225853547,
+                  0.27316287225853547
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.23136681923067715
+        }
+      }
+    },
+    "617203_linear": {
+      "holdout_sha256": "1dc35a9d714edbfa83f5e36c88f38f2260bd44f5827c00a1144a0ca49e571e79",
+      "safe": 100,
+      "success": 100,
+      "boxes": {
+        "fixed_uniform": {
+          "q": 0.20332242597422223,
+          "covered": 98,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.06724280720132789,
+          "mean_equivalent_halfwidth": 0.20332242597422223,
+          "mean_axis_fullwidth": [
+            0.40664485194846955,
+            0.40664485194846955,
+            0.40664485194846955
+          ],
+          "max_negative": [
+            0.20332242597422223,
+            0.20332242597422223,
+            0.20332242597422223
+          ],
+          "max_positive": [
+            0.20332242597422223,
+            0.20332242597422223,
+            0.20332242597422223
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.48767430181804444,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "219628980394591173/450359962737049600",
+            "wind_per_axis": [
+              0.48767430181804444,
+              0.48767430181804444,
+              0.48767430181804444
+            ],
+            "wind_margin_above_nominal": 0.4076743018180444,
+            "thrust_headroom": 2.3064243018180446,
+            "exact_thrust_headroom": "1038721162622600133/450359962737049600",
+            "original_wind": 0.08,
+            "state_cells": 8,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.20332242597422223,
+                  0.20332242597422223
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.20332242597422223,
+                  0.20332242597422223
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.20332242597422223,
+                  0.20332242597422223
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 1.0
+        },
+        "fixed_axis": {
+          "q": 2.259962723956852,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.020137101215358943,
+          "mean_equivalent_halfwidth": 0.13603029983627773,
+          "mean_axis_fullwidth": [
+            0.18945741885875217,
+            0.2103697243613844,
+            0.5052450866354782
+          ],
+          "max_negative": [
+            0.09472870942937835,
+            0.10518486218069001,
+            0.25262254331773915
+          ],
+          "max_positive": [
+            0.09472870942937835,
+            0.10518486218069001,
+            0.25262254331773915
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.4531642196775826,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "1838252464243983258239429487955191/4056481920730334084789450257203200",
+            "wind_per_axis": [
+              0.5636899033994351,
+              0.5563705964735169,
+              0.4531642196775826
+            ],
+            "wind_margin_above_nominal": 0.37316421967758256,
+            "thrust_headroom": 2.2719142196775826,
+            "exact_thrust_headroom": "9215978957572278374950242143243511/4056481920730334084789450257203200",
+            "original_wind": 0.08,
+            "state_cells": 8,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.09472870942937835,
+                  0.09472870942937835
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10518486218069001,
+                  0.10518486218069001
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.25262254331773915,
+                  0.25262254331773915
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.29946847928385245
+        },
+        "fixed_signed": {
+          "q": 3.003646164537522,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.02175827644311185,
+          "mean_equivalent_halfwidth": 0.13958695529535856,
+          "mean_axis_fullwidth": [
+            0.1910395128302296,
+            0.21752045443234735,
+            0.5236018669618031
+          ],
+          "max_negative": [
+            0.1156766298283642,
+            0.10774815678377658,
+            0.2586443265783607
+          ],
+          "max_positive": [
+            0.07536288300186343,
+            0.10977229764856052,
+            0.2649575403834129
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.444529721731611,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "1803226779431566246764199834638011/4056481920730334084789450257203200",
+            "wind_per_axis": [
+              0.5490263591201451,
+              0.5531593916460077,
+              0.444529721731611
+            ],
+            "wind_margin_above_nominal": 0.36452972173161097,
+            "thrust_headroom": 2.263279721731611,
+            "exact_thrust_headroom": "9180953272759861363475012489926331/4056481920730334084789450257203200",
+            "original_wind": 0.08,
+            "state_cells": 8,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.1156766298283642,
+                  0.07536288300186343
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10774815678377658,
+                  0.10977229764856052
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.2586443265783607,
+                  0.2649575403834129
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.32357775275453066
+        },
+        "state_bins": {
+          "q": 2.20404407192406,
+          "covered": 95,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.019059633435504424,
+          "mean_equivalent_halfwidth": 0.13355952083049966,
+          "mean_axis_fullwidth": [
+            0.1867025088714183,
+            0.2055614630539361,
+            0.49464209015753463
+          ],
+          "max_negative": [
+            0.10375343997848029,
+            0.10850778713572642,
+            0.26035806440332987
+          ],
+          "max_positive": [
+            0.10375343997848029,
+            0.10850778713572642,
+            0.26035806440332987
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.4477493549176691,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "908143581621097193003737611557513/2028240960365167042394725128601600",
+            "wind_per_axis": [
+              0.5573725920150638,
+              0.5540445490049916,
+              0.4477493549176691
+            ],
+            "wind_margin_above_nominal": 0.3677493549176691,
+            "thrust_headroom": 2.266499354917669,
+            "exact_thrust_headroom": "4597006828285244751359143939201673/2028240960365167042394725128601600",
+            "original_wind": 0.08,
+            "state_cells": 14,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10375343997848029,
+                  0.10375343997848029
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10850778713572642,
+                  0.10850778713572642
+                ]
+              },
+              {
+                "height": [
+                  0.09011233025428807,
+                  1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.26035806440332987,
+                  0.26035806440332987
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.28344493974558577
+        },
+        "state_signed": {
+          "q": 3.171195426388331,
+          "covered": 92,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.024240042367738995,
+          "mean_equivalent_halfwidth": 0.14470419753853306,
+          "mean_axis_fullwidth": [
+            0.19722762128249555,
+            0.22858169577077178,
+            0.537023311895981
+          ],
+          "max_negative": [
+            0.1350279127780176,
+            0.12694089005213172,
+            0.3164148764563291
+          ],
+          "max_positive": [
+            0.09416566625622151,
+            0.12183403182648539,
+            0.34956809888515533
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.3853023307803913,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "1562971938825916105507171357134131/4056481920730334084789450257203200",
+            "wind_per_axis": [
+              0.5354804610553877,
+              0.5411413769635078,
+              0.3853023307803913
+            ],
+            "wind_margin_above_nominal": 0.30530233078039126,
+            "thrust_headroom": 2.2040523307803914,
+            "exact_thrust_headroom": "8940698432154211222217984012422451/4056481920730334084789450257203200",
+            "original_wind": 0.08,
+            "state_cells": 14,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.1350279127780176,
+                  0.0831482549124978
+                ]
+              },
+              {
+                "height": [
+                  0.003989531578969035,
+                  0.09011233025428807
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.12694089005213172,
+                  0.10714006896223252
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.1910004492321395,
+                  0.34956809888515533
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.3604852827628575
+        },
+        "state_interp": {
+          "q": 2.161679469248711,
+          "covered": 94,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.017889825425245705,
+          "mean_equivalent_halfwidth": 0.1307691713903386,
+          "mean_axis_fullwidth": [
+            0.18274653119736653,
+            0.20154597220182455,
+            0.4842397308326074
+          ],
+          "max_negative": [
+            0.1017591634951376,
+            0.10642212589703191,
+            0.25535364271672484
+          ],
+          "max_positive": [
+            0.1017591634951376,
+            0.10642212589703191,
+            0.25535364271672484
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.4512524500982926,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "1830497405508991311451555124915161/4056481920730334084789450257203200",
+            "wind_per_axis": [
+              0.5587685855534037,
+              0.5555045118720776,
+              0.4512524500982926
+            ],
+            "wind_margin_above_nominal": 0.3712524500982926,
+            "thrust_headroom": 2.2700024500982927,
+            "exact_thrust_headroom": "9208223898837286428162367780203481/4056481920730334084789450257203200",
+            "original_wind": 0.08,
+            "state_cells": 16,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.1017591634951376,
+                  0.1017591634951376
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10642212589703191,
+                  0.10642212589703191
+                ]
+              },
+              {
+                "height": [
+                  0.04129116917327682,
+                  0.1740934018447125
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.25535364271672484,
+                  0.25535364271672484
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.26604816440341034
+        },
+        "state_grid": {
+          "q": 2.145255318861992,
+          "covered": 92,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.017144099780467954,
+          "mean_equivalent_halfwidth": 0.12892631395730736,
+          "mean_axis_fullwidth": [
+            0.17969494388368237,
+            0.19855199380425093,
+            0.4738912666290732
+          ],
+          "max_negative": [
+            0.10467107433736018,
+            0.11984014295412516,
+            0.2771235000808074
+          ],
+          "max_positive": [
+            0.10467107433736018,
+            0.11984014295412516,
+            0.2771235000808074
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.43601354994343483,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "55271283829343622403905979430343/126765060022822940149670320537600",
+            "wind_per_axis": [
+              0.5567302479638478,
+              0.5461118999321124,
+              0.43601354994343483
+            ],
+            "wind_margin_above_nominal": 0.3560135499434348,
+            "thrust_headroom": 2.254763549943435,
+            "exact_thrust_headroom": "285825236745852844801118874908103/126765060022822940149670320537600",
+            "original_wind": 0.08,
+            "state_cells": 24,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.08124985278556267,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10467107433736018,
+                  0.10467107433736018
+                ]
+              },
+              {
+                "height": [
+                  -0.04959335550406345,
+                  0.0
+                ],
+                "transformed_speed": [
+                  0.08124985278556267,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.11984014295412516,
+                  0.11984014295412516
+                ]
+              },
+              {
+                "height": [
+                  0.056605875061357655,
+                  1.0
+                ],
+                "transformed_speed": [
+                  0.08124985278556267,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.2771235000808074,
+                  0.2771235000808074
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.25495812108405547
+        },
+        "state_loglinear": {
+          "q": 5.663997819848248,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.016190333564496527,
+          "mean_equivalent_halfwidth": 0.12648973124708304,
+          "mean_axis_fullwidth": [
+            0.1747237898354965,
+            0.19525712944673976,
+            0.47036117514297054
+          ],
+          "max_negative": [
+            0.10502976144879786,
+            0.11448201962795945,
+            0.27669658887215726
+          ],
+          "max_positive": [
+            0.10502976144879786,
+            0.11448201962795945,
+            0.27669658887215726
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.43631238778948994,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "69136457533544864395140147320072451635375852621236760450146426161/158456325028528675187087900672000000000000000000000000000000000000",
+            "wind_per_axis": [
+              0.5564791669858415,
+              0.5498625862604284,
+              0.43631238778948994
+            ],
+            "wind_margin_above_nominal": 0.3563123877894899,
+            "thrust_headroom": 2.25506238778949,
+            "exact_thrust_headroom": "357328898679181392391656266667272451635375852621236760450146426161/158456325028528675187087900672000000000000000000000000000000000000",
+            "original_wind": 0.08,
+            "state_cells": 24,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.26222770347555585,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10502976144879786,
+                  0.10502976144879786
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.26222770347555585,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.11448201962795947,
+                  0.11448201962795947
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.26222770347555585,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.2766965888721572,
+                  0.2766965888721572
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.2407742067641817
+        }
+      }
+    },
+    "617203_neural": {
+      "holdout_sha256": "5b6f1b7730ef5082f1b9c0ffb2d76461d631d7aeef896ef09cfca43404ca10b6",
+      "safe": 100,
+      "success": 100,
+      "boxes": {
+        "fixed_uniform": {
+          "q": 0.20845788528112308,
+          "covered": 98,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.07246778215664004,
+          "mean_equivalent_halfwidth": 0.2084578852811231,
+          "mean_axis_fullwidth": [
+            0.41691577056224144,
+            0.41691577056224144,
+            0.41691577056224144
+          ],
+          "max_negative": [
+            0.20845788528112308,
+            0.20845788528112308,
+            0.20845788528112308
+          ],
+          "max_positive": [
+            0.20845788528112308,
+            0.20845788528112308,
+            0.20845788528112308
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.48407948030321385,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "218010016711125723/450359962737049600",
+            "wind_per_axis": [
+              0.48407948030321385,
+              0.48407948030321385,
+              0.48407948030321385
+            ],
+            "wind_margin_above_nominal": 0.40407948030321383,
+            "thrust_headroom": 2.3028294803032137,
+            "exact_thrust_headroom": "1037102198939134683/450359962737049600",
+            "original_wind": 0.08,
+            "state_cells": 8,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.20845788528112308,
+                  0.20845788528112308
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.20845788528112308,
+                  0.20845788528112308
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.20845788528112308,
+                  0.20845788528112308
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 1.0
+        },
+        "fixed_axis": {
+          "q": 2.248852852387337,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.020007290093137318,
+          "mean_equivalent_halfwidth": 0.135737369124253,
+          "mean_axis_fullwidth": [
+            0.18987321415056294,
+            0.20922783576673967,
+            0.5036224764793718
+          ],
+          "max_negative": [
+            0.09493660707527846,
+            0.10461391788336995,
+            0.25181123823968415
+          ],
+          "max_positive": [
+            0.09493660707527846,
+            0.10461391788336995,
+            0.25181123823968415
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.45373213323222106,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "115034762206932002113402834245191/253530120045645880299340641075200",
+            "wind_per_axis": [
+              0.563544375047305,
+              0.556770257481641,
+              0.45373213323222106
+            ],
+            "wind_margin_above_nominal": 0.3737321332322211,
+            "thrust_headroom": 2.272482133232221,
+            "exact_thrust_headroom": "576142668039950446907828625200711/253530120045645880299340641075200",
+            "original_wind": 0.08,
+            "state_cells": 8,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.09493660707527846,
+                  0.09493660707527846
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10461391788336995,
+                  0.10461391788336995
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.25181123823968415,
+                  0.25181123823968415
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.27608530988144914
+        },
+        "fixed_signed": {
+          "q": 3.0437570457130025,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.022495258052999845,
+          "mean_equivalent_halfwidth": 0.1411454873177204,
+          "mean_axis_fullwidth": [
+            0.19225552763118753,
+            0.22058040119453504,
+            0.5304509383056699
+          ],
+          "max_negative": [
+            0.11729338433327768,
+            0.1095030449302732,
+            0.2624660011435605
+          ],
+          "max_positive": [
+            0.07496214329791479,
+            0.11107735626426649,
+            0.2679849371621311
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.44241054398650825,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "448657593305435719396161533438379/1014120480182583521197362564300800",
+            "wind_per_axis": [
+              0.5478946309667057,
+              0.5522458506150134,
+              0.44241054398650825
+            ],
+            "wind_margin_above_nominal": 0.36241054398650824,
+            "thrust_headroom": 2.261160543986508,
+            "exact_thrust_headroom": "2293089216637509498573864697260459/1014120480182583521197362564300800",
+            "original_wind": 0.08,
+            "state_cells": 8,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.11729338433327768,
+                  0.07496214329791479
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.1095030449302732,
+                  0.11107735626426649
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.2624660011435605,
+                  0.2679849371621311
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.31041736594582203
+        },
+        "state_bins": {
+          "q": 2.159251882213973,
+          "covered": 94,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.018162388985469756,
+          "mean_equivalent_halfwidth": 0.1314299457363728,
+          "mean_axis_fullwidth": [
+            0.1842464765756713,
+            0.20236381448871474,
+            0.4849182202018585
+          ],
+          "max_negative": [
+            0.10382348931592861,
+            0.10724642347448753,
+            0.25700706337481005
+          ],
+          "max_positive": [
+            0.10382348931592861,
+            0.10724642347448753,
+            0.25700706337481005
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.45009505563763297,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "3651604911608343923488834434411507/8112963841460668169578900514406400",
+            "wind_per_axis": [
+              0.55732355747885,
+              0.5549275035678587,
+              0.45009505563763297
+            ],
+            "wind_margin_above_nominal": 0.37009505563763295,
+            "thrust_headroom": 2.268845055637633,
+            "exact_thrust_headroom": "18407057898264934156910459744988147/8112963841460668169578900514406400",
+            "original_wind": 0.08,
+            "state_cells": 14,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10382348931592861,
+                  0.10382348931592861
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10724642347448753,
+                  0.10724642347448753
+                ]
+              },
+              {
+                "height": [
+                  0.09003500364150206,
+                  1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.25700706337481005,
+                  0.25700706337481005
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.2506270848224873
+        },
+        "state_signed": {
+          "q": 3.0921750096485803,
+          "covered": 89,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.02197040106170205,
+          "mean_equivalent_halfwidth": 0.1400391069782914,
+          "mean_axis_fullwidth": [
+            0.1918584569007038,
+            0.22158561259973547,
+            0.5163093109641492
+          ],
+          "max_negative": [
+            0.13703503656057106,
+            0.12290118006177311,
+            0.3105550788969442
+          ],
+          "max_positive": [
+            0.08959643636372933,
+            0.11857288071024845,
+            0.3383432235205369
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.39315974353562416,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "398711347902808561820431194918459/1014120480182583521197362564300800",
+            "wind_per_axis": [
+              0.5340754744076003,
+              0.5439691739567588,
+              0.39315974353562416
+            ],
+            "wind_margin_above_nominal": 0.31315974353562415,
+            "thrust_headroom": 2.211909743535624,
+            "exact_thrust_headroom": "2243142971234882340998134358740539/1014120480182583521197362564300800",
+            "original_wind": 0.08,
+            "state_cells": 14,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.13703503656057106,
+                  0.0791780036198475
+                ]
+              },
+              {
+                "height": [
+                  0.004257356432663257,
+                  0.09003500364150206
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.12290118006177311,
+                  0.1050927279180238
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.1754043932921522,
+                  0.3383432235205369
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.30317474066217104
+        },
+        "state_interp": {
+          "q": 2.157022849438391,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.018002096159376178,
+          "mean_equivalent_halfwidth": 0.13104215607934738,
+          "mean_axis_fullwidth": [
+            0.18365008033393596,
+            0.20203795362735466,
+            0.48353703018492505
+          ],
+          "max_negative": [
+            0.10371631054606543,
+            0.10713571115094729,
+            0.2567417505724745
+          ],
+          "max_positive": [
+            0.10371631054606543,
+            0.10713571115094729,
+            0.2567417505724745
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.45028077459926785,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "57079869419199393629426119440003/126765060022822940149670320537600",
+            "wind_per_axis": [
+              0.5573985826177542,
+              0.5550050021943369,
+              0.45028077459926785
+            ],
+            "wind_margin_above_nominal": 0.37028077459926784,
+            "thrust_headroom": 2.2690307745992677,
+            "exact_thrust_headroom": "287633822335708616026639014917763/126765060022822940149670320537600",
+            "original_wind": 0.08,
+            "state_cells": 16,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10371631054606543,
+                  0.10371631054606543
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10713571115094729,
+                  0.10713571115094729
+                ]
+              },
+              {
+                "height": [
+                  0.04113876513915188,
+                  0.17426992332556113
+                ],
+                "transformed_speed": [
+                  0.0,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.2567417505724745,
+                  0.2567417505724745
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.2484151663488806
+        },
+        "state_grid": {
+          "q": 2.076703973449893,
+          "covered": 90,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.015573243701834277,
+          "mean_equivalent_halfwidth": 0.12486183053475475,
+          "mean_axis_fullwidth": [
+            0.17533214490744892,
+            0.19111898487600237,
+            0.45915225192627407
+          ],
+          "max_negative": [
+            0.10190634580804277,
+            0.11248818733300288,
+            0.2691933789908923
+          ],
+          "max_positive": [
+            0.10190634580804277,
+            0.11248818733300288,
+            0.2691933789908923
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.44156463470637536,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "447799739380076488983602238424539/1014120480182583521197362564300800",
+            "wind_per_axis": [
+              0.5586655579343701,
+              0.551258268866898,
+              0.44156463470637536
+            ],
+            "wind_margin_above_nominal": 0.3615646347063754,
+            "thrust_headroom": 2.260314634706375,
+            "exact_thrust_headroom": "2292231362712150268161305402246619/1014120480182583521197362564300800",
+            "original_wind": 0.08,
+            "state_cells": 24,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.08105808651718154,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.10190634580804277,
+                  0.10190634580804277
+                ]
+              },
+              {
+                "height": [
+                  -0.049727185507079906,
+                  0.0
+                ],
+                "transformed_speed": [
+                  0.08105808651718154,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.11248818733300288,
+                  0.11248818733300288
+                ]
+              },
+              {
+                "height": [
+                  0.055797056371409345,
+                  1.0
+                ],
+                "transformed_speed": [
+                  0.08105808651718154,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.2691933789908923,
+                  0.2691933789908923
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.21489885902914085
+        },
+        "state_loglinear": {
+          "q": 5.669321867786745,
+          "covered": 93,
+          "num_trajectories": 100,
+          "mean_box_volume": 0.016017316863831253,
+          "mean_equivalent_halfwidth": 0.1260375425203107,
+          "mean_axis_fullwidth": [
+            0.17428750178065006,
+            0.1947076544076139,
+            0.4681553223399098
+          ],
+          "max_negative": [
+            0.1050344450303527,
+            0.11216047441086421,
+            0.2748066395494288
+          ],
+          "max_positive": [
+            0.1050344450303527,
+            0.11216047441086421,
+            0.2748066395494288
+          ],
+          "audit": {
+            "passed": true,
+            "certification_metric": 0.43763535231539985,
+            "unit": "normalized acceleration per axis (s^-2)",
+            "meaning": "sufficient total symmetric componentwise wind bound; original task wind is 0.08",
+            "exact_wind_bound": "3550519789079739093938259043121819115499836736698495445485567655829/8112963841460668169578900514406400000000000000000000000000000000000",
+            "wind_per_axis": [
+              0.5564758884787531,
+              0.551487667912395,
+              0.43763535231539985
+            ],
+            "wind_margin_above_nominal": 0.35763535231539983,
+            "thrust_headroom": 2.2563853523154,
+            "exact_thrust_headroom": "18305972775736329327359884353698459115499836736698495445485567655829/8112963841460668169578900514406400000000000000000000000000000000000",
+            "original_wind": 0.08,
+            "state_cells": 24,
+            "limiting_cells": [
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.2622511920036511,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.1050344450303527,
+                  0.1050344450303527
+                ]
+              },
+              {
+                "height": [
+                  -1.25,
+                  -1.0
+                ],
+                "transformed_speed": [
+                  0.2622511920036511,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.11216047441086423,
+                  0.11216047441086423
+                ]
+              },
+              {
+                "height": [
+                  0.0,
+                  0.3326272613222571
+                ],
+                "transformed_speed": [
+                  0.2622511920036511,
+                  0.63
+                ],
+                "critical_speed": 0.63,
+                "signed_error_bound": [
+                  0.2748066395494288,
+                  0.2748066395494288
+                ]
+              }
+            ],
+            "independent_geometry": {
+              "initial_position": "11/25",
+              "initial_transformed_velocity": "39/500",
+              "unsafe_velocity_separation": "83/80",
+              "position_update": "7/400"
+            },
+            "design": {
+              "l": 0.7,
+              "m": 1.0,
+              "s_limit": 0.63
+            },
+            "proof": "rational cell bounds for continuous p,v, signed errors and wind on original real model"
+          },
+          "volume_relative_to_uniform": 0.2210267292189185
+        }
+      }
+    }
+  }
+}

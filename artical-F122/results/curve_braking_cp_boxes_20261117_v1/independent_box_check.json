@@ -1,0 +1,366 @@
+{
+  "passed": true,
+  "checks": {
+    "20261117501_linear": {
+      "trajectory_checks": {
+        "calibration": {
+          "trajectories": 199,
+          "steps": 2786,
+          "rerendered_hashes": 28,
+          "decoded_max_abs_difference": 1.1920928955078125e-07,
+          "action_max_abs_difference": 4.76837158203125e-07
+        },
+        "holdout": {
+          "trajectories": 100,
+          "steps": 1400,
+          "rerendered_hashes": 28,
+          "decoded_max_abs_difference": 1.1920928955078125e-07,
+          "action_max_abs_difference": 4.76837158203125e-07
+        }
+      },
+      "box_checks": {
+        "fixed_uniform": {
+          "rank": 190,
+          "covered": 91,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "fixed_axis": {
+          "rank": 190,
+          "covered": 90,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "fixed_signed": {
+          "rank": 190,
+          "covered": 89,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_bins": {
+          "rank": 190,
+          "covered": 93,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_signed": {
+          "rank": 190,
+          "covered": 93,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_interp": {
+          "rank": 190,
+          "covered": 91,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_grid": {
+          "rank": 190,
+          "covered": 93,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_loglinear": {
+          "rank": 190,
+          "covered": 91,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        }
+      }
+    },
+    "20261117501_neural": {
+      "trajectory_checks": {
+        "calibration": {
+          "trajectories": 199,
+          "steps": 2786,
+          "rerendered_hashes": 28,
+          "decoded_max_abs_difference": 1.7881393432617188e-07,
+          "action_max_abs_difference": 7.152557373046875e-07
+        },
+        "holdout": {
+          "trajectories": 100,
+          "steps": 1400,
+          "rerendered_hashes": 28,
+          "decoded_max_abs_difference": 1.7881393432617188e-07,
+          "action_max_abs_difference": 7.152557373046875e-07
+        }
+      },
+      "box_checks": {
+        "fixed_uniform": {
+          "rank": 190,
+          "covered": 91,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "fixed_axis": {
+          "rank": 190,
+          "covered": 90,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "fixed_signed": {
+          "rank": 190,
+          "covered": 90,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_bins": {
+          "rank": 190,
+          "covered": 93,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_signed": {
+          "rank": 190,
+          "covered": 90,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_interp": {
+          "rank": 190,
+          "covered": 90,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_grid": {
+          "rank": 190,
+          "covered": 91,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_loglinear": {
+          "rank": 190,
+          "covered": 91,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        }
+      }
+    },
+    "20261117502_linear": {
+      "trajectory_checks": {
+        "calibration": {
+          "trajectories": 199,
+          "steps": 2786,
+          "rerendered_hashes": 28,
+          "decoded_max_abs_difference": 1.1920928955078125e-07,
+          "action_max_abs_difference": 7.152557373046875e-07
+        },
+        "holdout": {
+          "trajectories": 100,
+          "steps": 1400,
+          "rerendered_hashes": 28,
+          "decoded_max_abs_difference": 1.1920928955078125e-07,
+          "action_max_abs_difference": 4.76837158203125e-07
+        }
+      },
+      "box_checks": {
+        "fixed_uniform": {
+          "rank": 190,
+          "covered": 92,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "fixed_axis": {
+          "rank": 190,
+          "covered": 93,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "fixed_signed": {
+          "rank": 190,
+          "covered": 89,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_bins": {
+          "rank": 190,
+          "covered": 93,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_signed": {
+          "rank": 190,
+          "covered": 93,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_interp": {
+          "rank": 190,
+          "covered": 92,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_grid": {
+          "rank": 190,
+          "covered": 94,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_loglinear": {
+          "rank": 190,
+          "covered": 94,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        }
+      }
+    },
+    "20261117502_neural": {
+      "trajectory_checks": {
+        "calibration": {
+          "trajectories": 199,
+          "steps": 2786,
+          "rerendered_hashes": 28,
+          "decoded_max_abs_difference": 1.7881393432617188e-07,
+          "action_max_abs_difference": 4.76837158203125e-07
+        },
+        "holdout": {
+          "trajectories": 100,
+          "steps": 1400,
+          "rerendered_hashes": 28,
+          "decoded_max_abs_difference": 1.7881393432617188e-07,
+          "action_max_abs_difference": 7.152557373046875e-07
+        }
+      },
+      "box_checks": {
+        "fixed_uniform": {
+          "rank": 190,
+          "covered": 89,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "fixed_axis": {
+          "rank": 190,
+          "covered": 93,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "fixed_signed": {
+          "rank": 190,
+          "covered": 89,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_bins": {
+          "rank": 190,
+          "covered": 93,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_signed": {
+          "rank": 190,
+          "covered": 94,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_interp": {
+          "rank": 190,
+          "covered": 90,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_grid": {
+          "rank": 190,
+          "covered": 94,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_loglinear": {
+          "rank": 190,
+          "covered": 91,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        }
+      }
+    },
+    "20261117503_linear": {
+      "trajectory_checks": {
+        "calibration": {
+          "trajectories": 199,
+          "steps": 2786,
+          "rerendered_hashes": 28,
+          "decoded_max_abs_difference": 1.7881393432617188e-07,
+          "action_max_abs_difference": 7.152557373046875e-07
+        },
+        "holdout": {
+          "trajectories": 100,
+          "steps": 1400,
+          "rerendered_hashes": 28,
+          "decoded_max_abs_difference": 1.7881393432617188e-07,
+          "action_max_abs_difference": 5.960464477539062e-07
+        }
+      },
+      "box_checks": {
+        "fixed_uniform": {
+          "rank": 190,
+          "covered": 89,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "fixed_axis": {
+          "rank": 190,
+          "covered": 92,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "fixed_signed": {
+          "rank": 190,
+          "covered": 93,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_bins": {
+          "rank": 190,
+          "covered": 92,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_signed": {
+          "rank": 190,
+          "covered": 94,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_interp": {
+          "rank": 190,
+          "covered": 92,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_grid": {
+          "rank": 190,
+          "covered": 94,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_loglinear": {
+          "rank": 190,
+          "covered": 93,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        }
+      }
+    },
+    "20261117503_neural": {
+      "trajectory_checks": {
+        "calibration": {
+          "trajectories": 199,
+          "steps": 2786,
+          "rerendered_hashes": 28,
+          "decoded_max_abs_difference": 1.1920928955078125e-07,
+          "action_max_abs_difference": 7.152557373046875e-07
+        },
+        "holdout": {
+          "trajectories": 100,
+          "steps": 1400,
+          "rerendered_hashes": 28,
+          "decoded_max_abs_difference": 1.1920928955078125e-07,
+          "action_max_abs_difference": 4.76837158203125e-07
+        }
+      },
+      "box_checks": {
+        "fixed_uniform": {
+          "rank": 190,
+          "covered": 89,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "fixed_axis": {
+          "rank": 190,
+          "covered": 92,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "fixed_signed": {
+          "rank": 190,
+          "covered": 93,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_bins": {
+          "rank": 190,
+          "covered": 92,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_signed": {
+          "rank": 190,
+          "covered": 96,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_interp": {
+          "rank": 190,
+          "covered": 92,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_grid": {
+          "rank": 190,
+          "covered": 94,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        },
+        "state_loglinear": {
+          "rank": 190,
+          "covered": 91,
+          "extra_gap_above_numerical_perturbation_probe_m": 0.0
+        }
+      }
+    }
+  },
+  "method": "replay all 5D actions and successors, rerender first/last full trajectory per split and arm, recover ranks, test membership inequalities directly, probe continuum guard around knots"
+}

@@ -1,0 +1,42 @@
+{
+  "models": {
+    "817731_linear": {
+      "checkpoint": "f182e791fc1409f3d84f2b7a1fd34902c3f11954f0025d844c5631f002929033",
+      "shapes": "bfc98e6dfd3231721564637cdf44f3780dadc66b418e9e650d39c0a3738c537c"
+    },
+    "817731_neural": {
+      "checkpoint": "eb5d28e3f498e7a9314f3aef24ddd5cd60f5ce05a024b877826e72b149c57da1",
+      "shapes": "4924beee79ff74053efe0ae19ffaba1d3a637e1017073c0708ae3d467248c426"
+    }
+  },
+  "methods": [
+    "fixed_uniform",
+    "fixed_axis",
+    "state_bins"
+  ],
+  "splits": {
+    "calibration": [
+      499,
+      819781
+    ],
+    "holdout": [
+      500,
+      819782
+    ]
+  },
+  "gains": [
+    1.7103,
+    2.3227,
+    -2.4583,
+    -0.4332
+  ],
+  "batch": 8,
+  "initial_scale": 1,
+  "rank": 475,
+  "alpha": 0.05,
+  "previous_camera_protocol": "d822f51327639e4eae547b04c78d49f246e477fc6a458a8ffa61401c3c228873",
+  "source": "ca5ae1c94fde302edc81155cb5949dfba3d6e76ff4895c8d91eae6179626caf0",
+  "score_implementation": "05835352ae6c959dc512a1d2a397ee9801f99b033061a37db0aa3dc4beeb50c7",
+  "certificate_implementation": "0ea97ca349aad9858510305c1782fba906ac3746fc4bb3e4bfd0a3d01e2da9e8",
+  "main_contrast": "state_bins minus fixed_axis certified common initial scale"
+}

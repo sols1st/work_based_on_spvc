@@ -1,9 +1,20 @@
 """The distance guard must use the positive width where the car actually is."""
 import numpy as np
+import pytest
+import torch
 
-from Aebs.conformal.trajectory_boxes import fit_shapes
+from Aebs.curve_braking.models import Barrier
 from Aebs.curve_braking import cp_boxes
 from Aebs.curve_braking.verify import verify_checkpoint
+
+
+@pytest.fixture(autouse=True)
+def original_barrier(tmp_path, monkeypatch):
+    model = Barrier().double()
+    with torch.no_grad():
+        model.free.fill_(-3.)
+    torch.save(model.state_dict(), tmp_path/'barrier.pt')
+    monkeypatch.setattr(cp_boxes, 'BASE', tmp_path)
 
 
 def test_fixed_uniform_is_original_guard():

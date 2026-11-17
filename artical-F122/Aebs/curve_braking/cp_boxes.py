@@ -22,6 +22,10 @@ def audit(shape, q):
     d_lo, d_hi, max_heading = 1.92, 6.15, .19
     knots, _ = cuts(shape)
     grid = np.unique([d_lo, *[d for d in knots if d_lo < d < d_hi], d_hi])
+    if shape['name'] == 'state_loglinear':
+        # A clipped exponential can have interior breakpoints; enclose the
+        # entire rectangle on each slab, including both clipping transitions.
+        grid = np.unique(np.concatenate((grid, np.linspace(d_lo, d_hi, 257))))
     candidates = []
     # On an open distance cell, signed halfwidths are constant, or affine for
     # state_interp. The latter has no heading partition. In either case the
@@ -33,7 +37,10 @@ def audit(shape, q):
     if shape['name'] != 'state_interp':
         for left, right in zip(grid, grid[1:]):
             middle = (left+right)/2
-            _, positive = width_bounds(shape, [middle, 0.], [middle, max_heading])
+            if shape['name'] == 'state_loglinear':
+                _, positive = width_bounds(shape, [left, 0.], [right, max_heading])
+            else:
+                _, positive = width_bounds(shape, [middle, 0.], [middle, max_heading])
             candidates.append((float(right + SCALE[2]*q*positive[2]), [float(left),float(right)]))
     upper, active = max(candidates, key=lambda pair: pair[0])
     if not np.isfinite(upper):
