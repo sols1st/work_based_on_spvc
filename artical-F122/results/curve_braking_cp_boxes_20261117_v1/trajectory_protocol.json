@@ -1,0 +1,54 @@
+{
+  "bindings": {
+    "arms": {
+      "20261117501_linear": "7c9a55c39c448e8f7724ccdf543085c15723a9ca8fcbe4c46fd8ced29ab947be",
+      "20261117501_neural": "f0f1a8308ec7674fa044cd3c29eebda0edf4a7abbeca74e52436acd095e75e13",
+      "20261117502_linear": "92b1afe4a98090001507f7b858d13463315e0b4fa686fa1f3bbab823e864bee7",
+      "20261117502_neural": "9ca8bb0e99572a60f0618b870a276c2f4da6a321e9921d67a922e81bd4c40dda",
+      "20261117503_linear": "589c13bd7b540ce26b2d36d43c6d6a4c0172796c5ca1fb5370911d7637fa10ed",
+      "20261117503_neural": "90991baa898f56767120efe4019b55bcbcfa7fd433c2ee679b21a96780bb51d0"
+    },
+    "deployment": {
+      "actor.pt": "9015d427fed9be1b3e584c031bad54bcb032964c98aca812504ac6b380e15ccf",
+      "barrier.pt": "de6c1992dfab0dc63d264aab971ad34db6b5fbf5e2c75dede80a1356e7586421",
+      "pca.pt": "a5d0768109aad4529a4933838fd62b902ec8ff9034f5ef18543ad6b48beaa692"
+    },
+    "vision": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+    "source": {
+      "curve_braking/box_trajectories.py": "d9107b45f63375d0a54f22cc250e5be1c742b27d19cfa221856cee6095754849",
+      "curve_braking/compare_proxy.py": "3b0d3c00c6d098ba3f564de109e46dc34d2813dd9d4e601c07e178931778cd9f",
+      "curve_braking/models.py": "0135caba3d73d07465526b21fa24e7c6b33fc3723145ed54eff9be9a6ee7e84b",
+      "curve_braking/evaluate.py": "664b5a4d2bec81f78bc791667b11678d66177a1660de89727dd4b1c6f3b450e7",
+      "curve_braking/vision.py": "37cd036d7cf86e9981cef0059c2fdad6f9c4374f456363d7dcff54edc2ad3757",
+      "curve_braking/plant.py": "5ae91746eb4dd840aaa5940260ea4124eaba6e100b39c5f8729fd3c244a277c3",
+      "curve_braking/verify.py": "d1a7644d7cf68177abcf12849742ea7c2ecd350d20bd00bf042e1dd3d8152e33",
+      "vision_sls/observation_coupling.py": "c100b22533b4c3b1ad789d028ddd058bfeaddf4bf0ac3bbe9a0c101cd041d51b",
+      "dino_latent/backbone.py": "4dd02c0b77a636192986b492cea98ae40326a39dea9f72e2f55c45a734da2093"
+    },
+    "old_calibration_for_development": {
+      "20261117501_linear": "3538e84f1951f37a5d3919563ef534339161e5fce2d39b322a1ab95e27fdbea6",
+      "20261117501_neural": "db9c008ed0ceb6c8dc70a8b2c19a6e5823bc85d99c4c04eaad1814349a2a04c3",
+      "20261117502_linear": "50707c0dedc048745d454e28018c4e61c8e1d2eeb347d6cdf85c2ea80c8e26bc",
+      "20261117502_neural": "f53341feb49d318370dbbb7a05bb4366b8eb2108a32a8bc4823512d084c33058",
+      "20261117503_linear": "bc4a6f023242622cc48ac9e29ac0313435a342eddacd7f1b4ffde2e86bac690f",
+      "20261117503_neural": "541ec59578ea63e96812cb1c7e6a6ec579a3eee86af6df7a0fec27208fe71e49"
+    }
+  },
+  "scenarios": {
+    "calibration": [
+      199,
+      202611175091
+    ],
+    "holdout": [
+      100,
+      202611175092
+    ]
+  },
+  "horizon": 14,
+  "batch": 8,
+  "collection": "render at every reached state; SHA256-identical rasters reuse DINO only",
+  "alpha": 0.05,
+  "rank": 190,
+  "state_features": "true obstacle distance (m), absolute heading error (rad)",
+  "component": "certify minimum brake floor via maximum perceived obstacle distance on the barrier sublevel"
+}
