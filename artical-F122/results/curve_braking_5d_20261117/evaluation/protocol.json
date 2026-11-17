@@ -1,0 +1,67 @@
+{
+  "arms": [
+    "linear",
+    "affine",
+    "neural"
+  ],
+  "bindings": {
+    "pca.pt": "a5d0768109aad4529a4933838fd62b902ec8ff9034f5ef18543ad6b48beaa692",
+    "actor.pt": "9015d427fed9be1b3e584c031bad54bcb032964c98aca812504ac6b380e15ccf",
+    "barrier.pt": "de6c1992dfab0dc63d264aab971ad34db6b5fbf5e2c75dede80a1356e7586421",
+    "linear.pt": "1e2d1cb43b57ee5ad6d78f294893d5dbc489fc3c28fd5a40c7799452a200fd28",
+    "affine.pt": "001a3d3d4c5e4c1bf55d81217c53fa25ec5399ec02d2101e9c95a124cae449a9",
+    "neural.pt": "b5ea7a996965b652bde00dd2086a69905f5f57a43bea71027ea373a839a906a0",
+    "static.npz": "f57b6e194b7eb0098b3b816b0be0c7a3a666c04a7bf78117b34fbc4e1831982d",
+    "features.pt": "4408d54587113fb76226e8fc67514508a73163485630e04ae31c0b031147d6ef"
+  },
+  "dino_sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+  "code": {
+    "models.py": "02ca7bcb188d47eefe069211a4fd0e5d1e079175621e5fe85bb11202ef423026",
+    "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "data.py": "45b143323d3c8ffa8c570be051ef46428ae292e64d065ada2144b4ac16bc6052",
+    "vision.py": "37cd036d7cf86e9981cef0059c2fdad6f9c4374f456363d7dcff54edc2ad3757",
+    "verify.py": "d1a7644d7cf68177abcf12849742ea7c2ecd350d20bd00bf042e1dd3d8152e33",
+    "train.py": "cc91fd439f9ee3d021b9f232a2c761407d68ee5645e79ba44d4a73df9d0dd3a8",
+    "evaluate.py": "664b5a4d2bec81f78bc791667b11678d66177a1660de89727dd4b1c6f3b450e7",
+    "backbone.py": "4dd02c0b77a636192986b492cea98ae40326a39dea9f72e2f55c45a734da2093",
+    "plant.py": "5ae91746eb4dd840aaa5940260ea4124eaba6e100b39c5f8729fd3c244a277c3"
+  },
+  "device": "cuda:0",
+  "batch_size": 8,
+  "seed_cal": 202611170511,
+  "seed_hold": 202611170512,
+  "alpha": 0.05,
+  "n_cal": 199,
+  "n_hold": 100,
+  "horizon": 14,
+  "dt": 0.2,
+  "curvatures": [
+    -0.02,
+    0.02
+  ],
+  "initial": "independent uniform box; equiprobable fixed curvature",
+  "initial_low": [
+    -0.08,
+    -0.028,
+    5.3,
+    2.1,
+    -0.035
+  ],
+  "initial_high": [
+    0.08,
+    0.028,
+    5.9,
+    2.4,
+    0.035
+  ],
+  "parking_target_m": [
+    3.6,
+    4.4
+  ],
+  "score": "max over all 14 observation instants and all three normalized decoded errors; no discards",
+  "version": {
+    "torch": "2.3.1",
+    "numpy": "1.24.4"
+  },
+  "candidate_selection": "report all arms; no tuning on CP or holdout"
+}

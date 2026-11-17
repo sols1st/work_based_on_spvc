@@ -1,0 +1,121 @@
+{
+  "format": "lane_trajectory_cp_protocol_v1",
+  "date": "2026-11-16",
+  "unit": "one complete closed-loop image rollout",
+  "horizon": 80,
+  "alpha": 0.05,
+  "calibration_episodes": 199,
+  "holdout_episodes": 100,
+  "calibration_seed": 202611172031,
+  "holdout_seed": 202611172032,
+  "inference_batch_size": 8,
+  "environment": {
+    "device": "cuda:1",
+    "dtype": "float32 DINO and observer, float64 actor and plant",
+    "threads": 4,
+    "versions": {
+      "numpy": "1.24.4",
+      "torch": "2.3.1",
+      "Pillow": "10.4.0",
+      "scipy": "1.10.1"
+    }
+  },
+  "score": "three score functions under scoring; one score per complete trajectory per arm",
+  "distribution": {
+    "initial": "independent uniform on original initial rectangle",
+    "initial_low": [
+      -0.25,
+      -0.06
+    ],
+    "initial_high": [
+      0.25,
+      0.06
+    ],
+    "curvature": "independent uniform on registered values, constant within each rollout",
+    "kappas": [
+      -0.01,
+      0.0,
+      0.01
+    ],
+    "lighting": 1.0,
+    "camera_lateral": 0.0,
+    "camera_height": 1.25,
+    "occluder": false,
+    "blur": 0.0,
+    "pixel_noise": 0.0,
+    "image_size": [
+      192,
+      192
+    ],
+    "speed": 4.0,
+    "dt": 0.1,
+    "wheelbase": 2.6,
+    "process_noise": 0
+  },
+  "binding": {
+    "actor_sha256": "afd4509772a9fda976da2d0c5722f55e6d8f2e9fabce37b7a998110583fe0c75",
+    "observer_sha256": "490e30cad8cbbc95809ba2fde9db4c99c3f8efd3ae2b6f02fb2f84f6707eb278",
+    "sbc_sha256": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321",
+    "dino_weights_sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+    "source_sha256": {
+      "robust_trajectory_cp.py": "6369d2b12f40ff4885308a9469b7200bec328547133a2a59d663f8093d0eb676",
+      "trajectory_cp.py": "0c02c50574df5b849bf0c684df6029ccd0382f120ceaa214b660c78202e31f92",
+      "cp.py": "eccf44a1b20eecf872c670646ac3ec2296b846c1866f3a77df47c4ed9c8e8cdc",
+      "core.py": "d946db50519f272833ee6aa0e14d80cb590d8a88b733cfcdeb24f7e451097b79",
+      "renderer.py": "90e3f69cc6ccd0539e39ecd958f16dc0f7076b28d4bb944bc21653665e394a4f",
+      "policy.py": "d56d4a944217cc11f0e9bb880549f5691850c015bb7f4c0f044b714436e544c7",
+      "patch_perception.py": "ab438e203952433fe9e22f2db51030749f578ecf13064d5090eb28fa4e7b027a",
+      "backbone.py": "4dd02c0b77a636192986b492cea98ae40326a39dea9f72e2f55c45a734da2093"
+    }
+  },
+  "rules": {
+    "threshold_uses_calibration_only": true,
+    "holdout_after_threshold_frozen": true,
+    "stop_or_drop_unsafe_rollouts": false,
+    "retrain_actor_or_observer": false,
+    "reuse_previous_12_development_runs": false,
+    "pad_last_inference_batch": true
+  },
+  "scope": "IID rollout generator under registered nominal simulator law; arbitrary within-rollout temporal dependence. No claim for changed policy, camera/weather, real world, fixed-state conditional coverage or longer horizon.",
+  "development": {
+    "file": "results/lane_robust_synthesis_20261116_v2/final_cp/calibration.npz",
+    "sha256": "9f3823e25bd244951cefb66b95e7afad4be1ad57bc22d3be89ef05d70cb870e3",
+    "episodes": 199,
+    "scale": {
+      "visual": [
+        0.09838744672038352,
+        0.06458744293465395
+      ],
+      "action": 0.2545289604449559
+    },
+    "rule": "coordinate-wise empirical 95th percentiles of trajectory maxima"
+  },
+  "scoring": {
+    "uniform": "max of both coordinates and time",
+    "diagonal": "max coordinate / development scale",
+    "joint": "max(0.5 * diagonal score, max exact clipped action difference / development action scale)"
+  },
+  "audit": {
+    "extra_normalized_input_error": [
+      0.0,
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3
+    ],
+    "grid": 40,
+    "max_depth": 16,
+    "error_subdivisions": 2,
+    "curvatures": [
+      -0.01,
+      0.0,
+      0.01
+    ],
+    "max_pending": 30000,
+    "method": "affine intervals; equal numerical budget; clipped steering"
+  },
+  "joint_visual_weight": 0.5,
+  "comparison_source": "86bf9542c05237138e7a12703864c7a3f641030ea2c19bd9bc45d10e207dd0bf"
+}

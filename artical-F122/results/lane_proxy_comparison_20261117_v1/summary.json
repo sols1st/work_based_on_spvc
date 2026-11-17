@@ -1,0 +1,504 @@
+{
+  "protocol_sha256": "3fc32e18deda309364ad5e3638b3abb9d0fbc40d9a7eb74834b9d1ef7bbc8a12",
+  "rows": [
+    {
+      "seed": 202611171,
+      "kind": "linear",
+      "best_epoch": 25,
+      "test_lateral_mae_m": 0.017878400161862373,
+      "test_heading_mae_rad": 0.005127783864736557,
+      "test_decoded_mse": 0.0007285490864887834,
+      "test_p95_normalized_error": 0.06976773664355279,
+      "test_raw_latent_l2_mean": 0.03006691113114357,
+      "holdout_score_mean": 0.06166923098969214,
+      "holdout_score_p95": 0.08601109791884694,
+      "holdout_score_max": 0.11720891848964674,
+      "cp_radius": 0.08823509348754525,
+      "covered_holdout": 96,
+      "unsafe_calibration": 0,
+      "unsafe_holdout": 0,
+      "certificate_status": "passed_numerical",
+      "actual_witnesses": 0,
+      "unresolved": 0,
+      "initial_B_upper": 0.2145080641624925,
+      "unsafe_B_lower": 23.546546645239726,
+      "holdout_mean_abs_lateral_m": 0.036289228368552896,
+      "holdout_mean_action_change": 0.1075887382030487,
+      "holdout_by_curvature": {
+        "-0.01": {
+          "n": 35,
+          "covered": 34,
+          "unsafe": 0
+        },
+        "0.0": {
+          "n": 30,
+          "covered": 30,
+          "unsafe": 0
+        },
+        "0.01": {
+          "n": 35,
+          "covered": 32,
+          "unsafe": 0
+        }
+      },
+      "shared_verified_design_radius": 0.1,
+      "cp_to_design_radius_slack": 0.01176490651245475,
+      "geometry": {
+        "best_affine_fit_rmse": 2.633570203482223e-16,
+        "best_affine_fit_max_abs": 6.661338147750939e-16,
+        "max_shift_from_Cx": 0.0,
+        "inverse_roundtrip_max_abs": 2.220446049250313e-16,
+        "condition": 1.0018142817633549,
+        "C": [
+          [
+            0.865843793896249,
+            0.5003144257078241
+          ],
+          [
+            -0.49874414418444957,
+            0.8667492593834281
+          ]
+        ],
+        "domain": "normalized [-1,1]^2, deterministic 41x41 diagnostic grid"
+      },
+      "optimization_seconds": 43.066992660518736,
+      "optimizer_updates": 1020
+    },
+    {
+      "seed": 202611171,
+      "kind": "neural",
+      "best_epoch": 26,
+      "test_lateral_mae_m": 0.018017465248703957,
+      "test_heading_mae_rad": 0.0050727250054478645,
+      "test_decoded_mse": 0.0007232774514704943,
+      "test_p95_normalized_error": 0.06799594759941102,
+      "test_raw_latent_l2_mean": 0.03001057542860508,
+      "holdout_score_mean": 0.060048084173894484,
+      "holdout_score_p95": 0.08597144133742382,
+      "holdout_score_max": 0.09804327290136097,
+      "cp_radius": 0.08239317835482941,
+      "covered_holdout": 93,
+      "unsafe_calibration": 0,
+      "unsafe_holdout": 0,
+      "certificate_status": "passed_numerical",
+      "actual_witnesses": 0,
+      "unresolved": 0,
+      "initial_B_upper": 0.2145080641624925,
+      "unsafe_B_lower": 23.546546645239726,
+      "holdout_mean_abs_lateral_m": 0.0352928314517172,
+      "holdout_mean_action_change": 0.10623908787965775,
+      "holdout_by_curvature": {
+        "-0.01": {
+          "n": 35,
+          "covered": 32,
+          "unsafe": 0
+        },
+        "0.0": {
+          "n": 30,
+          "covered": 30,
+          "unsafe": 0
+        },
+        "0.01": {
+          "n": 35,
+          "covered": 31,
+          "unsafe": 0
+        }
+      },
+      "shared_verified_design_radius": 0.1,
+      "cp_to_design_radius_slack": 0.017606821645170592,
+      "geometry": {
+        "best_affine_fit_rmse": 2.2778193953618446e-05,
+        "best_affine_fit_max_abs": 0.0001608968341086925,
+        "max_shift_from_Cx": 0.0014036352764626447,
+        "inverse_roundtrip_max_abs": 2.220446049250313e-16,
+        "condition": 1.0014807285991474,
+        "C": [
+          [
+            0.8658392047078082,
+            0.5003223676700355
+          ],
+          [
+            -0.49904069631617387,
+            0.8665785500577938
+          ]
+        ],
+        "domain": "normalized [-1,1]^2, deterministic 41x41 diagnostic grid"
+      },
+      "optimization_seconds": 43.782581004779786,
+      "optimizer_updates": 1020
+    },
+    {
+      "seed": 202611172,
+      "kind": "linear",
+      "best_epoch": 23,
+      "test_lateral_mae_m": 0.01809711381793022,
+      "test_heading_mae_rad": 0.005122818052768707,
+      "test_decoded_mse": 0.0007404087227769196,
+      "test_p95_normalized_error": 0.07028338015079498,
+      "test_raw_latent_l2_mean": 0.03024054691195488,
+      "holdout_score_mean": 0.061239709003804876,
+      "holdout_score_p95": 0.0893465750371354,
+      "holdout_score_max": 0.09550905425750424,
+      "cp_radius": 0.0934239577063652,
+      "covered_holdout": 98,
+      "unsafe_calibration": 0,
+      "unsafe_holdout": 0,
+      "certificate_status": "passed_numerical",
+      "actual_witnesses": 0,
+      "unresolved": 0,
+      "initial_B_upper": 0.2145080641624925,
+      "unsafe_B_lower": 23.546546645239726,
+      "holdout_mean_abs_lateral_m": 0.0371906636033946,
+      "holdout_mean_action_change": 0.10318820923566818,
+      "holdout_by_curvature": {
+        "-0.01": {
+          "n": 35,
+          "covered": 34,
+          "unsafe": 0
+        },
+        "0.0": {
+          "n": 30,
+          "covered": 30,
+          "unsafe": 0
+        },
+        "0.01": {
+          "n": 35,
+          "covered": 34,
+          "unsafe": 0
+        }
+      },
+      "shared_verified_design_radius": 0.1,
+      "cp_to_design_radius_slack": 0.006576042293634801,
+      "geometry": {
+        "best_affine_fit_rmse": 8.185978929717487e-17,
+        "best_affine_fit_max_abs": 2.220446049250313e-16,
+        "max_shift_from_Cx": 0.0,
+        "inverse_roundtrip_max_abs": 2.220446049250313e-16,
+        "condition": 1.0013194854643261,
+        "C": [
+          [
+            0.8660037020681939,
+            0.500037586591431
+          ],
+          [
+            -0.4988952264489968,
+            0.8666623062222125
+          ]
+        ],
+        "domain": "normalized [-1,1]^2, deterministic 41x41 diagnostic grid"
+      },
+      "optimization_seconds": 44.81470137601718,
+      "optimizer_updates": 1020
+    },
+    {
+      "seed": 202611172,
+      "kind": "neural",
+      "best_epoch": 28,
+      "test_lateral_mae_m": 0.017903974279761314,
+      "test_heading_mae_rad": 0.0050867050886154175,
+      "test_decoded_mse": 0.0007222422282211483,
+      "test_p95_normalized_error": 0.06881160736083984,
+      "test_raw_latent_l2_mean": 0.029931044206023216,
+      "holdout_score_mean": 0.06070290358789451,
+      "holdout_score_p95": 0.08632574289298349,
+      "holdout_score_max": 0.09440656277126877,
+      "cp_radius": 0.08420457055296998,
+      "covered_holdout": 93,
+      "unsafe_calibration": 0,
+      "unsafe_holdout": 0,
+      "certificate_status": "passed_numerical",
+      "actual_witnesses": 0,
+      "unresolved": 0,
+      "initial_B_upper": 0.2145080641624925,
+      "unsafe_B_lower": 23.546546645239726,
+      "holdout_mean_abs_lateral_m": 0.033960083096352955,
+      "holdout_mean_action_change": 0.10419207811355591,
+      "holdout_by_curvature": {
+        "-0.01": {
+          "n": 35,
+          "covered": 32,
+          "unsafe": 0
+        },
+        "0.0": {
+          "n": 30,
+          "covered": 30,
+          "unsafe": 0
+        },
+        "0.01": {
+          "n": 35,
+          "covered": 31,
+          "unsafe": 0
+        }
+      },
+      "shared_verified_design_radius": 0.1,
+      "cp_to_design_radius_slack": 0.015795429447030024,
+      "geometry": {
+        "best_affine_fit_rmse": 1.640357796944214e-05,
+        "best_affine_fit_max_abs": 0.0001310420901902143,
+        "max_shift_from_Cx": 0.0012294746822170688,
+        "inverse_roundtrip_max_abs": 3.3306690738754696e-16,
+        "condition": 1.0013098131379468,
+        "C": [
+          [
+            0.8659518025101981,
+            0.500127459483419
+          ],
+          [
+            -0.4989935388026176,
+            0.8666057051700274
+          ]
+        ],
+        "domain": "normalized [-1,1]^2, deterministic 41x41 diagnostic grid"
+      },
+      "optimization_seconds": 46.752056296449155,
+      "optimizer_updates": 1020
+    },
+    {
+      "seed": 202611173,
+      "kind": "linear",
+      "best_epoch": 22,
+      "test_lateral_mae_m": 0.018099471926689148,
+      "test_heading_mae_rad": 0.0050991373136639595,
+      "test_decoded_mse": 0.0007249255431815982,
+      "test_p95_normalized_error": 0.06783100664615632,
+      "test_raw_latent_l2_mean": 0.0300662349909544,
+      "holdout_score_mean": 0.06015080129291679,
+      "holdout_score_p95": 0.08263728932700269,
+      "holdout_score_max": 0.09492300889059527,
+      "cp_radius": 0.08503195902791483,
+      "covered_holdout": 96,
+      "unsafe_calibration": 0,
+      "unsafe_holdout": 0,
+      "certificate_status": "passed_numerical",
+      "actual_witnesses": 0,
+      "unresolved": 0,
+      "initial_B_upper": 0.2145080641624925,
+      "unsafe_B_lower": 23.546546645239726,
+      "holdout_mean_abs_lateral_m": 0.035360053173643026,
+      "holdout_mean_action_change": 0.10493167489767075,
+      "holdout_by_curvature": {
+        "-0.01": {
+          "n": 35,
+          "covered": 34,
+          "unsafe": 0
+        },
+        "0.0": {
+          "n": 30,
+          "covered": 29,
+          "unsafe": 0
+        },
+        "0.01": {
+          "n": 35,
+          "covered": 33,
+          "unsafe": 0
+        }
+      },
+      "shared_verified_design_radius": 0.1,
+      "cp_to_design_radius_slack": 0.014968040972085178,
+      "geometry": {
+        "best_affine_fit_rmse": 2.0495720654069474e-16,
+        "best_affine_fit_max_abs": 6.661338147750939e-16,
+        "max_shift_from_Cx": 0.0,
+        "inverse_roundtrip_max_abs": 3.3306690738754696e-16,
+        "condition": 1.0016566673823895,
+        "C": [
+          [
+            0.8659386983542804,
+            0.5001501481480284
+          ],
+          [
+            -0.49871607884768837,
+            0.8667654081115527
+          ]
+        ],
+        "domain": "normalized [-1,1]^2, deterministic 41x41 diagnostic grid"
+      },
+      "optimization_seconds": 42.71209333604202,
+      "optimizer_updates": 1020
+    },
+    {
+      "seed": 202611173,
+      "kind": "neural",
+      "best_epoch": 16,
+      "test_lateral_mae_m": 0.017761100083589554,
+      "test_heading_mae_rad": 0.005107898265123367,
+      "test_decoded_mse": 0.0007243125583045185,
+      "test_p95_normalized_error": 0.07023176886141301,
+      "test_raw_latent_l2_mean": 0.029948901385068893,
+      "holdout_score_mean": 0.06023220692253593,
+      "holdout_score_p95": 0.08465471085530107,
+      "holdout_score_max": 0.11360002439787772,
+      "cp_radius": 0.08681647203546085,
+      "covered_holdout": 95,
+      "unsafe_calibration": 0,
+      "unsafe_holdout": 0,
+      "certificate_status": "passed_numerical",
+      "actual_witnesses": 0,
+      "unresolved": 0,
+      "initial_B_upper": 0.2145080641624925,
+      "unsafe_B_lower": 23.546546645239726,
+      "holdout_mean_abs_lateral_m": 0.033534670974538584,
+      "holdout_mean_action_change": 0.10845847427845001,
+      "holdout_by_curvature": {
+        "-0.01": {
+          "n": 35,
+          "covered": 34,
+          "unsafe": 0
+        },
+        "0.0": {
+          "n": 30,
+          "covered": 30,
+          "unsafe": 0
+        },
+        "0.01": {
+          "n": 35,
+          "covered": 31,
+          "unsafe": 0
+        }
+      },
+      "shared_verified_design_radius": 0.1,
+      "cp_to_design_radius_slack": 0.013183527964539157,
+      "geometry": {
+        "best_affine_fit_rmse": 1.1881283922753855e-05,
+        "best_affine_fit_max_abs": 8.1520935801771e-05,
+        "max_shift_from_Cx": 0.0007321136590076605,
+        "inverse_roundtrip_max_abs": 2.220446049250313e-16,
+        "condition": 1.00111241364599,
+        "C": [
+          [
+            0.8659091404824443,
+            0.5002013198992526
+          ],
+          [
+            -0.4992382973741046,
+            0.8664647265959562
+          ]
+        ],
+        "domain": "normalized [-1,1]^2, deterministic 41x41 diagnostic grid"
+      },
+      "optimization_seconds": 44.375703973695636,
+      "optimizer_updates": 1020
+    }
+  ],
+  "paired": [
+    {
+      "seed": 202611171,
+      "neural_minus_linear": {
+        "test_lateral_mae_m": 0.00013906508684158325,
+        "test_heading_mae_rad": -5.5058859288692474e-05,
+        "test_decoded_mse": -5.271635018289089e-06,
+        "cp_radius": -0.005841915132715841,
+        "holdout_mean_abs_lateral_m": -0.0009963969168356943,
+        "holdout_mean_action_change": -0.0013496503233909607
+      },
+      "cp_radius_reduction_percent": 6.620852204956808
+    },
+    {
+      "seed": 202611172,
+      "neural_minus_linear": {
+        "test_lateral_mae_m": -0.00019313953816890717,
+        "test_heading_mae_rad": -3.6112964153289795e-05,
+        "test_decoded_mse": -1.816649455577135e-05,
+        "cp_radius": -0.009219387153395223,
+        "holdout_mean_abs_lateral_m": -0.0032305805070416416,
+        "holdout_mean_action_change": 0.0010038688778877258
+      },
+      "cp_radius_reduction_percent": 9.868332898475657
+    },
+    {
+      "seed": 202611173,
+      "neural_minus_linear": {
+        "test_lateral_mae_m": -0.0003383718430995941,
+        "test_heading_mae_rad": 8.760951459407806e-06,
+        "test_decoded_mse": -6.129848770797253e-07,
+        "cp_radius": 0.0017845130075460208,
+        "holdout_mean_abs_lateral_m": -0.0018253821991044417,
+        "holdout_mean_action_change": 0.0035267993807792664
+      },
+      "cp_radius_reduction_percent": -2.0986380038124133
+    }
+  ],
+  "summary": {
+    "linear": {
+      "test_lateral_mae_m": {
+        "mean": 0.01802499530216058,
+        "sample_sd": 0.00012696059049373593
+      },
+      "test_heading_mae_rad": {
+        "mean": 0.005116579743723075,
+        "sample_sd": 1.5308285237097955e-05
+      },
+      "test_decoded_mse": {
+        "mean": 0.000731294450815767,
+        "sample_sd": 8.098455504671883e-06
+      },
+      "cp_radius": {
+        "mean": 0.08889700340727509,
+        "sample_sd": 0.004234973909146996
+      },
+      "holdout_score_p95": {
+        "mean": 0.085998320760995,
+        "sample_sd": 0.003354661104622914
+      },
+      "covered_holdout": {
+        "mean": 96.66666666666667,
+        "sample_sd": 1.1547005383792517
+      },
+      "holdout_mean_abs_lateral_m": {
+        "mean": 0.036279981715196835,
+        "sample_sd": 0.0009153402437495705
+      },
+      "holdout_mean_action_change": {
+        "mean": 0.10523620744546254,
+        "sample_sd": 0.002216014181517618
+      },
+      "optimization_seconds": {
+        "mean": 43.531262457525976,
+        "sample_sd": 1.1255665132509551
+      },
+      "certificate_passes": 3,
+      "unsafe_episodes_total": 0
+    },
+    "neural": {
+      "test_lateral_mae_m": {
+        "mean": 0.01789417987068494,
+        "sample_sd": 0.00012846292191873984
+      },
+      "test_heading_mae_rad": {
+        "mean": 0.005089109453062217,
+        "sample_sd": 1.770946852237132e-05
+      },
+      "test_decoded_mse": {
+        "mean": 0.000723277412665387,
+        "sample_sd": 1.0351650422306103e-06
+      },
+      "cp_radius": {
+        "mean": 0.08447140698108674,
+        "sample_sd": 0.0022236868047920064
+      },
+      "holdout_score_p95": {
+        "mean": 0.08565063169523612,
+        "sample_sd": 0.0008804976647502864
+      },
+      "covered_holdout": {
+        "mean": 93.66666666666667,
+        "sample_sd": 1.1547005383792517
+      },
+      "holdout_mean_abs_lateral_m": {
+        "mean": 0.03426252850753625,
+        "sample_sd": 0.0009172714897660393
+      },
+      "holdout_mean_action_change": {
+        "mean": 0.10629654675722122,
+        "sample_sd": 0.0021337783860827537
+      },
+      "optimization_seconds": {
+        "mean": 44.970113758308194,
+        "sample_sd": 1.5714445968570065
+      },
+      "certificate_passes": 3,
+      "unsafe_episodes_total": 0
+    }
+  },
+  "caveat": "Mean/sample SD over 3 paired optimization seeds; same images, warm start and rollout draws. Do not pool repeated draws as independent samples or infer significance from 3 seeds."
+}

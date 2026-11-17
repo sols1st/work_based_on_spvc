@@ -1,0 +1,29 @@
+[
+  {
+    "stage": "actor_robust",
+    "state": "error",
+    "command": [
+      "/opt/miniconda3/envs/vt/bin/python",
+      "-m",
+      "Aebs.lane_keeping.refine_actor",
+      "--actor",
+      "results/lane_trajectory_cp_20261107_v1/actor.pt",
+      "--sbc",
+      "results/lane_trajectory_cp_20261107_v1/sbc.pt",
+      "--output-dir",
+      "results/lane_robust_synthesis_20261116_v1/actor_robust",
+      "--radius",
+      ".10",
+      "--rounds",
+      "6",
+      "--steps-per-round",
+      "100",
+      "--seed",
+      "161",
+      "--task-weight",
+      ".01"
+    ],
+    "returncode": 1,
+    "seconds": 6.846482653170824
+  }
+]

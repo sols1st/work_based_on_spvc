@@ -1,0 +1,32 @@
+{
+  "threshold_m": 0.45,
+  "arms": {
+    "rgb_native": {
+      "in_tube": 0,
+      "n": 2000,
+      "empirical": 0.0,
+      "one_sided_95_lower": 0.0,
+      "outcomes": {
+        "unsafe": 2000
+      }
+    },
+    "rgb_dino": {
+      "in_tube": 1985,
+      "n": 2000,
+      "empirical": 0.9925,
+      "one_sided_95_lower": 0.9884748214319414,
+      "outcomes": {
+        "success": 2000
+      }
+    }
+  },
+  "actor_sha256": "230807a1759bbededeaa7703ede1ab676ee792e4e8b0a92b01428f9b5ae38c8c",
+  "barrier_sha256": "856104931b3e2cfc8b47cee2e62ef891ec119e8f461742e1a8b86d04a45b6aa3",
+  "parent_cells": 782400,
+  "simultaneous_95": {
+    "dino_lower": 0.9876600162642141,
+    "native_upper": 0.0018427397934059364,
+    "in_tube_probability_difference_lower": 0.9858172764708081,
+    "method": "one-sided Clopper-Pearson at alpha=.025 each; Bonferroni"
+  }
+}

@@ -31,7 +31,7 @@ def raw(barrier, states):
     return barrier.layers[-1](states).flatten()
 
 
-def raw_bounds(barrier, lower, upper, method='affine'):
+def raw_bounds(barrier, lower, upper, method='affine', detach_root=False):
     if method == 'ibp':
         for i, layer in enumerate(barrier.layers):
             lower, upper = linear_bounds(lower, upper, layer)
@@ -42,12 +42,12 @@ def raw_bounds(barrier, lower, upper, method='affine'):
     for layer in barrier.layers[:-1]:
         layers.extend([layer, nn.Tanh()])
     layers.append(barrier.layers[-1])
-    lo, hi = tanh_affine_bounds(layers, lower, upper)
+    lo, hi = tanh_affine_bounds(layers, lower, upper, detach_root=detach_root)
     return lo.flatten(), hi.flatten()
 
 
-def bounds(barrier, lower, upper, method='affine'):
-    lo, hi = raw_bounds(barrier, lower, upper, method)
+def bounds(barrier, lower, upper, method='affine', detach_root=False):
+    lo, hi = raw_bounds(barrier, lower, upper, method, detach_root=detach_root)
     return lo.relu(), hi.relu()
 
 
@@ -57,13 +57,13 @@ def error_boxes(radius, splits, dtype=torch.float64):
             for i in range(splits) for j in range(splits)]
 
 
-def transitions(actor, lower, upper, kappas, el, eh, method='affine'):
+def transitions(actor, lower, upper, kappas, el, eh, method='affine', detach_root=False):
     """Kappas in physical units; observation errors and states normalized."""
     kappas = torch.as_tensor(kappas, dtype=lower.dtype, device=lower.device).expand(len(lower))
     curve = (kappas/core.KAPPA_SCALE)[:, None]
     ol, oh = torch.cat([lower+el, curve], 1), torch.cat([upper+eh, curve], 1)
     if method == 'affine':
-        lo, hi = tanh_affine_bounds(list(actor.policy_net)+[actor.action_net], ol, oh)
+        lo, hi = tanh_affine_bounds(list(actor.policy_net)+[actor.action_net], ol, oh, detach_root=detach_root)
         lo, hi = lo.clamp(-1, 1), hi.clamp(-1, 1)
     else:
         lo, hi = actor_bounds(actor, ol, oh)

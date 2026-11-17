@@ -1,0 +1,15 @@
+{
+  "actor_seed": 1175,
+  "actor_updates": 1000,
+  "actor_train_radius": 0.12,
+  "actor_error_points": 9,
+  "barrier_updates": 450,
+  "coefficients": [
+    0.19517535530310534,
+    0.054105207768838384,
+    0.025394633333215257,
+    1.018306874486942
+  ],
+  "actor_loss": "worst of 8 corners and center, plus nominal imitation",
+  "barrier_type": "structured trainable ReLU stopping-reserve barrier with sufficient-condition loss"
+}

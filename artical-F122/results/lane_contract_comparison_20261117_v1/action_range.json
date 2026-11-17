@@ -1,0 +1,66 @@
+{
+  "arms": {
+    "uniform": {
+      "attained_lower": 0.6242917756960659,
+      "continuous_upper": 0.6763724548701127,
+      "units": "normalized steering; times PHI_MAX in radians",
+      "witness": {
+        "state": [
+          0.04411764705882354,
+          0.03666666666666667
+        ],
+        "error": [
+          -0.09682281207320706,
+          -0.09682281207320706
+        ],
+        "kappa": 0.0,
+        "action": 0.31343294537014577,
+        "nominal": -0.3108588303259201
+      },
+      "lower_rad": 0.28093129906322967,
+      "upper_rad": 0.3043676046915507
+    },
+    "diagonal": {
+      "attained_lower": 0.55423542060414,
+      "continuous_upper": 0.6062470179433876,
+      "units": "normalized steering; times PHI_MAX in radians",
+      "witness": {
+        "state": [
+          -0.053921568627451,
+          -0.05
+        ],
+        "error": [
+          0.10679527137868507,
+          0.07010684518996343
+        ],
+        "kappa": 0.0,
+        "action": -0.2745629243932863,
+        "nominal": 0.2796724962108537
+      },
+      "lower_rad": 0.249405939271863,
+      "upper_rad": 0.27281115807452444
+    },
+    "joint": {
+      "attained_lower": 0.25661483984762445,
+      "continuous_upper": 0.2566154748872612,
+      "units": "normalized steering; times PHI_MAX in radians",
+      "witness": {
+        "state": [
+          0.13235294117647062,
+          -0.13
+        ],
+        "error": [
+          -0.04959699147586071,
+          -0.03255845093512338
+        ],
+        "kappa": 0.0,
+        "action": 0.3120333093160918,
+        "nominal": 0.055418469468467346
+      },
+      "lower_rad": 0.115476677931431,
+      "upper_rad": 0.11547696369926755
+    }
+  },
+  "supplement": "e4c04f2bbd42a3e02624716284884092cc8b03bc743875493ecf31c75bf929ac",
+  "contracts": "2a93bd741b6586bbc96567fc33e7021a3f5524ef3cccc632fece86471721ed6f"
+}

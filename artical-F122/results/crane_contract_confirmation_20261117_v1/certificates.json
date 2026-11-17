@@ -1,0 +1,108 @@
+{
+  "fits": {
+    "box": {
+      "q": 0.1863193735603803,
+      "visual_halfwidths": [
+        0.1863193735603803,
+        0.1863193735603803,
+        0.1863193735603803,
+        0.1863193735603803
+      ],
+      "action_halfwidths": [
+        0.5476764826120599,
+        0.5476764826120599
+      ],
+      "upper": 1.0714668275373533,
+      "upper_exact": "7238186407855607728477/6755399441055744000000",
+      "passes": false,
+      "constraints": {
+        "trolley_position": {
+          "ratio": 0.7241379310344828,
+          "step": 0
+        },
+        "trolley_speed": {
+          "ratio": 0.4190440131565068,
+          "step": 3
+        },
+        "sway": {
+          "ratio": 0.6792201847526144,
+          "step": 6
+        },
+        "sway_rate": {
+          "ratio": 0.6708812904367885,
+          "step": 2
+        },
+        "payload_position": {
+          "ratio": 0.8287973660663871,
+          "step": 2
+        },
+        "payload_diagonal": {
+          "ratio": 0.9881814749253076,
+          "step": 2
+        },
+        "axis_accel": {
+          "ratio": 0.8458948638452789,
+          "step": 0
+        },
+        "total_accel": {
+          "ratio": 1.0714668275373533,
+          "step": 0
+        }
+      },
+      "rank": 950
+    },
+    "box_and_action": {
+      "q": 0.09921784503607556,
+      "visual_halfwidths": [
+        0.19843569007215112,
+        0.19843569007215112,
+        0.19843569007215112,
+        0.19843569007215112
+      ],
+      "action_halfwidths": [
+        0.2916458945912923,
+        0.2916458945912923
+      ],
+      "upper": 0.987676306880482,
+      "upper_exact": "231301129676739543932233539/234187180623265792000000000",
+      "passes": true,
+      "constraints": {
+        "trolley_position": {
+          "ratio": 0.7241379310344828,
+          "step": 0
+        },
+        "trolley_speed": {
+          "ratio": 0.38372002146508744,
+          "step": 3
+        },
+        "sway": {
+          "ratio": 0.6335879427127517,
+          "step": 6
+        },
+        "sway_rate": {
+          "ratio": 0.6355792424947208,
+          "step": 2
+        },
+        "payload_position": {
+          "ratio": 0.8283736767384688,
+          "step": 2
+        },
+        "payload_diagonal": {
+          "ratio": 0.987676306880482,
+          "step": 2
+        },
+        "axis_accel": {
+          "ratio": 0.7785183933134979,
+          "step": 0
+        },
+        "total_accel": {
+          "ratio": 0.9861232981970974,
+          "step": 0
+        }
+      },
+      "rank": 950
+    }
+  },
+  "protocol": "86e0f6ce038e9b536dd092d20fdc1d7ca863cb0860e3a5ae225b1323c6cc9dab",
+  "calibration": "be3a33d18531ce5102423da4423408084a1531d5cee9be96b824fb617479dcca"
+}

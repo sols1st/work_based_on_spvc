@@ -1,0 +1,305 @@
+{
+  "arms": {
+    "published_ppo__generated": {
+      "thresholds": {
+        "max_truth_m": 1.944175085270217,
+        "max_proxy_m": 0.0
+      },
+      "test_covered": {
+        "max_truth_m": 482,
+        "max_proxy_m": 500
+      },
+      "outcomes": {
+        "success": 500,
+        "unsafe": 0,
+        "stopped_safe_outside_goal": 0,
+        "out_of_domain": 0,
+        "timeout": 0
+      },
+      "mean_episode_max_truth_m": 1.4734154337921423,
+      "mean_frame_truth_m": 0.1307573750890381,
+      "max_lookup_m": 0.0,
+      "max_steps": 90
+    },
+    "published_ppo__h5_native": {
+      "thresholds": {
+        "max_truth_m": 6.611765069795389,
+        "max_proxy_m": 6.613653772122554
+      },
+      "test_covered": {
+        "max_truth_m": 480,
+        "max_proxy_m": 480
+      },
+      "outcomes": {
+        "success": 500,
+        "unsafe": 0,
+        "stopped_safe_outside_goal": 0,
+        "out_of_domain": 0,
+        "timeout": 0
+      },
+      "mean_episode_max_truth_m": 6.584465271608083,
+      "mean_frame_truth_m": 0.6538356048883526,
+      "max_lookup_m": 0.30129863196225415,
+      "max_steps": 92
+    },
+    "published_ppo__h5_dino": {
+      "thresholds": {
+        "max_truth_m": 0.6761941344161642,
+        "max_proxy_m": 0.6761941344161642
+      },
+      "test_covered": {
+        "max_truth_m": 482,
+        "max_proxy_m": 482
+      },
+      "outcomes": {
+        "success": 500,
+        "unsafe": 0,
+        "stopped_safe_outside_goal": 0,
+        "out_of_domain": 0,
+        "timeout": 0
+      },
+      "mean_episode_max_truth_m": 0.48727448575124616,
+      "mean_frame_truth_m": 0.1271169256324855,
+      "max_lookup_m": 0.3015004780124855,
+      "max_steps": 96
+    },
+    "published_ppo__rgb_native": {
+      "thresholds": {
+        "max_truth_m": 8.158388186789352,
+        "max_proxy_m": 6.26382777124968
+      },
+      "test_covered": {
+        "max_truth_m": 492,
+        "max_proxy_m": 492
+      },
+      "outcomes": {
+        "success": 0,
+        "unsafe": 500,
+        "stopped_safe_outside_goal": 0,
+        "out_of_domain": 0,
+        "timeout": 0
+      },
+      "mean_episode_max_truth_m": 5.407599030539739,
+      "mean_frame_truth_m": 2.355796239014709,
+      "max_lookup_m": 0.8782682309123402,
+      "max_steps": 104
+    },
+    "published_ppo__rgb_dino": {
+      "thresholds": {
+        "max_truth_m": 1.1522981245047959,
+        "max_proxy_m": 1.1522981245047959
+      },
+      "test_covered": {
+        "max_truth_m": 468,
+        "max_proxy_m": 468
+      },
+      "outcomes": {
+        "success": 500,
+        "unsafe": 0,
+        "stopped_safe_outside_goal": 0,
+        "out_of_domain": 0,
+        "timeout": 0
+      },
+      "mean_episode_max_truth_m": 0.9462281907089489,
+      "mean_frame_truth_m": 0.27418062737216636,
+      "max_lookup_m": 0.8781680667069622,
+      "max_steps": 96
+    },
+    "robust_actor__generated": {
+      "thresholds": {
+        "max_truth_m": 1.944175085270217,
+        "max_proxy_m": 0.0
+      },
+      "test_covered": {
+        "max_truth_m": 482,
+        "max_proxy_m": 500
+      },
+      "outcomes": {
+        "success": 500,
+        "unsafe": 0,
+        "stopped_safe_outside_goal": 0,
+        "out_of_domain": 0,
+        "timeout": 0
+      },
+      "mean_episode_max_truth_m": 1.4734154337921423,
+      "mean_frame_truth_m": 0.07407439059354942,
+      "max_lookup_m": 0.0,
+      "max_steps": 186,
+      "fixed_barrier_on_physical_tube": {
+        "status": "positive_drift_witness",
+        "d_m": 6.00001,
+        "v_mps": 0.22642433962264152,
+        "error_m": 1.9441750852702162,
+        "barrier": 0.0,
+        "successor_barrier": 0.3091116606973925,
+        "drift": 0.3091116606973925
+      }
+    },
+    "robust_actor__h5_native": {
+      "thresholds": {
+        "max_truth_m": 6.617570040788884,
+        "max_proxy_m": 6.620354150406548
+      },
+      "test_covered": {
+        "max_truth_m": 467,
+        "max_proxy_m": 467
+      },
+      "outcomes": {
+        "success": 0,
+        "unsafe": 0,
+        "stopped_safe_outside_goal": 500,
+        "out_of_domain": 0,
+        "timeout": 0
+      },
+      "mean_episode_max_truth_m": 6.605183040072966,
+      "mean_frame_truth_m": 0.5089848509520769,
+      "max_lookup_m": 0.30107662898274157,
+      "max_steps": 111,
+      "fixed_barrier_on_physical_tube": {
+        "status": "positive_drift_witness",
+        "d_m": 6.00001,
+        "v_mps": 0.13208503144654088,
+        "error_m": 6.617570040788886,
+        "barrier": 0.0,
+        "successor_barrier": 0.5935472328487252,
+        "drift": 0.5935472328487252
+      }
+    },
+    "robust_actor__h5_dino": {
+      "thresholds": {
+        "max_truth_m": 0.6761941344161642,
+        "max_proxy_m": 0.6761941344161642
+      },
+      "test_covered": {
+        "max_truth_m": 482,
+        "max_proxy_m": 482
+      },
+      "outcomes": {
+        "success": 500,
+        "unsafe": 0,
+        "stopped_safe_outside_goal": 0,
+        "out_of_domain": 0,
+        "timeout": 0
+      },
+      "mean_episode_max_truth_m": 0.499377866434518,
+      "mean_frame_truth_m": 0.1202020771224788,
+      "max_lookup_m": 0.30134600998962924,
+      "max_steps": 206,
+      "fixed_barrier_on_physical_tube": {
+        "status": "positive_drift_witness",
+        "d_m": 6.00001,
+        "v_mps": 0.2830279245283019,
+        "error_m": 0.6761941344161633,
+        "barrier": 0.4469015942402388,
+        "successor_barrier": 0.8419921262333014,
+        "drift": 0.39509053199306265
+      }
+    },
+    "robust_actor__rgb_native": {
+      "thresholds": {
+        "max_truth_m": 8.158388186789352,
+        "max_proxy_m": 6.26382777124968
+      },
+      "test_covered": {
+        "max_truth_m": 492,
+        "max_proxy_m": 492
+      },
+      "outcomes": {
+        "success": 0,
+        "unsafe": 500,
+        "stopped_safe_outside_goal": 0,
+        "out_of_domain": 0,
+        "timeout": 0
+      },
+      "mean_episode_max_truth_m": 5.416904874822286,
+      "mean_frame_truth_m": 2.3250355280817914,
+      "max_lookup_m": 0.8783704577228946,
+      "max_steps": 158,
+      "fixed_barrier_on_physical_tube": {
+        "status": "positive_drift_witness",
+        "d_m": 6.00001,
+        "v_mps": 0.13208503144654088,
+        "error_m": 6.118791140092016,
+        "barrier": 0.0,
+        "successor_barrier": 0.5935472328487252,
+        "drift": 0.5935472328487252
+      }
+    },
+    "robust_actor__rgb_dino": {
+      "thresholds": {
+        "max_truth_m": 1.1560618704038461,
+        "max_proxy_m": 1.1560618704038461
+      },
+      "test_covered": {
+        "max_truth_m": 469,
+        "max_proxy_m": 469
+      },
+      "outcomes": {
+        "success": 500,
+        "unsafe": 0,
+        "stopped_safe_outside_goal": 0,
+        "out_of_domain": 0,
+        "timeout": 0
+      },
+      "mean_episode_max_truth_m": 0.9547540328008067,
+      "mean_frame_truth_m": 0.24246476387330004,
+      "max_lookup_m": 0.8783674224439437,
+      "max_steps": 206,
+      "fixed_barrier_on_physical_tube": {
+        "status": "positive_drift_witness",
+        "d_m": 6.00001,
+        "v_mps": 0.26416006289308175,
+        "error_m": 1.1560618704038452,
+        "barrier": 0.0,
+        "successor_barrier": 0.802305483657733,
+        "drift": 0.802305483657733
+      }
+    }
+  },
+  "paired": {
+    "published_ppo__h5": {
+      "mean_paired_reduction_m": 6.097190785856837,
+      "percentile_interval": [
+        6.091007786460373,
+        6.103050261328556
+      ],
+      "favorable": 500,
+      "ties": 0,
+      "success_old_only": 0,
+      "success_new_only": 0
+    },
+    "published_ppo__rgb": {
+      "mean_paired_reduction_m": 4.46137083983079,
+      "percentile_interval": [
+        4.321959912221801,
+        4.6022248582066805
+      ],
+      "favorable": 500,
+      "ties": 0,
+      "success_old_only": 0,
+      "success_new_only": 500
+    },
+    "robust_actor__h5": {
+      "mean_paired_reduction_m": 6.105805173638448,
+      "percentile_interval": [
+        6.100466469937704,
+        6.110731893635366
+      ],
+      "favorable": 500,
+      "ties": 0,
+      "success_old_only": 0,
+      "success_new_only": 500
+    },
+    "robust_actor__rgb": {
+      "mean_paired_reduction_m": 4.46215084202148,
+      "percentile_interval": [
+        4.323840149402589,
+        4.602696406832635
+      ],
+      "favorable": 500,
+      "ties": 0,
+      "success_old_only": 0,
+      "success_new_only": 500
+    }
+  }
+}

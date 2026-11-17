@@ -80,6 +80,7 @@ def main(argv=None):
     p.add_argument('--barrier-dir',type=Path,required=True)
     p.add_argument('--perception-contract',type=Path,required=True)
     p.add_argument('--output-dir',type=Path,required=True)
+    p.add_argument('--stop-on-witness',action='store_true',help='Development: return a failed audit after the first level containing actual counterexamples')
     p.add_argument('--max-depth',type=int,default=14)
     p.add_argument('--max-cells',type=int,default=300000)
     p.add_argument('--actor-subdivisions',type=int,default=32)
@@ -146,6 +147,8 @@ def main(argv=None):
         history.append(dict(depth=depth,checked=checked,passed=passed,threshold_excluded=excluded,
                             actual_witnesses=len(witnesses),unresolved=len(pending_l),seconds=time.monotonic()-start))
         print(json.dumps(history[-1]),flush=True)
+        if args.stop_on_witness and witnesses:
+            unresolved=len(pending_l);break
         if not len(pending_l):break
         if depth==args.max_depth or checked+2*len(pending_l)>args.max_cells:
             unresolved=len(pending_l);break
@@ -169,7 +172,7 @@ def main(argv=None):
                 source_contract_sha256=sha256(args.perception_contract),
                 verifier_sha256=sha256(Path(__file__)),
                 actor_subdivisions=args.actor_subdivisions,successor_subdivisions=args.successor_subdivisions,
-                actor_bound_method=args.actor_bound_method,
+                actor_bound_method=args.actor_bound_method,stop_on_witness=args.stop_on_witness,
                 envelope_units='m',envelope_radius_at_10m=float(envelope([10.],contract['coefficients'],contract['calibration']['q_hat'])[0]),
                 witness_meaning='positive drift for this SBC, not an unsafe rollout or impossibility of another SBC',
                 history=history,witnesses=witnesses)

@@ -1,0 +1,26 @@
+{
+  "scene_id_overlap": {
+    "train__validation": 0,
+    "train__calibration": 0,
+    "train__test": 0,
+    "validation__calibration": 0,
+    "validation__test": 0,
+    "calibration__test": 0
+  },
+  "exact_image_overlap": {
+    "train__validation": 27,
+    "train__calibration": 27,
+    "train__test": 27,
+    "validation__calibration": 28,
+    "validation__test": 27,
+    "calibration__test": 27
+  },
+  "unique_images_per_split": {
+    "train": 1863,
+    "validation": 486,
+    "calibration": 486,
+    "test": 333
+  },
+  "shared_train_test_hashes_with_different_state_labels": 0,
+  "maximum_state_range_for_shared_hash": 0.0
+}

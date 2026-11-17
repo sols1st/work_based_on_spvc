@@ -1,0 +1,106 @@
+[
+  {
+    "regions": {
+      "initial": {
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "unsafe": {
+        "lower": 24.011667251586914,
+        "upper": 40.39044189453125
+      }
+    },
+    "active": 8013,
+    "positive": 2969,
+    "training_band_positive": 2969,
+    "positive_training_margin": 3927,
+    "verification_condition": "nonnegative supermartingale: B(next)<=B(now); positive epsilon is a training margin only",
+    "max_drift": 0.07807493209838867,
+    "region_pass": true,
+    "sampled_tube_pass": false,
+    "formal_certificate": false,
+    "epoch": 500,
+    "loss": 7.8500237464904785,
+    "seconds": 4.319890244165435,
+    "rejected_region_blocks": 0,
+    "feedback_samples": 1024
+  },
+  {
+    "regions": {
+      "initial": {
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "unsafe": {
+        "lower": 23.711183547973633,
+        "upper": 38.2679557800293
+      }
+    },
+    "active": 8000,
+    "positive": 1807,
+    "training_band_positive": 1807,
+    "positive_training_margin": 3645,
+    "verification_condition": "nonnegative supermartingale: B(next)<=B(now); positive epsilon is a training margin only",
+    "max_drift": 0.0552821159362793,
+    "region_pass": true,
+    "sampled_tube_pass": false,
+    "formal_certificate": false,
+    "epoch": 1000,
+    "loss": 6.31324577331543,
+    "seconds": 8.596541063161567,
+    "rejected_region_blocks": 0,
+    "feedback_samples": 1024
+  },
+  {
+    "regions": {
+      "initial": {
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "unsafe": {
+        "lower": 24.042739868164062,
+        "upper": 36.02322006225586
+      }
+    },
+    "active": 8032,
+    "positive": 1,
+    "training_band_positive": 1,
+    "positive_training_margin": 4174,
+    "verification_condition": "nonnegative supermartingale: B(next)<=B(now); positive epsilon is a training margin only",
+    "max_drift": 0.0009493827819824219,
+    "region_pass": true,
+    "sampled_tube_pass": false,
+    "formal_certificate": false,
+    "epoch": 1500,
+    "loss": 0.01689075492322445,
+    "seconds": 12.094373315107077,
+    "rejected_region_blocks": 0,
+    "feedback_samples": 1
+  },
+  {
+    "regions": {
+      "initial": {
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "unsafe": {
+        "lower": 24.03602409362793,
+        "upper": 36.19587707519531
+      }
+    },
+    "active": 8031,
+    "positive": 0,
+    "training_band_positive": 0,
+    "positive_training_margin": 4029,
+    "verification_condition": "nonnegative supermartingale: B(next)<=B(now); positive epsilon is a training margin only",
+    "max_drift": 0.0,
+    "region_pass": true,
+    "sampled_tube_pass": true,
+    "formal_certificate": false,
+    "epoch": 2000,
+    "loss": 0.011769723147153854,
+    "seconds": 15.040742392186075,
+    "rejected_region_blocks": 0,
+    "feedback_samples": 0
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "inputs": {
+    "/root/work_based_on_spvc/artical-F122/Aebs/experiments/native_spvc_h5_sensitivity.py": "c5b42032ff00a4ca0b2835af0fc7ea156f2004655ea403d07cc2ec8b38c97698",
+    "/root/work_based_on_spvc/artical-F122/Aebs/experiments/native_spvc_camera_cross.py": "3f4bd19906c4429202abc5a80bee9f936011419b1f48030c35508d870c583f74",
+    "results/aebs_native_cross_20261117_v1/protocol.json": "642ddd305065b03e95b884c99ec5b1e234803e2057b378d1f4133e37c0a19417",
+    "results/aebs_native_cross_20261117_v1/frame_estimates.npz": "d444f54d8f2506710631fa109e497ab2d3cba76d3b73d872c78ceede2eac810a",
+    "Aebs/data/Downsampled.h5": "41cc88359f64d52ffb25a8ec57ea9efddd9b8463d37e63bc972b2854dbed1bf1",
+    "results/vision_sls_spvc_sbc_pass_20261029/splits.npz": "b4ed46b4af8c6fa32d7fbedd1a010105a3d47d477126930c7bd5ff67222c828a"
+  },
+  "exploratory": true,
+  "seeds": [
+    202611170518,
+    202611170519
+  ],
+  "calibration_n": 199,
+  "holdout_n": 500,
+  "rank": 190,
+  "rule": "exclude test images whose 8 bottom rows are exactly constant across all 256 pixel values",
+  "reason": "chosen after inspecting worst native H5 case; same filter for both methods"
+}

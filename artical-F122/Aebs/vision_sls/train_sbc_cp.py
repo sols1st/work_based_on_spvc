@@ -23,6 +23,12 @@ from .audit_sbc_cp import region_grid
 from .run import sha256
 
 
+def raw_barrier(model, x):
+    """Pre-ReLU training head; the certified function remains model(x)>=0."""
+    for layer in model.layers[:-1]: x=layer(x).tanh()
+    return model.layers[-1](x).flatten()
+
+
 def region_samples(n,seed):
     rng=np.random.default_rng(seed)
     return tuple(torch.tensor(rng.uniform(lo,hi,size=(n,2)),dtype=torch.float32)
@@ -71,12 +77,14 @@ def main(argv=None):
     p.add_argument('--drift-weight',type=float,default=100.)
     p.add_argument('--preserve-regions',action='store_true',help='Reject updates that lose already verified region constraints')
     p.add_argument('--nonnegative-activation',choices=['softplus','relu'],default='softplus')
+    p.add_argument('--raw-region-loss',action='store_true',help='Train ReLU region separation before the output clamp, avoiding dead-output gradients')
     p.add_argument('--counterexample-feedback',action='store_true')
     p.add_argument('--region-grid',type=int,default=48)
     p.add_argument('--drift-loss',choices=['squared','linear'],default='squared')
     p.add_argument('--extra-states',type=Path,help='Actual interval-verifier counterexamples, development only')
     args=p.parse_args(argv)
     if args.output_dir.exists():p.error('choose a new output directory')
+    if args.raw_region_loss and args.nonnegative_activation!='relu':p.error('raw region training requires ReLU output')
     if args.epsilon<=0 or args.epochs<1:p.error('positive epsilon and training budget required')
     args.output_dir.mkdir(parents=True)
     torch.set_num_threads(int(os.environ.get('OMP_NUM_THREADS','1')));torch.manual_seed(args.seed)
@@ -108,7 +116,13 @@ def main(argv=None):
         extra=torch.tensor(np.load(args.extra_states)['states'],dtype=torch.float32).reshape(-1,2)
         evaluation=torch.cat([evaluation,extra])
     eval_low,eval_high=prepare(policy,contract,evaluation)
+    # Make the random barrier seed independent of encoder/model construction.
+    if args.raw_region_loss: torch.manual_seed(args.seed)
     model=NonnegativeSBC(nonnegative_activation=args.nonnegative_activation)
+    if args.raw_region_loss and args.resume is None:
+        with torch.no_grad():
+            model.layers[-1].weight.mul_(20.)
+            model.layers[-1].bias.mul_(20.)
     if args.resume:model.load_state_dict(torch.load(args.resume,map_location='cpu',weights_only=True))
     optimizer=torch.optim.Adam(model.parameters(),lr=args.learning_rate)
     def regions_hold():
@@ -141,6 +155,15 @@ def main(argv=None):
         init_target=0. if args.nonnegative_activation=='relu' else .4
         region_loss=(bi-init_target).square().mean()+torch.relu(25-bu).square().mean()
         region_loss=region_loss+torch.relu(boundary_initial-.6).square().max()+torch.relu(25-boundary_unsafe).square().max()
+        if args.raw_region_loss:
+            # These sufficient raw-head targets imply the unchanged B region conditions.
+            # A dead ReLU cannot learn B(unsafe)>=20 through its zero derivative.
+            ri=raw_barrier(model,initial[rid]/divisor)
+            ru=raw_barrier(model,unsafe[uid]/divisor)
+            rbi=raw_barrier(model,initial_boundary)
+            rbu=raw_barrier(model,unsafe_boundary)
+            region_loss=(torch.relu(ri+.5).square().mean()+torch.relu(25-ru).square().mean()
+                         +torch.relu(rbi+.5).square().max()+torch.relu(25-rbu).square().max())
         if safe_progress is not None:
             examples=safe_progress[torch.randint(len(safe_progress),(512,))]
             progress_target=torch.zeros_like(examples[:,0]) if args.nonnegative_activation=='relu' else .1+.02*examples[:,0]
@@ -160,7 +183,9 @@ def main(argv=None):
         # Establish region separation first; then add the dynamics constraint.
         weight=0. if epoch<min(1000,args.epochs//5) and args.resume is None else args.drift_weight
         loss=region_loss+weight*drift_loss
-        optimizer.zero_grad();loss.backward();torch.nn.utils.clip_grad_norm_(model.parameters(),20.);optimizer.step()
+        if not torch.isfinite(loss): raise FloatingPointError("nonfinite SBC loss")
+        optimizer.zero_grad();loss.backward()
+        torch.nn.utils.clip_grad_norm_(model.parameters(),20.,error_if_nonfinite=True);optimizer.step()
         if args.preserve_regions and (epoch+1)%50==0:
             if regions_hold():
                 accepted_weights=copy.deepcopy(model.state_dict());accepted_optimizer=copy.deepcopy(optimizer.state_dict())

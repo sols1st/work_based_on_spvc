@@ -1,0 +1,82 @@
+{
+  "analysis": "Fixed-contract post-hoc geometric supremum and action-only ablation",
+  "scope": "Strict supremum of the published sufficient certificate for each frozen tube. The calibration and held-out sampling law uses initial scale 1.5 only. Action-only controls the command projection and leaves its visual nullspace unbounded.",
+  "input_hashes": {
+    "grid/protocol.json": "49b8ce56d3c071708c7e0a6e982883d98256205a42d7277faf14ebaee0631f0b",
+    "confirmation/protocol.json": "86e0f6ce038e9b536dd092d20fdc1d7ca863cb0860e3a5ae225b1323c6cc9dab",
+    "confirmation/certificates.json": "ed9868c4de7f4858e963f7a82edd16017d92e008aec345f8b15ab8758e591b37",
+    "confirmation/calibration.npz": "be3a33d18531ce5102423da4423408084a1531d5cee9be96b824fb617479dcca",
+    "confirmation/test.npz": "edcbdd63383bbab90320d5299264f855b4f7594da109b05ab74ab30c2081838b",
+    "Aebs/experiments/compare_crane_contracts.py": "fb3170f632b6e892f8f553f8290518e634c3f7f98b37a6b8aafba6d4b074ff25",
+    "Aebs/overhead_crane/certificate.py": "f65c13598879885c60d9d240fcac48abfd2291557ada9471fbdc0c8f3aae4ca0",
+    "Aebs/overhead_crane/plant.py": "7ed9770dbb89de9b6eb09a9307c5cd89dcb31610c5c0a97f57e88c11000a7096",
+    "Aebs/lane_keeping/cp.py": "eccf44a1b20eecf872c670646ac3ec2296b846c1866f3a77df47c4ed9c8e8cdc",
+    "confirmation/summary.json": "601659d504da840055eb487e70ba7d5a1b9ae52f15b1f0786a363d908e3138a7"
+  },
+  "analysis_source_sha256": "67b09cee7714e572f79011e64a8e42eab1d0d4a0a704c565afa3814180931548",
+  "alpha": 0.05,
+  "calibration_n": 999,
+  "test_n": 1000,
+  "initial_scale": 1.5,
+  "arms": {
+    "box": {
+      "q": 0.1863193735603803,
+      "rank": 950,
+      "visual_halfwidth_per_coordinate": 0.1863193735603803,
+      "command_halfwidth_per_axis": 0.5476764826120599,
+      "command_halfwidth_exact": "49330312060225137637/90071992547409920000",
+      "held_covered": 955,
+      "upper": 1.0714668275373533,
+      "upper_exact": "7238186407855607728477/6755399441055744000000",
+      "passes": false,
+      "scale_supremum": 1.3794023213808067,
+      "scale_supremum_exact": "5522141639550115559075/4003285737566652858368",
+      "active_at_supremum": [
+        {
+          "constraint": "total_accel",
+          "step": 0
+        }
+      ]
+    },
+    "box_and_action": {
+      "q": 0.09921784503607556,
+      "rank": 950,
+      "visual_halfwidth_per_coordinate": 0.19843569007215112,
+      "command_halfwidth_per_axis": 0.2916458945912923,
+      "command_halfwidth_exact": "52538253688219158183/180143985094819840000",
+      "held_covered": 954,
+      "upper": 0.987676306880482,
+      "upper_exact": "231301129676739543932233539/234187180623265792000000000",
+      "passes": true,
+      "scale_supremum": 1.5187660253228763,
+      "scale_supremum_exact": "233572962282626019484604605/153791274224066514277892096",
+      "active_at_supremum": [
+        {
+          "constraint": "payload_diagonal",
+          "step": 2
+        }
+      ]
+    },
+    "action_only": {
+      "q": 0.09855744806010272,
+      "rank": 950,
+      "visual_halfwidth_per_coordinate": null,
+      "command_halfwidth_per_axis": 0.28970469070026894,
+      "command_halfwidth_exact": "8350169197345382409/28823037615171174400",
+      "held_covered": 953,
+      "upper": 0.9876724767358817,
+      "upper_exact": "71169302371068986139457977/72057594037927936000000000",
+      "passes": true,
+      "scale_supremum": 1.518771857713367,
+      "scale_supremum_exact": "934295437013565433854398875/615165096896266057111568384",
+      "active_at_supremum": [
+        {
+          "constraint": "payload_diagonal",
+          "step": 2
+        }
+      ]
+    }
+  },
+  "joint_over_box_scale_gain": 0.10103194824448615,
+  "joint_over_box_scale_gain_exact": "1905189548235650814302207718289/18857297927436802158499883303845"
+}

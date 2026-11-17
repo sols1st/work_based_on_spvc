@@ -1,0 +1,73 @@
+{
+  "format": "lane_matched_linear_neural_proxy_v1",
+  "date": "2026-11-17",
+  "training_seeds": [
+    202611171,
+    202611172,
+    202611173
+  ],
+  "epochs": 30,
+  "batch_size": 64,
+  "optimizer": "Adam",
+  "lr": 0.0001,
+  "arms": [
+    "trainable linear Cx",
+    "invertible neural coupling h_phi(x)"
+  ],
+  "loss": "latent L2 + 0.1 decoded-state MSE, identical in both arms",
+  "shared_visual_warm_start": "results/lane_keeping_20261105/patch_perception_v2/patch_projection.pt",
+  "data": "data/lane_keeping_v2/dataset.npz",
+  "data_rows": 3600,
+  "train_rows": 2160,
+  "validation_rows": 540,
+  "static_calibration_rows": 540,
+  "test_rows": 360,
+  "fresh_feature_protocol_sha256": "a24867d653f8f7bfb4497ed279e6d4c7b25371113a01c4ab010f180dadf0fc74",
+  "feature_cache_sha256": "d9bd078ace40b2b78d0c91b0f5864e36ee77e87ec2a1b9d230d0c0f375ac1cbc",
+  "actor": "results/lane_robust_synthesis_20261116_v2/package/actor.pt",
+  "sbc": "results/lane_robust_synthesis_20261116_v2/package/sbc.pt",
+  "actor_sha256": "afd4509772a9fda976da2d0c5722f55e6d8f2e9fabce37b7a998110583fe0c75",
+  "sbc_sha256": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321",
+  "backend": "same frozen robust controller and neural SBC for all six runs; no backend retraining",
+  "dino_repo": "../external/dinov2",
+  "dino_weights": "../external/dinov2_weights/dinov2_vits14_pretrain.pth",
+  "calibration_seed": 202611170101,
+  "holdout_seed": 202611170102,
+  "calibration_episodes": 199,
+  "holdout_episodes": 100,
+  "horizon": 80,
+  "alpha": 0.05,
+  "pairing": "same initial-state/curvature draws across every model; each model has separate feedback trajectories and CP threshold",
+  "gpu_assignment": "GPU 0: linear/neural/linear; GPU 1: neural/linear/neural across ordered seeds; both RTX4090, batch8",
+  "primary_metrics": [
+    "decoded static error",
+    "trajectory CP radius",
+    "held-out complete-trajectory coverage",
+    "unsafe episodes",
+    "common SBC verification pass"
+  ],
+  "secondary_metrics": [
+    "raw latent residual",
+    "affine-fit residual of learned proxy",
+    "parameters",
+    "training time"
+  ],
+  "selection": "each checkpoint selected only by its own validation decoded MSE and C condition<=10; report all seeds, no test/CP cherry-picking",
+  "statistical_scope": "three paired training seeds, not six independent image datasets; paired rollout streams are not pooled as independent episodes across models",
+  "limitations": "warm-start adaptation; same optimization-update budget, not identical parameter or wall-clock budget; nominal renderer law only",
+  "source_sha256": {
+    "verify_learned.py": "9ee48af12e2a86bd572753489c951adffb4c7aee7530d1e8190fac3919eca839",
+    "core.py": "d946db50519f272833ee6aa0e14d80cb590d8a88b733cfcdeb24f7e451097b79",
+    "trajectory_cp.py": "0c02c50574df5b849bf0c684df6029ccd0382f120ceaa214b660c78202e31f92",
+    "patch_perception.py": "ab438e203952433fe9e22f2db51030749f578ecf13064d5090eb28fa4e7b027a",
+    "compare_proxy_cp.py": "50db3a1aeb2753a42b5108f2e32f6ca95bc65581df37a63f14e68b63c626667a",
+    "joint_observation.py": "87248c0bad67a8cc9e4ea5b2166da6ee95a118d5b47b66bdd9d787e0a9d9e8d3",
+    "verify.py": "bd72e1df16ab76311347a9cd3f653b17f27154438e39c3a95db50c71c8e2b8ae",
+    "learned_sbc.py": "c7ea694dc753ae2b5cc8169ed2164943bac691f851e265ed0e2a9f2fff3de026",
+    "nonlinear_observation.py": "e71a00aac6b958377b877a2f26cd6eb2ed657d01ff0a2d5d81bc9365f7beed46",
+    "compare_proxy_train.py": "1c24d517ade65e43c840adba21a51b6c56978c71de10fdb01861940733b5b212",
+    "compare_proxy_run.py": "68198c33b3e2073088d6db4af0e71a7dac6ee5981a6ee867de1cac5e3711b2cd",
+    "policy.py": "d56d4a944217cc11f0e9bb880549f5691850c015bb7f4c0f044b714436e544c7",
+    "renderer.py": "90e3f69cc6ccd0539e39ecd958f16dc0f7076b28d4bb944bc21653665e394a4f"
+  }
+}

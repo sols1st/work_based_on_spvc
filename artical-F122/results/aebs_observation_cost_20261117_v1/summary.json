@@ -1,0 +1,47 @@
+{
+  "results": {
+    "original": {
+      "thread_ms": [
+        2.4425790000000003,
+        2.485224
+      ],
+      "wall_ms": [
+        2.4452265,
+        2.4878757
+      ]
+    },
+    "current": {
+      "thread_ms": [
+        143.0706535,
+        144.40964259999998
+      ],
+      "wall_ms": [
+        143.07559750000001,
+        144.4238084
+      ]
+    }
+  },
+  "unit": "ms [median,p90]",
+  "batch": 1,
+  "included": "decoded in-memory PIL RGB to scalar camera observation, including preprocessing; no image I/O, generator, actor or simulation",
+  "warmup": 12,
+  "n": 108,
+  "seed": 1711998,
+  "pinned_cpu": 70,
+  "source": "ad2909ceb625c9f88332965f07a354e0ced231286226e56b08c1a1d6c6554cae",
+  "cpu_description": "model name\t: Intel(R) Xeon(R) Platinum 8352V CPU @ 2.10GHz",
+  "params": {
+    "original": 279553,
+    "current": 22122497
+  },
+  "torch": "2.3.1",
+  "platform": "Linux-5.15.0-139-generic-x86_64-with-glibc2.17",
+  "cpu_threads": 1,
+  "bindings": {
+    "Aebs/controller/state_net_trained.pth": "386ef3cc4282a07cf8f77930aefd4aeab51110eee776b1f75d21ff1122358884",
+    "results/real_aebs_full_v1/observation.pt": "eee112612932071653c4479a9eb9f8b9d215217c011281b022b7f79e206e9fb6",
+    "../external/dinov2_weights/dinov2_vits14_pretrain.pth": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+    "results/aebs_budget_scaling_20261110/protocol.json": "dc3fb06f1870a2e90b4c9d81a013359eeeb305f227004cedfd1ff8ab709a0984"
+  },
+  "timings": "0cd9bfbb16079f5c71558ff8a739bb7f912ea2aa917ad4339637de02ef73e107"
+}
