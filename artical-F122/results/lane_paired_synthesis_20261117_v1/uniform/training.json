@@ -1,0 +1,115 @@
+[
+  {
+    "round": 1,
+    "feedback": {
+      "status": "completed",
+      "completed_curvatures": [
+        -0.02,
+        -0.01,
+        0.0,
+        0.01,
+        0.02
+      ],
+      "witnesses": [
+        {
+          "x": [
+            0.4423076923076923,
+            -0.28846153846153844
+          ],
+          "kappa": 0.0,
+          "error": [
+            0.09682281207320706,
+            0.09682281207320706
+          ],
+          "additive_action": -0.2,
+          "action_difference": -0.5974716379894787,
+          "before": 0.0,
+          "after": 0.006164793557623227,
+          "next_state": [
+            0.4016345210518569,
+            -0.5361820849315787
+          ]
+        },
+        {
+          "x": [
+            -0.4423076923076923,
+            -0.5192307692307692
+          ],
+          "kappa": 0.02,
+          "error": [
+            -0.09682281207320706,
+            -0.09682281207320706
+          ],
+          "additive_action": -0.2,
+          "action_difference": 0.0,
+          "before": 19.901673876692936,
+          "after": 19.995588833154837,
+          "next_state": [
+            -0.5153147805013087,
+            -0.3528703324912681
+          ]
+        }
+      ],
+      "seconds": 0.4592344919219613
+    },
+    "training_witnesses": 2,
+    "completed_actor_steps": 80,
+    "completed_barrier_steps": 80
+  },
+  {
+    "round": 2,
+    "feedback": {
+      "status": "completed",
+      "completed_curvatures": [
+        -0.02,
+        -0.01,
+        0.0,
+        0.01,
+        0.02
+      ],
+      "witnesses": [],
+      "seconds": 0.5535230501554906
+    },
+    "training_witnesses": 2,
+    "completed_actor_steps": 80,
+    "completed_barrier_steps": 80
+  },
+  {
+    "round": 3,
+    "feedback": {
+      "status": "completed",
+      "completed_curvatures": [
+        -0.02,
+        -0.01,
+        0.0,
+        0.01,
+        0.02
+      ],
+      "witnesses": [
+        {
+          "x": [
+            -0.5192307692307692,
+            0.36538461538461536
+          ],
+          "kappa": 0.0,
+          "error": [
+            -0.09682281207320706,
+            -0.09682281207320706
+          ],
+          "additive_action": 0.2,
+          "action_difference": 0.5739801077064397,
+          "before": 0.2636612807458434,
+          "after": 0.2653222598968483,
+          "next_state": [
+            -0.46775029773900584,
+            0.5770379494328913
+          ]
+        }
+      ],
+      "seconds": 0.4472935530357063
+    },
+    "training_witnesses": 3,
+    "completed_actor_steps": 80,
+    "completed_barrier_steps": 80
+  }
+]
