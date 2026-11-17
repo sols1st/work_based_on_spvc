@@ -1,0 +1,45 @@
+{
+  "centers": {
+    "-0.02": [
+      -0.13740835126505924,
+      0.21839577435511653
+    ],
+    "-0.01": [
+      0.003708677221960631,
+      0.02338418776518162
+    ],
+    "0.0": [
+      0.011226668292001045,
+      -0.008206165504724344
+    ],
+    "0.01": [
+      -0.0013025136971507346,
+      0.012692412498289254
+    ],
+    "0.02": [
+      0.236214047477875,
+      -0.2883699479554006
+    ]
+  },
+  "scale": {
+    "visual": [
+      0.11229728615615786,
+      0.11255917660297055
+    ],
+    "action": 0.44222261715332223
+  },
+  "raw_reference": "g(x)=(e/E_SCALE,theta/THETA_SCALE)",
+  "observation": "original DINO output z; online actor input z-b(kappa) and exact known curvature",
+  "corrected_state_proxy": "g(x)+b(kappa) in original visual output space",
+  "fit": "coordinatewise median per trajectory then median among trajectories with the fixed kappa",
+  "counts": {
+    "-0.02": 39,
+    "-0.01": 29,
+    "0.0": 48,
+    "0.01": 35,
+    "0.02": 48
+  },
+  "source": "results/lane_fixed_five_curves_20261117_v1/fixed/calibration.npz",
+  "source_sha256": "0b8cb15646d0c93c6abc0510ef8137839452ff9d20c66cb7f0ee8d722b0930d6",
+  "source_protocol_sha256": "f2e3c480771f839bf0908fb24795757fe6ff705115e9be8f5aafb0f7b76062b4"
+}

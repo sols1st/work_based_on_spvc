@@ -1,0 +1,40 @@
+{
+  "inputs": {
+    "results/aebs_factorial_20261117/protocol.json": "d36a6ef6e9d4b4dceb6471adf5fcb8f1cc45134e677278983db60dea83cd4609",
+    "results/aebs_matched_replay_20261117/library/manifest.json": "ec85fab9eb4412963bff6c1f83933a10f613abd97935cc3b0b9e8c3c1d21e296",
+    "Aebs/controller/best_model/best_model.zip": "2d2ab4d1d1f28d206c2c6238b9f087ee598b8c3c158bba220aa4939049819d83",
+    "Aebs/data/Downsampled.h5": "41cc88359f64d52ffb25a8ec57ea9efddd9b8463d37e63bc972b2854dbed1bf1",
+    "results/aebs_robust_synthesis_20261117_release/package/policy.pt": "230807a1759bbededeaa7703ede1ab676ee792e4e8b0a92b01428f9b5ae38c8c",
+    "results/aebs_robust_synthesis_20261117_release/package/config.json": "e81f5f94e5ab10f9c4d61bcbf6452de59f46eb7aaddb8bea7da7d1281a747bc6",
+    "results/aebs_robust_synthesis_20261117_release/package/observation.pt": "eee112612932071653c4479a9eb9f8b9d215217c011281b022b7f79e206e9fb6",
+    "/root/work_based_on_spvc/artical-F122/Aebs/experiments/factorial_aebs_actor_cross.py": "b26ff9ad283f83b9bf3374e1c1340f312cb5e860a6b0185e91874ec7f678a8e8",
+    "Aebs/experiments/matched_aebs_replay.py": "042264b30ecc7ddd8d62cb55cdb41cf3c517d419433932e3ea1da0be44e3bc4c",
+    "Aebs/vision_sls/rollout.py": "be7fcde00d490bbe1c83ed4296ca4653ac358ddb3d4b5acf398211e1c1da2516"
+  },
+  "arms": [
+    "original_ppo",
+    "robust_actor"
+  ],
+  "library": "common",
+  "modes": [
+    "gray32_mlp",
+    "gray32"
+  ],
+  "budgets": [
+    400,
+    10000,
+    24000
+  ],
+  "train_seed": 27411,
+  "seeds": [
+    711841,
+    711842
+  ],
+  "n": [
+    199,
+    100
+  ],
+  "alpha": 0.05,
+  "primary": "paired target success and dangerous terminations at fixed visual readout",
+  "scope": "published PPO initialization versus current robust actor on identical saved camera and trajectory seeds; current barrier not transferred to original PPO"
+}

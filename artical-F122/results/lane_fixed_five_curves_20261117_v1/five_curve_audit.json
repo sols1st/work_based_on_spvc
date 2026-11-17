@@ -1,0 +1,877 @@
+{
+  "protocol": {
+    "source": "50fc617dda656ef530c524d91790d74370109b20fc0637caaf51227f9502181b",
+    "base": "905a70c9e26b658bdbd8f4c853eb6113b02dfe54c67b33eb0bf987773e3fb350",
+    "image_protocol": "f2e3c480771f839bf0908fb24795757fe6ff705115e9be8f5aafb0f7b76062b4",
+    "heading_initial_cells_per_axis": 56,
+    "numerical": "float64 interval enclosures, no directed rounding"
+  },
+  "image_thresholds": {
+    "uniform": "cc9d123cb495ca48af660d1b8529b89a5b26c02276c58d834cfa7f0ec51e1371",
+    "diagonal": "5f3a08088c2eecaf93ade725adb4da8a62400de703f29420dbf0813f404dc58e",
+    "joint": "057bc6ce81770d9d4140e4b2cb625e63c919ffd0131da598b84194bb1b4ba16b"
+  },
+  "initial": {
+    "passed": true,
+    "unresolved": 0,
+    "bound": 0.2145080641624925,
+    "partition_area_error": 0.0,
+    "history": [
+      {
+        "depth": 0,
+        "unresolved": 0,
+        "accepted": 256
+      }
+    ]
+  },
+  "unsafe": {
+    "passed": true,
+    "unresolved": 0,
+    "bound": 23.546546645239726,
+    "partition_area_error": 0.0,
+    "history": [
+      {
+        "depth": 0,
+        "unresolved": 0,
+        "accepted": 1024
+      }
+    ]
+  },
+  "first_exit": [
+    1.1390683325465127,
+    1.2743872131367069
+  ],
+  "arms": {
+    "uniform": {
+      "heading": {
+        "feasible_lower_deg": 8.516005086844613,
+        "continuous_upper_deg": 8.51600508690191,
+        "witness": {
+          "state_normalized": [
+            -0.28886554621848737,
+            -0.19642857142857145
+          ],
+          "error": [
+            0.40882358219207626,
+            0.40882358219207626
+          ],
+          "kappa": -0.02,
+          "nominal_angle": 0.45,
+          "image_angle": -0.45
+        },
+        "status": "witness",
+        "certified_additional_steering_rad": 0.0
+      },
+      "barrier": {
+        "0.0": {
+          "-0.02": {
+            "status": "witness",
+            "checked": 1600,
+            "depth": 0,
+            "witness": {
+              "x": [
+                -0.825,
+                0.625
+              ],
+              "kappa": -0.02,
+              "error": [
+                -0.40882358219207626,
+                -0.40882358219207626
+              ],
+              "additive_action": -0.0,
+              "action_difference": 1.1892790593760334,
+              "before": 18.797325056684894,
+              "after": 19.530934393515288,
+              "next_state": [
+                -0.7372808015236377,
+                0.8993872131367069
+              ]
+            }
+          },
+          "-0.01": {
+            "status": "witness",
+            "checked": 1600,
+            "depth": 0,
+            "witness": {
+              "x": [
+                -0.825,
+                0.625
+              ],
+              "kappa": -0.01,
+              "error": [
+                -0.40882358219207626,
+                -0.40882358219207626
+              ],
+              "additive_action": -0.0,
+              "action_difference": 1.1281983291520317,
+              "before": 18.797325056684894,
+              "after": 18.920881332021327,
+              "next_state": [
+                -0.7372808015236377,
+                0.8860538798033735
+              ]
+            }
+          },
+          "0.0": {
+            "status": "witness",
+            "checked": 1600,
+            "depth": 0,
+            "witness": {
+              "x": [
+                -0.825,
+                0.675
+              ],
+              "kappa": 0.0,
+              "error": [
+                -0.40882358219207626,
+                -0.40882358219207626
+              ],
+              "additive_action": -0.0,
+              "action_difference": 1.2371376923687964,
+              "before": 18.407522004626347,
+              "after": 20.561349675591508,
+              "next_state": [
+                -0.7303558240724362,
+                0.9227205464700402
+              ]
+            }
+          },
+          "0.01": {
+            "status": "witness",
+            "checked": 1600,
+            "depth": 0,
+            "witness": {
+              "x": [
+                -0.825,
+                0.675
+              ],
+              "kappa": 0.01,
+              "error": [
+                -0.40882358219207626,
+                -0.40882358219207626
+              ],
+              "additive_action": -0.0,
+              "action_difference": 1.1822624726636244,
+              "before": 18.407522004626347,
+              "after": 19.885224527881213,
+              "next_state": [
+                -0.7303558240724362,
+                0.9093872131367069
+              ]
+            }
+          },
+          "0.02": {
+            "status": "witness",
+            "checked": 1600,
+            "depth": 0,
+            "witness": {
+              "x": [
+                -0.825,
+                0.675
+              ],
+              "kappa": 0.02,
+              "error": [
+                -0.40882358219207626,
+                -0.40882358219207626
+              ],
+              "additive_action": -0.0,
+              "action_difference": 1.1239312062179811,
+              "before": 18.407522004626347,
+              "after": 19.23722270115492,
+              "next_state": [
+                -0.7303558240724362,
+                0.8960538798033735
+              ]
+            }
+          }
+        },
+        "0.045": {
+          "-0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "-0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.0": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          }
+        },
+        "0.0675": {
+          "-0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "-0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.0": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          }
+        },
+        "0.072": {
+          "-0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "-0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.0": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          }
+        },
+        "0.081": {
+          "-0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "-0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.0": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          }
+        },
+        "0.0855": {
+          "-0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "-0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.0": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          }
+        },
+        "0.09": {
+          "-0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "-0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.0": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          }
+        }
+      }
+    },
+    "diagonal": {
+      "heading": {
+        "feasible_lower_deg": 8.516005086844613,
+        "continuous_upper_deg": 8.51600508690191,
+        "witness": {
+          "state_normalized": [
+            -0.28886554621848737,
+            -0.19642857142857145
+          ],
+          "error": [
+            0.6227697921352109,
+            0.40882358219207626
+          ],
+          "kappa": -0.02,
+          "nominal_angle": 0.45,
+          "image_angle": -0.45
+        },
+        "status": "witness",
+        "certified_additional_steering_rad": 0.0
+      },
+      "barrier": {
+        "0.0": {
+          "-0.02": {
+            "status": "witness",
+            "checked": 1600,
+            "depth": 0,
+            "witness": {
+              "x": [
+                -0.825,
+                0.625
+              ],
+              "kappa": -0.02,
+              "error": [
+                -0.6227697921352109,
+                -0.40882358219207626
+              ],
+              "additive_action": -0.0,
+              "action_difference": 1.1892790593760334,
+              "before": 18.797325056684894,
+              "after": 19.530934393515288,
+              "next_state": [
+                -0.7372808015236377,
+                0.8993872131367069
+              ]
+            }
+          },
+          "-0.01": {
+            "status": "witness",
+            "checked": 1600,
+            "depth": 0,
+            "witness": {
+              "x": [
+                -0.825,
+                0.625
+              ],
+              "kappa": -0.01,
+              "error": [
+                -0.6227697921352109,
+                -0.40882358219207626
+              ],
+              "additive_action": -0.0,
+              "action_difference": 1.1281983291520317,
+              "before": 18.797325056684894,
+              "after": 18.920881332021327,
+              "next_state": [
+                -0.7372808015236377,
+                0.8860538798033735
+              ]
+            }
+          },
+          "0.0": {
+            "status": "witness",
+            "checked": 1600,
+            "depth": 0,
+            "witness": {
+              "x": [
+                -0.825,
+                0.675
+              ],
+              "kappa": 0.0,
+              "error": [
+                -0.6227697921352109,
+                -0.40882358219207626
+              ],
+              "additive_action": -0.0,
+              "action_difference": 1.2371376923687964,
+              "before": 18.407522004626347,
+              "after": 20.561349675591508,
+              "next_state": [
+                -0.7303558240724362,
+                0.9227205464700402
+              ]
+            }
+          },
+          "0.01": {
+            "status": "witness",
+            "checked": 1600,
+            "depth": 0,
+            "witness": {
+              "x": [
+                -0.825,
+                0.675
+              ],
+              "kappa": 0.01,
+              "error": [
+                -0.6227697921352109,
+                -0.40882358219207626
+              ],
+              "additive_action": -0.0,
+              "action_difference": 1.1822624726636244,
+              "before": 18.407522004626347,
+              "after": 19.885224527881213,
+              "next_state": [
+                -0.7303558240724362,
+                0.9093872131367069
+              ]
+            }
+          },
+          "0.02": {
+            "status": "witness",
+            "checked": 1600,
+            "depth": 0,
+            "witness": {
+              "x": [
+                -0.825,
+                0.675
+              ],
+              "kappa": 0.02,
+              "error": [
+                -0.6227697921352109,
+                -0.40882358219207626
+              ],
+              "additive_action": -0.0,
+              "action_difference": 1.1239312062179811,
+              "before": 18.407522004626347,
+              "after": 19.23722270115492,
+              "next_state": [
+                -0.7303558240724362,
+                0.8960538798033735
+              ]
+            }
+          }
+        },
+        "0.045": {
+          "-0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "-0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.0": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          }
+        },
+        "0.0675": {
+          "-0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "-0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.0": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          }
+        },
+        "0.072": {
+          "-0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "-0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.0": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          }
+        },
+        "0.081": {
+          "-0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "-0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.0": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          }
+        },
+        "0.0855": {
+          "-0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "-0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.0": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          }
+        },
+        "0.09": {
+          "-0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "-0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.0": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          }
+        }
+      }
+    },
+    "joint": {
+      "heading": {
+        "feasible_lower_deg": 3.5840876171553613,
+        "continuous_upper_deg": 4.062774659247214,
+        "witness": {
+          "state_normalized": [
+            -0.23634453781512604,
+            -0.125
+          ],
+          "error": [
+            0.32101094609493436,
+            0.0
+          ],
+          "kappa": 0.0,
+          "nominal_angle": 0.45,
+          "image_angle": 0.07630478466384806
+        },
+        "status": "witness",
+        "certified_additional_steering_rad": 0.0
+      },
+      "barrier": {
+        "0.0": {
+          "-0.02": {
+            "status": "witness",
+            "checked": 1600,
+            "depth": 0,
+            "witness": {
+              "x": [
+                -0.22499999999999995,
+                0.875
+              ],
+              "kappa": -0.02,
+              "error": [
+                -0.6420218921898687,
+                -0.21073090982053516
+              ],
+              "additive_action": -0.0,
+              "action_difference": 0.7848332074995232,
+              "before": 13.880816146738942,
+              "after": 14.745757905436696,
+              "next_state": [
+                -0.10288436661433152,
+                0.8518570374890951
+              ]
+            }
+          },
+          "-0.01": {
+            "status": "witness",
+            "checked": 1600,
+            "depth": 0,
+            "witness": {
+              "x": [
+                -0.12499999999999996,
+                0.825
+              ],
+              "kappa": -0.01,
+              "error": [
+                -0.6420218921898687,
+                -0.21073090982053516
+              ],
+              "additive_action": -0.0,
+              "action_difference": 0.7673258498840951,
+              "before": 12.000202753219103,
+              "after": 13.123302749360164,
+              "next_state": [
+                -0.009714867018124677,
+                0.7844422222077506
+              ]
+            }
+          },
+          "0.0": {
+            "status": "witness",
+            "checked": 1600,
+            "depth": 0,
+            "witness": {
+              "x": [
+                -0.12499999999999996,
+                0.825
+              ],
+              "kappa": 0.0,
+              "error": [
+                -0.6420218921898687,
+                -0.21073090982053516
+              ],
+              "additive_action": -0.0,
+              "action_difference": 0.8210349311844451,
+              "before": 12.000202753219103,
+              "after": 13.06437919162916,
+              "next_state": [
+                -0.009714867018124677,
+                0.7836108498459664
+              ]
+            }
+          },
+          "0.01": {
+            "status": "witness",
+            "checked": 1600,
+            "depth": 0,
+            "witness": {
+              "x": [
+                -0.025,
+                0.775
+              ],
+              "kappa": 0.01,
+              "error": [
+                -0.6420218921898687,
+                -0.21073090982053516
+              ],
+              "additive_action": -0.0,
+              "action_difference": 0.7900273654242856,
+              "before": 11.80460227014853,
+              "after": 12.820446805914436,
+              "next_state": [
+                0.08342869390951672,
+                0.7130667249708643
+              ]
+            }
+          },
+          "0.02": {
+            "status": "witness",
+            "checked": 1600,
+            "depth": 0,
+            "witness": {
+              "x": [
+                0.024999999999999946,
+                0.775
+              ],
+              "kappa": 0.02,
+              "error": [
+                -0.6420218921898687,
+                -0.21073090982053516
+              ],
+              "additive_action": -0.0,
+              "action_difference": 0.7417487146581758,
+              "before": 14.01157886311886,
+              "after": 14.098955270745659,
+              "next_state": [
+                0.13342869390951667,
+                0.6884671326518034
+              ]
+            }
+          }
+        },
+        "0.045": {
+          "-0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "-0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.0": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          }
+        },
+        "0.0675": {
+          "-0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "-0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.0": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          }
+        },
+        "0.072": {
+          "-0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "-0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.0": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          }
+        },
+        "0.081": {
+          "-0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "-0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.0": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          }
+        },
+        "0.0855": {
+          "-0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "-0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.0": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          }
+        },
+        "0.09": {
+          "-0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "-0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.0": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.01": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          },
+          "0.02": {
+            "status": "witness_by_inclusion",
+            "from_rad": 0.0
+          }
+        }
+      }
+    }
+  }
+}

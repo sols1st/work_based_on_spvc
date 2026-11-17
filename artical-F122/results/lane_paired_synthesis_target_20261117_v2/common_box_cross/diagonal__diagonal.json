@@ -1,0 +1,159 @@
+{
+  "actor": "diagonal",
+  "sbc": "diagonal",
+  "protocol": "47ce896b0631d9effbbb3edfd6cbbf9ffca16d1bdefdb128f6549392a60bd84f",
+  "audit": {
+    "initial": {
+      "passed": true,
+      "unresolved": 0,
+      "bound": 0.1001871979052015,
+      "partition_area_error": 0.0,
+      "history": [
+        {
+          "depth": 0,
+          "unresolved": 0,
+          "accepted": 256
+        }
+      ]
+    },
+    "unsafe": {
+      "passed": true,
+      "unresolved": 0,
+      "bound": 24.26872421142502,
+      "partition_area_error": 0.0,
+      "history": [
+        {
+          "depth": 0,
+          "unresolved": 0,
+          "accepted": 1024
+        }
+      ]
+    },
+    "first_exit": [
+      1.1390683325465127,
+      1.2743872131367069
+    ],
+    "rows": [
+      {
+        "normalized_margin": 0.0,
+        "steering_rad": 0.0,
+        "status": "pass",
+        "curvatures": {
+          "0.0": {
+            "status": "pass",
+            "checked": 5424,
+            "depth": 8,
+            "unresolved": 0,
+            "area_error": 4.440892098500626e-16
+          },
+          "-0.01": {
+            "status": "pass",
+            "checked": 5156,
+            "depth": 7,
+            "unresolved": 0,
+            "area_error": 0.0
+          },
+          "0.01": {
+            "status": "pass",
+            "checked": 4864,
+            "depth": 6,
+            "unresolved": 0,
+            "area_error": 0.0
+          },
+          "-0.02": {
+            "status": "pass",
+            "checked": 4774,
+            "depth": 6,
+            "unresolved": 0,
+            "area_error": 4.440892098500626e-16
+          },
+          "0.02": {
+            "status": "pass",
+            "checked": 4578,
+            "depth": 6,
+            "unresolved": 0,
+            "area_error": 0.0
+          }
+        },
+        "seconds": 5.617731131147593
+      },
+      {
+        "normalized_margin": 0.1,
+        "steering_rad": 0.045000000000000005,
+        "status": "witness",
+        "curvatures": {
+          "0.0": {
+            "status": "witness",
+            "checked": 6072,
+            "depth": 4,
+            "witness": {
+              "x": [
+                0.45624999999999993,
+                -0.29374999999999996
+              ],
+              "kappa": 0.0,
+              "error": [
+                0.12385245381066073,
+                0.12385245381066073
+              ],
+              "additive_action": -0.1,
+              "action_difference": -0.7030135022560203,
+              "before": 0.5868484593407066,
+              "after": 0.6101454707918812,
+              "next_state": [
+                0.41483306779849,
+                -0.5362348755992351
+              ]
+            }
+          },
+          "-0.01": {
+            "status": "witness",
+            "checked": 12514,
+            "depth": 10,
+            "witness": {
+              "x": [
+                0.44296874999999997,
+                -0.28828124999999993
+              ],
+              "kappa": -0.01,
+              "error": [
+                0.12385245381066073,
+                0.12385245381066073
+              ],
+              "additive_action": -0.1,
+              "action_difference": -0.6783417699484783,
+              "before": 0.021012358675947418,
+              "after": 0.021668439852967403,
+              "next_state": [
+                0.4023209360461557,
+                -0.5219447787933394
+              ]
+            }
+          },
+          "0.01": {
+            "status": "pass",
+            "checked": 10170,
+            "depth": 10,
+            "unresolved": 0,
+            "area_error": 8.881784197001252e-16
+          },
+          "-0.02": {
+            "status": "pass",
+            "checked": 9778,
+            "depth": 10,
+            "unresolved": 0,
+            "area_error": 4.440892098500626e-16
+          },
+          "0.02": {
+            "status": "pass",
+            "checked": 8514,
+            "depth": 8,
+            "unresolved": 0,
+            "area_error": 8.881784197001252e-16
+          }
+        },
+        "seconds": 11.119061755947769
+      }
+    ]
+  }
+}

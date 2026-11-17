@@ -1,0 +1,244 @@
+{
+  "actor": "fixed",
+  "sbc": "joint",
+  "protocol": "47ce896b0631d9effbbb3edfd6cbbf9ffca16d1bdefdb128f6549392a60bd84f",
+  "audit": {
+    "initial": {
+      "passed": true,
+      "unresolved": 0,
+      "bound": 0.0,
+      "partition_area_error": 0.0,
+      "history": [
+        {
+          "depth": 0,
+          "unresolved": 0,
+          "accepted": 256
+        }
+      ]
+    },
+    "unsafe": {
+      "passed": true,
+      "unresolved": 0,
+      "bound": 24.540949993441767,
+      "partition_area_error": 0.0,
+      "history": [
+        {
+          "depth": 0,
+          "unresolved": 0,
+          "accepted": 1024
+        }
+      ]
+    },
+    "first_exit": [
+      1.1390683325465127,
+      1.2743872131367069
+    ],
+    "rows": [
+      {
+        "normalized_margin": 0.0,
+        "steering_rad": 0.0,
+        "status": "witness",
+        "curvatures": {
+          "0.0": {
+            "status": "witness",
+            "checked": 1600,
+            "depth": 0,
+            "witness": {
+              "x": [
+                0.475,
+                -0.32499999999999996
+              ],
+              "kappa": 0.0,
+              "error": [
+                0.12385245381066073,
+                0.12385245381066073
+              ],
+              "additive_action": -0.0,
+              "action_difference": -0.7574868711285176,
+              "before": 0.9174032155509204,
+              "after": 1.0255567549335982,
+              "next_state": [
+                0.429190307366812,
+                -0.5533300307216696
+              ]
+            }
+          },
+          "-0.01": {
+            "status": "witness",
+            "checked": 4816,
+            "depth": 4,
+            "witness": {
+              "x": [
+                0.45624999999999993,
+                -0.29374999999999996
+              ],
+              "kappa": -0.01,
+              "error": [
+                0.12385245381066073,
+                0.12385245381066073
+              ],
+              "additive_action": -0.0,
+              "action_difference": -0.7295207905110808,
+              "before": 0.1290833471736912,
+              "after": 0.18361610091547753,
+              "next_state": [
+                0.41483306779849,
+                -0.5279161356613489
+              ]
+            }
+          },
+          "0.01": {
+            "status": "witness",
+            "checked": 4958,
+            "depth": 4,
+            "witness": {
+              "x": [
+                0.45624999999999993,
+                -0.26874999999999993
+              ],
+              "kappa": 0.01,
+              "error": [
+                0.12385245381066073,
+                0.12385245381066073
+              ],
+              "additive_action": -0.0,
+              "action_difference": -0.7150111567266056,
+              "before": 0.18476445471706882,
+              "after": 0.19274418910250368,
+              "next_state": [
+                0.41834991558272294,
+                -0.5214999776229683
+              ]
+            }
+          },
+          "-0.02": {
+            "status": "pass",
+            "checked": 4928,
+            "depth": 7,
+            "unresolved": 0,
+            "area_error": 4.440892098500626e-16
+          },
+          "0.02": {
+            "status": "pass",
+            "checked": 5264,
+            "depth": 6,
+            "unresolved": 0,
+            "area_error": 0.0
+          }
+        },
+        "seconds": 4.755396180320531
+      },
+      {
+        "normalized_margin": 0.1,
+        "steering_rad": 0.045000000000000005,
+        "status": "witness",
+        "curvatures": {
+          "0.0": {
+            "status": "witness",
+            "checked": 1600,
+            "depth": 0,
+            "witness": {
+              "x": [
+                -0.5249999999999999,
+                0.375
+              ],
+              "kappa": 0.0,
+              "error": [
+                -0.12385245381066073,
+                -0.12385245381066073
+              ],
+              "additive_action": 0.1,
+              "action_difference": 0.7590632668758154,
+              "before": 0.5558377886736405,
+              "after": 0.6594145433404428,
+              "next_state": [
+                -0.4721704256768806,
+                0.5900883935101457
+              ]
+            }
+          },
+          "-0.01": {
+            "status": "witness",
+            "checked": 1600,
+            "depth": 0,
+            "witness": {
+              "x": [
+                0.475,
+                -0.375
+              ],
+              "kappa": -0.01,
+              "error": [
+                0.12385245381066073,
+                0.12385245381066073
+              ],
+              "additive_action": -0.1,
+              "action_difference": -0.7361069829875586,
+              "before": 0.9832272873440893,
+              "after": 1.1991480136956576,
+              "next_state": [
+                0.4221704256768807,
+                -0.5744598483958997
+              ]
+            }
+          },
+          "0.01": {
+            "status": "witness",
+            "checked": 1600,
+            "depth": 0,
+            "witness": {
+              "x": [
+                0.475,
+                -0.375
+              ],
+              "kappa": 0.01,
+              "error": [
+                0.12385245381066073,
+                0.12385245381066073
+              ],
+              "additive_action": -0.1,
+              "action_difference": -0.7256653252424085,
+              "before": 0.9832272873440893,
+              "after": 1.1586579521044817,
+              "next_state": [
+                0.4221704256768807,
+                -0.5723767963250953
+              ]
+            }
+          },
+          "-0.02": {
+            "status": "witness",
+            "checked": 6262,
+            "depth": 4,
+            "witness": {
+              "x": [
+                0.45624999999999993,
+                -0.3062499999999999
+              ],
+              "kappa": -0.02,
+              "error": [
+                0.12385245381066073,
+                0.12385245381066073
+              ],
+              "additive_action": -0.1,
+              "action_difference": -0.6554094556659189,
+              "before": 0.1156723234596555,
+              "after": 0.12380151900131686,
+              "next_state": [
+                0.4130755051818205,
+                -0.5273038798033735
+              ]
+            }
+          },
+          "0.02": {
+            "status": "unresolved",
+            "checked": 28788,
+            "depth": 16,
+            "unresolved": 1538,
+            "area_error": 8.881784197001252e-16
+          }
+        },
+        "seconds": 9.03553806617856
+      }
+    ]
+  }
+}

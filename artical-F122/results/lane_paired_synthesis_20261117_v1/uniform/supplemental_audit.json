@@ -1,0 +1,527 @@
+{
+  "source": "8b6a85fc3bc6d2703bbad5c3b9d2297aab07ef95362393063edfd13abfc0b079",
+  "solver": "beb19eeb40f94e4d2800c3ed838a8da0e8f0c03b89057f4713e59cdb055c0adb",
+  "protocol": "a37fc5717f4807f965c5fb69b1acf43bb4529fbd5fdd9eb2ceb7fc1a49b0be82",
+  "contract": "efc016727fa4620a7c329b815d14c9365bab3b04e963630dabe218d2a57b919a",
+  "actor": "43b7de0f37f9603e717c4750619ffd368b24ef86ac34bb65da71c7b4d5add783",
+  "barrier": "fbf329f570881ed7dc7e21e243aa7ea10197fec5bb8aca6df04def4e9864d8e4",
+  "strata": {
+    "standard": {
+      "contract": {
+        "q": 0.09478317296759498,
+        "rank": 110,
+        "n": 114,
+        "width": [
+          0.09478317296759498,
+          0.09478317296759498
+        ],
+        "action": null
+      },
+      "audit": {
+        "initial": {
+          "passed": true,
+          "unresolved": 0,
+          "bound": 0.6319230407885906,
+          "partition_area_error": 0.0,
+          "history": [
+            {
+              "depth": 0,
+              "unresolved": 0,
+              "accepted": 256
+            }
+          ]
+        },
+        "unsafe": {
+          "passed": true,
+          "unresolved": 0,
+          "bound": 24.33546726171104,
+          "partition_area_error": 0.0,
+          "history": [
+            {
+              "depth": 0,
+              "unresolved": 0,
+              "accepted": 1024
+            }
+          ]
+        },
+        "first_exit": [
+          1.1390683325465127,
+          1.2610538798033735
+        ],
+        "rows": [
+          {
+            "normalized_margin": 0.0,
+            "steering_rad": 0.0,
+            "status": "pass",
+            "curvatures": {
+              "0.0": {
+                "status": "pass",
+                "checked": 3074,
+                "depth": 4,
+                "unresolved": 0,
+                "area_error": 8.881784197001252e-16
+              },
+              "-0.01": {
+                "status": "pass",
+                "checked": 3032,
+                "depth": 4,
+                "unresolved": 0,
+                "area_error": 4.440892098500626e-16
+              },
+              "0.01": {
+                "status": "pass",
+                "checked": 3038,
+                "depth": 4,
+                "unresolved": 0,
+                "area_error": 0.0
+              }
+            },
+            "seconds": 1.797044004779309
+          },
+          {
+            "normalized_margin": 0.1,
+            "steering_rad": 0.045000000000000005,
+            "status": "pass",
+            "curvatures": {
+              "0.0": {
+                "status": "pass",
+                "checked": 4452,
+                "depth": 6,
+                "unresolved": 0,
+                "area_error": 0.0
+              },
+              "-0.01": {
+                "status": "pass",
+                "checked": 4188,
+                "depth": 5,
+                "unresolved": 0,
+                "area_error": 0.0
+              },
+              "0.01": {
+                "status": "pass",
+                "checked": 4358,
+                "depth": 5,
+                "unresolved": 0,
+                "area_error": 0.0
+              }
+            },
+            "seconds": 2.6485207029618323
+          },
+          {
+            "normalized_margin": 0.15,
+            "steering_rad": 0.0675,
+            "status": "pass",
+            "curvatures": {
+              "0.0": {
+                "status": "pass",
+                "checked": 5728,
+                "depth": 7,
+                "unresolved": 0,
+                "area_error": 0.0
+              },
+              "-0.01": {
+                "status": "pass",
+                "checked": 5262,
+                "depth": 6,
+                "unresolved": 0,
+                "area_error": 0.0
+              },
+              "0.01": {
+                "status": "pass",
+                "checked": 5578,
+                "depth": 6,
+                "unresolved": 0,
+                "area_error": 8.881784197001252e-16
+              }
+            },
+            "seconds": 3.4136285400018096
+          },
+          {
+            "normalized_margin": 0.19,
+            "steering_rad": 0.0855,
+            "status": "pass",
+            "curvatures": {
+              "0.0": {
+                "status": "pass",
+                "checked": 7876,
+                "depth": 9,
+                "unresolved": 0,
+                "area_error": 8.881784197001252e-16
+              },
+              "-0.01": {
+                "status": "pass",
+                "checked": 6652,
+                "depth": 8,
+                "unresolved": 0,
+                "area_error": 0.0
+              },
+              "0.01": {
+                "status": "pass",
+                "checked": 7492,
+                "depth": 8,
+                "unresolved": 0,
+                "area_error": 8.881784197001252e-16
+              }
+            },
+            "seconds": 4.694459835067391
+          },
+          {
+            "normalized_margin": 0.2,
+            "steering_rad": 0.09000000000000001,
+            "status": "pass",
+            "curvatures": {
+              "0.0": {
+                "status": "pass",
+                "checked": 8744,
+                "depth": 10,
+                "unresolved": 0,
+                "area_error": 2.6645352591003757e-15
+              },
+              "-0.01": {
+                "status": "pass",
+                "checked": 7146,
+                "depth": 8,
+                "unresolved": 0,
+                "area_error": 4.440892098500626e-16
+              },
+              "0.01": {
+                "status": "pass",
+                "checked": 8244,
+                "depth": 9,
+                "unresolved": 0,
+                "area_error": 8.881784197001252e-16
+              }
+            },
+            "seconds": 5.152755873743445
+          }
+        ]
+      }
+    },
+    "extended_only": {
+      "contract": {
+        "q": 0.446030699992747,
+        "rank": 82,
+        "n": 85,
+        "width": [
+          0.446030699992747,
+          0.446030699992747
+        ],
+        "action": null
+      },
+      "audit": {
+        "initial": {
+          "passed": true,
+          "unresolved": 0,
+          "bound": 0.6319230407885906,
+          "partition_area_error": 0.0,
+          "history": [
+            {
+              "depth": 0,
+              "unresolved": 0,
+              "accepted": 256
+            }
+          ]
+        },
+        "unsafe": {
+          "passed": true,
+          "unresolved": 0,
+          "bound": 24.33546726171104,
+          "partition_area_error": 0.0,
+          "history": [
+            {
+              "depth": 0,
+              "unresolved": 0,
+              "accepted": 1024
+            }
+          ]
+        },
+        "first_exit": [
+          1.1390683325465127,
+          1.2743872131367069
+        ],
+        "rows": [
+          {
+            "normalized_margin": 0.0,
+            "steering_rad": 0.0,
+            "status": "witness",
+            "curvatures": {
+              "-0.02": {
+                "status": "witness",
+                "checked": 1600,
+                "depth": 0,
+                "witness": {
+                  "x": [
+                    -0.825,
+                    0.625
+                  ],
+                  "kappa": -0.02,
+                  "error": [
+                    -0.446030699992747,
+                    -0.446030699992747
+                  ],
+                  "additive_action": -0.0,
+                  "action_difference": 1.1775894419514126,
+                  "before": 19.086420682447987,
+                  "after": 19.872778995725486,
+                  "next_state": [
+                    -0.7372808015236377,
+                    0.8993872131367069
+                  ]
+                }
+              },
+              "0.02": {
+                "status": "witness",
+                "checked": 1600,
+                "depth": 0,
+                "witness": {
+                  "x": [
+                    -0.825,
+                    0.675
+                  ],
+                  "kappa": 0.02,
+                  "error": [
+                    -0.446030699992747,
+                    -0.446030699992747
+                  ],
+                  "additive_action": -0.0,
+                  "action_difference": 1.0584510341113786,
+                  "before": 18.69000352534868,
+                  "after": 19.583727373283182,
+                  "next_state": [
+                    -0.7303558240724362,
+                    0.8960538798033735
+                  ]
+                }
+              }
+            },
+            "seconds": 0.433952443767339
+          },
+          {
+            "normalized_margin": 0.1,
+            "steering_rad": 0.045000000000000005,
+            "status": "witness",
+            "curvatures": {
+              "-0.02": {
+                "status": "witness",
+                "checked": 1600,
+                "depth": 0,
+                "witness": {
+                  "x": [
+                    -0.825,
+                    0.675
+                  ],
+                  "kappa": -0.02,
+                  "error": [
+                    -0.446030699992747,
+                    -0.446030699992747
+                  ],
+                  "additive_action": -0.1,
+                  "action_difference": 1.3151653656707254,
+                  "before": 18.69000352534868,
+                  "after": 20.848246705973892,
+                  "next_state": [
+                    -0.7303558240724362,
+                    0.9215125765210412
+                  ]
+                }
+              },
+              "0.02": {
+                "status": "witness",
+                "checked": 1600,
+                "depth": 0,
+                "witness": {
+                  "x": [
+                    -0.825,
+                    0.725
+                  ],
+                  "kappa": 0.02,
+                  "error": [
+                    -0.446030699992747,
+                    -0.446030699992747
+                  ],
+                  "additive_action": -0.1,
+                  "action_difference": 1.1961790011432785,
+                  "before": 18.65928077519627,
+                  "after": 20.57237759340442,
+                  "next_state": [
+                    -0.7234521411615413,
+                    0.9181792431877078
+                  ]
+                }
+              }
+            },
+            "seconds": 0.43545708525925875
+          },
+          {
+            "normalized_margin": 0.15,
+            "steering_rad": 0.0675,
+            "status": "witness",
+            "curvatures": {
+              "-0.02": {
+                "status": "witness",
+                "checked": 1600,
+                "depth": 0,
+                "witness": {
+                  "x": [
+                    -0.825,
+                    0.675
+                  ],
+                  "kappa": -0.02,
+                  "error": [
+                    -0.446030699992747,
+                    -0.446030699992747
+                  ],
+                  "additive_action": -0.15,
+                  "action_difference": 1.3151653656707254,
+                  "before": 18.69000352534868,
+                  "after": 20.16362410505209,
+                  "next_state": [
+                    -0.7303558240724362,
+                    0.9079817698836703
+                  ]
+                }
+              },
+              "0.02": {
+                "status": "witness",
+                "checked": 1600,
+                "depth": 0,
+                "witness": {
+                  "x": [
+                    -0.825,
+                    0.725
+                  ],
+                  "kappa": 0.02,
+                  "error": [
+                    -0.446030699992747,
+                    -0.446030699992747
+                  ],
+                  "additive_action": -0.15,
+                  "action_difference": 1.1961790011432785,
+                  "before": 18.65928077519627,
+                  "after": 19.878125406614608,
+                  "next_state": [
+                    -0.7234521411615413,
+                    0.9046484365503368
+                  ]
+                }
+              }
+            },
+            "seconds": 0.43333079433068633
+          },
+          {
+            "normalized_margin": 0.19,
+            "steering_rad": 0.0855,
+            "status": "witness",
+            "curvatures": {
+              "-0.02": {
+                "status": "witness",
+                "checked": 1600,
+                "depth": 0,
+                "witness": {
+                  "x": [
+                    -0.825,
+                    0.675
+                  ],
+                  "kappa": -0.02,
+                  "error": [
+                    -0.446030699992747,
+                    -0.446030699992747
+                  ],
+                  "additive_action": -0.19,
+                  "action_difference": 1.3151653656707254,
+                  "before": 18.69000352534868,
+                  "after": 19.644824151647192,
+                  "next_state": [
+                    -0.7303558240724362,
+                    0.8973329021752623
+                  ]
+                }
+              },
+              "0.02": {
+                "status": "witness",
+                "checked": 1600,
+                "depth": 0,
+                "witness": {
+                  "x": [
+                    -0.825,
+                    0.725
+                  ],
+                  "kappa": 0.02,
+                  "error": [
+                    -0.446030699992747,
+                    -0.446030699992747
+                  ],
+                  "additive_action": -0.19,
+                  "action_difference": 1.1961790011432785,
+                  "before": 18.65928077519627,
+                  "after": 19.351961582457374,
+                  "next_state": [
+                    -0.7234521411615413,
+                    0.8939995688419289
+                  ]
+                }
+              }
+            },
+            "seconds": 0.4415627019479871
+          },
+          {
+            "normalized_margin": 0.2,
+            "steering_rad": 0.09000000000000001,
+            "status": "witness",
+            "curvatures": {
+              "-0.02": {
+                "status": "witness",
+                "checked": 1600,
+                "depth": 0,
+                "witness": {
+                  "x": [
+                    -0.825,
+                    0.675
+                  ],
+                  "kappa": -0.02,
+                  "error": [
+                    -0.446030699992747,
+                    -0.446030699992747
+                  ],
+                  "additive_action": -0.2,
+                  "action_difference": 1.3151653656707254,
+                  "before": 18.69000352534868,
+                  "after": 19.5190465074765,
+                  "next_state": [
+                    -0.7303558240724362,
+                    0.8946937700728346
+                  ]
+                }
+              },
+              "0.02": {
+                "status": "witness",
+                "checked": 1600,
+                "depth": 0,
+                "witness": {
+                  "x": [
+                    -0.825,
+                    0.725
+                  ],
+                  "kappa": 0.02,
+                  "error": [
+                    -0.446030699992747,
+                    -0.446030699992747
+                  ],
+                  "additive_action": -0.2,
+                  "action_difference": 1.1961790011432785,
+                  "before": 18.65928077519627,
+                  "after": 19.22438803419667,
+                  "next_state": [
+                    -0.7234521411615413,
+                    0.891360436739501
+                  ]
+                }
+              }
+            },
+            "seconds": 0.43432240281254053
+          }
+        ]
+      }
+    }
+  }
+}

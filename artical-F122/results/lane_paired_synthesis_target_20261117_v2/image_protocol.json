@@ -1,0 +1,67 @@
+{
+  "mode": "target_development_v2",
+  "arms": [
+    "fixed_raw",
+    "fixed_corrected",
+    "uniform",
+    "diagonal",
+    "joint"
+  ],
+  "calibration_seed": 202611178311,
+  "holdout_seed": 202611178312,
+  "counts": {
+    "calibration": 199,
+    "holdout": 100
+  },
+  "kappas": [
+    -0.02,
+    -0.01,
+    0.0,
+    0.01,
+    0.02
+  ],
+  "horizon": 80,
+  "batch": 8,
+  "device": "cuda:1",
+  "source": "a45bd5453ec60ac51e9d86025104b7cbf6318d7bf9dacc93b0f3a55ef4c0fc1c",
+  "collector": "fbee223714fb35e0f35d866eedad76792de645a14db19a87a8cfe4ddf16c965b",
+  "models": {
+    "fixed_raw": {
+      "actor": "afd4509772a9fda976da2d0c5722f55e6d8f2e9fabce37b7a998110583fe0c75",
+      "sbc": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321"
+    },
+    "fixed_corrected": {
+      "actor": "afd4509772a9fda976da2d0c5722f55e6d8f2e9fabce37b7a998110583fe0c75",
+      "sbc": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321"
+    },
+    "uniform": {
+      "actor": "14d798872fda38156a411f863f398afeb3a42957611702c1c8ae5fb1f932a02b",
+      "sbc": "f8e7e3ef48acdca48851834160c22fd33fef76d700fde64dfd0c2a8f02cd78c9"
+    },
+    "diagonal": {
+      "actor": "34ce11d467f5b8754351f270d9f2c6bf797f0c3ce73fe624fae3536a046e0460",
+      "sbc": "fdec157db5fdcc57c0455f2d29fa76d923e8d9102dc737800e448c0523efbfc0"
+    },
+    "joint": {
+      "actor": "207f2c2063f3ee8b7cdee01d8b2b139b6ac5f0706cbdea2b9ac8769365ae5daf",
+      "sbc": "8ad93bcc33ac1e512a55ce1b258a468966539fd93af83dd282b287077ca425d3"
+    }
+  },
+  "dino_weights": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+  "observer": "490e30cad8cbbc95809ba2fde9db4c99c3f8efd3ae2b6f02fb2f84f6707eb278",
+  "baseline_protocol": "df25c1af3d695f5801acd8a6a2c5da4e2e37496f9e9acb36ede5789ac7b21d2d",
+  "training_protocol": "2c0584ee9e7f91e6a41e351bcb1bc8e2f95c3e4a6c0209d95aa65475078917e8",
+  "bias_sha256": "d142a0f3cc065b233443d5c351b5843869c11cfc9953ab7756d8f01958b55fee",
+  "scale": {
+    "visual": [
+      0.11229728615615786,
+      0.11255917660297055
+    ],
+    "action": 0.44222261715332223
+  },
+  "primary": "mean abs lateral error at |kappa|=.02, all episodes and safety audits also reported",
+  "fixed_raw": "old actor, original raw observation, no bias; all three original scoring scales from prior image protocol",
+  "fixed_corrected": "same old actor with common curvature correction; all three target error contracts",
+  "trained": "three retrained actors use identical correction; each gets own new closed-loop calibration and holdout",
+  "alternate_sign": "negative paired difference = lower lateral error; percentile bootstrap whole trajectories conditional on systems"
+}

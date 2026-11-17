@@ -1,0 +1,684 @@
+{
+  "arm": "uniform",
+  "protocol": "a37fc5717f4807f965c5fb69b1acf43bb4529fbd5fdd9eb2ceb7fc1a49b0be82",
+  "frozen": "13778548a14aadceeb328c35bed875bf2364385277b2bc5c03b5d70f3c2e338f",
+  "final_contract": "efc016727fa4620a7c329b815d14c9365bab3b04e963630dabe218d2a57b919a",
+  "init": {
+    "passed": true,
+    "unresolved": 0,
+    "bound": 0.6319230407885906,
+    "partition_area_error": 0.0,
+    "history": [
+      {
+        "depth": 0,
+        "unresolved": 0,
+        "accepted": 256
+      }
+    ]
+  },
+  "unsafe": {
+    "passed": true,
+    "unresolved": 0,
+    "bound": 24.33546726171104,
+    "partition_area_error": 0.0,
+    "history": [
+      {
+        "depth": 0,
+        "unresolved": 0,
+        "accepted": 1024
+      }
+    ]
+  },
+  "first_exit_bound": [
+    1.1390683325465127,
+    1.2743872131367069
+  ],
+  "numerical": "float64 padded interval audit without directed rounding",
+  "rows": [
+    {
+      "normalized_margin": 0.0,
+      "steering_rad": 0.0,
+      "original_curvatures": "witness",
+      "five_curvatures": "witness",
+      "curvatures": {
+        "0.0": {
+          "status": "witness",
+          "checked": 1600,
+          "depth": 0,
+          "witness": {
+            "x": [
+              -0.825,
+              0.675
+            ],
+            "kappa": 0.0,
+            "error": [
+              -0.380260611098526,
+              -0.380260611098526
+            ],
+            "additive_action": -0.0,
+            "action_difference": 1.1956090013397929,
+            "before": 18.69000352534868,
+            "after": 20.910710366983054,
+            "next_state": [
+              -0.7303558240724362,
+              0.9227205464700402
+            ]
+          }
+        },
+        "-0.01": {
+          "status": "witness",
+          "checked": 1600,
+          "depth": 0,
+          "witness": {
+            "x": [
+              -0.825,
+              0.625
+            ],
+            "kappa": -0.01,
+            "error": [
+              -0.380260611098526,
+              -0.380260611098526
+            ],
+            "additive_action": -0.0,
+            "action_difference": 1.107362949976776,
+            "before": 19.086420682447987,
+            "after": 19.260858828746738,
+            "next_state": [
+              -0.7372808015236377,
+              0.8860538798033735
+            ]
+          }
+        },
+        "0.01": {
+          "status": "witness",
+          "checked": 1600,
+          "depth": 0,
+          "witness": {
+            "x": [
+              -0.825,
+              0.675
+            ],
+            "kappa": 0.01,
+            "error": [
+              -0.380260611098526,
+              -0.380260611098526
+            ],
+            "additive_action": -0.0,
+            "action_difference": 1.1276081168137189,
+            "before": 18.69000352534868,
+            "after": 20.23342882681783,
+            "next_state": [
+              -0.7303558240724362,
+              0.9093872131367069
+            ]
+          }
+        },
+        "-0.02": {
+          "status": "witness",
+          "checked": 1600,
+          "depth": 0,
+          "witness": {
+            "x": [
+              -0.825,
+              0.625
+            ],
+            "kappa": -0.02,
+            "error": [
+              -0.380260611098526,
+              -0.380260611098526
+            ],
+            "additive_action": -0.0,
+            "action_difference": 1.1775894419514126,
+            "before": 19.086420682447987,
+            "after": 19.872778995725486,
+            "next_state": [
+              -0.7372808015236377,
+              0.8993872131367069
+            ]
+          }
+        },
+        "0.02": {
+          "status": "witness",
+          "checked": 1600,
+          "depth": 0,
+          "witness": {
+            "x": [
+              -0.825,
+              0.675
+            ],
+            "kappa": 0.02,
+            "error": [
+              -0.380260611098526,
+              -0.380260611098526
+            ],
+            "additive_action": -0.0,
+            "action_difference": 1.0584510341113786,
+            "before": 18.69000352534868,
+            "after": 19.583727373283182,
+            "next_state": [
+              -0.7303558240724362,
+              0.8960538798033735
+            ]
+          }
+        }
+      },
+      "seconds": 1.137844662182033
+    },
+    {
+      "normalized_margin": 0.1,
+      "steering_rad": 0.045000000000000005,
+      "original_curvatures": "witness",
+      "five_curvatures": "witness",
+      "curvatures": {
+        "0.0": {
+          "status": "witness",
+          "checked": 1600,
+          "depth": 0,
+          "witness": {
+            "x": [
+              -0.825,
+              0.675
+            ],
+            "kappa": 0.0,
+            "error": [
+              -0.380260611098526,
+              -0.380260611098526
+            ],
+            "additive_action": -0.1,
+            "action_difference": 1.1956090013397929,
+            "before": 18.69000352534868,
+            "after": 19.526266766912336,
+            "next_state": [
+              -0.7303558240724362,
+              0.8948459098543745
+            ]
+          }
+        },
+        "-0.01": {
+          "status": "witness",
+          "checked": 1600,
+          "depth": 0,
+          "witness": {
+            "x": [
+              -0.825,
+              0.675
+            ],
+            "kappa": -0.01,
+            "error": [
+              -0.380260611098526,
+              -0.380260611098526
+            ],
+            "additive_action": -0.1,
+            "action_difference": 1.260698365552381,
+            "before": 18.69000352534868,
+            "after": 20.173413522180404,
+            "next_state": [
+              -0.7303558240724362,
+              0.9081792431877078
+            ]
+          }
+        },
+        "0.01": {
+          "status": "witness",
+          "checked": 1600,
+          "depth": 0,
+          "witness": {
+            "x": [
+              -0.825,
+              0.675
+            ],
+            "kappa": 0.01,
+            "error": [
+              -0.380260611098526,
+              -0.380260611098526
+            ],
+            "additive_action": -0.1,
+            "action_difference": 1.1276081168137189,
+            "before": 18.69000352534868,
+            "after": 18.907839621830835,
+            "next_state": [
+              -0.7303558240724362,
+              0.8815125765210412
+            ]
+          }
+        },
+        "-0.02": {
+          "status": "witness",
+          "checked": 1600,
+          "depth": 0,
+          "witness": {
+            "x": [
+              -0.825,
+              0.675
+            ],
+            "kappa": -0.02,
+            "error": [
+              -0.380260611098526,
+              -0.380260611098526
+            ],
+            "additive_action": -0.1,
+            "action_difference": 1.3151653656707254,
+            "before": 18.69000352534868,
+            "after": 20.848246705973892,
+            "next_state": [
+              -0.7303558240724362,
+              0.9215125765210412
+            ]
+          }
+        },
+        "0.02": {
+          "status": "witness",
+          "checked": 1600,
+          "depth": 0,
+          "witness": {
+            "x": [
+              -0.825,
+              0.725
+            ],
+            "kappa": 0.02,
+            "error": [
+              -0.380260611098526,
+              -0.380260611098526
+            ],
+            "additive_action": -0.1,
+            "action_difference": 1.1961790011432785,
+            "before": 18.65928077519627,
+            "after": 20.57237759340442,
+            "next_state": [
+              -0.7234521411615413,
+              0.9181792431877078
+            ]
+          }
+        }
+      },
+      "seconds": 1.1260303799062967
+    },
+    {
+      "normalized_margin": 0.15,
+      "steering_rad": 0.0675,
+      "original_curvatures": "witness",
+      "five_curvatures": "witness",
+      "curvatures": {
+        "0.0": {
+          "status": "witness",
+          "checked": 1600,
+          "depth": 0,
+          "witness": {
+            "x": [
+              -0.825,
+              0.675
+            ],
+            "kappa": 0.0,
+            "error": [
+              -0.380260611098526,
+              -0.380260611098526
+            ],
+            "additive_action": -0.15,
+            "action_difference": 1.1956090013397929,
+            "before": 18.69000352534868,
+            "after": 18.898900507511634,
+            "next_state": [
+              -0.7303558240724362,
+              0.8813151032170036
+            ]
+          }
+        },
+        "-0.01": {
+          "status": "witness",
+          "checked": 1600,
+          "depth": 0,
+          "witness": {
+            "x": [
+              -0.825,
+              0.675
+            ],
+            "kappa": -0.01,
+            "error": [
+              -0.380260611098526,
+              -0.380260611098526
+            ],
+            "additive_action": -0.15,
+            "action_difference": 1.260698365552381,
+            "before": 18.69000352534868,
+            "after": 19.51689579009063,
+            "next_state": [
+              -0.7303558240724362,
+              0.894648436550337
+            ]
+          }
+        },
+        "0.01": {
+          "status": "witness",
+          "checked": 1600,
+          "depth": 0,
+          "witness": {
+            "x": [
+              -0.825,
+              0.725
+            ],
+            "kappa": 0.01,
+            "error": [
+              -0.380260611098526,
+              -0.380260611098526
+            ],
+            "additive_action": -0.15,
+            "action_difference": 1.2798719797007945,
+            "before": 18.65928077519627,
+            "after": 20.56204418587501,
+            "next_state": [
+              -0.7234521411615413,
+              0.9179817698836701
+            ]
+          }
+        },
+        "-0.02": {
+          "status": "witness",
+          "checked": 1600,
+          "depth": 0,
+          "witness": {
+            "x": [
+              -0.825,
+              0.675
+            ],
+            "kappa": -0.02,
+            "error": [
+              -0.380260611098526,
+              -0.380260611098526
+            ],
+            "additive_action": -0.15,
+            "action_difference": 1.3151653656707254,
+            "before": 18.69000352534868,
+            "after": 20.16362410505209,
+            "next_state": [
+              -0.7303558240724362,
+              0.9079817698836703
+            ]
+          }
+        },
+        "0.02": {
+          "status": "witness",
+          "checked": 1600,
+          "depth": 0,
+          "witness": {
+            "x": [
+              -0.825,
+              0.725
+            ],
+            "kappa": 0.02,
+            "error": [
+              -0.380260611098526,
+              -0.380260611098526
+            ],
+            "additive_action": -0.15,
+            "action_difference": 1.1961790011432785,
+            "before": 18.65928077519627,
+            "after": 19.878125406614608,
+            "next_state": [
+              -0.7234521411615413,
+              0.9046484365503368
+            ]
+          }
+        }
+      },
+      "seconds": 1.124790279660374
+    },
+    {
+      "normalized_margin": 0.19,
+      "steering_rad": 0.0855,
+      "original_curvatures": "witness",
+      "five_curvatures": "witness",
+      "curvatures": {
+        "0.0": {
+          "status": "witness",
+          "checked": 1600,
+          "depth": 0,
+          "witness": {
+            "x": [
+              -0.825,
+              0.725
+            ],
+            "kappa": 0.0,
+            "error": [
+              -0.380260611098526,
+              -0.380260611098526
+            ],
+            "additive_action": -0.19,
+            "action_difference": 1.3535354540587319,
+            "before": 18.65928077519627,
+            "after": 20.70301715664987,
+            "next_state": [
+              -0.7234521411615413,
+              0.9206662355085956
+            ]
+          }
+        },
+        "-0.01": {
+          "status": "witness",
+          "checked": 1600,
+          "depth": 0,
+          "witness": {
+            "x": [
+              -0.825,
+              0.675
+            ],
+            "kappa": -0.01,
+            "error": [
+              -0.380260611098526,
+              -0.380260611098526
+            ],
+            "additive_action": -0.19,
+            "action_difference": 1.260698365552381,
+            "before": 18.69000352534868,
+            "after": 19.020973154752284,
+            "next_state": [
+              -0.7303558240724362,
+              0.8839995688419289
+            ]
+          }
+        },
+        "0.01": {
+          "status": "witness",
+          "checked": 1600,
+          "depth": 0,
+          "witness": {
+            "x": [
+              -0.825,
+              0.725
+            ],
+            "kappa": 0.01,
+            "error": [
+              -0.380260611098526,
+              -0.380260611098526
+            ],
+            "additive_action": -0.19,
+            "action_difference": 1.2798719797007945,
+            "before": 18.65928077519627,
+            "after": 20.01360862591203,
+            "next_state": [
+              -0.7234521411615413,
+              0.9073329021752623
+            ]
+          }
+        },
+        "-0.02": {
+          "status": "witness",
+          "checked": 1600,
+          "depth": 0,
+          "witness": {
+            "x": [
+              -0.825,
+              0.675
+            ],
+            "kappa": -0.02,
+            "error": [
+              -0.380260611098526,
+              -0.380260611098526
+            ],
+            "additive_action": -0.19,
+            "action_difference": 1.3151653656707254,
+            "before": 18.69000352534868,
+            "after": 19.644824151647192,
+            "next_state": [
+              -0.7303558240724362,
+              0.8973329021752623
+            ]
+          }
+        },
+        "0.02": {
+          "status": "witness",
+          "checked": 1600,
+          "depth": 0,
+          "witness": {
+            "x": [
+              -0.825,
+              0.725
+            ],
+            "kappa": 0.02,
+            "error": [
+              -0.380260611098526,
+              -0.380260611098526
+            ],
+            "additive_action": -0.19,
+            "action_difference": 1.1961790011432785,
+            "before": 18.65928077519627,
+            "after": 19.351961582457374,
+            "next_state": [
+              -0.7234521411615413,
+              0.8939995688419289
+            ]
+          }
+        }
+      },
+      "seconds": 1.1323106279596686
+    },
+    {
+      "normalized_margin": 0.2,
+      "steering_rad": 0.09000000000000001,
+      "original_curvatures": "witness",
+      "five_curvatures": "witness",
+      "curvatures": {
+        "0.0": {
+          "status": "witness",
+          "checked": 1600,
+          "depth": 0,
+          "witness": {
+            "x": [
+              -0.825,
+              0.725
+            ],
+            "kappa": 0.0,
+            "error": [
+              -0.380260611098526,
+              -0.380260611098526
+            ],
+            "additive_action": -0.2,
+            "action_difference": 1.3535354540587319,
+            "before": 18.65928077519627,
+            "after": 20.564415885748307,
+            "next_state": [
+              -0.7234521411615413,
+              0.9180271034061677
+            ]
+          }
+        },
+        "-0.01": {
+          "status": "witness",
+          "checked": 1600,
+          "depth": 0,
+          "witness": {
+            "x": [
+              -0.825,
+              0.675
+            ],
+            "kappa": -0.01,
+            "error": [
+              -0.380260611098526,
+              -0.380260611098526
+            ],
+            "additive_action": -0.2,
+            "action_difference": 1.260698365552381,
+            "before": 18.69000352534868,
+            "after": 18.900952067895595,
+            "next_state": [
+              -0.7303558240724362,
+              0.8813604367395012
+            ]
+          }
+        },
+        "0.01": {
+          "status": "witness",
+          "checked": 1600,
+          "depth": 0,
+          "witness": {
+            "x": [
+              -0.825,
+              0.725
+            ],
+            "kappa": 0.01,
+            "error": [
+              -0.380260611098526,
+              -0.380260611098526
+            ],
+            "additive_action": -0.2,
+            "action_difference": 1.2798719797007945,
+            "before": 18.65928077519627,
+            "after": 19.88040395730159,
+            "next_state": [
+              -0.7234521411615413,
+              0.9046937700728344
+            ]
+          }
+        },
+        "-0.02": {
+          "status": "witness",
+          "checked": 1600,
+          "depth": 0,
+          "witness": {
+            "x": [
+              -0.825,
+              0.675
+            ],
+            "kappa": -0.02,
+            "error": [
+              -0.380260611098526,
+              -0.380260611098526
+            ],
+            "additive_action": -0.2,
+            "action_difference": 1.3151653656707254,
+            "before": 18.69000352534868,
+            "after": 19.5190465074765,
+            "next_state": [
+              -0.7303558240724362,
+              0.8946937700728346
+            ]
+          }
+        },
+        "0.02": {
+          "status": "witness",
+          "checked": 1600,
+          "depth": 0,
+          "witness": {
+            "x": [
+              -0.825,
+              0.725
+            ],
+            "kappa": 0.02,
+            "error": [
+              -0.380260611098526,
+              -0.380260611098526
+            ],
+            "additive_action": -0.2,
+            "action_difference": 1.1961790011432785,
+            "before": 18.65928077519627,
+            "after": 19.22438803419667,
+            "next_state": [
+              -0.7234521411615413,
+              0.891360436739501
+            ]
+          }
+        }
+      },
+      "seconds": 1.1328513380140066
+    }
+  ]
+}

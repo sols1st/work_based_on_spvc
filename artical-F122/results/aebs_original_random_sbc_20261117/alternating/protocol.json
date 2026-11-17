@@ -1,0 +1,27 @@
+{
+  "upstream": "QLong01/artical",
+  "commit": "6279872ed7708cd103c0801d758d2a95c203ce27",
+  "arm": "alternating",
+  "seed": 202611171,
+  "threads": 4,
+  "device": "cpu",
+  "torch_version": "2.3.1",
+  "cuda": "12.1",
+  "source": {
+    "Aebs/VT/loop.py": "1898ac74af4d5add2b2ea7ea278a6c07b80c0cc513da6cc1cd795c8cbe854d06",
+    "Aebs/VT/train.py": "6d05389de408ff7bfcae0fb8b5f97eda12602613e7e124f3113afccadfa57112",
+    "Aebs/VT/verify.py": "402a4b429eb8b811c1e8145274c01bdf24bf73922fffefff396d7af355090de5",
+    "Aebs/VT/utils.py": "1a835fc24bdd210fbfdb3cd3ab147f10f3d699a963188e378b0df42aa51aab82",
+    "Aebs/system/env.py": "8e6a59b351215975bc1f7cd27a640463f7101e2913006dfea50f043decf5b024",
+    "Combined_network/model.py": "86a14e47d4c67d7339f2740ccf3e875f466cd58579019c7984794147773bd70a",
+    "cGAN/taxi_models_and_data.py": "39b9060c93f55db9f109d43ef3f6bb531ecd604254f13ccc13d68fc48c5302d2",
+    "Aebs/controller/state_net_trained.pth": "386ef3cc4282a07cf8f77930aefd4aeab51110eee776b1f75d21ff1122358884",
+    "Aebs/data/Downsampled.h5": "41cc88359f64d52ffb25a8ec57ea9efddd9b8463d37e63bc972b2854dbed1bf1",
+    "Aebs/controller/best_model/best_model.zip": "2d2ab4d1d1f28d206c2c6238b9f087ee598b8c3c158bba220aa4939049819d83",
+    "Aebs/cGAN/mlp_supervised_ld4/mlp_supervised.pth": "02fc87c1c6dd7fb36971c58eebc5d22245fa2353b7dbf7cc0e1638ccea9fbfdc"
+  },
+  "auto_lirpa_path": "/tmp/spvc_QLong01_6279872_20261117/auto_LiRPA/auto_LiRPA/__init__.py",
+  "criterion": "native Loop.run and VTVerifier; best score among accepted, separated candidates",
+  "rounds": "source default iterations 0 through 100 inclusive, wall time 3600s",
+  "note": "fixed skips the controller update; alternating uses upstream training unmodified; checkpoint snapshots before policy update"
+}

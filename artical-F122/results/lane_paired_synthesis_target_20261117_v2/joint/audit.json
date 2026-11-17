@@ -1,0 +1,293 @@
+{
+  "arm": "joint",
+  "protocol": "2c0584ee9e7f91e6a41e351bcb1bc8e2f95c3e4a6c0209d95aa65475078917e8",
+  "frozen": "6043126b93f81810882a6ee896b04532ff4da2c0d7c401c8fdc8f9760b310144",
+  "final_contract": "9bdc042602a9dba563c0864299920cc37d7564fd4e656b70586e714b14bba221",
+  "init": {
+    "passed": true,
+    "unresolved": 0,
+    "bound": 0.0,
+    "partition_area_error": 0.0,
+    "history": [
+      {
+        "depth": 0,
+        "unresolved": 0,
+        "accepted": 256
+      }
+    ]
+  },
+  "unsafe": {
+    "passed": true,
+    "unresolved": 0,
+    "bound": 24.540949993441767,
+    "partition_area_error": 0.0,
+    "history": [
+      {
+        "depth": 0,
+        "unresolved": 0,
+        "accepted": 1024
+      }
+    ]
+  },
+  "first_exit_bound": [
+    1.1390683325465127,
+    1.2743872131367069
+  ],
+  "numerical": "float64 padded interval audit without directed rounding",
+  "rows": [
+    {
+      "normalized_margin": 0.0,
+      "steering_rad": 0.0,
+      "original_curvatures": "pass",
+      "five_curvatures": "pass",
+      "curvatures": {
+        "0.0": {
+          "status": "pass",
+          "checked": 2602,
+          "depth": 4,
+          "unresolved": 0,
+          "area_error": 0.0
+        },
+        "-0.01": {
+          "status": "pass",
+          "checked": 2902,
+          "depth": 5,
+          "unresolved": 0,
+          "area_error": 0.0
+        },
+        "0.01": {
+          "status": "pass",
+          "checked": 2606,
+          "depth": 4,
+          "unresolved": 0,
+          "area_error": 4.440892098500626e-16
+        },
+        "-0.02": {
+          "status": "pass",
+          "checked": 3616,
+          "depth": 6,
+          "unresolved": 0,
+          "area_error": 8.881784197001252e-16
+        },
+        "0.02": {
+          "status": "pass",
+          "checked": 2974,
+          "depth": 4,
+          "unresolved": 0,
+          "area_error": 0.0
+        }
+      },
+      "seconds": 3.5260798037052155
+    },
+    {
+      "normalized_margin": 0.1,
+      "steering_rad": 0.045000000000000005,
+      "original_curvatures": "pass",
+      "five_curvatures": "pass",
+      "curvatures": {
+        "0.0": {
+          "status": "pass",
+          "checked": 3276,
+          "depth": 5,
+          "unresolved": 0,
+          "area_error": 8.881784197001252e-16
+        },
+        "-0.01": {
+          "status": "pass",
+          "checked": 3916,
+          "depth": 7,
+          "unresolved": 0,
+          "area_error": 0.0
+        },
+        "0.01": {
+          "status": "pass",
+          "checked": 3352,
+          "depth": 5,
+          "unresolved": 0,
+          "area_error": 4.440892098500626e-16
+        },
+        "-0.02": {
+          "status": "pass",
+          "checked": 6366,
+          "depth": 12,
+          "unresolved": 0,
+          "area_error": 0.0
+        },
+        "0.02": {
+          "status": "pass",
+          "checked": 4222,
+          "depth": 6,
+          "unresolved": 0,
+          "area_error": 0.0
+        }
+      },
+      "seconds": 5.400112983305007
+    },
+    {
+      "normalized_margin": 0.15,
+      "steering_rad": 0.0675,
+      "original_curvatures": "pass",
+      "five_curvatures": "unresolved",
+      "curvatures": {
+        "0.0": {
+          "status": "pass",
+          "checked": 3872,
+          "depth": 5,
+          "unresolved": 0,
+          "area_error": 0.0
+        },
+        "-0.01": {
+          "status": "pass",
+          "checked": 4950,
+          "depth": 9,
+          "unresolved": 0,
+          "area_error": 4.440892098500626e-16
+        },
+        "0.01": {
+          "status": "pass",
+          "checked": 4008,
+          "depth": 6,
+          "unresolved": 0,
+          "area_error": 0.0
+        },
+        "-0.02": {
+          "status": "unresolved",
+          "checked": 60468,
+          "depth": 16,
+          "unresolved": 20853,
+          "area_error": 0.0
+        },
+        "0.02": {
+          "status": "pass",
+          "checked": 5554,
+          "depth": 8,
+          "unresolved": 0,
+          "area_error": 8.881784197001252e-16
+        }
+      },
+      "seconds": 21.7801640718244
+    },
+    {
+      "normalized_margin": 0.19,
+      "steering_rad": 0.0855,
+      "original_curvatures": "pass",
+      "five_curvatures": "witness",
+      "curvatures": {
+        "0.0": {
+          "status": "pass",
+          "checked": 4584,
+          "depth": 6,
+          "unresolved": 0,
+          "area_error": 0.0
+        },
+        "-0.01": {
+          "status": "pass",
+          "checked": 6828,
+          "depth": 13,
+          "unresolved": 0,
+          "area_error": 4.440892098500626e-16
+        },
+        "0.01": {
+          "status": "pass",
+          "checked": 4918,
+          "depth": 8,
+          "unresolved": 0,
+          "area_error": 0.0
+        },
+        "-0.02": {
+          "status": "witness",
+          "checked": 3772,
+          "depth": 2,
+          "witness": {
+            "x": [
+              0.46249999999999997,
+              -0.31249999999999994
+            ],
+            "kappa": -0.02,
+            "error": [
+              0.0,
+              0.08526283237787922
+            ],
+            "additive_action": -0.19,
+            "action_difference": -0.280385014481207,
+            "before": 0.37462186958836874,
+            "after": 0.3751114180437476,
+            "next_state": [
+              0.4184469500068174,
+              -0.5335538798033734
+            ]
+          }
+        },
+        "0.02": {
+          "status": "pass",
+          "checked": 8826,
+          "depth": 12,
+          "unresolved": 0,
+          "area_error": 4.440892098500626e-16
+        }
+      },
+      "seconds": 7.059598134830594
+    },
+    {
+      "normalized_margin": 0.2,
+      "steering_rad": 0.09000000000000001,
+      "original_curvatures": "unresolved",
+      "five_curvatures": "witness",
+      "curvatures": {
+        "0.0": {
+          "status": "pass",
+          "checked": 4806,
+          "depth": 6,
+          "unresolved": 0,
+          "area_error": 8.881784197001252e-16
+        },
+        "-0.01": {
+          "status": "unresolved",
+          "checked": 8596,
+          "depth": 16,
+          "unresolved": 25,
+          "area_error": 8.881784197001252e-16
+        },
+        "0.01": {
+          "status": "pass",
+          "checked": 5252,
+          "depth": 8,
+          "unresolved": 0,
+          "area_error": 0.0
+        },
+        "-0.02": {
+          "status": "witness",
+          "checked": 3802,
+          "depth": 2,
+          "witness": {
+            "x": [
+              0.46249999999999997,
+              -0.31249999999999994
+            ],
+            "kappa": -0.02,
+            "error": [
+              0.0,
+              0.08526283237787922
+            ],
+            "additive_action": -0.2,
+            "action_difference": -0.280385014481207,
+            "before": 0.37462186958836874,
+            "after": 0.3751114180437476,
+            "next_state": [
+              0.4184469500068174,
+              -0.5335538798033734
+            ]
+          }
+        },
+        "0.02": {
+          "status": "unresolved",
+          "checked": 13748,
+          "depth": 16,
+          "unresolved": 20,
+          "area_error": 4.440892098500626e-16
+        }
+      },
+      "seconds": 8.996158640366048
+    }
+  ]
+}

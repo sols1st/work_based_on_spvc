@@ -1,0 +1,34 @@
+{
+  "mode": "rgb640",
+  "budget": 10000,
+  "seed": 27411,
+  "rank_selection": {
+    "lr": 0.001,
+    "epoch": 96,
+    "dev_mse": 0.00019178241200279444
+  },
+  "all_lr": [
+    {
+      "lr": 0.0001,
+      "epoch": 100,
+      "dev_mse": 0.0006082035251893103
+    },
+    {
+      "lr": 0.001,
+      "epoch": 96,
+      "dev_mse": 0.00019178241200279444
+    }
+  ],
+  "epochs": 100,
+  "batch": 64,
+  "n_train": 6000,
+  "n_dev": 2000,
+  "test": 2000,
+  "gradients": 18800,
+  "training_seconds": 35.25285936612636,
+  "head_params": 65921,
+  "prediction": "e81b3431b860c8e42a37efafb08856834f9ca22c0791c956b9b04c9cd49ec388",
+  "model": "5f8fa510b609cf0950e42f0f1f1f7b193c0ece2c521815178dcfd3cd6eef42db",
+  "cache_sha256": "b13070f1685144ccdeccfed2db6c981a6ea5096226b80051ca99999e4c7c1e0f",
+  "protocol_sha256": "d36a6ef6e9d4b4dceb6471adf5fcb8f1cc45134e677278983db60dea83cd4609"
+}

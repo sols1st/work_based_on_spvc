@@ -33,7 +33,7 @@ def cells(n):
 def audit(args):
     upstream = args.upstream.resolve()
     folder = args.folder.resolve()
-    out = folder / "drift_audit.json"
+    out = folder / ("drift_audit_interior_full.json" if args.interior_full else "drift_audit_domain.json" if args.full_domain else "drift_audit.json")
     if out.exists():
         raise FileExistsError(out)
     os.chdir(upstream)
@@ -67,6 +67,9 @@ def audit(args):
     span = torch.as_tensor(env.noise,dtype=torch.float64)
     d,v = torch.meshgrid(torch.linspace(6.7,15.1,91,dtype=torch.float64)/float(env.std1),
                          torch.linspace(.27,2.76,69,dtype=torch.float64), indexing="ij")
+    if args.full_domain or args.interior_full:
+        d, v = torch.meshgrid(torch.linspace(float(lo[0]),float(hi[0]),221 if args.interior_full else 161,dtype=torch.float64),
+                              torch.linspace(0.,3.,151 if args.interior_full else 121,dtype=torch.float64),indexing="ij")
     search = torch.stack([d.flatten(),v.flatten()],1)
     samples = []
     for batch in search.split(256):
@@ -75,24 +78,32 @@ def audit(args):
         current = barrier(batch).flatten()
         next_states = center[:,None,:] + ((zlow+zhigh)*.5)*span
         delta = barrier(next_states.reshape(-1,2)).reshape(len(batch),-1).mean(dim=1) - current
-        valid = (current < record["lb_unsafe"]) & ((center-span >= lo) & (center+span <= hi)).all(dim=1)
+        valid = (current < record["lb_unsafe"]) & ((batch[:,0]*float(env.std1)>6.) | (batch[:,1]<.5))
+        if args.interior_full or not args.full_domain:
+            valid &= ((center-span >= lo) & (center+span <= hi)).all(dim=1)
         for s,c,b,score in zip(batch[valid],center[valid],current[valid],delta[valid]):
             samples.append((float(score),s,c,float(b)))
     samples.sort(key=lambda t:-t[0])
     witness = None
     for _, s, center, b in samples[:20]:
+        if _ < -1e-3:
+            continue
         for n in (16,32,64,128,256,512):
             zlow, zhigh = cells(n)
             floors, ceilings = interval(barrier,center+zlow*span,center+zhigh*span)
             expected_lo = float(floors.mean())
             expected_hi = float(ceilings.mean())
             if expected_lo > b+1e-5:
+                clamped_lo, _ = interval(barrier, torch.minimum(hi,torch.maximum(lo,center+zlow*span)),
+                                         torch.minimum(hi,torch.maximum(lo,center+zhigh*span)))
                 shifted = (b-record["domain_min"])/(record["ub_init"]-record["domain_min"])
                 witness=dict(state_normalized=s.tolist(),state_physical=[float(s[0])*float(env.std1),float(s[1])],
                              nominal_successor=center.tolist(), noise_halfwidth=span.tolist(), pscore=record["score"],
                              current_barrier=b, unsafe_barrier_lower=record["lb_unsafe"],
                              normalized_current=shifted, normalized_threshold=1./(1.-record["score"]),
                              expected_barrier_lower=expected_lo,expected_barrier_upper=expected_hi,
+                             successor_tube_entirely_inside_state_domain=bool(((center-span>=lo)&(center+span<=hi)).all()),
+                             sensitivity_post_noise_state_clamp_drift_lower=float(clamped_lo.mean())-b,
                              expected_drift_lower=expected_lo-b,
                              expected_drift_normalized_lower=(expected_lo-b)/(record["ub_init"]-record["domain_min"]),
                              equal_mass_cells=n*n)
@@ -100,6 +111,8 @@ def audit(args):
         if witness:
             break
     outcome=dict(status="positive_expected_drift" if witness else "no_witness_in_search",
+                 maximum_midpoint_drift=float(samples[0][0]) if samples else None,
+                 domain="entire modeled state rectangle with implemented untruncated additive perturbation" if args.full_domain else "interior subset with successor tubes inside domain",
                  witness=witness,iteration=record["iteration"], checked_on_uniform_noise=True,
                  numerical="float64 interval operations without directed rounding; independent analytical interval propagation",
                  weights_sha256=hashlib.sha256((folder/"best.pt").read_bytes()).hexdigest())
@@ -109,6 +122,8 @@ def audit(args):
 
 if __name__=="__main__":
     cli=argparse.ArgumentParser(description=__doc__)
+    cli.add_argument("--full-domain",action="store_true")
+    cli.add_argument("--interior-full",action="store_true")
     cli.add_argument("upstream",type=Path)
     cli.add_argument("folder",type=Path)
     audit(cli.parse_args())

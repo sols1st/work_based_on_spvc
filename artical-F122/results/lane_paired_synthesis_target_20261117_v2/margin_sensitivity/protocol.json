@@ -1,0 +1,24 @@
+{
+  "source": "6d0b8707ecee0b5434467e8245abc394df4d47d5efd743aca3d15244330c80fd",
+  "root_protocol": "2c0584ee9e7f91e6a41e351bcb1bc8e2f95c3e4a6c0209d95aa65475078917e8",
+  "contracts": {
+    "fixed_corrected_uniform": "ba0191e4312ed6daf623a1123dba8441994667cb0b63cdfc3510e701aeead881",
+    "trained_uniform": "f529266ee7a8b4d034c9e48d0662857bab30aea98fed4b843adcb27c170a621e",
+    "fixed_corrected_diagonal": "a760985f9e41cd4b5a08fe57ddad09a877aa135efd50a33ab470ca8c4b0a929c",
+    "trained_diagonal": "00bee975c464f78bb940022b9d623d4cae07b17e252bb2d174154f2840828b4c",
+    "fixed_corrected_joint": "7aaef4e1ac71686bbe2a3418e13e274e506a689c8c0f2be37bfe141eeef44c0e",
+    "trained_joint": "9bdc042602a9dba563c0864299920cc37d7564fd4e656b70586e714b14bba221"
+  },
+  "model": "fixed_corrected and each resynthesized pair",
+  "range": [
+    0.11,
+    0.12,
+    0.13,
+    0.14,
+    0.145,
+    0.15
+  ],
+  "analysis": "additional grid specified after registered coarse results; certified widths are linear angular amplitudes",
+  "shared_config": "all original verification settings incl 180 seconds per margin and system",
+  "reject_larger": "earlier true witness retained when expanding symmetrical extra steering range"
+}

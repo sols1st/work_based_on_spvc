@@ -1,0 +1,34 @@
+{
+  "mode": "gray32_mlp",
+  "budget": 400,
+  "seed": 27411,
+  "rank_selection": {
+    "lr": 0.001,
+    "epoch": 98,
+    "dev_mse": 0.0008843617979437113
+  },
+  "all_lr": [
+    {
+      "lr": 0.0001,
+      "epoch": 100,
+      "dev_mse": 0.2370043396949768
+    },
+    {
+      "lr": 0.001,
+      "epoch": 98,
+      "dev_mse": 0.0008843617979437113
+    }
+  ],
+  "epochs": 100,
+  "batch": 64,
+  "n_train": 240,
+  "n_dev": 88,
+  "test": 72,
+  "gradients": 800,
+  "training_seconds": 3.921629880089313,
+  "head_params": 279553,
+  "prediction": "db92f3101af756bdca8636cf02e11e2bb256b1912c62e392c9daf051ca9c445e",
+  "model": "e8303814d61c2bd7d5a3a326bd0080e4858553f148984bd5feae61a03aff6ce0",
+  "cache_sha256": "b13070f1685144ccdeccfed2db6c981a6ea5096226b80051ca99999e4c7c1e0f",
+  "protocol_sha256": "d36a6ef6e9d4b4dceb6471adf5fcb8f1cc45134e677278983db60dea83cd4609"
+}

@@ -1,0 +1,79 @@
+{
+  "protocol": "9684232c3fea04ba4e6bb4f1db2616acb573d8adcf1e8baca125c0135a151681",
+  "results": {
+    "all": {
+      "n": 100,
+      "arms": {
+        "uniform": {
+          "change_rad": 0.05486790067053331,
+          "rms_rad": 0.05958611693254232,
+          "saturation_fraction": 0.001,
+          "q95_peak_e_m": 0.23915297463257532
+        },
+        "diagonal": {
+          "change_rad": 0.05198044231895129,
+          "rms_rad": 0.059115839628314466,
+          "saturation_fraction": 0.001125,
+          "q95_peak_e_m": 0.23915297463257532,
+          "paired_change_minus_uniform_rad": {
+            "delta": -0.002887458351582011,
+            "ci95": [
+              -0.005823253848097499,
+              -2.0846365768070562e-05
+            ]
+          }
+        },
+        "joint": {
+          "change_rad": 0.06049617022548026,
+          "rms_rad": 0.06435517359594688,
+          "saturation_fraction": 0.0015000000000000002,
+          "q95_peak_e_m": 0.23915297463257532,
+          "paired_change_minus_uniform_rad": {
+            "delta": 0.005628269554946971,
+            "ci95": [
+              0.0031608432588831306,
+              0.008094641730349685
+            ]
+          }
+        }
+      }
+    },
+    "higher_curvature": {
+      "n": 41,
+      "arms": {
+        "uniform": {
+          "change_rad": 0.049671646912260906,
+          "rms_rad": 0.07090748447649668,
+          "saturation_fraction": 0.0012195121951219512,
+          "q95_peak_e_m": 0.23912882249207082
+        },
+        "diagonal": {
+          "change_rad": 0.050287573213571364,
+          "rms_rad": 0.07307769801963812,
+          "saturation_fraction": 0.0012195121951219512,
+          "q95_peak_e_m": 0.23912882249207082,
+          "paired_change_minus_uniform_rad": {
+            "delta": 0.0006159263013104559,
+            "ci95": [
+              -0.0028248319560684855,
+              0.004342938892049382
+            ]
+          }
+        },
+        "joint": {
+          "change_rad": 0.05477790260929225,
+          "rms_rad": 0.07384270867165278,
+          "saturation_fraction": 0.0018292682926829272,
+          "q95_peak_e_m": 0.23912882249207082,
+          "paired_change_minus_uniform_rad": {
+            "delta": 0.005106255697031336,
+            "ci95": [
+              0.0019501283306067572,
+              0.008909162992916997
+            ]
+          }
+        }
+      }
+    }
+  }
+}

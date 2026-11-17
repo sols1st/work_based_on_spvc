@@ -1,0 +1,22 @@
+{
+  "analysis": "be6ccc5d7d72e2e6522c286b74bb030c15ae3b9ff1d635a0bd0d5dc47c78bc4a",
+  "models": {
+    "uniform": "8a4ceee31d70307e6960afd15811501711d70118091e6e53f40453d08d0515a1",
+    "diagonal": "976b3fa11e5c76d53fa9f8038739b50704ac268c1098c191c54de58be49a4a62",
+    "joint": "6043126b93f81810882a6ee896b04532ff4da2c0d7c401c8fdc8f9760b310144"
+  },
+  "average": "all controlled steps; compute each episode first and then average equally",
+  "measures": [
+    "mean absolute steering change in radians per control step",
+    "RMS steering radians per trajectory",
+    "fraction of steps saturated",
+    "95th percentile across episodes of maximum absolute lateral distance"
+  ],
+  "strata": [
+    "all",
+    "absolute curvature equals .02"
+  ],
+  "pairwise": "episode differences vs uniform arm",
+  "ci": "paired percentile bootstrap 4000 rounds; individual nominal 95% intervals",
+  "seed": 202611178306
+}

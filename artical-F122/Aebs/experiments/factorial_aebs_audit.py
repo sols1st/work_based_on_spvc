@@ -70,6 +70,7 @@ def report(args):
     for path,h in rseed['bindings'].items():
         assert sha256(Path(path))==h
     totals=dict(calibration=0,holdout=0)
+    terminal=[]
     for key,r in rows.items():
         folder=run/key;fit=read(root/'models'/f"{r['frontend']}_{r['budget']}_{r['seed']}"/'fit.json')
         assert r['contract']==sha256(folder/'contract.json')
@@ -86,13 +87,18 @@ def report(args):
                 np.testing.assert_array_equal(z['appearance'],appearance)
                 totals[phase]+=int(z['steps'].sum())
                 scores=z['scores']
+                outcomes=z['outcomes']
+                labels=['success','unsafe','stopped_safe_outside_goal','out_of_domain','timeout']
+                counts={label:int((outcomes==label).sum()) for label in labels}
+                assert sum(counts.values())==n
+                terminal.append(dict(arm=key,phase=phase,**counts))
                 if phase=='calibration':
                     assert r['q']==float(np.sort(scores)[189])
                 else:
                     assert int((scores<=r['q']).sum())==r['covered']
                     assert int((scores<=.45).sum())==r['in_fixed_tube']
                     assert int((z['outcomes']=='unsafe').sum())==r['unsafe']
-        assert r['success']+r['unsafe']+r['early_stop']==100
+        assert counts['success']==r['success'] and counts['stopped_safe_outside_goal']==r['early_stop']
     modes=['gray32_mlp',*MODES]
     grouped=[];effects=[]
     for lib_type,n in itertools.product(['common','strict'],BUDGETS):
@@ -116,6 +122,7 @@ def report(args):
                     frame_mae_change_m=b['frame_mae']-a['frame_mae'],
                     successes_change=b['success']-a['success'],unsafe_change=b['unsafe']-a['unsafe'],
                     mean_peak_change=b['mean_peak']-a['mean_peak']))
+    table(run/'terminal_counts.csv',terminal)
     table(run/'seed_summary.csv',grouped)
     table(run/'paired_effects.csv',effects)
     write(run/'audit_costs.json',dict(arms=len(rows),trajectories_cal=199*len(rows),

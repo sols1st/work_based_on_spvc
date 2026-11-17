@@ -1,0 +1,125 @@
+{
+  "actor": "diagonal",
+  "sbc": "fixed",
+  "protocol": "47ce896b0631d9effbbb3edfd6cbbf9ffca16d1bdefdb128f6549392a60bd84f",
+  "audit": {
+    "initial": {
+      "passed": true,
+      "unresolved": 0,
+      "bound": 0.2145080641624925,
+      "partition_area_error": 0.0,
+      "history": [
+        {
+          "depth": 0,
+          "unresolved": 0,
+          "accepted": 256
+        }
+      ]
+    },
+    "unsafe": {
+      "passed": true,
+      "unresolved": 0,
+      "bound": 23.546546645239726,
+      "partition_area_error": 0.0,
+      "history": [
+        {
+          "depth": 0,
+          "unresolved": 0,
+          "accepted": 1024
+        }
+      ]
+    },
+    "first_exit": [
+      1.1390683325465127,
+      1.2743872131367069
+    ],
+    "rows": [
+      {
+        "normalized_margin": 0.0,
+        "steering_rad": 0.0,
+        "status": "pass",
+        "curvatures": {
+          "0.0": {
+            "status": "pass",
+            "checked": 5028,
+            "depth": 7,
+            "unresolved": 0,
+            "area_error": 4.440892098500626e-16
+          },
+          "-0.01": {
+            "status": "pass",
+            "checked": 4828,
+            "depth": 6,
+            "unresolved": 0,
+            "area_error": 8.881784197001252e-16
+          },
+          "0.01": {
+            "status": "pass",
+            "checked": 4716,
+            "depth": 6,
+            "unresolved": 0,
+            "area_error": 0.0
+          },
+          "-0.02": {
+            "status": "pass",
+            "checked": 4576,
+            "depth": 6,
+            "unresolved": 0,
+            "area_error": 0.0
+          },
+          "0.02": {
+            "status": "pass",
+            "checked": 4578,
+            "depth": 6,
+            "unresolved": 0,
+            "area_error": 0.0
+          }
+        },
+        "seconds": 5.254269104916602
+      },
+      {
+        "normalized_margin": 0.1,
+        "steering_rad": 0.045000000000000005,
+        "status": "unresolved",
+        "curvatures": {
+          "0.0": {
+            "status": "unresolved",
+            "checked": 15640,
+            "depth": 16,
+            "unresolved": 328,
+            "area_error": 0.0
+          },
+          "-0.01": {
+            "status": "pass",
+            "checked": 9858,
+            "depth": 11,
+            "unresolved": 0,
+            "area_error": 8.881784197001252e-16
+          },
+          "0.01": {
+            "status": "pass",
+            "checked": 9010,
+            "depth": 8,
+            "unresolved": 0,
+            "area_error": 4.440892098500626e-16
+          },
+          "-0.02": {
+            "status": "pass",
+            "checked": 8486,
+            "depth": 9,
+            "unresolved": 0,
+            "area_error": 0.0
+          },
+          "0.02": {
+            "status": "pass",
+            "checked": 8526,
+            "depth": 8,
+            "unresolved": 0,
+            "area_error": 0.0
+          }
+        },
+        "seconds": 12.108699982985854
+      }
+    ]
+  }
+}

@@ -36,6 +36,18 @@ def run(args):
         "Aebs/controller/state_net_trained.pth", "Aebs/data/Downsampled.h5",
         "Aebs/controller/best_model/best_model.zip", "Aebs/cGAN/mlp_supervised_ld4/mlp_supervised.pth",
     ]
+    sources = {p: digest(root / p) for p in paths}
+    source_fingerprint = hashlib.sha256(json.dumps(sources, sort_keys=True).encode()).hexdigest()
+    if source_fingerprint != "037ba26b3e13f45503962aaad3c8666ba0a9cf48470af83e20ef7098ed25098e":
+        raise ValueError("upstream training source, native weights or dataset differ from the pinned release")
+    lirpa_root = (root / "auto_LiRPA" / "auto_LiRPA").resolve()
+    if Path(auto_LiRPA.__file__).resolve().parent != lirpa_root:
+        raise ValueError("the verifier must use the version of auto_LiRPA bundled by the authors")
+    h = hashlib.sha256()
+    for file in sorted(lirpa_root.rglob("*.py")):
+        h.update(str(file.relative_to(lirpa_root)).encode() + bytes([0]) + hashlib.sha256(file.read_bytes()).digest())
+    if h.hexdigest() != "8af3def7686ab4b69c13c4339195333e6a897b7a7e6dc0d86d2590c8d3c2cb89":
+        raise ValueError("the bundled verifier source differs from the pinned release")
     # Upstream saves CUDA-tagged tensors. Remap only their storage when running on CPU.
     if not torch.cuda.is_available():
         load = torch.load
@@ -50,8 +62,8 @@ def run(args):
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(args.seed)
     log = dict(upstream="QLong01/artical", commit="6279872ed7708cd103c0801d758d2a95c203ce27",
-               arm=args.arm, seed=args.seed, threads=args.threads, device="cuda" if torch.cuda.is_available() else "cpu",
-               torch_version=torch.__version__, cuda=torch.version.cuda, source={p:digest(root/p) for p in paths},
+               arm=args.arm, optimizer_rates=("paper-text" if args.paper_rates else "released-source"), seed=args.seed, threads=args.threads, device="cuda" if torch.cuda.is_available() else "cpu",
+               torch_version=torch.__version__, cuda=torch.version.cuda, source=sources, auto_lirpa_source_sha256=h.hexdigest(),
                auto_lirpa_path=str(Path(auto_LiRPA.__file__).resolve()),
                criterion="native Loop.run and VTVerifier; best score among accepted, separated candidates",
                rounds="source default iterations 0 through 100 inclusive, wall time 3600s",
@@ -59,6 +71,11 @@ def run(args):
     write(out / "protocol.json", log)
     env = Aebs(.05)
     learner = VTLearner([2,16,8,1], env, 2., 4., .1, 1., .95, square_l_output=True)
+    if args.paper_rates:
+        for group in learner.l_optimizer.param_groups:
+            group["lr"] = .001
+        for group in learner.p_optimizer.param_groups:
+            group["lr"] = .005
     verifier = VTVerifier(learner, env, learner.create_bounded_module(learner.l_model),
                           batch_size=2048, reach_prob=.9, fail_check_fast=True)
     loop = Loop(learner, verifier, env, jitter_grid=env.space_split, soft_constraint=False)
@@ -111,6 +128,7 @@ if __name__ == "__main__":
     cli.add_argument("upstream", type=Path)
     cli.add_argument("output", type=Path)
     cli.add_argument("--arm", choices=["fixed","alternating"], required=True)
+    cli.add_argument("--paper-rates", action="store_true", help="use the two learning rates specified in the paper")
     cli.add_argument("--seed", type=int, default=202611171)
     cli.add_argument("--threads", type=int, default=4)
     run(cli.parse_args())

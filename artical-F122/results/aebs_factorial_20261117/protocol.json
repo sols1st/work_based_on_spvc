@@ -1,0 +1,56 @@
+{
+  "modes": [
+    "gray32",
+    "rgb32",
+    "gray640",
+    "rgb640"
+  ],
+  "budgets": [
+    400,
+    10000,
+    24000
+  ],
+  "seeds": [
+    27411,
+    27412,
+    27413
+  ],
+  "heads": [
+    "gray32_mlp",
+    "gray32",
+    "rgb32",
+    "gray640",
+    "rgb640"
+  ],
+  "rates": [
+    0.0001,
+    0.001
+  ],
+  "batches": 64,
+  "epochs": 100,
+  "select": "lowest development MSE over all epochs and both learning rates per seed",
+  "cal": [
+    199,
+    711841
+  ],
+  "holdout": [
+    100,
+    711842
+  ],
+  "alpha": 0.05,
+  "replay": "each source strict budget held library plus common held 3229",
+  "primary": "MLP versus DINO on identical gray32; DINO 2x2 color by source resolution",
+  "bindings": {
+    "results/aebs_budget_scaling_20261110/protocol.json": "dc3fb06f1870a2e90b4c9d81a013359eeeb305f227004cedfd1ff8ab709a0984",
+    "../external/dinov2_weights/dinov2_vits14_pretrain.pth": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+    "results/aebs_matched_replay_20261117/library/manifest.json": "ec85fab9eb4412963bff6c1f83933a10f613abd97935cc3b0b9e8c3c1d21e296",
+    "results/aebs_matched_replay_20261117/library/libraries.json": "5d4f58057cf235833acc1857f391f9b159691c8c6b4c674e727ffb54d8b944a8",
+    "/root/work_based_on_spvc/artical-F122/Aebs/experiments/factorial_aebs_inputs.py": "803132b66a90be630054063a365be5541bdd924e296fa928842b79f50bc29862",
+    "/root/work_based_on_spvc/artical-F122/Aebs/experiments/factorial_aebs_fit.py": "6bba3aa9633104e1ad036aceb67c9bee30a133b8f955a0590f43b657ab7f1d39",
+    "/root/work_based_on_spvc/artical-F122/Aebs/experiments/factorial_aebs_evaluate.py": "2998971300b61324db1dff281f50b5d06fff6ffe19634b53af77f972f5622235"
+  },
+  "inference_batch": 8,
+  "preprocessing": "PIL gray/resize(32,BICUBIC) before CPU DINO preprocessing 224; same frozen ViT-S/14",
+  "device": "cuda:0",
+  "torch": "2.3.1"
+}

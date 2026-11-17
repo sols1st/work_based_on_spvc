@@ -1,0 +1,401 @@
+{
+  "upstream": "https://github.com/QLong01/artical",
+  "head": "6279872ed7708cd103c0801d758d2a95c203ce27",
+  "reachable_commit_count": 14,
+  "aebs_weight_paths_across_history": [
+    "Aebs/cGAN/mlp_supervised_ld4/mlp_supervised.pth",
+    "Aebs/controller/best_model/best_model.zip",
+    "Aebs/controller/state_net_trained.pth"
+  ],
+  "prior_log": {
+    "commit": "b628b61c62212e9a536b84ea31f210fa36fef39b",
+    "sha256": "064a993684879424071c68e9b1eea9f7cf6f9fe15eae2b565fb8719053427d88",
+    "entries": 5,
+    "probability_fields": [
+      "UNSAFE",
+      "UNSAFE",
+      "UNSAFE",
+      "UNSAFE",
+      "UNSAFE"
+    ]
+  },
+  "source_rates": {
+    "barrier": 0.003,
+    "policy": 0.05
+  },
+  "paper_text_rates": {
+    "barrier": 0.001,
+    "policy": 0.005
+  },
+  "reference": {
+    "fixed": 0.726,
+    "simultaneous": "OT",
+    "alternating": 0.942,
+    "meaning": "published Table 1, 100 iterations"
+  },
+  "runs": {
+    "fixed": {
+      "rounds": 101,
+      "author_accepted": 92,
+      "scored": 0,
+      "best": null,
+      "final": {
+        "iteration": 100,
+        "accepted": true,
+        "hard_violations": 8,
+        "ub_init": 10.152125358581543,
+        "lb_unsafe": 9.584281921386719,
+        "domain_min": 3.603498697280884
+      },
+      "weights": {
+        "final_verified.pt": "f434d2ff94e1f8c5c0ff687e28559a3c4ef2b904417de74432428b385ebc10b8"
+      }
+    },
+    "alternating": {
+      "rounds": 101,
+      "author_accepted": 97,
+      "scored": 58,
+      "best": {
+        "iteration": 93,
+        "accepted": true,
+        "hard_violations": 0,
+        "ub_init": 1.2526655197143555,
+        "lb_unsafe": 19.77878189086914,
+        "domain_min": 0.37481385469436646,
+        "score": 0.9547591676412055
+      },
+      "final": {
+        "iteration": 100,
+        "accepted": true,
+        "hard_violations": 1,
+        "ub_init": 1.3280093669891357,
+        "lb_unsafe": 19.977609634399414,
+        "domain_min": 0.27350497245788574,
+        "score": 0.9464830088642381
+      },
+      "weights": {
+        "best.pt": "94697230f9f5249e3441e552987be74030713c8a1a8babb9445f85b05fa262e6",
+        "final_verified.pt": "b9354dab92be1c7a84f352d293baddd4a1124babf81cbd31ced0d2058be4df55"
+      }
+    },
+    "paper_fixed": {
+      "rounds": 101,
+      "author_accepted": 101,
+      "scored": 0,
+      "best": null,
+      "final": {
+        "iteration": 100,
+        "accepted": true,
+        "hard_violations": 9,
+        "ub_init": 9.80367374420166,
+        "lb_unsafe": 3.8034818172454834,
+        "domain_min": 0.7118916511535645
+      },
+      "weights": {
+        "final_verified.pt": "d9173e9ad0bcd74d9a919eb95ca7c4bf50317e51c04107eb122215fafc472294"
+      }
+    },
+    "paper_alternating": {
+      "rounds": 101,
+      "author_accepted": 101,
+      "scored": 0,
+      "best": null,
+      "final": {
+        "iteration": 100,
+        "accepted": true,
+        "hard_violations": 10,
+        "ub_init": 10.227193832397461,
+        "lb_unsafe": 3.805260181427002,
+        "domain_min": 0.8725464940071106
+      },
+      "weights": {
+        "final_verified.pt": "b2dc325f98bc6a82dfb0bb9b7ca57ef7e339cd53009efa0c9101829fe6d09895"
+      }
+    }
+  },
+  "stochastic_witness": {
+    "status": "positive_expected_drift",
+    "maximum_midpoint_drift": 2.887377955286019,
+    "domain": "entire modeled state rectangle with implemented untruncated additive perturbation",
+    "witness": {
+      "state_normalized": [
+        3.709483450651169,
+        3.0
+      ],
+      "state_physical": [
+        11.80624962063092,
+        3.0
+      ],
+      "nominal_successor": [
+        3.6623539611454285,
+        3.0
+      ],
+      "noise_halfwidth": [
+        0.1728081226348877,
+        0.15000000000000002
+      ],
+      "pscore": 0.9547591676412055,
+      "current_barrier": 5.9939058889478884,
+      "unsafe_barrier_lower": 19.77878189086914,
+      "normalized_current": 6.400958451363845,
+      "normalized_threshold": 22.10392576487614,
+      "expected_barrier_lower": 7.736092028777748,
+      "expected_barrier_upper": 10.116805053522748,
+      "successor_tube_entirely_inside_state_domain": false,
+      "sensitivity_post_noise_state_clamp_drift_lower": 3.7564722934981374,
+      "expected_drift_lower": 1.74218613982986,
+      "expected_drift_normalized_lower": 1.9846019655156544,
+      "equal_mass_cells": 256
+    },
+    "iteration": 93,
+    "checked_on_uniform_noise": true,
+    "numerical": "float64 interval operations without directed rounding; independent analytical interval propagation",
+    "weights_sha256": "94697230f9f5249e3441e552987be74030713c8a1a8babb9445f85b05fa262e6"
+  },
+  "empirical_camera_cross": {
+    "native_trained__rgb_native": {
+      "outcomes": {
+        "unsafe": 2000
+      },
+      "median_peak_m": 5.339939320124415,
+      "in_common_tube": 0
+    },
+    "native_trained__rgb_dino": {
+      "outcomes": {
+        "unsafe": 2000
+      },
+      "median_peak_m": 0.2614483053496315,
+      "in_common_tube": 1985
+    },
+    "robust_actor__rgb_native": {
+      "outcomes": {
+        "unsafe": 2000
+      },
+      "median_peak_m": 5.340958225327228,
+      "in_common_tube": 0
+    },
+    "robust_actor__rgb_dino": {
+      "outcomes": {
+        "success": 2000
+      },
+      "median_peak_m": 0.2787175249404754,
+      "in_common_tube": 1985
+    }
+  },
+  "supplementary_seed_runs": {
+    "seed202611172_alternating": {
+      "best": {
+        "iteration": 97,
+        "accepted": true,
+        "hard_violations": 6,
+        "ub_init": 2.127439022064209,
+        "lb_unsafe": 17.980199813842773,
+        "domain_min": 0.47464099526405334,
+        "score": 0.905584389282904
+      },
+      "final": {
+        "iteration": 100,
+        "accepted": false,
+        "hard_violations": 11
+      },
+      "rounds": 101,
+      "witness": {
+        "state_normalized": [
+          3.8606905579566955,
+          3.0
+        ],
+        "state_physical": [
+          12.287499605166959,
+          3.0
+        ],
+        "nominal_successor": [
+          3.8135610684509547,
+          3.0
+        ],
+        "noise_halfwidth": [
+          0.1728081226348877,
+          0.15000000000000002
+        ],
+        "pscore": 0.905584389282904,
+        "current_barrier": 6.927593480211768,
+        "unsafe_barrier_lower": 17.980199813842773,
+        "normalized_current": 3.90425955277835,
+        "normalized_threshold": 10.591468851442041,
+        "expected_barrier_lower": 7.880507536961722,
+        "expected_barrier_upper": 9.90907447755847,
+        "successor_tube_entirely_inside_state_domain": false,
+        "sensitivity_post_noise_state_clamp_drift_lower": 2.314778876748938,
+        "expected_drift_lower": 0.9529140567499539,
+        "expected_drift_normalized_lower": 0.5765459791810202,
+        "equal_mass_cells": 256
+      }
+    },
+    "seed202611172_fixed": {
+      "best": {
+        "iteration": 97,
+        "accepted": true,
+        "hard_violations": 4,
+        "ub_init": 2.0661299228668213,
+        "lb_unsafe": 19.86496925354004,
+        "domain_min": 0.4378514289855957,
+        "score": 0.9161852772713819
+      },
+      "final": {
+        "iteration": 100,
+        "accepted": true,
+        "hard_violations": 1,
+        "ub_init": 2.5871634483337402,
+        "lb_unsafe": 19.99904441833496,
+        "domain_min": 0.5043438673019409,
+        "score": 0.8931597038087651
+      },
+      "rounds": 101,
+      "witness": {
+        "state_normalized": [
+          3.8822915732860563,
+          3.0
+        ],
+        "state_physical": [
+          12.356249602957822,
+          3.0
+        ],
+        "nominal_successor": [
+          3.835162083780316,
+          3.0
+        ],
+        "noise_halfwidth": [
+          0.1728081226348877,
+          0.15000000000000002
+        ],
+        "pscore": 0.9161852772713819,
+        "current_barrier": 5.6750017736543015,
+        "unsafe_barrier_lower": 19.86496925354004,
+        "normalized_current": 3.2163726072345513,
+        "normalized_threshold": 11.931078066533471,
+        "expected_barrier_lower": 7.154611485993674,
+        "expected_barrier_upper": 9.351670030873333,
+        "successor_tube_entirely_inside_state_domain": false,
+        "sensitivity_post_noise_state_clamp_drift_lower": 3.210658263112638,
+        "expected_drift_lower": 1.4796097123393723,
+        "expected_drift_normalized_lower": 0.9086957285866494,
+        "equal_mass_cells": 256
+      }
+    },
+    "seed202611173_alternating": {
+      "best": {
+        "iteration": 91,
+        "accepted": true,
+        "hard_violations": 2,
+        "ub_init": 1.8714931011199951,
+        "lb_unsafe": 13.226962089538574,
+        "domain_min": 0.7416995167732239,
+        "score": 0.9095098258637155
+      },
+      "final": {
+        "iteration": 100,
+        "accepted": true,
+        "hard_violations": 9,
+        "ub_init": 10.145915031433105,
+        "lb_unsafe": 15.491043090820312,
+        "domain_min": 0.8140425682067871,
+        "score": 0.3641839523785343
+      },
+      "rounds": 101,
+      "witness": {
+        "state_normalized": [
+          3.7526854813098907,
+          3.0
+        ],
+        "state_physical": [
+          11.943749616212644,
+          3.0
+        ],
+        "nominal_successor": [
+          3.70555599180415,
+          3.0
+        ],
+        "noise_halfwidth": [
+          0.1728081226348877,
+          0.15000000000000002
+        ],
+        "pscore": 0.9095098258637155,
+        "current_barrier": 6.358023886638864,
+        "unsafe_barrier_lower": 13.226962089538574,
+        "normalized_current": 4.971106623085411,
+        "normalized_threshold": 11.05092358971407,
+        "expected_barrier_lower": 7.014383220552326,
+        "expected_barrier_upper": 8.35068730994697,
+        "successor_tube_entirely_inside_state_domain": false,
+        "sensitivity_post_noise_state_clamp_drift_lower": 1.5386301165403449,
+        "expected_drift_lower": 0.6563593339134624,
+        "expected_drift_normalized_lower": 0.5809550903875587,
+        "equal_mass_cells": 256
+      }
+    },
+    "seed202611173_fixed": {
+      "best": {
+        "iteration": 99,
+        "accepted": true,
+        "hard_violations": 6,
+        "ub_init": 3.611233949661255,
+        "lb_unsafe": 19.847129821777344,
+        "domain_min": 0.33248019218444824,
+        "score": 0.8319850051263664
+      },
+      "final": {
+        "iteration": 100,
+        "accepted": true,
+        "hard_violations": 7,
+        "ub_init": 3.764813184738159,
+        "lb_unsafe": 19.89400863647461,
+        "domain_min": 0.25275129079818726,
+        "score": 0.8211895586861158
+      },
+      "rounds": 101,
+      "witness": {
+        "state_normalized": [
+          3.990296649932861,
+          3.0
+        ],
+        "state_physical": [
+          12.699999591912137,
+          3.0
+        ],
+        "nominal_successor": [
+          3.943167160427121,
+          3.0
+        ],
+        "noise_halfwidth": [
+          0.1728081226348877,
+          0.15000000000000002
+        ],
+        "pscore": 0.8319850051263664,
+        "current_barrier": 7.349123381040083,
+        "unsafe_barrier_lower": 19.847129821777344,
+        "normalized_current": 2.140033594427461,
+        "normalized_threshold": 5.9518497188427375,
+        "expected_barrier_lower": 8.310768682664555,
+        "expected_barrier_upper": 10.368898048790733,
+        "successor_tube_entirely_inside_state_domain": false,
+        "sensitivity_post_noise_state_clamp_drift_lower": 2.435567791390908,
+        "expected_drift_lower": 0.9616453016244728,
+        "expected_drift_normalized_lower": 0.29329598156969106,
+        "equal_mass_cells": 256
+      }
+    }
+  },
+  "stopped_source_rollout_diagnostic": {
+    "initial_nominal": {
+      "domain_exit": 2000
+    },
+    "initial_uniform": {
+      "domain_exit": 2000
+    },
+    "native_trained_nominal": {
+      "unsafe": 2000
+    },
+    "native_trained_uniform": {
+      "domain_exit": 2000
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "status": "positive_expected_drift",
+  "maximum_midpoint_drift": 1.3134696227098717,
+  "domain": "entire modeled state rectangle with implemented untruncated additive perturbation",
+  "witness": {
+    "state_normalized": [
+      3.7526854813098907,
+      3.0
+    ],
+    "state_physical": [
+      11.943749616212644,
+      3.0
+    ],
+    "nominal_successor": [
+      3.70555599180415,
+      3.0
+    ],
+    "noise_halfwidth": [
+      0.1728081226348877,
+      0.15000000000000002
+    ],
+    "pscore": 0.9095098258637155,
+    "current_barrier": 6.358023886638864,
+    "unsafe_barrier_lower": 13.226962089538574,
+    "normalized_current": 4.971106623085411,
+    "normalized_threshold": 11.05092358971407,
+    "expected_barrier_lower": 7.014383220552326,
+    "expected_barrier_upper": 8.35068730994697,
+    "successor_tube_entirely_inside_state_domain": false,
+    "sensitivity_post_noise_state_clamp_drift_lower": 1.5386301165403449,
+    "expected_drift_lower": 0.6563593339134624,
+    "expected_drift_normalized_lower": 0.5809550903875587,
+    "equal_mass_cells": 256
+  },
+  "iteration": 91,
+  "checked_on_uniform_noise": true,
+  "numerical": "float64 interval operations without directed rounding; independent analytical interval propagation",
+  "weights_sha256": "479d44aee2e0e050d9abd1eee92ebed5bc37e9fa7c4d98e5698ee06040b4680e"
+}

@@ -1,0 +1,28 @@
+{
+  "format": "vision_sls_state_cp_reference_v1",
+  "coefficients": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "envelope_units": "m",
+  "score_units": "m",
+  "calibration": {
+    "q_hat": 2.0507391763160285,
+    "rank": 190,
+    "n": 199,
+    "alpha": 0.05,
+    "marginal_target": 0.95,
+    "confidence": 0.99,
+    "coverage_lower_at_confidence": 0.9079192628657627,
+    "guarantee_scope": "one exchangeable draw, fixed score function; not trajectory safety"
+  },
+  "coverage": {},
+  "library": "common",
+  "source_policy_sha256": "230807a1759bbededeaa7703ede1ab676ee792e4e8b0a92b01428f9b5ae38c8c",
+  "source_observation_sha256": "513fdac896dc2e9ba9847814c025bc72f05b64808218c8f8af7aa6efdb5ff23d",
+  "protocol_sha256": "f6a771719c372e7af91a30d56803061fb3a2c9debdf7bd88cc0bac1764332562",
+  "observations_npz": "b59cdc8475216599d1b83502560371bd65f2ca40a1e8484beb9bd8edb9ee9834",
+  "trajectory_sha256": "1d86d85156b719ec5dd68e265fa34483bab080bc89204146f087033b93814781"
+}

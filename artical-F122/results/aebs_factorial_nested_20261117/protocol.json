@@ -1,0 +1,49 @@
+{
+  "main": "d36a6ef6e9d4b4dceb6471adf5fcb8f1cc45134e677278983db60dea83cd4609",
+  "master": "dc3fb06f1870a2e90b4c9d81a013359eeeb305f227004cedfd1ff8ab709a0984",
+  "source": "dcb6ed859071fb17fc59e285d9a4383005ddd6eb9cd182b6294d144ab0273dcf",
+  "fit_source": "6bba3aa9633104e1ad036aceb67c9bee30a133b8f955a0590f43b657ab7f1d39",
+  "training_seeds": [
+    27411,
+    27412,
+    27413
+  ],
+  "allocation": {
+    "400": [
+      240,
+      88,
+      72
+    ],
+    "10000": [
+      6000,
+      2000,
+      2000
+    ],
+    "24000": [
+      14172,
+      4908,
+      4920
+    ]
+  },
+  "draw_seeds": {
+    "27411": 739711,
+    "27412": 739712,
+    "27413": 739713
+  },
+  "cal": [
+    199,
+    711845
+  ],
+  "held": [
+    100,
+    711846
+  ],
+  "groups": "within existing split, (weather,car color,one meter distance bin); proportional interleaved random order; exact nested prefixes",
+  "library": "same common 3229 as main; external evaluation bank; nested test images also counted in package",
+  "primary": "same input same training procedure from main; only label budget changes along a nested chain within each seed",
+  "modes": [
+    "gray32_mlp",
+    "gray32"
+  ],
+  "library_sha": "5d4f58057cf235833acc1857f391f9b159691c8c6b4c674e727ffb54d8b944a8"
+}

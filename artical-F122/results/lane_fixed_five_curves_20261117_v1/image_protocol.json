@@ -1,0 +1,84 @@
+{
+  "mode": "fixed",
+  "actor_barrier": {
+    "fixed": {
+      "actor": "afd4509772a9fda976da2d0c5722f55e6d8f2e9fabce37b7a998110583fe0c75",
+      "sbc": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321"
+    }
+  },
+  "horizon": 80,
+  "kappas": [
+    -0.02,
+    -0.01,
+    0.0,
+    0.01,
+    0.02
+  ],
+  "counts": {
+    "calibration": 199,
+    "holdout": 100
+  },
+  "seeds": [
+    202611178291,
+    202611178292
+  ],
+  "alpha": 0.05,
+  "batch": 8,
+  "device": "cuda:1",
+  "reference": "df25c1af3d695f5801acd8a6a2c5da4e2e37496f9e9acb36ede5789ac7b21d2d",
+  "development": {
+    "file": "results/lane_robust_synthesis_20261116_v2/final_cp/calibration.npz",
+    "sha256": "9f3823e25bd244951cefb66b95e7afad4be1ad57bc22d3be89ef05d70cb870e3",
+    "episodes": 199,
+    "scale": {
+      "visual": [
+        0.09838744672038352,
+        0.06458744293465395
+      ],
+      "action": 0.2545289604449559
+    },
+    "rule": "coordinate-wise empirical 95th percentiles of trajectory maxima"
+  },
+  "observer": "490e30cad8cbbc95809ba2fde9db4c99c3f8efd3ae2b6f02fb2f84f6707eb278",
+  "dino_weights": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+  "sources": {
+    "/root/work_based_on_spvc/artical-F122/Aebs/lane_paired_synthesis/evaluate.py": "fbee223714fb35e0f35d866eedad76792de645a14db19a87a8cfe4ddf16c965b",
+    "Aebs/lane_contract_comparison/collect.py": "86bf9542c05237138e7a12703864c7a3f641030ea2c19bd9bc45d10e207dd0bf",
+    "Aebs/lane_keeping/core.py": "d946db50519f272833ee6aa0e14d80cb590d8a88b733cfcdeb24f7e451097b79",
+    "Aebs/lane_keeping/renderer.py": "90e3f69cc6ccd0539e39ecd958f16dc0f7076b28d4bb944bc21653665e394a4f",
+    "Aebs/lane_keeping/robust_trajectory_cp.py": "6369d2b12f40ff4885308a9469b7200bec328547133a2a59d663f8093d0eb676",
+    "Aebs/lane_keeping/policy.py": "d56d4a944217cc11f0e9bb880549f5691850c015bb7f4c0f044b714436e544c7",
+    "Aebs/lane_keeping/patch_perception.py": "ab438e203952433fe9e22f2db51030749f578ecf13064d5090eb28fa4e7b027a",
+    "Aebs/lane_keeping/cp.py": "eccf44a1b20eecf872c670646ac3ec2296b846c1866f3a77df47c4ed9c8e8cdc",
+    "Aebs/dino_latent/backbone.py": "4dd02c0b77a636192986b492cea98ae40326a39dea9f72e2f55c45a734da2093"
+  },
+  "observation": "float32 camera; float64 policy and plant; no stopping or rejection",
+  "sampling": "independent uniform initial rectangle and one uniform registered curvature per trajectory; paired across policies",
+  "outcomes": "primary mean per-trajectory mean absolute lateral error on abs(k)=0.02; all-curve counterpart and max lateral offset, violations, CP coverage",
+  "paired_intervals": "whole-episode paired bootstrap of mean lateral error difference, 4000 reps, one interval per comparison, conditional on frozen models",
+  "audit": {
+    "extra_rad": [
+      0.0,
+      0.045,
+      0.0675,
+      0.072,
+      0.081,
+      0.0855,
+      0.09
+    ],
+    "curvatures": [
+      -0.02,
+      -0.01,
+      0.0,
+      0.01,
+      0.02
+    ],
+    "grid": 40,
+    "max_depth": 16,
+    "error_subdivisions": 2,
+    "max_pending": 30000,
+    "heading_requirement_deg": 2.0,
+    "heading_scope": "one-step change caused by observation at identical state, same curvature, versus nominal observation; separate from full safety"
+  },
+  "calibration_rule": "freeze all final tubes before sampling any blind episode"
+}

@@ -1,0 +1,18 @@
+{
+  "seed": 202611170963,
+  "n": 2000,
+  "steps": 400,
+  "policy": "94697230f9f5249e3441e552987be74030713c8a1a8babb9445f85b05fa262e6",
+  "script": "ecbb51d90843fa11ea29e990dc973646166d740bf14fb9916094be8883f546f7",
+  "law": "source F(s,z=0), clip nominal velocity then add uniform independent noise",
+  "stops": "first entry into source closed unsafe set, exit of declared state domain, or horizon; no safe label on exit",
+  "distance_domain_m": [
+    5.0,
+    16.0
+  ],
+  "speed_domain_mps": [
+    0.0,
+    3.0
+  ],
+  "time_step_s": 0.05
+}
