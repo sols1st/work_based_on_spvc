@@ -1348,7 +1348,7 @@ D07 约 49.66% 新观测特征超出训练数据各坐标最小/最大值形成�
 | [项目文档导航](</Users/johann/project/work_based_on_spvc/docs/README.md>) | 区分 VISION-SLS CP 与原 SPVC/SBC 等其他研究 |
 | [VISION-SLS 论文与代码逐步详解](</Users/johann/project/work_based_on_spvc/docs/references/VISION-SLS_论文与代码逐步详解.md>) | 查原论文/原代码细节；其中历史 CP 章节不再作为最新结论入口 |
 | [导师建议原 PDF](</Users/johann/project/work_based_on_spvc/VISION_SLS_状态相关误差界计算.pdf>) | 对照方法来源 |
-| [论文原 PDF](</Users/johann/project/work_based_on_spvc/VISION-SLS- Safe Perception-Based Control from Learned Visual Representations via System Level Synthesis.pdf>) | 对照原假设、SLS 推导与实验框架 |
+| [论文原 PDF](<../../../references/VISION-SLS- Safe Perception-Based Control from Learned Visual Representations via System Level Synthesis.pdf>) | 对照原假设、SLS 推导与实验框架 |
 
 通用视觉表示学习笔记，以及停车场前端接 SPVC/PPO/SBC 的独立实验，属于其他专题，保留各自文档；不能把其后端训练结果混入本文 SLS 控制实验。
 

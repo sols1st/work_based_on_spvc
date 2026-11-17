@@ -2,7 +2,7 @@
 # SPVC 仓库忽略规则
 # 说明：.gitignore 只影响“未跟踪”文件；已经提交的大文件
 # 需要 git rm --cached 才会移出索引，历史仍需 filter-repo/BFG
-# 才会真正缩小 .git。见 GIT_CLEANUP.md。
+# 才会真正缩小 .git。见 docs/archive/仓库维护/GIT_CLEANUP.md。
 # ============================================================
 
 # --- OS / editor ---
@@ -67,7 +67,7 @@ work/
 logs/
 *.log
 
-# --- accidentally copied absolute paths / duplicate result dirs ---
+# --- local path mirrors and early AEBS artifact copies (including under results/) ---
 Users/
 real_aebs_artifact_v1/
 real_aebs_artifact_v2/

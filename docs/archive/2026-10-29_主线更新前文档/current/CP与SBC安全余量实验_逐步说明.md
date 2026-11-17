@@ -1685,7 +1685,7 @@ OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 \
 
 ### 19.2 借鉴VISION-SLS的哪一部分
 
-参考[本地论文](../../../../VISION-SLS-%20Safe%20Perception-Based%20Control%20from%20Learned%20Visual%20Representations%20via%20System%20Level%20Synthesis.pdf)第VI-C2节式(31)：通过非负松弛xi允许少量样本超出包络，但对超出量加惩罚，避免每个位置都被全局大误差撑大。松弛用于包络拟合，不用于放过SBC安全约束。
+参考[本地论文](<../../../references/VISION-SLS- Safe Perception-Based Control from Learned Visual Representations via System Level Synthesis.pdf>)第VI-C2节式(31)：通过非负松弛xi允许少量样本超出包络，但对超出量加惩罚，避免每个位置都被全局大误差撑大。松弛用于包络拟合，不用于放过SBC安全约束。
 
 论文拟合表示空间无穷范数误差，本轮为了对接已有速度契约，改拟合物理下一速度残差。采用论文允许的gamma=0设置，目标是`sum(w*b)+20*sum(w*xi)`，约束为`b+xi>=abs(residual), xi>=0`。这是凸线性规划，用SciPy已有HiGHS求解，无需Drake、Gurobi或新装CVXPY。
 

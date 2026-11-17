@@ -2485,7 +2485,7 @@ main_parking_lot.py::main
 
 论文文件：
 
-[VISION-SLS 论文 PDF](</Users/johann/project/work_based_on_spvc/VISION-SLS- Safe Perception-Based Control from Learned Visual Representations via System Level Synthesis.pdf>)。
+[VISION-SLS 论文 PDF](<../../../../references/VISION-SLS- Safe Perception-Based Control from Learned Visual Representations via System Level Synthesis.pdf>)。
 
 本地源码根目录：`/Users/johann/project/work_based_on_spvc/VISION-SLS/`。
 

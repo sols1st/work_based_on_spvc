@@ -31,7 +31,7 @@
 | 原件 | 用途 |
 | --- | --- |
 | [原 SPVC 论文](references/720_file_Paper.pdf) | 原 SBC 框架依据 |
-| [VISION-SLS 论文](../VISION-SLS-%20Safe%20Perception-Based%20Control%20from%20Learned%20Visual%20Representations%20via%20System%20Level%20Synthesis.pdf) | 视觉低维观测与 SLS 原设计 |
+| [VISION-SLS 论文](<../../../../references/VISION-SLS- Safe Perception-Based Control from Learned Visual Representations via System Level Synthesis.pdf>) | 视觉低维观测与 SLS 原设计 |
 | [状态相关误差界说明](../VISION_SLS_状态相关误差界计算.pdf) | 包络拟合与 CP 衔接 |
 | [CP-NCBF 论文](references/2503.17395v2.pdf) | CP 校准与神经屏障方法参考 |
 | [硬约束训练论文](<references/Training with hard constraints- Learning neural certificates and controllers for sdes.pdf>) | 神经证书与控制器训练参考 |

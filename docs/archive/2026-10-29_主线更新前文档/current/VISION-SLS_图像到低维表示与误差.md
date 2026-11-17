@@ -3566,6 +3566,6 @@ xvfb-run -a -s "-screen 0 1280x1024x24 +extension GLX" \
 
 ## 资料来源
 
-- [VISION-SLS 论文 PDF](</Users/johann/project/work_based_on_spvc/VISION-SLS- Safe Perception-Based Control from Learned Visual Representations via System Level Synthesis.pdf>)，重点为正文第 V 节、VI-C 节和附录 D 的感知校准部分。
+- [VISION-SLS 论文 PDF](<../../../references/VISION-SLS- Safe Perception-Based Control from Learned Visual Representations via System Level Synthesis.pdf>)，重点为正文第 V 节、VI-C 节和附录 D 的感知校准部分。
 - [源码仓库固定版本](https://github.com/trustworthyrobotics/VISION-SLS/tree/89b5896a326a57dc8bd7edf7e93f13105a47cdd4)。文中代码链接指向本地对应文件。
 - 第一至十三节中的样本来自仓库保存的特征、投影权重与误差包络参数。第十四节之后另行记录本项目实际完成的场景接入、原始图像DINO推理及投影适配；这些实验仍不等于复现了作者完整SLS控制器或安全证明。

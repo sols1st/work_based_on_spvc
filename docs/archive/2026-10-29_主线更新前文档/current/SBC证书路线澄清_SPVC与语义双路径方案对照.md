@@ -88,7 +88,7 @@ x    → 冻结q                → z_q             → 同一PPO → a_q   → 
 
 ### 源码中可移植的部分与不可照搬的设置
 
-主要参考`srlnbc/srlnbc/agents/safety/ppo_barrier/ppo_barrier_tf_policy.py`：185–189行是带裕量的标签损失，191–203行是多步损失与回合掩码，139–170行是动作概率比和策略安全项。参数在`ppo_barrier.py`，训练样例在`examples/ppo_barrier_car_brake.py`。
+主要参考`external/srlnbc/srlnbc/agents/safety/ppo_barrier/ppo_barrier_tf_policy.py`：185–189行是带裕量的标签损失，191–203行是多步损失与回合掩码，139–170行是动作概率比和策略安全项。参数在`ppo_barrier.py`，训练样例在`examples/ppo_barrier_car_brake.py`。
 
 代码使用TensorFlow 2.8.2/Ray 1.13.0，当前项目使用PyTorch和Stable-Baselines3；建议在现有栈里移植公式与数据处理。代码多步处理必须保留回合边界、失败末步、成功终止和截断；PPO保存的是实际采样动作的概率，不能把裁剪后的动作直接当作未裁剪高斯采样来算概率。
 
