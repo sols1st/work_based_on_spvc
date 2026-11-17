@@ -1,0 +1,146 @@
+{
+  "arms": [
+    "uniform",
+    "diagonal",
+    "joint"
+  ],
+  "kappas": [
+    -0.02,
+    -0.01,
+    0.0,
+    0.01,
+    0.02
+  ],
+  "alpha": 0.05,
+  "visual_weight": 0.5,
+  "horizon": 80,
+  "initialization": "identical warm start from frozen robust v2 actor and B for all arms, last iterate; no selection",
+  "model_num_parameters": {
+    "actor": 4481,
+    "barrier": 193
+  },
+  "actor_layers": [
+    [
+      3,
+      64
+    ],
+    [
+      64,
+      64
+    ],
+    [
+      64,
+      1
+    ]
+  ],
+  "barrier_layers": [
+    [
+      2,
+      16
+    ],
+    [
+      16,
+      8
+    ],
+    [
+      8,
+      1
+    ]
+  ],
+  "inputs_sha256": {
+    "results/lane_robust_synthesis_20261116_v2/package/actor.pt": "afd4509772a9fda976da2d0c5722f55e6d8f2e9fabce37b7a998110583fe0c75",
+    "results/lane_robust_synthesis_20261116_v2/package/sbc.pt": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321",
+    "results/lane_robust_synthesis_20261116_v2/package/patch_projection.pt": "490e30cad8cbbc95809ba2fde9db4c99c3f8efd3ae2b6f02fb2f84f6707eb278",
+    "results/lane_contract_comparison_20261117_v1/contracts.json": "2a93bd741b6586bbc96567fc33e7021a3f5524ef3cccc632fece86471721ed6f",
+    "results/lane_contract_comparison_20261117_v1/protocol.json": "df25c1af3d695f5801acd8a6a2c5da4e2e37496f9e9acb36ede5789ac7b21d2d",
+    "/root/work_based_on_spvc/artical-F122/Aebs/lane_paired_synthesis/train.py": "5cb993fc2f015f748c42d2a986949677ac291bc796b1c58fa341481ec9344f12",
+    "/root/work_based_on_spvc/artical-F122/Aebs/lane_paired_synthesis/audit.py": "beb19eeb40f94e4d2800c3ed838a8da0e8f0c03b89057f4713e59cdb055c0adb"
+  },
+  "development_contracts": {
+    "uniform": {
+      "q": 0.09682281207320706,
+      "rank": 190,
+      "width": [
+        0.09682281207320706,
+        0.09682281207320706
+      ],
+      "action": null
+    },
+    "diagonal": {
+      "q": 1.0854562745407605,
+      "rank": 190,
+      "width": [
+        0.10679527137868507,
+        0.07010684518996343
+      ],
+      "action": null
+    },
+    "joint": {
+      "q": 1.008197552210396,
+      "rank": 190,
+      "width": [
+        0.19838796590344285,
+        0.1302338037404935
+      ],
+      "action": 0.2566154748872612
+    }
+  },
+  "development_scale": {
+    "visual": [
+      0.09838744672038352,
+      0.06458744293465395
+    ],
+    "action": 0.2545289604449559
+  },
+  "seeds": {
+    "training": 202611178300,
+    "calibration": 202611178301,
+    "holdout": 202611178302
+  },
+  "n_cal": 199,
+  "n_holdout": 100,
+  "training": {
+    "cegis_rounds": 3,
+    "actor_steps_per_round": 80,
+    "barrier_steps_per_round": 80,
+    "initial_networks_identical": true,
+    "cegis_search_seconds": 30,
+    "cegis_grid": 52,
+    "cegis_extra": 0.2,
+    "actor_lr": 3e-05,
+    "barrier_lr": 0.0002,
+    "threads": 1,
+    "batch": 96,
+    "unroll": 12,
+    "feedback": "actual positive-drift witness from each curvature; no replacement of timeouts by passes",
+    "objective": "12-step nominal/adversarial tracking, worst candidate point dynamics and regional B loss"
+  },
+  "final_audit": {
+    "grid": 40,
+    "max_depth": 16,
+    "error_subdivisions": 2,
+    "max_pending": 30000,
+    "seconds_per_margin_per_arm": 180,
+    "margins": [
+      0.0,
+      0.1,
+      0.15,
+      0.19,
+      0.2
+    ],
+    "curvatures": [
+      -0.02,
+      -0.01,
+      0.0,
+      0.01,
+      0.02
+    ],
+    "region_thresholds": [
+      1,
+      20
+    ],
+    "stop": "time or unresolved recorded; no safety inference"
+  },
+  "outcomes": "same paired initial and curvature draws across arms, fresh rendered 80 steps at each visited state; report all statuses",
+  "scope": "registered five discrete constant curvatures, no continuous-curvature extrapolation"
+}
