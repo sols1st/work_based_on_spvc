@@ -1,0 +1,52 @@
+{
+  "arm": "gray32_mlp",
+  "budget": 400,
+  "seed": 27411,
+  "rank_selection": {
+    "grid": null,
+    "lr": 0.001,
+    "epoch": 98,
+    "dev_mse": 0.0008843618191101334
+  },
+  "model_sha256": "e8303814d61c2bd7d5a3a326bd0080e4858553f148984bd5feae61a03aff6ce0",
+  "trials": [
+    {
+      "grid": null,
+      "lr": 3e-05,
+      "epoch": 100,
+      "dev_mse": 0.8531367562033914,
+      "gradients": 400,
+      "parameters": 279553,
+      "training_seconds": 1.3854973991401494
+    },
+    {
+      "grid": null,
+      "lr": 0.0001,
+      "epoch": 100,
+      "dev_mse": 0.23700434511358087,
+      "gradients": 400,
+      "parameters": 279553,
+      "training_seconds": 1.3033849159255624
+    },
+    {
+      "grid": null,
+      "lr": 0.0003,
+      "epoch": 100,
+      "dev_mse": 0.009793411601673473,
+      "gradients": 400,
+      "parameters": 279553,
+      "training_seconds": 1.29899514419958
+    },
+    {
+      "grid": null,
+      "lr": 0.001,
+      "epoch": 98,
+      "dev_mse": 0.0008843618191101334,
+      "gradients": 400,
+      "parameters": 279553,
+      "training_seconds": 1.2697183159179986
+    }
+  ],
+  "protocol_sha256": "98e8e01db1a537fc8947c2153f4451d20d7d5fd8df90e9c18221a97f2d133bd6",
+  "test_metrics_accessed": false
+}

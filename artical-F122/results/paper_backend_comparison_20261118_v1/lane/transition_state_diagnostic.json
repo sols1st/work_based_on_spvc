@@ -1,0 +1,455 @@
+{
+  "protocol": {
+    "kind": "exploratory reanalysis, not a new blind test",
+    "development": "existing 199 calibration episodes repurposed only for this diagnostic fit",
+    "audit": "existing 100 holdout episodes reused; no new data collection",
+    "original_cp_unchanged": true,
+    "cp_claim_for_diagnostic": false,
+    "targets": [
+      "next_lateral_delta_m",
+      "next_heading_delta_rad",
+      "steering_delta_rad"
+    ],
+    "basis_per_curvature": [
+      "1",
+      "e/.85",
+      "heading/.30",
+      "(e/.85)^2",
+      "(e/.85)*(heading/.30)",
+      "(heading/.30)^2"
+    ],
+    "contexts": [
+      -0.01,
+      0.0,
+      0.01
+    ],
+    "ridge": 0.0001,
+    "penalty": "mean frame squared loss plus fixed lambda times squared non-intercept coefficients",
+    "selection": "no hyperparameter or model selection; all three targets reported",
+    "constant_baseline": "separate empirical mean per curvature, fit on development only",
+    "statistics": "one MSE and one signed mean residual per trajectory; paired cluster bootstrap of 100 trajectories",
+    "bootstrap_draws": 5000,
+    "bootstrap_seed": 202611181941,
+    "limitation": "observational state-conditional predictive evidence, not a test of all distributions or a causal safety claim",
+    "code_sha256": "d61e34350925430f2ce3397485560d380defe4a6830b82e0bfb59b31ccd4f7df",
+    "development_sha256": "9f3823e25bd244951cefb66b95e7afad4be1ad57bc22d3be89ef05d70cb870e3",
+    "audit_sha256": "52fdbf744a3f28033875da1a7a10376b4afe811b9214a9c51d0140f77568ec8f",
+    "task_metadata": {
+      "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+      "arithmetic": "float64 interval arithmetic; no directed rounding",
+      "barrier_nonnegative_by_construction": true,
+      "barrier_time_varying": false,
+      "unsafe_barrier_threshold": 20.0,
+      "frontend_execution": "state proxy plus bounded semantic residual",
+      "coordinates": "normalized [e/.85,theta/.30]",
+      "contract": {
+        "path": "/root/work_based_on_spvc/artical-F122/results/lane_robust_synthesis_20261116_v2/final_cp/calibration.json",
+        "sha256": "f828c763116ce4c6665b19948afa7992b15b93d6be2f299b93237edb611cad69"
+      },
+      "actor": {
+        "path": "/root/work_based_on_spvc/artical-F122/results/lane_robust_synthesis_20261116_v2/package/actor.pt",
+        "sha256": "afd4509772a9fda976da2d0c5722f55e6d8f2e9fabce37b7a998110583fe0c75"
+      },
+      "barrier": {
+        "path": "/root/work_based_on_spvc/artical-F122/results/lane_robust_synthesis_20261116_v2/package/sbc.pt",
+        "sha256": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321"
+      },
+      "contexts": [
+        -0.01,
+        0.0,
+        0.01
+      ],
+      "adapter": {
+        "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+        "sha256": "3f814d65d6199193ae9e92fa9aec6985bcd2b94704e40879a1f4e555cbf4ed9a"
+      },
+      "task": "lane",
+      "horizon": 80,
+      "dt": 0.1,
+      "error_lo": [
+        -0.09968696247082366,
+        -0.09968696247082366
+      ],
+      "error_hi": [
+        0.09968696247082366,
+        0.09968696247082366
+      ],
+      "noise_lo": [],
+      "noise_hi": [],
+      "original_cp_distribution_unchanged": false,
+      "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+    }
+  },
+  "development_trajectories": 199,
+  "audit_trajectories": 100,
+  "horizon": 80,
+  "results": {
+    "next_lateral_delta_m": {
+      "constant_mse": 0.0,
+      "state_mse": 0.0,
+      "constant_rmse": 0.0,
+      "state_rmse": 0.0,
+      "mse_reduction": 0.0,
+      "mse_reduction_ci95": [
+        0.0,
+        0.0
+      ],
+      "fractional_mse_reduction": null,
+      "improved_trajectories": 0,
+      "worsened_trajectories": 0,
+      "constant_signed_mean_residual": 0.0,
+      "state_signed_mean_residual": 0.0,
+      "signed_residual_change_ci95": [
+        0.0,
+        0.0
+      ],
+      "actual_delta_min": 0.0,
+      "actual_delta_max": 0.0
+    },
+    "next_heading_delta_rad": {
+      "constant_mse": 2.123552240892155e-05,
+      "state_mse": 2.0385665912323776e-05,
+      "constant_rmse": 0.004608201645861599,
+      "state_rmse": 0.004515048827235845,
+      "mse_reduction": 8.498564965977726e-07,
+      "mse_reduction_ci95": [
+        6.176237407832803e-07,
+        1.0947175099378613e-06
+      ],
+      "fractional_mse_reduction": 0.04002051281021123,
+      "improved_trajectories": 76,
+      "worsened_trajectories": 24,
+      "constant_signed_mean_residual": -4.27437181817758e-05,
+      "state_signed_mean_residual": -1.6717900639862235e-05,
+      "signed_residual_change_ci95": [
+        -8.97450337122885e-05,
+        3.649272542938493e-05
+      ],
+      "actual_delta_min": -0.021341933604829964,
+      "actual_delta_max": 0.014407887596717092
+    },
+    "steering_delta_rad": {
+      "constant_mse": 0.0008921644709391024,
+      "state_mse": 0.0008562084052712547,
+      "constant_rmse": 0.029869122366402105,
+      "state_rmse": 0.02926103903266688,
+      "mse_reduction": 3.595606566784762e-05,
+      "mse_reduction_ci95": [
+        2.6195767528227473e-05,
+        4.624756310338089e-05
+      ],
+      "fractional_mse_reduction": 0.040302059585493086,
+      "improved_trajectories": 76,
+      "worsened_trajectories": 24,
+      "constant_signed_mean_residual": -0.00027515524634987395,
+      "state_signed_mean_residual": -0.00010553577736350275,
+      "signed_residual_change_ci95": [
+        -0.0005840746169918068,
+        0.00023684644322382489
+      ],
+      "actual_delta_min": -0.13785012127798663,
+      "actual_delta_max": 0.09309354885984192
+    }
+  },
+  "constant_means": {
+    "-0.01": [
+      0.0,
+      -0.005968736171067229,
+      -0.03875664360029115
+    ],
+    "0.0": [
+      0.0,
+      -0.0004167788834999785,
+      -0.002698438719037259
+    ],
+    "0.01": [
+      0.0,
+      -0.0026501017740532683,
+      -0.01721438816321437
+    ]
+  },
+  "weights": [
+    [
+      0.0,
+      -0.005728549988175251,
+      -0.037186737397025056
+    ],
+    [
+      0.0,
+      0.006247429926411811,
+      0.04087345680920462
+    ],
+    [
+      0.0,
+      0.013516987528873196,
+      0.0883779544874676
+    ],
+    [
+      0.0,
+      0.007074037844662704,
+      0.04660765418420535
+    ],
+    [
+      0.0,
+      -0.0028864589494008845,
+      -0.019034468836196996
+    ],
+    [
+      0.0,
+      0.006412601800723084,
+      0.04185371687209522
+    ],
+    [
+      0.0,
+      -0.0004473970373157561,
+      -0.002878400440216341
+    ],
+    [
+      0.0,
+      -0.0016115465119049123,
+      -0.009552451574636113
+    ],
+    [
+      0.0,
+      -0.029723613637484252,
+      -0.19176832750861075
+    ],
+    [
+      0.0,
+      -0.01086618292843311,
+      -0.07044427768968557
+    ],
+    [
+      0.0,
+      0.008928704609627545,
+      0.05778502161096986
+    ],
+    [
+      0.0,
+      -0.0074638653136068055,
+      -0.048178436161104815
+    ],
+    [
+      0.0,
+      -0.0029010730229359367,
+      -0.018815857808115514
+    ],
+    [
+      0.0,
+      -0.003575637271279908,
+      -0.02240454062320168
+    ],
+    [
+      0.0,
+      -0.019091920444995112,
+      -0.12328938124720769
+    ],
+    [
+      0.0,
+      0.006697267069558626,
+      0.04395717583940707
+    ],
+    [
+      0.0,
+      -0.0030675359188323354,
+      -0.019440468871412653
+    ],
+    [
+      0.0,
+      0.004026345172379489,
+      0.026151176605149214
+    ]
+  ],
+  "examples": [
+    {
+      "trajectory": 1,
+      "time_index": 0,
+      "curvature": -0.01,
+      "state_physical": [
+        -0.06613723979020819,
+        -0.022925042664324845
+      ],
+      "semantic_error": [
+        -0.0057392535767753355,
+        0.027161735810556698
+      ],
+      "actual_delta": [
+        0.0,
+        -0.005628158005839823,
+        -0.03575103432297271
+      ],
+      "constant_prediction": [
+        0.0,
+        -0.005968736171067229,
+        -0.03875664360029115
+      ],
+      "state_prediction": [
+        0.0,
+        -0.007184466868318157,
+        -0.04670720194429682
+      ],
+      "predicted_steering_shift_degrees": -0.45553343788404566,
+      "predicted_heading_shift_degrees": -0.06965623797697505
+    },
+    {
+      "trajectory": 1,
+      "time_index": 40,
+      "curvature": -0.01,
+      "state_physical": [
+        -0.036654357012987554,
+        0.0022278938347417743
+      ],
+      "semantic_error": [
+        -0.018824662184153795,
+        0.030674704692655593
+      ],
+      "actual_delta": [
+        0.0,
+        -0.004008496796613881,
+        -0.026046080460969102
+      ],
+      "constant_prediction": [
+        0.0,
+        -0.005968736171067229,
+        -0.03875664360029115
+      ],
+      "state_prediction": [
+        0.0,
+        -0.005883142394918052,
+        -0.038197917604241634
+      ],
+      "predicted_steering_shift_degrees": 0.03201264147788041,
+      "predicted_heading_shift_degrees": 0.00490416212593533
+    },
+    {
+      "trajectory": 0,
+      "time_index": 0,
+      "curvature": 0.0,
+      "state_physical": [
+        0.09714212823605389,
+        0.029209333867049908
+      ],
+      "semantic_error": [
+        0.009191201496406495,
+        -0.018200894892933292
+      ],
+      "actual_delta": [
+        0.0,
+        0.0030662566687560053,
+        0.018009449685531538
+      ],
+      "constant_prediction": [
+        0.0,
+        -0.0004167788834999785,
+        -0.002698438719037259
+      ],
+      "state_prediction": [
+        0.0,
+        -0.0036389231081975166,
+        -0.023375326153826512
+      ],
+      "predicted_steering_shift_degrees": -1.1846983834805074,
+      "predicted_heading_shift_degrees": -0.1846152650576217
+    },
+    {
+      "trajectory": 0,
+      "time_index": 40,
+      "curvature": 0.0,
+      "state_physical": [
+        -0.01370381822825991,
+        -0.003864003338492332
+      ],
+      "semantic_error": [
+        0.015658534165007496,
+        -0.009776727629779386
+      ],
+      "actual_delta": [
+        0.0,
+        -0.0005309091539260633,
+        -0.0034500713484892694
+      ],
+      "constant_prediction": [
+        0.0,
+        -0.0004167788834999785,
+        -0.002698438719037259
+      ],
+      "state_prediction": [
+        0.0,
+        -4.078350109159347e-05,
+        -0.0002687197032253165
+      ],
+      "predicted_steering_shift_degrees": 0.13921264500870442,
+      "predicted_heading_shift_degrees": 0.0215429485284079
+    },
+    {
+      "trajectory": 2,
+      "time_index": 0,
+      "curvature": 0.01,
+      "state_physical": [
+        0.11089077730336866,
+        -0.025079579214093796
+      ],
+      "semantic_error": [
+        0.010444956791645393,
+        0.02759770903268692
+      ],
+      "actual_delta": [
+        0.0,
+        -0.00858006573116843,
+        -0.05559909349310534
+      ],
+      "constant_prediction": [
+        0.0,
+        -0.0026501017740532683,
+        -0.01721438816321437
+      ],
+      "state_prediction": [
+        0.0,
+        -0.0015959118499737376,
+        -0.010289003087802062
+      ],
+      "predicted_steering_shift_degrees": 0.3967953363240146,
+      "predicted_heading_shift_degrees": 0.06040063345497378
+    },
+    {
+      "trajectory": 2,
+      "time_index": 40,
+      "curvature": 0.01,
+      "state_physical": [
+        -0.037369983314307326,
+        0.0037103010949648112
+      ],
+      "semantic_error": [
+        0.004972936965474656,
+        0.018608207922128608
+      ],
+      "actual_delta": [
+        0.0,
+        -0.005417488821344986,
+        -0.03520411498532247
+      ],
+      "constant_prediction": [
+        0.0,
+        -0.0026501017740532683,
+        -0.01721438816321437
+      ],
+      "state_prediction": [
+        0.0,
+        -0.0029647649139397094,
+        -0.01925611644441038
+      ],
+      "predicted_steering_shift_degrees": -0.11698241342503117,
+      "predicted_heading_shift_degrees": -0.018028869883827712
+    }
+  ],
+  "dynamics_reconstruction_max_error_m_rad": [
+    5.551115123125783e-17,
+    9.829378248837894e-09
+  ],
+  "framewise_state_model_vs_constant_predicted_shift": {
+    "heading_mean_abs_deg": 0.025230623536559946,
+    "steering_mean_abs_deg": 0.16378130225444906
+  },
+  "elapsed_seconds": 0.2166834049858153,
+  "interpretation": "State prediction improvement suggests a state-independent transition mean can lose information in this frozen visual system. It does not establish a true iid noise law, invalidate SPVC theory, imply unsafe actual trajectories, or furnish a new CP guarantee."
+}

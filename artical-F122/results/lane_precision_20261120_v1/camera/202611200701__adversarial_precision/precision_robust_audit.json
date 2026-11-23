@@ -1,0 +1,429 @@
+{
+  "actor_sha256": "416106d4e17a4f601cb253927f2be2a8649ba3ba29590d4f680c218638cf8622",
+  "calibration_sha256": "52566be058395464387f17376e6ce52c4b5c3c5ebd22c5911a9ba234f188b581",
+  "radius": 0.09170640261586663,
+  "grid_witness_search": "3x3 initial states, zero and four constant error corners, all three curvatures",
+  "whole_initial_box": true,
+  "horizon": 80,
+  "deadline": 20,
+  "dt": 0.1,
+  "rows": [
+    {
+      "tolerance_m": 0.02,
+      "status": "counterexample",
+      "witness": {
+        "step": 20,
+        "context": -0.01,
+        "initial_normalized": [
+          -0.29411764705882354,
+          -0.2
+        ],
+        "constant_observation_error_normalized": [
+          -0.09170640261586663,
+          -0.09170640261586663
+        ],
+        "states_physical": [
+          [
+            -0.25,
+            -0.06
+          ],
+          [
+            -0.27398560259177784,
+            0.008526182616435837
+          ],
+          [
+            -0.2705751708662254,
+            0.05747475735203629
+          ],
+          [
+            -0.24759792310896542,
+            0.09011625403246971
+          ],
+          [
+            -0.21160019026426227,
+            0.10957019796401442
+          ],
+          [
+            -0.16785975572182846,
+            0.11858328227137326
+          ],
+          [
+            -0.12053753251088364,
+            0.1195426526905516
+          ],
+          [
+            -0.07283427794030434,
+            0.11452659435985757
+          ],
+          [
+            -0.027123719196567933,
+            0.10533722154829453
+          ],
+          [
+            0.014933291677453454,
+            0.09351174505781736
+          ],
+          [
+            0.052283499633751715,
+            0.08032362924007154
+          ],
+          [
+            0.08437841321666617,
+            0.0667855593166809
+          ],
+          [
+            0.11107278241436425,
+            0.05366145905823705
+          ],
+          [
+            0.13252706612260431,
+            0.04148919222780778
+          ],
+          [
+            0.1491179822535944,
+            0.03061150421266989
+          ],
+          [
+            0.16136067169863216,
+            0.02121103330002839
+          ],
+          [
+            0.1698444488321441,
+            0.013345405582850198
+          ],
+          [
+            0.17518245261237958,
+            0.006979577499398186
+          ],
+          [
+            0.17797426094508456,
+            0.0020138919230774767
+          ],
+          [
+            0.1787798171697914,
+            -0.0016926643518797894
+          ],
+          [
+            0.17810275175235105,
+            -0.0043038767023722245
+          ]
+        ],
+        "unsafe": false,
+        "precision_violation": true,
+        "lateral_cm": 17.810275175235105,
+        "scope": "valid bounded-error model trajectory, not a claim this error trace occurs in camera images"
+      }
+    },
+    {
+      "tolerance_m": 0.05,
+      "status": "counterexample",
+      "witness": {
+        "step": 20,
+        "context": -0.01,
+        "initial_normalized": [
+          -0.29411764705882354,
+          -0.2
+        ],
+        "constant_observation_error_normalized": [
+          -0.09170640261586663,
+          -0.09170640261586663
+        ],
+        "states_physical": [
+          [
+            -0.25,
+            -0.06
+          ],
+          [
+            -0.27398560259177784,
+            0.008526182616435837
+          ],
+          [
+            -0.2705751708662254,
+            0.05747475735203629
+          ],
+          [
+            -0.24759792310896542,
+            0.09011625403246971
+          ],
+          [
+            -0.21160019026426227,
+            0.10957019796401442
+          ],
+          [
+            -0.16785975572182846,
+            0.11858328227137326
+          ],
+          [
+            -0.12053753251088364,
+            0.1195426526905516
+          ],
+          [
+            -0.07283427794030434,
+            0.11452659435985757
+          ],
+          [
+            -0.027123719196567933,
+            0.10533722154829453
+          ],
+          [
+            0.014933291677453454,
+            0.09351174505781736
+          ],
+          [
+            0.052283499633751715,
+            0.08032362924007154
+          ],
+          [
+            0.08437841321666617,
+            0.0667855593166809
+          ],
+          [
+            0.11107278241436425,
+            0.05366145905823705
+          ],
+          [
+            0.13252706612260431,
+            0.04148919222780778
+          ],
+          [
+            0.1491179822535944,
+            0.03061150421266989
+          ],
+          [
+            0.16136067169863216,
+            0.02121103330002839
+          ],
+          [
+            0.1698444488321441,
+            0.013345405582850198
+          ],
+          [
+            0.17518245261237958,
+            0.006979577499398186
+          ],
+          [
+            0.17797426094508456,
+            0.0020138919230774767
+          ],
+          [
+            0.1787798171697914,
+            -0.0016926643518797894
+          ],
+          [
+            0.17810275175235105,
+            -0.0043038767023722245
+          ]
+        ],
+        "unsafe": false,
+        "precision_violation": true,
+        "lateral_cm": 17.810275175235105,
+        "scope": "valid bounded-error model trajectory, not a claim this error trace occurs in camera images"
+      }
+    },
+    {
+      "tolerance_m": 0.1,
+      "status": "counterexample",
+      "witness": {
+        "step": 20,
+        "context": -0.01,
+        "initial_normalized": [
+          -0.29411764705882354,
+          -0.2
+        ],
+        "constant_observation_error_normalized": [
+          -0.09170640261586663,
+          -0.09170640261586663
+        ],
+        "states_physical": [
+          [
+            -0.25,
+            -0.06
+          ],
+          [
+            -0.27398560259177784,
+            0.008526182616435837
+          ],
+          [
+            -0.2705751708662254,
+            0.05747475735203629
+          ],
+          [
+            -0.24759792310896542,
+            0.09011625403246971
+          ],
+          [
+            -0.21160019026426227,
+            0.10957019796401442
+          ],
+          [
+            -0.16785975572182846,
+            0.11858328227137326
+          ],
+          [
+            -0.12053753251088364,
+            0.1195426526905516
+          ],
+          [
+            -0.07283427794030434,
+            0.11452659435985757
+          ],
+          [
+            -0.027123719196567933,
+            0.10533722154829453
+          ],
+          [
+            0.014933291677453454,
+            0.09351174505781736
+          ],
+          [
+            0.052283499633751715,
+            0.08032362924007154
+          ],
+          [
+            0.08437841321666617,
+            0.0667855593166809
+          ],
+          [
+            0.11107278241436425,
+            0.05366145905823705
+          ],
+          [
+            0.13252706612260431,
+            0.04148919222780778
+          ],
+          [
+            0.1491179822535944,
+            0.03061150421266989
+          ],
+          [
+            0.16136067169863216,
+            0.02121103330002839
+          ],
+          [
+            0.1698444488321441,
+            0.013345405582850198
+          ],
+          [
+            0.17518245261237958,
+            0.006979577499398186
+          ],
+          [
+            0.17797426094508456,
+            0.0020138919230774767
+          ],
+          [
+            0.1787798171697914,
+            -0.0016926643518797894
+          ],
+          [
+            0.17810275175235105,
+            -0.0043038767023722245
+          ]
+        ],
+        "unsafe": false,
+        "precision_violation": true,
+        "lateral_cm": 17.810275175235105,
+        "scope": "valid bounded-error model trajectory, not a claim this error trace occurs in camera images"
+      }
+    },
+    {
+      "tolerance_m": 0.2,
+      "status": "unknown",
+      "checks": [
+        {
+          "task": "lane",
+          "initial_state": [
+            -0.29411764705882354,
+            -0.2
+          ],
+          "context": -0.01,
+          "horizon": 80,
+          "requested_seconds": 8.0,
+          "status": "unknown_partition_depth",
+          "certified_steps": 6,
+          "certified_seconds": 0.6000000000000001,
+          "interval_evaluations": 238,
+          "bound_evaluations": 238,
+          "wall_seconds": 0.46916152676567435,
+          "method": "partitioned_intervals",
+          "splits": 31,
+          "merges": 0,
+          "max_frontier": 16,
+          "first_unresolved_step": 7,
+          "initial_lo": [
+            -0.29411764705882354,
+            -0.2
+          ],
+          "initial_hi": [
+            0.29411764705882354,
+            0.2
+          ],
+          "population": "entire_initial_box_separate_from_iid_point_budget"
+        },
+        {
+          "task": "lane",
+          "initial_state": [
+            -0.29411764705882354,
+            -0.2
+          ],
+          "context": 0.0,
+          "horizon": 80,
+          "requested_seconds": 8.0,
+          "status": "unknown_partition_depth",
+          "certified_steps": 6,
+          "certified_seconds": 0.6000000000000001,
+          "interval_evaluations": 263,
+          "bound_evaluations": 263,
+          "wall_seconds": 0.5179859357886016,
+          "method": "partitioned_intervals",
+          "splits": 35,
+          "merges": 0,
+          "max_frontier": 20,
+          "first_unresolved_step": 7,
+          "initial_lo": [
+            -0.29411764705882354,
+            -0.2
+          ],
+          "initial_hi": [
+            0.29411764705882354,
+            0.2
+          ],
+          "population": "entire_initial_box_separate_from_iid_point_budget"
+        },
+        {
+          "task": "lane",
+          "initial_state": [
+            -0.29411764705882354,
+            -0.2
+          ],
+          "context": 0.01,
+          "horizon": 80,
+          "requested_seconds": 8.0,
+          "status": "unknown_partition_depth",
+          "certified_steps": 6,
+          "certified_seconds": 0.6000000000000001,
+          "interval_evaluations": 321,
+          "bound_evaluations": 321,
+          "wall_seconds": 0.6331643862649798,
+          "method": "partitioned_intervals",
+          "splits": 44,
+          "merges": 0,
+          "max_frontier": 16,
+          "first_unresolved_step": 7,
+          "initial_lo": [
+            -0.29411764705882354,
+            -0.2
+          ],
+          "initial_hi": [
+            0.29411764705882354,
+            0.2
+          ],
+          "population": "entire_initial_box_separate_from_iid_point_budget"
+        }
+      ]
+    }
+  ],
+  "outward_rounded": false,
+  "precision_cp_is_different": true,
+  "note": "A counterexample refutes the all-error-set precision specification, not observed camera accuracy or the safety-only barrier. Unknown is not a counterexample."
+}

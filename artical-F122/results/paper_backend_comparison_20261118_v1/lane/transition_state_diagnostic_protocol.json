@@ -1,0 +1,81 @@
+{
+  "kind": "exploratory reanalysis, not a new blind test",
+  "development": "existing 199 calibration episodes repurposed only for this diagnostic fit",
+  "audit": "existing 100 holdout episodes reused; no new data collection",
+  "original_cp_unchanged": true,
+  "cp_claim_for_diagnostic": false,
+  "targets": [
+    "next_lateral_delta_m",
+    "next_heading_delta_rad",
+    "steering_delta_rad"
+  ],
+  "basis_per_curvature": [
+    "1",
+    "e/.85",
+    "heading/.30",
+    "(e/.85)^2",
+    "(e/.85)*(heading/.30)",
+    "(heading/.30)^2"
+  ],
+  "contexts": [
+    -0.01,
+    0.0,
+    0.01
+  ],
+  "ridge": 0.0001,
+  "penalty": "mean frame squared loss plus fixed lambda times squared non-intercept coefficients",
+  "selection": "no hyperparameter or model selection; all three targets reported",
+  "constant_baseline": "separate empirical mean per curvature, fit on development only",
+  "statistics": "one MSE and one signed mean residual per trajectory; paired cluster bootstrap of 100 trajectories",
+  "bootstrap_draws": 5000,
+  "bootstrap_seed": 202611181941,
+  "limitation": "observational state-conditional predictive evidence, not a test of all distributions or a causal safety claim",
+  "code_sha256": "d61e34350925430f2ce3397485560d380defe4a6830b82e0bfb59b31ccd4f7df",
+  "development_sha256": "9f3823e25bd244951cefb66b95e7afad4be1ad57bc22d3be89ef05d70cb870e3",
+  "audit_sha256": "52fdbf744a3f28033875da1a7a10376b4afe811b9214a9c51d0140f77568ec8f",
+  "task_metadata": {
+    "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+    "arithmetic": "float64 interval arithmetic; no directed rounding",
+    "barrier_nonnegative_by_construction": true,
+    "barrier_time_varying": false,
+    "unsafe_barrier_threshold": 20.0,
+    "frontend_execution": "state proxy plus bounded semantic residual",
+    "coordinates": "normalized [e/.85,theta/.30]",
+    "contract": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/lane_robust_synthesis_20261116_v2/final_cp/calibration.json",
+      "sha256": "f828c763116ce4c6665b19948afa7992b15b93d6be2f299b93237edb611cad69"
+    },
+    "actor": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/lane_robust_synthesis_20261116_v2/package/actor.pt",
+      "sha256": "afd4509772a9fda976da2d0c5722f55e6d8f2e9fabce37b7a998110583fe0c75"
+    },
+    "barrier": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/lane_robust_synthesis_20261116_v2/package/sbc.pt",
+      "sha256": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321"
+    },
+    "contexts": [
+      -0.01,
+      0.0,
+      0.01
+    ],
+    "adapter": {
+      "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+      "sha256": "3f814d65d6199193ae9e92fa9aec6985bcd2b94704e40879a1f4e555cbf4ed9a"
+    },
+    "task": "lane",
+    "horizon": 80,
+    "dt": 0.1,
+    "error_lo": [
+      -0.09968696247082366,
+      -0.09968696247082366
+    ],
+    "error_hi": [
+      0.09968696247082366,
+      0.09968696247082366
+    ],
+    "noise_lo": [],
+    "noise_hi": [],
+    "original_cp_distribution_unchanged": false,
+    "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+  }
+}

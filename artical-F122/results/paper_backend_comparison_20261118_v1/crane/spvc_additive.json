@@ -1,0 +1,223 @@
+{
+  "task": "crane",
+  "method": "SPVC-inspired controlled expectation backend",
+  "comparison_scope": "same_frozen_controller_and_barrier_candidate; not native cGAN retraining",
+  "stochastic_model": "additive_uniform",
+  "model_description": "Assumed pooled state-independent additive uniform transition law, fitted once on development trajectories.",
+  "paper_assumption_1_preserved": false,
+  "paper_assumption_1_scope": "state-independent additive law on active states; shared absorbing-stop convention makes the full stopped kernel state-dependent",
+  "stopping_semantics": "terminal states absorb before any disturbance is applied, for both stochastic models",
+  "real_visual_probability_claim": null,
+  "mu": {
+    "kind": "assumed_state_independent_additive_uniform",
+    "development_seed": 181121,
+    "trajectories_per_context": 64,
+    "steps_per_trajectory": 12,
+    "transition_count": 768,
+    "lower": [
+      -0.012050104836491438,
+      -0.0803340322432762,
+      -0.012252578531124506,
+      -0.08168385687416344,
+      -0.012388290812858416,
+      -0.08258860541905616,
+      -0.011548320195813568,
+      -0.07698880130542378
+    ],
+    "upper": [
+      0.011848577908133179,
+      0.07899051938755455,
+      0.011749045801461744,
+      0.07832697200974509,
+      0.01195503462102615,
+      0.07970023080684085,
+      0.013240854105257174,
+      0.08827236070171446
+    ],
+    "delta_mean": [
+      -0.000151529059077154,
+      -0.001010193727181025,
+      0.00015074211918108898,
+      0.0010049474612072618,
+      8.783609871464828e-05,
+      0.0005855739914309855,
+      -6.895956861486064e-05,
+      -0.00045973045743240786
+    ],
+    "delta_std": [
+      0.005261622148587559,
+      0.03507748099058372,
+      0.005295978451323839,
+      0.0353065230088256,
+      0.00530683565378754,
+      0.03537890435858365,
+      0.005335328231488962,
+      0.03556885487659307
+    ],
+    "state_min": [
+      -0.6975271503602889,
+      -0.345967884442526,
+      -0.16653987551699873,
+      -0.40732715851176693,
+      -0.6998604269388593,
+      -0.3789329261641502,
+      -0.18504669265101964,
+      -0.46103058243102374
+    ],
+    "state_max": [
+      0.69505407112314,
+      0.34711901504954507,
+      0.19719067913338723,
+      0.4526797874205908,
+      0.6495784641911488,
+      0.36832246669401164,
+      0.19825867777547224,
+      0.4256528522885071
+    ],
+    "observation_support_lower": [
+      -0.18804915958435167,
+      -0.18804915958435167,
+      -0.18804915958435167,
+      -0.18804915958435167
+    ],
+    "observation_support_upper": [
+      0.18804915958435167,
+      0.18804915958435167,
+      0.18804915958435167,
+      0.18804915958435167
+    ],
+    "plant_noise_lower": [
+      -0.025,
+      -0.04,
+      -0.025,
+      -0.04
+    ],
+    "plant_noise_upper": [
+      0.025,
+      0.04,
+      0.025,
+      0.04
+    ],
+    "coverage_guarantee": null,
+    "real_transition_distribution_validated": false,
+    "note": "Pooled sample extrema define an assumed law, not a certified residual envelope. No real-camera probability is inferred."
+  },
+  "nonincrease_status": "inconclusive_within_budget",
+  "strict_status": "inconclusive_or_zero_drift_cells",
+  "strong_stochastic_baseline": {
+    "status": "not_inherited_for_different_transition_support",
+    "reason": "A pooled additive box need not equal the state-conditioned observation-error image.",
+    "logical_implication": "If B(next)<=B(now) for every disturbance in the same support, then E[B(next)|state]<=B(state) for every probability law on that support. No uniformity or independent-coordinate assumption is needed."
+  },
+  "interpretation_of_inconclusive": "An incomplete standalone interval integration is not failure of a stochastic method; a matching robust certificate already implies its nonincrease expectation condition.",
+  "strict_epsilon": 1e-06,
+  "strict_comparison_warning": "Zero plateaus and absorbing terminal states can make strict epsilon impossible for this transferred candidate; this is not evidence that SPVC cannot synthesize a different certificate.",
+  "expectation_bound_method": "equal-mass complete-support interval integration",
+  "noise_partition_cells": 32,
+  "interval_barrier_evaluations": 3775200,
+  "initial_bound": {
+    "upper": 0.7768590340467407,
+    "boxes_evaluated": 1,
+    "all_initial_states_enclosed": true,
+    "target": 1.0,
+    "passed": true
+  },
+  "unsafe_threshold": 1.0,
+  "nonnegative_by_construction": true,
+  "unsafe_separation_evidence": null,
+  "complete_certificate_claim": false,
+  "certificate_obligations": "Numerical drift results alone do not establish unsafe separation, reliable arithmetic, real visual distribution validity, or all closure/terminal assumptions.",
+  "barrier_time_varying": true,
+  "theoretical_time_scope": "finite horizon 40",
+  "counts": {
+    "processed": 88694,
+    "drift_passed": 0,
+    "strict_drift_passed": 0,
+    "outside_relevant_sublevel": 1392,
+    "unsafe_only": 0,
+    "unresolved": 0,
+    "domain_not_enclosed": 0,
+    "queued_unresolved": 85950
+  },
+  "largest_accepted_cell_drift_upper": null,
+  "positive_drift_witnesses": [],
+  "strict_only_witnesses": [],
+  "unresolved_examples": [],
+  "arithmetic": "float64 interval operations; no directed outward rounding",
+  "witness_significance_guard": "drift lower must exceed relative tolerance times (1+|B|+|E upper/lower|); smaller positive drift is never used as a counterexample. Acceptance is not relaxed by this tolerance.",
+  "outward_rounded": false,
+  "elapsed_seconds": 300.00186358904466,
+  "budget": {
+    "max_state_boxes": 100000,
+    "max_seconds": 300,
+    "noise_cells": 32,
+    "max_depth": 22,
+    "witness_states": 64,
+    "witness_seed": 181123,
+    "strict_epsilon": 1e-06,
+    "region_boxes": 256,
+    "witness_relative_tolerance": 1e-09
+  },
+  "task_metadata": {
+    "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+    "arithmetic": "float64 interval arithmetic; no directed rounding",
+    "barrier_nonnegative_by_construction": true,
+    "barrier_time_varying": true,
+    "unsafe_barrier_threshold": 1.0,
+    "frontend_execution": "state proxy plus bounded semantic residual",
+    "gains": [
+      1.7103,
+      2.3227,
+      -2.4583,
+      -0.4332
+    ],
+    "coordinates": "axis x then y, each [p,v,s,r] physical SI units",
+    "initial_sampling": "original task: |p| uniform .34..70, signs uniform; remaining components uniform",
+    "contract": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/overhead_crane_8d_20261117_v1/evaluation/contract.json",
+      "sha256": "b1ad4d509e9e1280c1fb53044e65e4e86d9c9cc3e03b18875792c325f5628e25"
+    },
+    "controller": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/overhead_crane_8d_20261117_v1/evaluation/synthesis.json",
+      "sha256": "b739a1a55a8c1757777abd50df19097d6231187bd6c7bb43ed46e4e647112370"
+    },
+    "current_baseline_rerun": "exact rational finite-horizon support functions",
+    "adapter": {
+      "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+      "sha256": "3f814d65d6199193ae9e92fa9aec6985bcd2b94704e40879a1f4e555cbf4ed9a"
+    },
+    "task": "crane",
+    "horizon": 40,
+    "dt": 0.15,
+    "error_lo": [
+      -0.18804915958435167,
+      -0.18804915958435167,
+      -0.18804915958435167,
+      -0.18804915958435167
+    ],
+    "error_hi": [
+      0.18804915958435167,
+      0.18804915958435167,
+      0.18804915958435167,
+      0.18804915958435167
+    ],
+    "noise_lo": [
+      -0.025,
+      -0.04,
+      -0.025,
+      -0.04
+    ],
+    "noise_hi": [
+      0.025,
+      0.04,
+      0.025,
+      0.04
+    ],
+    "original_cp_distribution_unchanged": false,
+    "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+  },
+  "source_binding": {
+    "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/spvc_stochastic.py",
+    "sha256": "904886609de058c4ca51ea4b072922c47adf0d6eebc569afffc72b8f77a82fe2"
+  }
+}

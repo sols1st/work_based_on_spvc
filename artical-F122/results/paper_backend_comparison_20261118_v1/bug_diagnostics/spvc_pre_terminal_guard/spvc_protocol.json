@@ -1,0 +1,31 @@
+{
+  "tasks": [
+    "aebs",
+    "lane",
+    "braking",
+    "hover",
+    "crane"
+  ],
+  "models": [
+    "observation_uniform",
+    "additive_uniform"
+  ],
+  "budget": {
+    "max_seconds": 300,
+    "max_state_boxes": 100000,
+    "noise_cells": 32,
+    "max_depth": 22,
+    "witness_states": 64,
+    "witness_seed": 181123,
+    "strict_epsilon": 1e-06,
+    "region_boxes": 256
+  },
+  "parallel_processes": 4,
+  "threads_per_process": 1,
+  "tasks_sha256": "80530dafa4e10ad7600e66d1ddb62b2990d09a6cdfe6a1b53242240a1c75bc99",
+  "stochastic_sha256": "2827ad1605ad8b06e284b74b09b397420c81e6497929f111a505a3ae8c698e6b",
+  "mu_development_seed": 181121,
+  "mu_trajectories_per_context": 64,
+  "mu_steps": 12,
+  "scope": "Controlled expectation backend on frozen current controller and barrier. No cGAN retraining or new camera calibration. Robust support dominance retained."
+}

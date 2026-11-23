@@ -1,0 +1,76 @@
+{
+  "rows": [
+    {
+      "arm": "anchor",
+      "holdout_n": 100,
+      "actual_safe": 100,
+      "task_success": 100,
+      "actual_safety_binomial_two_sided_95_interval": [
+        0.9637833073548235,
+        1.0
+      ],
+      "task_success_binomial_two_sided_95_interval": [
+        0.9637833073548235,
+        1.0
+      ],
+      "actual_safety_binomial_one_sided_95_lower": 0.9704869503929601,
+      "tube_coverage": {
+        "episodes": 100,
+        "covered": 96,
+        "not_covered": 4,
+        "fraction": 0.96,
+        "binomial_two_sided_95_interval": [
+          0.9007428432873401,
+          0.9889955060138118
+        ]
+      },
+      "collection_runtime": {
+        "seconds": 186.13509745709598,
+        "peak_allocated_bytes": 151430656,
+        "peak_reserved_bytes": 188743680
+      },
+      "current_verification_seconds": 8.366731064859778
+    },
+    {
+      "arm": "spvt_first_seed",
+      "holdout_n": 100,
+      "actual_safe": 100,
+      "task_success": 100,
+      "actual_safety_binomial_two_sided_95_interval": [
+        0.9637833073548235,
+        1.0
+      ],
+      "task_success_binomial_two_sided_95_interval": [
+        0.9637833073548235,
+        1.0
+      ],
+      "actual_safety_binomial_one_sided_95_lower": 0.9704869503929601,
+      "tube_coverage": {
+        "episodes": 100,
+        "covered": 95,
+        "not_covered": 5,
+        "fraction": 0.95,
+        "binomial_two_sided_95_interval": [
+          0.8871650888945373,
+          0.9835681208179479
+        ]
+      },
+      "collection_runtime": {
+        "seconds": 186.9259338239208,
+        "peak_allocated_bytes": 151430656,
+        "peak_reserved_bytes": 188743680
+      },
+      "current_verification_seconds": 7.628693955950439
+    }
+  ],
+  "statistical_unit": "100 complete fresh holdout trajectories, fixed pair; paired across arms, independently drawn across episodes",
+  "intervals": "Per-arm Clopper-Pearson binomial intervals. These are not simultaneous confidence bounds over two arms.",
+  "zero_event_bootstrap_caveat": "The [0,0] percentile bootstrap of paired observed unsafe indicators is descriptive degeneracy with zero observed failures, not a zero-risk confidence interval.",
+  "task_success_note": "Lane success equals maintaining the declared lane bounds over80 steps; it is the same event as actual safety here, not an independent second outcome.",
+  "formal_main_elapsed_seconds": 389.1014963891357,
+  "elapsed_scope": "Both complete collect_main calls (new rendering, GPU inference, threshold, holdout, model load, output I/O), both new-q B audits and summary bootstrap. Excludes the initial36-case pixel comparison/process-pool startup, preceding GPU batch benchmark and aborted v1 pilot.",
+  "pilot": "10 completed batches *8 trajectories *80 frames=6400 effective completed pilot observations, plus an unfinished batch not retained; all excluded from formal sample counts. Same registered scenarios were regenerated in v2, so these are not additional independent samples.",
+  "pixel_equivalence": "protocol.json field pixel_equivalence_check:36 states across3 curvatures, exact pixel equality; per-arm cp/protocol.json also embeds it",
+  "trajectory_equivalence": "pilot_pipeline_equivalence.json:10 completed pilot batches; states, observations, actions, errors and image digests all bit-identical after regeneration",
+  "source_summary_sha256": "72cfd7b5c292099769069a4ed082f14046fc85e83a229392cbc2c846975ebe26"
+}

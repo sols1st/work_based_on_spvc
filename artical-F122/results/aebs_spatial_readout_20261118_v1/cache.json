@@ -1,0 +1,27 @@
+{
+  "files": {
+    "pool4.npy": "c7a4cfc208954cf2c82f6d227dcd90c182663712bec662768bc2f9f04bf5dc69",
+    "pool2.npy": "524da489cf56f79d535a347964d48974df3483c2205f235dd56b6b81037cde51",
+    "cls.npy": "dd24144365662e97966e02076256a0176c32e3d6a830b6e8e8b22fe5cf174d51"
+  },
+  "protocol_sha256": "98e8e01db1a537fc8947c2153f4451d20d7d5fd8df90e9c18221a97f2d133bd6",
+  "seconds": 35.74015262676403,
+  "images": 24000,
+  "dino_forwards": 3000,
+  "cls_consistency": {
+    "max_absolute": 0.0,
+    "rms": 0.0,
+    "tolerance": 0.0002,
+    "reference_sha256": "dd24144365662e97966e02076256a0176c32e3d6a830b6e8e8b22fe5cf174d51"
+  },
+  "extraction": {
+    "device": "cuda:1",
+    "batch": 8,
+    "memory_fraction": 0.035,
+    "dtype": "float32",
+    "cpu_preprocess": true,
+    "no_parameter_updates": true
+  },
+  "torch": "2.3.1",
+  "gpu_peak_allocated_bytes": 152776192
+}

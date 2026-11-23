@@ -1,0 +1,244 @@
+{
+  "task": "aebs",
+  "method": "SPVC-inspired controlled expectation backend",
+  "comparison_scope": "same_frozen_controller_and_barrier_candidate; not native cGAN retraining",
+  "stochastic_model": "observation_uniform",
+  "model_description": "Uniform independent observation and plant errors on the registered robust support; induced transition law depends on state.",
+  "paper_assumption_1_preserved": false,
+  "paper_assumption_1_scope": "state-conditioned transition law induced by uniform observation and plant errors",
+  "stopping_semantics": "terminal states absorb before any disturbance is applied, for both stochastic models",
+  "real_visual_probability_claim": null,
+  "mu": null,
+  "nonincrease_status": "inconclusive_within_budget",
+  "strict_status": "fixed_candidate_does_not_meet_strict_epsilon",
+  "strong_stochastic_baseline": {
+    "status": "source_robust_proof_not_rerun_or_not_passed",
+    "source_robust_result": {
+      "status": "archived_only",
+      "rerun": false,
+      "report": "/root/work_based_on_spvc/artical-F122/results/aebs_robust_synthesis_20261117_release/final_audit/report.json",
+      "reason": "782400-cell parent audit is archived, not rerun by this adapter"
+    },
+    "logical_implication": "If B(next)<=B(now) for every disturbance in the same support, then E[B(next)|state]<=B(state) for every probability law on that support. No uniformity or independent-coordinate assumption is needed."
+  },
+  "interpretation_of_inconclusive": "An incomplete standalone interval integration is not failure of a stochastic method; a matching robust certificate already implies its nonincrease expectation condition.",
+  "strict_epsilon": 1e-06,
+  "strict_comparison_warning": "Zero plateaus and absorbing terminal states can make strict epsilon impossible for this transferred candidate; this is not evidence that SPVC cannot synthesize a different certificate.",
+  "expectation_bound_method": "equal-mass complete-support interval integration",
+  "noise_partition_cells": 32,
+  "interval_barrier_evaluations": 575472,
+  "initial_bound": {
+    "upper": 0.7261281372030801,
+    "boxes_evaluated": 7,
+    "all_initial_states_enclosed": true,
+    "target": 1.0,
+    "passed": true
+  },
+  "unsafe_threshold": 20.0,
+  "nonnegative_by_construction": true,
+  "unsafe_separation_evidence": null,
+  "complete_certificate_claim": false,
+  "certificate_obligations": "Numerical drift results alone do not establish unsafe separation, reliable arithmetic, real visual distribution validity, or all closure/terminal assumptions.",
+  "barrier_time_varying": false,
+  "theoretical_time_scope": "stationary candidate; any infinite-horizon claim additionally requires all global SBC obligations",
+  "counts": {
+    "processed": 10375,
+    "drift_passed": 2325,
+    "strict_drift_passed": 1468,
+    "outside_relevant_sublevel": 103,
+    "unsafe_only": 0,
+    "unresolved": 0,
+    "domain_not_enclosed": 0,
+    "queued_unresolved": 5520
+  },
+  "largest_accepted_cell_drift_upper": 0.0,
+  "positive_drift_witnesses": [],
+  "strict_only_witnesses": [
+    {
+      "state": [
+        15.43695219884098,
+        2.6018093320183304
+      ],
+      "time": 0,
+      "context": null,
+      "barrier": 0.0,
+      "expected_barrier_lower": 0.0,
+      "expected_barrier_upper": 0.0,
+      "current_barrier_lower": 0.0,
+      "current_barrier_upper": 0.0,
+      "drift_lower": 0.0,
+      "drift_upper": 0.0,
+      "absorbing_identity": false,
+      "domain_enclosed": true,
+      "successor_lo": [
+        15.306861732240064,
+        2.677063132995371
+      ],
+      "successor_hi": [
+        15.306861732240064,
+        2.698558400130187
+      ]
+    },
+    {
+      "state": [
+        15.71455125540872,
+        2.915312526899403
+      ],
+      "time": 0,
+      "context": null,
+      "barrier": 0.0,
+      "expected_barrier_lower": 0.0,
+      "expected_barrier_upper": 0.0,
+      "current_barrier_lower": 0.0,
+      "current_barrier_upper": 0.0,
+      "drift_lower": 0.0,
+      "drift_upper": 0.0,
+      "absorbing_identity": false,
+      "domain_enclosed": true,
+      "successor_lo": [
+        15.56878562906375,
+        2.975131570043811
+      ],
+      "successor_hi": [
+        15.56878562906375,
+        2.99735311946215
+      ]
+    },
+    {
+      "state": [
+        15.707807612252974,
+        2.541174949404632
+      ],
+      "time": 0,
+      "context": null,
+      "barrier": 0.0,
+      "expected_barrier_lower": 0.0,
+      "expected_barrier_upper": 0.0,
+      "current_barrier_lower": 0.0,
+      "current_barrier_upper": 0.0,
+      "drift_lower": 0.0,
+      "drift_upper": 0.0,
+      "absorbing_identity": false,
+      "domain_enclosed": true,
+      "successor_lo": [
+        15.580748864782743,
+        2.6279469306474543
+      ],
+      "successor_hi": [
+        15.580748864782743,
+        2.648325770697629
+      ]
+    },
+    {
+      "state": [
+        15.456017238049148,
+        2.9710116322739912
+      ],
+      "time": 0,
+      "context": null,
+      "barrier": 0.0,
+      "expected_barrier_lower": 0.0,
+      "expected_barrier_upper": 0.0,
+      "current_barrier_lower": 0.0,
+      "current_barrier_upper": 0.0,
+      "drift_lower": 0.0,
+      "drift_upper": 0.0,
+      "absorbing_identity": false,
+      "domain_enclosed": true,
+      "successor_lo": [
+        15.307466656435448,
+        3.0
+      ],
+      "successor_hi": [
+        15.307466656435448,
+        3.0
+      ]
+    },
+    {
+      "state": [
+        15.669743557950751,
+        2.6665180516200944
+      ],
+      "time": 0,
+      "context": null,
+      "barrier": 0.0,
+      "expected_barrier_lower": 0.0,
+      "expected_barrier_upper": 0.0,
+      "current_barrier_lower": 0.0,
+      "current_barrier_upper": 0.0,
+      "drift_lower": 0.0,
+      "drift_upper": 0.0,
+      "absorbing_identity": false,
+      "domain_enclosed": true,
+      "successor_lo": [
+        15.536417655369746,
+        2.743334422509199
+      ],
+      "successor_hi": [
+        15.536417655369746,
+        2.7645195844469415
+      ]
+    }
+  ],
+  "unresolved_examples": [],
+  "arithmetic": "float64 interval operations; no directed outward rounding",
+  "witness_significance_guard": "drift lower must exceed relative tolerance times (1+|B|+|E upper/lower|); smaller positive drift is never used as a counterexample. Acceptance is not relaxed by this tolerance.",
+  "outward_rounded": false,
+  "elapsed_seconds": 300.025195306167,
+  "budget": {
+    "max_state_boxes": 100000,
+    "max_seconds": 300,
+    "noise_cells": 32,
+    "max_depth": 22,
+    "witness_states": 64,
+    "witness_seed": 181123,
+    "strict_epsilon": 1e-06,
+    "region_boxes": 256,
+    "witness_relative_tolerance": 1e-09
+  },
+  "task_metadata": {
+    "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+    "arithmetic": "float64 interval arithmetic; no directed rounding",
+    "barrier_nonnegative_by_construction": true,
+    "barrier_time_varying": false,
+    "unsafe_barrier_threshold": 20.0,
+    "frontend_execution": "state proxy plus bounded semantic residual",
+    "coordinates": "distance m, velocity m/s",
+    "stopping": "absorb success, unsafe, out of domain, or stopped-safe outside goal",
+    "actor": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/aebs_robust_synthesis_20261117_release/package/policy.pt",
+      "sha256": "230807a1759bbededeaa7703ede1ab676ee792e4e8b0a92b01428f9b5ae38c8c"
+    },
+    "barrier": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/aebs_robust_synthesis_20261117_release/package/sbc.pt",
+      "sha256": "856104931b3e2cfc8b47cee2e62ef891ec119e8f461742e1a8b86d04a45b6aa3"
+    },
+    "error_source": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/aebs_robust_synthesis_20261117_release/final_audit/report.json",
+      "sha256": "f3f05d28baf88de959da3e66d260f027b870f7276f32d6d9eaad48de9d5e293a"
+    },
+    "barrier_distance_scale": 3.18272066116333,
+    "warning": "q is the released constant tube; no new image calibration performed by adapter",
+    "adapter": {
+      "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+      "sha256": "3f814d65d6199193ae9e92fa9aec6985bcd2b94704e40879a1f4e555cbf4ed9a"
+    },
+    "task": "aebs",
+    "horizon": 400,
+    "dt": 0.05,
+    "error_lo": [
+      -0.4051930459038431
+    ],
+    "error_hi": [
+      0.4051930459038431
+    ],
+    "noise_lo": [],
+    "noise_hi": [],
+    "original_cp_distribution_unchanged": false,
+    "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+  },
+  "source_binding": {
+    "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/spvc_stochastic.py",
+    "sha256": "904886609de058c4ca51ea4b072922c47adf0d6eebc569afffc72b8f77a82fe2"
+  }
+}

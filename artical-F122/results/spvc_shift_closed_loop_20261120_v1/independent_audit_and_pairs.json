@@ -1,0 +1,442 @@
+{
+  "arms_checked": 108,
+  "shared_scenarios_verified": true,
+  "counts_and_terminal_metrics_recomputed": true,
+  "unit": "1000 complete scenarios; averaged within scenario over fixed3 model seeds",
+  "bootstrap_seed": 2026112001,
+  "resamples": 4000,
+  "comparisons": [
+    {
+      "condition": "brightness_0p7",
+      "mode": "gray32_mlp",
+      "metric": "success",
+      "original": 1.0,
+      "current": 1.0,
+      "difference": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "condition": "brightness_0p7",
+      "mode": "gray32_mlp",
+      "metric": "time_to_goal_capped_seconds",
+      "original": 5.245266666666667,
+      "current": 10.402066666666668,
+      "difference": 5.156800000000001,
+      "ci95": [
+        5.115645416666666,
+        5.200133750000001
+      ]
+    },
+    {
+      "condition": "brightness_1p3",
+      "mode": "gray32_mlp",
+      "metric": "success",
+      "original": 0.9246666666666666,
+      "current": 1.0,
+      "difference": 0.07533333333333335,
+      "ci95": [
+        0.06466666666666668,
+        0.08600000000000002
+      ]
+    },
+    {
+      "condition": "brightness_1p3",
+      "mode": "gray32_mlp",
+      "metric": "time_to_goal_capped_seconds",
+      "original": 5.380333333333334,
+      "current": 8.991083333333334,
+      "difference": 3.6107500000000003,
+      "ci95": [
+        3.411247083333333,
+        3.8047029166666673
+      ]
+    },
+    {
+      "condition": "contrast_0p7",
+      "mode": "gray32_mlp",
+      "metric": "success",
+      "original": 1.0,
+      "current": 1.0,
+      "difference": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "condition": "contrast_0p7",
+      "mode": "gray32_mlp",
+      "metric": "time_to_goal_capped_seconds",
+      "original": 4.535033333333334,
+      "current": 9.456850000000001,
+      "difference": 4.921816666666667,
+      "ci95": [
+        4.917249583333334,
+        4.92665
+      ]
+    },
+    {
+      "condition": "contrast_1p3",
+      "mode": "gray32_mlp",
+      "metric": "success",
+      "original": 1.0,
+      "current": 1.0,
+      "difference": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "condition": "contrast_1p3",
+      "mode": "gray32_mlp",
+      "metric": "time_to_goal_capped_seconds",
+      "original": 4.464383333333333,
+      "current": 9.241383333333335,
+      "difference": 4.777,
+      "ci95": [
+        4.765650000000001,
+        4.7885004166666665
+      ]
+    },
+    {
+      "condition": "blur_0p5",
+      "mode": "gray32_mlp",
+      "metric": "success",
+      "original": 0.9113333333333332,
+      "current": 1.0,
+      "difference": 0.08866666666666669,
+      "ci95": [
+        0.07966666666666668,
+        0.09766666666666668
+      ]
+    },
+    {
+      "condition": "blur_0p5",
+      "mode": "gray32_mlp",
+      "metric": "time_to_goal_capped_seconds",
+      "original": 5.693916666666667,
+      "current": 8.358566666666668,
+      "difference": 2.66465,
+      "ci95": [
+        2.515677916666667,
+        2.817935
+      ]
+    },
+    {
+      "condition": "blur_1p0",
+      "mode": "gray32_mlp",
+      "metric": "success",
+      "original": 0.005666666666666666,
+      "current": 1.0,
+      "difference": 0.9943333333333333,
+      "ci95": [
+        0.9913333333333334,
+        0.997
+      ]
+    },
+    {
+      "condition": "blur_1p0",
+      "mode": "gray32_mlp",
+      "metric": "time_to_goal_capped_seconds",
+      "original": 19.910083333333336,
+      "current": 6.904583333333334,
+      "difference": -13.0055,
+      "ci95": [
+        -13.053766666666666,
+        -12.9504
+      ]
+    },
+    {
+      "condition": "brightness_0p7",
+      "mode": "gray32_cls",
+      "metric": "success",
+      "original": 1.0,
+      "current": 1.0,
+      "difference": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "condition": "brightness_0p7",
+      "mode": "gray32_cls",
+      "metric": "time_to_goal_capped_seconds",
+      "original": 4.667766666666667,
+      "current": 10.318166666666668,
+      "difference": 5.650399999999999,
+      "ci95": [
+        5.614363750000001,
+        5.686252083333334
+      ]
+    },
+    {
+      "condition": "brightness_1p3",
+      "mode": "gray32_cls",
+      "metric": "success",
+      "original": 0.7653333333333334,
+      "current": 0.9129999999999999,
+      "difference": 0.14766666666666667,
+      "ci95": [
+        0.13166666666666665,
+        0.1643333333333333
+      ]
+    },
+    {
+      "condition": "brightness_1p3",
+      "mode": "gray32_cls",
+      "metric": "time_to_goal_capped_seconds",
+      "original": 8.208133333333334,
+      "current": 10.095216666666667,
+      "difference": 1.8870833333333337,
+      "ci95": [
+        1.4942812500000002,
+        2.2589341666666667
+      ]
+    },
+    {
+      "condition": "contrast_0p7",
+      "mode": "gray32_cls",
+      "metric": "success",
+      "original": 1.0,
+      "current": 1.0,
+      "difference": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "condition": "contrast_0p7",
+      "mode": "gray32_cls",
+      "metric": "time_to_goal_capped_seconds",
+      "original": 4.6527666666666665,
+      "current": 10.059533333333333,
+      "difference": 5.406766666666666,
+      "ci95": [
+        5.3661475,
+        5.446317083333334
+      ]
+    },
+    {
+      "condition": "contrast_1p3",
+      "mode": "gray32_cls",
+      "metric": "success",
+      "original": 0.8626666666666665,
+      "current": 0.9193333333333332,
+      "difference": 0.05666666666666667,
+      "ci95": [
+        0.03900000000000001,
+        0.07466666666666669
+      ]
+    },
+    {
+      "condition": "contrast_1p3",
+      "mode": "gray32_cls",
+      "metric": "time_to_goal_capped_seconds",
+      "original": 6.692783333333334,
+      "current": 10.080300000000003,
+      "difference": 3.387516666666667,
+      "ci95": [
+        3.119391666666667,
+        3.6508175000000005
+      ]
+    },
+    {
+      "condition": "blur_0p5",
+      "mode": "gray32_cls",
+      "metric": "success",
+      "original": 0.833,
+      "current": 1.0,
+      "difference": 0.167,
+      "ci95": [
+        0.15365833333333334,
+        0.1806666666666667
+      ]
+    },
+    {
+      "condition": "blur_0p5",
+      "mode": "gray32_cls",
+      "metric": "time_to_goal_capped_seconds",
+      "original": 7.101133333333333,
+      "current": 9.06675,
+      "difference": 1.9656166666666668,
+      "ci95": [
+        1.7201320833333338,
+        2.21285625
+      ]
+    },
+    {
+      "condition": "blur_1p0",
+      "mode": "gray32_cls",
+      "metric": "success",
+      "original": 0.1673333333333333,
+      "current": 0.353,
+      "difference": 0.18566666666666665,
+      "ci95": [
+        0.16,
+        0.21166666666666664
+      ]
+    },
+    {
+      "condition": "blur_1p0",
+      "mode": "gray32_cls",
+      "metric": "time_to_goal_capped_seconds",
+      "original": 18.145083333333332,
+      "current": 16.685533333333332,
+      "difference": -1.45955,
+      "ci95": [
+        -1.8180570833333334,
+        -1.102215
+      ]
+    },
+    {
+      "condition": "brightness_0p7",
+      "mode": "gray32_spatial",
+      "metric": "success",
+      "original": 1.0,
+      "current": 1.0,
+      "difference": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "condition": "brightness_0p7",
+      "mode": "gray32_spatial",
+      "metric": "time_to_goal_capped_seconds",
+      "original": 4.568966666666666,
+      "current": 9.596333333333334,
+      "difference": 5.0273666666666665,
+      "ci95": [
+        5.014799583333334,
+        5.0400687500000005
+      ]
+    },
+    {
+      "condition": "brightness_1p3",
+      "mode": "gray32_spatial",
+      "metric": "success",
+      "original": 0.9393333333333332,
+      "current": 1.0,
+      "difference": 0.060666666666666674,
+      "ci95": [
+        0.052666666666666674,
+        0.06866666666666668
+      ]
+    },
+    {
+      "condition": "brightness_1p3",
+      "mode": "gray32_spatial",
+      "metric": "time_to_goal_capped_seconds",
+      "original": 5.672833333333334,
+      "current": 10.031766666666666,
+      "difference": 4.358933333333335,
+      "ci95": [
+        4.267999583333333,
+        4.45055625
+      ]
+    },
+    {
+      "condition": "contrast_0p7",
+      "mode": "gray32_spatial",
+      "metric": "success",
+      "original": 1.0,
+      "current": 1.0,
+      "difference": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "condition": "contrast_0p7",
+      "mode": "gray32_spatial",
+      "metric": "time_to_goal_capped_seconds",
+      "original": 4.5353166666666676,
+      "current": 9.42425,
+      "difference": 4.888933333333334,
+      "ci95": [
+        4.87286625,
+        4.905600416666667
+      ]
+    },
+    {
+      "condition": "contrast_1p3",
+      "mode": "gray32_spatial",
+      "metric": "success",
+      "original": 0.673,
+      "current": 0.8886666666666666,
+      "difference": 0.21566666666666667,
+      "ci95": [
+        0.19600000000000006,
+        0.23533333333333337
+      ]
+    },
+    {
+      "condition": "contrast_1p3",
+      "mode": "gray32_spatial",
+      "metric": "time_to_goal_capped_seconds",
+      "original": 9.976600000000001,
+      "current": 10.227683333333335,
+      "difference": 0.25108333333333344,
+      "ci95": [
+        -0.012810416666666588,
+        0.5185629166666668
+      ]
+    },
+    {
+      "condition": "blur_0p5",
+      "mode": "gray32_spatial",
+      "metric": "success",
+      "original": 0.8953333333333332,
+      "current": 0.9743333333333334,
+      "difference": 0.07900000000000001,
+      "ci95": [
+        0.06700000000000002,
+        0.09100000000000003
+      ]
+    },
+    {
+      "condition": "blur_0p5",
+      "mode": "gray32_spatial",
+      "metric": "time_to_goal_capped_seconds",
+      "original": 6.13675,
+      "current": 9.557383333333336,
+      "difference": 3.420633333333334,
+      "ci95": [
+        3.218226666666667,
+        3.619422083333334
+      ]
+    },
+    {
+      "condition": "blur_1p0",
+      "mode": "gray32_spatial",
+      "metric": "success",
+      "original": 0.252,
+      "current": 0.131,
+      "difference": -0.12099999999999998,
+      "ci95": [
+        -0.13634166666666667,
+        -0.106
+      ]
+    },
+    {
+      "condition": "blur_1p0",
+      "mode": "gray32_spatial",
+      "metric": "time_to_goal_capped_seconds",
+      "original": 18.71275,
+      "current": 18.316050000000004,
+      "difference": -0.3967000000000002,
+      "ci95": [
+        -0.5146541666666669,
+        -0.28621125000000014
+      ]
+    }
+  ]
+}

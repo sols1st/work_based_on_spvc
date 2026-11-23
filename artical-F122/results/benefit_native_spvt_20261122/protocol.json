@@ -1,0 +1,42 @@
+{
+  "seeds": [
+    2026112211,
+    2026112212,
+    2026112213
+  ],
+  "n_training": 24000,
+  "n_development": 4000,
+  "updates": 3000,
+  "batch": 128,
+  "lr": 0.001,
+  "dt": 0.05,
+  "horizon": 160,
+  "speed_mps": 5,
+  "wheelbase_m": 2.5,
+  "initial": "uniform CTE [-60,60] cm, heading [-7,7] degrees",
+  "latent": "uniform [-.8,.8]^10, iid each step or persistent across160 steps",
+  "training_domain": "CTE [-75,75]cm, heading [-10,10]degrees",
+  "train_seed": 202611229201,
+  "development_seed": 202611229202,
+  "calibration_seed": 202611229203,
+  "test_seed": 202611229204,
+  "n_calibration": 499,
+  "n_test": 2000,
+  "target": "u rad=clip(-0.6*(CTE/100)-2.5*heading_rad,+/-pi/6); poles -2,-3 of linearized bicycle",
+  "cp": "max_t |actual_steering_deg - reference_steering_deg(current_true_state)|; rank=ceil((499+1)*.95)=475",
+  "selection": "development loss every100 updates; no test selection",
+  "model_sources": {
+    "/root/SPVT/model/pretrained_ckpts/mlp_generator.pth": "5990366fd81f103b591a9ddd1a79dc5c06d2de63299b7c88ea6741e7060f477b",
+    "/root/SPVT/model/pretrained_ckpts/pid_controller.pth": "e9a9a1eccbddad07eeab8d72ef5d55a37262fb1f89ba31d2165277ef4c663d92",
+    "/root/SPVT/spvt/logs/test/ckpts/checkpoint_epoch_100.pth": "c6044777a0c6edd926efe586dcf7e876f0e4266dfa24448eb5a39fb8aabdee8e"
+  },
+  "source_sha256": "3aeea98c104523fa70df29c8baf3e1c1503c1beaaf573789d78208c820f458a1",
+  "observations": "native SPVT generator128 outputs at evolving true states, same generator and latent law for every controller",
+  "methods": {
+    "spvt_epoch100": "native historical trained checkpoint",
+    "spvt_pid": "native released PID initializer",
+    "same_target_e2e": "native E2ENetworkBN architecture, retrained from random init on same samples and target as current",
+    "current_lowdim": "128->64 ReLU->32 ReLU->2 physical state decoder, then fixed reference feedback; h(x)=normalized identity"
+  },
+  "objective": "current: normalized state MSE + reference action MSE; e2e: reference action MSE; identical data batches and updates"
+}

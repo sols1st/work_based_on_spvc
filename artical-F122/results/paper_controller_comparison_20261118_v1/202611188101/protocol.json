@@ -1,0 +1,39 @@
+{
+  "type": "controlled training objectives; no original image generator retraining",
+  "arms": [
+    "spvt",
+    "spvc",
+    "robust"
+  ],
+  "seed": 202611188101,
+  "common_initialization": "same frozen robust-v2 actor, which already contains prior robust training",
+  "anchor_sha256": "afd4509772a9fda976da2d0c5722f55e6d8f2e9fabce37b7a998110583fe0c75",
+  "barrier_sha256": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321",
+  "adapter_sha256": "3f814d65d6199193ae9e92fa9aec6985bcd2b94704e40879a1f4e555cbf4ed9a",
+  "code_sha256": "66b5127c8a3a92fd74e63ea84513d732bb538b457bcfc4b8a50afdffebf7e776",
+  "capacity": 4481,
+  "updates": 240,
+  "learning_rate": 3e-05,
+  "batch_size": 64,
+  "optimizer": "Adam; clip gradient norm 1; final iterate, no test-based selection",
+  "dtype": "float64",
+  "threads": 1,
+  "horizon_curriculum": [
+    4,
+    6,
+    8,
+    10
+  ],
+  "anchor_weight": 0.25,
+  "common_four_step_tracking_weight": 0.05,
+  "safety_weight": 1.0,
+  "shared_data": "same 4096 initial and 4096 active B<20 development states, same minibatch indices in every arm",
+  "shared_hard_curriculum": "top4000 by SPVT current development reachability priority, refreshed each60updates; half of every shared batch from this buffer",
+  "spvt": "Eq5-style terminal abs lower+abs upper, extended to both normalized safety coordinates; H4/6/8/10; differentiable affine bounds",
+  "spvc": "uniform semantic residual support, 5x5 Gauss-Legendre expected B next quadrature; mean+max positive drift/20",
+  "robust": "four full-coverage semantic-error subboxes, affine upper B next; mean+max positive drift/20",
+  "support_halfwidth": 0.09968696247082366,
+  "cp_scope": "original radius reused only as fixed support, not a CP guarantee for changed actors",
+  "testing": "independent synthetic 2000 initial draws with same scenario seeds; not new images",
+  "equal_steps_not_equal_compute": true
+}

@@ -1,0 +1,144 @@
+{
+  "conditions": [
+    [
+      10,
+      1
+    ],
+    [
+      10,
+      2
+    ],
+    [
+      12,
+      1
+    ],
+    [
+      12,
+      2
+    ],
+    [
+      14,
+      1
+    ],
+    [
+      14,
+      2
+    ]
+  ],
+  "distance_ranges": "[d,d+2]m",
+  "speed_ranges": "[v,v+1]m/s",
+  "models": [
+    {
+      "key": "gray32_mlp_24000_27411",
+      "prediction_path": "results/aebs_spatial_readout_20261118_v1/models/gray32_mlp_24000_27411/prediction.npy",
+      "ids_path": "results/aebs_factorial_20261117/ids.npy",
+      "prediction_units": "distance_over_scale",
+      "model_path": "results/aebs_spatial_readout_20261118_v1/models/gray32_mlp_24000_27411/readout.pt",
+      "fit_path": "results/aebs_spatial_readout_20261118_v1/models/gray32_mlp_24000_27411/fit.json",
+      "budget": 24000,
+      "train_seed": 27411,
+      "mode": "gray32_mlp",
+      "distance_scale_m": 3.18272066116333,
+      "prediction_sha256": "bd20ec1f7b48ef9a2430813f20c7a480192a754d153f178a0be3c7dc6eb1ee78",
+      "model_sha256": "8a8cdee102df146d57ea86fd4b7f00124727407ee9358d687f03022bc0d45930",
+      "category": "new_equal_tuning_same_gray32",
+      "library": "common"
+    },
+    {
+      "key": "gray32_spatial_24000_27411",
+      "prediction_path": "results/aebs_spatial_readout_20261118_v1/models/gray32_spatial_24000_27411/prediction.npy",
+      "ids_path": "results/aebs_factorial_20261117/ids.npy",
+      "prediction_units": "distance_over_scale",
+      "model_path": "results/aebs_spatial_readout_20261118_v1/models/gray32_spatial_24000_27411/readout.pt",
+      "fit_path": "results/aebs_spatial_readout_20261118_v1/models/gray32_spatial_24000_27411/fit.json",
+      "budget": 24000,
+      "train_seed": 27411,
+      "mode": "gray32_spatial",
+      "distance_scale_m": 3.18272066116333,
+      "prediction_sha256": "b4338e3b545a7f3d074ab09b1574a9bc6c9331fe1bd69d25f00cda713f15504b",
+      "model_sha256": "f947a8e69a48f1d01926558e993d7748d47daae5fedce5df2f3c02b4295cbce2",
+      "category": "new_equal_tuning_same_gray32",
+      "library": "common"
+    },
+    {
+      "key": "gray32_mlp_24000_27412",
+      "prediction_path": "results/aebs_spatial_readout_20261118_v1/models/gray32_mlp_24000_27412/prediction.npy",
+      "ids_path": "results/aebs_factorial_20261117/ids.npy",
+      "prediction_units": "distance_over_scale",
+      "model_path": "results/aebs_spatial_readout_20261118_v1/models/gray32_mlp_24000_27412/readout.pt",
+      "fit_path": "results/aebs_spatial_readout_20261118_v1/models/gray32_mlp_24000_27412/fit.json",
+      "budget": 24000,
+      "train_seed": 27412,
+      "mode": "gray32_mlp",
+      "distance_scale_m": 3.18272066116333,
+      "prediction_sha256": "5072cf16582527422cffb0f634bbf1d0d7e9ffe6bd1d25d441fb8224210bce41",
+      "model_sha256": "cda0ed10cd3c152097b065136536a01611577154aaabe06afe7ed90758c53ca6",
+      "category": "new_equal_tuning_same_gray32",
+      "library": "common"
+    },
+    {
+      "key": "gray32_spatial_24000_27412",
+      "prediction_path": "results/aebs_spatial_readout_20261118_v1/models/gray32_spatial_24000_27412/prediction.npy",
+      "ids_path": "results/aebs_factorial_20261117/ids.npy",
+      "prediction_units": "distance_over_scale",
+      "model_path": "results/aebs_spatial_readout_20261118_v1/models/gray32_spatial_24000_27412/readout.pt",
+      "fit_path": "results/aebs_spatial_readout_20261118_v1/models/gray32_spatial_24000_27412/fit.json",
+      "budget": 24000,
+      "train_seed": 27412,
+      "mode": "gray32_spatial",
+      "distance_scale_m": 3.18272066116333,
+      "prediction_sha256": "011fe258d9746ce66417dc12b1ccc7df2510358debedc2e8972ad4a3d8b64dbc",
+      "model_sha256": "41a0e3e5f79553c59d3505adfbf3d89671223a05ae977e5212c441e9a2492afb",
+      "category": "new_equal_tuning_same_gray32",
+      "library": "common"
+    },
+    {
+      "key": "gray32_mlp_24000_27413",
+      "prediction_path": "results/aebs_spatial_readout_20261118_v1/models/gray32_mlp_24000_27413/prediction.npy",
+      "ids_path": "results/aebs_factorial_20261117/ids.npy",
+      "prediction_units": "distance_over_scale",
+      "model_path": "results/aebs_spatial_readout_20261118_v1/models/gray32_mlp_24000_27413/readout.pt",
+      "fit_path": "results/aebs_spatial_readout_20261118_v1/models/gray32_mlp_24000_27413/fit.json",
+      "budget": 24000,
+      "train_seed": 27413,
+      "mode": "gray32_mlp",
+      "distance_scale_m": 3.18272066116333,
+      "prediction_sha256": "9899da8dee9edbda0609e7b7288a7d2ccb919e2d19110256a5d69ec57c96a6b9",
+      "model_sha256": "b7149ab25d1f531d6d5644b8e5e248142394669b42f8f5c35e1779c1b7c3d60a",
+      "category": "new_equal_tuning_same_gray32",
+      "library": "common"
+    },
+    {
+      "key": "gray32_spatial_24000_27413",
+      "prediction_path": "results/aebs_spatial_readout_20261118_v1/models/gray32_spatial_24000_27413/prediction.npy",
+      "ids_path": "results/aebs_factorial_20261117/ids.npy",
+      "prediction_units": "distance_over_scale",
+      "model_path": "results/aebs_spatial_readout_20261118_v1/models/gray32_spatial_24000_27413/readout.pt",
+      "fit_path": "results/aebs_spatial_readout_20261118_v1/models/gray32_spatial_24000_27413/fit.json",
+      "budget": 24000,
+      "train_seed": 27413,
+      "mode": "gray32_spatial",
+      "distance_scale_m": 3.18272066116333,
+      "prediction_sha256": "aea6e533a476687c042893151f0ab2bbd0e5be64147a9882c383c6babf0f7891",
+      "model_sha256": "7222649454399be283b3d8cf59e56edca52fa94f2a62f8bb98b00cb2fcca43b7",
+      "category": "new_equal_tuning_same_gray32",
+      "library": "common"
+    }
+  ],
+  "n_calibration": 499,
+  "n_test": 1000,
+  "seeds": {
+    "calibration": 202611239201,
+    "test": 202611239202
+  },
+  "source_sha256": "fa737c925ea10c84baf8f98e565af2dc50499d3eec4b0f6b18abd67489cf179c",
+  "original_protocol_sha256": "848ea95cd8db0580cd9b6d6f79bcb5c21543c01c4aa5bcc4a61615d0ae7471d8",
+  "actors": [
+    "original_ppo",
+    "current_robust"
+  ],
+  "images": "normal unmodified common3229gray32 library",
+  "task": "Original goal d in[5,6]m and v<=.5m/s; 400 steps0.05s",
+  "training": "frozen models; no new training",
+  "cp": "Each initial-state domain separately calibrated with trajectory maximum absolute measurement error"
+}

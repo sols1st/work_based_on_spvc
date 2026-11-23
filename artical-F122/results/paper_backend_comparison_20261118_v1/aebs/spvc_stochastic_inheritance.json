@@ -1,0 +1,87 @@
+{
+  "task": "aebs",
+  "status": "nonincrease_expectation_inherited_from_fresh_matching_robust_verification",
+  "comparison": "strong stochastic baseline on the identical observation and plant disturbance support",
+  "reason": "A pointwise B(next)<=B(now) bound implies the conditional expectation inequality for every law supported on the same allowed successors, including the registered uniform observation model.",
+  "strict_epsilon_inherited": false,
+  "valid_for_additive_model": false,
+  "real_camera_probability_claim": null,
+  "native_cgan_retraining": false,
+  "standalone_interval_integration_may_remain_inconclusive": true,
+  "source_current_result": {
+    "path": "results/paper_backend_comparison_20261118_v1/aebs/current.json",
+    "sha256": "e6bab04a8e5085218770321b4901842cd1ff3188b2abe4a54f08c393c440d4cc",
+    "elapsed_seconds": 115.77086863014847,
+    "rerun": true
+  },
+  "checked_identity_keys": [
+    "actor",
+    "barrier",
+    "error_source",
+    "coordinates",
+    "horizon",
+    "dt",
+    "error_lo",
+    "error_hi",
+    "noise_lo",
+    "noise_hi",
+    "barrier_time_varying",
+    "unsafe_barrier_threshold"
+  ],
+  "identity_mismatches": [],
+  "source_adapter_sha256": "80530dafa4e10ad7600e66d1ddb62b2990d09a6cdfe6a1b53242240a1c75bc99",
+  "current_adapter_sha256": "3f814d65d6199193ae9e92fa9aec6985bcd2b94704e40879a1f4e555cbf4ed9a",
+  "adapter_difference": "Only terminal_status/interval_is_terminal API helpers were added after the robust runs; existing point dynamics, interval step, barrier and robust verification were unchanged. Underlying model and support bindings above were separately compared.",
+  "proof_arithmetic": "float64 numerical intervals, without directed rounding",
+  "barrier_time_varying": false,
+  "horizon": 400,
+  "task_metadata": {
+    "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+    "arithmetic": "float64 interval arithmetic; no directed rounding",
+    "barrier_nonnegative_by_construction": true,
+    "barrier_time_varying": false,
+    "unsafe_barrier_threshold": 20.0,
+    "frontend_execution": "state proxy plus bounded semantic residual",
+    "coordinates": "distance m, velocity m/s",
+    "stopping": "absorb success, unsafe, out of domain, or stopped-safe outside goal",
+    "actor": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/aebs_robust_synthesis_20261117_release/package/policy.pt",
+      "sha256": "230807a1759bbededeaa7703ede1ab676ee792e4e8b0a92b01428f9b5ae38c8c"
+    },
+    "barrier": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/aebs_robust_synthesis_20261117_release/package/sbc.pt",
+      "sha256": "856104931b3e2cfc8b47cee2e62ef891ec119e8f461742e1a8b86d04a45b6aa3"
+    },
+    "error_source": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/aebs_robust_synthesis_20261117_release/final_audit/report.json",
+      "sha256": "f3f05d28baf88de959da3e66d260f027b870f7276f32d6d9eaad48de9d5e293a"
+    },
+    "barrier_distance_scale": 3.18272066116333,
+    "warning": "q is the released constant tube; no new image calibration performed by adapter",
+    "adapter": {
+      "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+      "sha256": "3f814d65d6199193ae9e92fa9aec6985bcd2b94704e40879a1f4e555cbf4ed9a"
+    },
+    "task": "aebs",
+    "horizon": 400,
+    "dt": 0.05,
+    "error_lo": [
+      -0.4051930459038431
+    ],
+    "error_hi": [
+      0.4051930459038431
+    ],
+    "noise_lo": [],
+    "noise_hi": [],
+    "original_cp_distribution_unchanged": false,
+    "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+  },
+  "standalone_observation_result": {
+    "status": "inconclusive_within_budget",
+    "elapsed_seconds": 300.025195306167,
+    "state_boxes": 10375,
+    "stop_reason": "time_budget",
+    "strict_status": "fixed_candidate_does_not_meet_strict_epsilon",
+    "source_sha256": "6f22f8a4037bcca367139cc7078cbc033bf0794c8996a2f6169dd826162c1ec3"
+  }
+}

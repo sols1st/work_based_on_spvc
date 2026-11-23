@@ -1,0 +1,145 @@
+{
+  "schema": "controlled_spvt_global_box_v1",
+  "task": "braking",
+  "implementation_sha256": "4e0290a9283aa01a9ef8458c8aa93eb0e097105d1621763e0a925982affd94a8",
+  "metadata": {
+    "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+    "arithmetic": "float64 interval arithmetic; no directed rounding",
+    "barrier_nonnegative_by_construction": true,
+    "barrier_time_varying": false,
+    "unsafe_barrier_threshold": 20.0,
+    "frontend_execution": "state proxy plus bounded semantic residual",
+    "coordinates": "physical [e,heading,distance,speed,wheel_angle]",
+    "actor": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/curve_braking_5d_20261117/actor.pt",
+      "sha256": "9015d427fed9be1b3e584c031bad54bcb032964c98aca812504ac6b380e15ccf"
+    },
+    "barrier": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/curve_braking_5d_20261117/barrier.pt",
+      "sha256": "de6c1992dfab0dc63d264aab971ad34db6b5fbf5e2c75dede80a1356e7586421"
+    },
+    "contract": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/curve_braking_5d_20261117/evaluation/neural/contract.json",
+      "sha256": "41e42c4597217179d865fa0567d143e23e363ee0388ee35d6a13d7bb8c453616"
+    },
+    "current_baseline_rerun": "global structural scalar inequalities",
+    "barrier_separation_domain": "0<=v<=2.6 and |wheel_angle|<=.07; B<20 geometric sublevel",
+    "adapter": {
+      "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+      "sha256": "80530dafa4e10ad7600e66d1ddb62b2990d09a6cdfe6a1b53242240a1c75bc99"
+    },
+    "task": "braking",
+    "horizon": 14,
+    "dt": 0.2,
+    "error_lo": [
+      -0.12506186821868048,
+      -0.12506186821868048,
+      -0.12506186821868048
+    ],
+    "error_hi": [
+      0.12506186821868048,
+      0.12506186821868048,
+      0.12506186821868048
+    ],
+    "noise_lo": [],
+    "noise_hi": [],
+    "original_cp_distribution_unchanged": false,
+    "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+  },
+  "config": {
+    "mode": "auto",
+    "timeout_seconds": 150.0,
+    "max_nodes": 3000000,
+    "max_frontier": 2048,
+    "max_depth": 40,
+    "split_lookahead": true,
+    "falsification_paths": 0,
+    "seed": 2026111807
+  },
+  "total_timeout_seconds": 300,
+  "contexts": [
+    {
+      "task": "braking",
+      "initial_state": [
+        -0.08,
+        -0.028,
+        5.3,
+        2.1,
+        -0.035
+      ],
+      "context": -0.02,
+      "horizon": 14,
+      "requested_seconds": 2.8000000000000003,
+      "status": "unknown_partition_depth",
+      "certified_steps": 12,
+      "certified_seconds": 2.4000000000000004,
+      "interval_evaluations": 654,
+      "bound_evaluations": 654,
+      "wall_seconds": 0.37050752295181155,
+      "method": "zonotope_then_partitioned_intervals",
+      "splits": 40,
+      "merges": 0,
+      "max_frontier": 1,
+      "first_unresolved_step": 13,
+      "zonotope_prefix_steps": 0,
+      "initial_lo": [
+        -0.08,
+        -0.028,
+        5.3,
+        2.1,
+        -0.035
+      ],
+      "initial_hi": [
+        0.08,
+        0.028,
+        5.9,
+        2.4,
+        0.035
+      ],
+      "population": "entire_initial_box_separate_from_iid_point_budget"
+    },
+    {
+      "task": "braking",
+      "initial_state": [
+        -0.08,
+        -0.028,
+        5.3,
+        2.1,
+        -0.035
+      ],
+      "context": 0.02,
+      "horizon": 14,
+      "requested_seconds": 2.8000000000000003,
+      "status": "unknown_partition_depth",
+      "certified_steps": 12,
+      "certified_seconds": 2.4000000000000004,
+      "interval_evaluations": 654,
+      "bound_evaluations": 654,
+      "wall_seconds": 0.3679209272377193,
+      "method": "zonotope_then_partitioned_intervals",
+      "splits": 40,
+      "merges": 0,
+      "max_frontier": 1,
+      "first_unresolved_step": 13,
+      "zonotope_prefix_steps": 0,
+      "initial_lo": [
+        -0.08,
+        -0.028,
+        5.3,
+        2.1,
+        -0.035
+      ],
+      "initial_hi": [
+        0.08,
+        0.028,
+        5.9,
+        2.4,
+        0.035
+      ],
+      "population": "entire_initial_box_separate_from_iid_point_budget"
+    }
+  ],
+  "all_contexts_certified": false,
+  "total_wall_seconds": 0.7387511697597802,
+  "scope": "Separate universal initial-box check; no reuse of this result as independently computed point timings."
+}

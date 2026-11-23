@@ -1,0 +1,130 @@
+{
+  "format": "aebs_same_pixel_spatial_readout_v1",
+  "source": "results/aebs_factorial_20261117",
+  "budgets_path": "results/aebs_budget_scaling_20261110",
+  "weights": "../external/dinov2_weights/dinov2_vits14_pretrain.pth",
+  "repo": "../external/dinov2",
+  "budgets": [
+    400,
+    10000,
+    24000
+  ],
+  "training_seeds": [
+    27411,
+    27412,
+    27413
+  ],
+  "arms": [
+    "gray32_mlp",
+    "gray32_cls",
+    "gray32_spatial"
+  ],
+  "allocation": {
+    "400": {
+      "train": 240,
+      "validation": 88,
+      "test": 72
+    },
+    "10000": {
+      "train": 6000,
+      "validation": 2000,
+      "test": 2000
+    },
+    "24000": {
+      "train": 14172,
+      "validation": 4908,
+      "test": 4920
+    }
+  },
+  "epochs": 100,
+  "batch": 64,
+  "trials": {
+    "gray32_mlp": [
+      {
+        "grid": null,
+        "lr": 3e-05
+      },
+      {
+        "grid": null,
+        "lr": 0.0001
+      },
+      {
+        "grid": null,
+        "lr": 0.0003
+      },
+      {
+        "grid": null,
+        "lr": 0.001
+      }
+    ],
+    "gray32_cls": [
+      {
+        "grid": null,
+        "lr": 3e-05
+      },
+      {
+        "grid": null,
+        "lr": 0.0001
+      },
+      {
+        "grid": null,
+        "lr": 0.0003
+      },
+      {
+        "grid": null,
+        "lr": 0.001
+      }
+    ],
+    "gray32_spatial": [
+      {
+        "grid": 2,
+        "lr": 0.0001
+      },
+      {
+        "grid": 2,
+        "lr": 0.001
+      },
+      {
+        "grid": 4,
+        "lr": 0.0001
+      },
+      {
+        "grid": 4,
+        "lr": 0.001
+      }
+    ]
+  },
+  "initialization": "same paired torch seed; each trial reinitializes, same seeded minibatch orders",
+  "selection": "minimum validation MSE over exactly four trials and 100 epochs; no test metrics",
+  "observation": "scalar y = distance_m / distance_scale_m; fixed state proxy C=[1,0]",
+  "distance_scale_m": 3.18272066116333,
+  "loss": "mean squared normalized-distance error",
+  "input": "same audited raw_gray.npy 32x32 bytes; MLP rescales to [-1,1]; DINO repeats channels and CPU bicubic224/ImageNet preprocessing",
+  "spatial": "frozen ViT-S/14 normalized patch tokens; adaptive average pool2x2 or4x4; shared384->32 GELU; flatten->128 GELU->1",
+  "normalization": "DINO statistics from training rows only; spatial stats pooled across train images and grid locations; std floor .01",
+  "additional_prior": "Both DINO arms use official pretrained DINOv2; pixel MLP has no external pretraining",
+  "extraction": {
+    "device": "cuda:1",
+    "batch": 8,
+    "memory_fraction": 0.035,
+    "dtype": "float32",
+    "cpu_preprocess": true,
+    "no_parameter_updates": true
+  },
+  "frozen_before": "patch feature extraction and all new head training; historical test results never used to choose any grid/rate here",
+  "calibration_and_test": "not performed by this script; downstream evaluation must bind the frozen checkpoint identity",
+  "torch": "2.3.1",
+  "bindings": {
+    "/root/work_based_on_spvc/artical-F122/Aebs/experiments/spatial_aebs.py": "35d58f8951243a59cc15255a468d9beb26bb6b33ea149a777abb033ab0d6527f",
+    "results/aebs_budget_scaling_20261110/protocol.json": "dc3fb06f1870a2e90b4c9d81a013359eeeb305f227004cedfd1ff8ab709a0984",
+    "results/aebs_factorial_20261117/protocol.json": "d36a6ef6e9d4b4dceb6471adf5fcb8f1cc45134e677278983db60dea83cd4609",
+    "results/aebs_factorial_20261117/cache.json": "b13070f1685144ccdeccfed2db6c981a6ea5096226b80051ca99999e4c7c1e0f",
+    "results/aebs_factorial_20261117/raw_gray.npy": "2bae98d568344f3a073b58c35077620909e9fd695912bed98c7712a269fb98d5",
+    "results/aebs_factorial_20261117/gray32.npy": "dd24144365662e97966e02076256a0176c32e3d6a830b6e8e8b22fe5cf174d51",
+    "results/aebs_factorial_20261117/ids.npy": "357b7a7817e61f4e28fcf39d540e3201215a0331769ce592084a11cf6beec02f",
+    "../external/dinov2_weights/dinov2_vits14_pretrain.pth": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+    "Aebs/dino_latent/backbone.py": "4dd02c0b77a636192986b492cea98ae40326a39dea9f72e2f55c45a734da2093",
+    "Aebs/vision_sls/model.py": "63793f8d35f9ef1e6d3d81c73060ceb8b9a82dedc8361c719083c4c4b7d3dcdd",
+    "Combined_network/model.py": "86a14e47d4c67d7339f2740ccf3e875f466cd58579019c7984794147773bd70a"
+  }
+}

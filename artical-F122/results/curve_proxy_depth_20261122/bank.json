@@ -1,0 +1,32 @@
+{
+  "counts": {
+    "train": 12000,
+    "development": 1000,
+    "calibration": 1000,
+    "test": 2000
+  },
+  "seeds": [
+    2026112230,
+    2026112231,
+    2026112232,
+    2026112233
+  ],
+  "rejected": {
+    "train": 0,
+    "development": 0,
+    "calibration": 0,
+    "test": 0
+  },
+  "bank_sha256": "4b0ea4ce51140a76d55cb33c7576f4ced8d9e5c520e59039658ab975c41a65aa",
+  "bindings": {
+    "results/curve_braking_proxy_comparison_20261117_v1/20261117501_linear/proxy.pt": "7c9a55c39c448e8f7724ccdf543085c15723a9ca8fcbe4c46fd8ced29ab947be",
+    "results/curve_braking_5d_20261117/pca.pt": "a5d0768109aad4529a4933838fd62b902ec8ff9034f5ef18543ad6b48beaa692",
+    "results/curve_braking_5d_20261117/static.npz": "f57b6e194b7eb0098b3b816b0be0c7a3a666c04a7bf78117b34fbc4e1831982d",
+    "../external/dinov2_weights/dinov2_vits14_pretrain.pth": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9"
+  },
+  "historical_image_count": 2560,
+  "total_unique_images": 16000,
+  "source_sha256": "1c3f9a12dd91399c8152413114c2151214ea74fee24290c4b54d92d9574acead",
+  "renderer_sha256": "37cd036d7cf86e9981cef0059c2fdad6f9c4374f456363d7dcff54edc2ad3757",
+  "image_law": "same uniform static state domain as original, kappa +/-0.02, fixed nominal camera"
+}

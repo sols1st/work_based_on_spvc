@@ -1,0 +1,87 @@
+{
+  "passed": true,
+  "method": "global sufficient inequalities for structured neural barrier; numerical scalar checks",
+  "radius": 0.12506186821868048,
+  "coefficients": [
+    0.19517535530310534,
+    0.054105207768838384,
+    0.025394633333215257,
+    1.018306874486942
+  ],
+  "initial_upper": 0.0,
+  "unsafe_lower_by_separation": 20,
+  "horizon_if_tube_holds": "until absorbing stop, including all later sampled states",
+  "domain": "0<=v<=2.6, |delta|<=0.07, kappa in {-0.02,+0.02}",
+  "checks": {
+    "finite_radius": true,
+    "brake_floor_guard_slack_m": 1.0998762635626385,
+    "lateral_step_slack": 0.006316460326604739,
+    "yaw_and_steering_step_slack": 0.002811504273702317,
+    "obstacle_progress_step_slack": 0.005135648549758454,
+    "forward_progress_cosine": 0.9820042351172704,
+    "steering_weight": 0.025394633333215257,
+    "body_lane_slack_m": 0.06579035898636319,
+    "body_station_slack_m": 0.08565781381988846,
+    "initial_level_slack": 1.0,
+    "braking_reserve_support": 0.2799999999999998,
+    "minimum_frenet_denominator": 0.952071501606854
+  },
+  "outward_rounded": false,
+  "continuous_time_collision_claim": false,
+  "elapsed_seconds": 0.017908999230712652,
+  "rerun": true,
+  "comparison_scope": "frozen current conditional robust backend",
+  "task": "braking",
+  "protocol": {
+    "task": "braking",
+    "budget_seconds": 300.0,
+    "threads": 1,
+    "metadata": {
+      "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+      "arithmetic": "float64 interval arithmetic; no directed rounding",
+      "barrier_nonnegative_by_construction": true,
+      "barrier_time_varying": false,
+      "unsafe_barrier_threshold": 20.0,
+      "frontend_execution": "state proxy plus bounded semantic residual",
+      "coordinates": "physical [e,heading,distance,speed,wheel_angle]",
+      "actor": {
+        "path": "/root/work_based_on_spvc/artical-F122/results/curve_braking_5d_20261117/actor.pt",
+        "sha256": "9015d427fed9be1b3e584c031bad54bcb032964c98aca812504ac6b380e15ccf"
+      },
+      "barrier": {
+        "path": "/root/work_based_on_spvc/artical-F122/results/curve_braking_5d_20261117/barrier.pt",
+        "sha256": "de6c1992dfab0dc63d264aab971ad34db6b5fbf5e2c75dede80a1356e7586421"
+      },
+      "contract": {
+        "path": "/root/work_based_on_spvc/artical-F122/results/curve_braking_5d_20261117/evaluation/neural/contract.json",
+        "sha256": "41e42c4597217179d865fa0567d143e23e363ee0388ee35d6a13d7bb8c453616"
+      },
+      "current_baseline_rerun": "global structural scalar inequalities",
+      "barrier_separation_domain": "0<=v<=2.6 and |wheel_angle|<=.07; B<20 geometric sublevel",
+      "adapter": {
+        "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+        "sha256": "80530dafa4e10ad7600e66d1ddb62b2990d09a6cdfe6a1b53242240a1c75bc99"
+      },
+      "task": "braking",
+      "horizon": 14,
+      "dt": 0.2,
+      "error_lo": [
+        -0.12506186821868048,
+        -0.12506186821868048,
+        -0.12506186821868048
+      ],
+      "error_hi": [
+        0.12506186821868048,
+        0.12506186821868048,
+        0.12506186821868048
+      ],
+      "noise_lo": [],
+      "noise_hi": [],
+      "original_cp_distribution_unchanged": false,
+      "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+    },
+    "unsafe_threshold": 20.0
+  },
+  "fresh_checks": true,
+  "status": "pass"
+}

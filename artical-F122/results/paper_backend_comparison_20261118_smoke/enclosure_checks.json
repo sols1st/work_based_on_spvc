@@ -1,0 +1,311 @@
+{
+  "checker_sha256": "e45aeecc926c3e533c45307ae030311f6c72b443b2ddb747660761c3a1a24250",
+  "results": [
+    {
+      "task": "aebs",
+      "passed": true,
+      "boxes": 80,
+      "points_per_box": 96,
+      "actual_step_samples": 7680,
+      "max_step_enclosure_violation": 0.0,
+      "max_barrier_enclosure_violation": 1.7763568394002505e-15,
+      "safe_claims": 66,
+      "failures": [],
+      "seconds": 0.3633066639304161,
+      "metadata": {
+        "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+        "arithmetic": "float64 interval arithmetic; no directed rounding",
+        "barrier_nonnegative_by_construction": true,
+        "barrier_time_varying": false,
+        "unsafe_barrier_threshold": 20.0,
+        "frontend_execution": "state proxy plus bounded semantic residual",
+        "coordinates": "distance m, velocity m/s",
+        "stopping": "absorb success, unsafe, out of domain, or stopped-safe outside goal",
+        "actor": {
+          "path": "/root/work_based_on_spvc/artical-F122/results/aebs_robust_synthesis_20261117_release/package/policy.pt",
+          "sha256": "230807a1759bbededeaa7703ede1ab676ee792e4e8b0a92b01428f9b5ae38c8c"
+        },
+        "barrier": {
+          "path": "/root/work_based_on_spvc/artical-F122/results/aebs_robust_synthesis_20261117_release/package/sbc.pt",
+          "sha256": "856104931b3e2cfc8b47cee2e62ef891ec119e8f461742e1a8b86d04a45b6aa3"
+        },
+        "error_source": {
+          "path": "/root/work_based_on_spvc/artical-F122/results/aebs_robust_synthesis_20261117_release/final_audit/report.json",
+          "sha256": "f3f05d28baf88de959da3e66d260f027b870f7276f32d6d9eaad48de9d5e293a"
+        },
+        "barrier_distance_scale": 3.18272066116333,
+        "warning": "q is the released constant tube; no new image calibration performed by adapter",
+        "adapter": {
+          "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+          "sha256": "e861bebd13116242c85981abe4dc03b3525a985ce40341283c235c346092c369"
+        },
+        "task": "aebs",
+        "horizon": 400,
+        "dt": 0.05,
+        "error_lo": [
+          -0.4051930459038431
+        ],
+        "error_hi": [
+          0.4051930459038431
+        ],
+        "noise_lo": [],
+        "noise_hi": [],
+        "original_cp_distribution_unchanged": false,
+        "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+      },
+      "scope": "randomized consistency checks, not soundness proof"
+    },
+    {
+      "task": "lane",
+      "passed": true,
+      "boxes": 80,
+      "points_per_box": 96,
+      "actual_step_samples": 7680,
+      "max_step_enclosure_violation": 0.0,
+      "max_barrier_enclosure_violation": 0.0,
+      "safe_claims": 63,
+      "failures": [],
+      "seconds": 0.5030244896188378,
+      "metadata": {
+        "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+        "arithmetic": "float64 interval arithmetic; no directed rounding",
+        "barrier_nonnegative_by_construction": true,
+        "barrier_time_varying": false,
+        "unsafe_barrier_threshold": 20.0,
+        "frontend_execution": "state proxy plus bounded semantic residual",
+        "coordinates": "normalized [e/.85,theta/.30]",
+        "contract": {
+          "path": "/root/work_based_on_spvc/artical-F122/results/lane_robust_synthesis_20261116_v2/final_cp/calibration.json",
+          "sha256": "f828c763116ce4c6665b19948afa7992b15b93d6be2f299b93237edb611cad69"
+        },
+        "actor": {
+          "path": "/root/work_based_on_spvc/artical-F122/results/lane_robust_synthesis_20261116_v2/package/actor.pt",
+          "sha256": "afd4509772a9fda976da2d0c5722f55e6d8f2e9fabce37b7a998110583fe0c75"
+        },
+        "barrier": {
+          "path": "/root/work_based_on_spvc/artical-F122/results/lane_robust_synthesis_20261116_v2/package/sbc.pt",
+          "sha256": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321"
+        },
+        "contexts": [
+          -0.01,
+          0.0,
+          0.01
+        ],
+        "adapter": {
+          "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+          "sha256": "e861bebd13116242c85981abe4dc03b3525a985ce40341283c235c346092c369"
+        },
+        "task": "lane",
+        "horizon": 80,
+        "dt": 0.1,
+        "error_lo": [
+          -0.09968696247082366,
+          -0.09968696247082366
+        ],
+        "error_hi": [
+          0.09968696247082366,
+          0.09968696247082366
+        ],
+        "noise_lo": [],
+        "noise_hi": [],
+        "original_cp_distribution_unchanged": false,
+        "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+      },
+      "scope": "randomized consistency checks, not soundness proof"
+    },
+    {
+      "task": "braking",
+      "passed": true,
+      "boxes": 80,
+      "points_per_box": 96,
+      "actual_step_samples": 7680,
+      "max_step_enclosure_violation": 0.0,
+      "max_barrier_enclosure_violation": 1.1368683772161603e-13,
+      "safe_claims": 80,
+      "failures": [],
+      "seconds": 0.351226263679564,
+      "metadata": {
+        "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+        "arithmetic": "float64 interval arithmetic; no directed rounding",
+        "barrier_nonnegative_by_construction": true,
+        "barrier_time_varying": false,
+        "unsafe_barrier_threshold": 20.0,
+        "frontend_execution": "state proxy plus bounded semantic residual",
+        "coordinates": "physical [e,heading,distance,speed,wheel_angle]",
+        "actor": {
+          "path": "/root/work_based_on_spvc/artical-F122/results/curve_braking_5d_20261117/actor.pt",
+          "sha256": "9015d427fed9be1b3e584c031bad54bcb032964c98aca812504ac6b380e15ccf"
+        },
+        "barrier": {
+          "path": "/root/work_based_on_spvc/artical-F122/results/curve_braking_5d_20261117/barrier.pt",
+          "sha256": "de6c1992dfab0dc63d264aab971ad34db6b5fbf5e2c75dede80a1356e7586421"
+        },
+        "contract": {
+          "path": "/root/work_based_on_spvc/artical-F122/results/curve_braking_5d_20261117/evaluation/neural/contract.json",
+          "sha256": "41e42c4597217179d865fa0567d143e23e363ee0388ee35d6a13d7bb8c453616"
+        },
+        "current_baseline_rerun": "global structural scalar inequalities",
+        "barrier_separation_domain": "0<=v<=2.6 and |wheel_angle|<=.07; B<20 geometric sublevel",
+        "adapter": {
+          "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+          "sha256": "e861bebd13116242c85981abe4dc03b3525a985ce40341283c235c346092c369"
+        },
+        "task": "braking",
+        "horizon": 14,
+        "dt": 0.2,
+        "error_lo": [
+          -0.12506186821868048,
+          -0.12506186821868048,
+          -0.12506186821868048
+        ],
+        "error_hi": [
+          0.12506186821868048,
+          0.12506186821868048,
+          0.12506186821868048
+        ],
+        "noise_lo": [],
+        "noise_hi": [],
+        "original_cp_distribution_unchanged": false,
+        "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+      },
+      "scope": "randomized consistency checks, not soundness proof"
+    },
+    {
+      "task": "hover",
+      "passed": true,
+      "boxes": 80,
+      "points_per_box": 96,
+      "actual_step_samples": 7680,
+      "max_step_enclosure_violation": 2.220446049250313e-16,
+      "max_barrier_enclosure_violation": 0.0,
+      "safe_claims": 47,
+      "failures": [],
+      "seconds": 0.08251573704183102,
+      "metadata": {
+        "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+        "arithmetic": "float64 interval arithmetic; no directed rounding",
+        "barrier_nonnegative_by_construction": true,
+        "barrier_time_varying": false,
+        "unsafe_barrier_threshold": 20.0,
+        "frontend_execution": "state proxy plus bounded semantic residual",
+        "design": {
+          "l": 0.7,
+          "m": 1.0,
+          "s_limit": 0.63
+        },
+        "coordinates": "three normalized positions then three normalized velocities",
+        "contract": {
+          "path": "/root/work_based_on_spvc/artical-F122/results/visual_hover_6d_20261117_v1/evaluation/contract.json",
+          "sha256": "4f3d6947bce258784cdcaecae09d1d3e84734cdf44f67a361d8ae1e00c5e4f1a"
+        },
+        "controller": {
+          "path": "/root/work_based_on_spvc/artical-F122/results/visual_hover_6d_20261117_v1/evaluation/synthesis.json",
+          "sha256": "a5d531f3e35ab603b47da0c7326cf743aee5f0113550021ba1dfdb9d16d93aa6"
+        },
+        "current_baseline_rerun": "exact rational scalar inequalities",
+        "adapter": {
+          "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+          "sha256": "e861bebd13116242c85981abe4dc03b3525a985ce40341283c235c346092c369"
+        },
+        "task": "hover",
+        "horizon": 24,
+        "dt": 0.25,
+        "error_lo": [
+          -0.21218472918995507,
+          -0.21218472918995507,
+          -0.21218472918995507
+        ],
+        "error_hi": [
+          0.21218472918995507,
+          0.21218472918995507,
+          0.21218472918995507
+        ],
+        "noise_lo": [
+          -0.08,
+          -0.08,
+          -0.08
+        ],
+        "noise_hi": [
+          0.08,
+          0.08,
+          0.08
+        ],
+        "original_cp_distribution_unchanged": false,
+        "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+      },
+      "scope": "randomized consistency checks, not soundness proof"
+    },
+    {
+      "task": "crane",
+      "passed": true,
+      "boxes": 80,
+      "points_per_box": 96,
+      "actual_step_samples": 7680,
+      "max_step_enclosure_violation": 2.220446049250313e-16,
+      "max_barrier_enclosure_violation": 6.661338147750939e-16,
+      "safe_claims": 46,
+      "failures": [],
+      "seconds": 0.6602329667657614,
+      "metadata": {
+        "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+        "arithmetic": "float64 interval arithmetic; no directed rounding",
+        "barrier_nonnegative_by_construction": true,
+        "barrier_time_varying": true,
+        "unsafe_barrier_threshold": 1.0,
+        "frontend_execution": "state proxy plus bounded semantic residual",
+        "gains": [
+          1.7103,
+          2.3227,
+          -2.4583,
+          -0.4332
+        ],
+        "coordinates": "axis x then y, each [p,v,s,r] physical SI units",
+        "initial_sampling": "original task: |p| uniform .34..70, signs uniform; remaining components uniform",
+        "contract": {
+          "path": "/root/work_based_on_spvc/artical-F122/results/overhead_crane_8d_20261117_v1/evaluation/contract.json",
+          "sha256": "b1ad4d509e9e1280c1fb53044e65e4e86d9c9cc3e03b18875792c325f5628e25"
+        },
+        "controller": {
+          "path": "/root/work_based_on_spvc/artical-F122/results/overhead_crane_8d_20261117_v1/evaluation/synthesis.json",
+          "sha256": "b739a1a55a8c1757777abd50df19097d6231187bd6c7bb43ed46e4e647112370"
+        },
+        "current_baseline_rerun": "exact rational finite-horizon support functions",
+        "adapter": {
+          "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+          "sha256": "e861bebd13116242c85981abe4dc03b3525a985ce40341283c235c346092c369"
+        },
+        "task": "crane",
+        "horizon": 40,
+        "dt": 0.15,
+        "error_lo": [
+          -0.18804915958435167,
+          -0.18804915958435167,
+          -0.18804915958435167,
+          -0.18804915958435167
+        ],
+        "error_hi": [
+          0.18804915958435167,
+          0.18804915958435167,
+          0.18804915958435167,
+          0.18804915958435167
+        ],
+        "noise_lo": [
+          -0.025,
+          -0.04,
+          -0.025,
+          -0.04
+        ],
+        "noise_hi": [
+          0.025,
+          0.04,
+          0.025,
+          0.04
+        ],
+        "original_cp_distribution_unchanged": false,
+        "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+      },
+      "scope": "randomized consistency checks, not soundness proof"
+    }
+  ],
+  "passed": true
+}

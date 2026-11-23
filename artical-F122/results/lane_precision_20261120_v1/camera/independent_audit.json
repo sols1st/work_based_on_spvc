@@ -1,0 +1,134 @@
+{
+  "passed": true,
+  "protocol_sha256": "14a12dc1ded71f3fb06902d9b96c7fe4da2a06d8c06e1d2ef8c50ec196724ef2",
+  "source_sha256": "81b8c6a0e2555aa040a66cfe391ce1f127bd3636749456cbc237b1ab87db62b3",
+  "per_arm": {
+    "anchor": {
+      "calibration": {
+        "n": 199,
+        "raw_sha256": "76a603f05a3f3779ddac2f27f0d06e26fdc4f2d94334ef7bce91cfac27a678bb",
+        "maximum_actor_replay_error": 0.0,
+        "dynamics_checked": true,
+        "residuals_checked": true,
+        "scenarios_reconstructed": true
+      },
+      "holdout": {
+        "n": 100,
+        "raw_sha256": "6ac178cc7dc773de96a0a16180e3c7a7fd767f94d1a99980f57ef7394babbd2b",
+        "maximum_actor_replay_error": 0.0,
+        "dynamics_checked": true,
+        "residuals_checked": true,
+        "scenarios_reconstructed": true
+      }
+    },
+    "202611200701__nominal_precision": {
+      "calibration": {
+        "n": 199,
+        "raw_sha256": "309f9cc46926a958fc072fc15fa1a9423a37e579eb4b88c57caca9b03c92f194",
+        "maximum_actor_replay_error": 0.0,
+        "dynamics_checked": true,
+        "residuals_checked": true,
+        "scenarios_reconstructed": true
+      },
+      "holdout": {
+        "n": 100,
+        "raw_sha256": "e60df18a31fc84b805ee5ee84550bfeec6fcbab7805c982cc9a547e8c1f9f952",
+        "maximum_actor_replay_error": 0.0,
+        "dynamics_checked": true,
+        "residuals_checked": true,
+        "scenarios_reconstructed": true
+      }
+    },
+    "202611200701__adversarial_precision": {
+      "calibration": {
+        "n": 199,
+        "raw_sha256": "a6490683e369e81ce5fe8de818119c17895e229700ee9cbd883e51cad0e1012b",
+        "maximum_actor_replay_error": 0.0,
+        "dynamics_checked": true,
+        "residuals_checked": true,
+        "scenarios_reconstructed": true
+      },
+      "holdout": {
+        "n": 100,
+        "raw_sha256": "0c3b4e12c7102d5b1fba990acbedda38ca6d37c0164089a1788c5bbe151e3133",
+        "maximum_actor_replay_error": 0.0,
+        "dynamics_checked": true,
+        "residuals_checked": true,
+        "scenarios_reconstructed": true
+      }
+    },
+    "202611200702__nominal_precision": {
+      "calibration": {
+        "n": 199,
+        "raw_sha256": "8c687a845d9aed73597d3cde10fda20754402c95b1fe8f6cfc5ba8f737a9ff31",
+        "maximum_actor_replay_error": 0.0,
+        "dynamics_checked": true,
+        "residuals_checked": true,
+        "scenarios_reconstructed": true
+      },
+      "holdout": {
+        "n": 100,
+        "raw_sha256": "5020fe6dd368067b74e45561eb20782c8fa2a297e1255ffec9b53b67121f76aa",
+        "maximum_actor_replay_error": 0.0,
+        "dynamics_checked": true,
+        "residuals_checked": true,
+        "scenarios_reconstructed": true
+      }
+    },
+    "202611200702__adversarial_precision": {
+      "calibration": {
+        "n": 199,
+        "raw_sha256": "0b4597bab8f458fd3ce78f4e394bc5d8b1336091fc87f45a08318d020a4cf39e",
+        "maximum_actor_replay_error": 0.0,
+        "dynamics_checked": true,
+        "residuals_checked": true,
+        "scenarios_reconstructed": true
+      },
+      "holdout": {
+        "n": 100,
+        "raw_sha256": "9e45d28345941323b5b4d17d8a2c39c68fed2a98a62b2ce3a968b40da78ab719",
+        "maximum_actor_replay_error": 0.0,
+        "dynamics_checked": true,
+        "residuals_checked": true,
+        "scenarios_reconstructed": true
+      }
+    },
+    "202611200703__nominal_precision": {
+      "calibration": {
+        "n": 199,
+        "raw_sha256": "296986c9e91a3d507efc447a075ab2640e9bf9355dfd6d0df0ed202342d97a7f",
+        "maximum_actor_replay_error": 0.0,
+        "dynamics_checked": true,
+        "residuals_checked": true,
+        "scenarios_reconstructed": true
+      },
+      "holdout": {
+        "n": 100,
+        "raw_sha256": "717592f39c249b60dc2681c9db4dab5c38482fd15b93eec4e4c0fc515b868d97",
+        "maximum_actor_replay_error": 0.0,
+        "dynamics_checked": true,
+        "residuals_checked": true,
+        "scenarios_reconstructed": true
+      }
+    },
+    "202611200703__adversarial_precision": {
+      "calibration": {
+        "n": 199,
+        "raw_sha256": "7c4d9f94eca15ca637677f730ee2cddf4cca72b9ab3a01531886fc6023e2e332",
+        "maximum_actor_replay_error": 0.0,
+        "dynamics_checked": true,
+        "residuals_checked": true,
+        "scenarios_reconstructed": true
+      },
+      "holdout": {
+        "n": 100,
+        "raw_sha256": "9c15ee9b81be3eb5ae243695008ac15f6d1a42c44126f441b138c8a113539708",
+        "maximum_actor_replay_error": 0.0,
+        "dynamics_checked": true,
+        "residuals_checked": true,
+        "scenarios_reconstructed": true
+      }
+    }
+  },
+  "scope": "implementation and data consistency; does not upgrade numerical barriers to exact proofs"
+}

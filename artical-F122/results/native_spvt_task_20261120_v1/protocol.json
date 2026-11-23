@@ -1,0 +1,51 @@
+{
+  "seed": 202611201101,
+  "n": 1000,
+  "horizon": 160,
+  "dt": 0.05,
+  "v": 5.0,
+  "wheelbase": 2.5,
+  "initial": "independent uniform CTE [-60,60] cm and heading [-7,7] degrees; registered benchmark distribution, not asserted original paper test draws",
+  "unsafe": "any |CTE| >80cm; original SPVT training safety threshold; no added heading restriction",
+  "precision": "safe for full rollout and |CTE|<=tolerance at every sample from 2 through 8 seconds",
+  "tolerances_cm": [
+    5,
+    10,
+    20,
+    40
+  ],
+  "latent_modes": [
+    "zero",
+    "iid",
+    "persistent"
+  ],
+  "latent_support": [
+    -0.8,
+    0.8
+  ],
+  "weights": {
+    "generator": {
+      "path": "/root/SPVT/model/pretrained_ckpts/mlp_generator.pth",
+      "sha256": "5990366fd81f103b591a9ddd1a79dc5c06d2de63299b7c88ea6741e7060f477b"
+    },
+    "pid_initializer": {
+      "path": "/root/SPVT/model/pretrained_ckpts/pid_controller.pth",
+      "sha256": "e9a9a1eccbddad07eeab8d72ef5d55a37262fb1f89ba31d2165277ef4c663d92"
+    },
+    "spvt_epoch100": {
+      "path": "/root/SPVT/spvt/logs/test/ckpts/checkpoint_epoch_100.pth",
+      "sha256": "c6044777a0c6edd926efe586dcf7e876f0e4266dfa24448eb5a39fb8aabdee8e"
+    }
+  },
+  "sources": {
+    "model/model.py": "dfe8dfadfca0991fea90207ebc2ec075f789617ef1e7ca5444451c04a43990ac",
+    "train.py": "d3d000f977c78f032a046529cb990dcb3ef36eb4c7497e37c73b5effa32617cd",
+    "spvt/utils.py": "2f07ebe2cacfe0bb505726122eb4c7fedf31a993b077deb561b31a13203129cc",
+    "spvt/loss.py": "81d07f79fe07904d76c9f979d7e52db2ef90953402d98b5ebbbcc70df190a4e6",
+    "spvt/args.py": "d0414eca0b5151deda55d8433d023d73abe2d5ad9020726c10c8c7fb384561af"
+  },
+  "checkpoint_selection": "epoch100 fixed before testing; not best test checkpoint",
+  "provenance": "existing server training artifact; not claimed author-published final checkpoint; training-run configuration not yet uniquely reconstructed",
+  "observations": "original conditional generator, not real camera; no current-framework comparison claimed",
+  "evaluator_sha256": "c513240b939520b778a7aa91707e85c90f423cacf0f6c8de7432150df0beb660"
+}

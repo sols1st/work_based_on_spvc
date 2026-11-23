@@ -1,0 +1,274 @@
+{
+  "format": "lane_trajectory_cp_protocol_v1",
+  "date": "2026-11-16",
+  "unit": "one complete closed-loop image rollout",
+  "horizon": 80,
+  "alpha": 0.05,
+  "calibration_episodes": 199,
+  "holdout_episodes": 100,
+  "calibration_seed": 202611188501,
+  "holdout_seed": 202611188502,
+  "inference_batch_size": 8,
+  "environment": {
+    "device": "cuda:1",
+    "dtype": "float32 actor and observer; float64 plant",
+    "threads": 4,
+    "versions": {
+      "numpy": "1.24.4",
+      "torch": "2.3.1",
+      "Pillow": "10.4.0",
+      "scipy": "1.10.1"
+    }
+  },
+  "score": "max over 80 (or registered horizon) frames and two normalized absolute observation errors",
+  "distribution": {
+    "initial": "independent uniform on original initial rectangle",
+    "initial_low": [
+      -0.25,
+      -0.06
+    ],
+    "initial_high": [
+      0.25,
+      0.06
+    ],
+    "curvature": "independent uniform on registered values, constant within each rollout",
+    "kappas": [
+      -0.01,
+      0.0,
+      0.01
+    ],
+    "lighting": 1.0,
+    "camera_lateral": 0.0,
+    "camera_height": 1.25,
+    "occluder": false,
+    "blur": 0.0,
+    "pixel_noise": 0.0,
+    "image_size": [
+      192,
+      192
+    ],
+    "speed": 4.0,
+    "dt": 0.1,
+    "wheelbase": 2.6,
+    "process_noise": 0
+  },
+  "binding": {
+    "actor_sha256": "afd4509772a9fda976da2d0c5722f55e6d8f2e9fabce37b7a998110583fe0c75",
+    "observer_sha256": "490e30cad8cbbc95809ba2fde9db4c99c3f8efd3ae2b6f02fb2f84f6707eb278",
+    "sbc_sha256": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321",
+    "dino_weights_sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+    "source_sha256": {
+      "robust_trajectory_cp.py": "6369d2b12f40ff4885308a9469b7200bec328547133a2a59d663f8093d0eb676",
+      "trajectory_cp.py": "0c02c50574df5b849bf0c684df6029ccd0382f120ceaa214b660c78202e31f92",
+      "cp.py": "eccf44a1b20eecf872c670646ac3ec2296b846c1866f3a77df47c4ed9c8e8cdc",
+      "core.py": "d946db50519f272833ee6aa0e14d80cb590d8a88b733cfcdeb24f7e451097b79",
+      "renderer.py": "90e3f69cc6ccd0539e39ecd958f16dc0f7076b28d4bb944bc21653665e394a4f",
+      "policy.py": "d56d4a944217cc11f0e9bb880549f5691850c015bb7f4c0f044b714436e544c7",
+      "patch_perception.py": "ab438e203952433fe9e22f2db51030749f578ecf13064d5090eb28fa4e7b027a",
+      "backbone.py": "4dd02c0b77a636192986b492cea98ae40326a39dea9f72e2f55c45a734da2093"
+    }
+  },
+  "rules": {
+    "threshold_uses_calibration_only": true,
+    "holdout_after_threshold_frozen": true,
+    "stop_or_drop_unsafe_rollouts": false,
+    "retrain_actor_or_observer": false,
+    "reuse_previous_12_development_runs": false,
+    "pad_last_inference_batch": true
+  },
+  "scope": "IID rollout generator under registered nominal simulator law; arbitrary within-rollout temporal dependence. No claim for changed policy, camera/weather, real world, fixed-state conditional coverage or longer horizon.",
+  "actual_date": "2026-11-18",
+  "renderer_workers": 8,
+  "parallel_collection_source_sha256": "69d398f66430e6b91cad224fce2905259ad589d169fdb2b335a1c27ad1bc5093",
+  "pixel_equivalence_check": {
+    "seed": 202611188504,
+    "states": [
+      [
+        0.507691117300633,
+        -0.046322010312215944
+      ],
+      [
+        0.6961486411113301,
+        0.26715605449124086
+      ],
+      [
+        -0.6287486693760053,
+        0.06977323547828701
+      ],
+      [
+        -0.012603519790280626,
+        0.23164575301091866
+      ],
+      [
+        -0.36589315163569625,
+        0.022254268128952537
+      ],
+      [
+        -0.32620087957057686,
+        -0.1290784361582197
+      ],
+      [
+        0.5900912733053166,
+        -0.07297561922592372
+      ],
+      [
+        0.5183733367535291,
+        -0.2801006427930857
+      ],
+      [
+        0.5026107535579897,
+        0.11470666895989479
+      ],
+      [
+        0.5043687078221869,
+        0.0001847682857959998
+      ],
+      [
+        -0.7556598893750681,
+        0.03964836790649323
+      ],
+      [
+        -0.5009385955196756,
+        0.20567610371735395
+      ],
+      [
+        0.46556154427699925,
+        0.24111612188950732
+      ],
+      [
+        -0.7572460638948384,
+        -0.11920271828940601
+      ],
+      [
+        -8.694428147548727e-06,
+        -0.19519135541612762
+      ],
+      [
+        -0.06571127277218436,
+        -0.06787659260076523
+      ],
+      [
+        -0.7111232601877968,
+        0.21078107279864539
+      ],
+      [
+        0.04960128095053962,
+        -0.21053204778912887
+      ],
+      [
+        0.5591516823790336,
+        -0.15232767876200698
+      ],
+      [
+        0.5287449859260346,
+        0.23141175850685786
+      ],
+      [
+        0.23154999998153747,
+        -0.15512006856148852
+      ],
+      [
+        -0.29508170761993857,
+        0.1324514965586327
+      ],
+      [
+        -0.2962826995761203,
+        0.023242613637951548
+      ],
+      [
+        -0.5217488294741239,
+        0.12471936380474286
+      ],
+      [
+        0.7841276225168491,
+        -0.09160296570269891
+      ],
+      [
+        -0.64607790914159,
+        -0.11848197214484377
+      ],
+      [
+        0.8233974407424408,
+        -0.10341386653153695
+      ],
+      [
+        0.005998471836719865,
+        -0.05362231741576884
+      ],
+      [
+        -0.5669590986037416,
+        0.13931860844694877
+      ],
+      [
+        0.7492940629766204,
+        -0.2031912797321196
+      ],
+      [
+        0.3969761295763351,
+        -0.16872439657831467
+      ],
+      [
+        0.2761591462557328,
+        -0.14084578754925112
+      ],
+      [
+        0.38070101805203194,
+        0.008101747703908035
+      ],
+      [
+        -0.8037226440166773,
+        -0.08522352369706501
+      ],
+      [
+        -0.1948468895644735,
+        -0.22945301265776896
+      ],
+      [
+        0.34918784275216586,
+        -0.16189326410020546
+      ]
+    ],
+    "curves": [
+      -0.01,
+      0.0,
+      0.01,
+      -0.01,
+      0.0,
+      0.01,
+      -0.01,
+      0.0,
+      0.01,
+      -0.01,
+      0.0,
+      0.01,
+      -0.01,
+      0.0,
+      0.01,
+      -0.01,
+      0.0,
+      0.01,
+      -0.01,
+      0.0,
+      0.01,
+      -0.01,
+      0.0,
+      0.01,
+      -0.01,
+      0.0,
+      0.01,
+      -0.01,
+      0.0,
+      0.01,
+      -0.01,
+      0.0,
+      0.01,
+      -0.01,
+      0.0,
+      0.01
+    ],
+    "cases": 36,
+    "all_pixels_identical": true,
+    "image_digest": "4c0abb2c0258efd6260c190a6de237d018bd3d42545729e9447a1888bcef3ce7",
+    "purpose": "implementation equivalence only; these frames never enter calibration or holdout"
+  }
+}

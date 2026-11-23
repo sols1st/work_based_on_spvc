@@ -1,0 +1,387 @@
+{
+  "task": "hover",
+  "method": "SPVC-inspired controlled expectation backend",
+  "comparison_scope": "same_frozen_controller_and_barrier_candidate; not native cGAN retraining",
+  "stochastic_model": "additive_uniform",
+  "model_description": "Assumed pooled state-independent additive uniform transition law, fitted once on development trajectories.",
+  "paper_assumption_1_preserved": false,
+  "paper_assumption_1_scope": "state-independent additive law on active states; shared absorbing-stop convention makes the full stopped kernel state-dependent",
+  "stopping_semantics": "terminal states absorb before any disturbance is applied, for both stochastic models",
+  "real_visual_probability_claim": null,
+  "mu": {
+    "kind": "assumed_state_independent_additive_uniform",
+    "development_seed": 181121,
+    "trajectories_per_context": 64,
+    "steps_per_trajectory": 12,
+    "transition_count": 768,
+    "lower": [
+      0.0,
+      0.0,
+      0.0,
+      -0.05332258912658973,
+      -0.05432733893065357,
+      -0.05628811266192026
+    ],
+    "upper": [
+      0.0,
+      0.0,
+      0.0,
+      0.05418352054364883,
+      0.05445626955344118,
+      0.05630626505840684
+    ],
+    "delta_mean": [
+      0.0,
+      0.0,
+      0.0,
+      -0.0010688888586674863,
+      0.00022385274031734006,
+      0.0015203203469774855
+    ],
+    "delta_std": [
+      0.0,
+      0.0,
+      0.0,
+      0.024717383779728083,
+      0.024201533103543074,
+      0.024452563678363192
+    ],
+    "state_min": [
+      -0.5025921831334125,
+      -0.566152386993142,
+      -0.5685308881424098,
+      -0.23510851203320254,
+      -0.24989030098486226,
+      -0.24547982867519885
+    ],
+    "state_max": [
+      0.5710570524847186,
+      0.5964999278218516,
+      0.5561655636287917,
+      0.20666481055488253,
+      0.2608866678662675,
+      0.22932909372935747
+    ],
+    "observation_support_lower": [
+      -0.21218472918995507,
+      -0.21218472918995507,
+      -0.21218472918995507
+    ],
+    "observation_support_upper": [
+      0.21218472918995507,
+      0.21218472918995507,
+      0.21218472918995507
+    ],
+    "plant_noise_lower": [
+      -0.08,
+      -0.08,
+      -0.08
+    ],
+    "plant_noise_upper": [
+      0.08,
+      0.08,
+      0.08
+    ],
+    "coverage_guarantee": null,
+    "real_transition_distribution_validated": false,
+    "note": "Pooled sample extrema define an assumed law, not a certified residual envelope. No real-camera probability is inferred."
+  },
+  "nonincrease_status": "inconclusive_within_budget",
+  "strict_status": "fixed_candidate_does_not_meet_strict_epsilon",
+  "strong_stochastic_baseline": {
+    "status": "not_inherited_for_different_transition_support",
+    "reason": "A pooled additive box need not equal the state-conditioned observation-error image.",
+    "logical_implication": "If B(next)<=B(now) for every disturbance in the same support, then E[B(next)|state]<=B(state) for every probability law on that support. No uniformity or independent-coordinate assumption is needed."
+  },
+  "interpretation_of_inconclusive": "An incomplete standalone interval integration is not failure of a stochastic method; a matching robust certificate already implies its nonincrease expectation condition.",
+  "strict_epsilon": 1e-06,
+  "strict_comparison_warning": "Zero plateaus and absorbing terminal states can make strict epsilon impossible for this transferred candidate; this is not evidence that SPVC cannot synthesize a different certificate.",
+  "expectation_bound_method": "equal-mass complete-support interval integration",
+  "noise_partition_cells": 32,
+  "interval_barrier_evaluations": 2949408,
+  "initial_bound": {
+    "upper": 0.0,
+    "boxes_evaluated": 1,
+    "all_initial_states_enclosed": true,
+    "target": 1.0,
+    "passed": true
+  },
+  "unsafe_threshold": 20.0,
+  "nonnegative_by_construction": true,
+  "unsafe_separation_evidence": null,
+  "complete_certificate_claim": false,
+  "certificate_obligations": "Numerical drift results alone do not establish unsafe separation, reliable arithmetic, real visual distribution validity, or all closure/terminal assumptions.",
+  "barrier_time_varying": false,
+  "theoretical_time_scope": "stationary candidate; any infinite-horizon claim additionally requires all global SBC obligations",
+  "counts": {
+    "processed": 100000,
+    "drift_passed": 221,
+    "strict_drift_passed": 4,
+    "outside_relevant_sublevel": 21252,
+    "unsafe_only": 0,
+    "unresolved": 0,
+    "domain_not_enclosed": 0,
+    "queued_unresolved": 57055
+  },
+  "largest_accepted_cell_drift_upper": 0.0,
+  "positive_drift_witnesses": [],
+  "strict_only_witnesses": [
+    {
+      "state": [
+        -0.07061353729810116,
+        -0.3319470962789399,
+        0.2402974060577664,
+        0.10580001721561796,
+        0.06649843592095153,
+        -0.1336480323810356
+      ],
+      "time": 0,
+      "context": null,
+      "barrier": 0.0,
+      "expected_barrier_lower": 0.0,
+      "expected_barrier_upper": 0.0,
+      "current_barrier_lower": 0.0,
+      "current_barrier_upper": 0.0,
+      "drift_lower": 0.0,
+      "drift_upper": 0.0,
+      "absorbing_identity": false,
+      "domain_enclosed": true,
+      "successor_lo": [
+        -0.04416353299419667,
+        -0.31532248729870205,
+        0.2068853979625075,
+        0.019869789799558293,
+        0.04200000357270804,
+        -0.17518777734112484
+      ],
+      "successor_hi": [
+        -0.04416353299419667,
+        -0.31532248729870205,
+        0.2068853979625075,
+        0.12737589946979685,
+        0.1507836120568028,
+        -0.06259339962079773
+      ]
+    },
+    {
+      "state": [
+        -0.04926069338495476,
+        0.4950660562937401,
+        0.19011278490484196,
+        -0.053428446963139614,
+        0.11242804120029218,
+        -0.06980343024048104
+      ],
+      "time": 0,
+      "context": null,
+      "barrier": 0.0,
+      "expected_barrier_lower": 0.0,
+      "expected_barrier_upper": 0.0,
+      "current_barrier_lower": 0.0,
+      "current_barrier_upper": 0.0,
+      "drift_lower": 0.0,
+      "drift_upper": 0.0,
+      "absorbing_identity": false,
+      "domain_enclosed": true,
+      "successor_lo": [
+        -0.06261780512573967,
+        0.5231730665938131,
+        0.1726619273447217,
+        -0.07542332478802792,
+        -0.0763177750918901,
+        -0.12969482240854419
+      ],
+      "successor_hi": [
+        -0.06261780512573967,
+        0.5231730665938131,
+        0.1726619273447217,
+        0.03208278488221064,
+        0.03246583339220466,
+        -0.017100444688217087
+      ]
+    },
+    {
+      "state": [
+        0.0025159222779553847,
+        -0.5081664392393136,
+        0.35190104038852466,
+        -0.08096787534243834,
+        0.11199462051037021,
+        0.1597081708255598
+      ],
+      "time": 0,
+      "context": null,
+      "barrier": 0.0,
+      "expected_barrier_lower": 0.0,
+      "expected_barrier_upper": 0.0,
+      "current_barrier_lower": 0.0,
+      "current_barrier_upper": 0.0,
+      "drift_lower": 0.0,
+      "drift_upper": 0.0,
+      "absorbing_identity": false,
+      "domain_enclosed": true,
+      "successor_lo": [
+        -0.0177260465576542,
+        -0.48016778411172106,
+        0.3918280830949146,
+        -0.10031940384713396,
+        0.09899869472968918,
+        -0.0260385965052152
+      ],
+      "successor_hi": [
+        -0.0177260465576542,
+        -0.48016778411172106,
+        0.3918280830949146,
+        0.0071867058231046,
+        0.20778230321378394,
+        0.0865557812151119
+      ]
+    },
+    {
+      "state": [
+        0.5593152747983039,
+        -0.35622244948032405,
+        0.44096074575117594,
+        0.051423043342575164,
+        -0.02414695334264433,
+        0.04313990805984069
+      ],
+      "time": 0,
+      "context": null,
+      "barrier": 0.0,
+      "expected_barrier_lower": 0.0,
+      "expected_barrier_upper": 0.0,
+      "current_barrier_lower": 0.0,
+      "current_barrier_upper": 0.0,
+      "drift_lower": 0.0,
+      "drift_upper": 0.0,
+      "absorbing_identity": false,
+      "domain_enclosed": true,
+      "successor_lo": [
+        0.5721710356339477,
+        -0.36225918781598515,
+        0.4517457227661361,
+        -0.12163451229431219,
+        -0.005872908443617354,
+        -0.10865079603396766
+      ],
+      "successor_hi": [
+        0.5721710356339477,
+        -0.36225918781598515,
+        0.4517457227661361,
+        -0.014128402624073624,
+        0.10291070004047739,
+        0.003943581686359457
+      ]
+    },
+    {
+      "state": [
+        -0.43697149799167156,
+        -0.10320964215807626,
+        0.40235771147525456,
+        0.040464023252905656,
+        0.008367779209061649,
+        0.02722641918546534
+      ],
+      "time": 0,
+      "context": null,
+      "barrier": 0.0,
+      "expected_barrier_lower": 0.0,
+      "expected_barrier_upper": 0.0,
+      "current_barrier_lower": 0.0,
+      "current_barrier_upper": 0.0,
+      "drift_lower": 0.0,
+      "drift_upper": 0.0,
+      "absorbing_identity": false,
+      "domain_enclosed": true,
+      "successor_lo": [
+        -0.42685549217844515,
+        -0.10111769735581086,
+        0.4091643162716209,
+        0.046414236392373534,
+        -0.031454178507779776,
+        -0.11104552113844723
+      ],
+      "successor_hi": [
+        -0.42685549217844515,
+        -0.10111769735581086,
+        0.4091643162716209,
+        0.1539203460626121,
+        0.07732942997631498,
+        0.001548856581879872
+      ]
+    }
+  ],
+  "unresolved_examples": [],
+  "arithmetic": "float64 interval operations; no directed outward rounding",
+  "witness_significance_guard": "drift lower must exceed relative tolerance times (1+|B|+|E upper/lower|); smaller positive drift is never used as a counterexample. Acceptance is not relaxed by this tolerance.",
+  "outward_rounded": false,
+  "elapsed_seconds": 35.548900712281466,
+  "budget": {
+    "max_state_boxes": 100000,
+    "max_seconds": 300,
+    "noise_cells": 32,
+    "max_depth": 22,
+    "witness_states": 64,
+    "witness_seed": 181123,
+    "strict_epsilon": 1e-06,
+    "region_boxes": 256,
+    "witness_relative_tolerance": 1e-09
+  },
+  "task_metadata": {
+    "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+    "arithmetic": "float64 interval arithmetic; no directed rounding",
+    "barrier_nonnegative_by_construction": true,
+    "barrier_time_varying": false,
+    "unsafe_barrier_threshold": 20.0,
+    "frontend_execution": "state proxy plus bounded semantic residual",
+    "design": {
+      "l": 0.7,
+      "m": 1.0,
+      "s_limit": 0.63
+    },
+    "coordinates": "three normalized positions then three normalized velocities",
+    "contract": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/visual_hover_6d_20261117_v1/evaluation/contract.json",
+      "sha256": "4f3d6947bce258784cdcaecae09d1d3e84734cdf44f67a361d8ae1e00c5e4f1a"
+    },
+    "controller": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/visual_hover_6d_20261117_v1/evaluation/synthesis.json",
+      "sha256": "a5d531f3e35ab603b47da0c7326cf743aee5f0113550021ba1dfdb9d16d93aa6"
+    },
+    "current_baseline_rerun": "exact rational scalar inequalities",
+    "adapter": {
+      "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+      "sha256": "3f814d65d6199193ae9e92fa9aec6985bcd2b94704e40879a1f4e555cbf4ed9a"
+    },
+    "task": "hover",
+    "horizon": 24,
+    "dt": 0.25,
+    "error_lo": [
+      -0.21218472918995507,
+      -0.21218472918995507,
+      -0.21218472918995507
+    ],
+    "error_hi": [
+      0.21218472918995507,
+      0.21218472918995507,
+      0.21218472918995507
+    ],
+    "noise_lo": [
+      -0.08,
+      -0.08,
+      -0.08
+    ],
+    "noise_hi": [
+      0.08,
+      0.08,
+      0.08
+    ],
+    "original_cp_distribution_unchanged": false,
+    "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+  },
+  "source_binding": {
+    "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/spvc_stochastic.py",
+    "sha256": "904886609de058c4ca51ea4b072922c47adf0d6eebc569afffc72b8f77a82fe2"
+  }
+}

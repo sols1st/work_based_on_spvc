@@ -1,0 +1,686 @@
+[
+  {
+    "group": [
+      20,
+      2,
+      "same_target_e2e"
+    ],
+    "fixed_training_seeds": 3,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 2.685142914454142,
+      "q_deg": 0.8661239544550577,
+      "covered": 944.6666666666666,
+      "unsafe": 0.0,
+      "precision5": 1000.0,
+      "precision10": 1000.0,
+      "precision20": 1000.0,
+      "settling5_seconds": 0.6016333333333335
+    }
+  },
+  {
+    "group": [
+      20,
+      2,
+      "current_lowdim"
+    ],
+    "fixed_training_seeds": 3,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 2.806883176167806,
+      "q_deg": 2.0693278312683105,
+      "covered": 957.0,
+      "unsafe": 0.0,
+      "precision5": 1000.0,
+      "precision10": 1000.0,
+      "precision20": 1000.0,
+      "settling5_seconds": 0.5648000000000001
+    }
+  },
+  {
+    "group": [
+      20,
+      2,
+      "spvt_pid"
+    ],
+    "fixed_training_seeds": 1,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 5.055006504058838,
+      "q_deg": 5.1021904945373535,
+      "covered": 947.0,
+      "unsafe": 0.0,
+      "precision5": 449.0,
+      "precision10": 903.0,
+      "precision20": 1000.0,
+      "settling5_seconds": 2.1165
+    }
+  },
+  {
+    "group": [
+      20,
+      2,
+      "spvt_epoch100"
+    ],
+    "fixed_training_seeds": 1,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 17.473834991455078,
+      "q_deg": 8.916387557983398,
+      "covered": 963.0,
+      "unsafe": 0.0,
+      "precision5": 0.0,
+      "precision10": 0.0,
+      "precision20": 0.0,
+      "settling5_seconds": 8.0
+    }
+  },
+  {
+    "group": [
+      20,
+      4,
+      "same_target_e2e"
+    ],
+    "fixed_training_seeds": 3,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 2.759629408518473,
+      "q_deg": 0.8878494501113892,
+      "covered": 949.6666666666666,
+      "unsafe": 0.0,
+      "precision5": 1000.0,
+      "precision10": 1000.0,
+      "precision20": 1000.0,
+      "settling5_seconds": 0.6289666666666667
+    }
+  },
+  {
+    "group": [
+      20,
+      4,
+      "current_lowdim"
+    ],
+    "fixed_training_seeds": 3,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 2.8858500321706138,
+      "q_deg": 2.1422523657480874,
+      "covered": 948.6666666666666,
+      "unsafe": 0.0,
+      "precision5": 1000.0,
+      "precision10": 1000.0,
+      "precision20": 1000.0,
+      "settling5_seconds": 0.5959500000000001
+    }
+  },
+  {
+    "group": [
+      20,
+      4,
+      "spvt_pid"
+    ],
+    "fixed_training_seeds": 1,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 5.1539177894592285,
+      "q_deg": 5.592682838439941,
+      "covered": 946.0,
+      "unsafe": 0.0,
+      "precision5": 451.0,
+      "precision10": 876.0,
+      "precision20": 1000.0,
+      "settling5_seconds": 2.1768500000000004
+    }
+  },
+  {
+    "group": [
+      20,
+      4,
+      "spvt_epoch100"
+    ],
+    "fixed_training_seeds": 1,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 17.452136993408203,
+      "q_deg": 8.945457458496094,
+      "covered": 953.0,
+      "unsafe": 0.0,
+      "precision5": 0.0,
+      "precision10": 0.0,
+      "precision20": 1.0,
+      "settling5_seconds": 8.0
+    }
+  },
+  {
+    "group": [
+      20,
+      7,
+      "same_target_e2e"
+    ],
+    "fixed_training_seeds": 3,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 2.9685541788736978,
+      "q_deg": 0.9409511089324951,
+      "covered": 951.3333333333334,
+      "unsafe": 0.0,
+      "precision5": 1000.0,
+      "precision10": 1000.0,
+      "precision20": 1000.0,
+      "settling5_seconds": 0.6833666666666668
+    }
+  },
+  {
+    "group": [
+      20,
+      7,
+      "current_lowdim"
+    ],
+    "fixed_training_seeds": 3,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 3.0846754709879556,
+      "q_deg": 3.0513123671213784,
+      "covered": 951.6666666666666,
+      "unsafe": 0.0,
+      "precision5": 1000.0,
+      "precision10": 1000.0,
+      "precision20": 1000.0,
+      "settling5_seconds": 0.6521
+    }
+  },
+  {
+    "group": [
+      20,
+      7,
+      "spvt_pid"
+    ],
+    "fixed_training_seeds": 1,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 5.411928176879883,
+      "q_deg": 6.525132656097412,
+      "covered": 935.0,
+      "unsafe": 0.0,
+      "precision5": 445.0,
+      "precision10": 818.0,
+      "precision20": 1000.0,
+      "settling5_seconds": 2.2820500000000004
+    }
+  },
+  {
+    "group": [
+      20,
+      7,
+      "spvt_epoch100"
+    ],
+    "fixed_training_seeds": 1,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 17.459671020507812,
+      "q_deg": 9.763357162475586,
+      "covered": 950.0,
+      "unsafe": 0.0,
+      "precision5": 0.0,
+      "precision10": 0.0,
+      "precision20": 32.0,
+      "settling5_seconds": 8.0
+    }
+  },
+  {
+    "group": [
+      40,
+      2,
+      "same_target_e2e"
+    ],
+    "fixed_training_seeds": 3,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 5.107107162475586,
+      "q_deg": 0.9229463736216227,
+      "covered": 938.0,
+      "unsafe": 0.0,
+      "precision5": 1000.0,
+      "precision10": 1000.0,
+      "precision20": 1000.0,
+      "settling5_seconds": 0.9696333333333333
+    }
+  },
+  {
+    "group": [
+      40,
+      2,
+      "current_lowdim"
+    ],
+    "fixed_training_seeds": 3,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 5.151479562123616,
+      "q_deg": 2.608424743016561,
+      "covered": 956.3333333333334,
+      "unsafe": 0.0,
+      "precision5": 1000.0,
+      "precision10": 1000.0,
+      "precision20": 1000.0,
+      "settling5_seconds": 0.9434666666666667
+    }
+  },
+  {
+    "group": [
+      40,
+      2,
+      "spvt_pid"
+    ],
+    "fixed_training_seeds": 1,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 9.434389114379883,
+      "q_deg": 9.47243881225586,
+      "covered": 933.0,
+      "unsafe": 0.0,
+      "precision5": 232.0,
+      "precision10": 447.0,
+      "precision20": 895.0,
+      "settling5_seconds": 3.85275
+    }
+  },
+  {
+    "group": [
+      40,
+      2,
+      "spvt_epoch100"
+    ],
+    "fixed_training_seeds": 1,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 19.256793975830078,
+      "q_deg": 11.09206771850586,
+      "covered": 948.0,
+      "unsafe": 0.0,
+      "precision5": 0.0,
+      "precision10": 0.0,
+      "precision20": 98.0,
+      "settling5_seconds": 8.0
+    }
+  },
+  {
+    "group": [
+      40,
+      4,
+      "same_target_e2e"
+    ],
+    "fixed_training_seeds": 3,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 5.141344865163167,
+      "q_deg": 0.9512562155723572,
+      "covered": 949.6666666666666,
+      "unsafe": 0.0,
+      "precision5": 1000.0,
+      "precision10": 1000.0,
+      "precision20": 1000.0,
+      "settling5_seconds": 0.9763000000000002
+    }
+  },
+  {
+    "group": [
+      40,
+      4,
+      "current_lowdim"
+    ],
+    "fixed_training_seeds": 3,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 5.197768211364746,
+      "q_deg": 2.664221207300822,
+      "covered": 960.3333333333334,
+      "unsafe": 0.0,
+      "precision5": 1000.0,
+      "precision10": 1000.0,
+      "precision20": 1000.0,
+      "settling5_seconds": 0.9543833333333334
+    }
+  },
+  {
+    "group": [
+      40,
+      4,
+      "spvt_pid"
+    ],
+    "fixed_training_seeds": 1,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 9.483591079711914,
+      "q_deg": 9.915933609008789,
+      "covered": 946.0,
+      "unsafe": 0.0,
+      "precision5": 228.0,
+      "precision10": 459.0,
+      "precision20": 899.0,
+      "settling5_seconds": 3.8710500000000003
+    }
+  },
+  {
+    "group": [
+      40,
+      4,
+      "spvt_epoch100"
+    ],
+    "fixed_training_seeds": 1,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 19.264484405517578,
+      "q_deg": 11.827630043029785,
+      "covered": 941.0,
+      "unsafe": 0.0,
+      "precision5": 0.0,
+      "precision10": 0.0,
+      "precision20": 110.0,
+      "settling5_seconds": 8.0
+    }
+  },
+  {
+    "group": [
+      40,
+      7,
+      "same_target_e2e"
+    ],
+    "fixed_training_seeds": 3,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 5.240385214487712,
+      "q_deg": 0.9736881852149963,
+      "covered": 932.3333333333334,
+      "unsafe": 0.0,
+      "precision5": 1000.0,
+      "precision10": 1000.0,
+      "precision20": 1000.0,
+      "settling5_seconds": 0.9873166666666667
+    }
+  },
+  {
+    "group": [
+      40,
+      7,
+      "current_lowdim"
+    ],
+    "fixed_training_seeds": 3,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 5.275926113128662,
+      "q_deg": 3.200800895690918,
+      "covered": 942.0,
+      "unsafe": 0.0,
+      "precision5": 1000.0,
+      "precision10": 1000.0,
+      "precision20": 1000.0,
+      "settling5_seconds": 0.9542000000000002
+    }
+  },
+  {
+    "group": [
+      40,
+      7,
+      "spvt_pid"
+    ],
+    "fixed_training_seeds": 1,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 9.602702140808105,
+      "q_deg": 10.816704750061035,
+      "covered": 950.0,
+      "unsafe": 0.0,
+      "precision5": 232.0,
+      "precision10": 465.0,
+      "precision20": 879.0,
+      "settling5_seconds": 3.8918000000000004
+    }
+  },
+  {
+    "group": [
+      40,
+      7,
+      "spvt_epoch100"
+    ],
+    "fixed_training_seeds": 1,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 19.282184600830078,
+      "q_deg": 13.98597526550293,
+      "covered": 941.0,
+      "unsafe": 0.0,
+      "precision5": 0.0,
+      "precision10": 0.0,
+      "precision20": 114.0,
+      "settling5_seconds": 8.0
+    }
+  },
+  {
+    "group": [
+      60,
+      2,
+      "same_target_e2e"
+    ],
+    "fixed_training_seeds": 3,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 7.5536495844523115,
+      "q_deg": 1.065525730450948,
+      "covered": 951.3333333333334,
+      "unsafe": 0.0,
+      "precision5": 1000.0,
+      "precision10": 1000.0,
+      "precision20": 1000.0,
+      "settling5_seconds": 1.1825166666666669
+    }
+  },
+  {
+    "group": [
+      60,
+      2,
+      "current_lowdim"
+    ],
+    "fixed_training_seeds": 3,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 7.583213488260905,
+      "q_deg": 3.2893897692362466,
+      "covered": 933.3333333333334,
+      "unsafe": 0.0,
+      "precision5": 1000.0,
+      "precision10": 1000.0,
+      "precision20": 1000.0,
+      "settling5_seconds": 1.1326666666666667
+    }
+  },
+  {
+    "group": [
+      60,
+      2,
+      "spvt_pid"
+    ],
+    "fixed_training_seeds": 1,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 13.94167709350586,
+      "q_deg": 14.175750732421875,
+      "covered": 932.0,
+      "unsafe": 0.0,
+      "precision5": 148.0,
+      "precision10": 320.0,
+      "precision20": 594.0,
+      "settling5_seconds": 4.9571499999999995
+    }
+  },
+  {
+    "group": [
+      60,
+      2,
+      "spvt_epoch100"
+    ],
+    "fixed_training_seeds": 1,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 21.615373611450195,
+      "q_deg": 14.468463897705078,
+      "covered": 939.0,
+      "unsafe": 0.0,
+      "precision5": 0.0,
+      "precision10": 0.0,
+      "precision20": 175.0,
+      "settling5_seconds": 8.0
+    }
+  },
+  {
+    "group": [
+      60,
+      4,
+      "same_target_e2e"
+    ],
+    "fixed_training_seeds": 3,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 7.571513811747233,
+      "q_deg": 1.0588767131169636,
+      "covered": 949.0,
+      "unsafe": 0.0,
+      "precision5": 1000.0,
+      "precision10": 1000.0,
+      "precision20": 1000.0,
+      "settling5_seconds": 1.1860333333333335
+    }
+  },
+  {
+    "group": [
+      60,
+      4,
+      "current_lowdim"
+    ],
+    "fixed_training_seeds": 3,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 7.610072612762451,
+      "q_deg": 3.32784112294515,
+      "covered": 937.0,
+      "unsafe": 0.0,
+      "precision5": 1000.0,
+      "precision10": 1000.0,
+      "precision20": 1000.0,
+      "settling5_seconds": 1.1369166666666666
+    }
+  },
+  {
+    "group": [
+      60,
+      4,
+      "spvt_pid"
+    ],
+    "fixed_training_seeds": 1,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 13.96883773803711,
+      "q_deg": 14.566723823547363,
+      "covered": 943.0,
+      "unsafe": 0.0,
+      "precision5": 150.0,
+      "precision10": 318.0,
+      "precision20": 590.0,
+      "settling5_seconds": 4.9643999999999995
+    }
+  },
+  {
+    "group": [
+      60,
+      4,
+      "spvt_epoch100"
+    ],
+    "fixed_training_seeds": 1,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 21.661216735839844,
+      "q_deg": 15.85728931427002,
+      "covered": 932.0,
+      "unsafe": 0.0,
+      "precision5": 0.0,
+      "precision10": 0.0,
+      "precision20": 187.0,
+      "settling5_seconds": 8.0
+    }
+  },
+  {
+    "group": [
+      60,
+      7,
+      "same_target_e2e"
+    ],
+    "fixed_training_seeds": 3,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 7.633202870686849,
+      "q_deg": 1.0952957073847454,
+      "covered": 954.6666666666666,
+      "unsafe": 0.0,
+      "precision5": 1000.0,
+      "precision10": 1000.0,
+      "precision20": 1000.0,
+      "settling5_seconds": 1.1874833333333334
+    }
+  },
+  {
+    "group": [
+      60,
+      7,
+      "current_lowdim"
+    ],
+    "fixed_training_seeds": 3,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 7.653175671895345,
+      "q_deg": 3.364960034688314,
+      "covered": 947.6666666666666,
+      "unsafe": 0.0,
+      "precision5": 1000.0,
+      "precision10": 1000.0,
+      "precision20": 1000.0,
+      "settling5_seconds": 1.1232
+    }
+  },
+  {
+    "group": [
+      60,
+      7,
+      "spvt_pid"
+    ],
+    "fixed_training_seeds": 1,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 14.0421142578125,
+      "q_deg": 15.235294342041016,
+      "covered": 947.0,
+      "unsafe": 0.0,
+      "precision5": 146.0,
+      "precision10": 315.0,
+      "precision20": 585.0,
+      "settling5_seconds": 4.962899999999999
+    }
+  },
+  {
+    "group": [
+      60,
+      7,
+      "spvt_epoch100"
+    ],
+    "fixed_training_seeds": 1,
+    "n_scenarios": 1000,
+    "metrics": {
+      "rmse_cm": 21.76348114013672,
+      "q_deg": 18.691862106323242,
+      "covered": 939.0,
+      "unsafe": 0.0,
+      "precision5": 0.0,
+      "precision10": 0.0,
+      "precision20": 165.0,
+      "settling5_seconds": 8.0
+    }
+  }
+]

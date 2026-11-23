@@ -1,0 +1,109 @@
+{
+  "baseline_policy": "Keep original SPVC and SPVT implementation, no bug fixes or algorithm optimizations",
+  "spvt_original_source_equal": {
+    "model/model.py": {
+      "executed": "dfe8dfadfca0991fea90207ebc2ec075f789617ef1e7ca5444451c04a43990ac",
+      "upstream": "dfe8dfadfca0991fea90207ebc2ec075f789617ef1e7ca5444451c04a43990ac",
+      "equal": true
+    },
+    "spvt/args.py": {
+      "executed": "d0414eca0b5151deda55d8433d023d73abe2d5ad9020726c10c8c7fb384561af",
+      "upstream": "d0414eca0b5151deda55d8433d023d73abe2d5ad9020726c10c8c7fb384561af",
+      "equal": true
+    },
+    "spvt/logger.py": {
+      "executed": "e8f642b27e2d0ac56233dc85c9736c2c8d15ad5a54c3d04e0fef928eb15d2fc5",
+      "upstream": "e8f642b27e2d0ac56233dc85c9736c2c8d15ad5a54c3d04e0fef928eb15d2fc5",
+      "equal": true
+    },
+    "spvt/loss.py": {
+      "executed": "81d07f79fe07904d76c9f979d7e52db2ef90953402d98b5ebbbcc70df190a4e6",
+      "upstream": "81d07f79fe07904d76c9f979d7e52db2ef90953402d98b5ebbbcc70df190a4e6",
+      "equal": true
+    },
+    "spvt/reg.py": {
+      "executed": "93479a88315679c33f3450f64df42093f73ddeee50b3bd14497a9ae513667c89",
+      "upstream": "93479a88315679c33f3450f64df42093f73ddeee50b3bd14497a9ae513667c89",
+      "equal": true
+    },
+    "spvt/scripts.py": {
+      "executed": "3d72bda7426c2a3905b9dcd44718fe34856d63edac1cc711f07cbde942d37658",
+      "upstream": "3d72bda7426c2a3905b9dcd44718fe34856d63edac1cc711f07cbde942d37658",
+      "equal": true
+    },
+    "spvt/utils.py": {
+      "executed": "2f07ebe2cacfe0bb505726122eb4c7fedf31a993b077deb561b31a13203129cc",
+      "upstream": "2f07ebe2cacfe0bb505726122eb4c7fedf31a993b077deb561b31a13203129cc",
+      "equal": true
+    },
+    "train.py": {
+      "executed": "d3d000f977c78f032a046529cb990dcb3ef36eb4c7497e37c73b5effa32617cd",
+      "upstream": "d3d000f977c78f032a046529cb990dcb3ef36eb4c7497e37c73b5effa32617cd",
+      "equal": true
+    }
+  },
+  "own_barrier_checks": {
+    "common": {
+      "q_m": 1.2192419605854639,
+      "check": {
+        "status": "positive_drift_witness",
+        "d_m": 6.00001,
+        "v_mps": 0.26416006289308175,
+        "error_m": 1.219241960585463,
+        "barrier": 0.0,
+        "successor_barrier": 0.9368444752721254,
+        "drift": 0.9368444752721254
+      }
+    },
+    "full24k": {
+      "q_m": 0.395911162872153,
+      "check": {
+        "status": "pass_by_inclusion",
+        "outer_m": 0.45,
+        "checked_cells": 782400
+      }
+    }
+  },
+  "excluded_runs": {
+    "spvt_smoke": "excluded by user instruction: do not modify or optimize baseline implementations",
+    "spvt_units_fixed": "excluded by user instruction: do not modify or optimize baseline implementations",
+    "spvt_units_fixed_cpu": "excluded by user instruction: do not modify or optimize baseline implementations",
+    "spvc_target24k": "excluded by user instruction: do not modify or optimize baseline implementations",
+    "spvc_target24k_realhead": "excluded by user instruction: do not modify or optimize baseline implementations"
+  },
+  "nonfinal_runs": {
+    "spvt_released": "GPU out of memory; not final",
+    "aebs_complete": "our adapter missing device attribute; superseded by v2",
+    "spvt_original_evaluation": "legacy result key; superseded by v2"
+  },
+  "original_spvt_budget": "256 registered initial training states, 20 epochs, batch32, native backward; reproduction diagnostic, not full default budget",
+  "native_source_unchanged": true,
+  "own_release_binding": {
+    "continuous_state_numerical_interval_pass": true,
+    "region_pass": true,
+    "regions": {
+      "initial": {
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "unsafe": {
+        "lower": 25.039446320554333,
+        "upper": 32.81330886476853
+      }
+    },
+    "actual_witnesses": 0,
+    "unresolved_cells": 0,
+    "checked_cells": 0,
+    "parent_checked_cells": 782400,
+    "verification_route": "constant tube inclusion into already audited superset",
+    "verified_superset_radius_m": 0.45,
+    "envelope_radius_at_10m": 0.45,
+    "source_policy_sha256": "230807a1759bbededeaa7703ede1ab676ee792e4e8b0a92b01428f9b5ae38c8c",
+    "source_sbc_sha256": "856104931b3e2cfc8b47cee2e62ef891ec119e8f461742e1a8b86d04a45b6aa3",
+    "observation_model": "tube",
+    "full_image_certificate": false,
+    "floating_point_formal_proof": false,
+    "guarantee_scope": "stopped AEBS, all live d in (6,16], v in (1e-6,3], conditional on observation-tube support",
+    "arithmetic": "float64 mathematical-network interval model; no outward rounding"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "arm": "gray32_spatial",
+  "budget": 24000,
+  "seed": 27411,
+  "rank_selection": {
+    "grid": 4,
+    "lr": 0.001,
+    "epoch": 70,
+    "dev_mse": 0.0005245950625573316
+  },
+  "model_sha256": "f947a8e69a48f1d01926558e993d7748d47daae5fedce5df2f3c02b4295cbce2",
+  "trials": [
+    {
+      "grid": 2,
+      "lr": 0.0001,
+      "epoch": 99,
+      "dev_mse": 0.0013321401208286957,
+      "gradients": 22200,
+      "parameters": 28961,
+      "training_seconds": 42.54899165593088
+    },
+    {
+      "grid": 2,
+      "lr": 0.001,
+      "epoch": 95,
+      "dev_mse": 0.0006227083557331669,
+      "gradients": 22200,
+      "parameters": 28961,
+      "training_seconds": 42.360389199107885
+    },
+    {
+      "grid": 4,
+      "lr": 0.0001,
+      "epoch": 99,
+      "dev_mse": 0.0011864172305362246,
+      "gradients": 22200,
+      "parameters": 78113,
+      "training_seconds": 72.44421471003443
+    },
+    {
+      "grid": 4,
+      "lr": 0.001,
+      "epoch": 70,
+      "dev_mse": 0.0005245950625573316,
+      "gradients": 22200,
+      "parameters": 78113,
+      "training_seconds": 72.46786274667829
+    }
+  ],
+  "protocol_sha256": "98e8e01db1a537fc8947c2153f4451d20d7d5fd8df90e9c18221a97f2d133bd6",
+  "test_metrics_accessed": false
+}

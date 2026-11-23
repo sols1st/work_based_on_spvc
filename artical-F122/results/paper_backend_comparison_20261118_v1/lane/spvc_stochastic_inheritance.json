@@ -1,0 +1,92 @@
+{
+  "task": "lane",
+  "status": "nonincrease_expectation_inherited_from_fresh_matching_robust_verification",
+  "comparison": "strong stochastic baseline on the identical observation and plant disturbance support",
+  "reason": "A pointwise B(next)<=B(now) bound implies the conditional expectation inequality for every law supported on the same allowed successors, including the registered uniform observation model.",
+  "strict_epsilon_inherited": false,
+  "valid_for_additive_model": false,
+  "real_camera_probability_claim": null,
+  "native_cgan_retraining": false,
+  "standalone_interval_integration_may_remain_inconclusive": true,
+  "source_current_result": {
+    "path": "results/paper_backend_comparison_20261118_v1/lane/current.json",
+    "sha256": "f9ac24ae3453e161da37778b10925b592e91d1028039635b010346ac7aebd5ba",
+    "elapsed_seconds": 9.437330095097423,
+    "rerun": true
+  },
+  "checked_identity_keys": [
+    "actor",
+    "barrier",
+    "contract",
+    "coordinates",
+    "horizon",
+    "dt",
+    "error_lo",
+    "error_hi",
+    "noise_lo",
+    "noise_hi",
+    "contexts",
+    "barrier_time_varying",
+    "unsafe_barrier_threshold"
+  ],
+  "identity_mismatches": [],
+  "source_adapter_sha256": "80530dafa4e10ad7600e66d1ddb62b2990d09a6cdfe6a1b53242240a1c75bc99",
+  "current_adapter_sha256": "3f814d65d6199193ae9e92fa9aec6985bcd2b94704e40879a1f4e555cbf4ed9a",
+  "adapter_difference": "Only terminal_status/interval_is_terminal API helpers were added after the robust runs; existing point dynamics, interval step, barrier and robust verification were unchanged. Underlying model and support bindings above were separately compared.",
+  "proof_arithmetic": "float64 numerical intervals, without directed rounding",
+  "barrier_time_varying": false,
+  "horizon": 80,
+  "task_metadata": {
+    "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+    "arithmetic": "float64 interval arithmetic; no directed rounding",
+    "barrier_nonnegative_by_construction": true,
+    "barrier_time_varying": false,
+    "unsafe_barrier_threshold": 20.0,
+    "frontend_execution": "state proxy plus bounded semantic residual",
+    "coordinates": "normalized [e/.85,theta/.30]",
+    "contract": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/lane_robust_synthesis_20261116_v2/final_cp/calibration.json",
+      "sha256": "f828c763116ce4c6665b19948afa7992b15b93d6be2f299b93237edb611cad69"
+    },
+    "actor": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/lane_robust_synthesis_20261116_v2/package/actor.pt",
+      "sha256": "afd4509772a9fda976da2d0c5722f55e6d8f2e9fabce37b7a998110583fe0c75"
+    },
+    "barrier": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/lane_robust_synthesis_20261116_v2/package/sbc.pt",
+      "sha256": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321"
+    },
+    "contexts": [
+      -0.01,
+      0.0,
+      0.01
+    ],
+    "adapter": {
+      "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+      "sha256": "3f814d65d6199193ae9e92fa9aec6985bcd2b94704e40879a1f4e555cbf4ed9a"
+    },
+    "task": "lane",
+    "horizon": 80,
+    "dt": 0.1,
+    "error_lo": [
+      -0.09968696247082366,
+      -0.09968696247082366
+    ],
+    "error_hi": [
+      0.09968696247082366,
+      0.09968696247082366
+    ],
+    "noise_lo": [],
+    "noise_hi": [],
+    "original_cp_distribution_unchanged": false,
+    "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+  },
+  "standalone_observation_result": {
+    "status": "inconclusive_within_budget",
+    "elapsed_seconds": 300.0389970978722,
+    "state_boxes": 2820,
+    "stop_reason": "time_budget",
+    "strict_status": "fixed_candidate_does_not_meet_strict_epsilon",
+    "source_sha256": "887ae7327824f24f716d36419661e9f626fb00ac45a3a8178a9aecfe3d1154c7"
+  }
+}

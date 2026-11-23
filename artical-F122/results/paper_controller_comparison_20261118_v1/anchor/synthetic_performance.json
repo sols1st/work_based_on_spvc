@@ -1,0 +1,35 @@
+{
+  "seed": 202611188901,
+  "initial_n": 2000,
+  "metrics": {
+    "iid": {
+      "n": 2000,
+      "safe": 2000,
+      "unsafe": 0,
+      "mean_abs_e_m": 0.030890339048589132,
+      "peak_abs_e_m": 0.13820649284394793,
+      "mean_abs_heading_rad": 0.017309610884669396,
+      "mean_steering_change_rad": 0.20353543752859093
+    },
+    "persistent": {
+      "n": 2000,
+      "safe": 2000,
+      "unsafe": 0,
+      "mean_abs_e_m": 0.06953835887847921,
+      "peak_abs_e_m": 0.14535750575209572,
+      "mean_abs_heading_rad": 0.004649853655055275,
+      "mean_steering_change_rad": 0.003450295409092407
+    },
+    "alternating": {
+      "n": 2000,
+      "safe": 2000,
+      "unsafe": 0,
+      "mean_abs_e_m": 0.026990209486040192,
+      "peak_abs_e_m": 0.135304112533589,
+      "mean_abs_heading_rad": 0.021879523704710507,
+      "mean_steering_change_rad": 0.4962616687202749
+    }
+  },
+  "distribution": "synthetic residuals; unchanged common anchor",
+  "cp_guarantee": false
+}

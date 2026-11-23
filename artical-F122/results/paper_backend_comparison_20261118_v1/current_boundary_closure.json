@@ -1,0 +1,60 @@
+{
+  "purpose": "Supplement to fresh full-domain current barrier checks. This records the first-exit enclosure used by the original task verifier; no tasks.py modification.",
+  "arithmetic": "float64 evaluation of explicit inequalities; no directed rounding",
+  "lane": {
+    "normalized_safe_rectangle": [
+      -1,
+      1
+    ],
+    "global_clipped_action_rad": [
+      -0.45,
+      0.45
+    ],
+    "curvatures_per_m": [
+      -0.01,
+      0,
+      0.01
+    ],
+    "successor_abs_coordinate_bounds": [
+      1.1390683325465127,
+      1.2610538798033737
+    ],
+    "audited_unsafe_strip_outer_abs_bound": 1.3,
+    "passed": true,
+    "argument": "Any first discrete-time exit from the safe rectangle lies in the four audited unsafe strips inside [-1.3,1.3]^2. Initial B<=1, unsafe strips B>=20 and nonincrease over the safe B<20 sublevel exclude such a first exit.",
+    "fresh_audit_sha256": "f9ac24ae3453e161da37778b10925b592e91d1028039635b010346ac7aebd5ba"
+  },
+  "aebs": {
+    "live_domain": {
+      "distance_m": [
+        6,
+        16
+      ],
+      "distance_lower_strict": true,
+      "speed_mps": [
+        1e-06,
+        3
+      ],
+      "speed_lower_strict": true
+    },
+    "next_distance_lower_m": 5.85,
+    "next_distance_upper_m": 16,
+    "next_velocity_clamped_mps": [
+      0,
+      3
+    ],
+    "dangerous_region_audited": {
+      "distance_m": [
+        5,
+        6
+      ],
+      "speed_mps": [
+        0.5,
+        3
+      ]
+    },
+    "passed": true,
+    "argument": "The unabsorbed step from d>6,v>1e-6 remains in d>=5.85,d<=16,v in [0,3]. A dangerous first crossing is in the audited [5,6]x[.5,3] rectangle. Success, dangerous states and a safe zero-speed stop are then absorbing. No drift after absorption is required.",
+    "fresh_audit_sha256": "e6bab04a8e5085218770321b4901842cd1ff3188b2abe4a54f08c393c440d4cc"
+  }
+}

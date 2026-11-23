@@ -1,0 +1,63 @@
+{
+  "reference": "Aebs.experiments.matched_aebs_replay.collect",
+  "smoke_seed": 202611189099,
+  "checks": [
+    {
+      "model": "gray32_mlp_400_27411",
+      "actor": "original_ppo",
+      "episodes": 32,
+      "all_equal": true,
+      "fields": {
+        "scores": "scores",
+        "steps": "steps",
+        "outcomes": "outcomes",
+        "terminal_states": "terminal_states",
+        "episode_mae_m": "episode_mean_abs_error_m",
+        "max_lookup_error_m": "max_lookup_error_m"
+      }
+    },
+    {
+      "model": "gray32_mlp_400_27411",
+      "actor": "current_robust",
+      "episodes": 32,
+      "all_equal": true,
+      "fields": {
+        "scores": "scores",
+        "steps": "steps",
+        "outcomes": "outcomes",
+        "terminal_states": "terminal_states",
+        "episode_mae_m": "episode_mean_abs_error_m",
+        "max_lookup_error_m": "max_lookup_error_m"
+      }
+    },
+    {
+      "model": "gray32_400_27411",
+      "actor": "original_ppo",
+      "episodes": 32,
+      "all_equal": true,
+      "fields": {
+        "scores": "scores",
+        "steps": "steps",
+        "outcomes": "outcomes",
+        "terminal_states": "terminal_states",
+        "episode_mae_m": "episode_mean_abs_error_m",
+        "max_lookup_error_m": "max_lookup_error_m"
+      }
+    },
+    {
+      "model": "gray32_400_27411",
+      "actor": "current_robust",
+      "episodes": 32,
+      "all_equal": true,
+      "fields": {
+        "scores": "scores",
+        "steps": "steps",
+        "outcomes": "outcomes",
+        "terminal_states": "terminal_states",
+        "episode_mae_m": "episode_mean_abs_error_m",
+        "max_lookup_error_m": "max_lookup_error_m"
+      }
+    }
+  ],
+  "all_equal": true
+}

@@ -1,0 +1,22 @@
+{
+  "development_rank": [
+    "silu16",
+    "tanh16x16",
+    "tanh16",
+    "relu16",
+    "affine",
+    "fitted_Cx",
+    "fixed_Cx"
+  ],
+  "development_mse": {
+    "fixed_Cx": 9.961549039871898e-06,
+    "fitted_Cx": 9.767353731149342e-06,
+    "affine": 9.444206625630613e-06,
+    "tanh16": 8.711851781602794e-06,
+    "relu16": 8.764866530934038e-06,
+    "silu16": 8.503671476015976e-06,
+    "tanh16x16": 8.526690786917849e-06
+  },
+  "selected_architecture": "silu16",
+  "test_not_used_for_selection": true
+}

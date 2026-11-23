@@ -1,0 +1,23 @@
+{
+  "log_path": "/root/SPVT/spvt/logs/test/runs/events.out.tfevents.1786339853.67ced9780528.5637.0",
+  "log_sha256": "b8d1e90e5ba295150b9fa5b550bf80708f3d873dbc61be855cfb338b533165fa",
+  "configuration_text": "### Training Configuration ###\n\n\n## Run ID\n* run_id: `logs/test`\n\n## Hyperparameters\n* latent_dim: `10`\n* k_min: `4`\n* k_max: `10`\n* beta1: `0.9`\n* beta2: `0.999`\n* num_epochs: `100`\n* batch_size: `64`\n* lr: `8e-05`\n\n## Training Settings\n* safety_loss_type: `single_step`\n* buffer_criteria: `bound_gap`\n* buffer_size: `4000`\n* bound_method: `IBP`\n* lambda_safety: `0.0`\n* lambda_bound: `1.0`\n* pred_loss_step: `1`\n* lambda_accuracy: `1.0`\n* lambda_reg: `0.0`\n* lambda_lp: `0.0`\n* dynamic_lambda: `0.5`\n* target_acc_loss: `0.04`\n* dynamic_step: `0.05`\n* batch_fraction: `0.5`\n\n## Other\n* ckpt: `None`\n* device: `cuda`\n* seed: `0`\n",
+  "last_scalar_steps": {
+    "loss/pred": 100,
+    "loss/bound": 100,
+    "loss/safety": 100,
+    "loss/reg": 100,
+    "loss/state_lp": 100,
+    "loss/latent_lp": 100,
+    "loss/total": 100,
+    "buffer/states_added": 100,
+    "buffer/size": 100,
+    "buffer/violation_rate": 100,
+    "dataset/size": 100,
+    "params/K": 100,
+    "params/lr": 100,
+    "params/zeta": 100,
+    "params/alpha": 100
+  },
+  "interpretation": "Latest log ends alongside checkpoint100 and records IBP/batch64/seed0, unlike source defaults backward/batch256; historical config evidence, not author-published final model provenance."
+}

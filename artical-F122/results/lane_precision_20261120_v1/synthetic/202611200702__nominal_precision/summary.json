@@ -1,0 +1,194 @@
+{
+  "n": 1000,
+  "support": 0.1,
+  "metrics": {
+    "nominal": {
+      "unsafe": {
+        "mean": 0.0,
+        "p95": 0.0,
+        "count": 0
+      },
+      "rmse_e_m": {
+        "mean": 0.026584513848262915,
+        "p95": 0.052614805492064806,
+        "count": null
+      },
+      "mean_abs_e_m": {
+        "mean": 0.010160716083776063,
+        "p95": 0.019232869183586347,
+        "count": null
+      },
+      "peak_abs_e_m": {
+        "mean": 0.12737788114339324,
+        "p95": 0.23906177300968928,
+        "count": null
+      },
+      "tail_mean_abs_e_m": {
+        "mean": 0.0014409923716633857,
+        "p95": 0.002122436777962108,
+        "count": null
+      },
+      "tail_peak_abs_e_m": {
+        "mean": 0.0020930741148144235,
+        "p95": 0.004004272465228638,
+        "count": null
+      },
+      "mean_abs_heading_rad": {
+        "mean": 0.00383556410890523,
+        "p95": 0.007359642481795277,
+        "count": null
+      },
+      "mean_steering_change_rad": {
+        "mean": 0.003020390749358443,
+        "p95": 0.006587299529840295,
+        "count": null
+      },
+      "strict_02cm": {
+        "mean": 1.0,
+        "p95": 1.0,
+        "count": 1000
+      },
+      "strict_05cm": {
+        "mean": 1.0,
+        "p95": 1.0,
+        "count": 1000
+      },
+      "strict_10cm": {
+        "mean": 1.0,
+        "p95": 1.0,
+        "count": 1000
+      },
+      "strict_20cm": {
+        "mean": 1.0,
+        "p95": 1.0,
+        "count": 1000
+      }
+    },
+    "iid": {
+      "unsafe": {
+        "mean": 0.0,
+        "p95": 0.0,
+        "count": 0
+      },
+      "rmse_e_m": {
+        "mean": 0.03438012482221398,
+        "p95": 0.05624635542291249,
+        "count": null
+      },
+      "mean_abs_e_m": {
+        "mean": 0.022819713354047814,
+        "p95": 0.0330479390789698,
+        "count": null
+      },
+      "peak_abs_e_m": {
+        "mean": 0.13087280144578642,
+        "p95": 0.23906177300968928,
+        "count": null
+      },
+      "tail_mean_abs_e_m": {
+        "mean": 0.01616885215924797,
+        "p95": 0.023591683132219845,
+        "count": null
+      },
+      "tail_peak_abs_e_m": {
+        "mean": 0.04337243892895294,
+        "p95": 0.06144424652764473,
+        "count": null
+      },
+      "mean_abs_heading_rad": {
+        "mean": 0.015426923989986093,
+        "p95": 0.019171783247620814,
+        "count": null
+      },
+      "mean_steering_change_rad": {
+        "mean": 0.13807568928231484,
+        "p95": 0.16192780304806234,
+        "count": null
+      },
+      "strict_02cm": {
+        "mean": 0.003,
+        "p95": 0.0,
+        "count": 3
+      },
+      "strict_05cm": {
+        "mean": 0.754,
+        "p95": 1.0,
+        "count": 754
+      },
+      "strict_10cm": {
+        "mean": 1.0,
+        "p95": 1.0,
+        "count": 1000
+      },
+      "strict_20cm": {
+        "mean": 1.0,
+        "p95": 1.0,
+        "count": 1000
+      }
+    },
+    "persistent": {
+      "unsafe": {
+        "mean": 0.0,
+        "p95": 0.0,
+        "count": 0
+      },
+      "rmse_e_m": {
+        "mean": 0.06209737816944056,
+        "p95": 0.12856367712103167,
+        "count": null
+      },
+      "mean_abs_e_m": {
+        "mean": 0.05627982495954302,
+        "p95": 0.12593791603725282,
+        "count": null
+      },
+      "peak_abs_e_m": {
+        "mean": 0.135808802035216,
+        "p95": 0.23906177300968928,
+        "count": null
+      },
+      "tail_mean_abs_e_m": {
+        "mean": 0.05399241205333098,
+        "p95": 0.13283923741081616,
+        "count": null
+      },
+      "tail_peak_abs_e_m": {
+        "mean": 0.05440931839566686,
+        "p95": 0.13287672031991246,
+        "count": null
+      },
+      "mean_abs_heading_rad": {
+        "mean": 0.004176950445515354,
+        "p95": 0.00907961512759817,
+        "count": null
+      },
+      "mean_steering_change_rad": {
+        "mean": 0.0032426275877184764,
+        "p95": 0.00700617488202509,
+        "count": null
+      },
+      "strict_02cm": {
+        "mean": 0.256,
+        "p95": 1.0,
+        "count": 256
+      },
+      "strict_05cm": {
+        "mean": 0.529,
+        "p95": 1.0,
+        "count": 529
+      },
+      "strict_10cm": {
+        "mean": 0.844,
+        "p95": 1.0,
+        "count": 844
+      },
+      "strict_20cm": {
+        "mean": 1.0,
+        "p95": 1.0,
+        "count": 1000
+      }
+    }
+  },
+  "actor_sha256": "ff1f1fb6c04a3d155459e8eb168e41761bf4030fcdf4f25bf03872302ac0a863",
+  "scope": "synthetic errors; not image feedback or CP proof"
+}

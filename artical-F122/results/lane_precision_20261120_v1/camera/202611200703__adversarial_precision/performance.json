@@ -1,0 +1,87 @@
+{
+  "n": 100,
+  "metrics": {
+    "unsafe": {
+      "mean": 0.0,
+      "p95": 0.0,
+      "count": 0
+    },
+    "rmse_e_m": {
+      "mean": 0.03485565868963115,
+      "p95": 0.061106834221281145,
+      "count": null
+    },
+    "mean_abs_e_m": {
+      "mean": 0.02064469285704175,
+      "p95": 0.03581994992857779,
+      "count": null
+    },
+    "peak_abs_e_m": {
+      "mean": 0.13252131110187082,
+      "p95": 0.24455945480889069,
+      "count": null
+    },
+    "tail_mean_abs_e_m": {
+      "mean": 0.01244076186435203,
+      "p95": 0.027060536057637693,
+      "count": null
+    },
+    "tail_peak_abs_e_m": {
+      "mean": 0.024218497289720205,
+      "p95": 0.05214238247656553,
+      "count": null
+    },
+    "mean_abs_heading_rad": {
+      "mean": 0.006997351872094945,
+      "p95": 0.012436302491857561,
+      "count": null
+    },
+    "mean_steering_change_rad": {
+      "mean": 0.017446934034511495,
+      "p95": 0.026702941187916766,
+      "count": null
+    },
+    "strict_02cm": {
+      "mean": 0.63,
+      "p95": 1.0,
+      "count": 63
+    },
+    "strict_05cm": {
+      "mean": 0.88,
+      "p95": 1.0,
+      "count": 88
+    },
+    "strict_10cm": {
+      "mean": 1.0,
+      "p95": 1.0,
+      "count": 100
+    },
+    "strict_20cm": {
+      "mean": 1.0,
+      "p95": 1.0,
+      "count": 100
+    }
+  },
+  "coverage": {
+    "episodes": 100,
+    "covered": 97,
+    "not_covered": 3,
+    "fraction": 0.97,
+    "binomial_two_sided_95_interval": [
+      0.91482394702572,
+      0.9937700284616936
+    ]
+  },
+  "precision_bound": {
+    "n": 199,
+    "rank": 190,
+    "alpha": 0.05,
+    "radius_m": 0.05187524480374496,
+    "finite_bound": true,
+    "unsafe_calibration": 0,
+    "score": "infinity if unsafe anywhere; otherwise max |physical lateral error| from 2.0 through 8.0 seconds",
+    "claim": "For a prespecified frozen controller and exchangeable complete trajectories, P(finite_radius AND (unsafe OR tail_error > calibrated_radius)) <= alpha, marginal over calibration and new trajectory. Infinite radius is uninformative. This is NOT conditional 95 percent coverage given a particular radius, finite-radius selection or certificate acceptance.",
+    "distinction": "statistical performance bound; not an all-disturbance reachability or precision certificate"
+  },
+  "precision_covered": 93
+}

@@ -1,0 +1,56 @@
+[
+  {
+    "task": "aebs",
+    "model": "observation_uniform",
+    "status": "numerical_positive_expected_drift_witness",
+    "strict": "fixed_candidate_does_not_meet_strict_epsilon",
+    "elapsed": 7.584424283821136,
+    "strong_baseline": "source_robust_proof_not_rerun_or_not_passed",
+    "processed": 230
+  },
+  {
+    "error": "RuntimeError('Error: cannot set number of interop threads after parallel work has started or set_num_interop_threads called')"
+  },
+  {
+    "error": "RuntimeError('Error: cannot set number of interop threads after parallel work has started or set_num_interop_threads called')"
+  },
+  {
+    "error": "RuntimeError('Error: cannot set number of interop threads after parallel work has started or set_num_interop_threads called')"
+  },
+  {
+    "error": "RuntimeError('Error: cannot set number of interop threads after parallel work has started or set_num_interop_threads called')"
+  },
+  {
+    "error": "RuntimeError('Error: cannot set number of interop threads after parallel work has started or set_num_interop_threads called')"
+  },
+  {
+    "error": "RuntimeError('Error: cannot set number of interop threads after parallel work has started or set_num_interop_threads called')"
+  },
+  {
+    "task": "aebs",
+    "model": "additive_uniform",
+    "status": "numerical_positive_expected_drift_witness",
+    "strict": "fixed_candidate_does_not_meet_strict_epsilon",
+    "elapsed": 23.75267223874107,
+    "strong_baseline": "not_inherited_for_different_transition_support",
+    "processed": 3037
+  },
+  {
+    "task": "lane",
+    "model": "additive_uniform",
+    "status": "continuous_domain_numerical_nonincrease_pass",
+    "strict": "fixed_candidate_does_not_meet_strict_epsilon",
+    "elapsed": 51.644483149051666,
+    "strong_baseline": "not_inherited_for_different_transition_support",
+    "processed": 6805
+  },
+  {
+    "task": "lane",
+    "model": "observation_uniform",
+    "status": "inconclusive_within_budget",
+    "strict": "fixed_candidate_does_not_meet_strict_epsilon",
+    "elapsed": 300.04923419607803,
+    "strong_baseline": "source_robust_proof_not_rerun_or_not_passed",
+    "processed": 2834
+  }
+]

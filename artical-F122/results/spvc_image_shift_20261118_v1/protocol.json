@@ -1,0 +1,319 @@
+{
+  "experiment": "AEBS frozen common-image zero-shot photometric shifts",
+  "source": "results/aebs_factorial_20261117",
+  "library": "results/aebs_matched_replay_20261117/library",
+  "budgets_path": "results/aebs_budget_scaling_20261110",
+  "repo": "../external/dinov2",
+  "weights": "../external/dinov2_weights/dinov2_vits14_pretrain.pth",
+  "image_count": 3229,
+  "source_pixels": "same audited uint8 grayscale32 input bytes for all methods",
+  "condition_order": [
+    "identity",
+    "brightness_0p7",
+    "brightness_1p3",
+    "contrast_0p7",
+    "contrast_1p3",
+    "blur_0p5",
+    "blur_1p0"
+  ],
+  "conditions": [
+    {
+      "name": "identity",
+      "operation": "identity",
+      "parameter": 1.0
+    },
+    {
+      "name": "brightness_0p7",
+      "operation": "brightness",
+      "parameter": 0.7
+    },
+    {
+      "name": "brightness_1p3",
+      "operation": "brightness",
+      "parameter": 1.3
+    },
+    {
+      "name": "contrast_0p7",
+      "operation": "contrast",
+      "parameter": 0.7
+    },
+    {
+      "name": "contrast_1p3",
+      "operation": "contrast",
+      "parameter": 1.3
+    },
+    {
+      "name": "blur_0p5",
+      "operation": "gaussian_blur",
+      "parameter": 0.5
+    },
+    {
+      "name": "blur_1p0",
+      "operation": "gaussian_blur",
+      "parameter": 1.0
+    }
+  ],
+  "transformation": "float64; brightness multiplies intensity; contrast around127.5; Gaussian sigma in original32px coordinates, reflect boundary and truncate4; clip[0,255], np.rint(ties-to-even), uint8; identity unchanged",
+  "scope": "Synthetic test distribution changes applied to existing held CARLA images. No new rendered camera frames, field images, CP guarantee or safety certificate.",
+  "labels": "Physical distance labels unchanged by these photometric transforms; no geometric warp",
+  "population": "Common3229 excludes training/development IDs and matching source gray pixels of all three budgets; held duplicates are retained as registered finite-library records, not claimed independent frames",
+  "old_heads": [
+    {
+      "key": "gray32_mlp_400_27411",
+      "mode": "gray32_mlp",
+      "budget": 400,
+      "train_seed": 27411,
+      "checkpoint": "results/aebs_factorial_20261117/models/gray32_mlp_400_27411/readout.pt",
+      "checkpoint_sha256": "e8303814d61c2bd7d5a3a326bd0080e4858553f148984bd5feae61a03aff6ce0",
+      "fit_path": "results/aebs_factorial_20261117/models/gray32_mlp_400_27411/fit.json",
+      "fit_sha256": "1de0d01ef35c9024cd31c1d7b272beaf69fab8e4dc661b7122757f2711c0b739",
+      "family": "mlp"
+    },
+    {
+      "key": "gray32_400_27411",
+      "mode": "gray32",
+      "budget": 400,
+      "train_seed": 27411,
+      "checkpoint": "results/aebs_factorial_20261117/models/gray32_400_27411/readout.pt",
+      "checkpoint_sha256": "31aeae288bceb55ff609a97d85dc7198c3446d0edee8f24953664179a85ca057",
+      "fit_path": "results/aebs_factorial_20261117/models/gray32_400_27411/fit.json",
+      "fit_sha256": "2d4e3c6934d89b058b7e44e55ba5b39151641f6906558313106c42be9e53d515",
+      "family": "dino_cls"
+    },
+    {
+      "key": "gray32_mlp_400_27412",
+      "mode": "gray32_mlp",
+      "budget": 400,
+      "train_seed": 27412,
+      "checkpoint": "results/aebs_factorial_20261117/models/gray32_mlp_400_27412/readout.pt",
+      "checkpoint_sha256": "5d5aaebae078fd06af9aeef0afb579c837101410079d05c549bf635fa048e9fe",
+      "fit_path": "results/aebs_factorial_20261117/models/gray32_mlp_400_27412/fit.json",
+      "fit_sha256": "4e9dbf553f4de68a6ce67462485227da8c857e0095912cb93dc4c2c420a2afec",
+      "family": "mlp"
+    },
+    {
+      "key": "gray32_400_27412",
+      "mode": "gray32",
+      "budget": 400,
+      "train_seed": 27412,
+      "checkpoint": "results/aebs_factorial_20261117/models/gray32_400_27412/readout.pt",
+      "checkpoint_sha256": "992d8c46e4fcc220d77c8feb917c74cf04dc4a6bc32b6ae9e710cb4dd3769370",
+      "fit_path": "results/aebs_factorial_20261117/models/gray32_400_27412/fit.json",
+      "fit_sha256": "439dd6ab00e456fde46887c9f36b0b578b36236497c2ec2f374fc7537e2e011d",
+      "family": "dino_cls"
+    },
+    {
+      "key": "gray32_mlp_400_27413",
+      "mode": "gray32_mlp",
+      "budget": 400,
+      "train_seed": 27413,
+      "checkpoint": "results/aebs_factorial_20261117/models/gray32_mlp_400_27413/readout.pt",
+      "checkpoint_sha256": "98f23bccca387c61478537ac584fedf467abeeff0325127bdf01b244c7d6bd2c",
+      "fit_path": "results/aebs_factorial_20261117/models/gray32_mlp_400_27413/fit.json",
+      "fit_sha256": "6a17d6fb61e48baa2c4ad0210115a9f9f6d557d33ed4b4709e6eea26c9adcc03",
+      "family": "mlp"
+    },
+    {
+      "key": "gray32_400_27413",
+      "mode": "gray32",
+      "budget": 400,
+      "train_seed": 27413,
+      "checkpoint": "results/aebs_factorial_20261117/models/gray32_400_27413/readout.pt",
+      "checkpoint_sha256": "1165b03ce854940380d065e36c0956f6473e6b75e7bb11254ef9854ef93e6fde",
+      "fit_path": "results/aebs_factorial_20261117/models/gray32_400_27413/fit.json",
+      "fit_sha256": "670809d389625e541f7514c0f8dd8c49e5d6b98bcaf71f9836e47fe8d18261a4",
+      "family": "dino_cls"
+    },
+    {
+      "key": "gray32_mlp_10000_27411",
+      "mode": "gray32_mlp",
+      "budget": 10000,
+      "train_seed": 27411,
+      "checkpoint": "results/aebs_factorial_20261117/models/gray32_mlp_10000_27411/readout.pt",
+      "checkpoint_sha256": "21c0b7e39bdf1dda3e21e59d4314ffd3e4e74fc2c9e889b647a075a50ddb19a3",
+      "fit_path": "results/aebs_factorial_20261117/models/gray32_mlp_10000_27411/fit.json",
+      "fit_sha256": "d2a2b2ff0c5cd5f5e414715de24d65ea6a4dcd98e67de995decd8acb2cdeae66",
+      "family": "mlp"
+    },
+    {
+      "key": "gray32_10000_27411",
+      "mode": "gray32",
+      "budget": 10000,
+      "train_seed": 27411,
+      "checkpoint": "results/aebs_factorial_20261117/models/gray32_10000_27411/readout.pt",
+      "checkpoint_sha256": "b3e7e28b99b2452c5a338bea1aa5fd322aed480f4e20e4a1c896fb15f45f0caa",
+      "fit_path": "results/aebs_factorial_20261117/models/gray32_10000_27411/fit.json",
+      "fit_sha256": "4490201887ff912044ba05ecd9404a646261e6ea089f9fb0b994e29a0b414871",
+      "family": "dino_cls"
+    },
+    {
+      "key": "gray32_mlp_10000_27412",
+      "mode": "gray32_mlp",
+      "budget": 10000,
+      "train_seed": 27412,
+      "checkpoint": "results/aebs_factorial_20261117/models/gray32_mlp_10000_27412/readout.pt",
+      "checkpoint_sha256": "4f888e1b147061bef8d1d66a5520b287b82918d4b7fd007f408cba07d7521caf",
+      "fit_path": "results/aebs_factorial_20261117/models/gray32_mlp_10000_27412/fit.json",
+      "fit_sha256": "8040ed38f4920c65b6c0dd58152a8ea6299dd878de484135c3e1ddae951d7b56",
+      "family": "mlp"
+    },
+    {
+      "key": "gray32_10000_27412",
+      "mode": "gray32",
+      "budget": 10000,
+      "train_seed": 27412,
+      "checkpoint": "results/aebs_factorial_20261117/models/gray32_10000_27412/readout.pt",
+      "checkpoint_sha256": "421e1a5f27f06721ba14523ce444bb79b9699e59fb46d0268232366fe2f07805",
+      "fit_path": "results/aebs_factorial_20261117/models/gray32_10000_27412/fit.json",
+      "fit_sha256": "c5ebbe5cf6cf209fb4f580113f39a8ecc1151f118288120e563260bb58650e33",
+      "family": "dino_cls"
+    },
+    {
+      "key": "gray32_mlp_10000_27413",
+      "mode": "gray32_mlp",
+      "budget": 10000,
+      "train_seed": 27413,
+      "checkpoint": "results/aebs_factorial_20261117/models/gray32_mlp_10000_27413/readout.pt",
+      "checkpoint_sha256": "194c7dc104012a8eee1e3af98f9d18c3fd1fa1deca1d47cece14f63f2577a852",
+      "fit_path": "results/aebs_factorial_20261117/models/gray32_mlp_10000_27413/fit.json",
+      "fit_sha256": "521043a76a31e523b4cdc0a9581363b9fef2f051d36c66b939970a3deee7397a",
+      "family": "mlp"
+    },
+    {
+      "key": "gray32_10000_27413",
+      "mode": "gray32",
+      "budget": 10000,
+      "train_seed": 27413,
+      "checkpoint": "results/aebs_factorial_20261117/models/gray32_10000_27413/readout.pt",
+      "checkpoint_sha256": "4fee6337029dcc760049286c13e346b3f60d5d097a4186c653be4651047f3029",
+      "fit_path": "results/aebs_factorial_20261117/models/gray32_10000_27413/fit.json",
+      "fit_sha256": "812ceefb8308f687b2a3bddc672fcb36e656a7e3174b2d36a9e5586c16911961",
+      "family": "dino_cls"
+    },
+    {
+      "key": "gray32_mlp_24000_27411",
+      "mode": "gray32_mlp",
+      "budget": 24000,
+      "train_seed": 27411,
+      "checkpoint": "results/aebs_factorial_20261117/models/gray32_mlp_24000_27411/readout.pt",
+      "checkpoint_sha256": "05b8804698986efcc6a911c6d012f8528a9259caff80e5ec3e8dc00cb552194f",
+      "fit_path": "results/aebs_factorial_20261117/models/gray32_mlp_24000_27411/fit.json",
+      "fit_sha256": "9e09fcbd886918971a44337ddff54cf6e349285ed878618992c99105cb678660",
+      "family": "mlp"
+    },
+    {
+      "key": "gray32_24000_27411",
+      "mode": "gray32",
+      "budget": 24000,
+      "train_seed": 27411,
+      "checkpoint": "results/aebs_factorial_20261117/models/gray32_24000_27411/readout.pt",
+      "checkpoint_sha256": "1e9358127d3f1880d878893e78768c6b87df1cc83996272cadedb9556bd47fab",
+      "fit_path": "results/aebs_factorial_20261117/models/gray32_24000_27411/fit.json",
+      "fit_sha256": "5c9ef8734084e26c78213face3f275a794d060f9608f9b524fe2f6c5b95dbcf5",
+      "family": "dino_cls"
+    },
+    {
+      "key": "gray32_mlp_24000_27412",
+      "mode": "gray32_mlp",
+      "budget": 24000,
+      "train_seed": 27412,
+      "checkpoint": "results/aebs_factorial_20261117/models/gray32_mlp_24000_27412/readout.pt",
+      "checkpoint_sha256": "c9d955ad8fe4458a94d9143bba827fd18c8ad01f44e42a2727dbdf5114117052",
+      "fit_path": "results/aebs_factorial_20261117/models/gray32_mlp_24000_27412/fit.json",
+      "fit_sha256": "fc757bc6ee0cf8d3eb57fbbf2cca3c5ba20932cb325cabd5113fe88dc06e9849",
+      "family": "mlp"
+    },
+    {
+      "key": "gray32_24000_27412",
+      "mode": "gray32",
+      "budget": 24000,
+      "train_seed": 27412,
+      "checkpoint": "results/aebs_factorial_20261117/models/gray32_24000_27412/readout.pt",
+      "checkpoint_sha256": "6947b8f573e60a2579e6ee399f4438890996cc2fbfdf6ef13756db42649246e7",
+      "fit_path": "results/aebs_factorial_20261117/models/gray32_24000_27412/fit.json",
+      "fit_sha256": "3dcb4a0f7da3735e2dd0a73e88d5f7795634d8edcb8a980abc0d4af342864c23",
+      "family": "dino_cls"
+    },
+    {
+      "key": "gray32_mlp_24000_27413",
+      "mode": "gray32_mlp",
+      "budget": 24000,
+      "train_seed": 27413,
+      "checkpoint": "results/aebs_factorial_20261117/models/gray32_mlp_24000_27413/readout.pt",
+      "checkpoint_sha256": "b7149ab25d1f531d6d5644b8e5e248142394669b42f8f5c35e1779c1b7c3d60a",
+      "fit_path": "results/aebs_factorial_20261117/models/gray32_mlp_24000_27413/fit.json",
+      "fit_sha256": "c63f999d8832e71423ff0703182b2f4369efc33c24b5ac04a93049277381d5ce",
+      "family": "mlp"
+    },
+    {
+      "key": "gray32_24000_27413",
+      "mode": "gray32",
+      "budget": 24000,
+      "train_seed": 27413,
+      "checkpoint": "results/aebs_factorial_20261117/models/gray32_24000_27413/readout.pt",
+      "checkpoint_sha256": "1d238d2e2e37694162a6ce5e7ce1ebeef369f492e85146e5be5c07901dfc9e8d",
+      "fit_path": "results/aebs_factorial_20261117/models/gray32_24000_27413/fit.json",
+      "fit_sha256": "36d413a2f8fee1e47b73d66f8afbf3a84f161f2a90b53457512313c81b0aac52",
+      "family": "dino_cls"
+    }
+  ],
+  "distance_scale_m": 3.18272066116333,
+  "metrics": [
+    "mae_m",
+    "rmse_m",
+    "p95_absolute_m",
+    "signed_bias_m",
+    "max_absolute_m"
+  ],
+  "groups": [
+    "all",
+    "each_weather",
+    "each_weather_color"
+  ],
+  "percentile": "numpy.percentile default linear interpolation",
+  "selection": "All seven conditions and every frozen head reported. Test outcomes cannot select heads, hyperparameters, transforms or intensity levels.",
+  "new_heads": "After the independent four-trial development selection has frozen all27 heads, bind checkpoint+fit+training protocol then evaluate unchanged conditions. No shift result is returned to training selection.",
+  "illustrative_example": "Lexicographically first (weather,color) appearance group; smallest absolute physical distance difference from10m, filename breaks ties; all7 conditions; three new families at24k seed27411. Selection does not use predictions.",
+  "extraction": {
+    "device": "cuda:1",
+    "batch": 8,
+    "memory_fraction": 0.035,
+    "dtype": "float32",
+    "tf32": false,
+    "cpu_preprocess": true,
+    "cls": "x_norm_clstoken",
+    "patches": "x_norm_patchtokens[256,384] reshaped384x16x16; adaptive average pool2/4; row-major patches then384 channels",
+    "forwards_per_condition": 404,
+    "expected_image_forwards": 22603
+  },
+  "cost_estimate": {
+    "new_images": 0,
+    "transformed_inputs": 22603,
+    "cache_float32_bytes": 729082368,
+    "transformed_uint8_bytes": 23145472,
+    "legacy_head_condition_pairs": 126,
+    "new_head_condition_pairs": 189
+  },
+  "versions": {
+    "numpy": "1.24.4",
+    "scipy": "1.10.1",
+    "torch": "2.3.1"
+  },
+  "bindings": {
+    "results/aebs_factorial_20261117/protocol.json": "d36a6ef6e9d4b4dceb6471adf5fcb8f1cc45134e677278983db60dea83cd4609",
+    "results/aebs_factorial_20261117/cache.json": "b13070f1685144ccdeccfed2db6c981a6ea5096226b80051ca99999e4c7c1e0f",
+    "results/aebs_factorial_20261117/ids.npy": "357b7a7817e61f4e28fcf39d540e3201215a0331769ce592084a11cf6beec02f",
+    "results/aebs_factorial_20261117/raw_gray.npy": "2bae98d568344f3a073b58c35077620909e9fd695912bed98c7712a269fb98d5",
+    "results/aebs_factorial_20261117/gray32.npy": "dd24144365662e97966e02076256a0176c32e3d6a830b6e8e8b22fe5cf174d51",
+    "results/aebs_matched_replay_20261117/library/libraries.json": "5d4f58057cf235833acc1857f391f9b159691c8c6b4c674e727ffb54d8b944a8",
+    "results/aebs_matched_replay_20261117/library/image_hashes.npz": "d676ad8329c2cf0ad437a1bd13f0306b26ab766acd188e37ac50d791f7bea878",
+    "results/aebs_budget_scaling_20261110/protocol.json": "dc3fb06f1870a2e90b4c9d81a013359eeeb305f227004cedfd1ff8ab709a0984",
+    "../external/dinov2_weights/dinov2_vits14_pretrain.pth": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+    "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/aebs_shift_evaluation.py": "18a7ae0ac247fc8ad50e4423baa8341a3a1773a65ce64d69dbcbc61e3306da33",
+    "Aebs/dino_latent/backbone.py": "4dd02c0b77a636192986b492cea98ae40326a39dea9f72e2f55c45a734da2093",
+    "Aebs/vision_sls/model.py": "63793f8d35f9ef1e6d3d81c73060ceb8b9a82dedc8361c719083c4c4b7d3dcdd",
+    "Combined_network/model.py": "86a14e47d4c67d7339f2740ccf3e875f466cd58579019c7984794147773bd70a"
+  },
+  "metadata_sha256": "f0b4885d1d396b59c3407cba18b83d33163892112d01f5ad0e5f47913c481f9f",
+  "ids_sha256": "cd6c790b70397330da31e42bcf231a0163ec10ec16e98cfffd466954e514421c"
+}

@@ -1,0 +1,11 @@
+{
+  "n": 199,
+  "rank": 190,
+  "alpha": 0.05,
+  "radius_m": 0.05187524480374496,
+  "finite_bound": true,
+  "unsafe_calibration": 0,
+  "score": "infinity if unsafe anywhere; otherwise max |physical lateral error| from 2.0 through 8.0 seconds",
+  "claim": "For a prespecified frozen controller and exchangeable complete trajectories, P(finite_radius AND (unsafe OR tail_error > calibrated_radius)) <= alpha, marginal over calibration and new trajectory. Infinite radius is uninformative. This is NOT conditional 95 percent coverage given a particular radius, finite-radius selection or certificate acceptance.",
+  "distinction": "statistical performance bound; not an all-disturbance reachability or precision certificate"
+}

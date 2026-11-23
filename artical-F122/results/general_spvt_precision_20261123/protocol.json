@@ -1,0 +1,68 @@
+{
+  "conditions": [
+    [
+      20,
+      2
+    ],
+    [
+      20,
+      4
+    ],
+    [
+      20,
+      7
+    ],
+    [
+      40,
+      2
+    ],
+    [
+      40,
+      4
+    ],
+    [
+      40,
+      7
+    ],
+    [
+      60,
+      2
+    ],
+    [
+      60,
+      4
+    ],
+    [
+      60,
+      7
+    ]
+  ],
+  "units": [
+    "cm",
+    "degree"
+  ],
+  "seeds": {
+    "calibration": 202611239101,
+    "test": 202611239102
+  },
+  "n_calibration": 499,
+  "n_test": 1000,
+  "horizon": 160,
+  "dt": 0.05,
+  "latent": "iid uniform[-.8,.8]^10",
+  "goals": "stay inside +/-5,10,20cm from t=2s through8s; all-time |CTE|<=80cm",
+  "frozen_source": {
+    "/root/SPVT/model/pretrained_ckpts/mlp_generator.pth": "5990366fd81f103b591a9ddd1a79dc5c06d2de63299b7c88ea6741e7060f477b",
+    "results/benefit_native_spvt_20261122/same_target_e2e_2026112211.pt": "bcb6fd54744a9ef0eccc10a39d1eae64205c6195798fab3d2f09ccf2a3812c66",
+    "results/benefit_native_spvt_20261122/current_lowdim_2026112211.pt": "a907680a8751e12caf40cf50e745bb2ff4ab41cd031b5a4c0ba7b074ec992b91",
+    "results/benefit_native_spvt_20261122/same_target_e2e_2026112212.pt": "d357d5129ed5c42c6c4e584dabd750fc1aef8a77f9891fe7884f1de6d793a36e",
+    "results/benefit_native_spvt_20261122/current_lowdim_2026112212.pt": "9cc07bd46e2a197a06317781ec58692c35cb2d160fbdd7036d80083dfa27568a",
+    "results/benefit_native_spvt_20261122/same_target_e2e_2026112213.pt": "10b82f4d20f9163f6b1a4340a03473d4371665257c6fc665c4e08a807c882a97",
+    "results/benefit_native_spvt_20261122/current_lowdim_2026112213.pt": "71357a982927d1f26e44b078abdd9417edb9470fff5c000505505d3bf7bf1032",
+    "/root/SPVT/model/pretrained_ckpts/pid_controller.pth": "e9a9a1eccbddad07eeab8d72ef5d55a37262fb1f89ba31d2165277ef4c663d92",
+    "/root/SPVT/spvt/logs/test/ckpts/checkpoint_epoch_100.pth": "c6044777a0c6edd926efe586dcf7e876f0e4266dfa24448eb5a39fb8aabdee8e"
+  },
+  "source_sha256": "54cbb92c6802b8b04b8e46956dfba76b74e555d323d8f5dd49afab0554a9db81",
+  "training": "All models frozen before new initial-state scenarios; no new training",
+  "pairing": "Same normalized initial draws and latent sequences reused across all9 conditions and all models"
+}

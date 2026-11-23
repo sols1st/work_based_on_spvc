@@ -1,0 +1,83 @@
+{
+  "version": "native_spvc_full_weights_common_replay_v1",
+  "inputs": {
+    "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/native_spvc_complete_control.py": "d0c3efd9d65fc9f4488422ae8e22e7100be5300b666afd53bd6e1409938edc91",
+    "Aebs/paper_comparison/aebs_intuitive_evaluate.py": "f7de0e8e66ea943318bfcf3b9094d198db85f51641a6f7f6b1fc7e61bab22eab",
+    "Aebs/vision_sls/rollout.py": "be7fcde00d490bbe1c83ed4296ca4653ac358ddb3d4b5acf398211e1c1da2516",
+    "Aebs/system/outcomes.py": "17ed40612a60015cc733ae874fa5aabf2658602f29b0ffb1d42fb890902f3a93",
+    "Aebs/controller/best_model/best_model.zip": "2d2ab4d1d1f28d206c2c6238b9f087ee598b8c3c158bba220aa4939049819d83",
+    "Aebs/data/Downsampled.h5": "41cc88359f64d52ffb25a8ec57ea9efddd9b8463d37e63bc972b2854dbed1bf1",
+    "results/aebs_native_cross_20261117_v1/full_release_bank/estimates.npz": "80f2928bee004430cfb82993323e6f62652adfa264b5198e930dcf2a6034ec91",
+    "results/aebs_robust_synthesis_20261117_release/package/policy.pt": "230807a1759bbededeaa7703ede1ab676ee792e4e8b0a92b01428f9b5ae38c8c",
+    "results/aebs_robust_synthesis_20261117_release/package/observation.pt": "eee112612932071653c4479a9eb9f8b9d215217c011281b022b7f79e206e9fb6",
+    "results/aebs_robust_synthesis_20261117_release/package/sbc.pt": "856104931b3e2cfc8b47cee2e62ef891ec119e8f461742e1a8b86d04a45b6aa3",
+    "results/aebs_original_random_sbc_20261117/alternating/best.pt": "94697230f9f5249e3441e552987be74030713c8a1a8babb9445f85b05fa262e6",
+    "results/aebs_original_random_sbc_20261117/alternating/summary.json": "4ea7e6ac16e9e99b585277df6c78545cba3ab9864e45baa6a0926f7a3bfa3bd2",
+    "results/aebs_original_random_sbc_20261117/alternating/protocol.json": "bf47cbeee638599c9e13997678492034ed32a1d0bc42f2eaeac2c481d54b1fe6",
+    "results/aebs_original_random_sbc_20261117/seed202611172_alternating/best.pt": "26cd7493d27b244a5df6c31d252f1f90be7b8fad54838f2f41f47c3711214ca5",
+    "results/aebs_original_random_sbc_20261117/seed202611172_alternating/summary.json": "76f2bdaa1394fcbe84132f4d984f35aaa76ffbd73f7e0be06beebd41fe90183a",
+    "results/aebs_original_random_sbc_20261117/seed202611172_alternating/protocol.json": "016ab67b34fd5c7422302c5ee7a2e755d7bae76803108d84aae40656cff936ed",
+    "results/aebs_original_random_sbc_20261117/seed202611173_alternating/best.pt": "479d44aee2e0e050d9abd1eee92ebed5bc37e9fa7c4d98e5698ee06040b4680e",
+    "results/aebs_original_random_sbc_20261117/seed202611173_alternating/summary.json": "76aa1b691d1e5aa8f70c02d15b0c1dd4b342d1fe997f6b9d92a2228372ddbdba",
+    "results/aebs_original_random_sbc_20261117/seed202611173_alternating/protocol.json": "4ec7c67a0b4981ff2481997371df072d2e8485d7341fcc6e2a48205710ae8710"
+  },
+  "native_pairs": {
+    "native_seed171": {
+      "pair_sha256": "94697230f9f5249e3441e552987be74030713c8a1a8babb9445f85b05fa262e6",
+      "iteration": 93,
+      "original_training_score": 0.9547591676412055,
+      "source_summary": "results/aebs_original_random_sbc_20261117/alternating/summary.json",
+      "certificate": "source acceptance only; independent drift audit failed; not a camera-law guarantee"
+    },
+    "native_seed172": {
+      "pair_sha256": "26cd7493d27b244a5df6c31d252f1f90be7b8fad54838f2f41f47c3711214ca5",
+      "iteration": 97,
+      "original_training_score": 0.905584389282904,
+      "source_summary": "results/aebs_original_random_sbc_20261117/seed202611172_alternating/summary.json",
+      "certificate": "source acceptance only; independent drift audit failed; not a camera-law guarantee"
+    },
+    "native_seed173": {
+      "pair_sha256": "479d44aee2e0e050d9abd1eee92ebed5bc37e9fa7c4d98e5698ee06040b4680e",
+      "iteration": 91,
+      "original_training_score": 0.9095098258637155,
+      "source_summary": "results/aebs_original_random_sbc_20261117/seed202611173_alternating/summary.json",
+      "certificate": "source acceptance only; independent drift audit failed; not a camera-law guarantee"
+    }
+  },
+  "calibration_n": 499,
+  "test_n": 2000,
+  "alpha": 0.05,
+  "seeds": {
+    "calibration": 202611230201,
+    "test": 202611230202
+  },
+  "initial": "IID uniform [15,16]m x [2.5,3]m/s; same initial and appearance per arm",
+  "cameras": {
+    "common": 3229,
+    "full24k": 24000
+  },
+  "primary_bank": "common:3229 image IDs excluding training/development images of registered budgets",
+  "secondary_bank": "full24k:24000 images including fitting data, deployment-bank sensitivity only",
+  "actor_keys": [
+    "original_ppo",
+    "current_robust",
+    "native_seed171",
+    "native_seed172",
+    "native_seed173"
+  ],
+  "fronts": [
+    "native_m",
+    "dino_m"
+  ],
+  "primary_pairs": "native_seed17{1,2,3}+native_m versus current_robust+dino_m",
+  "other_pairs": "crossed front/controller attribution; original_ppo is initialization diagnostic",
+  "own_rgb": "640x640 real RGB sources -> RGB DINO preprocessing; cached frozen observations",
+  "original_gray": "original cGAN and state estimator weights; actual camera gray32x32 -> own controller",
+  "physics": "d_next=d-.05v; v_next=clip(v-.05a,0,3), a in [-3,3]m/s^2",
+  "success": "d in [5,6]m and v<=.5m/s; danger=d<=6m and v>.5; max400 steps",
+  "cp": "separate post-freeze calibration for each closed-loop arm; max |dhat-d|; physical-distance diagnostic for native (not native SBC noise law)",
+  "training": "existing method-specific histories; original SPVC 400-H5 initialization/native alternating synthesis versus our 24k RGB and robust synthesis; not equal training budgets",
+  "guarantee": "own numerical barrier only on its registered <=.45m tube; new q>.45m cannot inherit it; native source SBC does not transfer to real-camera law",
+  "scope": "finite frozen-bank replay; new seeds are new scenarios, not new image collection",
+  "inference": "paired episode bootstrap4000; conditional on frozen checkpoints/banks; three native seeds not pooled as6000 independent scenarios"
+}

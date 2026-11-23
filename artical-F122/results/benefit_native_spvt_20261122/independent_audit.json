@@ -1,0 +1,44 @@
+{
+  "arms": 16,
+  "episodes": 39984,
+  "cp_rank": 475,
+  "all_metrics_and_transitions_recomputed": true,
+  "paired_rmse_improvement_cm": {
+    "iid__spvt_pid": {
+      "mean": 6.272485256195068,
+      "ci95_percentile": [
+        6.1145897030830385,
+        6.431618881225585
+      ],
+      "n_scenarios": 2000,
+      "resamples": 5000
+    },
+    "iid__spvt_epoch100": {
+      "mean": 13.981892585754395,
+      "ci95_percentile": [
+        13.767346215248107,
+        14.189700555801391
+      ],
+      "n_scenarios": 2000,
+      "resamples": 5000
+    },
+    "persistent__spvt_pid": {
+      "mean": 6.272193431854248,
+      "ci95_percentile": [
+        6.113521385192871,
+        6.433710074424743
+      ],
+      "n_scenarios": 2000,
+      "resamples": 5000
+    },
+    "persistent__spvt_epoch100": {
+      "mean": 13.95715618133545,
+      "ci95_percentile": [
+        13.741716480255127,
+        14.163048553466796
+      ],
+      "n_scenarios": 2000,
+      "resamples": 5000
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "registered_at_utc": "2026-11-18T06:32:57.955849+00:00",
+  "purpose": "Actual controlled comparison of stochastic-barrier, finite-horizon reachability, and robust-barrier backends on five existing frozen visual-control systems.",
+  "source_revision": "847802c3da82bd6daf9064790683ee1a89e2bbec",
+  "tasks": [
+    "aebs",
+    "lane",
+    "braking",
+    "hover",
+    "crane"
+  ],
+  "native_full_pipeline_reproduction": false,
+  "controller_and_frontend": "Frozen identical per task. No performance advantage is inferred when only a verification backend changes.",
+  "first_stage": "Controlled mechanism experiment. Native cGAN and verification-guided training are separate future/extension stages, never silently represented by these arms.",
+  "seed": 2026111807,
+  "spvt_initial_samples": 2000,
+  "confidence_delta": 0.05,
+  "global_budget_seconds_per_task_per_backend": 300,
+  "sampled_reachability_budget_seconds_per_task": 300,
+  "initial_distribution": "Task-adapter registered initial law, iid initial states and contexts; exact realization saved.",
+  "spvt_methods": [
+    "closed_loop_interval_with_adaptive_splitting",
+    "structure_preserving_linear_support_when_applicable"
+  ],
+  "spvc_methods": [
+    "original_fixed_additive_uniform_transition_model_diagnostic",
+    "state_dependent_uniform_observation_support_expectation_controlled_extension"
+  ],
+  "spvc_candidate_mismatch": "Strict positive epsilon and nonincrease reported separately. Failure of transferred current B is not native SPVC synthesis failure.",
+  "outcomes": [
+    "certified_numerically",
+    "unresolved_budget",
+    "unresolved_bounds",
+    "validated_numerical_witness",
+    "unsupported"
+  ],
+  "missing_points": "All unprocessed points remain in sample denominator as not certified; no silent dropping.",
+  "primary_metrics": [
+    "certified_domain",
+    "certified_horizon",
+    "certified_initial_fraction",
+    "wall_seconds",
+    "bound_calls",
+    "unresolved_counts"
+  ],
+  "prohibited_inferences": [
+    "different_probability_quantities_subtracted",
+    "candidate_transfer_failure_as_algorithm_failure",
+    "unsupported_arms_recorded_as_unsafe",
+    "weak_box_wrapping_as_unique_linear_baseline",
+    "existing_certificate_load_time_vs_new_full_verification"
+  ],
+  "numeric_scope": "Floating point bounds unless exact arithmetic is explicitly used. Random point enclosure checks test implementation consistency, not a proof of soundness.",
+  "existing_data": "Archived nominal fixed contracts, frozen controllers/barriers; all identities must be included in run artifacts.",
+  "comparison_coverage": "Same existing calibrated support per task for common-support arms; fixed transition noise has separate assumptions and no transferred CP claim.",
+  "hardware": "Remote root@10.11.154.191:20147, vt; CPU one torch thread per worker; do not interfere with other GPU jobs."
+}

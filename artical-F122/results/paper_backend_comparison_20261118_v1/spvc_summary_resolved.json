@@ -1,0 +1,109 @@
+{
+  "scope": "Controlled backend experiments only, frozen current perception/controller/barrier; no native cGAN retraining, no new camera calibration.",
+  "same_support_result": "All five nonincrease stochastic baselines inherit the fresh matching robust support proof. Standalone integration inconclusive is never counted as stochastic-method failure.",
+  "rows": [
+    {
+      "task": "aebs",
+      "observation": {
+        "status": "inconclusive_within_budget",
+        "elapsed_seconds": 300.025195306167,
+        "state_boxes": 10375,
+        "stop_reason": "time_budget",
+        "strict_status": "fixed_candidate_does_not_meet_strict_epsilon",
+        "source_sha256": "6f22f8a4037bcca367139cc7078cbc033bf0794c8996a2f6169dd826162c1ec3"
+      },
+      "additive": {
+        "status": "inconclusive_within_budget",
+        "elapsed_seconds": 300.0008481782861,
+        "state_boxes": 34785,
+        "stop_reason": "time_budget",
+        "strict_status": "fixed_candidate_does_not_meet_strict_epsilon",
+        "source_sha256": "5d4b489ff6f15e45a1906f9670cb043354d9484463fccc74713fe3294ac76a17"
+      },
+      "strong_observation_baseline": "nonincrease_expectation_inherited_from_fresh_matching_robust_verification"
+    },
+    {
+      "task": "lane",
+      "observation": {
+        "status": "inconclusive_within_budget",
+        "elapsed_seconds": 300.0389970978722,
+        "state_boxes": 2820,
+        "stop_reason": "time_budget",
+        "strict_status": "fixed_candidate_does_not_meet_strict_epsilon",
+        "source_sha256": "887ae7327824f24f716d36419661e9f626fb00ac45a3a8178a9aecfe3d1154c7"
+      },
+      "additive": {
+        "status": "continuous_domain_numerical_nonincrease_pass",
+        "elapsed_seconds": 55.89747247006744,
+        "state_boxes": 6805,
+        "stop_reason": "complete",
+        "strict_status": "fixed_candidate_does_not_meet_strict_epsilon",
+        "source_sha256": "23b2009fe6c1aeca5057b244275fe372d371b6dc02208b502039dfb986a77530"
+      },
+      "strong_observation_baseline": "nonincrease_expectation_inherited_from_fresh_matching_robust_verification"
+    },
+    {
+      "task": "braking",
+      "observation": {
+        "status": "inconclusive_within_budget",
+        "elapsed_seconds": 300.0123426928185,
+        "state_boxes": 12322,
+        "stop_reason": "time_budget",
+        "strict_status": "fixed_candidate_does_not_meet_strict_epsilon",
+        "source_sha256": "953e47efec95b2612c6d4022520a9e830f50b68df965ee64008418d5072e4c12"
+      },
+      "additive": {
+        "status": "inconclusive_within_budget",
+        "elapsed_seconds": 208.97118113189936,
+        "state_boxes": 100000,
+        "stop_reason": "state_box_budget",
+        "strict_status": "fixed_candidate_does_not_meet_strict_epsilon",
+        "source_sha256": "3f99b1d6828a21a00327a09d98f05a2023a32675f26856052fee4828f5805ffe"
+      },
+      "strong_observation_baseline": "nonincrease_expectation_inherited_from_fresh_matching_robust_verification"
+    },
+    {
+      "task": "hover",
+      "observation": {
+        "status": "inconclusive_within_budget",
+        "elapsed_seconds": 284.44469774793833,
+        "state_boxes": 100000,
+        "stop_reason": "state_box_budget",
+        "strict_status": "fixed_candidate_does_not_meet_strict_epsilon",
+        "source_sha256": "3be6c684f4f180a49f31926929b492fb9be9f24f507d34e680d7be9a1ee02566"
+      },
+      "additive": {
+        "status": "inconclusive_within_budget",
+        "elapsed_seconds": 35.548900712281466,
+        "state_boxes": 100000,
+        "stop_reason": "state_box_budget",
+        "strict_status": "fixed_candidate_does_not_meet_strict_epsilon",
+        "source_sha256": "9e964232ef14f554d2f1bc2a8d90ae2b9a92fb891b5269016b315c7d67f42d7f"
+      },
+      "strong_observation_baseline": "nonincrease_expectation_inherited_from_fresh_matching_robust_verification"
+    },
+    {
+      "task": "crane",
+      "observation": {
+        "status": "inconclusive_within_budget",
+        "elapsed_seconds": 300.007312707603,
+        "state_boxes": 22784,
+        "stop_reason": "time_budget",
+        "strict_status": "inconclusive_or_zero_drift_cells",
+        "source_sha256": "3448b40817070bf51dd60d114164caed5170a2abb4228ee23e6af0dcaff0d470"
+      },
+      "additive": {
+        "status": "inconclusive_within_budget",
+        "elapsed_seconds": 300.00186358904466,
+        "state_boxes": 88694,
+        "stop_reason": "time_budget",
+        "strict_status": "inconclusive_or_zero_drift_cells",
+        "source_sha256": "644e42ef0fc4e5445cea29246557670e0a6b0003975c611184e51e3a3d90679e"
+      },
+      "strong_observation_baseline": "nonincrease_expectation_inherited_from_fresh_matching_robust_verification"
+    }
+  ],
+  "numerical_counterexample_count": 0,
+  "formal_outward_rounding": false,
+  "strict_epsilon_warning": "Transferred zero-plateau barriers fail strict drift in four tasks; this is not a trained native SPVC comparison."
+}

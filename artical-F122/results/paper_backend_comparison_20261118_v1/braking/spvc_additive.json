@@ -1,0 +1,350 @@
+{
+  "task": "braking",
+  "method": "SPVC-inspired controlled expectation backend",
+  "comparison_scope": "same_frozen_controller_and_barrier_candidate; not native cGAN retraining",
+  "stochastic_model": "additive_uniform",
+  "model_description": "Assumed pooled state-independent additive uniform transition law, fitted once on development trajectories.",
+  "paper_assumption_1_preserved": false,
+  "paper_assumption_1_scope": "state-independent additive law on active states; shared absorbing-stop convention makes the full stopped kernel state-dependent",
+  "stopping_semantics": "terminal states absorb before any disturbance is applied, for both stochastic models",
+  "real_visual_probability_claim": null,
+  "mu": {
+    "kind": "assumed_state_independent_additive_uniform",
+    "development_seed": 181121,
+    "trajectories_per_context": 64,
+    "steps_per_trajectory": 12,
+    "transition_count": 1536,
+    "lower": [
+      -0.00045639898216938424,
+      -0.0005400290145710215,
+      -0.014596031128670361,
+      -0.08887944205590159,
+      -0.047411919405254264
+    ],
+    "upper": [
+      0.0006211808808083211,
+      0.00045607487830080784,
+      0.017769144199174747,
+      0.07286688248529294,
+      0.04338663385549921
+    ],
+    "delta_mean": [
+      1.7710444247482254e-06,
+      -1.955639900615866e-06,
+      0.00025104459550674983,
+      -0.0012548621947982802,
+      2.7060233470546446e-05
+    ],
+    "delta_std": [
+      8.169022951311534e-05,
+      8.133024905704834e-05,
+      0.0039898033897223075,
+      0.019954035118707022,
+      0.008518158366111651
+    ],
+    "state_min": [
+      -0.11111378778906672,
+      -0.0559046875782187,
+      4.095024496225603,
+      0.0,
+      -0.07
+    ],
+    "state_max": [
+      0.11430265970832344,
+      0.050835742967096656,
+      5.899348155866803,
+      2.3980755514144807,
+      0.07
+    ],
+    "observation_support_lower": [
+      -0.12506186821868048,
+      -0.12506186821868048,
+      -0.12506186821868048
+    ],
+    "observation_support_upper": [
+      0.12506186821868048,
+      0.12506186821868048,
+      0.12506186821868048
+    ],
+    "plant_noise_lower": [],
+    "plant_noise_upper": [],
+    "coverage_guarantee": null,
+    "real_transition_distribution_validated": false,
+    "note": "Pooled sample extrema define an assumed law, not a certified residual envelope. No real-camera probability is inferred."
+  },
+  "nonincrease_status": "inconclusive_within_budget",
+  "strict_status": "fixed_candidate_does_not_meet_strict_epsilon",
+  "strong_stochastic_baseline": {
+    "status": "not_inherited_for_different_transition_support",
+    "reason": "A pooled additive box need not equal the state-conditioned observation-error image.",
+    "logical_implication": "If B(next)<=B(now) for every disturbance in the same support, then E[B(next)|state]<=B(state) for every probability law on that support. No uniformity or independent-coordinate assumption is needed."
+  },
+  "interpretation_of_inconclusive": "An incomplete standalone interval integration is not failure of a stochastic method; a matching robust certificate already implies its nonincrease expectation condition.",
+  "strict_epsilon": 1e-06,
+  "strict_comparison_warning": "Zero plateaus and absorbing terminal states can make strict epsilon impossible for this transferred candidate; this is not evidence that SPVC cannot synthesize a different certificate.",
+  "expectation_bound_method": "equal-mass complete-support interval integration",
+  "noise_partition_cells": 32,
+  "interval_barrier_evaluations": 5440448,
+  "initial_bound": {
+    "upper": 0.0,
+    "boxes_evaluated": 1,
+    "all_initial_states_enclosed": true,
+    "target": 1.0,
+    "passed": true
+  },
+  "unsafe_threshold": 20.0,
+  "nonnegative_by_construction": true,
+  "unsafe_separation_evidence": null,
+  "complete_certificate_claim": false,
+  "certificate_obligations": "Numerical drift results alone do not establish unsafe separation, reliable arithmetic, real visual distribution validity, or all closure/terminal assumptions.",
+  "barrier_time_varying": false,
+  "theoretical_time_scope": "stationary candidate; any infinite-horizon claim additionally requires all global SBC obligations",
+  "counts": {
+    "processed": 100000,
+    "drift_passed": 180,
+    "strict_drift_passed": 0,
+    "outside_relevant_sublevel": 1848,
+    "unsafe_only": 0,
+    "unresolved": 0,
+    "domain_not_enclosed": 0,
+    "queued_unresolved": 95946
+  },
+  "largest_accepted_cell_drift_upper": 0.0,
+  "positive_drift_witnesses": [],
+  "strict_only_witnesses": [
+    {
+      "state": [
+        -0.010087648185443013,
+        -0.016597354813946995,
+        5.728730753245232,
+        2.349187516139642,
+        0.014546532857708148
+      ],
+      "time": 0,
+      "context": -0.02,
+      "barrier": 0.0,
+      "expected_barrier_lower": 0.0,
+      "expected_barrier_upper": 0.0,
+      "current_barrier_lower": 0.0,
+      "current_barrier_upper": 0.0,
+      "drift_lower": 0.0,
+      "drift_upper": 0.0,
+      "absorbing_identity": false,
+      "domain_enclosed": true,
+      "successor_lo": [
+        -0.017152527535366772,
+        -0.00694529555234256,
+        5.315926270210927,
+        1.9020353333240563,
+        -0.028518141505105406
+      ],
+      "successor_hi": [
+        -0.016074947672389067,
+        -0.005949191659470731,
+        5.348291445538772,
+        2.063781657865251,
+        0.062280411755648066
+      ]
+    },
+    {
+      "state": [
+        -0.0668240161905178,
+        -0.00246303466924774,
+        5.8652139587287895,
+        2.3009230673852255,
+        -0.01168747277318679
+      ],
+      "time": 0,
+      "context": -0.02,
+      "barrier": 0.0,
+      "expected_barrier_lower": 0.0,
+      "expected_barrier_upper": 0.0,
+      "current_barrier_lower": 0.0,
+      "current_barrier_upper": 0.0,
+      "drift_lower": 0.0,
+      "drift_upper": 0.0,
+      "absorbing_identity": false,
+      "domain_enclosed": true,
+      "successor_lo": [
+        -0.06825673113771095,
+        0.003153361699803187,
+        5.453700834395154,
+        1.893059676295876,
+        -0.032041893282131265
+      ],
+      "successor_hi": [
+        -0.06717915127473326,
+        0.0041494655926750165,
+        5.486066009722999,
+        2.0548060008370705,
+        0.058756659978622214
+      ]
+    },
+    {
+      "state": [
+        0.05621402060014609,
+        -0.01221560029208418,
+        5.601347815506047,
+        2.11388398948947,
+        0.02199381502428279
+      ],
+      "time": 0,
+      "context": -0.02,
+      "barrier": 0.0,
+      "expected_barrier_lower": 0.0,
+      "expected_barrier_upper": 0.0,
+      "current_barrier_lower": 0.0,
+      "current_barrier_upper": 0.0,
+      "drift_lower": 0.0,
+      "drift_upper": 0.0,
+      "absorbing_identity": false,
+      "domain_enclosed": true,
+      "successor_lo": [
+        0.051387598393053124,
+        -0.0025824432099908487,
+        5.229430131550509,
+        1.6998709285557467,
+        -0.05316322642878561
+      ],
+      "successor_hi": [
+        0.05246517825603083,
+        -0.0015863393171190194,
+        5.261795306878354,
+        1.8616172530969413,
+        0.03763532683196786
+      ]
+    },
+    {
+      "state": [
+        -0.04048393767121917,
+        0.019599058589314784,
+        5.899452820297925,
+        2.399816591463831,
+        -0.022263903092520253
+      ],
+      "time": 0,
+      "context": -0.02,
+      "barrier": 0.0,
+      "expected_barrier_lower": 0.0,
+      "expected_barrier_upper": 0.0,
+      "current_barrier_lower": 0.0,
+      "current_barrier_upper": 0.0,
+      "drift_lower": 0.0,
+      "drift_upper": 0.0,
+      "absorbing_identity": false,
+      "domain_enclosed": true,
+      "successor_lo": [
+        -0.03285726535994864,
+        0.023780694037542488,
+        5.472154035051192,
+        1.9733596094248167,
+        -0.06668969437998712
+      ],
+      "successor_hi": [
+        -0.03177968549697093,
+        0.024776797930414318,
+        5.504519210379037,
+        2.1351059339660114,
+        0.024108858880766356
+      ]
+    },
+    {
+      "state": [
+        -0.014744234594010891,
+        0.02011788557376273,
+        5.675870043599199,
+        2.2578447930084953,
+        0.00595577919682054
+      ],
+      "time": 0,
+      "context": -0.02,
+      "barrier": 0.0,
+      "expected_barrier_lower": 0.0,
+      "expected_barrier_upper": 0.0,
+      "current_barrier_lower": 0.0,
+      "current_barrier_upper": 0.0,
+      "drift_lower": 0.0,
+      "drift_upper": 0.0,
+      "absorbing_identity": false,
+      "domain_enclosed": true,
+      "successor_lo": [
+        -0.007516988847903978,
+        0.02809265222570963,
+        5.279281867961268,
+        1.8209045220591946,
+        -0.05744017424775651
+      ],
+      "successor_hi": [
+        -0.006439408984926273,
+        0.02908875611858146,
+        5.311647043289113,
+        1.9826508466003891,
+        0.03335837901299696
+      ]
+    }
+  ],
+  "unresolved_examples": [],
+  "arithmetic": "float64 interval operations; no directed outward rounding",
+  "witness_significance_guard": "drift lower must exceed relative tolerance times (1+|B|+|E upper/lower|); smaller positive drift is never used as a counterexample. Acceptance is not relaxed by this tolerance.",
+  "outward_rounded": false,
+  "elapsed_seconds": 208.97118113189936,
+  "budget": {
+    "max_state_boxes": 100000,
+    "max_seconds": 300,
+    "noise_cells": 32,
+    "max_depth": 22,
+    "witness_states": 64,
+    "witness_seed": 181123,
+    "strict_epsilon": 1e-06,
+    "region_boxes": 256,
+    "witness_relative_tolerance": 1e-09
+  },
+  "task_metadata": {
+    "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+    "arithmetic": "float64 interval arithmetic; no directed rounding",
+    "barrier_nonnegative_by_construction": true,
+    "barrier_time_varying": false,
+    "unsafe_barrier_threshold": 20.0,
+    "frontend_execution": "state proxy plus bounded semantic residual",
+    "coordinates": "physical [e,heading,distance,speed,wheel_angle]",
+    "actor": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/curve_braking_5d_20261117/actor.pt",
+      "sha256": "9015d427fed9be1b3e584c031bad54bcb032964c98aca812504ac6b380e15ccf"
+    },
+    "barrier": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/curve_braking_5d_20261117/barrier.pt",
+      "sha256": "de6c1992dfab0dc63d264aab971ad34db6b5fbf5e2c75dede80a1356e7586421"
+    },
+    "contract": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/curve_braking_5d_20261117/evaluation/neural/contract.json",
+      "sha256": "41e42c4597217179d865fa0567d143e23e363ee0388ee35d6a13d7bb8c453616"
+    },
+    "current_baseline_rerun": "global structural scalar inequalities",
+    "barrier_separation_domain": "0<=v<=2.6 and |wheel_angle|<=.07; B<20 geometric sublevel",
+    "adapter": {
+      "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+      "sha256": "3f814d65d6199193ae9e92fa9aec6985bcd2b94704e40879a1f4e555cbf4ed9a"
+    },
+    "task": "braking",
+    "horizon": 14,
+    "dt": 0.2,
+    "error_lo": [
+      -0.12506186821868048,
+      -0.12506186821868048,
+      -0.12506186821868048
+    ],
+    "error_hi": [
+      0.12506186821868048,
+      0.12506186821868048,
+      0.12506186821868048
+    ],
+    "noise_lo": [],
+    "noise_hi": [],
+    "original_cp_distribution_unchanged": false,
+    "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+  },
+  "source_binding": {
+    "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/spvc_stochastic.py",
+    "sha256": "904886609de058c4ca51ea4b072922c47adf0d6eebc569afffc72b8f77a82fe2"
+  }
+}

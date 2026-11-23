@@ -1,0 +1,104 @@
+{
+  "task": "crane",
+  "status": "nonincrease_expectation_inherited_from_fresh_matching_robust_verification",
+  "comparison": "strong stochastic baseline on the identical observation and plant disturbance support",
+  "reason": "A pointwise B(next)<=B(now) bound implies the conditional expectation inequality for every law supported on the same allowed successors, including the registered uniform observation model.",
+  "strict_epsilon_inherited": false,
+  "valid_for_additive_model": false,
+  "real_camera_probability_claim": null,
+  "native_cgan_retraining": false,
+  "standalone_interval_integration_may_remain_inconclusive": true,
+  "source_current_result": {
+    "path": "results/paper_backend_comparison_20261118_v1/crane/current.json",
+    "sha256": "af1779615da87690df2d89c4fa71385a2ba4404823d614751e5e4f381c79340b",
+    "elapsed_seconds": 0.14244680711999536,
+    "rerun": true
+  },
+  "checked_identity_keys": [
+    "controller",
+    "contract",
+    "coordinates",
+    "gains",
+    "horizon",
+    "dt",
+    "error_lo",
+    "error_hi",
+    "noise_lo",
+    "noise_hi",
+    "barrier_time_varying",
+    "unsafe_barrier_threshold"
+  ],
+  "identity_mismatches": [],
+  "source_adapter_sha256": "80530dafa4e10ad7600e66d1ddb62b2990d09a6cdfe6a1b53242240a1c75bc99",
+  "current_adapter_sha256": "3f814d65d6199193ae9e92fa9aec6985bcd2b94704e40879a1f4e555cbf4ed9a",
+  "adapter_difference": "Only terminal_status/interval_is_terminal API helpers were added after the robust runs; existing point dynamics, interval step, barrier and robust verification were unchanged. Underlying model and support bindings above were separately compared.",
+  "proof_arithmetic": "exact rational",
+  "barrier_time_varying": true,
+  "horizon": 40,
+  "task_metadata": {
+    "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+    "arithmetic": "float64 interval arithmetic; no directed rounding",
+    "barrier_nonnegative_by_construction": true,
+    "barrier_time_varying": true,
+    "unsafe_barrier_threshold": 1.0,
+    "frontend_execution": "state proxy plus bounded semantic residual",
+    "gains": [
+      1.7103,
+      2.3227,
+      -2.4583,
+      -0.4332
+    ],
+    "coordinates": "axis x then y, each [p,v,s,r] physical SI units",
+    "initial_sampling": "original task: |p| uniform .34..70, signs uniform; remaining components uniform",
+    "contract": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/overhead_crane_8d_20261117_v1/evaluation/contract.json",
+      "sha256": "b1ad4d509e9e1280c1fb53044e65e4e86d9c9cc3e03b18875792c325f5628e25"
+    },
+    "controller": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/overhead_crane_8d_20261117_v1/evaluation/synthesis.json",
+      "sha256": "b739a1a55a8c1757777abd50df19097d6231187bd6c7bb43ed46e4e647112370"
+    },
+    "current_baseline_rerun": "exact rational finite-horizon support functions",
+    "adapter": {
+      "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+      "sha256": "3f814d65d6199193ae9e92fa9aec6985bcd2b94704e40879a1f4e555cbf4ed9a"
+    },
+    "task": "crane",
+    "horizon": 40,
+    "dt": 0.15,
+    "error_lo": [
+      -0.18804915958435167,
+      -0.18804915958435167,
+      -0.18804915958435167,
+      -0.18804915958435167
+    ],
+    "error_hi": [
+      0.18804915958435167,
+      0.18804915958435167,
+      0.18804915958435167,
+      0.18804915958435167
+    ],
+    "noise_lo": [
+      -0.025,
+      -0.04,
+      -0.025,
+      -0.04
+    ],
+    "noise_hi": [
+      0.025,
+      0.04,
+      0.025,
+      0.04
+    ],
+    "original_cp_distribution_unchanged": false,
+    "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+  },
+  "standalone_observation_result": {
+    "status": "inconclusive_within_budget",
+    "elapsed_seconds": 300.007312707603,
+    "state_boxes": 22784,
+    "stop_reason": "time_budget",
+    "strict_status": "inconclusive_or_zero_drift_cells",
+    "source_sha256": "3448b40817070bf51dd60d114164caed5170a2abb4228ee23e6af0dcaff0d470"
+  }
+}

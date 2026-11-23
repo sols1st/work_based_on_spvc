@@ -1,0 +1,95 @@
+{
+  "passed": false,
+  "status": "witness",
+  "regions": {
+    "initial": {
+      "passed": true,
+      "bound": 0.2108054541740553,
+      "accepted": 1024
+    },
+    "unsafe_0": {
+      "passed": true,
+      "bound": 25.703249783724004,
+      "accepted": 1024
+    },
+    "unsafe_1": {
+      "passed": true,
+      "bound": 24.930232545301305,
+      "accepted": 1024
+    },
+    "unsafe_2": {
+      "passed": true,
+      "bound": 23.821990331348818,
+      "accepted": 1024
+    },
+    "unsafe_3": {
+      "passed": true,
+      "bound": 24.228924546391465,
+      "accepted": 1024
+    }
+  },
+  "checked_cells": 6656,
+  "context": -0.01,
+  "witness": {
+    "state": [
+      -0.828125,
+      0.84375
+    ],
+    "error": [
+      -0.09456323596463617,
+      -0.09456323596463617
+    ],
+    "drift": 0.3094808698752054
+  },
+  "rerun": true,
+  "elapsed_seconds": 1.4767507817596197,
+  "comparison_scope": "frozen current conditional robust backend",
+  "task": "lane",
+  "metadata": {
+    "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+    "arithmetic": "float64 interval arithmetic; no directed rounding",
+    "barrier_nonnegative_by_construction": true,
+    "barrier_time_varying": false,
+    "unsafe_barrier_threshold": 20.0,
+    "frontend_execution": "state proxy plus bounded semantic residual",
+    "coordinates": "normalized [e/.85,theta/.30]",
+    "contract": {
+      "path": "results/lane_precision_20261120_v1/camera/202611200701__nominal_precision/shadow/results/lane_robust_synthesis_20261116_v2/final_cp/calibration.json",
+      "sha256": "629e1a3cc2625243d28ed12ed9e8f0b0a061545d4857aa7a8c88db76514591c0"
+    },
+    "actor": {
+      "path": "results/lane_precision_20261120_v1/camera/202611200701__nominal_precision/shadow/results/lane_robust_synthesis_20261116_v2/package/actor.pt",
+      "sha256": "01926ad98c0bdaf2d8f2c7026893574c0efa579e2cd17419a28c7cd79cef8228"
+    },
+    "barrier": {
+      "path": "results/lane_precision_20261120_v1/camera/202611200701__nominal_precision/shadow/results/lane_robust_synthesis_20261116_v2/package/sbc.pt",
+      "sha256": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321"
+    },
+    "contexts": [
+      -0.01,
+      0.0,
+      0.01
+    ],
+    "adapter": {
+      "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+      "sha256": "3f814d65d6199193ae9e92fa9aec6985bcd2b94704e40879a1f4e555cbf4ed9a"
+    },
+    "task": "lane",
+    "horizon": 80,
+    "dt": 0.1,
+    "error_lo": [
+      -0.09456323596463617,
+      -0.09456323596463617
+    ],
+    "error_hi": [
+      0.09456323596463617,
+      0.09456323596463617
+    ],
+    "noise_lo": [],
+    "noise_hi": [],
+    "original_cp_distribution_unchanged": false,
+    "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+  },
+  "precision_certificate": false,
+  "safety_scope": "conditional on full error support, model and floating-point audit limitations"
+}

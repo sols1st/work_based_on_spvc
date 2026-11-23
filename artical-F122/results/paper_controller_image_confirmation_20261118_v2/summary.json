@@ -1,0 +1,103 @@
+{
+  "protocol_sha256": "1de8ce3bdb745689075a215a23e5316516ccaf5ec36f7f096f127752df9d8cd5",
+  "paired_metrics": {
+    "mean_abs_e_m": {
+      "anchor_mean": 0.035431243280993084,
+      "spvt_mean": 0.035918170151033484,
+      "spvt_minus_anchor": 0.0004869268700403908,
+      "paired_trajectory_ci95": [
+        -0.0001630264310327105,
+        0.0011382666428613013
+      ],
+      "spvt_lower_trajectories": 49,
+      "spvt_higher_trajectories": 51
+    },
+    "peak_abs_e_m": {
+      "anchor_mean": 0.12227801800088846,
+      "spvt_mean": 0.12288633190009315,
+      "spvt_minus_anchor": 0.0006083138992046949,
+      "paired_trajectory_ci95": [
+        0.00019207037715359034,
+        0.0010823118825845546
+      ],
+      "spvt_lower_trajectories": 9,
+      "spvt_higher_trajectories": 20
+    },
+    "mean_abs_heading_rad": {
+      "anchor_mean": 0.005982091565223724,
+      "spvt_mean": 0.005527283648746161,
+      "spvt_minus_anchor": -0.0004548079164775618,
+      "paired_trajectory_ci95": [
+        -0.0005377361330406248,
+        -0.0003644987789579657
+      ],
+      "spvt_lower_trajectories": 88,
+      "spvt_higher_trajectories": 12
+    },
+    "mean_steering_change_rad": {
+      "anchor_mean": 0.05284003108739853,
+      "spvt_mean": 0.03217165374197066,
+      "spvt_minus_anchor": -0.020668377345427872,
+      "paired_trajectory_ci95": [
+        -0.022303907308727503,
+        -0.019043878685683014
+      ],
+      "spvt_lower_trajectories": 100,
+      "spvt_higher_trajectories": 0
+    },
+    "mean_abs_steering_rad": {
+      "anchor_mean": 0.03891310587525368,
+      "spvt_mean": 0.029321797769516707,
+      "spvt_minus_anchor": -0.009591308105736971,
+      "paired_trajectory_ci95": [
+        -0.010434833076782524,
+        -0.008771710474975408
+      ],
+      "spvt_lower_trajectories": 100,
+      "spvt_higher_trajectories": 0
+    },
+    "trajectory_error_score": {
+      "anchor_mean": 0.06280629045643249,
+      "spvt_mean": 0.06402488900492996,
+      "spvt_minus_anchor": 0.0012185985484974829,
+      "paired_trajectory_ci95": [
+        -0.001364225048233328,
+        0.0039047441553178024
+      ],
+      "spvt_lower_trajectories": 51,
+      "spvt_higher_trajectories": 47
+    },
+    "unsafe": {
+      "anchor_mean": 0.0,
+      "spvt_mean": 0.0,
+      "spvt_minus_anchor": 0.0,
+      "paired_trajectory_ci95": [
+        0.0,
+        0.0
+      ],
+      "spvt_lower_trajectories": 0,
+      "spvt_higher_trajectories": 0
+    }
+  },
+  "per_arm": {
+    "anchor": {
+      "q": 0.09535209758478841,
+      "covered": 96,
+      "unsafe": 0,
+      "fresh_barrier_passed": true,
+      "fresh_barrier_status": "pass",
+      "verification_seconds": 8.366731064859778
+    },
+    "spvt_first_seed": {
+      "q": 0.09183867066167394,
+      "covered": 95,
+      "unsafe": 0,
+      "fresh_barrier_passed": true,
+      "fresh_barrier_status": "pass",
+      "verification_seconds": 7.628693955950439
+    }
+  },
+  "elapsed_seconds": 389.1014963891357,
+  "statistical_unit": "paired complete new image trajectories, 100 holdout; fixed selected controller pair",
+  "caution": "CP is marginal over calibration and a new trajectory; selecting only verified thresholds does not automatically give conditional 95% safety. Verification is floating-point without directed rounding."
+}

@@ -1,0 +1,43 @@
+{
+  "arm": "released",
+  "seed": 202611231,
+  "state_budget": 256,
+  "epochs": 20,
+  "batch": 32,
+  "updates_per_epoch": 8,
+  "device": "cpu",
+  "upstream": "/root/SPVT",
+  "original_sources": {
+    "model/model.py": "dfe8dfadfca0991fea90207ebc2ec075f789617ef1e7ca5444451c04a43990ac",
+    "spvt/args.py": "d0414eca0b5151deda55d8433d023d73abe2d5ad9020726c10c8c7fb384561af",
+    "spvt/logger.py": "e8f642b27e2d0ac56233dc85c9736c2c8d15ad5a54c3d04e0fef928eb15d2fc5",
+    "spvt/loss.py": "81d07f79fe07904d76c9f979d7e52db2ef90953402d98b5ebbbcc70df190a4e6",
+    "spvt/reg.py": "93479a88315679c33f3450f64df42093f73ddeee50b3bd14497a9ae513667c89",
+    "spvt/scripts.py": "3d72bda7426c2a3905b9dcd44718fe34856d63edac1cc711f07cbde942d37658",
+    "spvt/utils.py": "2f07ebe2cacfe0bb505726122eb4c7fedf31a993b077deb561b31a13203129cc",
+    "train.py": "d3d000f977c78f032a046529cb990dcb3ef36eb4c7497e37c73b5effa32617cd"
+  },
+  "executed_loss_sha256": "81d07f79fe07904d76c9f979d7e52db2ef90953402d98b5ebbbcc70df190a4e6",
+  "dataset_sha256": "245bb910ad77ea5f9cb90babb3b9cefe27479a6eddf2c5b04fe9f9e2e2a179e1",
+  "selected_indices_sha256": "c189e7f62a7ce0a9ef8e59ee6b094ef17a3cf553d1813a3cce4d12430e383483",
+  "wrapper_sha256": "009921a86f3695f9425f1a8e1c1dc1791d11810bd72a862f05cdeaba4b45f996",
+  "bounds": "backward (upstream default)",
+  "retained": [
+    "native train.train",
+    "bound-gap loss",
+    "original PID action target",
+    "adaptive loss weights",
+    "hard-example replay",
+    "K=4..10 curriculum",
+    "frozen native generator",
+    "native learning-rate schedule"
+  ],
+  "modification": "none",
+  "selection": "fixed final epoch; no selection by test outcomes",
+  "scope": "bounded-budget native-method repair diagnostic, not current-framework comparison",
+  "remaining_original_caveats": [
+    "Gaussian state replacement has unbounded support",
+    "corner-based propagation needs monotonicity/no-angle-wrap checks",
+    "BatchNorm training bounds are not automatically deployment bounds"
+  ]
+}

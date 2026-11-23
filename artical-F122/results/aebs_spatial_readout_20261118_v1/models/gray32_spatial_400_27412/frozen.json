@@ -1,0 +1,52 @@
+{
+  "arm": "gray32_spatial",
+  "budget": 400,
+  "seed": 27412,
+  "rank_selection": {
+    "grid": 4,
+    "lr": 0.001,
+    "epoch": 97,
+    "dev_mse": 0.008782553401860323
+  },
+  "model_sha256": "b2fe54e32a6b89637c8bb149ce4d28b27e88889f3aa08db91b01ff59cd34a0c5",
+  "trials": [
+    {
+      "grid": 2,
+      "lr": 0.0001,
+      "epoch": 100,
+      "dev_mse": 0.03860205411911011,
+      "gradients": 400,
+      "parameters": 28961,
+      "training_seconds": 0.8816554751247168
+    },
+    {
+      "grid": 2,
+      "lr": 0.001,
+      "epoch": 100,
+      "dev_mse": 0.009221872145479376,
+      "gradients": 400,
+      "parameters": 28961,
+      "training_seconds": 0.8292539590038359
+    },
+    {
+      "grid": 4,
+      "lr": 0.0001,
+      "epoch": 100,
+      "dev_mse": 0.02788665619763461,
+      "gradients": 400,
+      "parameters": 78113,
+      "training_seconds": 1.33492823690176
+    },
+    {
+      "grid": 4,
+      "lr": 0.001,
+      "epoch": 97,
+      "dev_mse": 0.008782553401860323,
+      "gradients": 400,
+      "parameters": 78113,
+      "training_seconds": 1.3394972360692918
+    }
+  ],
+  "protocol_sha256": "98e8e01db1a537fc8947c2153f4451d20d7d5fd8df90e9c18221a97f2d133bd6",
+  "test_metrics_accessed": false
+}

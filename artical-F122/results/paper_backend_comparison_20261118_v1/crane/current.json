@@ -1,0 +1,111 @@
+{
+  "passed": true,
+  "initial_upper": 0.7768590340467408,
+  "unsafe_lower": 1,
+  "mode": "exact rational",
+  "initial_upper_exact": "13994648225009222056823/18014398509481984000000",
+  "worst_ratio": {
+    "trolley_position": {
+      "ratio": 0.48497868951596895,
+      "step": 1
+    },
+    "trolley_speed": {
+      "ratio": 0.30678057678960075,
+      "step": 3
+    },
+    "sway": {
+      "ratio": 0.52406917313759,
+      "step": 17
+    },
+    "sway_rate": {
+      "ratio": 0.5238869167304674,
+      "step": 11
+    },
+    "payload_position": {
+      "ratio": 0.5534144679851546,
+      "step": 2
+    },
+    "payload_diagonal": {
+      "ratio": 0.659840327213069,
+      "step": 2
+    },
+    "axis_accel": {
+      "ratio": 0.6133097637211112,
+      "step": 0
+    },
+    "total_accel": {
+      "ratio": 0.7768590340467408,
+      "step": 0
+    }
+  },
+  "elapsed_seconds": 0.14244680711999536,
+  "rerun": true,
+  "comparison_scope": "frozen current conditional robust backend",
+  "task": "crane",
+  "protocol": {
+    "task": "crane",
+    "budget_seconds": 300.0,
+    "threads": 1,
+    "metadata": {
+      "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+      "arithmetic": "float64 interval arithmetic; no directed rounding",
+      "barrier_nonnegative_by_construction": true,
+      "barrier_time_varying": true,
+      "unsafe_barrier_threshold": 1.0,
+      "frontend_execution": "state proxy plus bounded semantic residual",
+      "gains": [
+        1.7103,
+        2.3227,
+        -2.4583,
+        -0.4332
+      ],
+      "coordinates": "axis x then y, each [p,v,s,r] physical SI units",
+      "initial_sampling": "original task: |p| uniform .34..70, signs uniform; remaining components uniform",
+      "contract": {
+        "path": "/root/work_based_on_spvc/artical-F122/results/overhead_crane_8d_20261117_v1/evaluation/contract.json",
+        "sha256": "b1ad4d509e9e1280c1fb53044e65e4e86d9c9cc3e03b18875792c325f5628e25"
+      },
+      "controller": {
+        "path": "/root/work_based_on_spvc/artical-F122/results/overhead_crane_8d_20261117_v1/evaluation/synthesis.json",
+        "sha256": "b739a1a55a8c1757777abd50df19097d6231187bd6c7bb43ed46e4e647112370"
+      },
+      "current_baseline_rerun": "exact rational finite-horizon support functions",
+      "adapter": {
+        "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+        "sha256": "80530dafa4e10ad7600e66d1ddb62b2990d09a6cdfe6a1b53242240a1c75bc99"
+      },
+      "task": "crane",
+      "horizon": 40,
+      "dt": 0.15,
+      "error_lo": [
+        -0.18804915958435167,
+        -0.18804915958435167,
+        -0.18804915958435167,
+        -0.18804915958435167
+      ],
+      "error_hi": [
+        0.18804915958435167,
+        0.18804915958435167,
+        0.18804915958435167,
+        0.18804915958435167
+      ],
+      "noise_lo": [
+        -0.025,
+        -0.04,
+        -0.025,
+        -0.04
+      ],
+      "noise_hi": [
+        0.025,
+        0.04,
+        0.025,
+        0.04
+      ],
+      "original_cp_distribution_unchanged": false,
+      "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+    },
+    "unsafe_threshold": 1.0
+  },
+  "fresh_checks": true,
+  "status": "pass"
+}

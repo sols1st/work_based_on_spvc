@@ -1,0 +1,86 @@
+{
+  "format": "lane_precision_camera_v1",
+  "date": "2026-11-20",
+  "arms": [
+    "anchor",
+    "202611200701__nominal_precision",
+    "202611200701__adversarial_precision",
+    "202611200702__nominal_precision",
+    "202611200702__adversarial_precision",
+    "202611200703__nominal_precision",
+    "202611200703__adversarial_precision"
+  ],
+  "training_seeds": [
+    202611200701,
+    202611200702,
+    202611200703
+  ],
+  "calibration_seed": 202611200901,
+  "test_seed": 202611200902,
+  "calibration_n": 199,
+  "test_n": 100,
+  "horizon": 80,
+  "dt": 0.1,
+  "alpha": 0.05,
+  "strict_goal": "whole episode safe; all sampled states t=2.0 through 8.0 seconds within lateral tolerance",
+  "tolerances_m": [
+    0.02,
+    0.05,
+    0.1,
+    0.2
+  ],
+  "speed_mps": 4.0,
+  "scope": "fixed original DINO spatial observer; backend controlled ablation, NOT native SPVC or real-road cameras",
+  "source_sha256": "90dd0cb27c96e43628c4efe4b67dd388f3f100ffda502098bfb69e3497dcfa2c",
+  "metric_source_sha256": "b1996ac6506754a88437a0344a2fadbeb1e3139160948ad3cac1c9867a73a587",
+  "collector_sha256": "69d398f66430e6b91cad224fce2905259ad589d169fdb2b335a1c27ad1bc5093",
+  "cp_source_sha256": "6369d2b12f40ff4885308a9469b7200bec328547133a2a59d663f8093d0eb676",
+  "bindings": {
+    "anchor": {
+      "actor.pt": "afd4509772a9fda976da2d0c5722f55e6d8f2e9fabce37b7a998110583fe0c75",
+      "sbc.pt": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321",
+      "patch_projection.pt": "490e30cad8cbbc95809ba2fde9db4c99c3f8efd3ae2b6f02fb2f84f6707eb278"
+    },
+    "202611200701__nominal_precision": {
+      "actor.pt": "01926ad98c0bdaf2d8f2c7026893574c0efa579e2cd17419a28c7cd79cef8228",
+      "sbc.pt": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321",
+      "patch_projection.pt": "490e30cad8cbbc95809ba2fde9db4c99c3f8efd3ae2b6f02fb2f84f6707eb278"
+    },
+    "202611200701__adversarial_precision": {
+      "actor.pt": "416106d4e17a4f601cb253927f2be2a8649ba3ba29590d4f680c218638cf8622",
+      "sbc.pt": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321",
+      "patch_projection.pt": "490e30cad8cbbc95809ba2fde9db4c99c3f8efd3ae2b6f02fb2f84f6707eb278"
+    },
+    "202611200702__nominal_precision": {
+      "actor.pt": "ff1f1fb6c04a3d155459e8eb168e41761bf4030fcdf4f25bf03872302ac0a863",
+      "sbc.pt": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321",
+      "patch_projection.pt": "490e30cad8cbbc95809ba2fde9db4c99c3f8efd3ae2b6f02fb2f84f6707eb278"
+    },
+    "202611200702__adversarial_precision": {
+      "actor.pt": "8568e1d949066f580256c078e26174e0b52a27980f712dabe8a25c4eab6a0b41",
+      "sbc.pt": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321",
+      "patch_projection.pt": "490e30cad8cbbc95809ba2fde9db4c99c3f8efd3ae2b6f02fb2f84f6707eb278"
+    },
+    "202611200703__nominal_precision": {
+      "actor.pt": "b62fbd54fa8ec3845f4effbb080fc7100df990fc6a3e57252e5d2c478ca3cdf8",
+      "sbc.pt": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321",
+      "patch_projection.pt": "490e30cad8cbbc95809ba2fde9db4c99c3f8efd3ae2b6f02fb2f84f6707eb278"
+    },
+    "202611200703__adversarial_precision": {
+      "actor.pt": "d166c3fd73d54860948603615fa73b26bf896a1c66aab475f29ddd209779c5d4",
+      "sbc.pt": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321",
+      "patch_projection.pt": "490e30cad8cbbc95809ba2fde9db4c99c3f8efd3ae2b6f02fb2f84f6707eb278"
+    }
+  },
+  "dino_sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+  "gpu_memory_fraction": 0.035,
+  "device": "cuda:1",
+  "batch": 32,
+  "renderer_workers": 8,
+  "no_model_selection": true,
+  "unsafe_trajectories_retained": true,
+  "safety": "new trajectory CP and fresh fixed neural barrier numerical audit per arm; no precision certificate",
+  "performance_cp": "separate prespecified joint safety/precision score calibrated before holdout; not a conjunction with visual-error coverage at 95 percent",
+  "simultaneous_claim": "Individual marginal CP only; not a joint 95 percent guarantee over all arms",
+  "uncertainty": "scene-paired bootstrap conditional on these three trained seeds; no claim of training-population confidence"
+}

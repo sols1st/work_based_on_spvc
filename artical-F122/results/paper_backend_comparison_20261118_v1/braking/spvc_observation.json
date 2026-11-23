@@ -1,0 +1,319 @@
+{
+  "task": "braking",
+  "method": "SPVC-inspired controlled expectation backend",
+  "comparison_scope": "same_frozen_controller_and_barrier_candidate; not native cGAN retraining",
+  "stochastic_model": "observation_uniform",
+  "model_description": "Uniform independent observation and plant errors on the registered robust support; induced transition law depends on state.",
+  "paper_assumption_1_preserved": false,
+  "paper_assumption_1_scope": "state-conditioned transition law induced by uniform observation and plant errors",
+  "stopping_semantics": "terminal states absorb before any disturbance is applied, for both stochastic models",
+  "real_visual_probability_claim": null,
+  "mu": null,
+  "nonincrease_status": "inconclusive_within_budget",
+  "strict_status": "fixed_candidate_does_not_meet_strict_epsilon",
+  "strong_stochastic_baseline": {
+    "status": "nonincrease_inherited_from_matching_robust_certificate",
+    "strict_epsilon_inherited": false,
+    "proof_scope": "Same modeled support, candidate and domain as the source robust result; does not certify real-camera probabilities.",
+    "source_robust_result": {
+      "passed": true,
+      "method": "global sufficient inequalities for structured neural barrier; numerical scalar checks",
+      "radius": 0.12506186821868048,
+      "coefficients": [
+        0.19517535530310534,
+        0.054105207768838384,
+        0.025394633333215257,
+        1.018306874486942
+      ],
+      "initial_upper": 0.0,
+      "unsafe_lower_by_separation": 20,
+      "horizon_if_tube_holds": "until absorbing stop, including all later sampled states",
+      "domain": "0<=v<=2.6, |delta|<=0.07, kappa in {-0.02,+0.02}",
+      "checks": {
+        "finite_radius": true,
+        "brake_floor_guard_slack_m": 1.0998762635626385,
+        "lateral_step_slack": 0.006316460326604739,
+        "yaw_and_steering_step_slack": 0.002811504273702317,
+        "obstacle_progress_step_slack": 0.005135648549758454,
+        "forward_progress_cosine": 0.9820042351172704,
+        "steering_weight": 0.025394633333215257,
+        "body_lane_slack_m": 0.06579035898636319,
+        "body_station_slack_m": 0.08565781381988846,
+        "initial_level_slack": 1.0,
+        "braking_reserve_support": 0.2799999999999998,
+        "minimum_frenet_denominator": 0.952071501606854
+      },
+      "outward_rounded": false,
+      "continuous_time_collision_claim": false
+    },
+    "logical_implication": "If B(next)<=B(now) for every disturbance in the same support, then E[B(next)|state]<=B(state) for every probability law on that support. No uniformity or independent-coordinate assumption is needed."
+  },
+  "interpretation_of_inconclusive": "An incomplete standalone interval integration is not failure of a stochastic method; a matching robust certificate already implies its nonincrease expectation condition.",
+  "strict_epsilon": 1e-06,
+  "strict_comparison_warning": "Zero plateaus and absorbing terminal states can make strict epsilon impossible for this transferred candidate; this is not evidence that SPVC cannot synthesize a different certificate.",
+  "expectation_bound_method": "equal-mass complete-support interval integration",
+  "noise_partition_cells": 32,
+  "interval_barrier_evaluations": 583104,
+  "initial_bound": {
+    "upper": 0.0,
+    "boxes_evaluated": 1,
+    "all_initial_states_enclosed": true,
+    "target": 1.0,
+    "passed": true
+  },
+  "unsafe_threshold": 20.0,
+  "nonnegative_by_construction": true,
+  "unsafe_separation_evidence": null,
+  "complete_certificate_claim": false,
+  "certificate_obligations": "Numerical drift results alone do not establish unsafe separation, reliable arithmetic, real visual distribution validity, or all closure/terminal assumptions.",
+  "barrier_time_varying": false,
+  "theoretical_time_scope": "stationary candidate; any infinite-horizon claim additionally requires all global SBC obligations",
+  "counts": {
+    "processed": 12322,
+    "drift_passed": 498,
+    "strict_drift_passed": 0,
+    "outside_relevant_sublevel": 786,
+    "unsafe_only": 0,
+    "unresolved": 0,
+    "domain_not_enclosed": 0,
+    "queued_unresolved": 9756
+  },
+  "largest_accepted_cell_drift_upper": 0.0,
+  "positive_drift_witnesses": [],
+  "strict_only_witnesses": [
+    {
+      "state": [
+        -0.010087648185443013,
+        -0.016597354813946995,
+        5.728730753245232,
+        2.349187516139642,
+        0.014546532857708148
+      ],
+      "time": 0,
+      "context": -0.02,
+      "barrier": 0.0,
+      "expected_barrier_lower": 0.0,
+      "expected_barrier_upper": 0.0,
+      "current_barrier_lower": 0.0,
+      "current_barrier_upper": 0.0,
+      "drift_lower": 0.0,
+      "drift_upper": 0.0,
+      "absorbing_identity": false,
+      "domain_enclosed": true,
+      "successor_lo": [
+        -0.01691491416954224,
+        -0.006966666350644548,
+        5.317338895059235,
+        1.8812513627349658,
+        -0.035075667538222645
+      ],
+      "successor_hi": [
+        -0.01633212075211657,
+        -0.006067839142779988,
+        5.352456388282981,
+        2.056827586189985,
+        0.06748044202664832
+      ]
+    },
+    {
+      "state": [
+        -0.0668240161905178,
+        -0.00246303466924774,
+        5.8652139587287895,
+        2.3009230673852255,
+        -0.01168747277318679
+      ],
+      "time": 0,
+      "context": -0.02,
+      "barrier": 0.0,
+      "expected_barrier_lower": 0.0,
+      "expected_barrier_upper": 0.0,
+      "current_barrier_lower": 0.0,
+      "current_barrier_upper": 0.0,
+      "drift_lower": 0.0,
+      "drift_upper": 0.0,
+      "absorbing_identity": false,
+      "domain_enclosed": true,
+      "successor_lo": [
+        -0.06782252739319398,
+        0.0033285641532688585,
+        5.459273486282274,
+        1.8942161635101291,
+        -0.04655660238598295
+      ],
+      "successor_hi": [
+        -0.06775711926342096,
+        0.003889748721809534,
+        5.48586488258383,
+        2.026995853384648,
+        0.04688110706212045
+      ]
+    },
+    {
+      "state": [
+        0.05621402060014609,
+        -0.01221560029208418,
+        5.601347815506047,
+        2.11388398948947,
+        0.02199381502428279
+      ],
+      "time": 0,
+      "context": -0.02,
+      "barrier": 0.0,
+      "expected_barrier_lower": 0.0,
+      "expected_barrier_upper": 0.0,
+      "current_barrier_lower": 0.0,
+      "current_barrier_upper": 0.0,
+      "drift_lower": 0.0,
+      "drift_upper": 0.0,
+      "absorbing_identity": false,
+      "domain_enclosed": true,
+      "successor_lo": [
+        0.05172286331512681,
+        -0.002589585788853894,
+        5.234121450429559,
+        1.6925412399378006,
+        -0.03185554471366899
+      ],
+      "successor_hi": [
+        0.0520790419864785,
+        -0.0017604204227163233,
+        5.26324494588908,
+        1.8383333095887462,
+        0.05026818205838855
+      ]
+    },
+    {
+      "state": [
+        -0.04048393767121917,
+        0.019599058589314784,
+        5.899452820297925,
+        2.399816591463831,
+        -0.022263903092520253
+      ],
+      "time": 0,
+      "context": -0.02,
+      "barrier": 0.0,
+      "expected_barrier_lower": 0.0,
+      "expected_barrier_upper": 0.0,
+      "current_barrier_lower": 0.0,
+      "current_barrier_upper": 0.0,
+      "drift_lower": 0.0,
+      "drift_upper": 0.0,
+      "absorbing_identity": false,
+      "domain_enclosed": true,
+      "successor_lo": [
+        -0.03278435565875857,
+        0.023899166736063154,
+        5.475842630073086,
+        1.964399190572693,
+        -0.07
+      ],
+      "successor_hi": [
+        -0.03218723663385346,
+        0.024574044694677315,
+        5.50633013379146,
+        2.116742542107994,
+        0.03164517682310984
+      ]
+    },
+    {
+      "state": [
+        0.062994392250168,
+        0.008999032584950658,
+        5.554724462482542,
+        2.2904436638061005,
+        -0.027310718624479473
+      ],
+      "time": 0,
+      "context": -0.02,
+      "barrier": 0.0,
+      "expected_barrier_lower": 0.0,
+      "expected_barrier_upper": 0.0,
+      "current_barrier_lower": 0.0,
+      "current_barrier_upper": 0.0,
+      "drift_lower": 0.0,
+      "drift_upper": 0.0,
+      "absorbing_identity": false,
+      "domain_enclosed": true,
+      "successor_lo": [
+        0.06618796806503506,
+        0.012057828311787044,
+        5.159621510056829,
+        1.7744234667071606,
+        -0.07
+      ],
+      "successor_hi": [
+        0.06655451228365385,
+        0.012979191297396503,
+        5.200300673008833,
+        1.978083783795986,
+        -0.0011425988835710964
+      ]
+    }
+  ],
+  "unresolved_examples": [],
+  "arithmetic": "float64 interval operations; no directed outward rounding",
+  "witness_significance_guard": "drift lower must exceed relative tolerance times (1+|B|+|E upper/lower|); smaller positive drift is never used as a counterexample. Acceptance is not relaxed by this tolerance.",
+  "outward_rounded": false,
+  "elapsed_seconds": 300.0123426928185,
+  "budget": {
+    "max_state_boxes": 100000,
+    "max_seconds": 300,
+    "noise_cells": 32,
+    "max_depth": 22,
+    "witness_states": 64,
+    "witness_seed": 181123,
+    "strict_epsilon": 1e-06,
+    "region_boxes": 256,
+    "witness_relative_tolerance": 1e-09
+  },
+  "task_metadata": {
+    "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+    "arithmetic": "float64 interval arithmetic; no directed rounding",
+    "barrier_nonnegative_by_construction": true,
+    "barrier_time_varying": false,
+    "unsafe_barrier_threshold": 20.0,
+    "frontend_execution": "state proxy plus bounded semantic residual",
+    "coordinates": "physical [e,heading,distance,speed,wheel_angle]",
+    "actor": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/curve_braking_5d_20261117/actor.pt",
+      "sha256": "9015d427fed9be1b3e584c031bad54bcb032964c98aca812504ac6b380e15ccf"
+    },
+    "barrier": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/curve_braking_5d_20261117/barrier.pt",
+      "sha256": "de6c1992dfab0dc63d264aab971ad34db6b5fbf5e2c75dede80a1356e7586421"
+    },
+    "contract": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/curve_braking_5d_20261117/evaluation/neural/contract.json",
+      "sha256": "41e42c4597217179d865fa0567d143e23e363ee0388ee35d6a13d7bb8c453616"
+    },
+    "current_baseline_rerun": "global structural scalar inequalities",
+    "barrier_separation_domain": "0<=v<=2.6 and |wheel_angle|<=.07; B<20 geometric sublevel",
+    "adapter": {
+      "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+      "sha256": "3f814d65d6199193ae9e92fa9aec6985bcd2b94704e40879a1f4e555cbf4ed9a"
+    },
+    "task": "braking",
+    "horizon": 14,
+    "dt": 0.2,
+    "error_lo": [
+      -0.12506186821868048,
+      -0.12506186821868048,
+      -0.12506186821868048
+    ],
+    "error_hi": [
+      0.12506186821868048,
+      0.12506186821868048,
+      0.12506186821868048
+    ],
+    "noise_lo": [],
+    "noise_hi": [],
+    "original_cp_distribution_unchanged": false,
+    "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+  },
+  "source_binding": {
+    "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/spvc_stochastic.py",
+    "sha256": "904886609de058c4ca51ea4b072922c47adf0d6eebc569afffc72b8f77a82fe2"
+  }
+}

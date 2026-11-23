@@ -1,0 +1,29 @@
+{
+  "rows": [
+    {
+      "arm": "anchor",
+      "n": 100,
+      "whole_trajectory_covered": 96,
+      "actual_safe": 100,
+      "task_success": 100,
+      "task_success_definition": "80-step lane keeping without exceeding |e|>.85m or |heading|>.30rad; does not require convergence to zero error",
+      "barrier_verified_at_own_new_q": true,
+      "q": 0.09535209758478841,
+      "test_sha256": "67744201c2437b6c2e69da2882040e8e521448fb133b77e24ff6ab0d90567b4a",
+      "limitation": "Only trajectories whose visual residual stays inside the calibrated set directly satisfy this certificate premise. Safe empirical out-of-set trajectories are not retrospectively certified."
+    },
+    {
+      "arm": "spvt_first_seed",
+      "n": 100,
+      "whole_trajectory_covered": 95,
+      "actual_safe": 100,
+      "task_success": 100,
+      "task_success_definition": "80-step lane keeping without exceeding |e|>.85m or |heading|>.30rad; does not require convergence to zero error",
+      "barrier_verified_at_own_new_q": true,
+      "q": 0.09183867066167394,
+      "test_sha256": "43cbe4c668fce86a2193bfe14967c0cec26a4b0a3eb5b50836b259c2995f69ef",
+      "limitation": "Only trajectories whose visual residual stays inside the calibrated set directly satisfy this certificate premise. Safe empirical out-of-set trajectories are not retrospectively certified."
+    }
+  ],
+  "source_summary_sha256": "72cfd7b5c292099769069a4ed082f14046fc85e83a229392cbc2c846975ebe26"
+}

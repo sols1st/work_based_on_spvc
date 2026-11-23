@@ -1,0 +1,159 @@
+{
+  "schema": "controlled_spvt_global_box_v1",
+  "task": "lane",
+  "implementation_sha256": "4e0290a9283aa01a9ef8458c8aa93eb0e097105d1621763e0a925982affd94a8",
+  "metadata": {
+    "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+    "arithmetic": "float64 interval arithmetic; no directed rounding",
+    "barrier_nonnegative_by_construction": true,
+    "barrier_time_varying": false,
+    "unsafe_barrier_threshold": 20.0,
+    "frontend_execution": "state proxy plus bounded semantic residual",
+    "coordinates": "normalized [e/.85,theta/.30]",
+    "contract": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/lane_robust_synthesis_20261116_v2/final_cp/calibration.json",
+      "sha256": "f828c763116ce4c6665b19948afa7992b15b93d6be2f299b93237edb611cad69"
+    },
+    "actor": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/lane_robust_synthesis_20261116_v2/package/actor.pt",
+      "sha256": "afd4509772a9fda976da2d0c5722f55e6d8f2e9fabce37b7a998110583fe0c75"
+    },
+    "barrier": {
+      "path": "/root/work_based_on_spvc/artical-F122/results/lane_robust_synthesis_20261116_v2/package/sbc.pt",
+      "sha256": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321"
+    },
+    "contexts": [
+      -0.01,
+      0.0,
+      0.01
+    ],
+    "adapter": {
+      "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+      "sha256": "80530dafa4e10ad7600e66d1ddb62b2990d09a6cdfe6a1b53242240a1c75bc99"
+    },
+    "task": "lane",
+    "horizon": 80,
+    "dt": 0.1,
+    "error_lo": [
+      -0.09968696247082366,
+      -0.09968696247082366
+    ],
+    "error_hi": [
+      0.09968696247082366,
+      0.09968696247082366
+    ],
+    "noise_lo": [],
+    "noise_hi": [],
+    "original_cp_distribution_unchanged": false,
+    "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+  },
+  "config": {
+    "mode": "auto",
+    "timeout_seconds": 100.0,
+    "max_nodes": 3000000,
+    "max_frontier": 2048,
+    "max_depth": 40,
+    "split_lookahead": true,
+    "falsification_paths": 0,
+    "seed": 2026111807
+  },
+  "total_timeout_seconds": 300,
+  "contexts": [
+    {
+      "task": "lane",
+      "initial_state": [
+        -0.29411764705882354,
+        -0.2
+      ],
+      "context": -0.01,
+      "horizon": 80,
+      "requested_seconds": 8.0,
+      "status": "unknown_partition_depth",
+      "certified_steps": 7,
+      "certified_seconds": 0.7000000000000001,
+      "interval_evaluations": 486,
+      "bound_evaluations": 486,
+      "wall_seconds": 0.9988082950003445,
+      "method": "zonotope_then_partitioned_intervals",
+      "splits": 66,
+      "merges": 0,
+      "max_frontier": 27,
+      "first_unresolved_step": 8,
+      "zonotope_prefix_steps": 0,
+      "initial_lo": [
+        -0.29411764705882354,
+        -0.2
+      ],
+      "initial_hi": [
+        0.29411764705882354,
+        0.2
+      ],
+      "population": "entire_initial_box_separate_from_iid_point_budget"
+    },
+    {
+      "task": "lane",
+      "initial_state": [
+        -0.29411764705882354,
+        -0.2
+      ],
+      "context": 0.0,
+      "horizon": 80,
+      "requested_seconds": 8.0,
+      "status": "unknown_partition_depth",
+      "certified_steps": 7,
+      "certified_seconds": 0.7000000000000001,
+      "interval_evaluations": 461,
+      "bound_evaluations": 461,
+      "wall_seconds": 0.9445483717136085,
+      "method": "zonotope_then_partitioned_intervals",
+      "splits": 62,
+      "merges": 0,
+      "max_frontier": 23,
+      "first_unresolved_step": 8,
+      "zonotope_prefix_steps": 0,
+      "initial_lo": [
+        -0.29411764705882354,
+        -0.2
+      ],
+      "initial_hi": [
+        0.29411764705882354,
+        0.2
+      ],
+      "population": "entire_initial_box_separate_from_iid_point_budget"
+    },
+    {
+      "task": "lane",
+      "initial_state": [
+        -0.29411764705882354,
+        -0.2
+      ],
+      "context": 0.01,
+      "horizon": 80,
+      "requested_seconds": 8.0,
+      "status": "unknown_partition_depth",
+      "certified_steps": 7,
+      "certified_seconds": 0.7000000000000001,
+      "interval_evaluations": 483,
+      "bound_evaluations": 483,
+      "wall_seconds": 0.989104013890028,
+      "method": "zonotope_then_partitioned_intervals",
+      "splits": 67,
+      "merges": 0,
+      "max_frontier": 28,
+      "first_unresolved_step": 8,
+      "zonotope_prefix_steps": 0,
+      "initial_lo": [
+        -0.29411764705882354,
+        -0.2
+      ],
+      "initial_hi": [
+        0.29411764705882354,
+        0.2
+      ],
+      "population": "entire_initial_box_separate_from_iid_point_budget"
+    }
+  ],
+  "all_contexts_certified": false,
+  "total_wall_seconds": 2.933138720691204,
+  "scope": "Separate universal initial-box check; no reuse of this result as independently computed point timings."
+}

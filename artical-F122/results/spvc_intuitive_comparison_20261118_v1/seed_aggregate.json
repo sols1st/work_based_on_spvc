@@ -1,0 +1,1433 @@
+{
+  "scope": "mean of fixed training checkpoints on the same1000 scenarios, not3000 independent episodes",
+  "rows": [
+    {
+      "mode": "gray32",
+      "budget": 400,
+      "actor": "original_ppo",
+      "keys": [
+        "common__gray32_400_27411__original_ppo",
+        "common__gray32_400_27412__original_ppo",
+        "common__gray32_400_27413__original_ppo"
+      ],
+      "seeds": [
+        27411,
+        27412,
+        27413
+      ],
+      "independent_scenarios": 1000,
+      "fixed_training_seeds": 3,
+      "q_mean_m": 1.8013146226503522,
+      "q_median_m": 1.720298980413645,
+      "metric_means": {
+        "success": 0.7486666666666666,
+        "unsafe": 0.2513333333333333,
+        "stopped_safe_outside_goal": 0.0,
+        "out_of_domain": 0.0,
+        "timeout": 0.0,
+        "scores": 1.2359598757575576,
+        "episode_mae_m": 0.3796330062273297,
+        "episode_rmse_m": 0.48550589071945316,
+        "network_episode_mae_m": 0.2732221839954966,
+        "network_peak_error_m": 1.0160157074649578,
+        "lookup_episode_mae_m": 0.26940712255187754,
+        "max_lookup_error_m": 0.8673143812920048,
+        "terminal_distance_to_goal_m": 0.0,
+        "terminal_excess_speed_mps": 0.10839382155736288,
+        "time_to_goal_capped_seconds": 8.504133333333334,
+        "terminal_abs_deviation_5p5_m": 0.4875497940381368
+      },
+      "metric_training_seed_means": {
+        "success": [
+          0.671,
+          0.826,
+          0.749
+        ],
+        "unsafe": [
+          0.329,
+          0.174,
+          0.251
+        ],
+        "stopped_safe_outside_goal": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "out_of_domain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "timeout": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scores": [
+          1.2047835250231143,
+          1.1366792964877994,
+          1.3664168057617598
+        ],
+        "episode_mae_m": [
+          0.38658242612748744,
+          0.3658187652681419,
+          0.3864978272863598
+        ],
+        "episode_rmse_m": [
+          0.4896478696634012,
+          0.4571307045479407,
+          0.5097390979470177
+        ],
+        "network_episode_mae_m": [
+          0.27644770099240473,
+          0.25316758769585057,
+          0.29005126329823466
+        ],
+        "network_peak_error_m": [
+          0.9725951650123463,
+          0.8653107427740073,
+          1.2101412146085202
+        ],
+        "lookup_episode_mae_m": [
+          0.27103887189266296,
+          0.26768464360464284,
+          0.26949785215832694
+        ],
+        "max_lookup_error_m": [
+          0.8667805507243523,
+          0.8678686407619142,
+          0.8672939523897477
+        ],
+        "terminal_distance_to_goal_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "terminal_excess_speed_mps": [
+          0.11658166515827179,
+          0.057042726159095766,
+          0.15155707335472107
+        ],
+        "time_to_goal_capped_seconds": [
+          9.6984,
+          7.3065,
+          8.5075
+        ],
+        "terminal_abs_deviation_5p5_m": [
+          0.48690927076339724,
+          0.4887319941520691,
+          0.4870081171989441
+        ]
+      }
+    },
+    {
+      "mode": "gray32",
+      "budget": 400,
+      "actor": "current_robust",
+      "keys": [
+        "common__gray32_400_27411__current_robust",
+        "common__gray32_400_27412__current_robust",
+        "common__gray32_400_27413__current_robust"
+      ],
+      "seeds": [
+        27411,
+        27412,
+        27413
+      ],
+      "independent_scenarios": 1000,
+      "fixed_training_seeds": 3,
+      "q_mean_m": 1.8160101786307905,
+      "q_median_m": 1.7589813341829768,
+      "metric_means": {
+        "success": 0.8866666666666666,
+        "unsafe": 0.11333333333333333,
+        "stopped_safe_outside_goal": 0.0,
+        "out_of_domain": 0.0,
+        "timeout": 0.0,
+        "scores": 1.2480679253585252,
+        "episode_mae_m": 0.3470492287336014,
+        "episode_rmse_m": 0.44954811029501796,
+        "network_episode_mae_m": 0.26657209906383694,
+        "network_peak_error_m": 1.030571229089638,
+        "lookup_episode_mae_m": 0.2544484031364362,
+        "max_lookup_error_m": 0.8731612121396584,
+        "terminal_distance_to_goal_m": 0.0,
+        "terminal_excess_speed_mps": 0.01619002326329549,
+        "time_to_goal_capped_seconds": 10.662916666666668,
+        "terminal_abs_deviation_5p5_m": 0.49414070415496825
+      },
+      "metric_training_seed_means": {
+        "success": [
+          0.917,
+          0.917,
+          0.826
+        ],
+        "unsafe": [
+          0.083,
+          0.083,
+          0.174
+        ],
+        "stopped_safe_outside_goal": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "out_of_domain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "timeout": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scores": [
+          1.2222003551616663,
+          1.1444023054001087,
+          1.3776011155138006
+        ],
+        "episode_mae_m": [
+          0.35057209018846736,
+          0.3316604483078888,
+          0.35891514770444805
+        ],
+        "episode_rmse_m": [
+          0.4519458031352632,
+          0.4180675773387458,
+          0.47863095041104475
+        ],
+        "network_episode_mae_m": [
+          0.27745740371745303,
+          0.23821909697228524,
+          0.2840397965017725
+        ],
+        "network_peak_error_m": [
+          0.9951795038014521,
+          0.876261314124609,
+          1.220272869342853
+        ],
+        "lookup_episode_mae_m": [
+          0.2582013221572183,
+          0.25204530454840385,
+          0.2530985827036864
+        ],
+        "max_lookup_error_m": [
+          0.8736989328988483,
+          0.8736846657595108,
+          0.8721000377606162
+        ],
+        "terminal_distance_to_goal_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "terminal_excess_speed_mps": [
+          0.011603413462638854,
+          0.003171191155910492,
+          0.03379546517133713
+        ],
+        "time_to_goal_capped_seconds": [
+          10.035150000000002,
+          10.527400000000002,
+          11.426200000000001
+        ],
+        "terminal_abs_deviation_5p5_m": [
+          0.4937780957221985,
+          0.4956650733947754,
+          0.4929789433479309
+        ]
+      }
+    },
+    {
+      "mode": "gray32_mlp",
+      "budget": 400,
+      "actor": "original_ppo",
+      "keys": [
+        "common__gray32_mlp_400_27411__original_ppo",
+        "common__gray32_mlp_400_27412__original_ppo",
+        "common__gray32_mlp_400_27413__original_ppo"
+      ],
+      "seeds": [
+        27411,
+        27412,
+        27413
+      ],
+      "independent_scenarios": 1000,
+      "fixed_training_seeds": 3,
+      "q_mean_m": 0.9905486150939851,
+      "q_median_m": 0.9981681770202613,
+      "metric_means": {
+        "success": 1.0,
+        "unsafe": 0.0,
+        "stopped_safe_outside_goal": 0.0,
+        "out_of_domain": 0.0,
+        "timeout": 0.0,
+        "scores": 0.8981965249330941,
+        "episode_mae_m": 0.2712354381262029,
+        "episode_rmse_m": 0.3655385224688237,
+        "network_episode_mae_m": 0.05338550736847792,
+        "network_peak_error_m": 0.26776126295410585,
+        "lookup_episode_mae_m": 0.2639857357484812,
+        "max_lookup_error_m": 0.8676325786783452,
+        "terminal_distance_to_goal_m": 0.0,
+        "terminal_excess_speed_mps": 0.0,
+        "time_to_goal_capped_seconds": 4.53425,
+        "terminal_abs_deviation_5p5_m": 0.4910019907951355
+      },
+      "metric_training_seed_means": {
+        "success": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "unsafe": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "stopped_safe_outside_goal": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "out_of_domain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "timeout": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scores": [
+          0.8960695162790608,
+          0.9105474880349678,
+          0.8879725704852538
+        ],
+        "episode_mae_m": [
+          0.27373510996421885,
+          0.27151517123904934,
+          0.2684560331753404
+        ],
+        "episode_rmse_m": [
+          0.36723381452552895,
+          0.36640846049861964,
+          0.3629732923823223
+        ],
+        "network_episode_mae_m": [
+          0.057854468246391,
+          0.05246047170239777,
+          0.04984158215664498
+        ],
+        "network_peak_error_m": [
+          0.3306570667945751,
+          0.2206043339471612,
+          0.25202238812058114
+        ],
+        "lookup_episode_mae_m": [
+          0.2644472963836694,
+          0.26310185055719626,
+          0.26440806030457803
+        ],
+        "max_lookup_error_m": [
+          0.867852353022738,
+          0.8678301529657374,
+          0.8672152300465603
+        ],
+        "terminal_distance_to_goal_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "terminal_excess_speed_mps": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "time_to_goal_capped_seconds": [
+          4.52555,
+          4.5671,
+          4.5101
+        ],
+        "terminal_abs_deviation_5p5_m": [
+          0.49082942962646486,
+          0.49125794076919554,
+          0.4909186019897461
+        ]
+      }
+    },
+    {
+      "mode": "gray32_mlp",
+      "budget": 400,
+      "actor": "current_robust",
+      "keys": [
+        "common__gray32_mlp_400_27411__current_robust",
+        "common__gray32_mlp_400_27412__current_robust",
+        "common__gray32_mlp_400_27413__current_robust"
+      ],
+      "seeds": [
+        27411,
+        27412,
+        27413
+      ],
+      "independent_scenarios": 1000,
+      "fixed_training_seeds": 3,
+      "q_mean_m": 0.9909270132031907,
+      "q_median_m": 0.9981681770202613,
+      "metric_means": {
+        "success": 1.0,
+        "unsafe": 0.0,
+        "stopped_safe_outside_goal": 0.0,
+        "out_of_domain": 0.0,
+        "timeout": 0.0,
+        "scores": 0.9073786927277511,
+        "episode_mae_m": 0.24286386687503256,
+        "episode_rmse_m": 0.33508163519402845,
+        "network_episode_mae_m": 0.04417662289182633,
+        "network_peak_error_m": 0.2682902616211481,
+        "lookup_episode_mae_m": 0.23689708065708268,
+        "max_lookup_error_m": 0.8719056839171003,
+        "terminal_distance_to_goal_m": 0.0,
+        "terminal_excess_speed_mps": 0.0,
+        "time_to_goal_capped_seconds": 9.424316666666668,
+        "terminal_abs_deviation_5p5_m": 0.49663144032160444
+      },
+      "metric_training_seed_means": {
+        "success": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "unsafe": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "stopped_safe_outside_goal": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "out_of_domain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "timeout": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scores": [
+          0.9041406174314213,
+          0.9199759454460139,
+          0.898019515305818
+        ],
+        "episode_mae_m": [
+          0.24301224849867367,
+          0.2454209029335299,
+          0.2401584491928941
+        ],
+        "episode_rmse_m": [
+          0.33541138255021646,
+          0.3371412705011479,
+          0.33269225253072104
+        ],
+        "network_episode_mae_m": [
+          0.04348911895592043,
+          0.04666304117439612,
+          0.04237770854516242
+        ],
+        "network_peak_error_m": [
+          0.3307885162086022,
+          0.22129022811172383,
+          0.2527920405431183
+        ],
+        "lookup_episode_mae_m": [
+          0.2382890061506603,
+          0.23643635403372676,
+          0.23596588178686104
+        ],
+        "max_lookup_error_m": [
+          0.8721181686681883,
+          0.8719951205995528,
+          0.8716037624835601
+        ],
+        "terminal_distance_to_goal_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "terminal_excess_speed_mps": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "time_to_goal_capped_seconds": [
+          9.3063,
+          9.54135,
+          9.4253
+        ],
+        "terminal_abs_deviation_5p5_m": [
+          0.4965107545852661,
+          0.4967303719520569,
+          0.49665319442749023
+        ]
+      }
+    },
+    {
+      "mode": "gray32",
+      "budget": 10000,
+      "actor": "original_ppo",
+      "keys": [
+        "common__gray32_10000_27411__original_ppo",
+        "common__gray32_10000_27412__original_ppo",
+        "common__gray32_10000_27413__original_ppo"
+      ],
+      "seeds": [
+        27411,
+        27412,
+        27413
+      ],
+      "independent_scenarios": 1000,
+      "fixed_training_seeds": 3,
+      "q_mean_m": 0.937037658950203,
+      "q_median_m": 0.9395986755649801,
+      "metric_means": {
+        "success": 1.0,
+        "unsafe": 0.0,
+        "stopped_safe_outside_goal": 0.0,
+        "out_of_domain": 0.0,
+        "timeout": 0.0,
+        "scores": 0.890330122487299,
+        "episode_mae_m": 0.27194395109194985,
+        "episode_rmse_m": 0.3698864677116167,
+        "network_episode_mae_m": 0.03093222883654628,
+        "network_peak_error_m": 0.10364349054665767,
+        "lookup_episode_mae_m": 0.2636595930632269,
+        "max_lookup_error_m": 0.8676008267809698,
+        "terminal_distance_to_goal_m": 0.0,
+        "terminal_excess_speed_mps": 0.0,
+        "time_to_goal_capped_seconds": 4.539883333333333,
+        "terminal_abs_deviation_5p5_m": 0.4909496761957804
+      },
+      "metric_training_seed_means": {
+        "success": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "unsafe": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "stopped_safe_outside_goal": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "out_of_domain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "timeout": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scores": [
+          0.892389633619783,
+          0.8891111241078494,
+          0.8894896097342647
+        ],
+        "episode_mae_m": [
+          0.27215373338499105,
+          0.2700697881773871,
+          0.27360833171347143
+        ],
+        "episode_rmse_m": [
+          0.37026116771037426,
+          0.36788450405969264,
+          0.3715137313647833
+        ],
+        "network_episode_mae_m": [
+          0.031132931415270258,
+          0.030900640202829316,
+          0.030763114891539264
+        ],
+        "network_peak_error_m": [
+          0.10785662862502408,
+          0.1009605298093245,
+          0.10211331320562442
+        ],
+        "lookup_episode_mae_m": [
+          0.26314490711052335,
+          0.2638423183063389,
+          0.2639915537728183
+        ],
+        "max_lookup_error_m": [
+          0.8674958671182381,
+          0.8675764528220774,
+          0.8677301604025935
+        ],
+        "terminal_distance_to_goal_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "terminal_excess_speed_mps": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "time_to_goal_capped_seconds": [
+          4.5582,
+          4.5376,
+          4.52385
+        ],
+        "terminal_abs_deviation_5p5_m": [
+          0.491128276348114,
+          0.4910821743011475,
+          0.49063857793807986
+        ]
+      }
+    },
+    {
+      "mode": "gray32",
+      "budget": 10000,
+      "actor": "current_robust",
+      "keys": [
+        "common__gray32_10000_27411__current_robust",
+        "common__gray32_10000_27412__current_robust",
+        "common__gray32_10000_27413__current_robust"
+      ],
+      "seeds": [
+        27411,
+        27412,
+        27413
+      ],
+      "independent_scenarios": 1000,
+      "fixed_training_seeds": 3,
+      "q_mean_m": 0.9429746645780597,
+      "q_median_m": 0.9443117049559078,
+      "metric_means": {
+        "success": 1.0,
+        "unsafe": 0.0,
+        "stopped_safe_outside_goal": 0.0,
+        "out_of_domain": 0.0,
+        "timeout": 0.0,
+        "scores": 0.8988013639578697,
+        "episode_mae_m": 0.2443443864528801,
+        "episode_rmse_m": 0.3394113235379872,
+        "network_episode_mae_m": 0.02718738938711026,
+        "network_peak_error_m": 0.10526285795311288,
+        "lookup_episode_mae_m": 0.23603862314079907,
+        "max_lookup_error_m": 0.8722688986117841,
+        "terminal_distance_to_goal_m": 0.0,
+        "terminal_excess_speed_mps": 0.0,
+        "time_to_goal_capped_seconds": 9.407466666666668,
+        "terminal_abs_deviation_5p5_m": 0.4967128817240397
+      },
+      "metric_training_seed_means": {
+        "success": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "unsafe": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "stopped_safe_outside_goal": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "out_of_domain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "timeout": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scores": [
+          0.9033003816475912,
+          0.8966659660457562,
+          0.8964377441802618
+        ],
+        "episode_mae_m": [
+          0.2452664519678357,
+          0.24187545449112566,
+          0.24589125289967886
+        ],
+        "episode_rmse_m": [
+          0.34023615418422987,
+          0.33684768684690575,
+          0.3411501295828261
+        ],
+        "network_episode_mae_m": [
+          0.0273342262732623,
+          0.027195949776116266,
+          0.0270319921119522
+        ],
+        "network_peak_error_m": [
+          0.11107840801481013,
+          0.10108741798028739,
+          0.10362274786424115
+        ],
+        "lookup_episode_mae_m": [
+          0.23556978801282627,
+          0.23670159970755345,
+          0.23584448170201747
+        ],
+        "max_lookup_error_m": [
+          0.8728749687816584,
+          0.8720129552897948,
+          0.871918771763899
+        ],
+        "terminal_distance_to_goal_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "terminal_excess_speed_mps": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "time_to_goal_capped_seconds": [
+          9.499600000000001,
+          9.3727,
+          9.350100000000001
+        ],
+        "terminal_abs_deviation_5p5_m": [
+          0.4967783980369568,
+          0.49677008962631225,
+          0.4965901575088501
+        ]
+      }
+    },
+    {
+      "mode": "gray32_mlp",
+      "budget": 10000,
+      "actor": "original_ppo",
+      "keys": [
+        "common__gray32_mlp_10000_27411__original_ppo",
+        "common__gray32_mlp_10000_27412__original_ppo",
+        "common__gray32_mlp_10000_27413__original_ppo"
+      ],
+      "seeds": [
+        27411,
+        27412,
+        27413
+      ],
+      "independent_scenarios": 1000,
+      "fixed_training_seeds": 3,
+      "q_mean_m": 0.8877260112349177,
+      "q_median_m": 0.8863727827026651,
+      "metric_means": {
+        "success": 1.0,
+        "unsafe": 0.0,
+        "stopped_safe_outside_goal": 0.0,
+        "out_of_domain": 0.0,
+        "timeout": 0.0,
+        "scores": 0.8664558515949503,
+        "episode_mae_m": 0.26302593573795846,
+        "episode_rmse_m": 0.3653197061431479,
+        "network_episode_mae_m": 0.0069604141912346425,
+        "network_peak_error_m": 0.01955443894600781,
+        "lookup_episode_mae_m": 0.26374595574408466,
+        "max_lookup_error_m": 0.8680556777957865,
+        "terminal_distance_to_goal_m": 0.0,
+        "terminal_excess_speed_mps": 0.0,
+        "time_to_goal_capped_seconds": 4.5379,
+        "terminal_abs_deviation_5p5_m": 0.49069749911626176
+      },
+      "metric_training_seed_means": {
+        "success": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "unsafe": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "stopped_safe_outside_goal": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "out_of_domain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "timeout": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scores": [
+          0.8671071045878028,
+          0.8660787399381401,
+          0.8661817102589081
+        ],
+        "episode_mae_m": [
+          0.2628174484456834,
+          0.2625817320152759,
+          0.263678626752916
+        ],
+        "episode_rmse_m": [
+          0.365466837921912,
+          0.36512749772343434,
+          0.3653647827840975
+        ],
+        "network_episode_mae_m": [
+          0.006389555661484115,
+          0.006346568458935556,
+          0.008145118453284259
+        ],
+        "network_peak_error_m": [
+          0.01858402659908404,
+          0.018262050865911022,
+          0.02181723937302837
+        ],
+        "lookup_episode_mae_m": [
+          0.26358558677747995,
+          0.2635530729899341,
+          0.26409920746484
+        ],
+        "max_lookup_error_m": [
+          0.8680756877713658,
+          0.8680774209111755,
+          0.8680139247048182
+        ],
+        "terminal_distance_to_goal_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "terminal_excess_speed_mps": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "time_to_goal_capped_seconds": [
+          4.54415,
+          4.5448,
+          4.52475
+        ],
+        "terminal_abs_deviation_5p5_m": [
+          0.490713650226593,
+          0.4907072911262512,
+          0.49067155599594114
+        ]
+      }
+    },
+    {
+      "mode": "gray32_mlp",
+      "budget": 10000,
+      "actor": "current_robust",
+      "keys": [
+        "common__gray32_mlp_10000_27411__current_robust",
+        "common__gray32_mlp_10000_27412__current_robust",
+        "common__gray32_mlp_10000_27413__current_robust"
+      ],
+      "seeds": [
+        27411,
+        27412,
+        27413
+      ],
+      "independent_scenarios": 1000,
+      "fixed_training_seeds": 3,
+      "q_mean_m": 0.8892987916112816,
+      "q_median_m": 0.88815525026655,
+      "metric_means": {
+        "success": 1.0,
+        "unsafe": 0.0,
+        "stopped_safe_outside_goal": 0.0,
+        "out_of_domain": 0.0,
+        "timeout": 0.0,
+        "scores": 0.8688253345197317,
+        "episode_mae_m": 0.23593222569885486,
+        "episode_rmse_m": 0.33491179928182785,
+        "network_episode_mae_m": 0.006264403717509399,
+        "network_peak_error_m": 0.019851379731035804,
+        "lookup_episode_mae_m": 0.2361439271647884,
+        "max_lookup_error_m": 0.8706396523218336,
+        "terminal_distance_to_goal_m": 0.0,
+        "terminal_excess_speed_mps": 0.0,
+        "time_to_goal_capped_seconds": 9.429200000000002,
+        "terminal_abs_deviation_5p5_m": 0.49674304612477627
+      },
+      "metric_training_seed_means": {
+        "success": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "unsafe": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "stopped_safe_outside_goal": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "out_of_domain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "timeout": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scores": [
+          0.8688422604998611,
+          0.8685776008693815,
+          0.8690561421899523
+        ],
+        "episode_mae_m": [
+          0.2354807802286003,
+          0.23549731891538145,
+          0.23681857795258285
+        ],
+        "episode_rmse_m": [
+          0.3348868467141183,
+          0.33475044492088,
+          0.3350981062104852
+        ],
+        "network_episode_mae_m": [
+          0.005421639758065653,
+          0.0055399276185762346,
+          0.007831643775886311
+        ],
+        "network_peak_error_m": [
+          0.018705737698492046,
+          0.01861945690157802,
+          0.022228944593037342
+        ],
+        "lookup_episode_mae_m": [
+          0.23593804150986625,
+          0.23583898256558786,
+          0.23665475741891123
+        ],
+        "max_lookup_error_m": [
+          0.8704552258237345,
+          0.8705510606272917,
+          0.870912670514475
+        ],
+        "terminal_distance_to_goal_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "terminal_excess_speed_mps": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "time_to_goal_capped_seconds": [
+          9.461400000000001,
+          9.4669,
+          9.359300000000001
+        ],
+        "terminal_abs_deviation_5p5_m": [
+          0.4967487392425537,
+          0.49681601238250733,
+          0.4966643867492676
+        ]
+      }
+    },
+    {
+      "mode": "gray32",
+      "budget": 24000,
+      "actor": "original_ppo",
+      "keys": [
+        "common__gray32_24000_27411__original_ppo",
+        "common__gray32_24000_27412__original_ppo",
+        "common__gray32_24000_27413__original_ppo"
+      ],
+      "seeds": [
+        27411,
+        27412,
+        27413
+      ],
+      "independent_scenarios": 1000,
+      "fixed_training_seeds": 3,
+      "q_mean_m": 1.0662571985550926,
+      "q_median_m": 1.066608026213828,
+      "metric_means": {
+        "success": 1.0,
+        "unsafe": 0.0,
+        "stopped_safe_outside_goal": 0.0,
+        "out_of_domain": 0.0,
+        "timeout": 0.0,
+        "scores": 0.9543013709009206,
+        "episode_mae_m": 0.30149149633195266,
+        "episode_rmse_m": 0.3926832098282657,
+        "network_episode_mae_m": 0.07322708384955627,
+        "network_peak_error_m": 0.34075504422648084,
+        "lookup_episode_mae_m": 0.26212857119086513,
+        "max_lookup_error_m": 0.8664862775788388,
+        "terminal_distance_to_goal_m": 0.0,
+        "terminal_excess_speed_mps": 0.0,
+        "time_to_goal_capped_seconds": 4.54505,
+        "terminal_abs_deviation_5p5_m": 0.4908619402249654
+      },
+      "metric_training_seed_means": {
+        "success": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "unsafe": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "stopped_safe_outside_goal": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "out_of_domain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "timeout": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scores": [
+          0.9615468379847238,
+          0.9422935969253626,
+          0.9590636777926754
+        ],
+        "episode_mae_m": [
+          0.3048890467839233,
+          0.2980845357509086,
+          0.3015009064610262
+        ],
+        "episode_rmse_m": [
+          0.3960670220123488,
+          0.38645383575870534,
+          0.3955287717137429
+        ],
+        "network_episode_mae_m": [
+          0.07420010673745384,
+          0.07095886029920087,
+          0.07452228451201412
+        ],
+        "network_peak_error_m": [
+          0.3409683386312545,
+          0.3829899871391657,
+          0.2983068069090223
+        ],
+        "lookup_episode_mae_m": [
+          0.2635603781509159,
+          0.26146793316270517,
+          0.2613574022589745
+        ],
+        "max_lookup_error_m": [
+          0.8668764839989027,
+          0.8674607930883739,
+          0.8651215556492395
+        ],
+        "terminal_distance_to_goal_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "terminal_excess_speed_mps": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "time_to_goal_capped_seconds": [
+          4.508649999999999,
+          4.58365,
+          4.5428500000000005
+        ],
+        "terminal_abs_deviation_5p5_m": [
+          0.4905096044540405,
+          0.4907829656600952,
+          0.4912932505607605
+        ]
+      }
+    },
+    {
+      "mode": "gray32",
+      "budget": 24000,
+      "actor": "current_robust",
+      "keys": [
+        "common__gray32_24000_27411__current_robust",
+        "common__gray32_24000_27412__current_robust",
+        "common__gray32_24000_27413__current_robust"
+      ],
+      "seeds": [
+        27411,
+        27412,
+        27413
+      ],
+      "independent_scenarios": 1000,
+      "fixed_training_seeds": 3,
+      "q_mean_m": 1.0839875276065527,
+      "q_median_m": 1.0826619959947266,
+      "metric_means": {
+        "success": 1.0,
+        "unsafe": 0.0,
+        "stopped_safe_outside_goal": 0.0,
+        "out_of_domain": 0.0,
+        "timeout": 0.0,
+        "scores": 0.9679505061160373,
+        "episode_mae_m": 0.27873261019061046,
+        "episode_rmse_m": 0.3656658378714469,
+        "network_episode_mae_m": 0.07239600573646059,
+        "network_peak_error_m": 0.3401090226359775,
+        "lookup_episode_mae_m": 0.23064421587511277,
+        "max_lookup_error_m": 0.8716973407136077,
+        "terminal_distance_to_goal_m": 0.0,
+        "terminal_excess_speed_mps": 0.0,
+        "time_to_goal_capped_seconds": 9.729299999999999,
+        "terminal_abs_deviation_5p5_m": 0.4964789139429728
+      },
+      "metric_training_seed_means": {
+        "success": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "unsafe": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "stopped_safe_outside_goal": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "out_of_domain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "timeout": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scores": [
+          0.970080368817574,
+          0.9558893022515775,
+          0.9778818472789603
+        ],
+        "episode_mae_m": [
+          0.2793045122983279,
+          0.27781527470700984,
+          0.2790780435664934
+        ],
+        "episode_rmse_m": [
+          0.3655337609654471,
+          0.36259578888764554,
+          0.3688679637612481
+        ],
+        "network_episode_mae_m": [
+          0.0697749922479434,
+          0.0678145229336218,
+          0.0795985020278165
+        ],
+        "network_peak_error_m": [
+          0.34043786715675983,
+          0.377819521361061,
+          0.3020696793901114
+        ],
+        "lookup_episode_mae_m": [
+          0.23509711102837466,
+          0.23142582674237414,
+          0.22540970985458947
+        ],
+        "max_lookup_error_m": [
+          0.8714050147063859,
+          0.8721930172126693,
+          0.8714939902217679
+        ],
+        "terminal_distance_to_goal_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "terminal_excess_speed_mps": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "time_to_goal_capped_seconds": [
+          9.37255,
+          9.73725,
+          10.078100000000003
+        ],
+        "terminal_abs_deviation_5p5_m": [
+          0.49619814729690553,
+          0.4967103719711304,
+          0.4965282225608826
+        ]
+      }
+    },
+    {
+      "mode": "gray32_mlp",
+      "budget": 24000,
+      "actor": "original_ppo",
+      "keys": [
+        "common__gray32_mlp_24000_27411__original_ppo",
+        "common__gray32_mlp_24000_27412__original_ppo",
+        "common__gray32_mlp_24000_27413__original_ppo"
+      ],
+      "seeds": [
+        27411,
+        27412,
+        27413
+      ],
+      "independent_scenarios": 1000,
+      "fixed_training_seeds": 3,
+      "q_mean_m": 0.8913794753320872,
+      "q_median_m": 0.8906654259589004,
+      "metric_means": {
+        "success": 1.0,
+        "unsafe": 0.0,
+        "stopped_safe_outside_goal": 0.0,
+        "out_of_domain": 0.0,
+        "timeout": 0.0,
+        "scores": 0.864509084634396,
+        "episode_mae_m": 0.2634222255555969,
+        "episode_rmse_m": 0.363960926031047,
+        "network_episode_mae_m": 0.01220286709692607,
+        "network_peak_error_m": 0.0630561442781673,
+        "lookup_episode_mae_m": 0.2636355661401909,
+        "max_lookup_error_m": 0.867918685326369,
+        "terminal_distance_to_goal_m": 0.0,
+        "terminal_excess_speed_mps": 0.0,
+        "time_to_goal_capped_seconds": 4.536116666666667,
+        "terminal_abs_deviation_5p5_m": 0.49108066765467323
+      },
+      "metric_training_seed_means": {
+        "success": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "unsafe": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "stopped_safe_outside_goal": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "out_of_domain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "timeout": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scores": [
+          0.8650505558875748,
+          0.8636801699351728,
+          0.8647965280804404
+        ],
+        "episode_mae_m": [
+          0.26415487866073745,
+          0.2632507044067375,
+          0.2628610935993157
+        ],
+        "episode_rmse_m": [
+          0.36461070908984833,
+          0.3641921980803561,
+          0.36307987092293637
+        ],
+        "network_episode_mae_m": [
+          0.012061198421540067,
+          0.010826796503491068,
+          0.013720606365747071
+        ],
+        "network_peak_error_m": [
+          0.06384770436408144,
+          0.057995839763742535,
+          0.06732488870667794
+        ],
+        "lookup_episode_mae_m": [
+          0.26357027929090737,
+          0.26375189749002403,
+          0.26358452163964124
+        ],
+        "max_lookup_error_m": [
+          0.8679940562373141,
+          0.8678641461107443,
+          0.8678978536310484
+        ],
+        "terminal_distance_to_goal_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "terminal_excess_speed_mps": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "time_to_goal_capped_seconds": [
+          4.5390500000000005,
+          4.532,
+          4.5373
+        ],
+        "terminal_abs_deviation_5p5_m": [
+          0.4909224171638489,
+          0.49123639583587647,
+          0.49108318996429445
+        ]
+      }
+    },
+    {
+      "mode": "gray32_mlp",
+      "budget": 24000,
+      "actor": "current_robust",
+      "keys": [
+        "common__gray32_mlp_24000_27411__current_robust",
+        "common__gray32_mlp_24000_27412__current_robust",
+        "common__gray32_mlp_24000_27413__current_robust"
+      ],
+      "seeds": [
+        27411,
+        27412,
+        27413
+      ],
+      "independent_scenarios": 1000,
+      "fixed_training_seeds": 3,
+      "q_mean_m": 0.8919761605858412,
+      "q_median_m": 0.8937720339650923,
+      "metric_means": {
+        "success": 1.0,
+        "unsafe": 0.0,
+        "stopped_safe_outside_goal": 0.0,
+        "out_of_domain": 0.0,
+        "timeout": 0.0,
+        "scores": 0.870886372144588,
+        "episode_mae_m": 0.23687374455159807,
+        "episode_rmse_m": 0.33463713869123873,
+        "network_episode_mae_m": 0.010681699116436323,
+        "network_peak_error_m": 0.06308439957987373,
+        "lookup_episode_mae_m": 0.23544975827158862,
+        "max_lookup_error_m": 0.8712450058836678,
+        "terminal_distance_to_goal_m": 0.0,
+        "terminal_excess_speed_mps": 0.0,
+        "time_to_goal_capped_seconds": 9.459783333333334,
+        "terminal_abs_deviation_5p5_m": 0.49673747841517124
+      },
+      "metric_training_seed_means": {
+        "success": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "unsafe": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "stopped_safe_outside_goal": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "out_of_domain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "timeout": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scores": [
+          0.8716306460667476,
+          0.869425759490093,
+          0.8716027108769234
+        ],
+        "episode_mae_m": [
+          0.23815135422669736,
+          0.2357527651470485,
+          0.2367171142810483
+        ],
+        "episode_rmse_m": [
+          0.33562717317505225,
+          0.3341438890050329,
+          0.3341403538936312
+        ],
+        "network_episode_mae_m": [
+          0.011092630012626607,
+          0.008613685409830579,
+          0.012338781926851785
+        ],
+        "network_peak_error_m": [
+          0.06391643894085224,
+          0.058033133618184025,
+          0.06730362618058496
+        ],
+        "lookup_episode_mae_m": [
+          0.23564749696016188,
+          0.2354401482395262,
+          0.23526162961507782
+        ],
+        "max_lookup_error_m": [
+          0.8711890926114183,
+          0.8712622779112661,
+          0.871283647128319
+        ],
+        "terminal_distance_to_goal_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "terminal_excess_speed_mps": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "time_to_goal_capped_seconds": [
+          9.45375,
+          9.44985,
+          9.47575
+        ],
+        "terminal_abs_deviation_5p5_m": [
+          0.4967902507781982,
+          0.49672173166275024,
+          0.49670045280456543
+        ]
+      }
+    }
+  ]
+}

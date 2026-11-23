@@ -1,0 +1,26 @@
+{
+  "development_rank": [
+    "silu16x16",
+    "fitted_Cx",
+    "affine",
+    "fixed_Cx",
+    "silu16",
+    "relu16x16",
+    "tanh16x16",
+    "tanh16",
+    "relu16"
+  ],
+  "development_mse": {
+    "fixed_Cx": 0.0008903879206627607,
+    "fitted_Cx": 0.000880431616678834,
+    "affine": 0.0008817958878353238,
+    "tanh16": 0.0011401748439917962,
+    "tanh16x16": 0.0011300480303665001,
+    "relu16": 0.0011776444346954424,
+    "relu16x16": 0.0009524801280349493,
+    "silu16": 0.0009283641896521052,
+    "silu16x16": 0.0008691057834463815
+  },
+  "selected_architecture": "silu16x16",
+  "test_not_used_for_selection": true
+}

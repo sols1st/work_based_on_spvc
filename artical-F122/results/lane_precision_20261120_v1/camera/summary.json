@@ -1,0 +1,1867 @@
+{
+  "protocol_sha256": "14a12dc1ded71f3fb06902d9b96c7fe4da2a06d8c06e1d2ef8c50ec196724ef2",
+  "paired_comparisons": {
+    "nominal_precision__minus__anchor": {
+      "unsafe": {
+        "left_mean": 0.0,
+        "right_mean": 0.0,
+        "right_minus_left": 0.0,
+        "scene_paired_ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "rmse_e_m": {
+        "left_mean": 0.043475267926092236,
+        "right_mean": 0.03309622043114683,
+        "right_minus_left": -0.010379047494945422,
+        "scene_paired_ci95": [
+          -0.011463341666872568,
+          -0.009317090514292057
+        ]
+      },
+      "mean_abs_e_m": {
+        "left_mean": 0.03622747990896501,
+        "right_mean": 0.022200032819649888,
+        "right_minus_left": -0.014027447089315115,
+        "scene_paired_ci95": [
+          -0.015352980603695391,
+          -0.012724622056188354
+        ]
+      },
+      "peak_abs_e_m": {
+        "left_mean": 0.1318754553565398,
+        "right_mean": 0.13111307401129987,
+        "right_minus_left": -0.0007623813452399203,
+        "scene_paired_ci95": [
+          -0.0014670264987398497,
+          -0.00018500515717682087
+        ]
+      },
+      "tail_mean_abs_e_m": {
+        "left_mean": 0.03012480652473168,
+        "right_mean": 0.015719085032598296,
+        "right_minus_left": -0.014405721492133388,
+        "scene_paired_ci95": [
+          -0.01569543030639915,
+          -0.013120540140791122
+        ]
+      },
+      "tail_peak_abs_e_m": {
+        "left_mean": 0.03941611921109735,
+        "right_mean": 0.025159356424161925,
+        "right_minus_left": -0.014256762786935422,
+        "scene_paired_ci95": [
+          -0.016240540697999687,
+          -0.012285138221371793
+        ]
+      },
+      "mean_abs_heading_rad": {
+        "left_mean": 0.006300595569666432,
+        "right_mean": 0.006941873888857152,
+        "right_minus_left": 0.0006412783191907198,
+        "scene_paired_ci95": [
+          0.00034442870094745305,
+          0.0009366378419273238
+        ]
+      },
+      "mean_steering_change_rad": {
+        "left_mean": 0.05354842985793801,
+        "right_mean": 0.03768330330972389,
+        "right_minus_left": -0.015865126548214117,
+        "scene_paired_ci95": [
+          -0.01898224543906071,
+          -0.012909199574909247
+        ]
+      },
+      "strict_02cm": {
+        "left_mean": 0.25,
+        "right_mean": 0.5866666666666667,
+        "right_minus_left": 0.3366666666666667,
+        "scene_paired_ci95": [
+          0.2533333333333333,
+          0.42333333333333334
+        ]
+      },
+      "strict_05cm": {
+        "left_mean": 0.73,
+        "right_mean": 0.9866666666666666,
+        "right_minus_left": 0.25666666666666665,
+        "scene_paired_ci95": [
+          0.17,
+          0.34666666666666673
+        ]
+      },
+      "strict_10cm": {
+        "left_mean": 1.0,
+        "right_mean": 1.0,
+        "right_minus_left": 0.0,
+        "scene_paired_ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "strict_20cm": {
+        "left_mean": 1.0,
+        "right_mean": 1.0,
+        "right_minus_left": 0.0,
+        "scene_paired_ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "adversarial_precision__minus__anchor": {
+      "unsafe": {
+        "left_mean": 0.0,
+        "right_mean": 0.0,
+        "right_minus_left": 0.0,
+        "scene_paired_ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "rmse_e_m": {
+        "left_mean": 0.043475267926092236,
+        "right_mean": 0.03520846585211396,
+        "right_minus_left": -0.0082668020739783,
+        "scene_paired_ci95": [
+          -0.009599886962721722,
+          -0.006962263483858989
+        ]
+      },
+      "mean_abs_e_m": {
+        "left_mean": 0.03622747990896501,
+        "right_mean": 0.021958199264146216,
+        "right_minus_left": -0.014269280644818784,
+        "scene_paired_ci95": [
+          -0.01585744793412293,
+          -0.012737510298246737
+        ]
+      },
+      "peak_abs_e_m": {
+        "left_mean": 0.1318754553565398,
+        "right_mean": 0.13258652905107268,
+        "right_minus_left": 0.0007110736945328945,
+        "scene_paired_ci95": [
+          -0.00017932793640646584,
+          0.0015004764204657175
+        ]
+      },
+      "tail_mean_abs_e_m": {
+        "left_mean": 0.03012480652473168,
+        "right_mean": 0.014055625426596122,
+        "right_minus_left": -0.016069181098135564,
+        "scene_paired_ci95": [
+          -0.017550874765005095,
+          -0.014549944197357204
+        ]
+      },
+      "tail_peak_abs_e_m": {
+        "left_mean": 0.03941611921109735,
+        "right_mean": 0.02549380432602961,
+        "right_minus_left": -0.013922314885067726,
+        "scene_paired_ci95": [
+          -0.016666090172701452,
+          -0.011216859430264847
+        ]
+      },
+      "mean_abs_heading_rad": {
+        "left_mean": 0.006300595569666432,
+        "right_mean": 0.007066966641286111,
+        "right_minus_left": 0.0007663710716196793,
+        "scene_paired_ci95": [
+          0.00034214136163914096,
+          0.0011863130629366845
+        ]
+      },
+      "mean_steering_change_rad": {
+        "left_mean": 0.05354842985793801,
+        "right_mean": 0.01707203428961979,
+        "right_minus_left": -0.03647639556831822,
+        "scene_paired_ci95": [
+          -0.03899107924518047,
+          -0.03408555832819456
+        ]
+      },
+      "strict_02cm": {
+        "left_mean": 0.25,
+        "right_mean": 0.6,
+        "right_minus_left": 0.35,
+        "scene_paired_ci95": [
+          0.26,
+          0.44
+        ]
+      },
+      "strict_05cm": {
+        "left_mean": 0.73,
+        "right_mean": 0.8666666666666667,
+        "right_minus_left": 0.13666666666666663,
+        "scene_paired_ci95": [
+          0.06333333333333332,
+          0.21
+        ]
+      },
+      "strict_10cm": {
+        "left_mean": 1.0,
+        "right_mean": 1.0,
+        "right_minus_left": 0.0,
+        "scene_paired_ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "strict_20cm": {
+        "left_mean": 1.0,
+        "right_mean": 1.0,
+        "right_minus_left": 0.0,
+        "scene_paired_ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "adversarial_precision__minus__nominal_precision": {
+      "unsafe": {
+        "left_mean": 0.0,
+        "right_mean": 0.0,
+        "right_minus_left": 0.0,
+        "scene_paired_ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "rmse_e_m": {
+        "left_mean": 0.03309622043114683,
+        "right_mean": 0.03520846585211396,
+        "right_minus_left": 0.0021122454209671244,
+        "scene_paired_ci95": [
+          0.0015404982606202103,
+          0.0026589830543582884
+        ]
+      },
+      "mean_abs_e_m": {
+        "left_mean": 0.022200032819649888,
+        "right_mean": 0.021958199264146216,
+        "right_minus_left": -0.0002418335555036684,
+        "scene_paired_ci95": [
+          -0.0008183406626460269,
+          0.0003204029982238615
+        ]
+      },
+      "peak_abs_e_m": {
+        "left_mean": 0.13111307401129987,
+        "right_mean": 0.13258652905107268,
+        "right_minus_left": 0.0014734550397728148,
+        "scene_paired_ci95": [
+          0.0009104429136999018,
+          0.0021172698002954104
+        ]
+      },
+      "tail_mean_abs_e_m": {
+        "left_mean": 0.015719085032598296,
+        "right_mean": 0.014055625426596122,
+        "right_minus_left": -0.0016634596060021763,
+        "scene_paired_ci95": [
+          -0.0022389007634207184,
+          -0.0010983317303378123
+        ]
+      },
+      "tail_peak_abs_e_m": {
+        "left_mean": 0.025159356424161925,
+        "right_mean": 0.02549380432602961,
+        "right_minus_left": 0.000334447901867694,
+        "scene_paired_ci95": [
+          -0.0006843204941554394,
+          0.0013439648810625888
+        ]
+      },
+      "mean_abs_heading_rad": {
+        "left_mean": 0.006941873888857152,
+        "right_mean": 0.007066966641286111,
+        "right_minus_left": 0.00012509275242895962,
+        "scene_paired_ci95": [
+          -2.7322629433779227e-05,
+          0.00027483725394845585
+        ]
+      },
+      "mean_steering_change_rad": {
+        "left_mean": 0.03768330330972389,
+        "right_mean": 0.01707203428961979,
+        "right_minus_left": -0.020611269020104097,
+        "scene_paired_ci95": [
+          -0.022538834745182156,
+          -0.018842033388963102
+        ]
+      },
+      "strict_02cm": {
+        "left_mean": 0.5866666666666667,
+        "right_mean": 0.6,
+        "right_minus_left": 0.013333333333333334,
+        "scene_paired_ci95": [
+          -0.03333333333333333,
+          0.06333333333333332
+        ]
+      },
+      "strict_05cm": {
+        "left_mean": 0.9866666666666666,
+        "right_mean": 0.8666666666666667,
+        "right_minus_left": -0.12000000000000002,
+        "scene_paired_ci95": [
+          -0.1733333333333334,
+          -0.07
+        ]
+      },
+      "strict_10cm": {
+        "left_mean": 1.0,
+        "right_mean": 1.0,
+        "right_minus_left": 0.0,
+        "scene_paired_ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "strict_20cm": {
+        "left_mean": 1.0,
+        "right_mean": 1.0,
+        "right_minus_left": 0.0,
+        "scene_paired_ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  "seed_aggregate": {
+    "anchor": {
+      "unsafe": {
+        "mean": 0.0,
+        "p95": 0.0,
+        "count": 0
+      },
+      "rmse_e_m": {
+        "mean": 0.043475267926092236,
+        "p95": 0.0699140392966018,
+        "count": null
+      },
+      "mean_abs_e_m": {
+        "mean": 0.03622747990896501,
+        "p95": 0.05489268807985658,
+        "count": null
+      },
+      "peak_abs_e_m": {
+        "mean": 0.1318754553565398,
+        "p95": 0.24455945480889069,
+        "count": null
+      },
+      "tail_mean_abs_e_m": {
+        "mean": 0.03012480652473168,
+        "p95": 0.04321630067235186,
+        "count": null
+      },
+      "tail_peak_abs_e_m": {
+        "mean": 0.03941611921109735,
+        "p95": 0.053412986212409586,
+        "count": null
+      },
+      "mean_abs_heading_rad": {
+        "mean": 0.006300595569666432,
+        "p95": 0.009594167411149317,
+        "count": null
+      },
+      "mean_steering_change_rad": {
+        "mean": 0.05354842985793801,
+        "p95": 0.07260599771075399,
+        "count": null
+      },
+      "strict_02cm": {
+        "mean": 0.25,
+        "p95": 1.0,
+        "count": 25
+      },
+      "strict_05cm": {
+        "mean": 0.73,
+        "p95": 1.0,
+        "count": 73
+      },
+      "strict_10cm": {
+        "mean": 1.0,
+        "p95": 1.0,
+        "count": 100
+      },
+      "strict_20cm": {
+        "mean": 1.0,
+        "p95": 1.0,
+        "count": 100
+      }
+    },
+    "nominal_precision": {
+      "unsafe": {
+        "mean": 0.0,
+        "p95": 0.0,
+        "count": null
+      },
+      "rmse_e_m": {
+        "mean": 0.03309622043114683,
+        "p95": 0.05663709111806589,
+        "count": null
+      },
+      "mean_abs_e_m": {
+        "mean": 0.022200032819649888,
+        "p95": 0.034601991919235575,
+        "count": null
+      },
+      "peak_abs_e_m": {
+        "mean": 0.13111307401129987,
+        "p95": 0.24455945480889069,
+        "count": null
+      },
+      "tail_mean_abs_e_m": {
+        "mean": 0.015719085032598296,
+        "p95": 0.026497934245019717,
+        "count": null
+      },
+      "tail_peak_abs_e_m": {
+        "mean": 0.025159356424161925,
+        "p95": 0.04571787718442688,
+        "count": null
+      },
+      "mean_abs_heading_rad": {
+        "mean": 0.006941873888857152,
+        "p95": 0.011355502307136337,
+        "count": null
+      },
+      "mean_steering_change_rad": {
+        "mean": 0.03768330330972389,
+        "p95": 0.06015179178627398,
+        "count": null
+      },
+      "strict_02cm": {
+        "mean": 0.5866666666666667,
+        "p95": 1.0,
+        "count": null
+      },
+      "strict_05cm": {
+        "mean": 0.9866666666666666,
+        "p95": 1.0,
+        "count": null
+      },
+      "strict_10cm": {
+        "mean": 1.0,
+        "p95": 1.0,
+        "count": null
+      },
+      "strict_20cm": {
+        "mean": 1.0,
+        "p95": 1.0,
+        "count": null
+      }
+    },
+    "adversarial_precision": {
+      "unsafe": {
+        "mean": 0.0,
+        "p95": 0.0,
+        "count": null
+      },
+      "rmse_e_m": {
+        "mean": 0.03520846585211396,
+        "p95": 0.061371306466862244,
+        "count": null
+      },
+      "mean_abs_e_m": {
+        "mean": 0.021958199264146216,
+        "p95": 0.035580392314136566,
+        "count": null
+      },
+      "peak_abs_e_m": {
+        "mean": 0.13258652905107268,
+        "p95": 0.24455945480889069,
+        "count": null
+      },
+      "tail_mean_abs_e_m": {
+        "mean": 0.014055625426596122,
+        "p95": 0.02519244159583151,
+        "count": null
+      },
+      "tail_peak_abs_e_m": {
+        "mean": 0.02549380432602961,
+        "p95": 0.049477771332117795,
+        "count": null
+      },
+      "mean_abs_heading_rad": {
+        "mean": 0.007066966641286111,
+        "p95": 0.01266412800435992,
+        "count": null
+      },
+      "mean_steering_change_rad": {
+        "mean": 0.01707203428961979,
+        "p95": 0.02471755000998419,
+        "count": null
+      },
+      "strict_02cm": {
+        "mean": 0.6,
+        "p95": 1.0,
+        "count": null
+      },
+      "strict_05cm": {
+        "mean": 0.8666666666666667,
+        "p95": 1.0,
+        "count": null
+      },
+      "strict_10cm": {
+        "mean": 1.0,
+        "p95": 1.0,
+        "count": null
+      },
+      "strict_20cm": {
+        "mean": 1.0,
+        "p95": 1.0,
+        "count": null
+      }
+    }
+  },
+  "per_arm": {
+    "anchor": {
+      "metrics": {
+        "unsafe": {
+          "mean": 0.0,
+          "p95": 0.0,
+          "count": 0
+        },
+        "rmse_e_m": {
+          "mean": 0.043475267926092236,
+          "p95": 0.0699140392966018,
+          "count": null
+        },
+        "mean_abs_e_m": {
+          "mean": 0.03622747990896501,
+          "p95": 0.05489268807985658,
+          "count": null
+        },
+        "peak_abs_e_m": {
+          "mean": 0.1318754553565398,
+          "p95": 0.24455945480889069,
+          "count": null
+        },
+        "tail_mean_abs_e_m": {
+          "mean": 0.03012480652473168,
+          "p95": 0.04321630067235186,
+          "count": null
+        },
+        "tail_peak_abs_e_m": {
+          "mean": 0.03941611921109735,
+          "p95": 0.053412986212409586,
+          "count": null
+        },
+        "mean_abs_heading_rad": {
+          "mean": 0.006300595569666432,
+          "p95": 0.009594167411149317,
+          "count": null
+        },
+        "mean_steering_change_rad": {
+          "mean": 0.05354842985793801,
+          "p95": 0.07260599771075399,
+          "count": null
+        },
+        "strict_02cm": {
+          "mean": 0.25,
+          "p95": 1.0,
+          "count": 25
+        },
+        "strict_05cm": {
+          "mean": 0.73,
+          "p95": 1.0,
+          "count": 73
+        },
+        "strict_10cm": {
+          "mean": 1.0,
+          "p95": 1.0,
+          "count": 100
+        },
+        "strict_20cm": {
+          "mean": 1.0,
+          "p95": 1.0,
+          "count": 100
+        }
+      },
+      "calibration": {
+        "radius": 0.09002931128805475,
+        "rank": 190,
+        "n": 199,
+        "alpha": 0.05,
+        "protocol_sha256": "14a12dc1ded71f3fb06902d9b96c7fe4da2a06d8c06e1d2ef8c50ec196724ef2",
+        "scores_sha256": "76a603f05a3f3779ddac2f27f0d06e26fdc4f2d94334ef7bce91cfac27a678bb",
+        "scope": "marginal whole-trajectory coverage under registered frozen-policy nominal simulator law"
+      },
+      "coverage": {
+        "episodes": 100,
+        "covered": 92,
+        "not_covered": 8,
+        "fraction": 0.92,
+        "binomial_two_sided_95_interval": [
+          0.848442364135579,
+          0.9648284374818372
+        ]
+      },
+      "precision_calibration": {
+        "n": 199,
+        "rank": 190,
+        "alpha": 0.05,
+        "radius_m": 0.05414022037729394,
+        "finite_bound": true,
+        "unsafe_calibration": 0,
+        "score": "infinity if unsafe anywhere; otherwise max |physical lateral error| from 2.0 through 8.0 seconds",
+        "claim": "For a prespecified frozen controller and exchangeable complete trajectories, P(finite_radius AND (unsafe OR tail_error > calibrated_radius)) <= alpha, marginal over calibration and new trajectory. Infinite radius is uninformative. This is NOT conditional 95 percent coverage given a particular radius, finite-radius selection or certificate acceptance.",
+        "distinction": "statistical performance bound; not an all-disturbance reachability or precision certificate"
+      },
+      "precision_covered": 97,
+      "barrier": {
+        "passed": true,
+        "status": "pass",
+        "regions": {
+          "initial": {
+            "passed": true,
+            "bound": 0.2108054541740553,
+            "accepted": 1024
+          },
+          "unsafe_0": {
+            "passed": true,
+            "bound": 25.703249783724004,
+            "accepted": 1024
+          },
+          "unsafe_1": {
+            "passed": true,
+            "bound": 24.930232545301305,
+            "accepted": 1024
+          },
+          "unsafe_2": {
+            "passed": true,
+            "bound": 23.821990331348818,
+            "accepted": 1024
+          },
+          "unsafe_3": {
+            "passed": true,
+            "bound": 24.228924546391465,
+            "accepted": 1024
+          }
+        },
+        "contexts": [
+          {
+            "context": -0.01,
+            "passed": true,
+            "accepted": 1296,
+            "excluded": 443
+          },
+          {
+            "context": 0.0,
+            "passed": true,
+            "accepted": 1369,
+            "excluded": 443
+          },
+          {
+            "context": 0.01,
+            "passed": true,
+            "accepted": 1367,
+            "excluded": 448
+          }
+        ],
+        "checked_cells": 12780,
+        "rerun": true,
+        "arithmetic": "float64 numerical intervals, without directed rounding",
+        "elapsed_seconds": 7.977748378179967,
+        "comparison_scope": "frozen current conditional robust backend",
+        "task": "lane",
+        "metadata": {
+          "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+          "arithmetic": "float64 interval arithmetic; no directed rounding",
+          "barrier_nonnegative_by_construction": true,
+          "barrier_time_varying": false,
+          "unsafe_barrier_threshold": 20.0,
+          "frontend_execution": "state proxy plus bounded semantic residual",
+          "coordinates": "normalized [e/.85,theta/.30]",
+          "contract": {
+            "path": "results/lane_precision_20261120_v1/camera/anchor/shadow/results/lane_robust_synthesis_20261116_v2/final_cp/calibration.json",
+            "sha256": "798657ea10fe9431b4f22386e6351f44b289313840723ba286a65933c962fc48"
+          },
+          "actor": {
+            "path": "results/lane_precision_20261120_v1/camera/anchor/shadow/results/lane_robust_synthesis_20261116_v2/package/actor.pt",
+            "sha256": "afd4509772a9fda976da2d0c5722f55e6d8f2e9fabce37b7a998110583fe0c75"
+          },
+          "barrier": {
+            "path": "results/lane_precision_20261120_v1/camera/anchor/shadow/results/lane_robust_synthesis_20261116_v2/package/sbc.pt",
+            "sha256": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321"
+          },
+          "contexts": [
+            -0.01,
+            0.0,
+            0.01
+          ],
+          "adapter": {
+            "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+            "sha256": "3f814d65d6199193ae9e92fa9aec6985bcd2b94704e40879a1f4e555cbf4ed9a"
+          },
+          "task": "lane",
+          "horizon": 80,
+          "dt": 0.1,
+          "error_lo": [
+            -0.09002931128805475,
+            -0.09002931128805475
+          ],
+          "error_hi": [
+            0.09002931128805475,
+            0.09002931128805475
+          ],
+          "noise_lo": [],
+          "noise_hi": [],
+          "original_cp_distribution_unchanged": false,
+          "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+        },
+        "precision_certificate": false,
+        "safety_scope": "conditional on full error support, model and floating-point audit limitations"
+      }
+    },
+    "202611200701__nominal_precision": {
+      "metrics": {
+        "unsafe": {
+          "mean": 0.0,
+          "p95": 0.0,
+          "count": 0
+        },
+        "rmse_e_m": {
+          "mean": 0.0328386943570567,
+          "p95": 0.057226596295579725,
+          "count": null
+        },
+        "mean_abs_e_m": {
+          "mean": 0.021677582435416298,
+          "p95": 0.03585830728541645,
+          "count": null
+        },
+        "peak_abs_e_m": {
+          "mean": 0.13092637271099256,
+          "p95": 0.24455945480889069,
+          "count": null
+        },
+        "tail_mean_abs_e_m": {
+          "mean": 0.014940498877317758,
+          "p95": 0.026831306138197453,
+          "count": null
+        },
+        "tail_peak_abs_e_m": {
+          "mean": 0.024539568917660362,
+          "p95": 0.044029632543777,
+          "count": null
+        },
+        "mean_abs_heading_rad": {
+          "mean": 0.006972982630624146,
+          "p95": 0.011285591653620234,
+          "count": null
+        },
+        "mean_steering_change_rad": {
+          "mean": 0.03740071768504921,
+          "p95": 0.06255255797757073,
+          "count": null
+        },
+        "strict_02cm": {
+          "mean": 0.61,
+          "p95": 1.0,
+          "count": 61
+        },
+        "strict_05cm": {
+          "mean": 0.99,
+          "p95": 1.0,
+          "count": 99
+        },
+        "strict_10cm": {
+          "mean": 1.0,
+          "p95": 1.0,
+          "count": 100
+        },
+        "strict_20cm": {
+          "mean": 1.0,
+          "p95": 1.0,
+          "count": 100
+        }
+      },
+      "calibration": {
+        "radius": 0.09456323596463617,
+        "rank": 190,
+        "n": 199,
+        "alpha": 0.05,
+        "protocol_sha256": "14a12dc1ded71f3fb06902d9b96c7fe4da2a06d8c06e1d2ef8c50ec196724ef2",
+        "scores_sha256": "309f9cc46926a958fc072fc15fa1a9423a37e579eb4b88c57caca9b03c92f194",
+        "scope": "marginal whole-trajectory coverage under registered frozen-policy nominal simulator law"
+      },
+      "coverage": {
+        "episodes": 100,
+        "covered": 97,
+        "not_covered": 3,
+        "fraction": 0.97,
+        "binomial_two_sided_95_interval": [
+          0.91482394702572,
+          0.9937700284616936
+        ]
+      },
+      "precision_calibration": {
+        "n": 199,
+        "rank": 190,
+        "alpha": 0.05,
+        "radius_m": 0.0467310749590675,
+        "finite_bound": true,
+        "unsafe_calibration": 0,
+        "score": "infinity if unsafe anywhere; otherwise max |physical lateral error| from 2.0 through 8.0 seconds",
+        "claim": "For a prespecified frozen controller and exchangeable complete trajectories, P(finite_radius AND (unsafe OR tail_error > calibrated_radius)) <= alpha, marginal over calibration and new trajectory. Infinite radius is uninformative. This is NOT conditional 95 percent coverage given a particular radius, finite-radius selection or certificate acceptance.",
+        "distinction": "statistical performance bound; not an all-disturbance reachability or precision certificate"
+      },
+      "precision_covered": 97,
+      "barrier": {
+        "passed": false,
+        "status": "witness",
+        "regions": {
+          "initial": {
+            "passed": true,
+            "bound": 0.2108054541740553,
+            "accepted": 1024
+          },
+          "unsafe_0": {
+            "passed": true,
+            "bound": 25.703249783724004,
+            "accepted": 1024
+          },
+          "unsafe_1": {
+            "passed": true,
+            "bound": 24.930232545301305,
+            "accepted": 1024
+          },
+          "unsafe_2": {
+            "passed": true,
+            "bound": 23.821990331348818,
+            "accepted": 1024
+          },
+          "unsafe_3": {
+            "passed": true,
+            "bound": 24.228924546391465,
+            "accepted": 1024
+          }
+        },
+        "checked_cells": 6656,
+        "context": -0.01,
+        "witness": {
+          "state": [
+            -0.828125,
+            0.84375
+          ],
+          "error": [
+            -0.09456323596463617,
+            -0.09456323596463617
+          ],
+          "drift": 0.3094808698752054
+        },
+        "rerun": true,
+        "elapsed_seconds": 1.4767507817596197,
+        "comparison_scope": "frozen current conditional robust backend",
+        "task": "lane",
+        "metadata": {
+          "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+          "arithmetic": "float64 interval arithmetic; no directed rounding",
+          "barrier_nonnegative_by_construction": true,
+          "barrier_time_varying": false,
+          "unsafe_barrier_threshold": 20.0,
+          "frontend_execution": "state proxy plus bounded semantic residual",
+          "coordinates": "normalized [e/.85,theta/.30]",
+          "contract": {
+            "path": "results/lane_precision_20261120_v1/camera/202611200701__nominal_precision/shadow/results/lane_robust_synthesis_20261116_v2/final_cp/calibration.json",
+            "sha256": "629e1a3cc2625243d28ed12ed9e8f0b0a061545d4857aa7a8c88db76514591c0"
+          },
+          "actor": {
+            "path": "results/lane_precision_20261120_v1/camera/202611200701__nominal_precision/shadow/results/lane_robust_synthesis_20261116_v2/package/actor.pt",
+            "sha256": "01926ad98c0bdaf2d8f2c7026893574c0efa579e2cd17419a28c7cd79cef8228"
+          },
+          "barrier": {
+            "path": "results/lane_precision_20261120_v1/camera/202611200701__nominal_precision/shadow/results/lane_robust_synthesis_20261116_v2/package/sbc.pt",
+            "sha256": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321"
+          },
+          "contexts": [
+            -0.01,
+            0.0,
+            0.01
+          ],
+          "adapter": {
+            "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+            "sha256": "3f814d65d6199193ae9e92fa9aec6985bcd2b94704e40879a1f4e555cbf4ed9a"
+          },
+          "task": "lane",
+          "horizon": 80,
+          "dt": 0.1,
+          "error_lo": [
+            -0.09456323596463617,
+            -0.09456323596463617
+          ],
+          "error_hi": [
+            0.09456323596463617,
+            0.09456323596463617
+          ],
+          "noise_lo": [],
+          "noise_hi": [],
+          "original_cp_distribution_unchanged": false,
+          "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+        },
+        "precision_certificate": false,
+        "safety_scope": "conditional on full error support, model and floating-point audit limitations"
+      }
+    },
+    "202611200701__adversarial_precision": {
+      "metrics": {
+        "unsafe": {
+          "mean": 0.0,
+          "p95": 0.0,
+          "count": 0
+        },
+        "rmse_e_m": {
+          "mean": 0.03502509172716323,
+          "p95": 0.06091961209645356,
+          "count": null
+        },
+        "mean_abs_e_m": {
+          "mean": 0.021840580732178122,
+          "p95": 0.03423026240419068,
+          "count": null
+        },
+        "peak_abs_e_m": {
+          "mean": 0.1325596216574204,
+          "p95": 0.24455945480889069,
+          "count": null
+        },
+        "tail_mean_abs_e_m": {
+          "mean": 0.013903570844780659,
+          "p95": 0.02522651870639035,
+          "count": null
+        },
+        "tail_peak_abs_e_m": {
+          "mean": 0.02510426359009753,
+          "p95": 0.05242833572253406,
+          "count": null
+        },
+        "mean_abs_heading_rad": {
+          "mean": 0.007056939617168482,
+          "p95": 0.012306150896552844,
+          "count": null
+        },
+        "mean_steering_change_rad": {
+          "mean": 0.01663126841018012,
+          "p95": 0.022104080875575118,
+          "count": null
+        },
+        "strict_02cm": {
+          "mean": 0.6,
+          "p95": 1.0,
+          "count": 60
+        },
+        "strict_05cm": {
+          "mean": 0.88,
+          "p95": 1.0,
+          "count": 88
+        },
+        "strict_10cm": {
+          "mean": 1.0,
+          "p95": 1.0,
+          "count": 100
+        },
+        "strict_20cm": {
+          "mean": 1.0,
+          "p95": 1.0,
+          "count": 100
+        }
+      },
+      "calibration": {
+        "radius": 0.09170640261586663,
+        "rank": 190,
+        "n": 199,
+        "alpha": 0.05,
+        "protocol_sha256": "14a12dc1ded71f3fb06902d9b96c7fe4da2a06d8c06e1d2ef8c50ec196724ef2",
+        "scores_sha256": "a6490683e369e81ce5fe8de818119c17895e229700ee9cbd883e51cad0e1012b",
+        "scope": "marginal whole-trajectory coverage under registered frozen-policy nominal simulator law"
+      },
+      "coverage": {
+        "episodes": 100,
+        "covered": 94,
+        "not_covered": 6,
+        "fraction": 0.94,
+        "binomial_two_sided_95_interval": [
+          0.8739700654191771,
+          0.9776651139286836
+        ]
+      },
+      "precision_calibration": {
+        "n": 199,
+        "rank": 190,
+        "alpha": 0.05,
+        "radius_m": 0.05270085433358695,
+        "finite_bound": true,
+        "unsafe_calibration": 0,
+        "score": "infinity if unsafe anywhere; otherwise max |physical lateral error| from 2.0 through 8.0 seconds",
+        "claim": "For a prespecified frozen controller and exchangeable complete trajectories, P(finite_radius AND (unsafe OR tail_error > calibrated_radius)) <= alpha, marginal over calibration and new trajectory. Infinite radius is uninformative. This is NOT conditional 95 percent coverage given a particular radius, finite-radius selection or certificate acceptance.",
+        "distinction": "statistical performance bound; not an all-disturbance reachability or precision certificate"
+      },
+      "precision_covered": 96,
+      "barrier": {
+        "passed": true,
+        "status": "pass",
+        "regions": {
+          "initial": {
+            "passed": true,
+            "bound": 0.2108054541740553,
+            "accepted": 1024
+          },
+          "unsafe_0": {
+            "passed": true,
+            "bound": 25.703249783724004,
+            "accepted": 1024
+          },
+          "unsafe_1": {
+            "passed": true,
+            "bound": 24.930232545301305,
+            "accepted": 1024
+          },
+          "unsafe_2": {
+            "passed": true,
+            "bound": 23.821990331348818,
+            "accepted": 1024
+          },
+          "unsafe_3": {
+            "passed": true,
+            "bound": 24.228924546391465,
+            "accepted": 1024
+          }
+        },
+        "contexts": [
+          {
+            "context": -0.01,
+            "passed": true,
+            "accepted": 3266,
+            "excluded": 549
+          },
+          {
+            "context": 0.0,
+            "passed": true,
+            "accepted": 4195,
+            "excluded": 651
+          },
+          {
+            "context": 0.01,
+            "passed": true,
+            "accepted": 3190,
+            "excluded": 550
+          }
+        ],
+        "checked_cells": 26850,
+        "rerun": true,
+        "arithmetic": "float64 numerical intervals, without directed rounding",
+        "elapsed_seconds": 21.433788277208805,
+        "comparison_scope": "frozen current conditional robust backend",
+        "task": "lane",
+        "metadata": {
+          "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+          "arithmetic": "float64 interval arithmetic; no directed rounding",
+          "barrier_nonnegative_by_construction": true,
+          "barrier_time_varying": false,
+          "unsafe_barrier_threshold": 20.0,
+          "frontend_execution": "state proxy plus bounded semantic residual",
+          "coordinates": "normalized [e/.85,theta/.30]",
+          "contract": {
+            "path": "results/lane_precision_20261120_v1/camera/202611200701__adversarial_precision/shadow/results/lane_robust_synthesis_20261116_v2/final_cp/calibration.json",
+            "sha256": "52566be058395464387f17376e6ce52c4b5c3c5ebd22c5911a9ba234f188b581"
+          },
+          "actor": {
+            "path": "results/lane_precision_20261120_v1/camera/202611200701__adversarial_precision/shadow/results/lane_robust_synthesis_20261116_v2/package/actor.pt",
+            "sha256": "416106d4e17a4f601cb253927f2be2a8649ba3ba29590d4f680c218638cf8622"
+          },
+          "barrier": {
+            "path": "results/lane_precision_20261120_v1/camera/202611200701__adversarial_precision/shadow/results/lane_robust_synthesis_20261116_v2/package/sbc.pt",
+            "sha256": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321"
+          },
+          "contexts": [
+            -0.01,
+            0.0,
+            0.01
+          ],
+          "adapter": {
+            "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+            "sha256": "3f814d65d6199193ae9e92fa9aec6985bcd2b94704e40879a1f4e555cbf4ed9a"
+          },
+          "task": "lane",
+          "horizon": 80,
+          "dt": 0.1,
+          "error_lo": [
+            -0.09170640261586663,
+            -0.09170640261586663
+          ],
+          "error_hi": [
+            0.09170640261586663,
+            0.09170640261586663
+          ],
+          "noise_lo": [],
+          "noise_hi": [],
+          "original_cp_distribution_unchanged": false,
+          "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+        },
+        "precision_certificate": false,
+        "safety_scope": "conditional on full error support, model and floating-point audit limitations"
+      }
+    },
+    "202611200702__nominal_precision": {
+      "metrics": {
+        "unsafe": {
+          "mean": 0.0,
+          "p95": 0.0,
+          "count": 0
+        },
+        "rmse_e_m": {
+          "mean": 0.03328979623464957,
+          "p95": 0.056500118892148614,
+          "count": null
+        },
+        "mean_abs_e_m": {
+          "mean": 0.022616309202733755,
+          "p95": 0.03407106581312842,
+          "count": null
+        },
+        "peak_abs_e_m": {
+          "mean": 0.13114409623778653,
+          "p95": 0.24455945480889069,
+          "count": null
+        },
+        "tail_mean_abs_e_m": {
+          "mean": 0.01627132124994897,
+          "p95": 0.027703121601057513,
+          "count": null
+        },
+        "tail_peak_abs_e_m": {
+          "mean": 0.025619705545766428,
+          "p95": 0.0484327858396464,
+          "count": null
+        },
+        "mean_abs_heading_rad": {
+          "mean": 0.0069256112005226635,
+          "p95": 0.011595611951394408,
+          "count": null
+        },
+        "mean_steering_change_rad": {
+          "mean": 0.037885726818624774,
+          "p95": 0.062271213211720404,
+          "count": null
+        },
+        "strict_02cm": {
+          "mean": 0.57,
+          "p95": 1.0,
+          "count": 57
+        },
+        "strict_05cm": {
+          "mean": 0.98,
+          "p95": 1.0,
+          "count": 98
+        },
+        "strict_10cm": {
+          "mean": 1.0,
+          "p95": 1.0,
+          "count": 100
+        },
+        "strict_20cm": {
+          "mean": 1.0,
+          "p95": 1.0,
+          "count": 100
+        }
+      },
+      "calibration": {
+        "radius": 0.08768062547901734,
+        "rank": 190,
+        "n": 199,
+        "alpha": 0.05,
+        "protocol_sha256": "14a12dc1ded71f3fb06902d9b96c7fe4da2a06d8c06e1d2ef8c50ec196724ef2",
+        "scores_sha256": "8c687a845d9aed73597d3cde10fda20754402c95b1fe8f6cfc5ba8f737a9ff31",
+        "scope": "marginal whole-trajectory coverage under registered frozen-policy nominal simulator law"
+      },
+      "coverage": {
+        "episodes": 100,
+        "covered": 95,
+        "not_covered": 5,
+        "fraction": 0.95,
+        "binomial_two_sided_95_interval": [
+          0.8871650888945373,
+          0.9835681208179479
+        ]
+      },
+      "precision_calibration": {
+        "n": 199,
+        "rank": 190,
+        "alpha": 0.05,
+        "radius_m": 0.047728784099766317,
+        "finite_bound": true,
+        "unsafe_calibration": 0,
+        "score": "infinity if unsafe anywhere; otherwise max |physical lateral error| from 2.0 through 8.0 seconds",
+        "claim": "For a prespecified frozen controller and exchangeable complete trajectories, P(finite_radius AND (unsafe OR tail_error > calibrated_radius)) <= alpha, marginal over calibration and new trajectory. Infinite radius is uninformative. This is NOT conditional 95 percent coverage given a particular radius, finite-radius selection or certificate acceptance.",
+        "distinction": "statistical performance bound; not an all-disturbance reachability or precision certificate"
+      },
+      "precision_covered": 94,
+      "barrier": {
+        "passed": false,
+        "status": "witness",
+        "regions": {
+          "initial": {
+            "passed": true,
+            "bound": 0.2108054541740553,
+            "accepted": 1024
+          },
+          "unsafe_0": {
+            "passed": true,
+            "bound": 25.703249783724004,
+            "accepted": 1024
+          },
+          "unsafe_1": {
+            "passed": true,
+            "bound": 24.930232545301305,
+            "accepted": 1024
+          },
+          "unsafe_2": {
+            "passed": true,
+            "bound": 23.821990331348818,
+            "accepted": 1024
+          },
+          "unsafe_3": {
+            "passed": true,
+            "bound": 24.228924546391465,
+            "accepted": 1024
+          }
+        },
+        "checked_cells": 6656,
+        "context": -0.01,
+        "witness": {
+          "state": [
+            -0.828125,
+            0.84375
+          ],
+          "error": [
+            -0.08768062547901734,
+            -0.08768062547901734
+          ],
+          "drift": 0.2399823792748812
+        },
+        "rerun": true,
+        "elapsed_seconds": 1.4786655497737229,
+        "comparison_scope": "frozen current conditional robust backend",
+        "task": "lane",
+        "metadata": {
+          "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+          "arithmetic": "float64 interval arithmetic; no directed rounding",
+          "barrier_nonnegative_by_construction": true,
+          "barrier_time_varying": false,
+          "unsafe_barrier_threshold": 20.0,
+          "frontend_execution": "state proxy plus bounded semantic residual",
+          "coordinates": "normalized [e/.85,theta/.30]",
+          "contract": {
+            "path": "results/lane_precision_20261120_v1/camera/202611200702__nominal_precision/shadow/results/lane_robust_synthesis_20261116_v2/final_cp/calibration.json",
+            "sha256": "85685dd74baa67113562bad10a146a2d257e68d39fae81dd470996d67458efac"
+          },
+          "actor": {
+            "path": "results/lane_precision_20261120_v1/camera/202611200702__nominal_precision/shadow/results/lane_robust_synthesis_20261116_v2/package/actor.pt",
+            "sha256": "ff1f1fb6c04a3d155459e8eb168e41761bf4030fcdf4f25bf03872302ac0a863"
+          },
+          "barrier": {
+            "path": "results/lane_precision_20261120_v1/camera/202611200702__nominal_precision/shadow/results/lane_robust_synthesis_20261116_v2/package/sbc.pt",
+            "sha256": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321"
+          },
+          "contexts": [
+            -0.01,
+            0.0,
+            0.01
+          ],
+          "adapter": {
+            "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+            "sha256": "3f814d65d6199193ae9e92fa9aec6985bcd2b94704e40879a1f4e555cbf4ed9a"
+          },
+          "task": "lane",
+          "horizon": 80,
+          "dt": 0.1,
+          "error_lo": [
+            -0.08768062547901734,
+            -0.08768062547901734
+          ],
+          "error_hi": [
+            0.08768062547901734,
+            0.08768062547901734
+          ],
+          "noise_lo": [],
+          "noise_hi": [],
+          "original_cp_distribution_unchanged": false,
+          "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+        },
+        "precision_certificate": false,
+        "safety_scope": "conditional on full error support, model and floating-point audit limitations"
+      }
+    },
+    "202611200702__adversarial_precision": {
+      "metrics": {
+        "unsafe": {
+          "mean": 0.0,
+          "p95": 0.0,
+          "count": 0
+        },
+        "rmse_e_m": {
+          "mean": 0.035744647139547475,
+          "p95": 0.06208747308285204,
+          "count": null
+        },
+        "mean_abs_e_m": {
+          "mean": 0.02338932420321879,
+          "p95": 0.03773969851242447,
+          "count": null
+        },
+        "peak_abs_e_m": {
+          "mean": 0.1326786543939268,
+          "p95": 0.24455945480889069,
+          "count": null
+        },
+        "tail_mean_abs_e_m": {
+          "mean": 0.01582254357065567,
+          "p95": 0.02796972990410931,
+          "count": null
+        },
+        "tail_peak_abs_e_m": {
+          "mean": 0.027158652098271112,
+          "p95": 0.05341684936229136,
+          "count": null
+        },
+        "mean_abs_heading_rad": {
+          "mean": 0.007146608434594903,
+          "p95": 0.012798244086658823,
+          "count": null
+        },
+        "mean_steering_change_rad": {
+          "mean": 0.017137900424167768,
+          "p95": 0.02620847308230174,
+          "count": null
+        },
+        "strict_02cm": {
+          "mean": 0.57,
+          "p95": 1.0,
+          "count": 57
+        },
+        "strict_05cm": {
+          "mean": 0.84,
+          "p95": 1.0,
+          "count": 84
+        },
+        "strict_10cm": {
+          "mean": 1.0,
+          "p95": 1.0,
+          "count": 100
+        },
+        "strict_20cm": {
+          "mean": 1.0,
+          "p95": 1.0,
+          "count": 100
+        }
+      },
+      "calibration": {
+        "radius": 0.09167626732346311,
+        "rank": 190,
+        "n": 199,
+        "alpha": 0.05,
+        "protocol_sha256": "14a12dc1ded71f3fb06902d9b96c7fe4da2a06d8c06e1d2ef8c50ec196724ef2",
+        "scores_sha256": "0b4597bab8f458fd3ce78f4e394bc5d8b1336091fc87f45a08318d020a4cf39e",
+        "scope": "marginal whole-trajectory coverage under registered frozen-policy nominal simulator law"
+      },
+      "coverage": {
+        "episodes": 100,
+        "covered": 97,
+        "not_covered": 3,
+        "fraction": 0.97,
+        "binomial_two_sided_95_interval": [
+          0.91482394702572,
+          0.9937700284616936
+        ]
+      },
+      "precision_calibration": {
+        "n": 199,
+        "rank": 190,
+        "alpha": 0.05,
+        "radius_m": 0.05321916454984921,
+        "finite_bound": true,
+        "unsafe_calibration": 0,
+        "score": "infinity if unsafe anywhere; otherwise max |physical lateral error| from 2.0 through 8.0 seconds",
+        "claim": "For a prespecified frozen controller and exchangeable complete trajectories, P(finite_radius AND (unsafe OR tail_error > calibrated_radius)) <= alpha, marginal over calibration and new trajectory. Infinite radius is uninformative. This is NOT conditional 95 percent coverage given a particular radius, finite-radius selection or certificate acceptance.",
+        "distinction": "statistical performance bound; not an all-disturbance reachability or precision certificate"
+      },
+      "precision_covered": 92,
+      "barrier": {
+        "passed": false,
+        "status": "unknown",
+        "reason": "cell/depth budget",
+        "regions": {
+          "initial": {
+            "passed": true,
+            "bound": 0.2108054541740553,
+            "accepted": 1024
+          },
+          "unsafe_0": {
+            "passed": true,
+            "bound": 25.703249783724004,
+            "accepted": 1024
+          },
+          "unsafe_1": {
+            "passed": true,
+            "bound": 24.930232545301305,
+            "accepted": 1024
+          },
+          "unsafe_2": {
+            "passed": true,
+            "bound": 23.821990331348818,
+            "accepted": 1024
+          },
+          "unsafe_3": {
+            "passed": true,
+            "bound": 24.228924546391465,
+            "accepted": 1024
+          }
+        },
+        "checked_cells": 16500,
+        "unresolved": 251,
+        "rerun": true,
+        "elapsed_seconds": 11.331185610033572,
+        "comparison_scope": "frozen current conditional robust backend",
+        "task": "lane",
+        "metadata": {
+          "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+          "arithmetic": "float64 interval arithmetic; no directed rounding",
+          "barrier_nonnegative_by_construction": true,
+          "barrier_time_varying": false,
+          "unsafe_barrier_threshold": 20.0,
+          "frontend_execution": "state proxy plus bounded semantic residual",
+          "coordinates": "normalized [e/.85,theta/.30]",
+          "contract": {
+            "path": "results/lane_precision_20261120_v1/camera/202611200702__adversarial_precision/shadow/results/lane_robust_synthesis_20261116_v2/final_cp/calibration.json",
+            "sha256": "7c6c1bcf904bdcdbf9bbd3ef26aa338a23627731202f6bdf2f4742454b78dfa1"
+          },
+          "actor": {
+            "path": "results/lane_precision_20261120_v1/camera/202611200702__adversarial_precision/shadow/results/lane_robust_synthesis_20261116_v2/package/actor.pt",
+            "sha256": "8568e1d949066f580256c078e26174e0b52a27980f712dabe8a25c4eab6a0b41"
+          },
+          "barrier": {
+            "path": "results/lane_precision_20261120_v1/camera/202611200702__adversarial_precision/shadow/results/lane_robust_synthesis_20261116_v2/package/sbc.pt",
+            "sha256": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321"
+          },
+          "contexts": [
+            -0.01,
+            0.0,
+            0.01
+          ],
+          "adapter": {
+            "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+            "sha256": "3f814d65d6199193ae9e92fa9aec6985bcd2b94704e40879a1f4e555cbf4ed9a"
+          },
+          "task": "lane",
+          "horizon": 80,
+          "dt": 0.1,
+          "error_lo": [
+            -0.09167626732346311,
+            -0.09167626732346311
+          ],
+          "error_hi": [
+            0.09167626732346311,
+            0.09167626732346311
+          ],
+          "noise_lo": [],
+          "noise_hi": [],
+          "original_cp_distribution_unchanged": false,
+          "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+        },
+        "precision_certificate": false,
+        "safety_scope": "conditional on full error support, model and floating-point audit limitations"
+      }
+    },
+    "202611200703__nominal_precision": {
+      "metrics": {
+        "unsafe": {
+          "mean": 0.0,
+          "p95": 0.0,
+          "count": 0
+        },
+        "rmse_e_m": {
+          "mean": 0.033160170701734215,
+          "p95": 0.05618455816646934,
+          "count": null
+        },
+        "mean_abs_e_m": {
+          "mean": 0.022306206820799614,
+          "p95": 0.035246274554607764,
+          "count": null
+        },
+        "peak_abs_e_m": {
+          "mean": 0.13126875308512054,
+          "p95": 0.24455945480889069,
+          "count": null
+        },
+        "tail_mean_abs_e_m": {
+          "mean": 0.015945434970528163,
+          "p95": 0.028870412242140448,
+          "count": null
+        },
+        "tail_peak_abs_e_m": {
+          "mean": 0.025318794809058975,
+          "p95": 0.04735031002560343,
+          "count": null
+        },
+        "mean_abs_heading_rad": {
+          "mean": 0.006927027835424646,
+          "p95": 0.01170671457551367,
+          "count": null
+        },
+        "mean_steering_change_rad": {
+          "mean": 0.037763465425497675,
+          "p95": 0.06241401407961982,
+          "count": null
+        },
+        "strict_02cm": {
+          "mean": 0.58,
+          "p95": 1.0,
+          "count": 58
+        },
+        "strict_05cm": {
+          "mean": 0.99,
+          "p95": 1.0,
+          "count": 99
+        },
+        "strict_10cm": {
+          "mean": 1.0,
+          "p95": 1.0,
+          "count": 100
+        },
+        "strict_20cm": {
+          "mean": 1.0,
+          "p95": 1.0,
+          "count": 100
+        }
+      },
+      "calibration": {
+        "radius": 0.09299852387640542,
+        "rank": 190,
+        "n": 199,
+        "alpha": 0.05,
+        "protocol_sha256": "14a12dc1ded71f3fb06902d9b96c7fe4da2a06d8c06e1d2ef8c50ec196724ef2",
+        "scores_sha256": "296986c9e91a3d507efc447a075ab2640e9bf9355dfd6d0df0ed202342d97a7f",
+        "scope": "marginal whole-trajectory coverage under registered frozen-policy nominal simulator law"
+      },
+      "coverage": {
+        "episodes": 100,
+        "covered": 96,
+        "not_covered": 4,
+        "fraction": 0.96,
+        "binomial_two_sided_95_interval": [
+          0.9007428432873401,
+          0.9889955060138118
+        ]
+      },
+      "precision_calibration": {
+        "n": 199,
+        "rank": 190,
+        "alpha": 0.05,
+        "radius_m": 0.047969415212987046,
+        "finite_bound": true,
+        "unsafe_calibration": 0,
+        "score": "infinity if unsafe anywhere; otherwise max |physical lateral error| from 2.0 through 8.0 seconds",
+        "claim": "For a prespecified frozen controller and exchangeable complete trajectories, P(finite_radius AND (unsafe OR tail_error > calibrated_radius)) <= alpha, marginal over calibration and new trajectory. Infinite radius is uninformative. This is NOT conditional 95 percent coverage given a particular radius, finite-radius selection or certificate acceptance.",
+        "distinction": "statistical performance bound; not an all-disturbance reachability or precision certificate"
+      },
+      "precision_covered": 95,
+      "barrier": {
+        "passed": false,
+        "status": "witness",
+        "regions": {
+          "initial": {
+            "passed": true,
+            "bound": 0.2108054541740553,
+            "accepted": 1024
+          },
+          "unsafe_0": {
+            "passed": true,
+            "bound": 25.703249783724004,
+            "accepted": 1024
+          },
+          "unsafe_1": {
+            "passed": true,
+            "bound": 24.930232545301305,
+            "accepted": 1024
+          },
+          "unsafe_2": {
+            "passed": true,
+            "bound": 23.821990331348818,
+            "accepted": 1024
+          },
+          "unsafe_3": {
+            "passed": true,
+            "bound": 24.228924546391465,
+            "accepted": 1024
+          }
+        },
+        "checked_cells": 5376,
+        "context": -0.01,
+        "witness": {
+          "state": [
+            -0.84375,
+            0.78125
+          ],
+          "error": [
+            -0.09299852387640542,
+            -0.09299852387640542
+          ],
+          "drift": 0.2281249520277413
+        },
+        "rerun": true,
+        "elapsed_seconds": 0.2847652230411768,
+        "comparison_scope": "frozen current conditional robust backend",
+        "task": "lane",
+        "metadata": {
+          "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+          "arithmetic": "float64 interval arithmetic; no directed rounding",
+          "barrier_nonnegative_by_construction": true,
+          "barrier_time_varying": false,
+          "unsafe_barrier_threshold": 20.0,
+          "frontend_execution": "state proxy plus bounded semantic residual",
+          "coordinates": "normalized [e/.85,theta/.30]",
+          "contract": {
+            "path": "results/lane_precision_20261120_v1/camera/202611200703__nominal_precision/shadow/results/lane_robust_synthesis_20261116_v2/final_cp/calibration.json",
+            "sha256": "b65b69662f0c741f88e5ce66b58661e7b325b9913f1f59e2cbd313d432d8f411"
+          },
+          "actor": {
+            "path": "results/lane_precision_20261120_v1/camera/202611200703__nominal_precision/shadow/results/lane_robust_synthesis_20261116_v2/package/actor.pt",
+            "sha256": "b62fbd54fa8ec3845f4effbb080fc7100df990fc6a3e57252e5d2c478ca3cdf8"
+          },
+          "barrier": {
+            "path": "results/lane_precision_20261120_v1/camera/202611200703__nominal_precision/shadow/results/lane_robust_synthesis_20261116_v2/package/sbc.pt",
+            "sha256": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321"
+          },
+          "contexts": [
+            -0.01,
+            0.0,
+            0.01
+          ],
+          "adapter": {
+            "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+            "sha256": "3f814d65d6199193ae9e92fa9aec6985bcd2b94704e40879a1f4e555cbf4ed9a"
+          },
+          "task": "lane",
+          "horizon": 80,
+          "dt": 0.1,
+          "error_lo": [
+            -0.09299852387640542,
+            -0.09299852387640542
+          ],
+          "error_hi": [
+            0.09299852387640542,
+            0.09299852387640542
+          ],
+          "noise_lo": [],
+          "noise_hi": [],
+          "original_cp_distribution_unchanged": false,
+          "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+        },
+        "precision_certificate": false,
+        "safety_scope": "conditional on full error support, model and floating-point audit limitations"
+      }
+    },
+    "202611200703__adversarial_precision": {
+      "metrics": {
+        "unsafe": {
+          "mean": 0.0,
+          "p95": 0.0,
+          "count": 0
+        },
+        "rmse_e_m": {
+          "mean": 0.03485565868963115,
+          "p95": 0.061106834221281145,
+          "count": null
+        },
+        "mean_abs_e_m": {
+          "mean": 0.02064469285704175,
+          "p95": 0.03581994992857779,
+          "count": null
+        },
+        "peak_abs_e_m": {
+          "mean": 0.13252131110187082,
+          "p95": 0.24455945480889069,
+          "count": null
+        },
+        "tail_mean_abs_e_m": {
+          "mean": 0.01244076186435203,
+          "p95": 0.027060536057637693,
+          "count": null
+        },
+        "tail_peak_abs_e_m": {
+          "mean": 0.024218497289720205,
+          "p95": 0.05214238247656553,
+          "count": null
+        },
+        "mean_abs_heading_rad": {
+          "mean": 0.006997351872094945,
+          "p95": 0.012436302491857561,
+          "count": null
+        },
+        "mean_steering_change_rad": {
+          "mean": 0.017446934034511495,
+          "p95": 0.026702941187916766,
+          "count": null
+        },
+        "strict_02cm": {
+          "mean": 0.63,
+          "p95": 1.0,
+          "count": 63
+        },
+        "strict_05cm": {
+          "mean": 0.88,
+          "p95": 1.0,
+          "count": 88
+        },
+        "strict_10cm": {
+          "mean": 1.0,
+          "p95": 1.0,
+          "count": 100
+        },
+        "strict_20cm": {
+          "mean": 1.0,
+          "p95": 1.0,
+          "count": 100
+        }
+      },
+      "calibration": {
+        "radius": 0.09132166585480073,
+        "rank": 190,
+        "n": 199,
+        "alpha": 0.05,
+        "protocol_sha256": "14a12dc1ded71f3fb06902d9b96c7fe4da2a06d8c06e1d2ef8c50ec196724ef2",
+        "scores_sha256": "7c4d9f94eca15ca637677f730ee2cddf4cca72b9ab3a01531886fc6023e2e332",
+        "scope": "marginal whole-trajectory coverage under registered frozen-policy nominal simulator law"
+      },
+      "coverage": {
+        "episodes": 100,
+        "covered": 97,
+        "not_covered": 3,
+        "fraction": 0.97,
+        "binomial_two_sided_95_interval": [
+          0.91482394702572,
+          0.9937700284616936
+        ]
+      },
+      "precision_calibration": {
+        "n": 199,
+        "rank": 190,
+        "alpha": 0.05,
+        "radius_m": 0.05187524480374496,
+        "finite_bound": true,
+        "unsafe_calibration": 0,
+        "score": "infinity if unsafe anywhere; otherwise max |physical lateral error| from 2.0 through 8.0 seconds",
+        "claim": "For a prespecified frozen controller and exchangeable complete trajectories, P(finite_radius AND (unsafe OR tail_error > calibrated_radius)) <= alpha, marginal over calibration and new trajectory. Infinite radius is uninformative. This is NOT conditional 95 percent coverage given a particular radius, finite-radius selection or certificate acceptance.",
+        "distinction": "statistical performance bound; not an all-disturbance reachability or precision certificate"
+      },
+      "precision_covered": 93,
+      "barrier": {
+        "passed": false,
+        "status": "witness",
+        "regions": {
+          "initial": {
+            "passed": true,
+            "bound": 0.2108054541740553,
+            "accepted": 1024
+          },
+          "unsafe_0": {
+            "passed": true,
+            "bound": 25.703249783724004,
+            "accepted": 1024
+          },
+          "unsafe_1": {
+            "passed": true,
+            "bound": 24.930232545301305,
+            "accepted": 1024
+          },
+          "unsafe_2": {
+            "passed": true,
+            "bound": 23.821990331348818,
+            "accepted": 1024
+          },
+          "unsafe_3": {
+            "passed": true,
+            "bound": 24.228924546391465,
+            "accepted": 1024
+          }
+        },
+        "checked_cells": 16834,
+        "context": 0.0,
+        "witness": {
+          "state": [
+            -0.7890625,
+            0.8828125
+          ],
+          "error": [
+            -0.09132166585480073,
+            -0.09132166585480073
+          ],
+          "drift": 0.05747567965931211
+        },
+        "rerun": true,
+        "elapsed_seconds": 11.595431245863438,
+        "comparison_scope": "frozen current conditional robust backend",
+        "task": "lane",
+        "metadata": {
+          "comparison": "controlled backend, frozen current visual interface/controller; not native retraining",
+          "arithmetic": "float64 interval arithmetic; no directed rounding",
+          "barrier_nonnegative_by_construction": true,
+          "barrier_time_varying": false,
+          "unsafe_barrier_threshold": 20.0,
+          "frontend_execution": "state proxy plus bounded semantic residual",
+          "coordinates": "normalized [e/.85,theta/.30]",
+          "contract": {
+            "path": "results/lane_precision_20261120_v1/camera/202611200703__adversarial_precision/shadow/results/lane_robust_synthesis_20261116_v2/final_cp/calibration.json",
+            "sha256": "a188ba51bd221dace82e286218e969d4d6b305e2aec8707f98cc83546e80305c"
+          },
+          "actor": {
+            "path": "results/lane_precision_20261120_v1/camera/202611200703__adversarial_precision/shadow/results/lane_robust_synthesis_20261116_v2/package/actor.pt",
+            "sha256": "d166c3fd73d54860948603615fa73b26bf896a1c66aab475f29ddd209779c5d4"
+          },
+          "barrier": {
+            "path": "results/lane_precision_20261120_v1/camera/202611200703__adversarial_precision/shadow/results/lane_robust_synthesis_20261116_v2/package/sbc.pt",
+            "sha256": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321"
+          },
+          "contexts": [
+            -0.01,
+            0.0,
+            0.01
+          ],
+          "adapter": {
+            "path": "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/tasks.py",
+            "sha256": "3f814d65d6199193ae9e92fa9aec6985bcd2b94704e40879a1f4e555cbf4ed9a"
+          },
+          "task": "lane",
+          "horizon": 80,
+          "dt": 0.1,
+          "error_lo": [
+            -0.09132166585480073,
+            -0.09132166585480073
+          ],
+          "error_hi": [
+            0.09132166585480073,
+            0.09132166585480073
+          ],
+          "noise_lo": [],
+          "noise_hi": [],
+          "original_cp_distribution_unchanged": false,
+          "scope": "conditional on frozen residual support; backend sampling is not new image CP"
+        },
+        "precision_certificate": false,
+        "safety_scope": "conditional on full error support, model and floating-point audit limitations"
+      }
+    }
+  },
+  "no_precision_certificate": true,
+  "no_native_spvc_comparison": true,
+  "statistical_unit": "independent paired scenes, NOT frames; seeds averaged per scene before bootstrap",
+  "caveat": "do not condition CP claims on certificate acceptance; no real-road or continuous-time guarantee"
+}

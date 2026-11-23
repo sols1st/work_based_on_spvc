@@ -1,0 +1,43 @@
+{
+  "format": "lane_precision_training_v1",
+  "seed": 202611200703,
+  "arms": [
+    "nominal_precision",
+    "adversarial_precision"
+  ],
+  "source_sha256": "ece26aae5abe5f66701df812086f317e2231787b00bfc5b097f20f886751e16a",
+  "anchor_sha256": "afd4509772a9fda976da2d0c5722f55e6d8f2e9fabce37b7a998110583fe0c75",
+  "barrier_sha256": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321",
+  "observer_sha256": "490e30cad8cbbc95809ba2fde9db4c99c3f8efd3ae2b6f02fb2f84f6707eb278",
+  "architecture": "DeterministicActor(\n  (policy_net): Sequential(\n    (0): Linear(in_features=3, out_features=64, bias=True)\n    (1): Tanh()\n    (2): Linear(in_features=64, out_features=64, bias=True)\n    (3): Tanh()\n  )\n  (action_net): Linear(in_features=64, out_features=1, bias=True)\n)",
+  "parameter_count": 4481,
+  "algorithm": "model-based differentiable fine tuning of PPO-exported actor; NOT PPO",
+  "common_initialization": "previous robust-trained actor; comparison not native SPVC",
+  "updates": 600,
+  "lr": 0.0001,
+  "batch": 64,
+  "rollout_horizon": 24,
+  "pgd_iterations": 4,
+  "training_error_radius": 0.1,
+  "radius_scope": "fixed development perturbation support; not final-policy CP",
+  "loss": "performance + 10*common full-box one-step barrier loss + .05*anchor_action_MSE",
+  "nominal_precision": "nominal rollout performance",
+  "adversarial_precision": ".5*nominal + .5*PGD-perturbed rollout performance",
+  "matched_compute": "Both execute PGD, nominal and perturbed forward/backward cost graphs; only loss weights differ",
+  "selection": "final iterate; no calibration or test model selection",
+  "safety": "same frozen neural B in both losses; finite training batches do not prove safety",
+  "performance_units": "e/.10m, heading/.05rad, steering/.10rad, steering change/.05rad",
+  "evaluation": {
+    "horizon": 80,
+    "dt": 0.1,
+    "deadline_steps": 20,
+    "tolerances_m": [
+      0.02,
+      0.05,
+      0.1,
+      0.2
+    ],
+    "no_failure_dropping": true,
+    "independent_synthetic_seed": 202611200801
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "scene_index": 0,
+  "selected_steps": [
+    0,
+    20,
+    79
+  ],
+  "selection": "fixed before inspecting performance",
+  "versions": {
+    "numpy": "1.24.4",
+    "Pillow": "10.4.0"
+  },
+  "renderer_sha256": "90e3f69cc6ccd0539e39ecd958f16dc0f7076b28d4bb944bc21653665e394a4f",
+  "reconstruction_source_sha256": "db4b09ae4671497889d2964885b0f08d78829ffa72c1b08b4161a509fcb6da39",
+  "arms": {
+    "anchor": {
+      "test_sha256": "67744201c2437b6c2e69da2882040e8e521448fb133b77e24ff6ab0d90567b4a",
+      "recorded80_frame_sha256": "9c251c943cf09faf9e1fccfbb4eb1467cc551c9b24af43163b68e7d17ca01d32",
+      "reconstructed80_frame_sha256": "9c251c943cf09faf9e1fccfbb4eb1467cc551c9b24af43163b68e7d17ca01d32",
+      "full_trajectory_hash_matches": true,
+      "curvature": 0.0,
+      "initial_state": [
+        0.03508985005718124,
+        0.04007140190049527
+      ],
+      "frames": [
+        {
+          "step": 0,
+          "png": "scene0_original_png/anchor_step00.png",
+          "png_sha256": "5dd355a0f74f75500ef38cab478d8208345654331942070f683ab2f3f1819ec5",
+          "raw_pixel_sha256": "531018314f10f7e26c3cc3aa5f22c5faa9cb5ca9f0a2a8b2c0c7b05a2d94f8fb"
+        },
+        {
+          "step": 20,
+          "png": "scene0_original_png/anchor_step20.png",
+          "png_sha256": "0b3eb5a170908ea1c2442af012820bb4c191b9b6a4051da3caeb0ea83ac1ca11",
+          "raw_pixel_sha256": "07dfaae09efab5ca32aaaf053c3db382a18d2414acd981b0bcf96d6647ae8519"
+        },
+        {
+          "step": 79,
+          "png": "scene0_original_png/anchor_step79.png",
+          "png_sha256": "731b9f6a9274cd97e59e373b13a89d9564f086f7810e445ff875039473614b3f",
+          "raw_pixel_sha256": "51efb796b228dc983c92aa74c4218f3a7a53b347b09f67c53aaafb1f35d57d14"
+        }
+      ]
+    },
+    "spvt_first_seed": {
+      "test_sha256": "43cbe4c668fce86a2193bfe14967c0cec26a4b0a3eb5b50836b259c2995f69ef",
+      "recorded80_frame_sha256": "b576bd3435cbde28d3a26644840a90a47ba53a7e97c695bcbbe4e85d59082ef2",
+      "reconstructed80_frame_sha256": "b576bd3435cbde28d3a26644840a90a47ba53a7e97c695bcbbe4e85d59082ef2",
+      "full_trajectory_hash_matches": true,
+      "curvature": 0.0,
+      "initial_state": [
+        0.03508985005718124,
+        0.04007140190049527
+      ],
+      "frames": [
+        {
+          "step": 0,
+          "png": "scene0_original_png/spvt_first_seed_step00.png",
+          "png_sha256": "5dd355a0f74f75500ef38cab478d8208345654331942070f683ab2f3f1819ec5",
+          "raw_pixel_sha256": "531018314f10f7e26c3cc3aa5f22c5faa9cb5ca9f0a2a8b2c0c7b05a2d94f8fb"
+        },
+        {
+          "step": 20,
+          "png": "scene0_original_png/spvt_first_seed_step20.png",
+          "png_sha256": "c00f1a327e8eeda01eb78cef63c63a55c1b90bf7f7e76919b66890ba465fdcb1",
+          "raw_pixel_sha256": "a4c4aa8835b9285d39cff1cc7b24c591d070ae383b1234c6bc217c838c269f1c"
+        },
+        {
+          "step": 79,
+          "png": "scene0_original_png/spvt_first_seed_step79.png",
+          "png_sha256": "72e6efa51b35856a7aa2ff0f07c7521f108eacb971233afbda7ca0bed05f477d",
+          "raw_pixel_sha256": "7b53502c9c4114763f3cd29365b64cc6c4fee8aba310160d4a5d5bc8d809cdab"
+        }
+      ]
+    }
+  },
+  "scope": "Raw RGB bytes reconstructed in the collection environment, checked against the original80-frame digest; PNG bytes have their own hashes.",
+  "all_match": true,
+  "image_archive_sha256": "a08f1028bec9f2f1003f37b4c4b4c2f698ea6d852b47c2ab55e782b4bb2da539"
+}

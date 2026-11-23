@@ -1,0 +1,227 @@
+{
+  "safety_vs_success": "Original task requires d in [5,6] and v<=.5, not v=0. No metric is called parking error.",
+  "capped_goal_time": "Successful episodes use actual first success time; all other outcomes receive20s. Actual stop time and success-subset mean/n are separate.",
+  "short_failure": "Trajectory peak and frame-mean errors are over active pre-action observations; early failure shortens exposure. Always inspect static common-frame error and outcomes together.",
+  "accuracy_sources": "network mean = |prediction - selected image label|; lookup mean = |selected image label - current physical distance|; total mean = |prediction - current physical distance|. Absolute means need not add.",
+  "zero_risk": "Bootstrap[0,0] for all-zero observed unsafe indicators does not imply zero population risk. Use per-arm exact binomial intervals.",
+  "goal_midpoint": "Distance to5.5m is a new auxiliary preference and cannot establish original SPVC task superiority.",
+  "cp": "New ranks are descriptive/calibrated coverage under this frozen replay law. No new B audit is performed and no original-PPO certificate is implied.",
+  "coverage_intervals": {
+    "common__gray32_mlp_400_27411__original_ppo": [
+      0.9528105613842925,
+      0.9763413518924032
+    ],
+    "common__gray32_mlp_400_27411__current_robust": [
+      0.9574485975299709,
+      0.9796695143168904
+    ],
+    "common__gray32_cls_400_27411__original_ppo": [
+      0.9379873693066949,
+      0.965264937733204
+    ],
+    "common__gray32_cls_400_27411__current_robust": [
+      0.9301259944229326,
+      0.9591766488743693
+    ],
+    "common__gray32_spatial_400_27411__original_ppo": [
+      0.9003283010315127,
+      0.935156460291505
+    ],
+    "common__gray32_spatial_400_27411__current_robust": [
+      0.9368598845984908,
+      0.9643997346571167
+    ],
+    "common__gray32_mlp_400_27412__original_ppo": [
+      0.958615280883598,
+      0.9804940626756153
+    ],
+    "common__gray32_mlp_400_27412__current_robust": [
+      0.958615280883598,
+      0.9804940626756153
+    ],
+    "common__gray32_cls_400_27412__original_ppo": [
+      0.9402471673065922,
+      0.9669903745688513
+    ],
+    "common__gray32_cls_400_27412__current_robust": [
+      0.9368598845984908,
+      0.9643997346571167
+    ],
+    "common__gray32_spatial_400_27412__original_ppo": [
+      0.9804033717779835,
+      0.9944964058076864
+    ],
+    "common__gray32_spatial_400_27412__current_robust": [
+      0.9692799673173909,
+      0.9877417320275936
+    ],
+    "common__gray32_mlp_400_27413__original_ppo": [
+      0.9413795807936691,
+      0.9678505029891286
+    ],
+    "common__gray32_mlp_400_27413__current_robust": [
+      0.919004925632949,
+      0.950366910708151
+    ],
+    "common__gray32_cls_400_27413__original_ppo": [
+      0.9562849149937611,
+      0.9788418280297914
+    ],
+    "common__gray32_cls_400_27413__current_robust": [
+      0.9379873693066949,
+      0.965264937733204
+    ],
+    "common__gray32_spatial_400_27413__original_ppo": [
+      0.9402471673065922,
+      0.9669903745688513
+    ],
+    "common__gray32_spatial_400_27413__current_robust": [
+      0.9278922537167473,
+      0.9574244503133829
+    ],
+    "common__gray32_mlp_10000_27411__original_ppo": [
+      0.9413795807936691,
+      0.9678505029891286
+    ],
+    "common__gray32_mlp_10000_27411__current_robust": [
+      0.9539660181829768,
+      0.9771776166505405
+    ],
+    "common__gray32_cls_10000_27411__original_ppo": [
+      0.9267772705393378,
+      0.9565464180630414
+    ],
+    "common__gray32_cls_10000_27411__current_robust": [
+      0.9436497084242552,
+      0.96956529373686
+    ],
+    "common__gray32_spatial_10000_27411__original_ppo": [
+      0.9436497084242552,
+      0.96956529373686
+    ],
+    "common__gray32_spatial_10000_27411__current_robust": [
+      0.9312448167100368,
+      0.9600507476399807
+    ],
+    "common__gray32_mlp_10000_27412__original_ppo": [
+      0.9482128963780359,
+      0.9729711840170161
+    ],
+    "common__gray32_mlp_10000_27412__current_robust": [
+      0.9680776648195845,
+      0.9869548077096123
+    ],
+    "common__gray32_cls_10000_27412__original_ppo": [
+      0.9234395095960652,
+      0.9539049645775157
+    ],
+    "common__gray32_cls_10000_27412__current_robust": [
+      0.9312448167100368,
+      0.9600507476399807
+    ],
+    "common__gray32_spatial_10000_27412__original_ppo": [
+      0.9505070882819876,
+      0.9746610850701622
+    ],
+    "common__gray32_spatial_10000_27412__current_robust": [
+      0.9413795807936691,
+      0.9678505029891286
+    ],
+    "common__gray32_mlp_10000_27413__original_ppo": [
+      0.9539660181829768,
+      0.9771776166505405
+    ],
+    "common__gray32_mlp_10000_27413__current_robust": [
+      0.9668803354850122,
+      0.9861625858279262
+    ],
+    "common__gray32_cls_10000_27413__original_ppo": [
+      0.9528105613842925,
+      0.9763413518924032
+    ],
+    "common__gray32_cls_10000_27413__current_robust": [
+      0.947069064214555,
+      0.9721228512046636
+    ],
+    "common__gray32_spatial_10000_27413__original_ppo": [
+      0.9368598845984908,
+      0.9643997346571167
+    ],
+    "common__gray32_spatial_10000_27413__current_robust": [
+      0.9562849149937611,
+      0.9788418280297914
+    ],
+    "common__gray32_mlp_24000_27411__original_ppo": [
+      0.9346095120845064,
+      0.9626646023953382
+    ],
+    "common__gray32_mlp_24000_27411__current_robust": [
+      0.9516576183857783,
+      0.9755024721052413
+    ],
+    "common__gray32_cls_24000_27411__original_ppo": [
+      0.9234395095960652,
+      0.9539049645775157
+    ],
+    "common__gray32_cls_24000_27411__current_robust": [
+      0.9379873693066949,
+      0.965264937733204
+    ],
+    "common__gray32_spatial_24000_27411__original_ppo": [
+      0.9562849149937611,
+      0.9788418280297914
+    ],
+    "common__gray32_spatial_24000_27411__current_robust": [
+      0.9505070882819876,
+      0.9746610850701622
+    ],
+    "common__gray32_mlp_24000_27412__original_ppo": [
+      0.9346095120845064,
+      0.9626646023953382
+    ],
+    "common__gray32_mlp_24000_27412__current_robust": [
+      0.9223292259508764,
+      0.9530221244589198
+    ],
+    "common__gray32_cls_24000_27412__original_ppo": [
+      0.917898930078629,
+      0.949479690310382
+    ],
+    "common__gray32_cls_24000_27412__current_robust": [
+      0.9167939495385973,
+      0.9485914339810815
+    ],
+    "common__gray32_spatial_24000_27412__original_ppo": [
+      0.9402471673065922,
+      0.9669903745688513
+    ],
+    "common__gray32_spatial_24000_27412__current_robust": [
+      0.9167939495385973,
+      0.9485914339810815
+    ],
+    "common__gray32_mlp_24000_27413__original_ppo": [
+      0.963315176948077,
+      0.9837574643031177
+    ],
+    "common__gray32_mlp_24000_27413__current_robust": [
+      0.9391164472862573,
+      0.9661285014523221
+    ],
+    "common__gray32_cls_24000_27413__original_ppo": [
+      0.9123837665107154,
+      0.9450284750808301
+    ],
+    "common__gray32_cls_24000_27413__current_robust": [
+      0.963315176948077,
+      0.9837574643031177
+    ],
+    "common__gray32_spatial_24000_27413__original_ppo": [
+      0.9413795807936691,
+      0.9678505029891286
+    ],
+    "common__gray32_spatial_24000_27413__current_robust": [
+      0.9234395095960652,
+      0.9539049645775157
+    ]
+  }
+}
