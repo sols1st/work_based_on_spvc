@@ -1,0 +1,75 @@
+{
+  "rounds": [
+    {
+      "round": "r0",
+      "epochs": 4000,
+      "radius": 0.12,
+      "sampled_pass": false,
+      "features": [
+        2,
+        16,
+        8,
+        1
+      ],
+      "actor_updated": false
+    },
+    {
+      "round": "r2",
+      "epochs": 5000,
+      "radius": 0.08347165584564209,
+      "sampled_pass": true,
+      "features": [
+        2,
+        16,
+        8,
+        1
+      ],
+      "actor_updated": false,
+      "global_pass": false,
+      "actual_witnesses": 1,
+      "unresolved": 2022
+    },
+    {
+      "round": "r3",
+      "epochs": 250,
+      "radius": 0.08347165584564209,
+      "sampled_pass": true,
+      "features": [
+        2,
+        16,
+        8,
+        1
+      ],
+      "actor_updated": false,
+      "global_pass": false,
+      "actual_witnesses": 3,
+      "unresolved": 3661
+    },
+    {
+      "round": "r4",
+      "epochs": 500,
+      "radius": 0.08347165584564209,
+      "sampled_pass": true,
+      "features": [
+        2,
+        16,
+        8,
+        1
+      ],
+      "actor_updated": false,
+      "global_pass": false,
+      "actual_witnesses": 0,
+      "unresolved": 1
+    },
+    {
+      "round": "r4, deeper adaptive partition",
+      "depth": 17,
+      "global_pass": true,
+      "unresolved": 0,
+      "actual_witnesses": 0,
+      "accepted_final_partition_cells": 41907
+    }
+  ],
+  "excluded": "r1 had nonfinite training and was excluded",
+  "controller_and_observer_unchanged": true
+}

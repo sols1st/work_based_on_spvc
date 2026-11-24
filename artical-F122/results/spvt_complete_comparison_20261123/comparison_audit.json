@@ -1,0 +1,70 @@
+{
+  "complete": true,
+  "baseline_sources_unchanged": {
+    "model/model.py": true,
+    "train.py": true,
+    "spvt/utils.py": true,
+    "spvt/loss.py": true,
+    "spvt/args.py": true
+  },
+  "arms": {
+    "spvt_selected": {
+      "test_n": 1000,
+      "paired_initial": true,
+      "unsafe": 1000,
+      "strict5": 0
+    },
+    "pid_initializer": {
+      "test_n": 1000,
+      "paired_initial": true,
+      "unsafe": 1000,
+      "strict5": 0
+    },
+    "shared_dino__spvt_selected": {
+      "test_n": 1000,
+      "paired_initial": true,
+      "unsafe": 0,
+      "strict5": 0
+    },
+    "shared_dino__pid_initializer": {
+      "test_n": 1000,
+      "paired_initial": true,
+      "unsafe": 0,
+      "strict5": 123
+    },
+    "current_rgb_dino": {
+      "test_n": 1000,
+      "paired_initial": true,
+      "unsafe": 0,
+      "strict5": 1000
+    }
+  },
+  "new_barrier_passed": true,
+  "q_matches_barrier": true,
+  "controller_and_barrier_bound": true,
+  "current_package": "results/spvt_complete_comparison_20261123/verified_current_package",
+  "source_inputs_unchanged": {
+    "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/spvt_rgb_complete_control.py": true,
+    "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/spvt_native_checkpoint_study.py": true,
+    "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/static_road_camera.py": true,
+    "results/spvt_complete_comparison_20261123/native_task_v2/development_selection.json": true,
+    "/root/SPVT/spvt/logs/test/ckpts/checkpoint_epoch_55.pth": true,
+    "/root/SPVT/model/pretrained_ckpts/pid_controller.pth": true,
+    "/root/SPVT/model/pretrained_ckpts/mlp_generator.pth": true,
+    "Aebs/lane_keeping/renderer.py": true,
+    "Aebs/lane_keeping/patch_perception.py": true,
+    "Aebs/lane_keeping/policy.py": true,
+    "/root/SPVT/spvt/utils.py": true,
+    "/root/SPVT/model/model.py": true,
+    "results/lane_precision_20261120_v1/202611200701/adversarial_precision/package/actor.pt": true,
+    "results/lane_precision_20261120_v1/202611200701/adversarial_precision/package/patch_projection.pt": true,
+    "results/lane_precision_20261120_v1/202611200701/adversarial_precision/package/sbc.pt": true,
+    "/root/work_based_on_spvc/external/dinov2_weights/dinov2_vits14_pretrain.pth": true
+  },
+  "excluded": {
+    "rgb_smoke": "interface smoke with separate final seeds, not final test",
+    "rgb_complete_v1": "interrupted before test",
+    "rgb_complete_v2": "interrupted before test; reference-identical renderer dispatch update",
+    "own_barrier_train_r1": "nonfinite training, excluded; controller unchanged"
+  }
+}

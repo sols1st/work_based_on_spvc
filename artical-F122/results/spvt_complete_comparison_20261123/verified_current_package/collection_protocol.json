@@ -1,0 +1,77 @@
+{
+  "version": "native_spvt_to_rgb_lane_v1",
+  "smoke": false,
+  "native_implementation": "unmodified native controllers, generator and dynamics; no optimization or source fixes",
+  "native_checkpoint_selection": {
+    "file_sha256": "b167006a7226e0aab860e2c8b75f4ba1e55e6b5e20f22cf7ded76c3751f5c2ac",
+    "selected": {
+      "path": "/root/SPVT/spvt/logs/test/ckpts/checkpoint_epoch_55.pth",
+      "sha256": "18b9bcfeba49261f541f40c79ad101280c3a7a0c01980f95d1ab06758ee1d341",
+      "metrics": {
+        "unsafe": 0.0,
+        "first_unsafe_capped_seconds": 8.0,
+        "rmse_cm": 16.292818069458008,
+        "strict_5cm": 0.0,
+        "strict_10cm": 0.06640625,
+        "settling_5cm_seconds": 8.0,
+        "mean_action_change_degrees": 0.12079386413097382
+      }
+    }
+  },
+  "own": "prespecified first training seed 202611200701 adversarial_precision; RGB DINO patch projection plus 3-64-64-1 neural controller",
+  "own_proxy": "h(x)=[e/.85,heading_rad/.30]; known curvature=0",
+  "input": "same RGB road rendering law at each method own current true state, new frame every time, not frozen-bank replay",
+  "native_preprocessing": "RGB -> Pillow L -> BICUBIC 16x8 -> flatten128 -> [-1,1]; explicitly registered camera-transfer adapter because repository ships generated observation controller, not raw RGB loader",
+  "own_preprocessing": "RGB192x192 -> native DINO RGB preprocessing -> patch tokens -> frozen spatial low-dimensional projection",
+  "physical_task": "original SPVT dynamics, dt=.05s v=5m/s L=2.5m, steering +/-30degrees, eight seconds160steps",
+  "action_conversion": "native u*30degrees; own normalized actor*.45rad then converted once to native u=phi/(pi/6)",
+  "initial": "uniform [-60,60]cm x [-7,7]degrees",
+  "safety": "unsafe iff any sampled |CTE|>80cm; no additional heading constraint",
+  "precision": "safe whole episode and every sample from2 through8s within5cm or10cm",
+  "phases": {
+    "calibration": {
+      "n": 199,
+      "seed": 202611231201
+    },
+    "test": {
+      "n": 1000,
+      "seed": 202611231202
+    }
+  },
+  "horizon": 160,
+  "batch": 64,
+  "workers": 32,
+  "device": "cuda:1",
+  "dino_microbatch": 8,
+  "freeze": "all checkpoints fixed before any camera calibration; all calibration thresholds frozen before any test",
+  "numerical_pairing": "pad every outer batch to registered batch size, discard padding; fixed DINO microbatch divides outer batch",
+  "visual_action_residual": "actual camera action minus own nominal proxy action (G(0,x) for native, h(x) for ours); in degrees, not deviation from a new teacher",
+  "guarantees": "do not transfer original method guarantees to this new rendering/plant condition; audit own barrier separately",
+  "resources": "original SPVT pretrained/historical checkpoints versus our target-renderer trained front and controller; not equal-training-budget attribution",
+  "shared_front_diagnostics": "same RGB DINO observation converted to cm/degrees -> unmodified native G(z=0,xhat) -> unmodified native controller; crossed component rows, not native complete baseline",
+  "bindings": {
+    "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/spvt_rgb_complete_control.py": "f4d26b1038dbe0fd7491b298121486aaf8efc3e5da9ec960abddb550aade53db",
+    "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/spvt_native_checkpoint_study.py": "0ad15e3cb450ad56aff0d6abdba8ab63a0463d08f05db716842a689e6894bdd0",
+    "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/static_road_camera.py": "d43206ee5042026fc256982f17f20c53ee9ce55dd245b829d3ddf245a177e071",
+    "results/spvt_complete_comparison_20261123/native_task_v2/development_selection.json": "b167006a7226e0aab860e2c8b75f4ba1e55e6b5e20f22cf7ded76c3751f5c2ac",
+    "/root/SPVT/spvt/logs/test/ckpts/checkpoint_epoch_55.pth": "18b9bcfeba49261f541f40c79ad101280c3a7a0c01980f95d1ab06758ee1d341",
+    "/root/SPVT/model/pretrained_ckpts/pid_controller.pth": "e9a9a1eccbddad07eeab8d72ef5d55a37262fb1f89ba31d2165277ef4c663d92",
+    "/root/SPVT/model/pretrained_ckpts/mlp_generator.pth": "5990366fd81f103b591a9ddd1a79dc5c06d2de63299b7c88ea6741e7060f477b",
+    "Aebs/lane_keeping/renderer.py": "90e3f69cc6ccd0539e39ecd958f16dc0f7076b28d4bb944bc21653665e394a4f",
+    "Aebs/lane_keeping/patch_perception.py": "ab438e203952433fe9e22f2db51030749f578ecf13064d5090eb28fa4e7b027a",
+    "Aebs/lane_keeping/policy.py": "d56d4a944217cc11f0e9bb880549f5691850c015bb7f4c0f044b714436e544c7",
+    "/root/SPVT/spvt/utils.py": "2f07ebe2cacfe0bb505726122eb4c7fedf31a993b077deb561b31a13203129cc",
+    "/root/SPVT/model/model.py": "dfe8dfadfca0991fea90207ebc2ec075f789617ef1e7ca5444451c04a43990ac",
+    "results/lane_precision_20261120_v1/202611200701/adversarial_precision/package/actor.pt": "416106d4e17a4f601cb253927f2be2a8649ba3ba29590d4f680c218638cf8622",
+    "results/lane_precision_20261120_v1/202611200701/adversarial_precision/package/patch_projection.pt": "490e30cad8cbbc95809ba2fde9db4c99c3f8efd3ae2b6f02fb2f84f6707eb278",
+    "results/lane_precision_20261120_v1/202611200701/adversarial_precision/package/sbc.pt": "20bdcba71edeacea6bc8fa64c0ae8197537d2511159a11ffd2dd5da98e1f9321",
+    "/root/work_based_on_spvc/external/dinov2_weights/dinov2_vits14_pretrain.pth": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9"
+  },
+  "arms": [
+    "spvt_selected",
+    "pid_initializer",
+    "shared_dino__spvt_selected",
+    "shared_dino__pid_initializer",
+    "current_rgb_dino"
+  ]
+}

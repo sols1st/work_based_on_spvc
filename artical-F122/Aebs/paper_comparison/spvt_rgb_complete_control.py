@@ -22,9 +22,17 @@ from .spvt_native_checkpoint_study import load_native, metrics, summarize
 
 
 BASE=Path('results/lane_precision_20261120_v1/202611200701/adversarial_precision/package')
+_CAMERA=None
 
 
 def render_batch(states):
+    global _CAMERA
+    from .static_road_camera import StaticRoadCamera
+    if _CAMERA is None:_CAMERA=StaticRoadCamera()
+    return np.stack([_CAMERA.frame([x[0]/100,np.deg2rad(x[1])]) for x in states])
+
+
+def reference_render_batch(states):
     from Aebs.lane_keeping.renderer import RoadRenderer
     renderer=RoadRenderer(192,192)
     return np.stack([renderer.render([x[0]/100,np.deg2rad(x[1])],0.,lighting=1.,
@@ -55,6 +63,7 @@ def main():
     p.add_argument('--test',type=int,default=1000)
     p.add_argument('--batch',type=int,default=64)
     p.add_argument('--workers',type=int,default=32)
+    p.add_argument('--microbatch',type=int,default=8)
     p.add_argument('--smoke',action='store_true')
     a=p.parse_args();a.output.mkdir(parents=True,exist_ok=False);torch.set_num_threads(2)
     root=a.upstream.resolve();sys.path[:0]=[str(root),str(root/'spvt')]
@@ -65,14 +74,14 @@ def main():
     selection=json.loads(a.selection.read_text())['selected']
     selected=Path(selection['path'])
     if sha(selected)!=selection['sha256']:raise ValueError('native selection binding')
-    paths=dict(spvt_selected=selected,spvt_epoch100=root/'spvt/logs/test/ckpts/checkpoint_epoch_100.pth',
-               pid_initializer=root/'model/pretrained_ckpts/pid_controller.pth')
+    paths=dict(spvt_selected=selected,pid_initializer=root/'model/pretrained_ckpts/pid_controller.pth')
     native={name:load_native(module,root,path,'cpu') for name,path in paths.items()}
     gen=native['pid_initializer'].generator
     ours=load_actor(BASE/'actor.pt').requires_grad_(False)
     repo=Path('../external/dinov2').resolve();weights=Path('../external/dinov2_weights/dinov2_vits14_pretrain.pth').resolve()
     source=Path('Aebs/lane_keeping/renderer.py')
-    inputs=[Path(__file__),a.selection,*paths.values(),root/'model/pretrained_ckpts/mlp_generator.pth',
+    inputs=[Path(__file__),Path(__file__).with_name('spvt_native_checkpoint_study.py'),
+            Path(__file__).with_name('static_road_camera.py'),a.selection,*paths.values(),root/'model/pretrained_ckpts/mlp_generator.pth',
             source,Path('Aebs/lane_keeping/patch_perception.py'),Path('Aebs/lane_keeping/policy.py'),
             root/'spvt/utils.py',root/'model/model.py',BASE/'actor.pt',BASE/'patch_projection.pt',BASE/'sbc.pt',weights]
     bindings={str(f):sha(f) for f in inputs}
@@ -89,14 +98,18 @@ def main():
         initial='uniform [-60,60]cm x [-7,7]degrees',
         safety='unsafe iff any sampled |CTE|>80cm; no additional heading constraint',
         precision='safe whole episode and every sample from2 through8s within5cm or10cm',
-        phases=dict(calibration=dict(n=a.calibration,seed=202611231101),test=dict(n=a.test,seed=202611231102)),
-        horizon=160,batch=a.batch,workers=a.workers,device=a.device,
+        phases=dict(calibration=dict(n=a.calibration,seed=202611231201+(1000000 if a.smoke else 0)),
+                    test=dict(n=a.test,seed=202611231202+(1000000 if a.smoke else 0))),
+        horizon=160,batch=a.batch,workers=a.workers,device=a.device,dino_microbatch=a.microbatch,
         freeze='all checkpoints fixed before any camera calibration; all calibration thresholds frozen before any test',
+        numerical_pairing='pad every outer batch to registered batch size, discard padding; fixed DINO microbatch divides outer batch',
         visual_action_residual='actual camera action minus own nominal proxy action (G(0,x) for native, h(x) for ours); in degrees, not deviation from a new teacher',
         guarantees='do not transfer original method guarantees to this new rendering/plant condition; audit own barrier separately',
         resources='original SPVT pretrained/historical checkpoints versus our target-renderer trained front and controller; not equal-training-budget attribution',
-        bindings=bindings,arms=list(native)+['current_rgb_dino'])
+        shared_front_diagnostics='same RGB DINO observation converted to cm/degrees -> unmodified native G(z=0,xhat) -> unmodified native controller; crossed component rows, not native complete baseline',
+        bindings=bindings,arms=list(native)+['shared_dino__'+name for name in native]+['current_rgb_dino'])
     write(a.output/'protocol.json',protocol)
+    (a.output/'executed_source.py').write_bytes(Path(__file__).read_bytes())
     observer=DevicePatchObserver(BASE/'patch_projection.pt',a.device,repo,weights)
     all_results={};thresholds={};test_arrays={};start=time.time()
     with ProcessPoolExecutor(a.workers,mp_context=multiprocessing.get_context('spawn')) as pool:
@@ -105,10 +118,12 @@ def main():
             return np.concatenate(list(pool.map(render_batch,chunks)))
 
         # Renderer dispatch is checked against the reference RGB renderer.
-        probe=np.array([[-60,-7],[0,0],[60,7],[25,-2]],dtype=np.float32)
-        expected=render_batch(probe);actual=render(probe)
+        probe=np.random.default_rng(202611231299).uniform([-3000,-180],[3000,180],(64,2)).astype('float32')
+        probe[:4]=[[-60,-7],[0,0],[60,7],[25,-2]]
+        expected=reference_render_batch(probe);actual=render(probe)
         if not np.array_equal(expected,actual):raise ValueError('parallel pixel mismatch')
-        write(a.output/'pixel_equivalence.json',dict(equal=True,cases=4,
+        write(a.output/'pixel_equivalence.json',dict(equal=True,cases=64,
+            cache='only fixed world geometry and fixed world-space face shading; camera projection/clipping/painting unchanged',
             raw_sha256=hashlib.sha256(actual.tobytes()).hexdigest()))
         for phase,setup in protocol['phases'].items():
             rng=np.random.default_rng(setup['seed']);initial=rng.uniform([-60,-7],[60,7],(setup['n'],2)).astype('float32')
@@ -116,22 +131,29 @@ def main():
                 parts=[];armstart=time.time()
                 for first in range(0,len(initial),a.batch):
                     x=torch.tensor(initial[first:first+a.batch]);count=len(x)
+                    if count<a.batch:x=torch.cat([x,x[-1:].repeat(a.batch-count,1)])
                     states=[x.numpy().copy()];actions=[];gaps=[];ob_errors=[];hashes=[hashlib.sha256() for _ in range(count)]
                     for t in range(160):
                         images=render(x.numpy())
                         for i in range(count):hashes[i].update(images[i].tobytes())
                         with torch.inference_mode():
-                            if name=='current_rgb_dino':
-                                observed=observer(torch.from_numpy(images))
+                            if name=='current_rgb_dino' or name.startswith('shared_dino__'):
+                                observed=torch.cat([observer(chunk) for chunk in torch.from_numpy(images).split(a.microbatch)])
                                 nominal=torch.stack([x[:,0]/85,torch.deg2rad(x[:,1])/.30],1)
-                                zero=torch.zeros(count,1)
-                                u=ours(torch.cat([observed,zero],1)).flatten()*.45/(math.pi/6)
-                                nominal_u=ours(torch.cat([nominal,zero],1)).flatten()*.45/(math.pi/6)
+                                if name=='current_rgb_dino':
+                                    zero=torch.zeros(len(x),1)
+                                    u=ours(torch.cat([observed,zero],1)).flatten()*.45/(math.pi/6)
+                                    nominal_u=ours(torch.cat([nominal,zero],1)).flatten()*.45/(math.pi/6)
+                                else:
+                                    m=native[name[len('shared_dino__'):]]
+                                    estimate=torch.stack([observed[:,0]*85,torch.rad2deg(observed[:,1]*.30)],1)
+                                    u=m(torch.zeros(len(x),10),estimate).flatten()
+                                    nominal_u=m(torch.zeros(len(x),10),x).flatten()
                                 ob_errors.append((observed-nominal).numpy())
                             else:
                                 m=native[name]
                                 u=m.controller(torch.from_numpy(native_pixels(images))).flatten()
-                                nominal_u=m(torch.zeros(count,10),x).flatten()
+                                nominal_u=m(torch.zeros(len(x),10),x).flatten()
                             if not torch.isfinite(u).all():raise ValueError('nonfinite controller output')
                             actions.append(u.numpy());gaps.append(((u-nominal_u)*30).numpy())
                             e,h=dynamics(x[:,0],x[:,1],u)
@@ -141,7 +163,7 @@ def main():
                             directory=a.output/'examples';directory.mkdir(exist_ok=True)
                             Image.fromarray(images[0]).save(directory/f'{name}__{phase}__t{t:03d}.png')
                             Image.fromarray(images[0]).convert('L').resize((16,8),Image.Resampling.BICUBIC).save(directory/f'{name}__{phase}__t{t:03d}__native_input.png')
-                    state=np.stack(states,1);action=np.stack(actions,1);gap=np.stack(gaps,1)
+                    state=np.stack(states,1)[:count];action=np.stack(actions,1)[:count];gap=np.stack(gaps,1)[:count]
                     metric=metrics(state,action)
                     metric['visual_action_score_deg']=abs(gap).max(1)
                     # Joint statistical safety/precision score; unsafe -> infinity.
@@ -149,7 +171,7 @@ def main():
                     part=dict(states_cm_degrees=state,actions_normalized=action,visual_action_gap_degrees=gap,
                               image_digest=np.array([h.hexdigest() for h in hashes]),**metric)
                     if ob_errors:
-                        error=np.stack(ob_errors,1);part.update(observation_errors=error,observation_score=abs(error).max(axis=(1,2)))
+                        error=np.stack(ob_errors,1)[:count];part.update(observation_errors=error,observation_score=abs(error).max(axis=(1,2)))
                     parts.append(part)
                     print(json.dumps(dict(phase=phase,arm=name,completed=first+count,n=len(initial),seconds=time.time()-armstart)),flush=True)
                 combined={k:np.concatenate([p[k] for p in parts]) for k in parts[0]}
@@ -158,7 +180,7 @@ def main():
                     thresholds[name]=dict(action_q_deg=quantile(combined['visual_action_score_deg']),
                         performance_q_cm=finite(quantile(combined['performance_score_cm'])),
                         unsafe_calibration=int(combined['unsafe'].sum()))
-                    if name=='current_rgb_dino':thresholds[name]['observation_q']=quantile(combined['observation_score'])
+                    if 'observation_score' in combined:thresholds[name]['observation_q']=quantile(combined['observation_score'])
                 else:
                     row=summarize({k:combined[k] for k in metrics(combined['states_cm_degrees'],combined['actions_normalized'])})
                     q=thresholds[name]
@@ -166,14 +188,14 @@ def main():
                         strict_5cm_count=int(combined['strict_5cm'].sum()),strict_10cm_count=int(combined['strict_10cm'].sum()),
                         thresholds=q,action_covered=int((combined['visual_action_score_deg']<=q['action_q_deg']).sum()),
                         performance_covered=None if q['performance_q_cm'] is None else int((combined['performance_score_cm']<=q['performance_q_cm']).sum()))
-                    if name=='current_rgb_dino':row['observation_covered']=int((combined['observation_score']<=q['observation_q']).sum())
+                    if 'observation_score' in combined:row['observation_covered']=int((combined['observation_score']<=q['observation_q']).sum())
                     all_results[name]=row;test_arrays[name]=combined
                     print(json.dumps(dict(phase='test_summary',arm=name,metrics=row)),flush=True)
             if phase=='calibration':write(a.output/'frozen_thresholds.json',thresholds)
     # Pair whole scenarios; do not treat time samples as independent tests.
     paired={};rng=np.random.default_rng(202611231103)
     ours=test_arrays['current_rgb_dino']
-    for name in native:
+    for name in [k for k in test_arrays if k!='current_rgb_dino']:
         old=test_arrays[name];np.testing.assert_array_equal(old['states_cm_degrees'][:,0],ours['states_cm_degrees'][:,0])
         differences={k:ours[k].astype(float)-old[k].astype(float) for k in ['rmse_cm','strict_5cm','unsafe']}
         paired[name]={k:dict(mean=float(v.mean()),ci95=np.quantile(rng.choice(v,(4000,len(v))).mean(1),[.025,.975]).tolist()) for k,v in differences.items()}

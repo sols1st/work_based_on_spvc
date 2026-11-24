@@ -1,0 +1,34 @@
+{
+  "actor": "results/lane_precision_20261120_v1/202611200701/adversarial_precision/package/actor.pt",
+  "output_dir": "results/spvt_complete_comparison_20261123/own_barrier_train_r4",
+  "resume": "results/spvt_complete_comparison_20261123/own_barrier_train_r3/sbc.pt",
+  "extra_states": "results/spvt_complete_comparison_20261123/own_barrier_audit_r3/feedback.npz",
+  "epochs": 4000,
+  "seed": 2026112315,
+  "radius": 0.08347165584564209,
+  "error_splits": 4,
+  "learning_rate": 0.001,
+  "hidden": [
+    16,
+    8
+  ],
+  "drift_weight": 20.0,
+  "bound_method": "affine",
+  "source_actor_sha256": "416106d4e17a4f601cb253927f2be2a8649ba3ba29590d4f680c218638cf8622",
+  "model_class": "Aebs.vision_sls.sbc_cp.NonnegativeSBC",
+  "features": [
+    2,
+    16,
+    8,
+    1
+  ],
+  "geometric_teacher": false,
+  "actor_updated": false,
+  "verification_thresholds": {
+    "initial": 1,
+    "unsafe": 20,
+    "drift": 0
+  },
+  "training_only_raw_margin": true,
+  "seed_role": "development; not independent final testing"
+}

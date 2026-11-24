@@ -1,0 +1,205 @@
+{
+  "arms": {
+    "spvt_selected": {
+      "unsafe": 1.0,
+      "first_unsafe_capped_seconds": 1.7262000000000002,
+      "rmse_cm": 1194.8970947265625,
+      "strict_5cm": 0.0,
+      "strict_10cm": 0.0,
+      "settling_5cm_seconds": 8.0,
+      "mean_action_change_degrees": 0.28978317975997925,
+      "n": 1000,
+      "unsafe_count": 1000,
+      "strict_5cm_count": 0,
+      "strict_10cm_count": 0,
+      "thresholds": {
+        "action_q_deg": 25.04633903503418,
+        "performance_q_cm": null,
+        "unsafe_calibration": 199
+      },
+      "action_covered": 965,
+      "performance_covered": null
+    },
+    "pid_initializer": {
+      "unsafe": 1.0,
+      "first_unsafe_capped_seconds": 0.6603000000000001,
+      "rmse_cm": 836.7791137695312,
+      "strict_5cm": 0.0,
+      "strict_10cm": 0.0,
+      "settling_5cm_seconds": 8.0,
+      "mean_action_change_degrees": 0.32430464029312134,
+      "n": 1000,
+      "unsafe_count": 1000,
+      "strict_5cm_count": 0,
+      "strict_10cm_count": 0,
+      "thresholds": {
+        "action_q_deg": 51.39599609375,
+        "performance_q_cm": null,
+        "unsafe_calibration": 199
+      },
+      "action_covered": 912,
+      "performance_covered": null
+    },
+    "shared_dino__spvt_selected": {
+      "unsafe": 0.0,
+      "first_unsafe_capped_seconds": 8.0,
+      "rmse_cm": 16.092275619506836,
+      "strict_5cm": 0.0,
+      "strict_10cm": 0.078,
+      "settling_5cm_seconds": 7.748,
+      "mean_action_change_degrees": 0.4912572205066681,
+      "n": 1000,
+      "unsafe_count": 0,
+      "strict_5cm_count": 0,
+      "strict_10cm_count": 78,
+      "thresholds": {
+        "action_q_deg": 3.7905054092407227,
+        "performance_q_cm": 35.22462844848633,
+        "unsafe_calibration": 0,
+        "observation_q": 0.10745586454868317
+      },
+      "action_covered": 947,
+      "performance_covered": 956,
+      "observation_covered": 971
+    },
+    "shared_dino__pid_initializer": {
+      "unsafe": 0.0,
+      "first_unsafe_capped_seconds": 8.0,
+      "rmse_cm": 15.202288627624512,
+      "strict_5cm": 0.123,
+      "strict_10cm": 0.275,
+      "settling_5cm_seconds": 5.735,
+      "mean_action_change_degrees": 0.7137758731842041,
+      "n": 1000,
+      "unsafe_count": 0,
+      "strict_5cm_count": 123,
+      "strict_10cm_count": 275,
+      "thresholds": {
+        "action_q_deg": 3.888845920562744,
+        "performance_q_cm": 39.000526428222656,
+        "unsafe_calibration": 0,
+        "observation_q": 0.08933348953723907
+      },
+      "action_covered": 955,
+      "performance_covered": 977,
+      "observation_covered": 961
+    },
+    "current_rgb_dino": {
+      "unsafe": 0.0,
+      "first_unsafe_capped_seconds": 8.0,
+      "rmse_cm": 6.438892364501953,
+      "strict_5cm": 1.0,
+      "strict_10cm": 1.0,
+      "settling_5cm_seconds": 0.78095,
+      "mean_action_change_degrees": 0.8428221344947815,
+      "n": 1000,
+      "unsafe_count": 0,
+      "strict_5cm_count": 1000,
+      "strict_10cm_count": 1000,
+      "thresholds": {
+        "action_q_deg": 3.060678482055664,
+        "performance_q_cm": 1.7037882804870605,
+        "unsafe_calibration": 0,
+        "observation_q": 0.08347165584564209
+      },
+      "action_covered": 952,
+      "performance_covered": 972,
+      "observation_covered": 970
+    }
+  },
+  "paired_ours_minus_native": {
+    "spvt_selected": {
+      "rmse_cm": {
+        "mean": -1188.458190270424,
+        "ci95": [
+          -1198.5288902734383,
+          -1178.9490689916922
+        ]
+      },
+      "strict_5cm": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "unsafe": {
+        "mean": -1.0,
+        "ci95": [
+          -1.0,
+          -1.0
+        ]
+      }
+    },
+    "pid_initializer": {
+      "rmse_cm": {
+        "mean": -830.3402221918107,
+        "ci95": [
+          -832.2271967792854,
+          -828.4187554956004
+        ]
+      },
+      "strict_5cm": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "unsafe": {
+        "mean": -1.0,
+        "ci95": [
+          -1.0,
+          -1.0
+        ]
+      }
+    },
+    "shared_dino__spvt_selected": {
+      "rmse_cm": {
+        "mean": -9.653382924079896,
+        "ci95": [
+          -9.848816504986585,
+          -9.455942895840108
+        ]
+      },
+      "strict_5cm": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "unsafe": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "shared_dino__pid_initializer": {
+      "rmse_cm": {
+        "mean": -8.763396205663682,
+        "ci95": [
+          -9.07134835753292,
+          -8.467808055625856
+        ]
+      },
+      "strict_5cm": {
+        "mean": 0.877,
+        "ci95": [
+          0.856,
+          0.896
+        ]
+      },
+      "unsafe": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  "elapsed_seconds": 2623.2647743225098
+}

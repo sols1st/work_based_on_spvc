@@ -1,0 +1,18 @@
+{
+  "inputs": {
+    "/Users/johann/project/work_based_on_spvc/artical-F122/results/spvt_complete_comparison_20261123/native_task_v2/summary.json": "88f6f2045ff0b318815e345ea49d87e9e9f79fa8be5f2abc204faa225bd31f26",
+    "/Users/johann/project/work_based_on_spvc/artical-F122/results/spvt_complete_comparison_20261123/native_task_v2/development_selection.json": "b167006a7226e0aab860e2c8b75f4ba1e55e6b5e20f22cf7ded76c3751f5c2ac",
+    "/Users/johann/project/work_based_on_spvc/artical-F122/results/spvt_complete_comparison_20261123/rgb_complete_v3/summary.json": "94d60bf2fcf38a0bfadcf701caf67d60087625e9959250609f12e787c2f2f338",
+    "/Users/johann/project/work_based_on_spvc/artical-F122/results/spvt_complete_comparison_20261123/rgb_complete_v3/protocol.json": "578663a9b74c9bb0a348fc187f89b35a909022fa24a8b7bc968e328331589173"
+  },
+  "script_sha256": "5b48c5c158b6d504c6b893a245241334c4b9f711e3d850b4951002ce3268c821",
+  "test_n": 1000,
+  "arms": [
+    "spvt_selected",
+    "pid_initializer",
+    "shared_dino__spvt_selected",
+    "shared_dino__pid_initializer",
+    "current_rgb_dino"
+  ],
+  "all_final_test_arms_required": true
+}

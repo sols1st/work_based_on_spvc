@@ -16,8 +16,12 @@ def metrics(states, actions):
     e=abs(states[:,:,0]);unsafe=(e>80).any(1)
     tail=np.maximum.accumulate(e[:,::-1],axis=1)[:,::-1]
     settled=tail<=5
+    settled[unsafe]=False
     first=np.where(settled.any(1),settled.argmax(1)*.05,8.)
-    return dict(unsafe=unsafe,rmse_cm=np.sqrt((states[:,1:,0]**2).mean(1)),
+    crossings=e>80
+    failure_time=np.where(unsafe,crossings.argmax(1)*.05,8.)
+    return dict(unsafe=unsafe,first_unsafe_capped_seconds=failure_time,
+        rmse_cm=np.sqrt((states[:,1:,0]**2).mean(1)),
         strict_5cm=(~unsafe)&(e[:,40:].max(1)<=5),
         strict_10cm=(~unsafe)&(e[:,40:].max(1)<=10),
         settling_5cm_seconds=first,
@@ -68,7 +72,9 @@ def main():
         baseline_scope='existing original-code training checkpoints, not author-published paper-final weights',
         own_scope='old 128D semantic-decoder component diagnostic; not full RGB DINO',
         script_sha256=sha(__file__))
+    protocol['component_source_sha256']=sha(Path(__file__).with_name('benefit_native_spvt.py'))
     write(a.output/'protocol.json',protocol)
+    (a.output/'executed_source.py').write_bytes(Path(__file__).read_bytes())
 
     def scenarios(n,seed):
         rng=np.random.default_rng(seed)

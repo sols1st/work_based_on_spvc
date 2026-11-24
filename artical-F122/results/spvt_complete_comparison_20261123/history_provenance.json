@@ -1,0 +1,26 @@
+{
+  "log_file": "/root/SPVT/spvt/logs/test/runs/events.out.tfevents.1786339853.67ced9780528.5637.0",
+  "log_sha256": "b8d1e90e5ba295150b9fa5b550bf80708f3d873dbc61be855cfb338b533165fa",
+  "configuration_text": "### Training Configuration ###\n\n\n## Run ID\n* run_id: `logs/test`\n\n## Hyperparameters\n* latent_dim: `10`\n* k_min: `4`\n* k_max: `10`\n* beta1: `0.9`\n* beta2: `0.999`\n* num_epochs: `100`\n* batch_size: `64`\n* lr: `8e-05`\n\n## Training Settings\n* safety_loss_type: `single_step`\n* buffer_criteria: `bound_gap`\n* buffer_size: `4000`\n* bound_method: `IBP`\n* lambda_safety: `0.0`\n* lambda_bound: `1.0`\n* pred_loss_step: `1`\n* lambda_accuracy: `1.0`\n* lambda_reg: `0.0`\n* lambda_lp: `0.0`\n* dynamic_lambda: `0.5`\n* target_acc_loss: `0.04`\n* dynamic_step: `0.05`\n* batch_fraction: `0.5`\n\n## Other\n* ckpt: `None`\n* device: `cuda`\n* seed: `0`\n",
+  "checkpoints": {
+    "55": {
+      "checkpoint_sha256": "18b9bcfeba49261f541f40c79ad101280c3a7a0c01980f95d1ab06758ee1d341",
+      "optimizer_steps": [
+        17215
+      ],
+      "optimizer_lr": 3.952479372359193e-05
+    },
+    "100": {
+      "checkpoint_sha256": "c6044777a0c6edd926efe586dcf7e876f0e4266dfa24448eb5a39fb8aabdee8e",
+      "optimizer_steps": [
+        31300
+      ],
+      "optimizer_lr": 1e-05
+    }
+  },
+  "dataset_shape": [
+    20000,
+    2
+  ],
+  "note": "historical run provenance, no baseline retraining or source optimization in this comparison"
+}

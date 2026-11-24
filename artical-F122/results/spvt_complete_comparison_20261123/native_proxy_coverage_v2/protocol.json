@@ -1,0 +1,26 @@
+{
+  "rgb_protocol_sha256": "578663a9b74c9bb0a348fc187f89b35a909022fa24a8b7bc968e328331589173",
+  "methods": {
+    "spvt_selected": {
+      "path": "/root/SPVT/spvt/logs/test/ckpts/checkpoint_epoch_55.pth",
+      "sha256": "18b9bcfeba49261f541f40c79ad101280c3a7a0c01980f95d1ab06758ee1d341"
+    },
+    "pid_initializer": {
+      "path": "/root/SPVT/model/pretrained_ckpts/pid_controller.pth",
+      "sha256": "e9a9a1eccbddad07eeab8d72ef5d55a37262fb1f89ba31d2165277ef4c663d92"
+    }
+  },
+  "sources": {
+    "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/spvt_rgb_proxy_coverage.py": "7fde7cd8de7b2cd32e35b72a6638cf32df2282967d30f9adcb75f013d96e93ad",
+    "/root/SPVT/spvt/utils.py": "2f07ebe2cacfe0bb505726122eb4c7fedf31a993b077deb561b31a13203129cc",
+    "/root/SPVT/model/model.py": "dfe8dfadfca0991fea90207ebc2ec075f789617ef1e7ca5444451c04a43990ac"
+  },
+  "auto_lirpa_file": "/root/artical-F122/auto_LiRPA/auto_LiRPA/__init__.py",
+  "bound_method": "backward",
+  "latent": "entire [-.8,.8]^10; exact physical state, not a sampled latent approximation",
+  "measurement": "test first camera frame action versus full latent-proxy action interval at same true state",
+  "scope": "numerical action-inclusion diagnostic on target rendering domain; no baseline source changes",
+  "tolerance_degrees": 0.0001,
+  "device": "cuda:0",
+  "batch": 8
+}
