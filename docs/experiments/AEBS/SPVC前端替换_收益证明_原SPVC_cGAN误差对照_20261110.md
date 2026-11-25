@@ -191,4 +191,4 @@ q 是观测路径（生成图→state_net）的轨迹最大误差。换 actor �
 - [误差-距离图](../../../artical-F122/results/aebs_cgan_frontend_error_benefit_20261110/error_by_distance.png)
 - [新 DINO 验证报告](../../../artical-F122/results/real_aebs_repair_20261109_release/verification_report.json)
 - [前端对比文档](AEBS前端对比_cGAN_灰度_真实RGB_20261108.md)
-- [收益证明计划](../跨实验对照/SPVC前端替换_收益证明与对照实验详细计划_20261110.md)
+- [收益证明计划](../../archive/2026-11_旧汇报与阶段对照/阶段对照/SPVC前端替换_收益证明与对照实验详细计划_20261110.md)

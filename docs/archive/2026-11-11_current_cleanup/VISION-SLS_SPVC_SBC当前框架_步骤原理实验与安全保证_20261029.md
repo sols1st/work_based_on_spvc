@@ -2175,5 +2175,5 @@ xvfb-run -a /opt/miniconda3/envs/vt/bin/python \
 [p-package]: /Users/johann/project/work_based_on_spvc/artical-F122/results/vision_sls_parking_20261103_neural_sbc_certificate_v1/README.md
 [p-evaluate]: /Users/johann/project/work_based_on_spvc/artical-F122/Aebs/vision_sls_parking/evaluate_backup.py
 [p-adversarial-code]: /Users/johann/project/work_based_on_spvc/artical-F122/Aebs/vision_sls_parking/audit_backup_adversarial.py
-[p-proof]: /Users/johann/project/work_based_on_spvc/docs/current/停车场神经SBC_构造证明与实验_20261103.md
+[p-proof]: ../../experiments/停车场/停车场神经SBC_构造证明与实验_20261103.md
 [p-safety-paper]: https://arxiv.org/abs/1812.05506v4

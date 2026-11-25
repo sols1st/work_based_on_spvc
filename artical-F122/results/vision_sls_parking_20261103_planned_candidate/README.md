@@ -12,4 +12,4 @@ CUDA_VISIBLE_DEVICES=0 xvfb-run -a /opt/miniconda3/envs/vt/bin/python -m Aebs.vi
 
 ## 后续 SBC 求解
 
-新闭环 SBC 已训练并保存，但没有通过；CP 盒内存在从原起点出发的超速反例。模型权重和参考轨迹未修改，详见 sbc_status.json 及 [SBC 求解报告](/Users/johann/project/work_based_on_spvc/docs/current/停车场新控制器_SBC求解与反例_20261103.md)。
+新闭环 SBC 已训练并保存，但没有通过；CP 盒内存在从原起点出发的超速反例。模型权重和参考轨迹未修改，详见 sbc_status.json 及 [SBC 求解报告](../../../docs/archive/2026-11-04_停车场阶段记录/停车场新控制器_SBC求解与反例_20261103.md)。

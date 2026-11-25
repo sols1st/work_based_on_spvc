@@ -388,7 +388,7 @@ $$
 
 ---
 
-详细公式、训练记录与术语解释见 [完整技术说明](/Users/johann/project/work_based_on_spvc/docs/current/VISION-SLS_SPVC_SBC当前框架_步骤原理实验与安全保证_20261029.md)。已通过 AEBS 实验数值依据 [最终模型汇总](/Users/johann/project/work_based_on_spvc/artical-F122/results/vision_sls_spvc_sbc_pass_20261029/summary.json)，第 5 节为单独的扩展设计。
+详细公式、训练记录与术语解释见 [完整技术说明](VISION-SLS_SPVC_SBC当前框架_步骤原理实验与安全保证_20261029.md)。已通过 AEBS 实验数值依据 [最终模型汇总](/Users/johann/project/work_based_on_spvc/artical-F122/results/vision_sls_spvc_sbc_pass_20261029/summary.json)，第 5 节为单独的扩展设计。
 
 
 ## 6 停车场最新实测结果与保证（2026-11-03）

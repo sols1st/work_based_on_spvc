@@ -2,7 +2,7 @@
 
 2026-11-09。**本目录 `README.md` 和 `comparison.json` 里的 “gray/RGB tube 通过” 是旧验证口径，已作废；前端误差数字仍可用。**
 
-正确修复版见 `../real_aebs_repair_20261108_v1/status.json` 和 `docs/current/AEBS前端对比_cGAN_灰度_真实RGB_20261108.md`：
+正确修复版见 `../real_aebs_repair_20261108_v1/status.json` 和 [AEBS 前端对照](../../../docs/experiments/AEBS/AEBS前端对比_cGAN_灰度_真实RGB_20261108.md)：
 
 | 误差集合 | 正确半径 (m) | 同一旧 SBC |
 |---|---:|---|

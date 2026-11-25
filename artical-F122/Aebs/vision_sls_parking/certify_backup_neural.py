@@ -114,7 +114,7 @@ def main():
                  normals=NORMALS.tolist(),obstacle_support_radii=RADII.tolist(),evaluations=evaluations)
     summary['interval_and_replay_checks_passed']=bool(cover['passed'] and all(r['whole_box_safe'] and r['whole_box_in_goal'] for r in reference_rows)
                                                    and bool(evaluations) and all(r['all_audits_passed'] for r in evaluations))
-    summary['formal_proof_obligations_document']='docs/current/停车场神经SBC_构造证明与实验_20261103.md'
+    summary['formal_proof_obligations_document']='docs/experiments/停车场/停车场神经SBC_构造证明与实验_20261103.md'
     summary['formal_program_verification_claimed']=False
     (out/'certificate.json').write_text(json.dumps(summary,indent=2)+'\n')
     manifest={str(path.relative_to(out)):sha(path) for path in out.rglob('*') if path.is_file()}

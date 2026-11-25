@@ -7,3 +7,5 @@
 | 3 | 随机屏障的期望条件、鲁棒屏障的逐后继条件和 CP 的边际覆盖分别说明什么？ | [SBC、CBC、CBF 与 CP 的数学条件](SBC_CBC_CBF_CP概念与安全保证详解_20261116.md) |
 
 对照方法出处可查[论文与阅读笔记](../references/README.md)。各任务的训练步骤、结果和适用范围见[实验索引](../experiments/README.md)。
+
+框架图可[查看 PNG](../assets/SPVC视觉代理与鲁棒验证_框架图.png)或[下载 PDF](../assets/SPVC视觉代理与鲁棒验证_框架图.pdf)。
