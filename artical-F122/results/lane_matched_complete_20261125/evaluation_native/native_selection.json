@@ -1,0 +1,90 @@
+{
+  "selected": {
+    "n": 64,
+    "safe": 64,
+    "strict_5cm": 15,
+    "strict_10cm": 32,
+    "rmse_cm": 11.190486907958984,
+    "settled_s": 2.92109375,
+    "mean_step_deg": 0.612156867980957,
+    "p95_step_deg": 1.598114162683487,
+    "thresholds": {},
+    "epoch": 80,
+    "path": "/root/work_based_on_spvc/artical-F122/results/lane_matched_complete_20261125/native/spvt/logs/matched/ckpts/checkpoint_epoch_80.pth",
+    "sha256": "53900b6d9f5d286dd8964c636fe7c4848c1dd2a520b4beb0065141bed26e23e1"
+  },
+  "candidates": [
+    {
+      "n": 64,
+      "safe": 64,
+      "strict_5cm": 0,
+      "strict_10cm": 31,
+      "rmse_cm": 12.704488754272461,
+      "settled_s": 7.9703125,
+      "mean_step_deg": 0.5454812049865723,
+      "p95_step_deg": 1.9380449950695038,
+      "thresholds": {},
+      "epoch": 20,
+      "path": "/root/work_based_on_spvc/artical-F122/results/lane_matched_complete_20261125/native/spvt/logs/matched/ckpts/checkpoint_epoch_20.pth",
+      "sha256": "bdf8171888a651593f13703b1c397da4129f9d90bcea3eda5a2253fb4dd938a9"
+    },
+    {
+      "n": 64,
+      "safe": 64,
+      "strict_5cm": 11,
+      "strict_10cm": 14,
+      "rmse_cm": 14.26076602935791,
+      "settled_s": 6.07265625,
+      "mean_step_deg": 0.2810972034931183,
+      "p95_step_deg": 0.8670976161956787,
+      "thresholds": {},
+      "epoch": 40,
+      "path": "/root/work_based_on_spvc/artical-F122/results/lane_matched_complete_20261125/native/spvt/logs/matched/ckpts/checkpoint_epoch_40.pth",
+      "sha256": "4d993c96c700d21cc265e94934d988fd1c3ab38a4b488f37d15c45201644f5d3"
+    },
+    {
+      "n": 64,
+      "safe": 64,
+      "strict_5cm": 14,
+      "strict_10cm": 24,
+      "rmse_cm": 12.708547592163086,
+      "settled_s": 3.1484375,
+      "mean_step_deg": 0.20998719334602356,
+      "p95_step_deg": 0.8538488745689392,
+      "thresholds": {},
+      "epoch": 60,
+      "path": "/root/work_based_on_spvc/artical-F122/results/lane_matched_complete_20261125/native/spvt/logs/matched/ckpts/checkpoint_epoch_60.pth",
+      "sha256": "b3de2befd99be3f7d70ce23c8c4d6d9434d6525eef183781062eeadc65d3050a"
+    },
+    {
+      "n": 64,
+      "safe": 64,
+      "strict_5cm": 15,
+      "strict_10cm": 32,
+      "rmse_cm": 11.190486907958984,
+      "settled_s": 2.92109375,
+      "mean_step_deg": 0.612156867980957,
+      "p95_step_deg": 1.598114162683487,
+      "thresholds": {},
+      "epoch": 80,
+      "path": "/root/work_based_on_spvc/artical-F122/results/lane_matched_complete_20261125/native/spvt/logs/matched/ckpts/checkpoint_epoch_80.pth",
+      "sha256": "53900b6d9f5d286dd8964c636fe7c4848c1dd2a520b4beb0065141bed26e23e1"
+    },
+    {
+      "n": 64,
+      "safe": 64,
+      "strict_5cm": 0,
+      "strict_10cm": 20,
+      "rmse_cm": 14.52062702178955,
+      "settled_s": 7.336718749999999,
+      "mean_step_deg": 0.2798793613910675,
+      "p95_step_deg": 1.193756103515625,
+      "thresholds": {},
+      "epoch": 100,
+      "path": "/root/work_based_on_spvc/artical-F122/results/lane_matched_complete_20261125/native/spvt/logs/matched/ckpts/checkpoint_epoch_100.pth",
+      "sha256": "e87e53f1fe798b09c1bb248fecba0155c8b1dd7a9c10dfdb7fa319f95bb14129"
+    }
+  ],
+  "criterion": "64 disjoint live RGB development episodes, maximize safe then minimize lateral RMSE",
+  "exact_native_plant_check_cases": 512
+}

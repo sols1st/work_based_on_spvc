@@ -1,0 +1,12 @@
+{
+  "nominal_ppo_sha256": "f168a27661e7146485449f06317080537bcd099a7c3a7b83cee81472d00143fa",
+  "train_distance_scale_m": 3.1801977157592773,
+  "dev_q_249": 0.17039134785454735,
+  "radius_m": 0.25,
+  "max_rounds": 3,
+  "dev_q_source": "separate development-image replay; not the final CP calibration",
+  "radius_rule": "max(0.25, ceil((dev_q+.05)*20)/20), m",
+  "dev_outcomes": {
+    "success": 249
+  }
+}

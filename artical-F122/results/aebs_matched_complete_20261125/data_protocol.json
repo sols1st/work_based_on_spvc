@@ -1,0 +1,73 @@
+{
+  "source": "/root/carla_data_spvc_expanded/full01",
+  "samples_sha256": "072b47de765915ef16a91044184076a219f77310259674ca8dcf19b1926b70bb",
+  "split_seed": 2026112501,
+  "split_rule": "100 blocks of adjacent unique distances, two development and six holdout distances per block; all appearances of a distance travel together; 5m and 16m train endpoints",
+  "counts": {
+    "development": 2400,
+    "holdout": 7212,
+    "train": 14388
+  },
+  "distance_range_m": [
+    5.0,
+    16.0
+  ],
+  "train_distance_scale_m": 3.1801977157592773,
+  "appearance_groups": [
+    [
+      "low_sun",
+      "220,220,220"
+    ],
+    [
+      "low_sun",
+      "255,0,0"
+    ],
+    [
+      "low_sun",
+      "40,80,160"
+    ],
+    [
+      "original",
+      "220,220,220"
+    ],
+    [
+      "original",
+      "255,0,0"
+    ],
+    [
+      "original",
+      "40,80,160"
+    ],
+    [
+      "overcast",
+      "220,220,220"
+    ],
+    [
+      "overcast",
+      "255,0,0"
+    ],
+    [
+      "overcast",
+      "40,80,160"
+    ],
+    [
+      "rain",
+      "220,220,220"
+    ],
+    [
+      "rain",
+      "255,0,0"
+    ],
+    [
+      "rain",
+      "40,80,160"
+    ]
+  ],
+  "max_internal_lookup_gap_m": {
+    "train": 0.03503503503503502,
+    "development": 0.18018018018018012,
+    "holdout": 0.07807807807807698
+  },
+  "excluded_gray_pixel_duplicate_count": 0,
+  "h5_sha256": "f348bfd8c05fa9b9df1aa0b981cabfe5fe25b4679ce2e14156dfcb556d315ee7"
+}

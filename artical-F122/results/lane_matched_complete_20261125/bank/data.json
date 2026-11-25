@@ -1,0 +1,41 @@
+{
+  "splits": {
+    "train": {
+      "count": 20000,
+      "seed": 2026112600,
+      "rgb_duplicates_rejected": 62
+    },
+    "development": {
+      "count": 2000,
+      "seed": 2026112601,
+      "rgb_duplicates_rejected": 13
+    },
+    "test": {
+      "count": 4000,
+      "seed": 2026112602,
+      "rgb_duplicates_rejected": 32
+    }
+  },
+  "physical_units": [
+    "cm",
+    "degree"
+  ],
+  "state_domain": [
+    [
+      -80,
+      -12
+    ],
+    [
+      80,
+      12
+    ]
+  ],
+  "rgb_shape": [
+    192,
+    192,
+    3
+  ],
+  "scope": "new fixed synthetic straight-road camera; split before any fitting; RGB pixel uniqueness across splits",
+  "grayscale": "Pillow luminance and bicubic 16x8, row-major",
+  "renderer_sha256": "d43206ee5042026fc256982f17f20c53ee9ce55dd245b829d3ddf245a177e071"
+}

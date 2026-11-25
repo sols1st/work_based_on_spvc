@@ -1,0 +1,35 @@
+{
+  "sources": {
+    "results/aebs_matched_complete_20261125/own_synthesis/package/policy.pt": "5f336873d0805edf09f68867abc48003cba32433faedef5c91b208a3a30bcb2f",
+    "results/aebs_matched_complete_20261125/own_synthesis/package/observation.pt": "cc2e2a3a832afd44cb9d2f1435d2f9439852c6c39958e681c0bdc3d42c761316",
+    "results/aebs_matched_complete_20261125/own_synthesis/package/sbc.pt": "dc2fcd3705b4dd1d38a5ca211796247cd257042e7f11b8088564fa9702b7d071",
+    "results/aebs_matched_complete_20261125/own_synthesis/package/config.json": "8765125a22224d5f56bf440d3fe14f5dac654b7d3aea22371a42325a9751fb4a",
+    "results/aebs_matched_complete_20261125/last_verified.pt": "7ccf6fc40a7ee19419adebf39f2984fde80b82e0cbd41f38f4b61fb04222d0d6",
+    "results/aebs_matched_complete_20261125/upstream/Aebs/controller/best_model/best_model.zip": "f168a27661e7146485449f06317080537bcd099a7c3a7b83cee81472d00143fa",
+    "results/aebs_matched_complete_20261125/upstream/Aebs/controller/state_net_trained.pth": "79d35377a244dc5a76762a6f04b43e7abbb26c131f980cf3b3e59f364aa7b34d",
+    "results/aebs_matched_complete_20261125/upstream/Aebs/cGAN/mlp_supervised_ld4/mlp_supervised.pth": "1d08431b70b9df2d19b214833291eac25872ad49d86207cb7d52702a3bc166fd",
+    "results/aebs_matched_complete_20261125/manifest.npz": "8292b41219a241a7c3fd65b343d38d3a32ac5cdf931829759b5908d8f0f86e8a",
+    "/root/work_based_on_spvc/artical-F122/Aebs/paper_comparison/aebs_matched_evaluate.py": "1de4b6de558cae9cb4de94ec3d6f0723ce776eaa3e05f047bb732081b11cc382"
+  },
+  "clean_train_only": true,
+  "conditions": {
+    "clean": "RGB 原图",
+    "dark": "亮度×0.7",
+    "bright": "亮度×1.3",
+    "contrast_low": "对比度×0.7",
+    "contrast_high": "对比度×1.3",
+    "blur10": "模糊 σ=10 源像素",
+    "blur20": "模糊 σ=20 源像素"
+  },
+  "calibration_n": 499,
+  "test_n": 2000,
+  "calibration_seed": 2026112503,
+  "test_seed": 2026112504,
+  "alpha": 0.05,
+  "primary": "SPVC retrained generator+estimator+alternating actor versus RGB DINO+robust actor",
+  "training_stage_row": "native paired grayscale state estimator + native retrained PPO before alternating synthesis",
+  "test": "same frozen holdout camera bank in both arms; separately sampled calibration and test episodes",
+  "initial": "uniform [15,16] m, [2.5,3] m/s, and one shared draw of appearance per trajectory",
+  "termination": "400 steps; common first-entry success [5,6]m with speed<=.5; danger d<=6m and v>.5",
+  "clean_only_certificate": true
+}

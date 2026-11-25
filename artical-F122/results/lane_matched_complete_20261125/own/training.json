@@ -1,0 +1,80 @@
+{
+  "seconds": 965.8924185000069,
+  "train_images": 20000,
+  "dev_images": 2000,
+  "projection_ridge": 10.0,
+  "projection_best_dev_mse": 0.001344229094684124,
+  "projection": "4x4 average pooled 384D patch tokens, standardized ridge 6144->2, fixed Cx",
+  "actor": "3->64 Tanh->64 Tanh->1 clipped normalized action, third input known zero curvature",
+  "anchor": "75 epochs PID imitation on projected source images, using the same SPVT calculate_action labels",
+  "radius_dev_frame_q": 0.0914427787065506,
+  "design_radius": 0.11,
+  "radius_rule": "round up developer frame q95+.015 to centesimal, floor .075",
+  "refinement": "1200 Adam steps, 32-step nominal and 3 projected gradient ascent steps for uncertain images, both terms weighted equally",
+  "training_cost": "lateral and heading errors, actuator magnitude, actuator step change, unsafe rectangle penalty, terminal lateral error",
+  "barrier": "trained separately from scratch after visual head and actor freeze",
+  "actor_sha256": "b8d1d8da09c0c0f7ce60aa22d3c0e85610a938318e1b90c7c63031e818dd8924",
+  "projection_sha256": "8b20b9353cc47bb203cd309f216d470b1850a910ee67e6a518a1737aadd7f8ba",
+  "history": [
+    {
+      "step": 100,
+      "nominal": 5.95759916305542,
+      "stressed": 9.991877555847168
+    },
+    {
+      "step": 200,
+      "nominal": 5.960213661193848,
+      "stressed": 9.873286247253418
+    },
+    {
+      "step": 300,
+      "nominal": 5.546685218811035,
+      "stressed": 9.495437622070312
+    },
+    {
+      "step": 400,
+      "nominal": 6.329813003540039,
+      "stressed": 10.248401641845703
+    },
+    {
+      "step": 500,
+      "nominal": 5.905500411987305,
+      "stressed": 9.876568794250488
+    },
+    {
+      "step": 600,
+      "nominal": 5.077136993408203,
+      "stressed": 8.848454475402832
+    },
+    {
+      "step": 700,
+      "nominal": 5.650747299194336,
+      "stressed": 9.6547212600708
+    },
+    {
+      "step": 800,
+      "nominal": 5.0727925300598145,
+      "stressed": 8.91358757019043
+    },
+    {
+      "step": 900,
+      "nominal": 5.410253524780273,
+      "stressed": 9.098031997680664
+    },
+    {
+      "step": 1000,
+      "nominal": 5.174625396728516,
+      "stressed": 8.990877151489258
+    },
+    {
+      "step": 1100,
+      "nominal": 5.329223155975342,
+      "stressed": 9.22292709350586
+    },
+    {
+      "step": 1200,
+      "nominal": 5.215269088745117,
+      "stressed": 9.05605697631836
+    }
+  ]
+}

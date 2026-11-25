@@ -202,8 +202,8 @@ def predictions(model, bank):
     return output / SCALE if model['prediction_units'] == 'meters' else output
 
 
-def static_metrics(bank, pred, oracle=None):
-    residual = pred.astype(float) * SCALE - bank['distance_m'].astype(float)
+def static_metrics(bank, pred, oracle=None, *, scale=SCALE):
+    residual = pred.astype(float) * scale - bank['distance_m'].astype(float)
     absolute = np.abs(residual)
     return dict(n=len(absolute), mae_m=float(absolute.mean()), rmse_m=float(np.sqrt((residual ** 2).mean())),
                 p95_abs_m=float(np.quantile(absolute, .95)), max_abs_m=float(absolute.max()),
@@ -212,7 +212,7 @@ def static_metrics(bank, pred, oracle=None):
 
 
 @torch.inference_mode()
-def collect(policy, bank, pred, initial, appearances, oracle=None):
+def collect(policy, bank, pred, initial, appearances, oracle=None, *, scale=SCALE):
     n = len(initial)
     peak, errsum, sqsum = np.zeros(n), np.zeros(n), np.zeros(n)
     lookup_peak, lookup_sum, net_peak, net_sum = np.zeros(n), np.zeros(n), np.zeros(n), np.zeros(n)
@@ -232,8 +232,8 @@ def collect(policy, bank, pred, initial, appearances, oracle=None):
             active = ep[indices]
             nearest = np.abs(x[:, :1] - labels[None, :]).argmin(axis=1)
             selected_label = labels[nearest]
-            error = y.astype(float) * SCALE - x[:, 0]
-            neterror = np.abs(y.astype(float) * SCALE - selected_label)
+            error = y.astype(float) * scale - x[:, 0]
+            neterror = np.abs(y.astype(float) * scale - selected_label)
             peak[active] = np.maximum(peak[active], np.abs(error))
             errsum[active] += np.abs(error)
             sqsum[active] += error ** 2
@@ -243,7 +243,7 @@ def collect(policy, bank, pred, initial, appearances, oracle=None):
             net_peak[active] = np.maximum(net_peak[active], neterror)
             net_sum[active] += neterror
         is_state_oracle = oracle == 'current_state_oracle'
-        result = rollout(policy, SCALE, initial[ep], None if is_state_oracle else labels,
+        result = rollout(policy, scale, initial[ep], None if is_state_oracle else labels,
                          None if is_state_oracle else observed, monitor=monitor)
         outcomes[ep], steps[ep], terminal[ep] = result['outcomes'], result['steps'], result['terminal_states']
     if not np.isfinite(peak).all() or not (steps > 0).all():

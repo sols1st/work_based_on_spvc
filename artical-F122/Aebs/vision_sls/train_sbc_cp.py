@@ -81,6 +81,7 @@ def main(argv=None):
     p.add_argument('--counterexample-feedback',action='store_true')
     p.add_argument('--region-grid',type=int,default=48)
     p.add_argument('--drift-loss',choices=['squared','linear'],default='squared')
+    p.add_argument('--barrier-distance-scale', type=float, help='Distance scale in metres from the training split')
     p.add_argument('--extra-states',type=Path,help='Actual interval-verifier counterexamples, development only')
     args=p.parse_args(argv)
     if args.output_dir.exists():p.error('choose a new output directory')
@@ -93,7 +94,10 @@ def main(argv=None):
     for field,name in [('source_policy_sha256','policy.pt'),('source_observation_sha256','observation.pt')]:
         if contract[field]!=sha256(source/name):raise ValueError('model identity mismatch')
     controller=VisionSLSController(source);policy=controller.policy
-    scale=float(Aebs(.05).std1);divisor=torch.tensor([scale,1.])
+    scale=float(Aebs(.05).std1) if args.barrier_distance_scale is None else args.barrier_distance_scale
+    if not np.isfinite(scale) or scale <= 0:
+        p.error('barrier distance scale must be positive and finite')
+    divisor=torch.tensor([scale,1.])
     initial,unsafe,states=region_samples(16384,args.seed)
     safe_progress=None
     if args.predecessors:

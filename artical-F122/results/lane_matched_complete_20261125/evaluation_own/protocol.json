@@ -1,0 +1,24 @@
+{
+  "seed_calibration": 2026112621,
+  "seed_test": 2026112622,
+  "counts": {
+    "calibration": 199,
+    "test": 500
+  },
+  "alpha": 0.05,
+  "initial_box_cm_degrees": [
+    [
+      -60,
+      -7
+    ],
+    [
+      60,
+      7
+    ]
+  ],
+  "horizon_steps": 160,
+  "evaluation": "live RGB each physical step; both steering caps 30 degrees; separate CP by arm",
+  "camera_bank_protocol_sha256": "c96660ada8ca5f65514c2bd0b4d8eeb820099166a3360f6236451e78a3fa395d",
+  "device": "mps",
+  "source_sha256": "d30a3125037deddf5f1e8c6117f3b1a946f54aa7c8a6b8cacdc44ee0388a8c65"
+}

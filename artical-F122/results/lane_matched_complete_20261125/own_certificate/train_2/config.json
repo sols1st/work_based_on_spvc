@@ -1,0 +1,34 @@
+{
+  "actor": "results/lane_matched_complete_20261125/own/actor.pt",
+  "output_dir": "results/lane_matched_complete_20261125/own_certificate/train_2",
+  "resume": "results/lane_matched_complete_20261125/own_certificate/train_1/sbc.pt",
+  "extra_states": null,
+  "epochs": 5000,
+  "seed": 2026112654,
+  "radius": 0.11,
+  "error_splits": 4,
+  "learning_rate": 0.001,
+  "hidden": [
+    16,
+    8
+  ],
+  "drift_weight": 20.0,
+  "bound_method": "affine",
+  "source_actor_sha256": "b8d1d8da09c0c0f7ce60aa22d3c0e85610a938318e1b90c7c63031e818dd8924",
+  "model_class": "Aebs.vision_sls.sbc_cp.NonnegativeSBC",
+  "features": [
+    2,
+    16,
+    8,
+    1
+  ],
+  "geometric_teacher": false,
+  "actor_updated": false,
+  "verification_thresholds": {
+    "initial": 1,
+    "unsafe": 20,
+    "drift": 0
+  },
+  "training_only_raw_margin": true,
+  "seed_role": "development; not independent final testing"
+}

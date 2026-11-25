@@ -1,0 +1,142 @@
+{
+  "seconds": 476.5942675829865,
+  "generator": "author MLPGenerator with fresh orthogonal weights",
+  "discriminator": "conditioned convolutional discriminator with spectral normalization, hinge loss",
+  "unspecified_paper_choices": "Adam betas .5/.999; orthogonal penalty weight 1e-4; discriminator conv widths 32 and 64",
+  "generator_epochs": 100,
+  "generator_batch": 128,
+  "generator_lr": 0.0007,
+  "latent_train": [
+    -1,
+    1
+  ],
+  "anchor": "author E2ENetworkBN, supervised on common target grayscale images and original calculate_action PID labels",
+  "anchor_epochs": 200,
+  "anchor_batch": 256,
+  "anchor_lr": 0.0005,
+  "history": [
+    {
+      "stage": "generator",
+      "epoch": 10,
+      "loss_G": -0.03083719313144684,
+      "loss_D": 1.994187831878662
+    },
+    {
+      "stage": "generator",
+      "epoch": 20,
+      "loss_G": 0.009697235189378262,
+      "loss_D": 1.996713399887085
+    },
+    {
+      "stage": "generator",
+      "epoch": 30,
+      "loss_G": 0.17058441042900085,
+      "loss_D": 1.9935094118118286
+    },
+    {
+      "stage": "generator",
+      "epoch": 40,
+      "loss_G": 0.050317857414484024,
+      "loss_D": 2.0021822452545166
+    },
+    {
+      "stage": "generator",
+      "epoch": 50,
+      "loss_G": 0.05346836522221565,
+      "loss_D": 2.0007081031799316
+    },
+    {
+      "stage": "generator",
+      "epoch": 60,
+      "loss_G": 0.07397273182868958,
+      "loss_D": 2.000429153442383
+    },
+    {
+      "stage": "generator",
+      "epoch": 70,
+      "loss_G": 0.047273945063352585,
+      "loss_D": 1.999748706817627
+    },
+    {
+      "stage": "generator",
+      "epoch": 80,
+      "loss_G": 0.048201318830251694,
+      "loss_D": 2.000089645385742
+    },
+    {
+      "stage": "generator",
+      "epoch": 90,
+      "loss_G": 0.02650121971964836,
+      "loss_D": 2.0000479221343994
+    },
+    {
+      "stage": "generator",
+      "epoch": 100,
+      "loss_G": 0.014574931003153324,
+      "loss_D": 2.0000321865081787
+    },
+    {
+      "stage": "camera_PID_imitation",
+      "epoch": 20,
+      "loss": 0.009839426726102829
+    },
+    {
+      "stage": "camera_PID_imitation",
+      "epoch": 40,
+      "loss": 0.002762045245617628
+    },
+    {
+      "stage": "camera_PID_imitation",
+      "epoch": 60,
+      "loss": 0.0005401487578637898
+    },
+    {
+      "stage": "camera_PID_imitation",
+      "epoch": 80,
+      "loss": 0.0017266059294342995
+    },
+    {
+      "stage": "camera_PID_imitation",
+      "epoch": 100,
+      "loss": 0.0046413494274020195
+    },
+    {
+      "stage": "camera_PID_imitation",
+      "epoch": 120,
+      "loss": 0.008414311334490776
+    },
+    {
+      "stage": "camera_PID_imitation",
+      "epoch": 140,
+      "loss": 0.0015954122645780444
+    },
+    {
+      "stage": "camera_PID_imitation",
+      "epoch": 160,
+      "loss": 0.001271033426746726
+    },
+    {
+      "stage": "camera_PID_imitation",
+      "epoch": 180,
+      "loss": 0.0002832461323123425
+    },
+    {
+      "stage": "camera_PID_imitation",
+      "epoch": 200,
+      "loss": 0.0005663347546942532
+    }
+  ],
+  "bank_sha256": "4de144e29d11d2f378aa274fc8f658b20de5d650743bba5225ce11cb51ea39ac",
+  "generator_sha256": "9a94197e5fffcdf77ecc3c6e93564fe0afb5ed602f91d9e2a0cd7be70285f8f9",
+  "anchor_sha256": "577a0672d199fa814afba923fb721e0ab41754f47777c0b8c21731bda260af47",
+  "original_sources": {
+    "model/model.py": "dfe8dfadfca0991fea90207ebc2ec075f789617ef1e7ca5444451c04a43990ac",
+    "spvt/args.py": "d0414eca0b5151deda55d8433d023d73abe2d5ad9020726c10c8c7fb384561af",
+    "spvt/logger.py": "e8f642b27e2d0ac56233dc85c9736c2c8d15ad5a54c3d04e0fef928eb15d2fc5",
+    "spvt/loss.py": "81d07f79fe07904d76c9f979d7e52db2ef90953402d98b5ebbbcc70df190a4e6",
+    "spvt/reg.py": "93479a88315679c33f3450f64df42093f73ddeee50b3bd14497a9ae513667c89",
+    "spvt/scripts.py": "3d72bda7426c2a3905b9dcd44718fe34856d63edac1cc711f07cbde942d37658",
+    "spvt/utils.py": "2f07ebe2cacfe0bb505726122eb4c7fedf31a993b077deb561b31a13203129cc",
+    "train.py": "d3d000f977c78f032a046529cb990dcb3ef36eb4c7497e37c73b5effa32617cd"
+  }
+}

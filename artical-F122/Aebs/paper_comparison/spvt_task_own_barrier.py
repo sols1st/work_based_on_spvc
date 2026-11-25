@@ -9,11 +9,12 @@ import math
 from pathlib import Path
 
 
-def configure():
+def configure(steering_limit=.45):
     import numpy as np
     import torch
     from Aebs.lane_keeping import core, learned_sbc, train_joint
     core.SPEED=5.;core.DT=.05;core.WHEELBASE=2.5;core.HORIZON=160
+    core.PHI_MAX=steering_limit
     core.INIT_E=.6;core.INIT_THETA=math.radians(7)
     core.E_MAX=.8;core.THETA_MAX=.30
     # Frozen observer/controller were trained in these coordinates.
@@ -56,7 +57,8 @@ def main():
     p.add_argument('--bound-method',choices=['ibp','affine'],default='ibp')
     p.add_argument('--seed',type=int,default=2026112313)
     p.add_argument('--depth',type=int,default=16)
-    a=p.parse_args();train=configure()
+    p.add_argument('--steering-limit',type=float,default=.45,help='Maximum absolute steering in radians')
+    a=p.parse_args();train=configure(a.steering_limit)
     if a.phase=='train':
         if a.bound_method=='affine':
             # Reuse the existing stable bound-training mode: tangent search
@@ -79,7 +81,7 @@ def main():
     from .proxy_architecture_compare import sha
     record=dict(wrapper_sha256=sha(__file__),phase=a.phase,actor_sha256=sha(a.actor),radius=a.radius,
         plant=dict(speed=5.,dt=.05,wheelbase=2.5,initial_cm=[-60,60],initial_heading_degrees=[-7,7],
-                   safety_lateral_m=.8,auxiliary_heading_bound_rad=.30,normalization=[.85,.30],curvature=0),
+                   safety_lateral_m=.8,steering_limit_rad=a.steering_limit,auxiliary_heading_bound_rad=.30,normalization=[.85,.30],curvature=0),
         native_spvt_changed=False,controller_changed=False,
         scope='our neural barrier only; global numerical verification required before any guarantee')
     (a.output/'task_adapter.json').write_text(json.dumps(record,indent=2)+'\n')
